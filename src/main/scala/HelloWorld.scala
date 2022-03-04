@@ -1,1 +1,0 @@
-@main def hello(): Unit = println("Hello World! Greets from Scala " + getRunningScalaVersion)

@@ -1,5 +1,18 @@
 package pl.smtc.service
 
+import cats._
+import cats.effect._
+import cats.implicits._
+import org.http4s.circe._
+import io.circe.syntax._
+import io.circe.generic.auto._
+import org.http4s._
+import org.http4s.dsl._
+import org.http4s.dsl.impl._
+import org.http4s.headers._
+import org.http4s.implicits._
+import org.http4s.server._
+
 object SmartWordsApp extends App {
 
   object Category extends Enumeration {

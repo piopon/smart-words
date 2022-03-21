@@ -3,6 +3,7 @@ package pl.smtc.service
 import cats._
 import cats.effect._
 import cats.implicits._
+import com.comcast.ip4s._
 import org.http4s.circe._
 import io.circe.syntax._
 import io.circe.generic.auto._
@@ -11,7 +12,7 @@ import org.http4s.dsl._
 import org.http4s.dsl.impl._
 import org.http4s.headers._
 import org.http4s.implicits._
-import org.http4s.server._
+import org.http4s.ember.server._
 
 object SmartWordsApp extends IOApp {
 
@@ -38,4 +39,13 @@ object SmartWordsApp extends IOApp {
    * - DELETE: remove a word
    * - PUT: modify a word
    */
+
+  override def run(args: List[String]): IO[ExitCode] = {
+    EmberServerBuilder.default[IO]
+      .withHost(ipv4"0.0.0.0")
+      .withPort(port"8080")
+      .build
+      .use(_ => IO.never)
+      .as(ExitCode.Success)
+  }
 }

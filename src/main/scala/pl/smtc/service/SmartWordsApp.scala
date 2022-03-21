@@ -13,7 +13,7 @@ import org.http4s.headers._
 import org.http4s.implicits._
 import org.http4s.server._
 
-object SmartWordsApp extends App {
+object SmartWordsApp extends IOApp {
 
   object Category extends Enumeration {
     type Category = Value

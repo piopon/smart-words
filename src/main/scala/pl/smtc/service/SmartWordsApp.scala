@@ -41,6 +41,10 @@ object SmartWordsApp extends IOApp {
    * - PUT: modify a word
    */
 
+  var helloWorldService = HttpRoutes.of[IO] {
+    case GET -> Root / "hello" / name => Ok(s"Hello, $name.")
+  }.orNotFound
+
   override def run(args: List[String]): IO[ExitCode] = {
     EmberServerBuilder.default[IO]
       .withHost(ipv4"0.0.0.0")

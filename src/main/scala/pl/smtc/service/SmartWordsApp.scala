@@ -48,7 +48,8 @@ object SmartWordsApp extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     EmberServerBuilder.default[IO]
       .withHost(ipv4"0.0.0.0")
-      .withPort(port"8080")
+      .withPort(port"1234")
+      .withHttpApp(helloWorldService)
       .build
       .use(_ => IO.never)
       .as(ExitCode.Success)

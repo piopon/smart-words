@@ -41,6 +41,9 @@ object SmartWordsApp extends IOApp {
     Word("test", Category.verb, "definition-test"),
     Word("hello", Category.noun, "definition-hello"),
     Word("doing", Category.adjective, "definition-hello"))
+  implicit val WordEncoder: Encoder[Word] = Encoder.instance {
+    (word: Word) => json"""{"name": ${word.name}, "category": ${word.category.toString}, "description": ${word.definition}}"""
+  }
 
   /**
    * Model class representing a single round of a quiz

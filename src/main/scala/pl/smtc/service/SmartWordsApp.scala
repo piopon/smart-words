@@ -52,9 +52,27 @@ object SmartWordsApp extends IOApp {
    */
   case class Quiz(rounds: Map[Round, Boolean], score: Int)
 
-  var helloWorldService = HttpRoutes.of[IO] {
-    case GET -> Root / "hello" / name => Ok(s"Hello, $name.")
-  }.orNotFound
+  /**
+   * Routes (request -> response) for quiz endpoints/resources
+   * <ul>
+   *  <li>Start a new quiz: <u>POST</u> /quiz/start?size=10 -> RET: OK 200 + {id} / ERR 500</li>
+   *  <li>Receive specific question: <u>GET</u> /quiz/{id}/question?no=1 -> RET: OK 200 + Round JSON / ERR 404</li>
+   *  <li>Send question answer: <u>POST</u> /quiz/{id}/question?no=1&answer=A -> RET: OK 200 / ERR 404</li>
+   *  <li>End quiz and get result: <u>GET</u> /quiz/{id}/stop -> RET: OK 200 / ERR 404</li>
+   *  <li>Get answer details: <u>GET</u> /quiz/{id}/summary -> RET: OK 200 + Quiz JSON / ERR 404</li>
+   * </ul>
+   */
+
+  /**
+   * Routes (request -> response) for admin endpoints/resources
+   * <ul>
+   *  <li>Receive all words: <u>GET</u> /admin/words -> RET: OK 200 + ALL WORDS JSON / ERR 500</li>
+   *  <li>Receive category-specific words: <u>GET</u> /admin/words?cat=adj -> RET: OK 200 + Word JSON / ERR 500</li>
+   *  <li>Add a new word: <u>POST</u> /admin/words + Word JSON -> RET: OK 200 / ERR 500</li>
+   *  <li>Delete word: <u>DELETE</u> /admin/words/{name} -> RET: OK 200 / ERR 404</li>
+   *  <li>Update word: <u>PUT</u> /admin/words/{name} + Word JSON -> RET: OK 200 + Word JSON / ERR 404</li>
+   * </ul>
+   */
 
   override def run(args: List[String]): IO[ExitCode] = {
     EmberServerBuilder.default[IO]

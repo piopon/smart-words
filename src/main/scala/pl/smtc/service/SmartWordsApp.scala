@@ -92,6 +92,15 @@ object SmartWordsApp extends IOApp {
   def adminRoutes[F[_] : Monad]: HttpRoutes[F] = {
     val dsl = Http4sDsl[F]
     import dsl._
+    HttpRoutes.of[F] {
+      case GET -> Root / "words" :? OptionalCategoryParamMatcher(maybeCategory) =>
+        maybeCategory match {
+          case None =>
+            Ok("no-optional...")
+          case Some(category) =>
+            Ok("got-optional!")
+        }
+    }
   }
 
   override def run(args: List[String]): IO[ExitCode] = {

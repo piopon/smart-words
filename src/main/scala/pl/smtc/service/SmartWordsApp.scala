@@ -26,7 +26,9 @@ object SmartWordsApp extends IOApp {
    */
   object Category extends Enumeration {
     type Category = Value
-    val verb, adverb, noun, adjective = Value
+    val verb, adverb, noun, adjective, unknown = Value
+    def fromString(string: String): Value =
+      values.find(_.toString.toLowerCase() == string.toLowerCase()).getOrElse(unknown)
   }
 
   /**

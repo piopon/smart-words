@@ -62,6 +62,14 @@ object SmartWordsApp extends IOApp {
    *  <li>Get answer details: <u>GET</u> /quiz/{id}/summary -> RET: OK 200 + Quiz JSON / ERR 404</li>
    * </ul>
    */
+  def quizRoutes[F[_] : Monad]: HttpRoutes[F] = {
+    val dsl = Http4sDsl[F]
+    import dsl._
+    HttpRoutes.of[F] {
+      case GET -> Root / "hello" / name => Ok(s"Hello, $name.")
+    }
+  }
+
 
   /**
    * Routes (request -> response) for admin endpoints/resources

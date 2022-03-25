@@ -87,10 +87,15 @@ object SmartWordsApp extends IOApp {
   }
 
   override def run(args: List[String]): IO[ExitCode] = {
+    val apis = Router(
+      "/quiz" -> SmartWordsApp.quizRoutes[IO],
+      "/admin" -> SmartWordsApp.adminRoutes[IO]
+    ).orNotFound
+
     EmberServerBuilder.default[IO]
       .withHost(ipv4"0.0.0.0")
       .withPort(port"1234")
-      .withHttpApp(helloWorldService)
+      .withHttpApp(apis)
       .build
       .use(_ => IO.never)
       .as(ExitCode.Success)

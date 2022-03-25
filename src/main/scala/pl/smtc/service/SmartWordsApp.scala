@@ -12,7 +12,6 @@ import io.circe.literal._
 import org.http4s._
 import org.http4s.dsl._
 import org.http4s.dsl.io._
-import org.http4s.dsl.impl._
 import org.http4s.headers._
 import org.http4s.implicits._
 import org.http4s.server._
@@ -76,6 +75,9 @@ object SmartWordsApp extends IOApp {
     }
   }
 
+  implicit val categoryParamDecoder: QueryParamDecoder[Category.Value] =
+    QueryParamDecoder[String].map(categoryStr => Category.fromString(categoryStr))
+  object OptionalCategoryParamMatcher extends OptionalQueryParamDecoderMatcher[Category.Value]("cat")
 
   /**
    * Routes (request -> response) for admin endpoints/resources

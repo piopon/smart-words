@@ -36,6 +36,10 @@ object SmartWordsApp extends IOApp {
    * @param definition word correct definition
    */
   case class Word(name: String, category: Category.Value, definition: String)
+  val testWordDB: List[Word] = List(
+    Word("test", Category.verb, "definition-test"),
+    Word("hello", Category.noun, "definition-hello"),
+    Word("doing", Category.adjective, "definition-hello"))
 
   /**
    * Model class representing a single round of a quiz

@@ -94,7 +94,7 @@ object SmartWordsApp extends IOApp {
    *  <li>Update word: <u>PUT</u> /admin/words/{name} + Word JSON -> RET: OK 200 + Word JSON / ERR 404</li>
    * </ul>
    */
-  def adminRoutes[F[_] : Monad]: HttpRoutes[F] = {
+  def adminRoutes[F[_] : Concurrent]: HttpRoutes[F] = {
     val dsl = Http4sDsl[F]
     import dsl._
     HttpRoutes.of[F] {

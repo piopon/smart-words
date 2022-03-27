@@ -17,6 +17,8 @@ import org.http4s.implicits._
 import org.http4s.server._
 import org.http4s.ember.server._
 
+import scala.collection.mutable.ListBuffer
+
 object SmartWordsApp extends IOApp {
 
   /**
@@ -37,7 +39,7 @@ object SmartWordsApp extends IOApp {
    * @param definition word correct definition
    */
   case class Word(name: String, category: Category.Value, definition: String)
-  val testWordDB: List[Word] = List(
+  val testWordDB: ListBuffer[Word] = ListBuffer(
     Word("test", Category.verb, "definition-test"),
     Word("hello", Category.noun, "definition-hello"),
     Word("doing", Category.adjective, "definition-hello"))
@@ -99,9 +101,9 @@ object SmartWordsApp extends IOApp {
       case GET -> Root / "words" :? OptionalCategoryParamMatcher(maybeCategory) =>
         maybeCategory match {
           case None =>
-            Ok(testWordDB.asJson)
+            Ok(testWordDB.toList.asJson)
           case Some(category) =>
-            Ok(testWordDB.filter(word => word.category.equals(category)).asJson)
+            Ok(testWordDB.toList.filter(word => word.category.equals(category)).asJson)
         }
     }
   }

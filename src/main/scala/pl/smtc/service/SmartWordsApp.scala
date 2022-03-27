@@ -99,9 +99,9 @@ object SmartWordsApp extends IOApp {
       case GET -> Root / "words" :? OptionalCategoryParamMatcher(maybeCategory) =>
         maybeCategory match {
           case None =>
-            Ok("no-optional...")
+            Ok(testWordDB.asJson)
           case Some(category) =>
-            Ok("got-optional!")
+            Ok(testWordDB.filter(word => word.category.equals(category)).asJson)
         }
     }
   }

@@ -106,6 +106,7 @@ object SmartWordsApp extends IOApp {
   def adminRoutes[F[_] : Concurrent]: HttpRoutes[F] = {
     val dsl = Http4sDsl[F]
     import dsl._
+    implicit val wordDecoder: EntityDecoder[F, Word] = jsonOf[F, Word]
     HttpRoutes.of[F] {
       case GET -> Root / "words" :? OptionalCategoryParamMatcher(maybeCategory) =>
         maybeCategory match {
@@ -113,6 +114,14 @@ object SmartWordsApp extends IOApp {
             Ok(testWordDB.toList.asJson)
           case Some(category) =>
             Ok(testWordDB.toList.filter(word => word.category.equals(category)).asJson)
+        }
+      case request@POST -> Root / "words" =>
+        for {
+          newWord <- request.as[Word]
+          response <- Ok()
+        } yield {
+          testWordDB += newWord
+          response
         }
     }
   }

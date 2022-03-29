@@ -123,6 +123,9 @@ object SmartWordsApp extends IOApp {
           testWordDB += newWord
           response
         }
+      case DELETE -> Root / "words" / name =>
+        val removed = testWordDB.remove(testWordDB.indexWhere((word: Word) => word.name.equals(name)))
+        Ok(removed.asJson)
     }
   }
 

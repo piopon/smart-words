@@ -120,7 +120,10 @@ object SmartWordsApp extends IOApp {
           newWord <- request.as[Word]
           response <- Ok()
         } yield {
-          testWordDB += newWord
+          val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(newWord.name))
+          if (nameIndex == -1) {
+            testWordDB += newWord
+          }
           response
         }
       case request@PUT -> Root / "words" / name =>

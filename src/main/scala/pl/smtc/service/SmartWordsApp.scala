@@ -118,14 +118,16 @@ object SmartWordsApp extends IOApp {
       case request@POST -> Root / "words" =>
         for {
           newWord <- request.as[Word]
-          response <- Ok()
-        } yield {
-          val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(newWord.name))
-          if (nameIndex == -1) {
-            testWordDB += newWord
+          response <- {
+            val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(newWord.name))
+            if (nameIndex == -1) {
+              testWordDB += newWord
+              Ok(s"Added new word: ${newWord.name}.")
+            } else {
+              Ok(s"Word: ${newWord.name} already defined.")
+            }
           }
-          response
-        }
+        } yield response
       case request@PUT -> Root / "words" / name =>
         for {
           newWord <- request.as[Word]

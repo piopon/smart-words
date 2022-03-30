@@ -147,7 +147,7 @@ object SmartWordsApp extends IOApp {
           val removed = testWordDB.remove(nameIndex)
           Ok(removed.asJson)
         } else {
-          NotFound(s"Word: ${name} not found.")
+          NotFound(s"Word: ${name} not found in DB.")
         }
     }
   }

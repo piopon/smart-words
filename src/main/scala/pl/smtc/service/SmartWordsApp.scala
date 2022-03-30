@@ -133,8 +133,12 @@ object SmartWordsApp extends IOApp {
         }
       case DELETE -> Root / "words" / name =>
         val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(name))
-        val removed = testWordDB.remove(nameIndex)
-        Ok(removed.asJson)
+        if (nameIndex >= 0) {
+          val removed = testWordDB.remove(nameIndex)
+          Ok(removed.asJson)
+        } else {
+          NotFound(s"Word: ${name} not found.")
+        }
     }
   }
 

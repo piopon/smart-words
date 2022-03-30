@@ -123,6 +123,14 @@ object SmartWordsApp extends IOApp {
           testWordDB += newWord
           response
         }
+      case request@PUT -> Root / "words" / name =>
+        for {
+          newWord <- request.as[Word]
+        } yield {
+          val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(name))
+          testWordDB += newWord
+          Ok(newWord.asJson)
+        }
       case DELETE -> Root / "words" / name =>
         val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(name))
         val removed = testWordDB.remove(nameIndex)

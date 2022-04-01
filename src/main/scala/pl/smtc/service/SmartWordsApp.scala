@@ -122,9 +122,9 @@ object SmartWordsApp extends IOApp {
             val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(newWord.name))
             if (nameIndex == -1) {
               testWordDB += newWord
-              Ok(s"Added new word: ${newWord.name}.")
+              Ok(s"Added new word \"${newWord.name}\".")
             } else {
-              Ok(s"Word: ${newWord.name} already defined.")
+              Ok(s"Word \"${newWord.name}\" already defined.")
             }
           }
         } yield response
@@ -135,9 +135,9 @@ object SmartWordsApp extends IOApp {
             val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(name))
             if (nameIndex >= 0) {
               testWordDB.update(nameIndex, newWord)
-              Ok(s"Updated word: ${name}.")
+              Ok(s"Updated word \"${name}\".")
             } else {
-              NotFound(s"Word: ${name} not found in DB.")
+              NotFound(s"Word \"${name}\" not found in DB.")
             }
           }
         } yield response
@@ -147,7 +147,7 @@ object SmartWordsApp extends IOApp {
           val removed = testWordDB.remove(nameIndex)
           Ok(removed.asJson)
         } else {
-          NotFound(s"Word: ${name} not found in DB.")
+          NotFound(s"Word \"${name}\" not found in DB.")
         }
     }
   }

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "test123",
+    "category": "verb",
+    "description": "definition-test"
+  },
+  {
+    "name": "hello666",
+    "category": "noun",
+    "description": "definition-hello"
+  },
+  {
+    "name": "doing111",
+    "category": "adjective",
+    "description": "definition-doing"
+  }
+]

@@ -9,6 +9,7 @@ import io.circe._
 import io.circe.syntax._
 import io.circe.generic.auto._
 import io.circe.literal._
+import io.circe.parser._
 import org.http4s._
 import org.http4s.dsl._
 import org.http4s.dsl.io._
@@ -18,6 +19,7 @@ import org.http4s.server._
 import org.http4s.ember.server._
 
 import scala.collection.mutable.ListBuffer
+import scala.io.Source
 
 object SmartWordsApp extends IOApp {
 
@@ -153,6 +155,10 @@ object SmartWordsApp extends IOApp {
   }
 
   override def run(args: List[String]): IO[ExitCode] = {
+    val fileStream = getClass.getResourceAsStream("/dictionary.json")
+    val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
+    println(lines)
+
     val apis = Router(
       "/quiz" -> SmartWordsApp.quizRoutes[IO],
       "/admin" -> SmartWordsApp.adminRoutes[IO]

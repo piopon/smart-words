@@ -41,10 +41,7 @@ object SmartWordsApp extends IOApp {
    * @param definition word correct definition
    */
   case class Word(name: String, category: Category.Value, definition: String)
-  val testWordDB: ListBuffer[Word] = ListBuffer(
-    Word("test", Category.verb, "definition-test"),
-    Word("hello", Category.noun, "definition-hello"),
-    Word("doing", Category.adjective, "definition-hello"))
+  val testWordDB: ListBuffer[Word] = ListBuffer()
   implicit val WordEncoder: Encoder[Word] = Encoder.instance {
     (word: Word) => json"""{"name": ${word.name}, "category": ${word.category.toString}, "description": ${word.definition}}"""
   }
@@ -157,7 +154,10 @@ object SmartWordsApp extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     val fileStream = getClass.getResourceAsStream("/dictionary.json")
     val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
-    println(lines)
+    decode[List[Word]](lines) match {
+      case Left(fail) => println(s"Invalid json: ${fail.getMessage}")
+      case Right(words) => words.foreach(word => testWordDB += word)
+    }
 
     val apis = Router(
       "/quiz" -> SmartWordsApp.quizRoutes[IO],

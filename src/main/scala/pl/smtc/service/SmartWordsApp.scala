@@ -41,7 +41,6 @@ object SmartWordsApp extends IOApp {
    * @param definition word correct definition
    */
   case class Word(name: String, category: Category.Value, definition: String)
-  val testWordDB: ListBuffer[Word] = ListBuffer()
   implicit val WordEncoder: Encoder[Word] = Encoder.instance {
     (word: Word) => json"""{"name": ${word.name}, "category": ${word.category.toString}, "description": ${word.definition}}"""
   }
@@ -151,11 +150,13 @@ object SmartWordsApp extends IOApp {
     }
   }
 
+  val testWordDB: ListBuffer[Word] = ListBuffer()
+
   override def run(args: List[String]): IO[ExitCode] = {
     val fileStream = getClass.getResourceAsStream("/dictionary.json")
     val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
     decode[List[Word]](lines) match {
-      case Left(fail) => println(s"Invalid json: ${fail.getMessage}")
+      case Left(fail) => println(s"Invalid dictionary file. ${fail.getMessage}")
       case Right(words) => words.foreach(word => testWordDB += word)
     }
 

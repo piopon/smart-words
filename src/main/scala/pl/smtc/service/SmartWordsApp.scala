@@ -152,6 +152,21 @@ object SmartWordsApp extends IOApp {
 
   val testWordDB: ListBuffer[Word] = ListBuffer()
 
+  def initDatabase(): Boolean = {
+    val fileStream = getClass.getResourceAsStream("/dictionary.json")
+    val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
+    decode[List[Word]](lines) match {
+      case Left(fail) => {
+        println(s"Invalid dictionary file. ${fail.getMessage}")
+        false
+      }
+      case Right(words) => {
+        words.foreach(word => testWordDB += word)
+        true
+      }
+    }
+  }
+
   override def run(args: List[String]): IO[ExitCode] = {
     val fileStream = getClass.getResourceAsStream("/dictionary.json")
     val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin

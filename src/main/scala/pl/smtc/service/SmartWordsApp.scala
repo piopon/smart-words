@@ -168,24 +168,21 @@ object SmartWordsApp extends IOApp {
   }
 
   override def run(args: List[String]): IO[ExitCode] = {
-    val fileStream = getClass.getResourceAsStream("/dictionary.json")
-    val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
-    decode[List[Word]](lines) match {
-      case Left(fail) => println(s"Invalid dictionary file. ${fail.getMessage}")
-      case Right(words) => words.foreach(word => testWordDB += word)
+    if (initDatabase()) {
+      val apis = Router(
+        "/quiz" -> SmartWordsApp.quizRoutes[IO],
+        "/admin" -> SmartWordsApp.adminRoutes[IO]
+      ).orNotFound
+
+      EmberServerBuilder.default[IO]
+        .withHost(ipv4"0.0.0.0")
+        .withPort(port"1234")
+        .withHttpApp(apis)
+        .build
+        .use(_ => IO.never)
+        .as(ExitCode.Success)
+    } else {
+      IO.canceled.as(ExitCode.Error)
     }
-
-    val apis = Router(
-      "/quiz" -> SmartWordsApp.quizRoutes[IO],
-      "/admin" -> SmartWordsApp.adminRoutes[IO]
-    ).orNotFound
-
-    EmberServerBuilder.default[IO]
-      .withHost(ipv4"0.0.0.0")
-      .withPort(port"1234")
-      .withHttpApp(apis)
-      .build
-      .use(_ => IO.never)
-      .as(ExitCode.Success)
   }
 }

@@ -1,17 +1,122 @@
 [
   {
-    "name": "test123",
+    "name": "letnik",
     "category": "verb",
-    "description": "definition-test"
+    "description": "mieszkaniec miasta przebywający na wypoczynku"
   },
   {
-    "name": "hello666",
+    "name": "utyskiwać",
     "category": "noun",
-    "description": "definition-hello"
+    "description": "narzekać"
   },
   {
-    "name": "doing111",
+    "name": "lapidarny",
     "category": "adjective",
-    "description": "definition-doing"
+    "description": "zwięzły"
+  },
+  {
+    "name": "sadzić się",
+    "category": "verb",
+    "description": "czepiać się / imponować"
+  },
+  {
+    "name": "handryczyć się",
+    "category": "noun",
+    "description": "kłócić się / sprzeczać się"
+  },
+  {
+    "name": "indyferencja",
+    "category": "adjective",
+    "description": "obojętność"
+  },
+  {
+    "name": "otaksować",
+    "category": "noun",
+    "description": "mierzyć wzrokiem"
+  },
+  {
+    "name": "dyskrecjonalny",
+    "category": "adjective",
+    "description": "pozostawiony do decyzji"
+  },
+  {
+    "name": "absztyfikant",
+    "category": "adjective",
+    "description": "adorator / zalotnik / lowelas"
+  },
+  {
+    "name": "efemeryczny",
+    "category": "noun",
+    "description": "krótkotrwały / szybki"
+  },
+  {
+    "name": "rekapitulować",
+    "category": "adjective",
+    "description": "streszczać / powtarzać coś w krótszej formie"
+  },
+  {
+    "name": "tromtadracja",
+    "category": "noun",
+    "description": "efekciarskie / krzykliwe wygłaszanie pustych haseł"
+  },
+  {
+    "name": "lampucera",
+    "category": "adjective",
+    "description": "starsza kobieta, która używa ostrego makijażu, aby podobać się mężczyznom, pudernica"
+  },
+  {
+    "name": "utensylia",
+    "category": "noun",
+    "description": "narzędzia, przybory, akcesoria potrzebne do wykonywania jakichś prac, czynności"
+  },
+  {
+    "name": "cezura",
+    "category": "adjective",
+    "description": "punkt zwrotny w życiu jednostki/zbiorowości"
+  },
+  {
+    "name": "eufemizm",
+    "category": "noun",
+    "description": "wyrażenie użyte zastępczo w celu złagodzenia wyrażeń drastycznych, dosadnych lub nieprzyzwoitych"
+  },
+  {
+    "name": "eremita",
+    "category": "adjective",
+    "description": "pustelnik, z pobudek religijnych decyduje się na życie w izolacji i celibacie"
+  },
+  {
+    "name": "imponderabilia",
+    "category": "noun",
+    "description": "coś, czego nie da się zmierzyć ale co ma wpływ na przebieg wydarzeń"
+  },
+  {
+    "name": "wiktuały",
+    "category": "adjective",
+    "description": "żywność / prowiant"
+  },
+  {
+    "name": "wierutny",
+    "category": "noun",
+    "description": "odznaczający się negatywna cechą rozwinięta w najwyższym stopniu"
+  },
+  {
+    "name": "mizogin",
+    "category": "adjective",
+    "description": "osoba, która nienawidzi, czuje pogardę/uprzedzenie do kobiet"
+  },
+  {
+    "name": "tajemnica poliszynela",
+    "category": "noun",
+    "description": "rzekoma tajemnica, o której wszyscy wiedzą, lecz nikt o niej głośno nie mówi"
+  },
+  {
+    "name": "flexować się",
+    "category": "adjective",
+    "description": "chwalić się drogimi przedmiotami, ciuchami, telefonami"
+  },
+  {
+    "name": "taumaturg",
+    "category": "adjective",
+    "description": "osoba posiadająca dar czynienia cudów/cudotwórca"
   }
 ]

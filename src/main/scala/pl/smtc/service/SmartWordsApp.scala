@@ -150,8 +150,6 @@ object SmartWordsApp extends IOApp {
     }
   }
 
-  val testWordDB: ListBuffer[Word] = ListBuffer()
-
   def initDatabase(): Boolean = {
     val fileStream = getClass.getResourceAsStream("/dictionary.json")
     val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
@@ -166,6 +164,8 @@ object SmartWordsApp extends IOApp {
       }
     }
   }
+
+  val testWordDB: ListBuffer[Word] = ListBuffer()
 
   override def run(args: List[String]): IO[ExitCode] = {
     if (initDatabase()) {

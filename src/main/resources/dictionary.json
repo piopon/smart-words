@@ -323,5 +323,275 @@
     "name": "saute",
     "category": "adjective",
     "description": "smażony w niewielkiej ilości tłuszczu bez panierki, bez dodatków"
+  },
+  {
+    "name": "sukurs",
+    "category": "adjective",
+    "description": "odsiecz, pomoc, posiłki, wsparcie"
+  },
+  {
+    "name": "badylarz",
+    "category": "adjective",
+    "description": "prywatny przedsiebiorca-ogrodnik"
+  },
+  {
+    "name": "pluwiofil",
+    "category": "adjective",
+    "description": "osoba uwielbiająca deszcze"
+  },
+  {
+    "name": "pluwiał",
+    "category": "adjective",
+    "description": "okres ze zwiększoną ilością opadów atmosferycznych"
+  },
+  {
+    "name": "kazamaty",
+    "category": "adjective",
+    "description": "schron w twierdzy bastionowej lub w forcie w dawnych fortyfikacjach"
+  },
+  {
+    "name": "szmaterlok",
+    "category": "adjective",
+    "description": "motyl"
+  },
+  {
+    "name": "dementi",
+    "category": "adjective",
+    "description": "formalne, urzędowe zaprzeczenie i/lub sprostowanie"
+  },
+  {
+    "name": "parweniusz",
+    "category": "adjective",
+    "description": "dorobkiewicz, który wszedł do warstwy ludzi zamożnych i nieumiejętnie ich naśladuje"
+  },
+  {
+    "name": "trybuszon",
+    "category": "adjective",
+    "description": "korkociąg"
+  },
+  {
+    "name": "odeon",
+    "category": "adjective",
+    "description": "starożytna budowla przeznaczona na występy muzyczne i teatralne"
+  },
+  {
+    "name": "wernakularny",
+    "category": "adjective",
+    "description": "rodzimy / domowt"
+  },
+  {
+    "name": "eon",
+    "category": "adjective",
+    "description": "największa formalna jednostka geochronologiczna"
+  },
+  {
+    "name": "enologia",
+    "category": "adjective",
+    "description": "nauka o produkcji, pielęgnacji i rodzajach wina"
+  },
+  {
+    "name": "lepidopterolog",
+    "category": "adjective",
+    "description": "naukowiec zajmujący się badaniem motyli"
+  },
+  {
+    "name": "obuch",
+    "category": "adjective",
+    "description": "tępo zakończona część niektórych narzędzi"
+  },
+  {
+    "name": "jebadełko",
+    "category": "adjective",
+    "description": "urządzenie do wyjmowania metalowych elementów sprzętu wspinaczkowego ze szczelin"
+  },
+  {
+    "name": "ciuk",
+    "category": "adjective",
+    "description": "siano lub słoma sprasowane prasą rolniczą w kształcie bryły o podstawie prostokąta"
+  },
+  {
+    "name": "blagować",
+    "category": "adjective",
+    "description": "mówić rzeczy nieprawdziwe w celu wywarcia na kimś wrażenia"
+  },
+  {
+    "name": "braggować",
+    "category": "adjective",
+    "description": "przechwalać się"
+  },
+  {
+    "name": "masztalerz",
+    "category": "adjective",
+    "description": "starszy stajenny mający nadzór nad personelem i powierzonymi końmi w stadninach"
+  },
+  {
+    "name": "urępny",
+    "category": "adjective",
+    "description": "piękny, śliczny"
+  },
+  {
+    "name": "lampartować",
+    "category": "adjective",
+    "description": "prowadzić rozpustne, holuszcze, próżniacze życie"
+  },
+  {
+    "name": "tidsoptymista",
+    "category": "adjective",
+    "description": "osoba, która zawsze się spóźnia, bo wierzy, że ma wystarczająco dużo czasu, aby zdążyć"
+  },
+  {
+    "name": "maszkaron",
+    "category": "adjective",
+    "description": "rzeźbiarski motyw dekoracyjny w postaci stylizowanej głowy ludzkiej lub fantastycznej postaci"
+  },
+  {
+    "name": "barłóg",
+    "category": "adjective",
+    "description": "legowisko niedźwiedzi lub dzików / nieposłane łóżko"
+  },
+  {
+    "name": "merytokracja",
+    "category": "adjective",
+    "description": "system, w którym pozycje uzależnione są od kompetencji"
+  },
+  {
+    "name": "idiolatria",
+    "category": "adjective",
+    "description": "postawa polegająca na uwielbienia samego siebie"
+  },
+  {
+    "name": "sowizdrzał",
+    "category": "adjective",
+    "description": "człowiek niepoważny, trzpiotowaty, urwis"
+  },
+  {
+    "name": "egalitaryzm",
+    "category": "adjective",
+    "description": "przekonanie, że wszyscy ludzie są równi i powinni mieć jednakowe prawa"
+  },
+  {
+    "name": "anomia",
+    "category": "adjective",
+    "description": "załamanie się ładu społecznego"
+  },
+  {
+    "name": "palamenter",
+    "category": "adjective",
+    "description": "człowiek przemyślny, przebiegły i zdolny, ale próżniak, urwis"
+  },
+  {
+    "name": "pergola",
+    "category": "adjective",
+    "description": "budowla ogrodowa jednego lub dwóch rzędów słupów podtrzymujących poziomą konstrukcję kratową"
+  },
+  {
+    "name": "interlokutor",
+    "category": "adjective",
+    "description": "osoba prowadząca z kimś rozmowę, partner w rozmowie"
+  },
+  {
+    "name": "wadium",
+    "category": "adjective",
+    "description": "gwarancja, poręczenie składane w poczet zabezpieczenia dotrzymania warunków umowy"
+  },
+  {
+    "name": "trejaż",
+    "category": "adjective",
+    "description": " budowla ogrodowa, składająca się z szeregu słupków, połączonych u góry poziomą belką"
+  },
+  {
+    "name": "drewutnia",
+    "category": "adjective",
+    "description": "pomieszczenie, w którym rąbie się i składa drwa przeznaczone na potrzeby gospodarstwa domowego"
+  },
+  {
+    "name": "uzurpować",
+    "category": "adjective",
+    "description": "przywłaszczenie sobie praw do czegoś"
+  },
+  {
+    "name": "cymelium",
+    "category": "adjective",
+    "description": "bardzo cenny druk lub rękopis"
+  },
+  {
+    "name": "żupa",
+    "category": "adjective",
+    "description": "kopalnia soli"
+  },
+  {
+    "name": "luminarz",
+    "category": "adjective",
+    "description": "człowiek wybitnie wykształcony, znany w kręgach naukowych lub kulturalnych"
+  },
+  {
+    "name": "słota",
+    "category": "adjective",
+    "description": "długo utrzymająca się niepogoda, charakteryzująca się uciążliwymi opadami"
+  },
+  {
+    "name": "adonis",
+    "category": "adjective",
+    "description": "urodziwy i/lub przesadnie dbający o urodę mężczyzna"
+  },
+  {
+    "name": "butonierka",
+    "category": "adjective",
+    "description": "niewielki otwór na guzik w lewej klapie marynarki lub żakietu na wysokości obojczyka"
+  },
+  {
+    "name": "brustasza",
+    "category": "adjective",
+    "description": "mała kieszonka zewnętrzna w marynarce"
+  },
+  {
+    "name": "posztetka",
+    "category": "adjective",
+    "description": "ozdobna chusteczka wkładana do górnej kieszonki w marynarce"
+  },
+  {
+    "name": "fidrygałki",
+    "category": "adjective",
+    "description": "przedmioty niezbyt ważne, błahe, drobne;"
+  },
+  {
+    "name": "frymuśny",
+    "category": "adjective",
+    "description": "wymyślny, fantazyjny"
+  },
+  {
+    "name": "solenny",
+    "category": "adjective",
+    "description": "podniosły, uroczysty / obowiązkowy i rzetelny"
+  },
+  {
+    "name": "konotacja",
+    "category": "adjective",
+    "description": "znaczenie, treść nazwy"
+  },
+  {
+    "name": "jowialny",
+    "category": "adjective",
+    "description": "mający pogodne usposobienie i nieco rubaszne poczucie humoru"
+  },
+  {
+    "name": "weredyk",
+    "category": "adjective",
+    "description": "mówienie prawdy bez względu na konsekwencje"
+  },
+  {
+    "name": "tapet",
+    "category": "adjective",
+    "description": "stół pokryty najczęściej zielonym suknem, przy którym się obraduje"
+  },
+  {
+    "name": "rachityczny",
+    "category": "adjective",
+    "description": "słabo rozwinięty, wątły lub lichy"
+  },
+  {
+    "name": "wardęga",
+    "category": "adjective",
+    "description": "włóczęga, tułaczka"
   }
 ]

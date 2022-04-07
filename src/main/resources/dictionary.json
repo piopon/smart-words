@@ -118,5 +118,215 @@
     "name": "taumaturg",
     "category": "adjective",
     "description": "osoba posiadająca dar czynienia cudów/cudotwórca"
+  },
+  {
+    "name": "defetyzm",
+    "category": "adjective",
+    "description": "brak wiary w zwycięstwo lub powodzenie jakiejś sprawy"
+  },
+  {
+    "name": "defenestracja",
+    "category": "adjective",
+    "description": "akt wyrzucania kogoś przez okno"
+  },
+  {
+    "name": "merkantylny",
+    "category": "adjective",
+    "description": "nastawiony na korzyści materialne / ekonomiczne"
+  },
+  {
+    "name": "dyletant",
+    "category": "adjective",
+    "description": "człowiek zajmujący się jakąś dziedziną albo wypowiadający się o niej bez fachowej wiedzy"
+  },
+  {
+    "name": "bombast",
+    "category": "adjective",
+    "description": "napuszenia, pompatyczności, przesady i nadęcia"
+  },
+  {
+    "name": "akuszerka",
+    "category": "adjective",
+    "description": "położna"
+  },
+  {
+    "name": "zzuć",
+    "category": "adjective",
+    "description": "zdjąć obuwie"
+  },
+  {
+    "name": "wiarus",
+    "category": "adjective",
+    "description": "dobry, stary żołnierz"
+  },
+  {
+    "name": "prozopagnozja",
+    "category": "adjective",
+    "description": "utrata zdolności rozpoznawania twarzy"
+  },
+  {
+    "name": "zmitygować się",
+    "category": "adjective",
+    "description": "powstrzymać się od nazbyt gwałtownej reakcji lub pochopnego działania"
+  },
+  {
+    "name": "konweniować",
+    "category": "adjective",
+    "description": "być odpowiednim, zgodnym z czymś"
+  },
+  {
+    "name": "humbug",
+    "category": "adjective",
+    "description": "bujdy, nonsensu, ściemy /  oszusta, ściemniacza, hipokryty"
+  },
+  {
+    "name": "delikt",
+    "category": "adjective",
+    "description": "każdy czyn niedozwolony (przestępstwo)"
+  },
+  {
+    "name": "atrium",
+    "category": "adjective",
+    "description": "wewnętrzny dziedziniec otoczony ze wszystkich stron ścianami budynku"
+  },
+  {
+    "name": "harpagon",
+    "category": "adjective",
+    "description": "ktoś, kto robi wszystko dla zysku, nadmiernie pragnie pieniędzy i nie lubi się nimi dzielić"
+  },
+  {
+    "name": "pareidolia",
+    "category": "adjective",
+    "description": "zjawisko dopatrywania się znanych kształtów w przypadkowych detalach"
+  },
+  {
+    "name": "labilny",
+    "category": "adjective",
+    "description": "zmienny, niestały, niestabilny, chwiejny"
+  },
+  {
+    "name": "labiedzić",
+    "category": "adjective",
+    "description": "narzekać, utyskiwać, biadać"
+  },
+  {
+    "name": "labelista",
+    "category": "adjective",
+    "description": "kolekcjoner nalepek turystycznych"
+  },
+  {
+    "name": "abnegat",
+    "category": "adjective",
+    "description": "człowiek niedbający o swój wygląd, o swoje korzyści"
+  },
+  {
+    "name": "megiera",
+    "category": "adjective",
+    "description": "kobieta despotyczna, kłótliwa, zła"
+  },
+  {
+    "name": "urwipołeć",
+    "category": "adjective",
+    "description": "urwis, psotnik"
+  },
+  {
+    "name": "antyszambrować",
+    "category": "adjective",
+    "description": "długo czekać na audiencję, na spotkanie z osobą ważną i decyzyjną"
+  },
+  {
+    "name": "spolegliwy",
+    "category": "adjective",
+    "description": "osoba, na której można polegać, na kim można się oprzeć / godny zaufania"
+  },
+  {
+    "name": "obstalunek",
+    "category": "adjective",
+    "description": "zamówienie pod wymiar"
+  },
+  {
+    "name": "wciórności",
+    "category": "adjective",
+    "description": "przekleństwo: a niech to diabli! niech to licho!"
+  },
+  {
+    "name": "monidło",
+    "category": "adjective",
+    "description": "rodzaj realistycznego obrazu, portretu namalowanego najczęściej na podstawie zdjęcia ślubnego"
+  },
+  {
+    "name": "przaśny",
+    "category": "adjective",
+    "description": "mdły, bez smaku / zdrowo, radośnie"
+  },
+  {
+    "name": "ambaras",
+    "category": "adjective",
+    "description": "kłopot, trudna sytuacja"
+  },
+  {
+    "name": "austeria",
+    "category": "adjective",
+    "description": "karczmy, zajazdu, oberży, gospody"
+  },
+  {
+    "name": "sobkostwo",
+    "category": "adjective",
+    "description": "myślenie tylko o sobie, dbanie wyłącznie o siebie / samolubstwo, samolubność, egoizm"
+  },
+  {
+    "name": "oniryzm",
+    "category": "adjective",
+    "description": "marzenie senne, zabieg literacki ukazujący rzeczywistość w formie snu"
+  },
+  {
+    "name": "ancymon",
+    "category": "adjective",
+    "description": "urwis udający niewiniątko"
+  },
+  {
+    "name": "achać",
+    "category": "adjective",
+    "description": "zachwycać się czymś w sposób afektowany (przesadny, sztuczny)"
+  },
+  {
+    "name": "fircyczka",
+    "category": "adjective",
+    "description": "kobieta niepoważna, lekkomyślna; trzpiotka; modnisia, strojnisia, lalusia"
+  },
+  {
+    "name": "letnik",
+    "category": "adjective",
+    "description": "osoba spędzająca letnie wakacje na letnisku"
+  },
+  {
+    "name": "fatalizm",
+    "category": "adjective",
+    "description": "wiara w nieuchronność losu (nasze ścieżki sa z góry zapisane przez siły wyższe)"
+  },
+  {
+    "name": "refulacja",
+    "category": "adjective",
+    "description": "prace mające na celu poszerzanie oraz ochronę plaży, terenów brzegowych, wysp, portów"
+  },
+  {
+    "name": "klauzula abuzywna",
+    "category": "adjective",
+    "description": "niedozwolone klauzule"
+  },
+  {
+    "name": "repasaż",
+    "category": "adjective",
+    "description": "sposób przeprowadzania eliminacji do kolejnych faz zawodów sportowych"
+  },
+  {
+    "name": "serwitut",
+    "category": "adjective",
+    "description": "pozwolenie, zgoda"
+  },
+  {
+    "name": "saute",
+    "category": "adjective",
+    "description": "smażony w niewielkiej ilości tłuszczu bez panierki, bez dodatków"
   }
 ]

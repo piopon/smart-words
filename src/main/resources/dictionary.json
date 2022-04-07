@@ -593,5 +593,255 @@
     "name": "wardęga",
     "category": "adjective",
     "description": "włóczęga, tułaczka"
+  },
+  {
+    "name": "triaż",
+    "category": "adjective",
+    "description": "segregacja / sortowanie"
+  },
+  {
+    "name": "opsomaniak",
+    "category": "adjective",
+    "description": "osoba mająca obsesję na punkcie jakiegoś konkretnego rodzaju jedzenia"
+  },
+  {
+    "name": "frela",
+    "category": "adjective",
+    "description": "dziewczyna"
+  },
+  {
+    "name": "dziad kalwaryjski",
+    "category": "adjective",
+    "description": "żebrak, człowiek ubogi żyjący z tego co dostanieod ludzi"
+  },
+  {
+    "name": "galimatias",
+    "category": "adjective",
+    "description": "nieład, harmider"
+  },
+  {
+    "name": "knajak",
+    "category": "adjective",
+    "description": "człowiek z marginesu społecznego"
+  },
+  {
+    "name": "internalizować",
+    "category": "adjective",
+    "description": "przyjmowac za swoje własne, narzucane z zewnątrz postawy"
+  },
+  {
+    "name": "konsolacja",
+    "category": "adjective",
+    "description": "pociecha, pocieszenie / poczęstunek po pogrzebie"
+  },
+  {
+    "name": "epitafium",
+    "category": "adjective",
+    "description": "napis na nagrobku"
+  },
+  {
+    "name": "dupny",
+    "category": "adjective",
+    "description": "wydrążony, próżny, pusty"
+  },
+  {
+    "name": "degrengolada",
+    "category": "adjective",
+    "description": "zupełny rozkład wartości moralnych w jakimś środowisku"
+  },
+  {
+    "name": "kunktator",
+    "category": "adjective",
+    "description": "osoba umyślnie z czymś zwlekająca lub przeciągająca coś"
+  },
+  {
+    "name": "perkal",
+    "category": "adjective",
+    "description": "cienkie płótno bawełniane"
+  },
+  {
+    "name": "mizopedia",
+    "category": "adjective",
+    "description": "niechęć do dzieci"
+  },
+  {
+    "name": "masny",
+    "category": "adjective",
+    "description": "gruby, tłusty"
+  },
+  {
+    "name": "fatygant",
+    "category": "adjective",
+    "description": "adorator, mężczyzna starający się o względy kobiety"
+  },
+  {
+    "name": "mezalians",
+    "category": "adjective",
+    "description": "małżeństwo z osobą niższego stanu"
+  },
+  {
+    "name": "letologika",
+    "category": "adjective",
+    "description": "stan niemożności przywołania potrzebnego słowa"
+  },
+  {
+    "name": "egzaltować",
+    "category": "adjective",
+    "description": "wpadać w stan nadmiernego zachwytu"
+  },
+  {
+    "name": "turbować",
+    "category": "adjective",
+    "description": "sprawiać kłopot lub martwić kogoś"
+  },
+  {
+    "name": "truizm",
+    "category": "adjective",
+    "description": "stwierdzenie prawdziwe, ale banalne"
+  },
+  {
+    "name": "altruizm",
+    "category": "adjective",
+    "description": "zachowanie polegające na działaniu na korzyść innych"
+  },
+  {
+    "name": "prokura",
+    "category": "adjective",
+    "description": "pełnomocnictwo handlowe lub bankowe udzielane przez spółkę"
+  },
+  {
+    "name": "estuarium",
+    "category": "adjective",
+    "description": "poszerzone, lejkowate ujście rzeki"
+  },
+  {
+    "name": "umościć się",
+    "category": "adjective",
+    "description": "ułożyć się na czymś, usiąść gdzieś wygodnie"
+  },
+  {
+    "name": "rozrzewnienie",
+    "category": "adjective",
+    "description": "uczucie tkliwości, czułości wywołane przez coś lub przez kogoś"
+  },
+  {
+    "name": "inkaust",
+    "category": "adjective",
+    "description": "atrament"
+  },
+  {
+    "name": "indolencja",
+    "category": "adjective",
+    "description": "bezradność, bezczynność, brak reakcji na sytuację, niezaradność"
+  },
+  {
+    "name": "fantasmagoria",
+    "category": "adjective",
+    "description": "urojenie, iluzja"
+  },
+  {
+    "name": "gremialny",
+    "category": "adjective",
+    "description": "odnoszący się do wielkiej liczby ludzi, masowy"
+  },
+  {
+    "name": "wysublimowany",
+    "category": "adjective",
+    "description": "będący wyrazem wysokiego poziomu artystycznego lub umysłowego"
+  },
+  {
+    "name": "krokiet",
+    "category": "adjective",
+    "description": "gra sportowa uprawiana głównie w Anglii i Stanach Zjednoczonych"
+  },
+  {
+    "name": "rzucik",
+    "category": "adjective",
+    "description": "drobny wzór na jakimś tle"
+  },
+  {
+    "name": "dendrofil",
+    "category": "adjective",
+    "description": "osoba cierpiąca dewiację seksualną, w której obiektem seksualnym są drzewa"
+  },
+  {
+    "name": "brakarz",
+    "category": "adjective",
+    "description": "pracownik kontroli technicznej w zakładzie produkcyjnym oceniający jakość gotowych wyrobów"
+  },
+  {
+    "name": "abberacja",
+    "category": "adjective",
+    "description": "odchylenie, zboczenie od normalnego stanu"
+  },
+  {
+    "name": "spuneryzm",
+    "category": "adjective",
+    "description": "mimowolne przestawienie głoski lub kilku głosek w wyrazie/wyrazach"
+  },
+  {
+    "name": "dezynwoltura",
+    "category": "adjective",
+    "description": "zachowanie wobec kogoś świadczące o lekceważeniu / lekceważące odnoszenie się do kogoś"
+  },
+  {
+    "name": "antruaż",
+    "category": "adjective",
+    "description": "otoczenie, środowisko"
+  },
+  {
+    "name": "arywizm",
+    "category": "adjective",
+    "description": "próba osiągnięcia celu z zaniechaniem wartości moralnych / po trupach do celu"
+  },
+  {
+    "name": "konfabulacja",
+    "category": "adjective",
+    "description": "ściemnianie, opowiadanie przeżyć zmyślonych, rzekomo objętych mgłą niepamięci"
+  },
+  {
+    "name": "kaligynefobia",
+    "category": "adjective",
+    "description": "lęk przed pięknymi kobietami"
+  },
+  {
+    "name": "dysania",
+    "category": "adjective",
+    "description": "niezdolność do porannego wstawania / powracające pragnienie, aby ponownie się położyć"
+  },
+  {
+    "name": "satrapa",
+    "category": "adjective",
+    "description": "despotyczny władca, tyran"
+  },
+  {
+    "name": "rejwach",
+    "category": "adjective",
+    "description": "hałas wywoływany przez głośne rozmowy lub krzyki"
+  },
+  {
+    "name": "satrapa",
+    "category": "adjective",
+    "description": "despotyczny władca, tyran"
+  },
+  {
+    "name": "panicz",
+    "category": "adjective",
+    "description": "mężczyzna młody, elegancki, żyjący wygodnie"
+  },
+  {
+    "name": "autoteliczny",
+    "category": "adjective",
+    "description": "będącym celem samym w sobie"
+  },
+  {
+    "name": "perororwać",
+    "category": "adjective",
+    "description": "długa i nudna mowa zawierająca napuszone pouczenie"
+  },
+  {
+    "name": "mitrężyć",
+    "category": "adjective",
+    "description": "guzdrać się, trwonić/marnować czas na próżno"
   }
 ]

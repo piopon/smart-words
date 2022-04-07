@@ -1,10 +1,5 @@
 [
   {
-    "name": "letnik",
-    "category": "verb",
-    "description": "mieszkaniec miasta przebywający na wypoczynku"
-  },
-  {
     "name": "utyskiwać",
     "category": "noun",
     "description": "narzekać"

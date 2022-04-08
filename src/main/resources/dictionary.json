@@ -843,5 +843,215 @@
     "name": "mitrężyć",
     "category": "adjective",
     "description": "guzdrać się, trwonić/marnować czas na próżno"
+  },
+  {
+    "name": "laudacja",
+    "category": "adjective",
+    "description": "mowa pochwalna obrazująca zalety danej osoby"
+  },
+  {
+    "name": "flegmatyk",
+    "category": "adjective",
+    "description": "człowiek charakteryzuje opanowanie, spokój i swoista apatia"
+  },
+  {
+    "name": "kosztorysant",
+    "category": "adjective",
+    "description": "osoba, która optymalizuje wydatki kapitałowe na inwestycje"
+  },
+  {
+    "name": "koncertina",
+    "category": "adjective",
+    "description": "luźne zwoje cienkiego, elastycznego drutu kolczastego żyletkowego"
+  },
+  {
+    "name": "gerentokracja",
+    "category": "adjective",
+    "description": "rządy starych ludzi"
+  },
+  {
+    "name": "dekadencja",
+    "category": "adjective",
+    "description": "końcowa faza czegoś / chylenie się ku upadkowi / zbliżanie się do końca"
+  },
+  {
+    "name": "bilokacja",
+    "category": "adjective",
+    "description": "bycie w dwóch miejscach na raz"
+  },
+  {
+    "name": "potępiać w czambuł",
+    "category": "adjective",
+    "description": "potępiać w całości, bez wyjątku, szybko i kategorycznie"
+  },
+  {
+    "name": "knieja",
+    "category": "adjective",
+    "description": "wielki gęsty las, w którym mieszka zwierzyna"
+  },
+  {
+    "name": "machinacja",
+    "category": "adjective",
+    "description": "podstępne działanie na czyjąś szkodę"
+  },
+  {
+    "name": "galanteria",
+    "category": "adjective",
+    "description": "niewielkie wyroby mające charakter zdobniczy"
+  },
+  {
+    "name": "kontestacja",
+    "category": "adjective",
+    "description": "sprzeciw wyrażany publicznie poprzez wypowiedzi i zachowanie"
+  },
+  {
+    "name": "ceklacja",
+    "category": "adjective",
+    "description": "włóczenie, tułanie się po nocy"
+  },
+  {
+    "name": "eschatologia",
+    "category": "adjective",
+    "description": "ogół poglądów dotyczących rzeczy ostatecznych"
+  },
+  {
+    "name": "eosofobia",
+    "category": "adjective",
+    "description": "strach przed świtem i światłem słonecznym"
+  },
+  {
+    "name": "nomokracja",
+    "category": "adjective",
+    "description": "rządy oparte na poszanowaniu prawa"
+  },
+  {
+    "name": "eutymia",
+    "category": "adjective",
+    "description": "stan prawidłowego, wyrównanego stanu ducha"
+  },
+  {
+    "name": "jutrać",
+    "category": "adjective",
+    "description": "odkładać na później / zwlekać / prokrastynować"
+  },
+  {
+    "name": "abulia",
+    "category": "adjective",
+    "description": "niemożność powzięcia decyzji lub realizacji postanowień"
+  },
+  {
+    "name": "tanoreksja",
+    "category": "adjective",
+    "description": "obsesyjna potrzeba posiadania opalonej skóry"
+  },
+  {
+    "name": "bałuch",
+    "category": "adjective",
+    "description": "wrzawa, zgiełk, hałas"
+  },
+  {
+    "name": "klinomania",
+    "category": "adjective",
+    "description": "chorobowa potrzeba przebywania w pozycji leżącej"
+  },
+  {
+    "name": "smecz",
+    "category": "adjective",
+    "description": "zagrywka sportowa - ścięcie"
+  },
+  {
+    "name": "paciulok",
+    "category": "adjective",
+    "description": "oferma, fajtłapa"
+  },
+  {
+    "name": "sześdziesiona",
+    "category": "adjective",
+    "description": "donosiciel"
+  },
+  {
+    "name": "hiponim",
+    "category": "adjective",
+    "description": "wyraz, którego znaczenie jest węższe i podrzędne w stosunku do znaczenia innego wyrazu"
+  },
+  {
+    "name": "didaskalia",
+    "category": "adjective",
+    "description": "informacje autora sztuki dotyczące pobocznych czynności"
+  },
+  {
+    "name": "apoteoza",
+    "category": "adjective",
+    "description": "wychwalanie idei bądź wartości"
+  },
+  {
+    "name": "rzaz",
+    "category": "adjective",
+    "description": "szczelina w miejscu piłowania drzewa"
+  },
+  {
+    "name": "szynel",
+    "category": "adjective",
+    "description": "męski płaszcz dopasowany do figury"
+  },
+  {
+    "name": "flauta",
+    "category": "adjective",
+    "description": "określenie żeglarskie oznaczające brak wiatru"
+  },
+  {
+    "name": "inseminator",
+    "category": "adjective",
+    "description": "specjalista w dziedzinie sztucznego unasienienia zwierząt hodowlanych"
+  },
+  {
+    "name": "fjut",
+    "category": "adjective",
+    "description": "cyrop = syrop z buraków cukrowych, o konsystencji płynnego miodu"
+  },
+  {
+    "name": "vis maior",
+    "category": "adjective",
+    "description": "siła wyższa"
+  },
+  {
+    "name": "metanoja",
+    "category": "adjective",
+    "description": "duchowa bądź intelektualna przemiana"
+  },
+  {
+    "name": "konterfekt",
+    "category": "adjective",
+    "description": "portret, wizerunek, obraz, malowidło"
+  },
+  {
+    "name": "badlandy",
+    "category": "adjective",
+    "description": "obszary wyżynne, głównie w strefie klimatu suchego i półsuchego, o ubogiej roślinności"
+  },
+  {
+    "name": "oniryczny",
+    "category": "adjective",
+    "description": "związany ze snem, odnoszący się do niego/ powstaly na kształt marzenia sennego"
+  },
+  {
+    "name": "paszenog",
+    "category": "adjective",
+    "description": "mąż siostry żony"
+  },
+  {
+    "name": "immanentny",
+    "category": "adjective",
+    "description": "taki, który nie wynika z działań zewnętrznych, tkwiący w naturze czegoś; zawarty w czymś"
+  },
+  {
+    "name": "ekumena",
+    "category": "adjective",
+    "description": "obszary kuli ziemskiej stale zamieszkane i wykorzystywane gospodarczo przez człowieka"
+  },
+  {
+    "name": "gatofobia",
+    "category": "adjective",
+    "description": "strach przed kotami"
   }
 ]

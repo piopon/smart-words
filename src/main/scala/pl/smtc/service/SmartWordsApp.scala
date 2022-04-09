@@ -69,7 +69,7 @@ object SmartWordsApp extends IOApp {
    */
   case class Quiz(rounds: Map[Round, Boolean], score: Int)
 
-  object OptionalQuizParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
+  object OptionalQuizStartParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
 
   /**
    * Routes (request -> response) for quiz endpoints/resources
@@ -85,7 +85,7 @@ object SmartWordsApp extends IOApp {
     val dsl = Http4sDsl[F]
     import dsl._
     HttpRoutes.of[F] {
-      case POST -> Root / "start" :? OptionalQuizParamMatcher(maybeSize) =>
+      case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) =>
         maybeSize match {
           case None =>
             Ok("Initialized new quiz (size = 10)")

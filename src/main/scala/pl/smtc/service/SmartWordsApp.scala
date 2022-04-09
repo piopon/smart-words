@@ -69,6 +69,8 @@ object SmartWordsApp extends IOApp {
    */
   case class Quiz(rounds: Map[Round, Boolean], score: Int)
 
+  object OptionalQuizParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
+
   /**
    * Routes (request -> response) for quiz endpoints/resources
    * <ul>

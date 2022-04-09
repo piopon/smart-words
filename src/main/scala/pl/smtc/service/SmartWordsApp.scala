@@ -54,6 +54,10 @@ object SmartWordsApp extends IOApp {
     }
   }
 
+  private def findWordsByCategory(category: Category.Value): List[Word] = {
+    testWordDB.toList.filter(word => word.category.equals(category))
+  }
+
   /**
    * Model class representing a single round of a quiz
    * @param word selected word which a user has to figure out
@@ -120,7 +124,7 @@ object SmartWordsApp extends IOApp {
           case None =>
             Ok(testWordDB.toList.asJson)
           case Some(category) =>
-            Ok(testWordDB.toList.filter(word => word.category.equals(category)).asJson)
+            Ok(findWordsByCategory(category).asJson)
         }
       case request@POST -> Root / "words" =>
         for {

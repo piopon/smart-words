@@ -85,6 +85,13 @@ object SmartWordsApp extends IOApp {
     val dsl = Http4sDsl[F]
     import dsl._
     HttpRoutes.of[F] {
+      case POST -> Root / "start" :? OptionalQuizParamMatcher(maybeSize) =>
+        maybeSize match {
+          case None =>
+            Ok("Initialized new quiz (size = 10)")
+          case Some(size) =>
+            Ok(s"Initialized new quiz (size = ${size})")
+        }
       case GET -> Root / "hello" / name => Ok(s"Hello, $name.")
     }
   }

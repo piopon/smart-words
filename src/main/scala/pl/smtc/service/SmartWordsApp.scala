@@ -68,12 +68,21 @@ object SmartWordsApp extends IOApp {
    */
   case class Round(word: Word, options: List[String], answer: String)
 
+  private def generateRound(): Round = {
+    val word: Word = Word("", Category.adjective, "")
+    Round(word, List(), "")
+  }
+
   /**
    * Model class representing a complete quiz containing several rounds (smart words questions)
    * @param rounds a collection of rounds/questions with an indicator if already answered
    * @param score current correct answers counter
    */
   case class Quiz(rounds: Map[Round, Boolean], score: Int)
+
+  private def generateQuiz(size: Int): Quiz = {
+    Quiz(Map(), 0)
+  }
 
   object OptionalQuizStartParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
 

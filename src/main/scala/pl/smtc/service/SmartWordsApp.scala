@@ -18,6 +18,8 @@ import org.http4s.implicits._
 import org.http4s.server._
 import org.http4s.ember.server._
 
+import java.util.UUID
+import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
@@ -179,6 +181,7 @@ object SmartWordsApp extends IOApp {
   }
 
   val testWordDB: ListBuffer[Word] = ListBuffer()
+  val activeQuizzes: mutable.Map[UUID, Quiz] = mutable.Map()
 
   override def run(args: List[String]): IO[ExitCode] = {
     if (initDatabase()) {

@@ -101,12 +101,13 @@ object SmartWordsApp extends IOApp {
     import dsl._
     HttpRoutes.of[F] {
       case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) =>
-        maybeSize match {
-          case None =>
-            Ok("Initialized new quiz (size = 10)")
-          case Some(size) =>
-            Ok(s"Initialized new quiz (size = ${size})")
+        val newUuid: UUID = UUID.randomUUID()
+        val size: Int = maybeSize match {
+          case None => 10
+          case Some(size) => size
         }
+        activeQuizzes.put(newUuid, generateQuiz(size))
+        Ok(newUuid.toString)
       case GET -> Root / "hello" / name => Ok(s"Hello, $name.")
     }
   }

@@ -65,18 +65,17 @@ object SmartWordsApp extends IOApp {
    * Model class representing a single round of a quiz
    * @param word selected word which a user has to figure out
    * @param options the list of possible answers (will be matched from word category)
-   * @param answer the selected answer (A, B, C, D, etc.)
+   * @param answer the selected answer (concrete definition)
    */
   case class Round(word: Word, options: List[String], answer: String)
 
   private def generateRound(): Round = {
-    val random: Random = new Random
-    val word: Word = testWordDB(random.nextInt(testWordDB.length))
+    val word: Word = testWordDB(Random.nextInt(testWordDB.length))
     Round(word, generateOptions(word.definition, word.category), word.definition)
   }
 
   private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
-    val incorrectOptions: List[String] = Random.shuffle(findWordsByCategory(category).map(word => word.definition))
+    val incorrectOptions: List[String] = Random.shuffle(findWordsByCategory(category).map(_.definition))
     val options: List[String] = incorrectOptions.take(3) :+ correctDefinition
     Random.shuffle(options)
   }

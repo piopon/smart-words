@@ -114,6 +114,13 @@ object SmartWordsApp extends IOApp {
         }
         activeQuizzes.put(newUuid, generateQuiz(size))
         Ok(newUuid.toString)
+      case GET -> Root / UUIDVar(quizId) / "question" / questionNo =>
+        activeQuizzes.get(quizId) match {
+          case None =>
+            NotFound("Specified quiz does not exist")
+          case Some(quiz) =>
+            Ok(quiz.rounds(questionNo.toInt).asJson)
+        }
       case GET -> Root / "hello" / name => Ok(s"Hello, $name.")
     }
   }

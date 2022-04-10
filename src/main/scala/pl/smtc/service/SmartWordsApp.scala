@@ -65,13 +65,13 @@ object SmartWordsApp extends IOApp {
    * Model class representing a single round of a quiz
    * @param word selected word which a user has to figure out
    * @param options the list of possible answers (will be matched from word category)
-   * @param answer the selected answer (concrete definition)
+   * @param correct true if got correct answer, false otherwise. If no answer yet then None
    */
-  case class Round(word: Word, options: List[String], answer: String)
+  case class Round(word: Word, options: List[String], correct: Option[Boolean])
 
   private def generateRound(): Round = {
     val word: Word = testWordDB(Random.nextInt(testWordDB.length))
-    Round(word, generateOptions(word.definition, word.category), word.definition)
+    Round(word, generateOptions(word.definition, word.category), None)
   }
 
   private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
@@ -82,16 +82,13 @@ object SmartWordsApp extends IOApp {
 
   /**
    * Model class representing a complete quiz containing several rounds (smart words questions)
-   * @param rounds a collection of rounds/questions with an indicator if already answered
+   * @param rounds a collection of rounds/questions
    * @param score current correct answers counter
    */
-  case class Quiz(rounds: Map[Round, Boolean], score: Int)
+  case class Quiz(rounds: List[Round], score: Int)
 
   private def generateQuiz(size: Int): Quiz = {
-    val rounds = for {
-      i <- 0 to size
-    } yield generateRound() -> false
-    Quiz(rounds.toMap, 0)
+    Quiz(List.fill(size)(generateRound()), 0)
   }
 
   object OptionalQuizStartParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")

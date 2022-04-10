@@ -88,7 +88,10 @@ object SmartWordsApp extends IOApp {
   case class Quiz(rounds: Map[Round, Boolean], score: Int)
 
   private def generateQuiz(size: Int): Quiz = {
-    Quiz(Map(), 0)
+    val rounds = for {
+      i <- 0 to size
+    } yield generateRound() -> false
+    Quiz(rounds.toMap, 0)
   }
 
   object OptionalQuizStartParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")

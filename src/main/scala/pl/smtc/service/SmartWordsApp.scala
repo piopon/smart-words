@@ -22,6 +22,7 @@ import java.util.UUID
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
+import scala.util.Random
 
 object SmartWordsApp extends IOApp {
 
@@ -71,6 +72,12 @@ object SmartWordsApp extends IOApp {
   private def generateRound(): Round = {
     val word: Word = Word("", Category.adjective, "")
     Round(word, List(), "")
+  }
+
+  private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
+    val incorrectOptions: List[String] = Random.shuffle(findWordsByCategory(category).map(word => word.definition))
+    val options: List[String] = incorrectOptions.take(3) :+ correctDefinition
+    Random.shuffle(options)
   }
 
   /**

@@ -70,8 +70,9 @@ object SmartWordsApp extends IOApp {
   case class Round(word: Word, options: List[String], answer: String)
 
   private def generateRound(): Round = {
-    val word: Word = Word("", Category.adjective, "")
-    Round(word, List(), "")
+    val random: Random = new Random
+    val word: Word = testWordDB(random.nextInt(testWordDB.length))
+    Round(word, generateOptions(word.definition, word.category), word.definition)
   }
 
   private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {

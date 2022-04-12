@@ -132,6 +132,13 @@ object SmartWordsApp extends IOApp {
             quiz.rounds(questionNo.toInt).correct = Option(isCorrect)
             Ok(isCorrect.toString)
         }
+      case GET -> Root / UUIDVar(quizId) / "stop" =>
+        activeQuizzes.get(quizId) match {
+          case None =>
+            NotFound("Specified quiz does not exist")
+          case Some(quiz) =>
+            Ok()
+        }
       case GET -> Root / "hello" / name => Ok(s"Hello, $name.")
     }
   }

@@ -126,7 +126,10 @@ object SmartWordsApp extends IOApp {
           case None =>
             NotFound("Specified quiz does not exist")
           case Some(quiz) =>
-            Ok("quiz ok.")
+            val correctDefinition: String = quiz.rounds(questionNo.toInt).word.definition
+            val selectedDefinition: String = quiz.rounds(questionNo.toInt).options(answerNo.toInt)
+            val isCorrect = correctDefinition.equals(selectedDefinition)
+            Ok(isCorrect.toString)
         }
       case GET -> Root / "hello" / name => Ok(s"Hello, $name.")
     }

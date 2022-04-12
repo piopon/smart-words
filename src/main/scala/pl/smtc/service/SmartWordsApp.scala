@@ -67,7 +67,7 @@ object SmartWordsApp extends IOApp {
    * @param options the list of possible answers (will be matched from word category)
    * @param correct true if got correct answer, false otherwise. If no answer yet then None
    */
-  case class Round(word: Word, options: List[String], correct: Option[Boolean])
+  case class Round(word: Word, options: List[String], var correct: Option[Boolean])
 
   private def generateRound(): Round = {
     val word: Word = testWordDB(Random.nextInt(testWordDB.length))
@@ -129,6 +129,7 @@ object SmartWordsApp extends IOApp {
             val correctDefinition: String = quiz.rounds(questionNo.toInt).word.definition
             val selectedDefinition: String = quiz.rounds(questionNo.toInt).options(answerNo.toInt)
             val isCorrect = correctDefinition.equals(selectedDefinition)
+            quiz.rounds(questionNo.toInt).correct = Option(isCorrect)
             Ok(isCorrect.toString)
         }
       case GET -> Root / "hello" / name => Ok(s"Hello, $name.")

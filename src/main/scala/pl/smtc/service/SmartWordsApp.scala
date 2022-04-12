@@ -137,7 +137,7 @@ object SmartWordsApp extends IOApp {
           case None =>
             NotFound("Specified quiz does not exist")
           case Some(quiz) =>
-            val okCount: Int = quiz.rounds.filter(round => round.correct.exists(isCorrect => isCorrect)).length
+            val okCount: Int = quiz.rounds.count(round => round.correct.exists(isCorrect => isCorrect))
             val percent: Float = okCount.toFloat / quiz.rounds.length
             Ok(percent.toString)
         }

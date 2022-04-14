@@ -139,6 +139,7 @@ object SmartWordsApp extends IOApp {
           case Some(quiz) =>
             val okCount: Int = quiz.rounds.count(round => round.correct.exists(isCorrect => isCorrect))
             val percent: Float = okCount.toFloat / quiz.rounds.length
+            activeQuizzes.remove(quizId)
             Ok(percent.toString)
         }
       case GET -> Root / "hello" / name => Ok(s"Hello, $name.")

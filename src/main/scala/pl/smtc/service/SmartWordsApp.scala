@@ -142,7 +142,6 @@ object SmartWordsApp extends IOApp {
             activeQuizzes.remove(quizId)
             Ok(percent.toString)
         }
-      case GET -> Root / "hello" / name => Ok(s"Hello, $name.")
     }
   }
 

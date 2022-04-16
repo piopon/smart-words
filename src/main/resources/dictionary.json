@@ -1,7 +1,7 @@
 [
   {
     "name": "utyskiwać",
-    "category": "noun",
+    "category": "verb",
     "description": "narzekać"
   },
   {
@@ -16,7 +16,7 @@
   },
   {
     "name": "handryczyć się",
-    "category": "noun",
+    "category": "verb",
     "description": "kłócić się / sprzeczać się"
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "name": "otaksować",
-    "category": "noun",
+    "category": "verb",
     "description": "mierzyć wzrokiem"
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "name": "rekapitulować",
-    "category": "adjective",
+    "category": "verb",
     "description": "streszczać / powtarzać coś w krótszej formie"
   },
   {
@@ -106,7 +106,7 @@
   },
   {
     "name": "flexować się",
-    "category": "adjective",
+    "category": "verb",
     "description": "chwalić się drogimi przedmiotami, ciuchami, telefonami"
   },
   {
@@ -146,7 +146,7 @@
   },
   {
     "name": "zzuć",
-    "category": "adjective",
+    "category": "verb",
     "description": "zdjąć obuwie"
   },
   {
@@ -161,12 +161,12 @@
   },
   {
     "name": "zmitygować się",
-    "category": "adjective",
+    "category": "verb",
     "description": "powstrzymać się od nazbyt gwałtownej reakcji lub pochopnego działania"
   },
   {
     "name": "konweniować",
-    "category": "adjective",
+    "category": "verb",
     "description": "być odpowiednim, zgodnym z czymś"
   },
   {
@@ -201,7 +201,7 @@
   },
   {
     "name": "labiedzić",
-    "category": "adjective",
+    "category": "verb",
     "description": "narzekać, utyskiwać, biadać"
   },
   {
@@ -226,7 +226,7 @@
   },
   {
     "name": "antyszambrować",
-    "category": "adjective",
+    "category": "verb",
     "description": "długo czekać na audiencję, na spotkanie z osobą ważną i decyzyjną"
   },
   {
@@ -281,7 +281,7 @@
   },
   {
     "name": "achać",
-    "category": "adjective",
+    "category": "verb",
     "description": "zachwycać się czymś w sposób afektowany (przesadny, sztuczny)"
   },
   {
@@ -411,12 +411,12 @@
   },
   {
     "name": "blagować",
-    "category": "adjective",
+    "category": "verb",
     "description": "mówić rzeczy nieprawdziwe w celu wywarcia na kimś wrażenia"
   },
   {
     "name": "braggować",
-    "category": "adjective",
+    "category": "verb",
     "description": "przechwalać się"
   },
   {
@@ -506,7 +506,7 @@
   },
   {
     "name": "uzurpować",
-    "category": "adjective",
+    "category": "verb",
     "description": "przywłaszczenie sobie praw do czegoś"
   },
   {
@@ -626,7 +626,7 @@
   },
   {
     "name": "internalizować",
-    "category": "adjective",
+    "category": "verb",
     "description": "przyjmowac za swoje własne, narzucane z zewnątrz postawy"
   },
   {
@@ -686,12 +686,12 @@
   },
   {
     "name": "egzaltować",
-    "category": "adjective",
+    "category": "verb",
     "description": "wpadać w stan nadmiernego zachwytu"
   },
   {
     "name": "turbować",
-    "category": "adjective",
+    "category": "verb",
     "description": "sprawiać kłopot lub martwić kogoś"
   },
   {
@@ -716,7 +716,7 @@
   },
   {
     "name": "umościć się",
-    "category": "adjective",
+    "category": "verb",
     "description": "ułożyć się na czymś, usiąść gdzieś wygodnie"
   },
   {
@@ -836,12 +836,12 @@
   },
   {
     "name": "perororwać",
-    "category": "adjective",
+    "category": "verb",
     "description": "długa i nudna mowa zawierająca napuszone pouczenie"
   },
   {
     "name": "mitrężyć",
-    "category": "adjective",
+    "category": "verb",
     "description": "guzdrać się, trwonić/marnować czas na próżno"
   },
   {
@@ -881,7 +881,7 @@
   },
   {
     "name": "potępiać w czambuł",
-    "category": "adjective",
+    "category": "verb",
     "description": "potępiać w całości, bez wyjątku, szybko i kategorycznie"
   },
   {
@@ -931,7 +931,7 @@
   },
   {
     "name": "jutrać",
-    "category": "adjective",
+    "category": "verb",
     "description": "odkładać na później / zwlekać / prokrastynować"
   },
   {

@@ -81,7 +81,7 @@
   },
   {
     "name": "imponderabilia",
-    "category": "noun",
+    "category": "latin",
     "description": "coś, czego nie da się zmierzyć ale co ma wpływ na przebieg wydarzeń"
   },
   {
@@ -191,7 +191,7 @@
   },
   {
     "name": "pareidolia",
-    "category": "noun",
+    "category": "latin",
     "description": "zjawisko dopatrywania się znanych kształtów w przypadkowych detalach"
   },
   {
@@ -801,7 +801,7 @@
   },
   {
     "name": "kaligynefobia",
-    "category": "noun",
+    "category": "latin",
     "description": "lęk przed pięknymi kobietami"
   },
   {
@@ -911,7 +911,7 @@
   },
   {
     "name": "eosofobia",
-    "category": "noun",
+    "category": "latin",
     "description": "strach przed świtem i światłem słonecznym"
   },
   {
@@ -931,7 +931,7 @@
   },
   {
     "name": "abulia",
-    "category": "noun",
+    "category": "latin",
     "description": "niemożność powzięcia decyzji lub realizacji postanowień"
   },
   {
@@ -1006,7 +1006,7 @@
   },
   {
     "name": "vis maior",
-    "category": "noun",
+    "category": "latin",
     "description": "siła wyższa"
   },
   {
@@ -1046,7 +1046,7 @@
   },
   {
     "name": "gatofobia",
-    "category": "noun",
+    "category": "latin",
     "description": "strach przed kotami"
   }
 ]

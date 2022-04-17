@@ -32,7 +32,7 @@ object SmartWordsApp extends IOApp {
    */
   object Category extends Enumeration {
     type Category = Value
-    val verb, noun, adjective, unknown = Value
+    val verb, noun, adjective, latin, unknown = Value
     def fromString(string: String): Value =
       values.find(_.toString.toLowerCase() == string.toLowerCase()).getOrElse(unknown)
   }

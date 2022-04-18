@@ -36,7 +36,7 @@
   },
   {
     "name": "absztyfikant",
-    "category": "noun",
+    "category": "person",
     "description": "adorator / zalotnik / lowelas"
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "name": "lampucera",
-    "category": "noun",
+    "category": "person",
     "description": "starsza kobieta, która używa ostrego makijażu, aby podobać się mężczyznom, pudernica"
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "name": "eremita",
-    "category": "noun",
+    "category": "person",
     "description": "pustelnik, z pobudek religijnych decyduje się na życie w izolacji i celibacie"
   },
   {
@@ -96,7 +96,7 @@
   },
   {
     "name": "mizogin",
-    "category": "noun",
+    "category": "person",
     "description": "osoba, która nienawidzi, czuje pogardę/uprzedzenie do kobiet"
   },
   {
@@ -111,7 +111,7 @@
   },
   {
     "name": "taumaturg",
-    "category": "noun",
+    "category": "person",
     "description": "osoba posiadająca dar czynienia cudów/cudotwórca"
   },
   {
@@ -131,7 +131,7 @@
   },
   {
     "name": "dyletant",
-    "category": "noun",
+    "category": "person",
     "description": "człowiek zajmujący się jakąś dziedziną albo wypowiadający się o niej bez fachowej wiedzy"
   },
   {
@@ -141,7 +141,7 @@
   },
   {
     "name": "akuszerka",
-    "category": "noun",
+    "category": "person",
     "description": "położna"
   },
   {
@@ -151,7 +151,7 @@
   },
   {
     "name": "wiarus",
-    "category": "noun",
+    "category": "person",
     "description": "dobry, stary żołnierz"
   },
   {
@@ -171,8 +171,8 @@
   },
   {
     "name": "humbug",
-    "category": "noun",
-    "description": "bujdy, nonsensu, ściemy /  oszusta, ściemniacza, hipokryty"
+    "category": "person",
+    "description": "oszust, ściemniacz, hipokryta"
   },
   {
     "name": "delikt",
@@ -186,7 +186,7 @@
   },
   {
     "name": "harpagon",
-    "category": "noun",
+    "category": "person",
     "description": "ktoś, kto robi wszystko dla zysku, nadmiernie pragnie pieniędzy i nie lubi się nimi dzielić"
   },
   {
@@ -206,22 +206,22 @@
   },
   {
     "name": "labelista",
-    "category": "noun",
+    "category": "person",
     "description": "kolekcjoner nalepek turystycznych"
   },
   {
     "name": "abnegat",
-    "category": "noun",
+    "category": "person",
     "description": "człowiek niedbający o swój wygląd, o swoje korzyści"
   },
   {
     "name": "megiera",
-    "category": "noun",
+    "category": "person",
     "description": "kobieta despotyczna, kłótliwa, zła"
   },
   {
     "name": "urwipołeć",
-    "category": "noun",
+    "category": "person",
     "description": "urwis, psotnik"
   },
   {
@@ -276,7 +276,7 @@
   },
   {
     "name": "ancymon",
-    "category": "noun",
+    "category": "person",
     "description": "urwis udający niewiniątko"
   },
   {
@@ -286,12 +286,12 @@
   },
   {
     "name": "fircyczka",
-    "category": "noun",
+    "category": "person",
     "description": "kobieta niepoważna, lekkomyślna; trzpiotka; modnisia, strojnisia, lalusia"
   },
   {
     "name": "letnik",
-    "category": "noun",
+    "category": "person",
     "description": "osoba spędzająca letnie wakacje na letnisku"
   },
   {
@@ -331,12 +331,12 @@
   },
   {
     "name": "badylarz",
-    "category": "noun",
+    "category": "person",
     "description": "prywatny przedsiebiorca-ogrodnik"
   },
   {
     "name": "pluwiofil",
-    "category": "noun",
+    "category": "person",
     "description": "osoba uwielbiająca deszcze"
   },
   {
@@ -361,7 +361,7 @@
   },
   {
     "name": "parweniusz",
-    "category": "noun",
+    "category": "person",
     "description": "dorobkiewicz, który wszedł do warstwy ludzi zamożnych i nieumiejętnie ich naśladuje"
   },
   {
@@ -391,7 +391,7 @@
   },
   {
     "name": "lepidopterolog",
-    "category": "noun",
+    "category": "person",
     "description": "naukowiec zajmujący się badaniem motyli"
   },
   {
@@ -421,7 +421,7 @@
   },
   {
     "name": "masztalerz",
-    "category": "adjective",
+    "category": "person",
     "description": "starszy stajenny mający nadzór nad personelem i powierzonymi końmi w stadninach"
   },
   {
@@ -436,7 +436,7 @@
   },
   {
     "name": "tidsoptymista",
-    "category": "noun",
+    "category": "person",
     "description": "osoba, która zawsze się spóźnia, bo wierzy, że ma wystarczająco dużo czasu, aby zdążyć"
   },
   {
@@ -461,7 +461,7 @@
   },
   {
     "name": "sowizdrzał",
-    "category": "noun",
+    "category": "person",
     "description": "człowiek niepoważny, trzpiotowaty, urwis"
   },
   {
@@ -476,7 +476,7 @@
   },
   {
     "name": "palamenter",
-    "category": "noun",
+    "category": "person",
     "description": "człowiek przemyślny, przebiegły i zdolny, ale próżniak, urwis"
   },
   {
@@ -486,7 +486,7 @@
   },
   {
     "name": "interlokutor",
-    "category": "noun",
+    "category": "person",
     "description": "osoba prowadząca z kimś rozmowę, partner w rozmowie"
   },
   {
@@ -521,7 +521,7 @@
   },
   {
     "name": "luminarz",
-    "category": "noun",
+    "category": "person",
     "description": "człowiek wybitnie wykształcony, znany w kręgach naukowych lub kulturalnych"
   },
   {
@@ -531,7 +531,7 @@
   },
   {
     "name": "adonis",
-    "category": "noun",
+    "category": "person",
     "description": "urodziwy i/lub przesadnie dbający o urodę mężczyzna"
   },
   {
@@ -591,8 +591,8 @@
   },
   {
     "name": "wardęga",
-    "category": "noun",
-    "description": "włóczęga, tułaczka"
+    "category": "person",
+    "description": "włóczęga"
   },
   {
     "name": "triaż",
@@ -601,17 +601,17 @@
   },
   {
     "name": "opsomaniak",
-    "category": "noun",
+    "category": "person",
     "description": "osoba mająca obsesję na punkcie jakiegoś konkretnego rodzaju jedzenia"
   },
   {
     "name": "frela",
-    "category": "noun",
+    "category": "person",
     "description": "dziewczyna"
   },
   {
     "name": "dziad kalwaryjski",
-    "category": "noun",
+    "category": "person",
     "description": "żebrak, człowiek ubogi żyjący z tego co dostanieod ludzi"
   },
   {
@@ -621,7 +621,7 @@
   },
   {
     "name": "knajak",
-    "category": "noun",
+    "category": "person",
     "description": "człowiek z marginesu społecznego"
   },
   {
@@ -651,7 +651,7 @@
   },
   {
     "name": "kunktator",
-    "category": "noun",
+    "category": "person",
     "description": "osoba umyślnie z czymś zwlekająca lub przeciągająca coś"
   },
   {
@@ -671,7 +671,7 @@
   },
   {
     "name": "fatygant",
-    "category": "noun",
+    "category": "person",
     "description": "adorator, mężczyzna starający się o względy kobiety"
   },
   {
@@ -761,12 +761,12 @@
   },
   {
     "name": "dendrofil",
-    "category": "noun",
+    "category": "person",
     "description": "osoba cierpiąca dewiację seksualną, w której obiektem seksualnym są drzewa"
   },
   {
     "name": "brakarz",
-    "category": "noun",
+    "category": "person",
     "description": "pracownik kontroli technicznej w zakładzie produkcyjnym oceniający jakość gotowych wyrobów"
   },
   {
@@ -811,7 +811,7 @@
   },
   {
     "name": "satrapa",
-    "category": "noun",
+    "category": "person",
     "description": "despotyczny władca, tyran"
   },
   {
@@ -821,7 +821,7 @@
   },
   {
     "name": "panicz",
-    "category": "noun",
+    "category": "person",
     "description": "mężczyzna młody, elegancki, żyjący wygodnie"
   },
   {
@@ -846,12 +846,12 @@
   },
   {
     "name": "flegmatyk",
-    "category": "noun",
+    "category": "person",
     "description": "człowiek charakteryzuje opanowanie, spokój i swoista apatia"
   },
   {
     "name": "kosztorysant",
-    "category": "noun",
+    "category": "person",
     "description": "osoba, która optymalizuje wydatki kapitałowe na inwestycje"
   },
   {
@@ -956,12 +956,12 @@
   },
   {
     "name": "paciulok",
-    "category": "noun",
+    "category": "person",
     "description": "oferma, fajtłapa"
   },
   {
     "name": "sześdziesiona",
-    "category": "noun",
+    "category": "person",
     "description": "donosiciel"
   },
   {
@@ -996,7 +996,7 @@
   },
   {
     "name": "inseminator",
-    "category": "noun",
+    "category": "person",
     "description": "specjalista w dziedzinie sztucznego unasienienia zwierząt hodowlanych"
   },
   {
@@ -1031,7 +1031,7 @@
   },
   {
     "name": "paszenog",
-    "category": "noun",
+    "category": "person",
     "description": "mąż siostry żony"
   },
   {

@@ -68,6 +68,9 @@ object SmartWordsApp extends IOApp {
    * @param correct true if got correct answer, false otherwise. If no answer yet then None
    */
   case class Round(word: Word, options: List[String], var correct: Option[Boolean])
+  implicit val RoundEncoder: Encoder[Round] = Encoder.instance {
+    (round: Round) => json"""{"word": ${round.word.name}, "options": ${round.options}}"""
+  }
 
   private def generateRound(): Round = {
     val word: Word = testWordDB(Random.nextInt(testWordDB.length))

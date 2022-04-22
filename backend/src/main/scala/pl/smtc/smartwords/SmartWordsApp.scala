@@ -1,4 +1,4 @@
-package pl.smtc.service
+package pl.smtc.smartwords
 
 import cats._
 import cats.effect._

@@ -27,13 +27,6 @@ import scala.util.Random
 
 object SmartWordsApp extends IOApp {
 
-  /**
-   * Model class representing a single word
-   * @param name smart word title/name
-   * @param category word category
-   * @param definition word correct definition
-   */
-  case class Word(name: String, category: Category.Value, definition: String)
   implicit val WordEncoder: Encoder[Word] = Encoder.instance {
     (word: Word) => json"""{"name": ${word.name}, "category": ${word.category.toString}, "description": ${word.definition}}"""
   }

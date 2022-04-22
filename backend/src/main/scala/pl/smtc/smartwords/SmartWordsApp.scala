@@ -59,13 +59,6 @@ object SmartWordsApp extends IOApp {
     Random.shuffle(options)
   }
 
-  /**
-   * Model class representing a complete quiz containing several rounds (smart words questions)
-   * @param rounds a collection of rounds/questions
-   * @param score current correct answers counter
-   */
-  case class Quiz(rounds: List[Round], score: Int)
-
   private def generateQuiz(size: Int): Quiz = {
     Quiz(List.fill(size)(generateRound()), 0)
   }

@@ -17,6 +17,7 @@ import org.http4s.headers._
 import org.http4s.implicits._
 import org.http4s.server._
 import org.http4s.ember.server._
+import pl.smtc.smartwords.model._
 
 import java.util.UUID
 import scala.collection.mutable
@@ -25,17 +26,6 @@ import scala.io.Source
 import scala.util.Random
 
 object SmartWordsApp extends IOApp {
-
-  /**
-   * Word category type.
-   * Available options are: VERB, ADVERB, NOUN and ADJECTIVE
-   */
-  object Category extends Enumeration {
-    type Category = Value
-    val verb, noun, adjective, latin, person, unknown = Value
-    def fromString(string: String): Value =
-      values.find(_.toString.toLowerCase() == string.toLowerCase()).getOrElse(unknown)
-  }
 
   /**
    * Model class representing a single word

@@ -67,4 +67,14 @@ class WordsDatabase {
       false
     }
   }
+
+  def removeWord(word: Word): Boolean = {
+    val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
+    if (nameIndex >= 0) {
+      testWordDB.remove(nameIndex)
+      true
+    } else {
+      false
+    }
+  }
 }

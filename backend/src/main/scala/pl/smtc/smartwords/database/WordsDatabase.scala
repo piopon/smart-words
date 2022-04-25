@@ -48,4 +48,23 @@ class WordsDatabase {
   def getWordsByCategory(category: Category.Value): List[Word] = {
     testWordDB.toList.filter(word => word.category.equals(category))
   }
+
+  def addWord(word: Word): Boolean = {
+    val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
+    if (nameIndex < 0) {
+      testWordDB += word
+      true
+    } else {
+      false
+    }
+  }
+
+  def updateWord(index: Integer, word: Word): Boolean = {
+    if (index >= 0 && index < testWordDB.length) {
+      testWordDB.update(index, word)
+      true
+    } else {
+      false
+    }
+  }
 }

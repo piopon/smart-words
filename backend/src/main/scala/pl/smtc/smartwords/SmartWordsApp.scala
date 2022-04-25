@@ -38,10 +38,6 @@ object SmartWordsApp extends IOApp {
     }
   }
 
-  private def findWordsByCategory(category: Category.Value): List[Word] = {
-    testWordDB.toList.filter(word => word.category.equals(category))
-  }
-
   implicit val RoundEncoder: Encoder[Round] = Encoder.instance {
     (round: Round) => json"""{"word": ${round.word.name}, "options": ${round.options}}"""
   }
@@ -52,7 +48,7 @@ object SmartWordsApp extends IOApp {
   }
 
   private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
-    val incorrectOptions: List[String] = Random.shuffle(findWordsByCategory(category).map(_.definition))
+    val incorrectOptions: List[String] = Random.shuffle(wordsDB.getWordsByCategory(category).map(_.definition))
     val options: List[String] = incorrectOptions.take(3) :+ correctDefinition
     Random.shuffle(options)
   }
@@ -139,7 +135,7 @@ object SmartWordsApp extends IOApp {
           case None =>
             Ok(testWordDB.toList.asJson)
           case Some(category) =>
-            Ok(findWordsByCategory(category).asJson)
+            Ok(wordsDB.getWordsByCategory(category).asJson)
         }
       case request@POST -> Root / "words" =>
         for {

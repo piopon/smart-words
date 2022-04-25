@@ -43,6 +43,15 @@ class WordsDatabase {
     }
   }
 
+  def getWordByName(name: String): Option[Word] = {
+    val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(name))
+    if (nameIndex >= 0) {
+      Some(testWordDB(nameIndex))
+    } else {
+      None
+    }
+  }
+
   def getWords: List[Word] = testWordDB.toList
 
   def getWordsByCategory(category: Category.Value): List[Word] = {

@@ -141,9 +141,8 @@ object SmartWordsApp extends IOApp {
         for {
           newWord <- request.as[Word]
           response <- {
-            val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(newWord.name))
-            if (nameIndex == -1) {
-              testWordDB += newWord
+            val result = wordsDB.addWord(newWord)
+            if (result) {
               Ok(s"Added new word \"${newWord.name}\".")
             } else {
               Ok(s"Word \"${newWord.name}\" already defined.")
@@ -154,9 +153,9 @@ object SmartWordsApp extends IOApp {
         for {
           newWord <- request.as[Word]
           response <- {
-            val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(name))
-            if (nameIndex >= 0) {
-              testWordDB.update(nameIndex, newWord)
+            val nameIndex = wordsDB.getWords.indexWhere((word: Word) => word.name.equals(name))
+            val result = wordsDB.updateWord(nameIndex, newWord)
+            if (result) {
               Ok(s"Updated word \"$name\".")
             } else {
               NotFound(s"Word \"$name\" not found in DB.")
@@ -164,12 +163,13 @@ object SmartWordsApp extends IOApp {
           }
         } yield response
       case DELETE -> Root / "words" / name =>
-        val nameIndex = testWordDB.indexWhere((word: Word) => word.name.equals(name))
-        if (nameIndex >= 0) {
-          val removed = testWordDB.remove(nameIndex)
-          Ok(removed.asJson)
-        } else {
-          NotFound(s"Word \"$name\" not found in DB.")
+        val deleteWord = wordsDB.getWordByName(name)
+        deleteWord match {
+          case None => NotFound(s"Word \"$name\" not found in DB.")
+          case Some(word) => {
+            wordsDB.removeWord(word)
+            Ok(word.asJson)
+          }
         }
     }
   }

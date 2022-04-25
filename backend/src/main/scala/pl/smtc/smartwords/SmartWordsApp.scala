@@ -139,8 +139,7 @@ object SmartWordsApp extends IOApp {
         for {
           newWord <- request.as[Word]
           response <- {
-            val result = wordsDB.addWord(newWord)
-            if (result) {
+            if (wordsDB.addWord(newWord)) {
               Ok(s"Added new word \"${newWord.name}\".")
             } else {
               Ok(s"Word \"${newWord.name}\" already defined.")

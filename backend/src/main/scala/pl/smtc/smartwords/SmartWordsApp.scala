@@ -43,7 +43,7 @@ object SmartWordsApp extends IOApp {
   }
 
   private def generateRound(): Round = {
-    val word: Word = testWordDB(Random.nextInt(testWordDB.length))
+    val word: Word = wordsDB.getWord(Random.nextInt(wordsDB.getWords.length)).get
     Round(word, generateOptions(word.definition, word.category), None)
   }
 
@@ -133,7 +133,7 @@ object SmartWordsApp extends IOApp {
       case GET -> Root / "words" :? OptionalCategoryParamMatcher(maybeCategory) =>
         maybeCategory match {
           case None =>
-            Ok(testWordDB.toList.asJson)
+            Ok(wordsDB.getWords.asJson)
           case Some(category) =>
             Ok(wordsDB.getWordsByCategory(category).asJson)
         }

@@ -8,19 +8,17 @@ import org.http4s.circe._
 import io.circe._
 import io.circe.syntax._
 import io.circe.literal._
-import io.circe.parser._
 import org.http4s._
 import org.http4s.dsl._
 import org.http4s.dsl.io._
 import org.http4s.implicits._
 import org.http4s.server._
 import org.http4s.ember.server._
+import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 
 import java.util.UUID
 import scala.collection.mutable
-import scala.collection.mutable.ListBuffer
-import scala.io.Source
 import scala.util.Random
 
 object SmartWordsApp extends IOApp {
@@ -174,7 +172,7 @@ object SmartWordsApp extends IOApp {
     }
   }
 
-  val testWordDB: ListBuffer[Word] = ListBuffer()
+  val wordsDB: WordsDatabase = new WordsDatabase()
   val activeQuizzes: mutable.Map[UUID, Quiz] = mutable.Map()
 
   override def run(args: List[String]): IO[ExitCode] = {

@@ -174,24 +174,11 @@ object SmartWordsApp extends IOApp {
     }
   }
 
-  def initDatabase(): Boolean = {
-    val fileStream = getClass.getResourceAsStream("/dictionary.json")
-    val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
-    decode[List[Word]](lines) match {
-      case Left(fail) =>
-        println(s"Invalid dictionary file. ${fail.getMessage}")
-        false
-      case Right(words) =>
-        words.foreach(word => testWordDB += word)
-        true
-    }
-  }
-
   val testWordDB: ListBuffer[Word] = ListBuffer()
   val activeQuizzes: mutable.Map[UUID, Quiz] = mutable.Map()
 
   override def run(args: List[String]): IO[ExitCode] = {
-    if (initDatabase()) {
+    if (wordsDB.initDatabase()) {
       val apis = Router(
         "/quiz" -> SmartWordsApp.quizRoutes[IO],
         "/admin" -> SmartWordsApp.adminRoutes[IO]

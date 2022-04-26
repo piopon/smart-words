@@ -163,10 +163,9 @@ object SmartWordsApp extends IOApp {
         val deleteWord = wordsDB.getWordByName(name)
         deleteWord match {
           case None => NotFound(s"Word \"$name\" not found in DB.")
-          case Some(word) => {
+          case Some(word) =>
             wordsDB.removeWord(word)
             Ok(word.asJson)
-          }
         }
     }
   }

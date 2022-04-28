@@ -81,6 +81,11 @@ class WordsDatabase {
     testWordDB.toList.filter(word => word.category.equals(category))
   }
 
+  /**
+   * Method used to add new word to database
+   * @param word new word to be added in database
+   * @return true if word was added correctly, false otherwise (word existed in DB)
+   */
   def addWord(word: Word): Boolean = {
     val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
     if (nameIndex < 0) {
@@ -91,6 +96,12 @@ class WordsDatabase {
     }
   }
 
+  /**
+   * Method used to update a word in database at a selected position
+   * @param index position in DB of a word that needs to be updated
+   * @param word new word values
+   * @return true if word was updated correctly, false otherwise (word does not exist in DB)
+   */
   def updateWord(index: Integer, word: Word): Boolean = {
     if (index >= 0 && index < testWordDB.length) {
       testWordDB.update(index, word)
@@ -100,6 +111,11 @@ class WordsDatabase {
     }
   }
 
+  /**
+   * Method used to remove word from database
+   * @param word word to be removed from database
+   * @return true if word was removed correctly, false otherwise (word does not exist in DB)
+   */
   def removeWord(word: Word): Boolean = {
     val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
     if (nameIndex >= 0) {

@@ -22,6 +22,10 @@ class WordsDatabase {
     }
   }
 
+  /**
+   * Method used to initialize words database by reading dictionary.json file
+   * @return true if file was read correctly, false if error occurred
+   */
   def initDatabase(): Boolean = {
     val fileStream = getClass.getResourceAsStream("/dictionary.json")
     val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
@@ -35,6 +39,11 @@ class WordsDatabase {
     }
   }
 
+  /**
+   * Method used to receive a single word object from database with specified index
+   * @param index a index of word to be received
+   * @return non empty if word was present (index in bounds), None otherwise
+   */
   def getWord(index: Integer): Option[Word] = {
     if (index >= 0 && index < testWordDB.length) {
       Some(testWordDB(index))
@@ -43,6 +52,11 @@ class WordsDatabase {
     }
   }
 
+  /**
+   * Method used to receive a single word object from database with specified name
+   * @param name a name of a word to be received
+   * @return non empty if word was present (name existing), None otherwise
+   */
   def getWordByName(name: String): Option[Word] = {
     val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(name))
     if (nameIndex >= 0) {
@@ -52,8 +66,17 @@ class WordsDatabase {
     }
   }
 
+  /**
+   * Method used to receive all words stored in database
+   * @return a List of all stored word objects
+   */
   def getWords: List[Word] = testWordDB.toList
 
+  /**
+   * Method used to receive all words objects from database with specified category
+   * @param category a category of words to be found
+   * @return a List of all stored word objects with specified category
+   */
   def getWordsByCategory(category: Category.Value): List[Word] = {
     testWordDB.toList.filter(word => word.category.equals(category))
   }

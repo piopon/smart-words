@@ -18,7 +18,6 @@ import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 
 import java.util.UUID
-import scala.collection.mutable
 import scala.util.Random
 
 object SmartWordsApp extends IOApp {

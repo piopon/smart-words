@@ -74,8 +74,7 @@ object SmartWordsApp extends IOApp {
           case None => 10
           case Some(size) => size
         }
-        val newUuid: UUID = quizDB.addQuiz(generateQuiz(size))
-        Ok(newUuid.toString)
+        Ok(quizDB.addQuiz(generateQuiz(size)).toString)
       case GET -> Root / UUIDVar(quizId) / "question" / questionNo =>
         quizDB.getQuiz(quizId) match {
           case None =>
@@ -149,8 +148,7 @@ object SmartWordsApp extends IOApp {
           newWord <- request.as[Word]
           response <- {
             val nameIndex = wordsDB.getWords.indexWhere((word: Word) => word.name.equals(name))
-            val result = wordsDB.updateWord(nameIndex, newWord)
-            if (result) {
+            if (wordsDB.updateWord(nameIndex, newWord)) {
               Ok(s"Updated word \"$name\".")
             } else {
               NotFound(s"Word \"$name\" not found in DB.")
@@ -158,8 +156,7 @@ object SmartWordsApp extends IOApp {
           }
         } yield response
       case DELETE -> Root / "words" / name =>
-        val deleteWord = wordsDB.getWordByName(name)
-        deleteWord match {
+        wordsDB.getWordByName(name) match {
           case None => NotFound(s"Word \"$name\" not found in DB.")
           case Some(word) =>
             wordsDB.removeWord(word)

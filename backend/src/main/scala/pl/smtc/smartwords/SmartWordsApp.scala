@@ -71,22 +71,21 @@ object SmartWordsApp extends IOApp {
     import dsl._
     HttpRoutes.of[F] {
       case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) =>
-        val newUuid: UUID = UUID.randomUUID()
         val size: Int = maybeSize match {
           case None => 10
           case Some(size) => size
         }
-        activeQuizzes.put(newUuid, generateQuiz(size))
+        val newUuid: UUID = quizDB.addQuiz(generateQuiz(size))
         Ok(newUuid.toString)
       case GET -> Root / UUIDVar(quizId) / "question" / questionNo =>
-        activeQuizzes.get(quizId) match {
+        quizDB.getQuiz(quizId) match {
           case None =>
             NotFound("Specified quiz does not exist")
           case Some(quiz) =>
             Ok(quiz.rounds(questionNo.toInt).asJson)
         }
       case POST -> Root / UUIDVar(quizId) / "question" / questionNo / answerNo =>
-        activeQuizzes.get(quizId) match {
+        quizDB.getQuiz(quizId) match {
           case None =>
             NotFound("Specified quiz does not exist")
           case Some(quiz) =>
@@ -97,13 +96,13 @@ object SmartWordsApp extends IOApp {
             Ok(isCorrect.toString)
         }
       case GET -> Root / UUIDVar(quizId) / "stop" =>
-        activeQuizzes.get(quizId) match {
+        quizDB.getQuiz(quizId) match {
           case None =>
             NotFound("Specified quiz does not exist")
           case Some(quiz) =>
             val okCount: Int = quiz.rounds.count(round => round.correct.exists(isCorrect => isCorrect))
             val percent: Float = okCount.toFloat / quiz.rounds.length
-            activeQuizzes.remove(quizId)
+            quizDB.removeQuiz(quizId)
             Ok(percent.toString)
         }
     }
@@ -171,7 +170,7 @@ object SmartWordsApp extends IOApp {
   }
 
   val wordsDB: WordsDatabase = new WordsDatabase()
-  val activeQuizzes: mutable.Map[UUID, Quiz] = mutable.Map()
+  val quizDB: QuizDatabase = new QuizDatabase()
 
   override def run(args: List[String]): IO[ExitCode] = {
     if (wordsDB.initDatabase()) {

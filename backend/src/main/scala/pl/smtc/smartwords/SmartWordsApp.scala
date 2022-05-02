@@ -39,12 +39,12 @@ object SmartWordsApp extends IOApp {
   }
 
   private def generateRound(): Round = {
-    val word: Word = wordsDB.getWord(Random.nextInt(wordsDB.getWords.length)).get
+    val word: Word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
     Round(word, generateOptions(word.definition, word.category), None)
   }
 
   private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
-    val incorrectOptions: List[String] = Random.shuffle(wordsDB.getWordsByCategory(category).map(_.definition))
+    val incorrectOptions: List[String] = Random.shuffle(wordDB.getWordsByCategory(category).map(_.definition))
     val options: List[String] = incorrectOptions.take(3) :+ correctDefinition
     Random.shuffle(options)
   }
@@ -127,15 +127,15 @@ object SmartWordsApp extends IOApp {
       case GET -> Root / "words" :? OptionalCategoryParamMatcher(maybeCategory) =>
         maybeCategory match {
           case None =>
-            Ok(wordsDB.getWords.asJson)
+            Ok(wordDB.getWords.asJson)
           case Some(category) =>
-            Ok(wordsDB.getWordsByCategory(category).asJson)
+            Ok(wordDB.getWordsByCategory(category).asJson)
         }
       case request@POST -> Root / "words" =>
         for {
           newWord <- request.as[Word]
           response <- {
-            if (wordsDB.addWord(newWord)) {
+            if (wordDB.addWord(newWord)) {
               Ok(s"Added new word \"${newWord.name}\".")
             } else {
               Ok(s"Word \"${newWord.name}\" already defined.")
@@ -146,8 +146,8 @@ object SmartWordsApp extends IOApp {
         for {
           newWord <- request.as[Word]
           response <- {
-            val nameIndex = wordsDB.getWords.indexWhere((word: Word) => word.name.equals(name))
-            if (wordsDB.updateWord(nameIndex, newWord)) {
+            val nameIndex = wordDB.getWords.indexWhere((word: Word) => word.name.equals(name))
+            if (wordDB.updateWord(nameIndex, newWord)) {
               Ok(s"Updated word \"$name\".")
             } else {
               NotFound(s"Word \"$name\" not found in DB.")
@@ -155,20 +155,20 @@ object SmartWordsApp extends IOApp {
           }
         } yield response
       case DELETE -> Root / "words" / name =>
-        wordsDB.getWordByName(name) match {
+        wordDB.getWordByName(name) match {
           case None => NotFound(s"Word \"$name\" not found in DB.")
           case Some(word) =>
-            wordsDB.removeWord(word)
+            wordDB.removeWord(word)
             Ok(word.asJson)
         }
     }
   }
 
-  val wordsDB: WordDatabase = new WordDatabase()
+  val wordDB: WordDatabase = new WordDatabase()
   val quizDB: QuizDatabase = new QuizDatabase()
 
   override def run(args: List[String]): IO[ExitCode] = {
-    if (wordsDB.initDatabase()) {
+    if (wordDB.initDatabase()) {
       val apis = Router(
         "/quiz" -> SmartWordsApp.quizRoutes[IO],
         "/admin" -> SmartWordsApp.adminRoutes[IO]

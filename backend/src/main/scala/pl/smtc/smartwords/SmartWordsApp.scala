@@ -164,7 +164,7 @@ object SmartWordsApp extends IOApp {
     }
   }
 
-  val wordsDB: WordsDatabase = new WordsDatabase()
+  val wordsDB: WordDatabase = new WordDatabase()
   val quizDB: QuizDatabase = new QuizDatabase()
 
   override def run(args: List[String]): IO[ExitCode] = {

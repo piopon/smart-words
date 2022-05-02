@@ -8,7 +8,7 @@ import pl.smtc.smartwords.model._
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
-class WordsDatabase {
+class WordDatabase {
 
   private val testWordDB: ListBuffer[Word] = ListBuffer()
 

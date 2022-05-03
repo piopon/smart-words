@@ -156,13 +156,7 @@ object SmartWordsApp extends IOApp {
             }
           }
         } yield response
-      case DELETE -> Root / "words" / name =>
-        wordDB.getWordByName(name) match {
-          case None => NotFound(s"Word \"$name\" not found in DB.")
-          case Some(word) =>
-            wordDB.removeWord(word)
-            Ok(word.asJson)
-        }
+      case DELETE -> Root / "words" / name => service.deleteWord(name)
     }
   }
 

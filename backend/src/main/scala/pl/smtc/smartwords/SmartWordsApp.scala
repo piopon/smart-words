@@ -16,6 +16,7 @@ import org.http4s.server._
 import org.http4s.ember.server._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
+import pl.smtc.smartwords.service.WordService
 
 import scala.util.Random
 
@@ -119,11 +120,12 @@ object SmartWordsApp extends IOApp {
    *  <li>Update word: <u>PUT</u> /admin/words/{name} + Word JSON -> RET: OK 200 + Word JSON / ERR 404</li>
    * </ul>
    */
-  def adminRoutes[F[_] : Concurrent]: HttpRoutes[F] = {
-    val dsl = Http4sDsl[F]
+  def adminRoutes: HttpRoutes[IO] = {
+    val service: WordService = new WordService(wordDB)
+    val dsl = Http4sDsl[IO]
     import dsl._
-    implicit val wordDecoder: EntityDecoder[F, Word] = jsonOf[F, Word]
-    HttpRoutes.of[F] {
+    implicit val wordDecoder: EntityDecoder[IO, Word] = jsonOf[IO, Word]
+    HttpRoutes.of[IO] {
       case GET -> Root / "words" :? OptionalCategoryParamMatcher(maybeCategory) =>
         maybeCategory match {
           case None =>
@@ -171,7 +173,7 @@ object SmartWordsApp extends IOApp {
     if (wordDB.initDatabase()) {
       val apis = Router(
         "/quiz" -> SmartWordsApp.quizRoutes[IO],
-        "/admin" -> SmartWordsApp.adminRoutes[IO]
+        "/admin" -> SmartWordsApp.adminRoutes
       ).orNotFound
 
       EmberServerBuilder.default[IO]

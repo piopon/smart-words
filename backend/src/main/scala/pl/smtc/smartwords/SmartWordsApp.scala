@@ -135,25 +135,12 @@ object SmartWordsApp extends IOApp {
       case request@POST -> Root / "words" =>
         for {
           newWord <- request.as[Word]
-          response <- {
-            if (wordDB.addWord(newWord)) {
-              Ok(s"Added new word \"${newWord.name}\".")
-            } else {
-              Ok(s"Word \"${newWord.name}\" already defined.")
-            }
-          }
+          response <- service.addWord(newWord)
         } yield response
       case request@PUT -> Root / "words" / name =>
         for {
           newWord <- request.as[Word]
-          response <- {
-            val nameIndex = wordDB.getWords.indexWhere((word: Word) => word.name.equals(name))
-            if (wordDB.updateWord(nameIndex, newWord)) {
-              Ok(s"Updated word \"$name\".")
-            } else {
-              NotFound(s"Word \"$name\" not found in DB.")
-            }
-          }
+          response <- service.updateWord(name, newWord)
         } yield response
       case DELETE -> Root / "words" / name => service.deleteWord(name)
     }

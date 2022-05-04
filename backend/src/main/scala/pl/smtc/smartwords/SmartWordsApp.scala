@@ -2,7 +2,6 @@ package pl.smtc.smartwords
 
 import cats._
 import cats.effect._
-import cats.implicits._
 import com.comcast.ip4s._
 import org.http4s.circe._
 import io.circe._
@@ -16,7 +15,7 @@ import org.http4s.server._
 import org.http4s.ember.server._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
-import pl.smtc.smartwords.service.WordService
+import pl.smtc.smartwords.service._
 
 import scala.util.Random
 

@@ -55,14 +55,10 @@ object SmartWordsApp extends IOApp {
     val dsl = Http4sDsl[IO]
     import dsl._
     HttpRoutes.of[IO] {
-      case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) => service.startQuiz(maybeSize)
+      case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) =>
+        service.startQuiz(maybeSize)
       case GET -> Root / UUIDVar(quizId) / "question" / questionNo =>
-        quizDB.getQuiz(quizId) match {
-          case None =>
-            NotFound("Specified quiz does not exist")
-          case Some(quiz) =>
-            Ok(quiz.rounds(questionNo.toInt).asJson)
-        }
+        service.getQuizQuestionNo(quizId, questionNo)
       case POST -> Root / UUIDVar(quizId) / "question" / questionNo / answerNo =>
         quizDB.getQuiz(quizId) match {
           case None =>

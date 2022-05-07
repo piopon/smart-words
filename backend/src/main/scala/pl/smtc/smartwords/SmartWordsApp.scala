@@ -50,16 +50,12 @@ object SmartWordsApp extends IOApp {
    *  <li>End quiz and get result: <u>GET</u> /quiz/{id}/stop -> RET: OK 200 / ERR 404</li>
    * </ul>
    */
-  def quizRoutes[F[_] : Monad]: HttpRoutes[F] = {
-    val dsl = Http4sDsl[F]
+  def quizRoutes: HttpRoutes[IO] = {
+    val service: QuizService = new QuizService(quizDB, wordDB)
+    val dsl = Http4sDsl[IO]
     import dsl._
-    HttpRoutes.of[F] {
-      case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) =>
-        val size: Int = maybeSize match {
-          case None => 10
-          case Some(size) => size
-        }
-        Ok(quizDB.addQuiz(generateQuiz(size)).toString)
+    HttpRoutes.of[IO] {
+      case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) => service.startQuiz(maybeSize)
       case GET -> Root / UUIDVar(quizId) / "question" / questionNo =>
         quizDB.getQuiz(quizId) match {
           case None =>
@@ -138,7 +134,7 @@ object SmartWordsApp extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     if (wordDB.initDatabase()) {
       val apis = Router(
-        "/quiz" -> SmartWordsApp.quizRoutes[IO],
+        "/quiz" -> SmartWordsApp.quizRoutes,
         "/admin" -> SmartWordsApp.adminRoutes
       ).orNotFound
 

@@ -16,6 +16,15 @@ class WordService(wordDB: WordDatabase) {
     (word: Word) => json"""{"name": ${word.name}, "category": ${word.category.toString}, "description": ${word.definition}}"""
   }
 
+  def getWords(maybeCategory: Option[Category.Value]): IO[Response[IO]] = {
+    maybeCategory match {
+      case None =>
+        Ok(wordDB.getWords.asJson)
+      case Some(category) =>
+        Ok(wordDB.getWordsByCategory(category).asJson)
+    }
+  }
+
   def addWord(word: Word): IO[Response[IO]] = {
     if (wordDB.addWord(word)) {
       Ok(s"Added new word \"${word.name}\".")

@@ -108,12 +108,7 @@ object SmartWordsApp extends IOApp {
     implicit val wordDecoder: EntityDecoder[IO, Word] = jsonOf[IO, Word]
     HttpRoutes.of[IO] {
       case GET -> Root / "words" :? OptionalCategoryParamMatcher(maybeCategory) =>
-        maybeCategory match {
-          case None =>
-            Ok(wordDB.getWords.asJson)
-          case Some(category) =>
-            Ok(wordDB.getWordsByCategory(category).asJson)
-        }
+        service.getWords(maybeCategory)
       case request@POST -> Root / "words" =>
         for {
           newWord <- request.as[Word]

@@ -38,20 +38,6 @@ object SmartWordsApp extends IOApp {
     (round: Round) => json"""{"word": ${round.word.name}, "options": ${round.options}}"""
   }
 
-  private def generateRound(): Round = {
-    val word: Word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
-    Round(word, generateOptions(word.definition, word.category), None)
-  }
-
-  private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
-    val incorrectOptions: List[String] = Random.shuffle(wordDB.getWordsByCategory(category).map(_.definition))
-    val options: List[String] = incorrectOptions.take(3) :+ correctDefinition
-    Random.shuffle(options)
-  }
-
-  private def generateQuiz(size: Int): Quiz = {
-    Quiz(List.fill(size)(generateRound()), 0)
-  }
 
   object OptionalQuizStartParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
 

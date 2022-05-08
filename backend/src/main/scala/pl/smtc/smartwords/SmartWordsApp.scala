@@ -98,7 +98,8 @@ object SmartWordsApp extends IOApp {
           newWord <- request.as[Word]
           response <- service.updateWord(name, newWord)
         } yield response
-      case DELETE -> Root / "words" / name => service.deleteWord(name)
+      case DELETE -> Root / "words" / name =>
+        service.deleteWord(name)
     }
   }
 

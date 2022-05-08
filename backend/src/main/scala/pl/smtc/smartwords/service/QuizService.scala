@@ -67,4 +67,16 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
         Ok(isCorrect.toString)
     }
   }
+
+  def stopQuiz(quizId: UUID): IO[Response[IO]] = {
+    quizDB.getQuiz(quizId) match {
+      case None =>
+        NotFound("Specified quiz does not exist")
+      case Some(quiz) =>
+        val okCount: Int = quiz.rounds.count(round => round.correct.exists(isCorrect => isCorrect))
+        val percent: Float = okCount.toFloat / quiz.rounds.length
+        quizDB.removeQuiz(quizId)
+        Ok(percent.toString)
+    }
+  }
 }

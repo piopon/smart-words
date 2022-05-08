@@ -60,16 +60,7 @@ object SmartWordsApp extends IOApp {
       case GET -> Root / UUIDVar(quizId) / "question" / questionNo =>
         service.getQuizQuestionNo(quizId, questionNo)
       case POST -> Root / UUIDVar(quizId) / "question" / questionNo / answerNo =>
-        quizDB.getQuiz(quizId) match {
-          case None =>
-            NotFound("Specified quiz does not exist")
-          case Some(quiz) =>
-            val correctDefinition: String = quiz.rounds(questionNo.toInt).word.definition
-            val selectedDefinition: String = quiz.rounds(questionNo.toInt).options(answerNo.toInt)
-            val isCorrect = correctDefinition.equals(selectedDefinition)
-            quiz.rounds(questionNo.toInt).correct = Option(isCorrect)
-            Ok(isCorrect.toString)
-        }
+        service.postQuizQuestionNo(quizId, questionNo, answerNo)
       case GET -> Root / UUIDVar(quizId) / "stop" =>
         quizDB.getQuiz(quizId) match {
           case None =>

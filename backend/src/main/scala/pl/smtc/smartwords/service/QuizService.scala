@@ -54,4 +54,17 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
         Ok(quiz.rounds(questionNo.toInt).asJson)
     }
   }
+
+  def postQuizQuestionNo(quizId: UUID, questionNo: String, answerNo: String): IO[Response[IO]] = {
+    quizDB.getQuiz(quizId) match {
+      case None =>
+        NotFound("Specified quiz does not exist")
+      case Some(quiz) =>
+        val correctDefinition: String = quiz.rounds(questionNo.toInt).word.definition
+        val selectedDefinition: String = quiz.rounds(questionNo.toInt).options(answerNo.toInt)
+        val isCorrect = correctDefinition.equals(selectedDefinition)
+        quiz.rounds(questionNo.toInt).correct = Option(isCorrect)
+        Ok(isCorrect.toString)
+    }
+  }
 }

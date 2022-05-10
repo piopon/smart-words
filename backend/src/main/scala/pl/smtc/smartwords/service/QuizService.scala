@@ -15,21 +15,6 @@ import scala.util.Random
 
 class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
 
-  private def generateRound(): Round = {
-    val word: Word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
-    Round(word, generateOptions(word.definition, word.category), None)
-  }
-
-  private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
-    val incorrectOptions: List[String] = Random.shuffle(wordDB.getWordsByCategory(category).map(_.definition))
-    val options: List[String] = incorrectOptions.take(3) :+ correctDefinition
-    Random.shuffle(options)
-  }
-
-  private def generateQuiz(size: Int): Quiz = {
-    Quiz(List.fill(size)(generateRound()), 0)
-  }
-
   implicit val RoundEncoder: Encoder[Round] = Encoder.instance {
     (round: Round) => json"""{"word": ${round.word.name}, "options": ${round.options}}"""
   }
@@ -74,5 +59,20 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
         quizDB.removeQuiz(quizId)
         Ok(percent.toString)
     }
+  }
+
+  private def generateRound(): Round = {
+    val word: Word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
+    Round(word, generateOptions(word.definition, word.category), None)
+  }
+
+  private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
+    val incorrectOptions: List[String] = Random.shuffle(wordDB.getWordsByCategory(category).map(_.definition))
+    val options: List[String] = incorrectOptions.take(3) :+ correctDefinition
+    Random.shuffle(options)
+  }
+
+  private def generateQuiz(size: Int): Quiz = {
+    Quiz(List.fill(size)(generateRound()), 0)
   }
 }

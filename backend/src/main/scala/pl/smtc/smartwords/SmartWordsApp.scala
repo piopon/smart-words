@@ -11,6 +11,7 @@ import org.http4s.dsl.io._
 import org.http4s.implicits._
 import org.http4s.server._
 import org.http4s.ember.server._
+import pl.smtc.smartwords.controller._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.service._
@@ -103,10 +104,12 @@ object SmartWordsApp extends IOApp {
   val quizDB: QuizDatabase = new QuizDatabase()
 
   override def run(args: List[String]): IO[ExitCode] = {
+    val wordController: WordController = new WordController(wordDB)
+
     if (wordDB.initDatabase()) {
       val apis = Router(
         "/quiz" -> SmartWordsApp.quizRoutes,
-        "/admin" -> SmartWordsApp.adminRoutes
+        "/admin" -> wordController.getRoutes
       ).orNotFound
 
       EmberServerBuilder.default[IO]

@@ -2,7 +2,6 @@ package pl.smtc.smartwords
 
 import cats.effect._
 import com.comcast.ip4s._
-import org.http4s.circe._
 import io.circe._
 import io.circe.literal._
 import org.http4s._
@@ -34,7 +33,6 @@ object SmartWordsApp extends IOApp {
   implicit val RoundEncoder: Encoder[Round] = Encoder.instance {
     (round: Round) => json"""{"word": ${round.word.name}, "options": ${round.options}}"""
   }
-
 
   object OptionalQuizStartParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
 

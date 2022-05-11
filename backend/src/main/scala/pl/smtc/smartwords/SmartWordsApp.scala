@@ -34,42 +34,16 @@ object SmartWordsApp extends IOApp {
     (round: Round) => json"""{"word": ${round.word.name}, "options": ${round.options}}"""
   }
 
-  object OptionalQuizStartParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
-
-  /**
-   * Routes (request -> response) for quiz endpoints/resources
-   * <ul>
-   *  <li>Start a new quiz: <u>POST</u> /quiz/start?size=10 -> RET: OK 200 + {id} / ERR 500</li>
-   *  <li>Receive specific question: <u>GET</u> /quiz/{id}/question/{no} -> RET: OK 200 + Round JSON / ERR 404</li>
-   *  <li>Send question answer: <u>POST</u> /quiz/{id}/question/{no}/{answerNo} -> RET: OK 200 / ERR 404</li>
-   *  <li>End quiz and get result: <u>GET</u> /quiz/{id}/stop -> RET: OK 200 / ERR 404</li>
-   * </ul>
-   */
-  def quizRoutes: HttpRoutes[IO] = {
-    val service: QuizService = new QuizService(quizDB, wordDB)
-    val dsl = Http4sDsl[IO]
-    import dsl._
-    HttpRoutes.of[IO] {
-      case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) =>
-        service.startQuiz(maybeSize)
-      case GET -> Root / UUIDVar(quizId) / "question" / questionNo =>
-        service.getQuizQuestionNo(quizId, questionNo)
-      case POST -> Root / UUIDVar(quizId) / "question" / questionNo / answerNo =>
-        service.postQuizQuestionNo(quizId, questionNo, answerNo)
-      case GET -> Root / UUIDVar(quizId) / "stop" =>
-        service.stopQuiz(quizId)
-    }
-  }
-
   val wordDB: WordDatabase = new WordDatabase()
   val quizDB: QuizDatabase = new QuizDatabase()
 
   override def run(args: List[String]): IO[ExitCode] = {
     val wordController: WordController = new WordController(wordDB)
+    val quizController: QuizController = new QuizController(quizDB, wordDB)
 
     if (wordDB.initDatabase()) {
       val apis = Router(
-        "/quiz" -> SmartWordsApp.quizRoutes,
+        "/quiz" -> quizController.getRoutes,
         "/admin" -> wordController.getRoutes
       ).orNotFound
 

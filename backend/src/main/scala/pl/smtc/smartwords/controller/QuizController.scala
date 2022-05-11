@@ -1,18 +1,10 @@
 package pl.smtc.smartwords.controller
 
 import cats.effect._
-import com.comcast.ip4s._
-import io.circe._
-import io.circe.literal._
 import org.http4s._
 import org.http4s.dsl._
 import org.http4s.dsl.io._
-import org.http4s.implicits._
-import org.http4s.server._
-import org.http4s.ember.server._
-import pl.smtc.smartwords.controller._
 import pl.smtc.smartwords.database._
-import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.service._
 
 class QuizController(quizDB: QuizDatabase, wordDB: WordDatabase) {

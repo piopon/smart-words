@@ -7,7 +7,9 @@ import org.http4s.dsl.io._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.service._
 
-class QuizController(quizDB: QuizDatabase, wordDB: WordDatabase) {
+class QuizController(wordDB: WordDatabase) {
+
+  val quizDB: QuizDatabase = new QuizDatabase()
 
   object OptionalQuizStartParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
 

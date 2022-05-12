@@ -18,11 +18,10 @@ import pl.smtc.smartwords.service._
 object SmartWordsApp extends IOApp {
 
   val wordDB: WordDatabase = new WordDatabase()
-  val quizDB: QuizDatabase = new QuizDatabase()
 
   override def run(args: List[String]): IO[ExitCode] = {
     val wordController: WordController = new WordController(wordDB)
-    val quizController: QuizController = new QuizController(quizDB, wordDB)
+    val quizController: QuizController = new QuizController(wordDB)
 
     if (wordDB.initDatabase()) {
       val apis = Router(

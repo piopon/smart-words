@@ -17,23 +17,6 @@ import pl.smtc.smartwords.service._
 
 object SmartWordsApp extends IOApp {
 
-  implicit val WordEncoder: Encoder[Word] = Encoder.instance {
-    (word: Word) => json"""{"name": ${word.name}, "category": ${word.category.toString}, "description": ${word.definition}}"""
-  }
-  implicit val WordDecoder: Decoder[Word] = Decoder.instance {
-    (input: HCursor) => for {
-      name <- input.downField("name").as[String]
-      category <- input.downField("category").as[String]
-      definition <- input.downField("description").as[String]
-    } yield {
-      Word(name, Category.fromString(category), definition)
-    }
-  }
-
-  implicit val RoundEncoder: Encoder[Round] = Encoder.instance {
-    (round: Round) => json"""{"word": ${round.word.name}, "options": ${round.options}}"""
-  }
-
   val wordDB: WordDatabase = new WordDatabase()
   val quizDB: QuizDatabase = new QuizDatabase()
 

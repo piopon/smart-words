@@ -39,8 +39,7 @@ class WordController(wordDB: WordDatabase) {
    */
   def getRoutes: HttpRoutes[IO] = {
     val service: WordService = new WordService(wordDB)
-    val dsl = Http4sDsl[IO]
-    import dsl._
+    val dsl = Http4sDsl[IO]; import dsl._
     implicit val wordDecoder: EntityDecoder[IO, Word] = jsonOf[IO, Word]
     HttpRoutes.of[IO] {
       case GET -> Root / "words" :? OptionalCategoryParamMatcher(maybeCategory) =>

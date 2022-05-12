@@ -24,8 +24,7 @@ class QuizController(wordDB: WordDatabase) {
    */
   def getRoutes: HttpRoutes[IO] = {
     val service: QuizService = new QuizService(quizDB, wordDB)
-    val dsl = Http4sDsl[IO]
-    import dsl._
+    val dsl = Http4sDsl[IO]; import dsl._
     HttpRoutes.of[IO] {
       case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) =>
         service.startQuiz(maybeSize)

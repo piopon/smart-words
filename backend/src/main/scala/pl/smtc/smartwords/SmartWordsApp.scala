@@ -18,7 +18,7 @@ object SmartWordsApp extends IOApp {
     if (wordDB.initDatabase()) {
       val apis = Router(
         "/quiz" -> quizController.getRoutes,
-        "/admin" -> wordController.getRoutes
+        "/words" -> wordController.getRoutes
       ).orNotFound
 
       EmberServerBuilder.default[IO]

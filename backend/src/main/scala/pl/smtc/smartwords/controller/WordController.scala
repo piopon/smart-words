@@ -42,19 +42,19 @@ class WordController(wordDB: WordDatabase) {
     val dsl = Http4sDsl[IO]; import dsl._
     implicit val wordDecoder: EntityDecoder[IO, Word] = jsonOf[IO, Word]
     HttpRoutes.of[IO] {
-      case GET -> Root / "words" :? OptionalCategoryParamMatcher(maybeCategory) =>
+      case GET -> Root :? OptionalCategoryParamMatcher(maybeCategory) =>
         service.getWords(maybeCategory)
-      case request@POST -> Root / "words" =>
+      case request@POST -> Root  =>
         for {
           newWord <- request.as[Word]
           response <- service.addWord(newWord)
         } yield response
-      case request@PUT -> Root / "words" / name =>
+      case request@PUT -> Root / name =>
         for {
           newWord <- request.as[Word]
           response <- service.updateWord(name, newWord)
         } yield response
-      case DELETE -> Root / "words" / name =>
+      case DELETE -> Root / name =>
         service.deleteWord(name)
     }
   }

@@ -1,6 +1,7 @@
 package pl.smtc.smartwords.utilities
 
 import io.circe._
+import io.circe.literal._
 import pl.smtc.smartwords.model._
 
 object WordDao {
@@ -12,5 +13,9 @@ object WordDao {
     } yield {
       Word(name, Category.fromString(category), definition)
     }
+  }
+
+  def getWordEncoder: Encoder[Word] = Encoder.instance {
+    (word: Word) => json"""{"name": ${word.name}, "category": ${word.category.toString}, "description": ${word.definition}}"""
   }
 }

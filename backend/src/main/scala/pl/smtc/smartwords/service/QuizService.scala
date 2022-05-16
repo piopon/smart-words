@@ -4,20 +4,18 @@ import cats.effect._
 import org.http4s.circe._
 import io.circe._
 import io.circe.syntax._
-import io.circe.literal._
 import org.http4s._
 import org.http4s.dsl.io._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
+import pl.smtc.smartwords.utilities._
 
 import java.util.UUID
 import scala.util.Random
 
 class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
 
-  implicit val RoundEncoder: Encoder[Round] = Encoder.instance {
-    (round: Round) => json"""{"word": ${round.word.name}, "options": ${round.options}}"""
-  }
+  implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 
   def startQuiz(maybeSize: Option[Int]): IO[Response[IO]] = {
     val size: Int = maybeSize match {

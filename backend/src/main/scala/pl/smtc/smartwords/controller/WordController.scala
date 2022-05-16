@@ -3,25 +3,17 @@ package pl.smtc.smartwords.controller
 import cats.effect._
 import org.http4s.circe._
 import io.circe._
-import io.circe.literal._
 import org.http4s._
 import org.http4s.dsl._
 import org.http4s.dsl.io._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.service._
+import pl.smtc.smartwords.utilities.WordDao
 
 class WordController(wordDB: WordDatabase) {
 
-  implicit val WordDecoder: Decoder[Word] = Decoder.instance {
-    (input: HCursor) => for {
-      name <- input.downField("name").as[String]
-      category <- input.downField("category").as[String]
-      definition <- input.downField("description").as[String]
-    } yield {
-      Word(name, Category.fromString(category), definition)
-    }
-  }
+  implicit val WordDecoder: Decoder[Word] = WordDao.getWordDecoder
 
   implicit val categoryParamDecoder: QueryParamDecoder[Category.Value] =
     QueryParamDecoder[String].map(categoryStr => Category.fromString(categoryStr))

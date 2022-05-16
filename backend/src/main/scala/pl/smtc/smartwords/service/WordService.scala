@@ -4,17 +4,15 @@ import cats.effect._
 import org.http4s.circe._
 import io.circe._
 import io.circe.syntax._
-import io.circe.literal._
 import org.http4s._
 import org.http4s.dsl.io._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
+import pl.smtc.smartwords.utilities._
 
 class WordService(wordDB: WordDatabase) {
 
-  implicit val WordEncoder: Encoder[Word] = Encoder.instance {
-    (word: Word) => json"""{"name": ${word.name}, "category": ${word.category.toString}, "description": ${word.definition}}"""
-  }
+  implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 
   def getWords(maybeCategory: Option[Category.Value]): IO[Response[IO]] = {
     maybeCategory match {

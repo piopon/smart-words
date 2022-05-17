@@ -9,7 +9,7 @@ import org.http4s.dsl.io._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.service._
-import pl.smtc.smartwords.dao.WordDao
+import pl.smtc.smartwords.dao._
 
 class WordController(wordDB: WordDatabase) {
 

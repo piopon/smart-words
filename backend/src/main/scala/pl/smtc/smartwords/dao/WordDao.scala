@@ -1,4 +1,4 @@
-package pl.smtc.smartwords.utilities
+package pl.smtc.smartwords.dao
 
 import io.circe._
 import io.circe.literal._

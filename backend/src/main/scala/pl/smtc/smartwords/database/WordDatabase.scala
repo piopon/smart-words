@@ -3,7 +3,7 @@ package pl.smtc.smartwords.database
 import io.circe._
 import io.circe.parser._
 import pl.smtc.smartwords.model._
-import pl.smtc.smartwords.utilities._
+import pl.smtc.smartwords.dao._
 
 import scala.collection.mutable.ListBuffer
 import scala.io.Source

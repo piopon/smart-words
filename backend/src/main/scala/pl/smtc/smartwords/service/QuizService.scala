@@ -8,7 +8,7 @@ import org.http4s._
 import org.http4s.dsl.io._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
-import pl.smtc.smartwords.utilities._
+import pl.smtc.smartwords.dao._
 
 import java.util.UUID
 import scala.util.Random

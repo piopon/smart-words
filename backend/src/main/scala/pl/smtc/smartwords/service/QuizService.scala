@@ -82,17 +82,32 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
     }
   }
 
+  /**
+   * Method used to generate a new round object
+   * @return generated round object with random word and 4 answer options
+   */
   private def generateRound(): Round = {
     val word: Word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
     Round(word, generateOptions(word.definition, word.category), None)
   }
 
+  /**
+   * Method used to generate 4 answer options
+   * @param correctDefinition correct word definition (one of answer options)
+   * @param category word category from which to draw the remaining 3 answer options
+   * @return list of possible 4 answer options
+   */
   private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
     val incorrectOptions: List[String] = Random.shuffle(wordDB.getWordsByCategory(category).map(_.definition))
     val options: List[String] = incorrectOptions.take(3) :+ correctDefinition
     Random.shuffle(options)
   }
 
+  /**
+   * Method used to generate a new quiz object
+   * @param size desired size of quiz (number of questions)
+   * @return generated quiz object
+   */
   private def generateQuiz(size: Int): Quiz = {
     Quiz(List.fill(size)(generateRound()), 0)
   }

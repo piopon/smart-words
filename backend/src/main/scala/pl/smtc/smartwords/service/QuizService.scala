@@ -45,6 +45,13 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
     }
   }
 
+  /**
+   * Method used to post an answer for specified quiz question number
+   * @param quizId the UUID of a started quiz (received after sending start quiz request)
+   * @param questionNo question number from a specified quiz
+   * @param answerNo answer number for a specified question number
+   * @return response with desired answer correct status or not found status if quiz UUID not present
+   */
   def postQuizQuestionNo(quizId: UUID, questionNo: String, answerNo: String): IO[Response[IO]] = {
     quizDB.getQuiz(quizId) match {
       case None =>
@@ -58,6 +65,11 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
     }
   }
 
+  /**
+   * Method used to stop desired quiz
+   * @param quizId the UUID of a started quiz (received after sending start quiz request)
+   * @return response with correct percentage or not found status if quiz UUID not present
+   */
   def stopQuiz(quizId: UUID): IO[Response[IO]] = {
     quizDB.getQuiz(quizId) match {
       case None =>

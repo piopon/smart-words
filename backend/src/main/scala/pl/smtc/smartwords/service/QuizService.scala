@@ -17,6 +17,11 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
 
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 
+  /**
+   * Method used to start a new quiz
+   * @param maybeSize an optional size value (if none then default value 10 will be applied)
+   * @return response with appropriate status
+   */
   def startQuiz(maybeSize: Option[Int]): IO[Response[IO]] = {
     val size: Int = maybeSize match {
       case None => 10
@@ -25,6 +30,12 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
     Ok(quizDB.addQuiz(generateQuiz(size)).toString)
   }
 
+  /**
+   * Method used to retrieve a specified question number from previously started quiz
+   * @param quizId the UUID of a started quiz (received after sending start quiz request)
+   * @param questionNo question number from a specified quiz
+   * @return response with desired question number or not found status if quiz UUID not present
+   */
   def getQuizQuestionNo(quizId: UUID, questionNo: String): IO[Response[IO]] = {
     quizDB.getQuiz(quizId) match {
       case None =>

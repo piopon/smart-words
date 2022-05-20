@@ -2,7 +2,7 @@ package pl.smtc.smartwords.model
 
 /**
  * Word category type.
- * Available options are: VERB, ADVERB, NOUN and ADJECTIVE
+ * Available options are: VERB, NOUN, ADJECTIVE, LATIN, PERSON and UNKNOWN
  */
 object Category extends Enumeration {
   type Category = Value

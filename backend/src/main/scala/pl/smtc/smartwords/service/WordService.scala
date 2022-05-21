@@ -14,6 +14,11 @@ class WordService(wordDB: WordDatabase) {
 
   implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 
+  /**
+   * Method used to receive words
+   * @param maybeCategory optional word category
+   * @return response with words from specified category, or all words if category is None
+   */
   def getWords(maybeCategory: Option[Category.Value]): IO[Response[IO]] = {
     maybeCategory match {
       case None =>
@@ -23,6 +28,11 @@ class WordService(wordDB: WordDatabase) {
     }
   }
 
+  /**
+   * Method used to add new word
+   * @param word new word to be added
+   * @return response with new word add status (always OK but with different message)
+   */
   def addWord(word: Word): IO[Response[IO]] = {
     if (wordDB.addWord(word)) {
       Ok(s"Added new word \"${word.name}\".")
@@ -31,6 +41,12 @@ class WordService(wordDB: WordDatabase) {
     }
   }
 
+  /**
+   * Method used to update specified word
+   * @param name word name which should be updated
+   * @param word new word definition
+   * @return response with update status (OK or NOT FOUND if word does not exist)
+   */
   def updateWord(name: String, word: Word): IO[Response[IO]] = {
     val nameIndex = wordDB.getWords.indexWhere((word: Word) => word.name.equals(name))
     if (wordDB.updateWord(nameIndex, word)) {
@@ -40,6 +56,11 @@ class WordService(wordDB: WordDatabase) {
     }
   }
 
+  /**
+   * Method used to delete specified word
+   * @param name word name to be deleted
+   * @return response with delete status (OK or NOT FOUND if word does not exist)
+   */
   def deleteWord(name: String): IO[Response[IO]] = {
     wordDB.getWordByName(name) match {
       case None => NotFound(s"Word \"$name\" not found in DB.")

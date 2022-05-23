@@ -1,13 +1,23 @@
-const request = new XMLHttpRequest();
+const getWords = (callback) => {
+    const request = new XMLHttpRequest();
 
-request.addEventListener('readystatechange', () => {
-    if (request.DONE !== request.readyState) return;
-    if (request.status === 200) {
-        console.log(request.responseText);
+    request.addEventListener('readystatechange', () => {
+        if (request.DONE !== request.readyState) return;
+        if (request.status === 200) {
+            callback(undefined, request.responseText)
+        } else {
+            callback('cannot get words [' + request.status + ']', undefined);
+        }
+    });
+
+    request.open('GET', 'http://localhost:1234/words');
+    request.send();
+};
+
+getWords((err, data) => {
+    if (err) {
+        console.log('ERROR: ' + err);
     } else {
-        console.log('ERROR');
+        console.log(data);
     }
-});
-
-request.open('GET', 'http://localhost:1234/words');
-request.send();
+})

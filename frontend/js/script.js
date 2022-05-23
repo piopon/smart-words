@@ -1,3 +1,5 @@
+const URL = 'http://localhost:1234/';
+
 const getWords = (callback) => {
     const request = new XMLHttpRequest();
 
@@ -9,8 +11,7 @@ const getWords = (callback) => {
             callback('cannot get words [' + request.status + ']', undefined);
         }
     });
-
-    request.open('GET', 'http://localhost:1234/words');
+    request.open('GET', URL + 'words');
     request.send();
 };
 

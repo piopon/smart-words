@@ -4,6 +4,7 @@ import cats.effect._
 import com.comcast.ip4s._
 import org.http4s.implicits._
 import org.http4s.server._
+import org.http4s.server.middleware._
 import org.http4s.ember.server._
 import pl.smtc.smartwords.controller._
 import pl.smtc.smartwords.database._
@@ -17,8 +18,8 @@ object SmartWordsApp extends IOApp {
 
     if (wordDB.initDatabase()) {
       val apis = Router(
-        "/quiz" -> quizController.getRoutes,
-        "/words" -> wordController.getRoutes
+        "/quiz" -> CORS(quizController.getRoutes),
+        "/words" -> CORS(wordController.getRoutes)
       ).orNotFound
 
       EmberServerBuilder.default[IO]

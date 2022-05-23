@@ -6,7 +6,7 @@ const getWords = (callback) => {
     request.addEventListener('readystatechange', () => {
         if (request.DONE !== request.readyState) return;
         if (request.status === 200) {
-            callback(undefined, request.responseText)
+            callback(undefined, JSON.parse(request.responseText));
         } else {
             callback('cannot get words [' + request.status + ']', undefined);
         }

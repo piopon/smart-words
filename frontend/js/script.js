@@ -1,1 +1,1 @@
-document.getElementById("testowy").innerHTML = "New text!";
+document.getElementById("testowy").innerHTML = "Zmienilem paragraf z poziomu JS!";

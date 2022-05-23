@@ -1,0 +1,1 @@
+document.getElementById("testowy").innerHTML = "New text!";

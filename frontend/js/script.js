@@ -1,1 +1,4 @@
-document.getElementById("testowy").innerHTML = "Zmienilem paragraf z poziomu JS!";
+const request = new XMLHttpRequest();
+
+request.open('GET', 'http://localhost:1234/words');
+request.send();

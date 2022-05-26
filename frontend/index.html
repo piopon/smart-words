@@ -6,6 +6,25 @@
     </head>
     <body>
         <h3 id="table-label">WORDS</h3>
+        <form name="add-word" method="POST">
+            <fieldset>
+                <legend>Add new word:</legend>
+                <label for="word-name">word:</label><br>
+                <input type="text" id="word-name" name="word-name" placeholder="type new word"/><br>
+                <label for="word-cat">category:</label><br>
+                <input list="categories" name="word-cat" placeholder="select or add category"/>
+                <datalist id="categories">
+                  <option value="verb">
+                  <option value="adjective">
+                  <option value="noun">
+                  <option value="person">
+                  <option value="latin">
+                </datalist><br>
+                <label for="word-def">definition:</label><br>
+                <textarea id="word-def" name="word-def" rows="3" cols="21" placeholder="type word definition"></textarea><br>
+                <input type="button" value="add" id="submit-word"/>
+            </fieldset>
+        </form>
         <table id="table-words">
             <thead>
                 <tr>

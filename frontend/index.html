@@ -6,7 +6,8 @@
     </head>
     <body>
         <h3 id="table-label">WORDS</h3>
-        <form name="add-word" method="POST">
+        <button class="buttonAdd">ADD</button>
+        <form id="word-editor" method="POST">
             <fieldset>
                 <legend>Add new word:</legend>
                 <label for="word-name">word:</label><br>
@@ -22,7 +23,8 @@
                 </datalist><br>
                 <label for="word-def">definition:</label><br>
                 <textarea id="word-def" name="word-def" rows="3" cols="21" placeholder="type word definition"></textarea><br>
-                <input type="button" value="add" id="submit-word"/>
+                <input type="button" value="ok" id="btn-word-edit-ok"/>
+                <input type="button" value="cancel" id="btn-word-edit-cancel"/>
             </fieldset>
         </form>
         <table id="table-words">

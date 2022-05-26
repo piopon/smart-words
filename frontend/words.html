@@ -6,9 +6,16 @@
         <script src="./js/script.js" defer></script>
     </head>
     <body>
-        <h3 id="table-label">WORDS</h3>
-        <button class="btn-add-word">ADD</button>
-        <form id="word-edit-form" method="POST">
+        <!-- title bar with site title and simple navbar -->
+        <header>
+            <h3 id="table-label">WORDS</h3>
+            <form action="index.html">
+                <button class="back">BACK</button>
+            </form>
+            <button class="btn-add-word">ADD</button>
+        </header>
+        <!-- "popup" edit form with word components fields -->
+        <form id="word-edit-form">
             <fieldset>
                 <legend>Add new word:</legend>
                 <label for="word-name">word:</label><br>
@@ -28,6 +35,7 @@
                 <input type="button" value="cancel" id="btn-word-edit-cancel"/>
             </fieldset>
         </form>
+        <!-- main site content: table with all words -->
         <table id="table-words">
             <thead>
                 <tr>
@@ -39,5 +47,9 @@
             </thead>
             <tbody></tbody>
         </table>
+        <!-- footer with author information and copyrights -->
+        <footer>
+            Developed with 💗 by PNK @ 2022 🖖
+        </footer>
     </body>
 </html>

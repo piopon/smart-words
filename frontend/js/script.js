@@ -1,3 +1,4 @@
+// called on words.html site load
 getWords((err, data) => {
     if (err) {
         console.log('ERROR: ' + err);

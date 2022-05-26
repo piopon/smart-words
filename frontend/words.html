@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>smart-words</title>
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+        <script src="./js/api-words.js" defer></script>
+        <script src="./js/script.js" defer></script>
+    </head>
+    <body>
+        <h3 id="table-label">WORDS</h3>
+        <button class="buttonAdd">ADD</button>
+        <form id="word-editor" method="POST">
+            <fieldset>
+                <legend>Add new word:</legend>
+                <label for="word-name">word:</label><br>
+                <input type="text" id="word-name" name="word-name" placeholder="type new word"/><br>
+                <label for="word-cat">category:</label><br>
+                <input list="categories" name="word-cat" placeholder="select or add category"/>
+                <datalist id="categories">
+                  <option value="verb">
+                  <option value="adjective">
+                  <option value="noun">
+                  <option value="person">
+                  <option value="latin">
+                </datalist><br>
+                <label for="word-def">definition:</label><br>
+                <textarea id="word-def" name="word-def" rows="3" cols="21" placeholder="type word definition"></textarea><br>
+                <input type="button" value="ok" id="btn-word-edit-ok"/>
+                <input type="button" value="cancel" id="btn-word-edit-cancel"/>
+            </fieldset>
+        </form>
+        <table id="table-words">
+            <thead>
+                <tr>
+                    <th>word</th>
+                    <th>action</th>
+                    <th>category</th>
+                    <th>definition</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </body>
+</html>

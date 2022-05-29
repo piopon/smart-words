@@ -1,3 +1,21 @@
+/**
+ * Method used to edit word with specified name.
+ *
+ * @param {String} name word name to be edited
+ */
+function editWord(name) {
+    console.log("edit: " + name);
+}
+
+/**
+ * Method used to delete word with specified name.
+ *
+ * @param {String} name word name to be deleted
+ */
+function removeWord(name) {
+    console.log("delete: " + name);
+}
+
 // called on words.html site load
 getWords((err, data) => {
     if (err) {

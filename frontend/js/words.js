@@ -25,8 +25,8 @@ getWords((err, data) => {
             return `<tr>
                         <td>${item.name}</td>
                         <td>
-                            <button class="buttonEdit">EDIT</button>
-                            <button class="buttonDelete">DELETE</button>
+                            <button class="btn-edit" onclick="editWord('${item.name}')">EDIT</button>
+                            <button class="btn-delete" onclick="removeWord('${item.name}')">DELETE</button>
                         </td>
                         <td>${item.category}</td>
                         <td>${item.description}</td>

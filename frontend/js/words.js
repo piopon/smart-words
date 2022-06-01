@@ -13,7 +13,14 @@ function editWord(name) {
  * @param {String} name word name to be deleted
  */
 function removeWord(name) {
-    console.log("delete: " + name);
+    deleteWord(name, (err, data) => {
+        if (err) {
+            console.log('ERROR: ' + err);
+        } else {
+            loadWords();
+            console.log('Removed: ' + data);
+        }
+    })
 }
 
 function loadWords() {

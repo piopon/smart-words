@@ -18,7 +18,6 @@ function removeWord(name) {
             console.log('ERROR: ' + err);
         } else {
             loadWords();
-            console.log('Removed: ' + data.name);
         }
     });
 }

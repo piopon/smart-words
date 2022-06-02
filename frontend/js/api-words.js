@@ -1,29 +1,29 @@
 const URL = 'http://localhost:1234/';
 
 const getWords = (callback) => {
-    const request = new XMLHttpRequest();
-    request.addEventListener('readystatechange', () => {
-        if (request.DONE !== request.readyState) return;
-        if (request.status === 200) {
-            callback(undefined, JSON.parse(request.responseText));
+    const getRequest = new XMLHttpRequest();
+    getRequest.addEventListener('readystatechange', () => {
+        if (getRequest.DONE !== getRequest.readyState) return;
+        if (getRequest.status === 200) {
+            callback(undefined, JSON.parse(getRequest.responseText));
         } else {
-            callback('cannot get words [' + request.status + ']', undefined);
+            callback('cannot get words [' + getRequest.status + ']', undefined);
         }
     });
-    request.open('GET', URL + 'words');
-    request.send();
+    getRequest.open('GET', URL + 'words');
+    getRequest.send();
 };
 
 const deleteWord = (wordName, callback) => {
-    const request = new XMLHttpRequest();
-    request.addEventListener('readystatechange', () => {
-        if (request.DONE !== request.readyState) return;
-        if (request.status === 200) {
-            callback(undefined, JSON.parse(request.responseText));
+    const deleteRequest = new XMLHttpRequest();
+    deleteRequest.addEventListener('readystatechange', () => {
+        if (deleteRequest.DONE !== deleteRequest.readyState) return;
+        if (deleteRequest.status === 200) {
+            callback(undefined, JSON.parse(deleteRequest.responseText));
         } else {
-            callback('cannot get words [' + request.status + ']', undefined);
+            callback('cannot get words [' + deleteRequest.status + ']', undefined);
         }
     });
-    request.open('DELETE', URL + 'words/' + wordName);
-    request.send();
+    deleteRequest.open('DELETE', URL + 'words/' + wordName);
+    deleteRequest.send();
 }

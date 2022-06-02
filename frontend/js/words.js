@@ -3,8 +3,15 @@
  *
  * @param {String} name word name to be edited
  */
-function editWord(name) {
-    console.log("edit: " + name);
+function editWord(name, category, definition) {
+    // update UI elements text
+    document.getElementById('word-edit-title').innerHTML = 'Edit word:';
+    document.getElementById('word-name').value = name;
+    document.getElementById('word-cat').value = category;
+    document.getElementById('word-def').innerHTML = definition;
+    document.getElementById('btn-word-edit-accept').value = 'edit';
+    // show edit form
+
 }
 
 /**

@@ -28,7 +28,7 @@ function loadWords() {
         if (err) {
             console.log('ERROR: ' + err);
         } else {
-            const words = data.map((item) => {
+            const words = Object.values(data).map((item) => {
                 return `<tr>
                             <td>${item.name}</td>
                             <td>

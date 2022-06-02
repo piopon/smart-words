@@ -23,23 +23,28 @@ function removeWord(name) {
     });
 }
 
+function getWordTableRow(item) {
+    return `<tr>
+                <td>${item.name}</td>
+                <td>
+                    <button class="btn-edit" onclick="editWord('${item.name}', '${item.category}', '${item.description}')">
+                        EDIT
+                    </button>
+                    <button class="btn-delete" onclick="removeWord('${item.name}')">
+                        DELETE
+                    </button>
+                </td>
+                <td>${item.category}</td>
+                <td>${item.description}</td>
+            </tr>`;
+}
+
 function loadWords() {
     getWords((err, data) => {
         if (err) {
             console.log('ERROR: ' + err);
         } else {
-            const words = Object.values(data).map((item) => {
-                return `<tr>
-                            <td>${item.name}</td>
-                            <td>
-                                <button class="btn-edit" onclick="editWord('${item.name}')">EDIT</button>
-                                <button class="btn-delete" onclick="removeWord('${item.name}')">DELETE</button>
-                            </td>
-                            <td>${item.category}</td>
-                            <td>${item.description}</td>
-                        </tr>`;
-            }).join("");
-            document.querySelector('tbody').innerHTML = words;
+            document.querySelector('tbody').innerHTML = Object.values(data).map((item) => getWordTableRow(item)).join("");
         }
     });
 }

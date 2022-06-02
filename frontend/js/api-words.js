@@ -1,7 +1,7 @@
 const URL = 'http://localhost:1234/';
-const request = new XMLHttpRequest();
 
 const getWords = (callback) => {
+    const request = new XMLHttpRequest();
     request.addEventListener('readystatechange', () => {
         if (request.DONE !== request.readyState) return;
         if (request.status === 200) {
@@ -15,7 +15,7 @@ const getWords = (callback) => {
 };
 
 const deleteWord = (wordName, callback) => {
-    console.log("in delete word...");
+    const request = new XMLHttpRequest();
     request.addEventListener('readystatechange', () => {
         if (request.DONE !== request.readyState) return;
         if (request.status === 200) {

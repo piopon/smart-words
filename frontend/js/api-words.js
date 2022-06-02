@@ -15,6 +15,7 @@ const getWords = (callback) => {
 };
 
 const deleteWord = (wordName, callback) => {
+    console.log("in delete word...");
     request.addEventListener('readystatechange', () => {
         if (request.DONE !== request.readyState) return;
         if (request.status === 200) {

@@ -18,9 +18,9 @@ function removeWord(name) {
             console.log('ERROR: ' + err);
         } else {
             loadWords();
-            console.log('Removed: ' + data);
+            console.log('Removed: ' + data.name);
         }
-    })
+    });
 }
 
 function loadWords() {

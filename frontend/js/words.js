@@ -27,7 +27,21 @@ function editWord(name, category, definition) {
   document.getElementById("word-cat").value = category;
   document.getElementById("word-def").innerHTML = definition;
   document.getElementById("btn-word-edit-accept").value = "edit";
-  // show edit form
+  document.getElementById("word-form").className = "form-visible";
+}
+
+function acceptWord() {
+  if (FORM_MODE_ADD === wordFormMode) {
+    console.log("call word add here...");
+  } else if (FORM_MODE_EDIT === wordFormMode) {
+    console.log("call word edit here...");
+  } else {
+    console.log("ERROR: Unknown form mode: " + wordFormMode);
+  }
+}
+
+function cancelWord() {
+  document.getElementById("word-form").className = "form-hidden";
 }
 
 /**

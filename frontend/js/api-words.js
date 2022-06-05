@@ -36,7 +36,7 @@ const deleteWord = (wordName, callback) => {
         if (deleteRequest.status === 200) {
             callback(undefined, JSON.parse(deleteRequest.responseText));
         } else {
-            callback('cannot get words [' + deleteRequest.status + ']', undefined);
+            callback('cannot delete word [' + deleteRequest.status + ']', undefined);
         }
     });
     deleteRequest.open('DELETE', URL + 'words/' + wordName);

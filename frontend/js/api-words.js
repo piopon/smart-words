@@ -29,6 +29,21 @@ const postWord = (newWordObject, callback) => {
     postRequest.send(JSON.stringify(newWordObject));
 };
 
+const putWord = (currWord, newWordObject, callback) => {
+    const putRequest = new XMLHttpRequest();
+    putRequest.addEventListener('readystatechange', () => {
+        if (putRequest.DONE !== putRequest.readyState) return;
+        if (putRequest.status === 200) {
+            callback(undefined, putRequest.responseText);
+        } else {
+            callback('cannot edit word [' + putRequest.status + ']', undefined);
+        }
+    });
+    putRequest.open('PUT', URL + 'words/' + currWord);
+    putRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    putRequest.send(JSON.stringify(newWordObject));
+};
+
 const deleteWord = (wordName, callback) => {
     const deleteRequest = new XMLHttpRequest();
     deleteRequest.addEventListener('readystatechange', () => {

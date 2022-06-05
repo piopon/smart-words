@@ -60,6 +60,7 @@ function acceptWord() {
   } else {
     console.log("ERROR: Unknown form mode: " + wordFormMode);
   }
+  document.getElementById("word-form").className = "form-hidden";
 }
 
 /**

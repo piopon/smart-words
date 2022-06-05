@@ -10,11 +10,11 @@ function addWord() {
   wordFormMode = FORM_MODE_ADD;
   wordUnderEdition = undefined;
   document.getElementById("word-form-title").innerHTML = "Add word:";
-  document.getElementById("word-name").value = "";
-  document.getElementById("word-cat").value = "";
-  document.getElementById("word-def").value = "";
-  document.getElementById("word-def").innerHTML = "";
-  document.getElementById("btn-word-edit-accept").value = "add";
+  document.getElementById("word-form-name").value = "";
+  document.getElementById("word-form-cat").value = "";
+  document.getElementById("word-form-def").value = "";
+  document.getElementById("word-form-def").innerHTML = "";
+  document.getElementById("word-form-btn-accept").value = "add";
   document.getElementById("word-form").className = "form-visible";
 }
 
@@ -29,11 +29,11 @@ function editWord(name, category, definition) {
   wordFormMode = FORM_MODE_EDIT;
   wordUnderEdition = name;
   document.getElementById("word-form-title").innerHTML = "Edit word:";
-  document.getElementById("word-name").value = name;
-  document.getElementById("word-cat").value = category;
-  document.getElementById("word-def").value = definition;
-  document.getElementById("word-def").innerHTML = definition;
-  document.getElementById("btn-word-edit-accept").value = "edit";
+  document.getElementById("word-form-name").value = name;
+  document.getElementById("word-form-cat").value = category;
+  document.getElementById("word-form-def").value = definition;
+  document.getElementById("word-form-def").innerHTML = definition;
+  document.getElementById("word-form-btn-accept").value = "edit";
   document.getElementById("word-form").className = "form-visible";
 }
 
@@ -43,9 +43,9 @@ function editWord(name, category, definition) {
 function acceptWord() {
   if (FORM_MODE_ADD === wordFormMode) {
     word = {
-      "name": document.getElementById("word-name").value,
-      "category": document.getElementById("word-cat").value,
-      "description": document.getElementById("word-def").value,
+      "name": document.getElementById("word-form-name").value,
+      "category": document.getElementById("word-form-cat").value,
+      "description": document.getElementById("word-form-def").value,
     };
     postWord(word, (err, data) => {
       if (err) {

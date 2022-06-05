@@ -34,7 +34,19 @@ function editWord(name, category, definition) {
 
 function acceptWord() {
   if (FORM_MODE_ADD === wordFormMode) {
-    console.log("call word add here...");
+    word = {
+      "name": document.getElementById("word-name").value,
+      "category": document.getElementById("word-cat").value,
+      "description": document.getElementById("word-def").value,
+    };
+    postWord(word, (err, data) => {
+      if (err) {
+        console.log("ERROR: " + err);
+      } else {
+        console.log(data);
+        loadWords();
+      }
+    });
   } else if (FORM_MODE_EDIT === wordFormMode) {
     console.log("call word edit here...");
   } else {

@@ -16,9 +16,11 @@ function addWord() {
 }
 
 /**
- * Method used to edit word with specified name.
+ * Method used to update and show edit word UI form with specified word data.
  *
- * @param {String} name word name to be edited
+ * @param {String} name current word name to be used in UI form and available for edition
+ * @param {String} category current word category to be used in UI form and available for edition
+ * @param {String} definition current word definition to be used in UI form and available for edition
  */
 function editWord(name, category, definition) {
   wordFormMode = FORM_MODE_EDIT;

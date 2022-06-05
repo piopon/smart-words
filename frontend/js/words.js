@@ -32,6 +32,9 @@ function editWord(name, category, definition) {
   document.getElementById("word-form").className = "form-visible";
 }
 
+/**
+ * Method used to accept word form and add or edit selected word
+ */
 function acceptWord() {
   if (FORM_MODE_ADD === wordFormMode) {
     word = {
@@ -54,6 +57,9 @@ function acceptWord() {
   }
 }
 
+/**
+ * Method used to cancel current word form and hide it (with no changes)
+ */
 function cancelWord() {
   document.getElementById("word-form").className = "form-hidden";
 }
@@ -68,11 +74,18 @@ function removeWord(name) {
     if (err) {
       console.log("ERROR: " + err);
     } else {
+      console.log("Removed word: " + data);
       loadWords();
     }
   });
 }
 
+/**
+ * Method used to get word table row HTML content based on input word object
+ *
+ * @param {Object} item JSON word object to get data from
+ * @returns HTML code in a String format to be added to words table DOM
+ */
 function getWordTableRow(item) {
   return `<tr>
             <td>${item.name}</td>
@@ -89,6 +102,9 @@ function getWordTableRow(item) {
           </tr>`;
 }
 
+/**
+ * Method used to load all words and add them to HTML table DOM
+ */
 function loadWords() {
   getWords((err, data) => {
     if (err) {

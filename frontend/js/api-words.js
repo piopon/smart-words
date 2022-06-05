@@ -14,6 +14,21 @@ const getWords = (callback) => {
     getRequest.send();
 };
 
+const postWord = (newWordObject, callback) => {
+    const postRequest = new XMLHttpRequest();
+    postRequest.addEventListener('readystatechange', () => {
+        if (postRequest.DONE !== postRequest.readyState) return;
+        if (postRequest.status === 200) {
+            callback(undefined, postRequest.responseText);
+        } else {
+            callback('cannot add word [' + postRequest.status + ']', undefined);
+        }
+    });
+    postRequest.open('POST', URL + 'words');
+    postRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    postRequest.send(JSON.stringify(newWordObject));
+};
+
 const deleteWord = (wordName, callback) => {
     const deleteRequest = new XMLHttpRequest();
     deleteRequest.addEventListener('readystatechange', () => {

@@ -43,9 +43,9 @@ function editWord(name, category, definition) {
 function acceptWord() {
   if (FORM_MODE_ADD === wordFormMode) {
     word = {
-      "name": document.getElementById("word-form-name").value,
-      "category": document.getElementById("word-form-cat").value,
-      "description": document.getElementById("word-form-def").value,
+      name: document.getElementById("word-form-name").value,
+      category: document.getElementById("word-form-cat").value,
+      description: document.getElementById("word-form-def").value,
     };
     postWord(word, (err, data) => {
       if (err) {
@@ -60,9 +60,9 @@ function acceptWord() {
       console.log("ERROR: word under edition cannot be undefined");
     }
     word = {
-      "name": document.getElementById("word-form-name").value,
-      "category": document.getElementById("word-form-cat").value,
-      "description": document.getElementById("word-form-def").value,
+      name: document.getElementById("word-form-name").value,
+      category: document.getElementById("word-form-cat").value,
+      description: document.getElementById("word-form-def").value,
     };
     putWord(wordUnderEdition, word, (err, data) => {
       if (err) {

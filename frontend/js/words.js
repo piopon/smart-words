@@ -114,6 +114,15 @@ function removeWord(name) {
   });
 }
 
+function refreshWordsCallback(err, data) {
+  if (err) {
+    console.log("ERROR: " + err);
+  } else {
+    console.log(data);
+    loadWords();
+  }
+}
+
 /**
  * Method used to get word table row HTML content based on input word object
  *

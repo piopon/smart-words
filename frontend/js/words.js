@@ -79,6 +79,19 @@ function acceptWord() {
 }
 
 /**
+ * Method used to construct word object from UI word edit form
+ *
+ * @returns word object
+ */
+function getWordFromUi() {
+  return {
+    name: document.getElementById("word-form-name").value,
+    category: document.getElementById("word-form-cat").value,
+    description: document.getElementById("word-form-def").value,
+  };
+}
+
+/**
  * Method used to cancel current word form and hide it (with no changes)
  */
 function cancelWord() {

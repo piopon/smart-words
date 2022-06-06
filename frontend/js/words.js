@@ -56,7 +56,22 @@ function acceptWord() {
       }
     });
   } else if (FORM_MODE_EDIT === wordFormMode) {
-    console.log("call word edit here...");
+    if (undefined === wordUnderEdition) {
+      console.log("ERROR: word under edition cannot be undefined");
+    }
+    word = {
+      "name": document.getElementById("word-form-name").value,
+      "category": document.getElementById("word-form-cat").value,
+      "description": document.getElementById("word-form-def").value,
+    };
+    putWord(wordUnderEdition, word, (err, data) => {
+      if (err) {
+        console.log("ERROR: " + err);
+      } else {
+        console.log(data);
+        loadWords();
+      }
+    });
   } else {
     console.log("ERROR: Unknown form mode: " + wordFormMode);
   }

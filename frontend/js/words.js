@@ -84,6 +84,12 @@ function removeWord(name) {
   deleteWord(name, refreshWordsCallback);
 }
 
+/**
+ * Method used as a common callback with refresh words logic when no error is present
+ *
+ * @param {String} err error string or undefined if no error is present
+ * @param {Object} data communication data received in callback
+ */
 function refreshWordsCallback(err, data) {
   if (err) {
     console.log("ERROR: " + err);

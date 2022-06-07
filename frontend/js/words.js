@@ -47,6 +47,7 @@ function acceptWord() {
   } else if (FORM_MODE_EDIT === wordFormMode) {
     if (undefined === wordUnderEdition) {
       console.log("ERROR: word under edition cannot be undefined");
+      return;
     }
     putWord(wordUnderEdition, acceptedWord, refreshWordsCallback);
   } else {

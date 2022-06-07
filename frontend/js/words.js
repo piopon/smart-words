@@ -41,37 +41,14 @@ function editWord(name, category, definition) {
  * Method used to accept word form and add or edit selected word
  */
 function acceptWord() {
+  var acceptedWord = getWordFromUi();
   if (FORM_MODE_ADD === wordFormMode) {
-    word = {
-      name: document.getElementById("word-form-name").value,
-      category: document.getElementById("word-form-cat").value,
-      description: document.getElementById("word-form-def").value,
-    };
-    postWord(word, (err, data) => {
-      if (err) {
-        console.log("ERROR: " + err);
-      } else {
-        console.log(data);
-        loadWords();
-      }
-    });
+    postWord(acceptedWord, refreshWordsCallback);
   } else if (FORM_MODE_EDIT === wordFormMode) {
     if (undefined === wordUnderEdition) {
       console.log("ERROR: word under edition cannot be undefined");
     }
-    word = {
-      name: document.getElementById("word-form-name").value,
-      category: document.getElementById("word-form-cat").value,
-      description: document.getElementById("word-form-def").value,
-    };
-    putWord(wordUnderEdition, word, (err, data) => {
-      if (err) {
-        console.log("ERROR: " + err);
-      } else {
-        console.log(data);
-        loadWords();
-      }
-    });
+    putWord(wordUnderEdition, acceptedWord, refreshWordsCallback);
   } else {
     console.log("ERROR: Unknown form mode: " + wordFormMode);
   }
@@ -104,14 +81,7 @@ function cancelWord() {
  * @param {String} name word name to be deleted
  */
 function removeWord(name) {
-  deleteWord(name, (err, data) => {
-    if (err) {
-      console.log("ERROR: " + err);
-    } else {
-      console.log("Removed word: " + data);
-      loadWords();
-    }
-  });
+  deleteWord(name, refreshWordsCallback);
 }
 
 function refreshWordsCallback(err, data) {

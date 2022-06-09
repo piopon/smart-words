@@ -1,6 +1,6 @@
 const URL = "http://localhost:1234/";
 
-const startQuiz = (questionsNo, callback) => {
+const postQuizStart = (questionsNo, callback) => {
   const postRequest = new XMLHttpRequest();
   postRequest.addEventListener("readystatechange", () => {
     if (postRequest.DONE !== postRequest.readyState) return;

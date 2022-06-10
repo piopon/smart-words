@@ -1,9 +1,10 @@
 var quizID = undefined;
-var questionsNo = undefined;
+var totalQuestionsNo = undefined;
+var currentQuestionNo = undefined;
 
 function startQuiz() {
-  questionsNo = document.getElementById("quiz-mode-question-no").value;
-  postQuizStart(questionsNo, (err, data) => {
+  totalQuestionsNo = document.getElementById("quiz-mode-question-no").value;
+  postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
     } else {

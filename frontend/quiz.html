@@ -13,16 +13,21 @@
                 <button class="back">BACK</button>
             </form>
         </header>
-        <!-- main site content: select quiz mode and start -->
-        <p>SELECT MODE:</p>
-        <form id="quiz-mode-form" class="form-visible">
-            <fieldset>
-                <legend id="quiz-mode-title">guess definition:</legend>
-                <label for="quiz-mode-question-no">how many questions:</label>
-                <input type="number" id="quiz-mode-question-no" value="10" min="5" max="25"/>
-                <input type="button" value="start" id="quiz-mode-start" onclick="startQuiz()"/>
-            </fieldset>
-        </form>
+        <!-- main site content -->
+        <div id="main-content">
+            <!-- quiz mode form with start option -->
+            <p>SELECT MODE:</p>
+            <form id="quiz-mode-form" class="form-visible">
+                <fieldset>
+                    <legend id="quiz-mode-title">guess definition:</legend>
+                    <label for="quiz-mode-question-no">how many questions:</label>
+                    <input type="number" id="quiz-mode-question-no" value="10" min="5" max="25"/>
+                    <input type="button" value="start" id="quiz-mode-start" onclick="startQuiz()"/>
+                </fieldset>
+            </form>
+            <div id="quiz-question">
+            </div>
+        </div>
         <!-- footer with author information and copyrights -->
         <footer>
             Developed with 💗 by PNK @ 2022 🖖

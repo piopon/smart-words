@@ -14,39 +14,42 @@
             </form>
             <button class="btn-add-word" onclick="addWord()">ADD</button>
         </header>
-        <!-- "popup" edit form with word components fields -->
-        <form id="word-form" class="form-hidden">
-            <fieldset>
-                <legend id="word-form-title">Add new word:</legend>
-                <label for="word-form-name">word:</label><br>
-                <input type="text" id="word-form-name" placeholder="word name"/><br>
-                <label for="word-form-cat">category:</label><br>
-                <input list="categories" id="word-form-cat" placeholder="select or add category"/>
-                <datalist id="categories">
-                  <option value="verb">
-                  <option value="adjective">
-                  <option value="noun">
-                  <option value="person">
-                  <option value="latin">
-                </datalist><br>
-                <label for="word-form-def">definition:</label><br>
-                <textarea id="word-form-def" rows="3" cols="21" placeholder="word definition"></textarea><br>
-                <input type="button" value="ok" id="word-form-btn-accept" onclick="acceptWord()"/>
-                <input type="button" value="cancel" id="word-form-btn-cancel" onclick="cancelWord()"/>
-            </fieldset>
-        </form>
-        <!-- main site content: table with all words -->
-        <table id="table-words">
-            <thead>
-                <tr>
-                    <th>word</th>
-                    <th>action</th>
-                    <th>category</th>
-                    <th>definition</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <!-- main site content -->
+        <div id="main-content">
+            <!-- "popup" edit form with word components fields -->
+            <form id="word-form" class="form-hidden">
+                <fieldset>
+                    <legend id="word-form-title">Add new word:</legend>
+                    <label for="word-form-name">word:</label><br>
+                    <input type="text" id="word-form-name" placeholder="word name"/><br>
+                    <label for="word-form-cat">category:</label><br>
+                    <input list="categories" id="word-form-cat" placeholder="select or add category"/>
+                    <datalist id="categories">
+                        <option value="verb">
+                        <option value="adjective">
+                        <option value="noun">
+                        <option value="person">
+                        <option value="latin">
+                    </datalist><br>
+                    <label for="word-form-def">definition:</label><br>
+                    <textarea id="word-form-def" rows="3" cols="21" placeholder="word definition"></textarea><br>
+                    <input type="button" value="ok" id="word-form-btn-accept" onclick="acceptWord()"/>
+                    <input type="button" value="cancel" id="word-form-btn-cancel" onclick="cancelWord()"/>
+                </fieldset>
+            </form>
+            <!-- table with all words -->
+            <table id="table-words">
+                <thead>
+                    <tr>
+                        <th>word</th>
+                        <th>action</th>
+                        <th>category</th>
+                        <th>definition</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
         <!-- footer with author information and copyrights -->
         <footer>
             Developed with 💗 by PNK @ 2022 🖖

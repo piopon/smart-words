@@ -27,3 +27,17 @@ const getQuestionNo = (quizID, questionNo, callback) => {
   getRequest.open("GET", URL + "quiz/" + quizID + "/question/" + questionNo);
   getRequest.send();
 }
+
+const postQuestionAnswer = (quizID, questionNo, answerNo, callback) => {
+  const postRequest = new XMLHttpRequest();
+  postRequest.addEventListener("readystatechange", () => {
+    if (postRequest.DONE !== postRequest.readyState) return;
+    if (postRequest.status === 200) {
+      callback(undefined, postRequest.responseText);
+    } else {
+      callback("cannot post answer for question no " + questionNo + " [" + postRequest.status + "]", undefined);
+    }
+  });
+  postRequest.open("POST", URL + "quiz/" + quizID + "/question/" + questionNo + "/" + answerNo);
+  postRequest.send();
+}

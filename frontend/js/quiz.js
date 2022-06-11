@@ -42,6 +42,8 @@ function getWordHtml(word) {
 
 function getOptionHtml(option, optionNo) {
   return `<div class="question-option-div">
-            ${optionNo}) ${option}
+            <button id="answer-${optionNo}" class="question-option-btn">
+              ${optionNo}) ${option}
+            </button>
           </div>`;
 }

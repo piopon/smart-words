@@ -27,6 +27,19 @@ function requestQuestionNo(number) {
   });
 }
 
+function answerQuestionNo(number, answerNo) {
+  console.log(`question no: ${number} -> answer no: ${answerNo}`);
+  postQuestionAnswer(quizID, number, answerNo, (err, data) => {
+    if (err) {
+      console.log("ERROR: " + err);
+    } else {
+      console.log(data);
+      updatedAnswerClass = 'true' === data ? "question-option-btn-ok" : "question-option-btn-nok";
+      document.getElementById("answer-" + answerNo).className = updatedAnswerClass;
+    }
+  });
+}
+
 function displayQuestion(questionObject) {
     document.getElementById("quiz-mode-form").className = "form-hidden";
     questionHtml = getWordHtml(questionObject.word);

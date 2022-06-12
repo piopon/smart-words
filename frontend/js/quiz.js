@@ -54,8 +54,9 @@ function getWordHtml(word) {
 }
 
 function getOptionHtml(option, optionNo) {
+  buttonAction = `onclick="answerQuestionNo('${currentQuestionNo}', '${optionNo}')"`;
   return `<div class="question-option-div">
-            <button id="answer-${optionNo}" class="question-option-btn">
+            <button id="answer-${optionNo}" class="question-option-btn" ${buttonAction}>
               ${optionNo}) ${option}
             </button>
           </div>`;

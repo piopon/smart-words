@@ -89,7 +89,11 @@ function getOptionHtml(option, optionNo) {
 
 function getControlButtonsHtml() {
   return `<div id="question-control" class="question-control-div">
-            <button id="prev-question" class="prev-question-btn">PREVIOUS</button>
-            <button id="next-question" class="next-question-btn">NEXT</button>
+            <button id="prev-question" class="prev-question-btn" onclick="requestPrevQuestion()">
+              PREVIOUS
+            </button>
+            <button id="next-question" class="next-question-btn" onclick="requestNextQuestion()">
+              NEXT
+            </button>
           </div>`;
 }

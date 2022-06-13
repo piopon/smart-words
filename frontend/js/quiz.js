@@ -46,6 +46,7 @@ function displayQuestion(questionObject) {
     for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
       questionHtml += getOptionHtml(questionObject.options[optionNo], optionNo);
     }
+    questionHtml += getControlButtonsHtml();
     document.getElementById("quiz-question").innerHTML = questionHtml;
 }
 

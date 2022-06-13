@@ -27,6 +27,14 @@ function requestQuestionNo(number) {
   });
 }
 
+function verifyQuestionNo(number) {
+  if (number === undefined) return false;
+  if (number < 0 || number > totalQuestionsNo) {
+    return false;
+  }
+  return true;
+}
+
 function answerQuestionNo(number, answerNo) {
   console.log(`question no: ${number} -> answer no: ${answerNo}`);
   postQuestionAnswer(quizID, number, answerNo, (err, data) => {

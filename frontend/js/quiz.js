@@ -50,7 +50,6 @@ function verifyQuestionNo(number) {
 }
 
 function answerQuestionNo(number, answerNo) {
-  console.log(`question no: ${number} -> answer no: ${answerNo}`);
   postQuestionAnswer(quizID, number, answerNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);

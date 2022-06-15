@@ -2,6 +2,9 @@ var quizID = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
 
+/**
+ * Method used to receive number of question, start quiz and receive UUID 
+ */
 function startQuiz() {
   totalQuestionsNo = document.getElementById("quiz-mode-question-no").value;
   postQuizStart(totalQuestionsNo, (err, data) => {
@@ -16,6 +19,9 @@ function startQuiz() {
   });
 }
 
+/**
+ * Method (wrapper) used request a next question (relative to currently displayed one)
+ */
 function requestNextQuestion() {
   if (!verifyQuestionNo(++currentQuestionNo)) {
     console.log("Invalid question number value [" + number + "]");
@@ -23,6 +29,9 @@ function requestNextQuestion() {
   requestQuestionNo(currentQuestionNo);
 }
 
+/**
+ * Method (wrapper) used request a previous question (relative to currently displayed one)
+ */
 function requestPrevQuestion() {
   if (!verifyQuestionNo(--currentQuestionNo)) {
     console.log("Invalid question number value [" + number + "]");
@@ -30,6 +39,11 @@ function requestPrevQuestion() {
   requestQuestionNo(currentQuestionNo);
 }
 
+/**
+ * Method used to request a question with specified number
+ * 
+ * @param {Integer} number of a requested question
+ */
 function requestQuestionNo(number) {
   getQuestionNo(quizID, number, (err, data) => {
     if (err) {
@@ -41,6 +55,12 @@ function requestQuestionNo(number) {
   });
 }
 
+/**
+ * Method used to verify specified question number
+ * 
+ * @param {Integer} number of a question to be verified 
+ * @returns true if number is correct, false otherwise
+ */
 function verifyQuestionNo(number) {
   if (number === undefined) return false;
   if (number < 0 || number > totalQuestionsNo) {
@@ -49,6 +69,12 @@ function verifyQuestionNo(number) {
   return true;
 }
 
+/**
+ * Method used to answer a specified question number with input answer number
+ * 
+ * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
+ * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
+ */
 function answerQuestionNo(number, answerNo) {
   postQuestionAnswer(quizID, number, answerNo, (err, data) => {
     if (err) {
@@ -61,6 +87,11 @@ function answerQuestionNo(number, answerNo) {
   });
 }
 
+/**
+ * Method used to display a specified question number with its all four options
+ *  
+ * @param {Object} questionObject to be displayed (word + four options)
+ */
 function displayQuestion(questionObject) {
     document.getElementById("quiz-mode-form").className = "form-hidden";
     questionHtml = getWordHtml(questionObject.word);
@@ -73,10 +104,23 @@ function displayQuestion(questionObject) {
     document.getElementById("next-question").disabled = currentQuestionNo >= totalQuestionsNo - 1;
 }
 
+/**
+ * Method used to receive question word HTML code
+ * 
+ * @param {String} word name to be displayed as a question word 
+ * @returns HTML code with word name
+ */
 function getWordHtml(word) {
   return `<div id="question-word" class="question-word-div">${word}</div>`;
 }
 
+/**
+ * Method used to receive question option HTML code
+ * 
+ * @param {String} option description to be displayed 
+ * @param {Integer} optionNo number of option
+ * @returns HTML code with word option
+ */
 function getOptionHtml(option, optionNo) {
   buttonAction = `onclick="answerQuestionNo('${currentQuestionNo}', '${optionNo}')"`;
   return `<div class="question-option-div">
@@ -86,6 +130,11 @@ function getOptionHtml(option, optionNo) {
           </div>`;
 }
 
+/**
+ * Method used to receive control buttons HTML code
+ * 
+ * @returns HTML code for question control buttons (previous and next)
+ */
 function getControlButtonsHtml() {
   return `<div id="question-control" class="question-control-div">
             <button id="prev-question" class="prev-question-btn" onclick="requestPrevQuestion()">

@@ -3,7 +3,7 @@ var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
 
 /**
- * Method used to receive number of question, start quiz and receive UUID 
+ * Method used to receive number of question, start quiz and receive UUID
  */
 function startQuiz() {
   totalQuestionsNo = document.getElementById("quiz-mode-question-no").value;
@@ -41,7 +41,7 @@ function requestPrevQuestion() {
 
 /**
  * Method used to request a question with specified number
- * 
+ *
  * @param {Integer} number of a requested question
  */
 function requestQuestionNo(number) {
@@ -57,8 +57,8 @@ function requestQuestionNo(number) {
 
 /**
  * Method used to verify specified question number
- * 
- * @param {Integer} number of a question to be verified 
+ *
+ * @param {Integer} number of a question to be verified
  * @returns true if number is correct, false otherwise
  */
 function verifyQuestionNo(number) {
@@ -71,7 +71,7 @@ function verifyQuestionNo(number) {
 
 /**
  * Method used to answer a specified question number with input answer number
- * 
+ *
  * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
  * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
  */
@@ -89,7 +89,7 @@ function answerQuestionNo(number, answerNo) {
 
 /**
  * Method used to display a specified question number with its all four options
- *  
+ *
  * @param {Object} questionObject to be displayed (word + four options)
  */
 function displayQuestion(questionObject) {
@@ -106,8 +106,8 @@ function displayQuestion(questionObject) {
 
 /**
  * Method used to receive question word HTML code
- * 
- * @param {String} word name to be displayed as a question word 
+ *
+ * @param {String} word name to be displayed as a question word
  * @returns HTML code with word name
  */
 function getWordHtml(word) {
@@ -116,8 +116,8 @@ function getWordHtml(word) {
 
 /**
  * Method used to receive question option HTML code
- * 
- * @param {String} option description to be displayed 
+ *
+ * @param {String} option description to be displayed
  * @param {Integer} optionNo number of option
  * @returns HTML code with word option
  */
@@ -132,7 +132,7 @@ function getOptionHtml(option, optionNo) {
 
 /**
  * Method used to receive control buttons HTML code
- * 
+ *
  * @returns HTML code for question control buttons (previous and next)
  */
 function getControlButtonsHtml() {

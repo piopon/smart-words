@@ -20,6 +20,22 @@ function startQuiz() {
 }
 
 /**
+ * Method used to request a question with specified number
+ *
+ * @param {Integer} number of a requested question
+ */
+function requestQuestionNo(number) {
+  getQuestionNo(quizID, number, (err, data) => {
+    if (err) {
+      console.log("ERROR: " + err);
+    } else {
+      console.log(data);
+      displayQuestion(data);
+    }
+  });
+}
+
+/**
  * Method (wrapper) used request a next question (relative to currently displayed one)
  */
 function requestNextQuestion() {
@@ -40,22 +56,6 @@ function requestPrevQuestion() {
 }
 
 /**
- * Method used to request a question with specified number
- *
- * @param {Integer} number of a requested question
- */
-function requestQuestionNo(number) {
-  getQuestionNo(quizID, number, (err, data) => {
-    if (err) {
-      console.log("ERROR: " + err);
-    } else {
-      console.log(data);
-      displayQuestion(data);
-    }
-  });
-}
-
-/**
  * Method used to verify specified question number
  *
  * @param {Integer} number of a question to be verified
@@ -67,24 +67,6 @@ function verifyQuestionNo(number) {
     return false;
   }
   return true;
-}
-
-/**
- * Method used to answer a specified question number with input answer number
- *
- * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
- * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
- */
-function answerQuestionNo(number, answerNo) {
-  postQuestionAnswer(quizID, number, answerNo, (err, data) => {
-    if (err) {
-      console.log("ERROR: " + err);
-    } else {
-      console.log(data);
-      updatedAnswerClass = 'true' === data ? "question-option-btn-ok" : "question-option-btn-nok";
-      document.getElementById("answer-" + answerNo).className = updatedAnswerClass;
-    }
-  });
 }
 
 /**
@@ -144,4 +126,22 @@ function getControlButtonsHtml() {
               NEXT
             </button>
           </div>`;
+}
+
+/**
+ * Method used to answer a specified question number with input answer number
+ *
+ * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
+ * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
+ */
+function answerQuestionNo(number, answerNo) {
+  postQuestionAnswer(quizID, number, answerNo, (err, data) => {
+    if (err) {
+      console.log("ERROR: " + err);
+    } else {
+      console.log(data);
+      updatedAnswerClass = 'true' === data ? "question-option-btn-ok" : "question-option-btn-nok";
+      document.getElementById("answer-" + answerNo).className = updatedAnswerClass;
+    }
+  });
 }

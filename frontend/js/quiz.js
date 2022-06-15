@@ -141,8 +141,7 @@ function answerQuestionNo(number, answerNo) {
       console.log("ERROR: " + err);
     } else {
       console.log(data);
-      updatedAnswerClass = 'true' === data ? "question-option-btn-ok" : "question-option-btn-nok";
-      document.getElementById("answer-" + answerNo).className = updatedAnswerClass;
+      document.getElementById("answer-" + answerNo).className = getAnswerButtonClass(data);
     }
   });
 }

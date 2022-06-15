@@ -18,14 +18,14 @@ function startQuiz() {
 
 function requestNextQuestion() {
   if (!verifyQuestionNo(++currentQuestionNo)) {
-    console.log("Invalud question number value [" + number + "]");
+    console.log("Invalid question number value [" + number + "]");
   }
   requestQuestionNo(currentQuestionNo);
 }
 
 function requestPrevQuestion() {
   if (!verifyQuestionNo(--currentQuestionNo)) {
-    console.log("Invalud question number value [" + number + "]");
+    console.log("Invalid question number value [" + number + "]");
   }
   requestQuestionNo(currentQuestionNo);
 }

@@ -33,7 +33,7 @@ const postQuestionAnswer = (quizID, questionNo, answerNo, callback) => {
   postRequest.addEventListener("readystatechange", () => {
     if (postRequest.DONE !== postRequest.readyState) return;
     if (postRequest.status === 200) {
-      callback(undefined, postRequest.responseText);
+      callback(undefined, JSON.parse(postRequest.responseText));
     } else {
       callback("cannot post answer for question no " + questionNo + " [" + postRequest.status + "]", undefined);
     }

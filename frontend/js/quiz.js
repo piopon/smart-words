@@ -78,7 +78,7 @@ function displayQuestion(questionObject) {
     document.getElementById("quiz-mode-form").className = "form-hidden";
     questionHtml = getWordHtml(questionObject.word);
     for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
-      questionHtml += getOptionHtml(questionObject.options[optionNo], optionNo);
+      questionHtml += getOptionHtml(questionObject, optionNo);
     }
     questionHtml += getControlButtonsHtml();
     document.getElementById("quiz-question").innerHTML = questionHtml;
@@ -99,15 +99,16 @@ function getWordHtml(word) {
 /**
  * Method used to receive question option HTML code
  *
- * @param {String} option description to be displayed
+ * @param {Object} question from which to receive option no and init status
  * @param {Integer} optionNo number of option
  * @returns HTML code with word option
  */
-function getOptionHtml(option, optionNo) {
-  buttonAction = `onclick="answerQuestionNo('${currentQuestionNo}', '${optionNo}')"`;
+function getOptionHtml(question, optionNo) {
+  buttonClass = `question-option-btn`;
+  buttonAction = `answerQuestionNo('${currentQuestionNo}', '${optionNo}')`;
   return `<div class="question-option-div">
-            <button id="answer-${optionNo}" class="question-option-btn" ${buttonAction}>
-              ${optionNo}) ${option}
+            <button id="answer-${optionNo}" class="${buttonClass}" onclick="${buttonAction}">
+              ${optionNo}) ${question.options[optionNo]}
             </button>
           </div>`;
 }

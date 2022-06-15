@@ -146,3 +146,10 @@ function answerQuestionNo(number, answerNo) {
     }
   });
 }
+
+function getAnswerButtonClass(isAnswerCorrect) {
+  if (null === isAnswerCorrect) {
+    return "question-option-btn";
+  }
+  return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
+}

@@ -185,3 +185,17 @@ function stopQuiz() {
     }
   });
 }
+
+function displaySummary(summaryValue) {
+  document.getElementById("quiz-mode-form").className = "form-hidden";
+  document.getElementById("quiz-question").innerHTML = getSummaryHtml(summaryValue);
+}
+
+function getSummaryHtml(summaryValue) {
+  return `<div id="quiz-summary" class="quiz-summary-div">
+            <p><u>RESULT:</u><br><strong>${summaryValue*100}%</strong> of correct answers.</p>
+            <button id="end-summary" class="end-summary-btn">
+              OK
+            </button>
+          </div>`;
+}

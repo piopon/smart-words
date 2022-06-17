@@ -126,6 +126,9 @@ function getControlButtonsHtml() {
             <button id="next-question" class="next-question-btn" onclick="requestNextQuestion()">
               NEXT
             </button>
+            <button id="stop-quiz" class="stop-quiz-btn" onclick="stopQuiz()">
+              STOP
+            </button>
           </div>`;
 }
 
@@ -171,4 +174,14 @@ function getAnswerButtonClass(isAnswerCorrect) {
     return "question-option-btn";
   }
   return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
+}
+
+function stopQuiz() {
+  getQuizStop(quizID, (err, data) => {
+    if (err) {
+      console.log("ERROR: " + err);
+    } else {
+      console.log(data);
+    }
+  });
 }

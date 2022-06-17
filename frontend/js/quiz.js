@@ -149,6 +149,17 @@ function answerQuestionNo(number, answerNo) {
   });
 }
 
+/**
+ * Method used to receive answer button action for HTML code
+ *
+ * @param {Boolean} isNewQuestion flag indicating if this question is new or not
+ * @param {Integer} optionNo number of option for which to update action
+ * @returns answer option action (if new question is true), or empty (if new question is false)
+ */
+function getAnswerButtonAction(isNewQuestion, optionNo) {
+  return isNewQuestion ? `answerQuestionNo('${currentQuestionNo}', '${optionNo}')` : ``;
+}
+
 function getAnswerButtonClass(isAnswerCorrect) {
   if (null === isAnswerCorrect) {
     return "question-option-btn";

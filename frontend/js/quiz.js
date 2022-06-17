@@ -142,6 +142,9 @@ function answerQuestionNo(number, answerNo) {
     } else {
       console.log(data);
       document.getElementById("answer-" + answerNo).className = getAnswerButtonClass(data);
+      for (let i in [0, 1, 2, 3]) {
+        document.getElementById("answer-" + i).onclick = null;
+      }
     }
   });
 }

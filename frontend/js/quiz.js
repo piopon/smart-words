@@ -160,6 +160,12 @@ function getAnswerButtonAction(isNewQuestion, optionNo) {
   return isNewQuestion ? `answerQuestionNo('${currentQuestionNo}', '${optionNo}')` : ``;
 }
 
+/**
+ * Method used to receive answer button class for HTML code
+ *
+ * @param {Boolean} isAnswerCorrect flag indicating the current status of answer correctness
+ * @returns "regular" class if input boolean is null, "ok" class if input is true, "nok" when false
+ */
 function getAnswerButtonClass(isAnswerCorrect) {
   if (null === isAnswerCorrect) {
     return "question-option-btn";

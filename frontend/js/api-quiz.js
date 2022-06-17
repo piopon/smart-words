@@ -41,3 +41,17 @@ const postQuestionAnswer = (quizID, questionNo, answerNo, callback) => {
   postRequest.open("POST", URL + "quiz/" + quizID + "/question/" + questionNo + "/" + answerNo);
   postRequest.send();
 }
+
+const getQuizStop = (quizID, callback) => {
+  const getRequest = new XMLHttpRequest();
+  getRequest.addEventListener("readystatechange", () => {
+    if (getRequest.DONE !== getRequest.readyState) return;
+    if (getRequest.status === 200) {
+      callback(undefined, JSON.parse(getRequest.responseText));
+    } else {
+      callback("cannot stop quiz [" + getRequest.status + "]", undefined);
+    }
+  });
+  getRequest.open("GET", URL + "quiz/" + quizID + "/stop");
+  getRequest.send();
+};

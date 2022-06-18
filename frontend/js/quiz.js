@@ -176,6 +176,9 @@ function getAnswerButtonClass(isAnswerCorrect) {
   return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
 }
 
+/**
+ * Method used to stop quiz (via quiz API) with specified ID
+ */
 function stopQuiz() {
   getQuizStop(quizID, (err, data) => {
     if (err) {
@@ -187,11 +190,22 @@ function stopQuiz() {
   });
 }
 
+/**
+ * Method used to display summary (hide question and show percentage correctness)
+ *
+ * @param {Float} summaryValue correct answers percentage
+ */
 function displaySummary(summaryValue) {
   document.getElementById("quiz-mode-form").className = "form-hidden";
   document.getElementById("quiz-question").innerHTML = getSummaryHtml(summaryValue);
 }
 
+/**
+ * Method used to receive summary HTML code (percentage result and OK button)
+ *
+ * @param {Float} summaryValue correct answers percentage to be displayed in HTML
+ * @returns HTML code for quiz summary
+ */
 function getSummaryHtml(summaryValue) {
   return `<div id="quiz-summary" class="quiz-summary-div">
             <p><u>RESULT:</u><br><strong>${summaryValue*100}%</strong> of correct answers.</p>
@@ -201,6 +215,9 @@ function getSummaryHtml(summaryValue) {
           </div>`;
 }
 
+/**
+ * Method used to clean quiz summary and display initial quiz selector
+ */
 function cleanQuiz() {
   document.getElementById("quiz-mode-form").className = "form-visible";
   document.getElementById("quiz-question").innerHTML = "";

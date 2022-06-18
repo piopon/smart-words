@@ -11,6 +11,9 @@ object QuizDao {
    * @return round object encoder
    */
   def getRoundEncoder: Encoder[Round] = Encoder.instance {
-    (round: Round) => json"""{"word": ${round.word.name}, "options": ${round.options}}"""
+    (round: Round) => json"""{"word": ${round.word.name},
+                              "options": ${round.options},
+                              "answer": ${round.answer},
+                              "correct": ${round.correct}}"""
   }
 }

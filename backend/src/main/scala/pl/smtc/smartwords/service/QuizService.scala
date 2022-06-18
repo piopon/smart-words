@@ -88,7 +88,7 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
    */
   private def generateRound(): Round = {
     val word: Word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
-    Round(word, generateOptions(word.definition, word.category), None)
+    Round(word, generateOptions(word.definition, word.category), None, None)
   }
 
   /**

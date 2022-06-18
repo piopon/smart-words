@@ -182,6 +182,7 @@ function stopQuiz() {
       console.log("ERROR: " + err);
     } else {
       console.log(data);
+      displaySummary(data);
     }
   });
 }

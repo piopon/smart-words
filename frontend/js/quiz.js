@@ -194,8 +194,13 @@ function displaySummary(summaryValue) {
 function getSummaryHtml(summaryValue) {
   return `<div id="quiz-summary" class="quiz-summary-div">
             <p><u>RESULT:</u><br><strong>${summaryValue*100}%</strong> of correct answers.</p>
-            <button id="end-summary" class="end-summary-btn">
+            <button id="end-summary" class="end-summary-btn" onclick="cleanQuiz()">
               OK
             </button>
           </div>`;
+}
+
+function cleanQuiz() {
+  document.getElementById("quiz-mode-form").className = "form-visible";
+  document.getElementById("quiz-question").innerHTML = "";
 }

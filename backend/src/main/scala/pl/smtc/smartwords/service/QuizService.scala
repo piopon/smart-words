@@ -59,6 +59,7 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
       case Some(quiz) =>
         val correctDefinition: String = quiz.rounds(questionNo.toInt).word.definition
         val selectedDefinition: String = quiz.rounds(questionNo.toInt).options(answerNo.toInt)
+        quiz.rounds(questionNo.toInt).answer = Option(answerNo.toInt)
         val isCorrect = correctDefinition.equals(selectedDefinition)
         quiz.rounds(questionNo.toInt).correct = Option(isCorrect)
         Ok(isCorrect.toString)
@@ -88,7 +89,7 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
    */
   private def generateRound(): Round = {
     val word: Word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
-    Round(word, generateOptions(word.definition, word.category), None)
+    Round(word, generateOptions(word.definition, word.category), None, None)
   }
 
   /**

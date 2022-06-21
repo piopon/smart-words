@@ -1,5 +1,12 @@
 const URL = "http://localhost:1234/";
 
+/**
+ * Method used to send a request to smart-words service to start a new quiz
+ *
+ * @param {String} questionsNo number of questions for new quiz instance
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error string and data object.
+ */
 const postQuizStart = (questionsNo, callback) => {
   const postRequest = new XMLHttpRequest();
   postRequest.addEventListener("readystatechange", () => {
@@ -14,6 +21,14 @@ const postQuizStart = (questionsNo, callback) => {
   postRequest.send();
 };
 
+/**
+ * Method used to send a request to smart-words service to receive a specified question number
+ *
+ * @param {String} quizID the UUID of the quiz
+ * @param {Integer} questionNo the number of question/word to receive
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error string and data object.
+ */
 const getQuestionNo = (quizID, questionNo, callback) => {
   const getRequest = new XMLHttpRequest();
   getRequest.addEventListener("readystatechange", () => {
@@ -28,6 +43,15 @@ const getQuestionNo = (quizID, questionNo, callback) => {
   getRequest.send();
 }
 
+/**
+ * Method used to send a request to smart-words service to post an answer for specified question number
+ *
+ * @param {String} quizID the UUID of the quiz
+ * @param {Integer} questionNo the number of question/word to be answered
+ * @param {Integer} answerNo the number of answer for specified question number
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error string and data object.
+ */
 const postQuestionAnswer = (quizID, questionNo, answerNo, callback) => {
   const postRequest = new XMLHttpRequest();
   postRequest.addEventListener("readystatechange", () => {
@@ -42,6 +66,13 @@ const postQuestionAnswer = (quizID, questionNo, answerNo, callback) => {
   postRequest.send();
 }
 
+/**
+ * Method used to send a request to smart-words service to stop a quiz with specified ID
+ *
+ * @param {String} quizID the UUID of the quiz
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error string and data object.
+ */
 const getQuizStop = (quizID, callback) => {
   const getRequest = new XMLHttpRequest();
   getRequest.addEventListener("readystatechange", () => {

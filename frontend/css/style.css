@@ -18,3 +18,8 @@ header form {
     font-size: 50px;
     font-family: 'Pacifico', cursive;
 }
+
+#show-words {
+    height: 64px;
+    margin: 0 10px;
+}

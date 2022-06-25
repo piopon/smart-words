@@ -24,4 +24,9 @@ header form {
     height: 75px;
     width: 75px;
     margin: 0 10px;
+    background: url(../images/dictionary.png) no-repeat;
+}
+
+#show-words:hover {
+    background: url(../images/dictionary-hover.png) no-repeat;
 }

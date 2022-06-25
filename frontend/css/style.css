@@ -9,16 +9,12 @@ header {
     background-color: yellowgreen;
 }
 
-header h3 {
-    margin: 0px;
-}
-
 header form {
     margin: 0px;
 }
 
 #site-title {
-    text-align: center;
+    margin: 0 10px;
     font-size: 50px;
     font-family: 'Pacifico', cursive;
 }

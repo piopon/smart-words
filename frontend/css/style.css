@@ -11,6 +11,10 @@ header h3 {
     margin: 0px;
 }
 
+header form {
+    margin: 0px;
+}
+
 #site-title {
     text-align: center;
     font-size: 50px;

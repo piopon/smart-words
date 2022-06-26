@@ -21,6 +21,10 @@ header form {
 footer {
     height: 40px;
     margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: yellowgreen;
 }
 
 #site-title {

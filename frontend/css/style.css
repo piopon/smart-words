@@ -28,15 +28,15 @@ footer {
 }
 
 #site-title {
-    margin: 0 10px;
+    margin: 0 20px;
     font-size: 50px;
     font-family: 'Pacifico', cursive;
 }
 
 #show-words {
-    height: 75px;
-    width: 75px;
-    margin: 0 10px;
+    height: 64px;
+    width: 64px;
+    margin: 0 20px;
     color: transparent !important;
     border: 0px solid black;
     background: url(../images/dictionary.png) no-repeat;

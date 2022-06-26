@@ -1,9 +1,13 @@
 body {
     margin: 0px;
     padding: 0px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; 
 }
 
 header {
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -12,6 +16,11 @@ header {
 
 header form {
     margin: 0px;
+}
+
+footer {
+    height: 40px;
+    margin-top: auto;
 }
 
 #site-title {

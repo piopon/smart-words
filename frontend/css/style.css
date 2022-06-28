@@ -28,6 +28,13 @@ footer {
     font-family: 'Pacifico', cursive;
 }
 
+#main-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #site-title {
     margin: 0 20px;
     font-size: 50px;

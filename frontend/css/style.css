@@ -53,3 +53,30 @@ footer {
 #show-words:hover {
     background: url(../images/dictionary-hover.png) no-repeat;
 }
+
+.quiz-start {
+    display: block;
+    box-sizing: border-box;
+    padding: 80px 100px;
+    position: relative;
+    color: black;
+    background: none;
+    border: 3px solid;
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+}
+
+.quiz-start:before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    background: yellowgreen;
+    inset: 0;
+    --progress: 100%;
+    clip-path: polygon(100% 0, var(--progress) var(--progress), 0 100%, 100% 100%);
+    transition: clip-path 0.2s;
+}
+
+.quiz-start:hover:before {
+    --progress: 0%;
+}

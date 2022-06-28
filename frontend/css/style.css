@@ -1,3 +1,7 @@
+:root {
+    --primary-color: yellowgreen;
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -11,7 +15,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: yellowgreen;
+    background-color: var(--primary-color);
 }
 
 header form {
@@ -24,7 +28,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: yellowgreen;
+    background-color: var(--primary-color);
     font-family: 'Pacifico', cursive;
 }
 
@@ -70,7 +74,7 @@ footer {
     content: "";
     z-index: -1;
     position: absolute;
-    background: yellowgreen;
+    background: var(--primary-color);
     inset: 0;
     --progress: 100%;
     clip-path: polygon(100% 0, var(--progress) var(--progress), 0 100%, 100% 100%);

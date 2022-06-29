@@ -52,6 +52,11 @@ footer {
     font-family: 'Pacifico', cursive;
 }
 
+header .filler{
+    flex-grow:1;
+    text-align:center
+}
+
 #show-words {
     height: 64px;
     width: 64px;

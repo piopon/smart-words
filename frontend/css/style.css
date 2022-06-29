@@ -39,6 +39,13 @@ footer {
     justify-content: center;
 }
 
+#site-logo {
+    height: 64px;
+    width: 64px;
+    margin: 0 0 8 10px;
+    background: url(../images/sw-logo.png) no-repeat;
+}
+
 #site-title {
     margin: 0 20px;
     font-size: 50px;

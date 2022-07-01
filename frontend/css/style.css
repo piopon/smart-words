@@ -72,8 +72,6 @@ header .filler{
 }
 
 .quiz-start {
-    display: block;
-    box-sizing: border-box;
     padding: 80px 100px;
     position: relative;
     color: black;
@@ -84,18 +82,18 @@ header .filler{
 }
 
 .quiz-start:before {
-    content: "";
-    z-index: -1;
+    --progress: 97%;
+    content: "start quiz";
+    line-height: 248px;
     position: absolute;
     background: var(--primary-color);
     inset: 0;
-    --progress: 100%;
     clip-path: polygon(100% 0, var(--progress) var(--progress), 0 100%, 100% 100%);
-    transition: clip-path 0.2s;
+    transition: clip-path 0.5s;
 }
 
 .quiz-start:hover:before {
-    --progress: 0%;
+    --progress: 3%;
 }
 
 #quiz-start-frame {

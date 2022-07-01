@@ -38,6 +38,7 @@ footer {
     align-items: center;
     justify-content: center;
     background: url(../images/background/background.png);
+    background-position: 15px 15px;
 }
 
 #site-logo {

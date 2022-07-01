@@ -37,6 +37,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: url(../images/background/background.png);
 }
 
 #site-logo {

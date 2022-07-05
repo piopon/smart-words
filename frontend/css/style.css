@@ -72,6 +72,19 @@ header .filler{
     background: url(../images/dictionary-hover.png) no-repeat;
 }
 
+#page-back {
+    height: 64px;
+    width: 64px;
+    margin: 0 20px;
+    color: transparent !important;
+    border: 0px solid black;
+    background: url(../images/back.png) no-repeat;
+}
+
+#page-back:hover {
+    background: url(../images/back-hover.png) no-repeat;
+}
+
 .quiz-start {
     padding: 80px 100px;
     position: relative;

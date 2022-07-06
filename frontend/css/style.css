@@ -75,7 +75,7 @@ header .filler{
 #btn-page-back {
     height: 64px;
     width: 64px;
-    margin: 0 20px;
+    margin: 0 20 0 0px;
     color: transparent !important;
     border: 0px solid black;
     background: url(../images/back.png) no-repeat;

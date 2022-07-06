@@ -109,12 +109,12 @@ header .filler{
 }
 
 #btn-quiz-start:before {
-    --progress: 97%;
-    content: "start quiz";
-    line-height: 248px;
-    position: absolute;
-    background: var(--primary-color);
     inset: 0;
+    position: absolute;
+    line-height: 248px;
+    content: "let's go !!!";
+    background: var(--primary-color);
+    --progress: 97%;
     clip-path: polygon(100% 0, var(--progress) var(--progress), 0 100%, 100% 100%);
     transition: clip-path 0.5s;
 }

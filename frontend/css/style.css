@@ -1,5 +1,6 @@
 :root {
     --primary-color: lightgray;
+    --btn-quiz-shadow-size: 50px;
 }
 
 body {
@@ -106,6 +107,21 @@ header .filler{
     border: 3px solid;
     font-family: 'Pacifico', cursive;
     font-size: 50px;
+    box-shadow: 0 0 var(--btn-quiz-shadow-size) 0 gray;
+    animation: glow 2.5s ease-in-out infinite 5s;
+}
+
+#btn-quiz-start:hover {
+    animation-play-state: paused;
+}
+
+@keyframes glow {
+    0% {
+      box-shadow: 0 0 var(--btn-quiz-shadow-size) 0 gray;
+    }
+    50% {
+      box-shadow: 0 0 0 0 gray;
+    }
 }
 
 #btn-quiz-start:before {

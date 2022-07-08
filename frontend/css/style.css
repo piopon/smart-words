@@ -104,6 +104,7 @@ header .filler{
     position: relative;
     color: black;
     background: none;
+    cursor: pointer;
     border: 3px solid;
     font-family: 'Pacifico', cursive;
     font-size: 50px;

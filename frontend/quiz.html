@@ -1,37 +1,34 @@
 <html>
-    <head>
-        <title>smart-words</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-        <script src="./js/api-quiz.js" defer></script>
-        <script src="./js/quiz.js" defer></script>
-    </head>
-    <body>
-        <!-- title bar with site title and simple navbar -->
-        <header>
-            <h3 id="table-label">SMART WORDS</h3>
-            <form action="index.html">
-                <button id="btn-page-back">BACK</button>
-            </form>
-        </header>
-        <!-- main site content -->
-        <div id="main-content">
-            <!-- quiz mode form with start option -->
-            <p>SELECT MODE:</p>
-            <form id="quiz-mode-form" class="form-visible">
-                <fieldset>
-                    <legend id="quiz-mode-title">guess definition:</legend>
-                    <label for="quiz-mode-question-no">how many questions:</label>
-                    <input type="number" id="quiz-mode-question-no" value="10" min="5" max="25"/>
-                    <input type="button" value="start" id="quiz-mode-start" onclick="startQuiz()"/>
-                </fieldset>
-            </form>
-            <div id="quiz-question">
-            </div>
-        </div>
-        <!-- footer with author information and copyrights -->
-        <footer>
-            developed with 💗 - Pnk @ 2022 🖖
-        </footer>
-    </body>
+  <head>
+    <title>smart-words</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <script src="./js/api-quiz.js" defer></script>
+    <script src="./js/quiz.js" defer></script>
+  </head>
+  <body>
+    <!-- title bar with site title and simple navbar -->
+    <header>
+      <h3 id="table-label">SMART WORDS</h3>
+      <form action="index.html">
+        <button id="btn-page-back">BACK</button>
+      </form>
+    </header>
+    <!-- main site content -->
+    <div id="main-content">
+      <!-- quiz mode form with start option -->
+      <p>SELECT MODE:</p>
+      <form id="quiz-mode-form" class="form-visible">
+        <fieldset>
+          <legend id="quiz-mode-title">guess definition:</legend>
+          <label for="quiz-mode-question-no">how many questions:</label>
+          <input type="number" id="quiz-mode-question-no" value="10" min="5" max="25" />
+          <input type="button" value="start" id="quiz-mode-start" onclick="startQuiz()" />
+        </fieldset>
+      </form>
+      <div id="quiz-question"></div>
+    </div>
+    <!-- footer with author information and copyrights -->
+    <footer>developed with 💗 - Pnk @ 2022 🖖</footer>
+  </body>
 </html>

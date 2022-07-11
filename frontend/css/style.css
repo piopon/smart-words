@@ -159,3 +159,10 @@ header .filler {
   border: 2px solid black;
   border-collapse: collapse;
 }
+
+#table-words th {
+  height: 35px;
+  text-align: center;
+  border: 1px solid black;
+  background-color: var(--primary-color);
+}

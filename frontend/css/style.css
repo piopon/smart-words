@@ -166,3 +166,9 @@ header .filler {
   border: 1px solid black;
   background-color: var(--primary-color);
 }
+
+#table-words td {
+  padding: 3px 10px;
+  height: 30px;
+  border: 1px solid black;
+}

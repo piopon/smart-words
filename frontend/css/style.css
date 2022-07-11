@@ -144,3 +144,11 @@ header .filler {
   background: white;
   padding: 25px;
 }
+
+#word-form.form-hidden {
+  display: none;
+}
+
+#word-form.form-visible {
+  display: block;
+}

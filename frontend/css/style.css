@@ -199,6 +199,31 @@ header .filler {
   border: 1px solid black;
 }
 
+#table-words td:nth-child(1),
+#table-words th:nth-child(1) {
+  flex-basis:10%;
+  flex-grow:1;
+}
+
+#table-words td:nth-child(2),
+#table-words th:nth-child(2) {
+  flex-basis:10%;
+  flex-grow:1;
+  text-align: center;
+}
+
+#table-words td:nth-child(3),
+#table-words th:nth-child(3) {
+  flex-basis:10%;
+  flex-grow:1;
+}
+
+#table-words td:nth-child(4),
+#table-words th:nth-child(4) {
+  flex-basis:75%;
+  flex-grow:3;
+}
+
 #table-words tbody tr:nth-child(n){
   background-color: white;
 }

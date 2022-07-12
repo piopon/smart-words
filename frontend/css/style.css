@@ -154,20 +154,42 @@ header .filler {
 }
 
 #table-words {
+  display: block;
   width: 100%;
   margin: 0 100px;
   border: 2px solid black;
+  empty-cells: show;
+  border-spacing: 0;
   border-collapse: collapse;
 }
 
-#table-words th {
-  height: 35px;
+#table-words thead {
+  display: block;
+  position: relative;
+  width: 100%;
   text-align: center;
   border: 1px solid black;
   background-color: var(--primary-color);
 }
 
+#table-words thead tr {
+  display:flex;
+  height: 100%;
+}
+
+#table-words tbody {
+  display: block;
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+
 #table-words td {
+  height: 100%;
+  line-height: 45px;
+  display: inline-block;
+}
+
+#table-words tbody tr {
   padding: 3px 10px;
   height: 30px;
   border: 1px solid black;

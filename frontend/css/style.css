@@ -158,6 +158,7 @@ header .filler {
   width: 100%;
   margin: 50px 100px;
   empty-cells: show;
+  border: 1px solid black;
   border-spacing: 0;
   border-collapse: collapse;
 }
@@ -169,8 +170,9 @@ header .filler {
   height: 75px;
   line-height: 70px;
   text-align: center;
-  border: 1px solid black;
   background-color: var(--primary-color);
+  font-family: "Pacifico", cursive;
+  font-size: 25px;
 }
 
 #table-words thead tr {
@@ -195,8 +197,7 @@ header .filler {
 #table-words tbody tr {
   display:flex;
   padding: 3px 10px;
-  height: 30px;
-  border: 1px solid black;
+  height: 50px;
 }
 
 #table-words td:nth-child(1),

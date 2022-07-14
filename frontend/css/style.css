@@ -210,12 +210,21 @@ header .filler {
   display: block;
   background-color: yellow;
   height: 30vh;
+  font-family: "Pacifico", cursive;
+  font-size: 20px;
+  text-align: center;
+  line-height: 100px;
 }
 
 #table-words tbody tr#no-words-row.row-visible {
   display: block;
-  background-color: lightcoral;
+  background-color: whitesmoke;
+  color: red;
   height: 30vh;
+  font-family: "Pacifico", cursive;
+  font-size: 20px;
+  text-align: center;
+  line-height: 100px;
 }
 
 

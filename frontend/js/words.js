@@ -1,5 +1,8 @@
 const FORM_MODE_ADD = 0;
 const FORM_MODE_EDIT = 1;
+const LOAD_WORDS_OK = 0;
+const LOAD_WORDS_LOAD = 1;
+const LOAD_WORDS_ERROR = 2;
 var wordFormMode = FORM_MODE_ADD;
 var wordUnderEdition = undefined;
 
@@ -122,16 +125,34 @@ function getWordTableRow(item) {
           </tr>`;
 }
 
+function loadWordsUpdateUiState(state) {
+  if (LOAD_WORDS_OK === state) {
+    document.getElementById("no-words-row").className = "row-hidden";
+    document.getElementById("no-words-text").innerHTML = "";
+    return;
+  }
+  if (LOAD_WORDS_LOAD === state) {
+    document.getElementById("no-words-row").className = "row-loading";
+    document.getElementById("no-words-text").innerHTML = "loading words...";
+    return;
+  }
+  if (LOAD_WORDS_ERROR === state) {
+    document.getElementById("no-words-row").className = "row-visible";
+    document.getElementById("no-words-text").innerHTML = "cannot receive words...";
+    return;
+  }
+}
+
 /**
  * Method used to load all words and add them to HTML table DOM
  */
 function loadWords() {
-  document.getElementById("no-words-row").className = "row-loading";
+  loadWordsUpdateUiState(LOAD_WORDS_LOAD);
   getWords((err, data) => {
     if (err) {
-      document.getElementById("no-words-row").className = "row-visible";
+      loadWordsUpdateUiState(LOAD_WORDS_ERROR);
     } else {
-      document.getElementById("no-words-row").className = "row-hidden";
+      loadWordsUpdateUiState(LOAD_WORDS_OK);
       document.querySelector("tbody").innerHTML = Object.values(data)
         .map((item) => getWordTableRow(item))
         .join("");

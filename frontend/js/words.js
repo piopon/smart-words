@@ -126,10 +126,12 @@ function getWordTableRow(item) {
  * Method used to load all words and add them to HTML table DOM
  */
 function loadWords() {
+  document.getElementById("no-words-row").className = "row-loading";
   getWords((err, data) => {
     if (err) {
-      console.log("ERROR: " + err);
+      document.getElementById("no-words-row").className = "row-visible";
     } else {
+      document.getElementById("no-words-row").className = "row-hidden";
       document.querySelector("tbody").innerHTML = Object.values(data)
         .map((item) => getWordTableRow(item))
         .join("");

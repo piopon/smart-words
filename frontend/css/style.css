@@ -208,12 +208,9 @@ header .filler {
 
 #table-words tbody tr#no-words-row.row-loading {
   display: block;
-  background-color: yellow;
+  background-color: whitesmoke;
   height: 30vh;
-  font-family: "Pacifico", cursive;
-  font-size: 20px;
   text-align: center;
-  line-height: 100px;
 }
 
 #table-words tbody tr#no-words-row.row-visible {
@@ -221,12 +218,13 @@ header .filler {
   background-color: whitesmoke;
   color: red;
   height: 30vh;
-  font-family: "Pacifico", cursive;
-  font-size: 20px;
   text-align: center;
-  line-height: 100px;
 }
 
+#table-words tbody td#no-words-text {
+  font-family: "Pacifico", cursive;
+  font-size: 20px;
+}
 
 #table-words td:nth-child(1),
 #table-words th:nth-child(1) {

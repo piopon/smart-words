@@ -200,6 +200,19 @@ header .filler {
   height: 50px;
 }
 
+#table-words tbody tr#no-words-row.row-hidden {
+  display: none;
+  background-color: lightcoral;
+  height: 30vh;
+}
+
+#table-words tbody tr#no-words-row.row-visible {
+  display: block;
+  background-color: lightcoral;
+  height: 30vh;
+}
+
+
 #table-words td:nth-child(1),
 #table-words th:nth-child(1) {
   flex-basis:10%;

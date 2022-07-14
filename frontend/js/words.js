@@ -138,7 +138,7 @@ function loadWordsUpdateUiState(state) {
   }
   if (LOAD_WORDS_ERROR === state) {
     document.getElementById("no-words-row").className = "row-visible";
-    document.getElementById("no-words-text").innerHTML = "cannot receive words...";
+    document.getElementById("no-words-text").innerHTML = addErrorWidget() + "<br>cannot receive words...";
     return;
   }
 }
@@ -151,6 +151,10 @@ function addLoadingWidget() {
               <div class="line"></div>
             </div>
           </div>`;
+}
+
+function addErrorWidget() {
+  return `<div id="loader-wrapper"></div>`;
 }
 
 /**

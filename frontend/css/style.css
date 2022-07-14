@@ -222,6 +222,7 @@ header .filler {
 #table-words tbody td#no-words-text {
   font-family: "Pacifico", cursive;
   font-size: 20px;
+  line-height: 30px;
 }
 
 #table-words td:nth-child(1),

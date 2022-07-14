@@ -202,8 +202,6 @@ header .filler {
 
 #table-words tbody tr#no-words-row.row-hidden {
   display: none;
-  background-color: lightcoral;
-  height: 30vh;
 }
 
 #table-words tbody tr#no-words-row.row-loading {

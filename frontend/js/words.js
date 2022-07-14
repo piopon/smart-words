@@ -133,7 +133,7 @@ function loadWordsUpdateUiState(state) {
   }
   if (LOAD_WORDS_LOAD === state) {
     document.getElementById("no-words-row").className = "row-loading";
-    document.getElementById("no-words-text").innerHTML = "loading words...";
+    document.getElementById("no-words-text").innerHTML = addLoadingWidget() + "<br>loading words...";
     return;
   }
   if (LOAD_WORDS_ERROR === state) {
@@ -141,6 +141,16 @@ function loadWordsUpdateUiState(state) {
     document.getElementById("no-words-text").innerHTML = "cannot receive words...";
     return;
   }
+}
+
+function addLoadingWidget() {
+  return `<div id="loader-wrapper">
+            <div class="loader">
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+            </div>
+          </div>`;
 }
 
 /**

@@ -125,6 +125,11 @@ function getWordTableRow(item) {
           </tr>`;
 }
 
+/**
+ * Method used to update GUI state while loading words from service
+ *
+ * @param {Integer} state current loading state (from: LOAD_WORDS_OK, LOAD_WORDS_LOAD, LOAD_WORDS_ERROR)
+ */
 function loadWordsUpdateUiState(state) {
   if (LOAD_WORDS_OK === state) {
     document.getElementById("no-words-row").className = "row-hidden";

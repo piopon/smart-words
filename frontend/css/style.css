@@ -297,3 +297,11 @@ header .filler {
     transform: translate(0, 0);
   }
 }
+
+tr button.btn-edit {
+  background-color: blue;
+}
+
+tr button.btn-delete {
+  background-color: red;
+}

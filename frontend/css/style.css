@@ -313,5 +313,15 @@ tr button.btn-edit:hover {
 }
 
 tr button.btn-delete {
+  background: url(../images/delete.png) no-repeat center;
+  background-color: firebrick;
+  border: black solid 2px;
+  border-radius: 12px;
+  color: transparent;
+  padding: 10px 5px;
+  cursor: pointer;
+}
+
+tr button.btn-delete:hover {
   background-color: red;
 }

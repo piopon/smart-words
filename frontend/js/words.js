@@ -148,6 +148,11 @@ function loadWordsUpdateUiState(state) {
   }
 }
 
+/**
+ * Method used to generate HTML code responsible for creating a loader
+ *
+ * @returns HTML code with loader section
+ */
 function addLoadingWidget() {
   return `<div id="loader-wrapper">
             <div class="loader">
@@ -158,6 +163,11 @@ function addLoadingWidget() {
           </div>`;
 }
 
+/**
+ * Method used to generate HTML code with empty loader placeholder
+ *
+ * @returns HTML code with loader section placeholder
+ */
 function addErrorWidget() {
   return `<div id="loader-wrapper"></div>`;
 }

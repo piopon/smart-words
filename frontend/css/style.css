@@ -299,7 +299,17 @@ header .filler {
 }
 
 tr button.btn-edit {
-  background-color: blue;
+  background: url(../images/edit.png) no-repeat center;
+  background-color: dodgerblue;
+  border: black solid 2px;
+  border-radius: 12px;
+  color: transparent;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+tr button.btn-edit:hover {
+  background-color: lightblue;
 }
 
 tr button.btn-delete {

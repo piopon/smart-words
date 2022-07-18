@@ -131,19 +131,22 @@ function getWordTableRow(item) {
  * @param {Integer} state current loading state (from: LOAD_WORDS_OK, LOAD_WORDS_LOAD, LOAD_WORDS_ERROR)
  */
 function loadWordsUpdateUiState(state) {
+  let rowElement = document.getElementById("no-words-row");
+  let textElement = document.getElementById("no-words-text");
+  if(rowElement === null || textElement === null) return;
   if (LOAD_WORDS_OK === state) {
-    document.getElementById("no-words-row").className = "row-hidden";
-    document.getElementById("no-words-text").innerHTML = "";
+    rowElement.className = "row-hidden";
+    textElement.innerHTML = "";
     return;
   }
   if (LOAD_WORDS_LOAD === state) {
-    document.getElementById("no-words-row").className = "row-loading";
-    document.getElementById("no-words-text").innerHTML = addLoadingWidget() + "<br>loading words...";
+    rowElement.className = "row-loading";
+    textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
     return;
   }
   if (LOAD_WORDS_ERROR === state) {
-    document.getElementById("no-words-row").className = "row-visible";
-    document.getElementById("no-words-text").innerHTML = addErrorWidget() + "<br>cannot receive words...";
+    rowElement.className = "row-visible";
+    textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
     return;
   }
 }

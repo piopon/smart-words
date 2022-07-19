@@ -110,15 +110,13 @@ function refreshWordsCallback(err, data) {
  * @returns HTML code in a String format to be added to words table DOM
  */
 function getWordTableRow(item) {
+  let editMethod = `editWord('${item.name}', '${item.category}', '${item.description}')`;
+  let deleteMethod = `removeWord('${item.name}')`;
   return `<tr>
             <td>${item.name}</td>
             <td>
-              <a class="btn-edit" href="#modal" onclick="editWord('${item.name}', '${item.category}', '${item.description}')">
-                  EDIT
-              </a>
-              <button class="btn-delete" onclick="removeWord('${item.name}')">
-                  DELETE
-              </button>
+              <a class="btn-edit" href="#modal" onclick="${editMethod}">EDIT</a>
+              <a class="btn-delete" onclick="${deleteMethod}">DELETE</a>
             </td>
             <td>${item.category}</td>
             <td>${item.description}</td>

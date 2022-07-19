@@ -113,9 +113,9 @@ function getWordTableRow(item) {
   return `<tr>
             <td>${item.name}</td>
             <td>
-              <button class="btn-edit" onclick="editWord('${item.name}', '${item.category}', '${item.description}')">
+              <a class="btn-edit" href="#modal" onclick="editWord('${item.name}', '${item.category}', '${item.description}')">
                   EDIT
-              </button>
+              </a>
               <button class="btn-delete" onclick="removeWord('${item.name}')">
                   DELETE
               </button>

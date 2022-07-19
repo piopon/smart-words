@@ -298,7 +298,7 @@ header .filler {
   }
 }
 
-tr button.btn-edit {
+tr a.btn-edit {
   background: url(../images/edit.png) no-repeat center;
   background-color: dodgerblue;
   border: black solid 2px;
@@ -308,7 +308,7 @@ tr button.btn-edit {
   cursor: pointer;
 }
 
-tr button.btn-edit:hover {
+tr a.btn-edit:hover {
   background-color: lightblue;
 }
 

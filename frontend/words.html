@@ -23,26 +23,30 @@
     <!-- main site content -->
     <div id="main-content">
       <!-- "popup" edit form with word components fields -->
-      <form id="word-form" class="form-hidden">
-        <fieldset>
-          <legend id="word-form-title">Add new word:</legend>
-          <label for="word-form-name">word:</label><br />
-          <input type="text" id="word-form-name" placeholder="word name" /><br />
-          <label for="word-form-cat">category:</label><br />
-          <input list="categories" id="word-form-cat" placeholder="select or add category" />
-          <datalist id="categories">
-            <option value="verb"></option>
-            <option value="adjective"></option>
-            <option value="noun"></option>
-            <option value="person"></option>
-            <option value="latin"></option>
-          </datalist><br />
-          <label for="word-form-def">definition:</label><br />
-          <textarea id="word-form-def" rows="3" cols="21" placeholder="word definition"></textarea><br />
-          <input type="button" value="ok" id="word-form-btn-accept" onclick="acceptWord()" />
-          <input type="button" value="cancel" id="word-form-btn-cancel" onclick="cancelWord()" />
-        </fieldset>
-      </form>
+      <div id="modal" class="overlay">
+        <div class="popup">
+          <form id="word-form" class="form-hidden">
+            <fieldset>
+              <legend id="word-form-title">Add new word:</legend>
+              <label for="word-form-name">word:</label><br />
+              <input type="text" id="word-form-name" placeholder="word name" /><br />
+              <label for="word-form-cat">category:</label><br />
+              <input list="categories" id="word-form-cat" placeholder="select or add category" />
+              <datalist id="categories">
+                <option value="verb"></option>
+                <option value="adjective"></option>
+                <option value="noun"></option>
+                <option value="person"></option>
+                <option value="latin"></option>
+              </datalist><br />
+              <label for="word-form-def">definition:</label><br />
+              <textarea id="word-form-def" rows="3" cols="21" placeholder="word definition"></textarea><br />
+              <input type="button" value="ok" id="word-form-btn-accept" onclick="acceptWord()" />
+              <input type="button" value="cancel" id="word-form-btn-cancel" onclick="cancelWord()" />
+            </fieldset>
+          </form>
+        </div>
+      </div>
       <!-- table with all words -->
       <table id="table-words">
         <thead>

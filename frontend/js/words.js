@@ -18,7 +18,6 @@ function addWord() {
   document.getElementById("word-form-def").value = "";
   document.getElementById("word-form-def").innerHTML = "";
   document.getElementById("word-form-btn-accept").innerHTML = "add";
-  document.getElementById("word-form").className = "form-visible";
 }
 
 /**
@@ -37,7 +36,6 @@ function editWord(name, category, definition) {
   document.getElementById("word-form-def").value = definition;
   document.getElementById("word-form-def").innerHTML = definition;
   document.getElementById("word-form-btn-accept").innerHTML = "edit";
-  document.getElementById("word-form").className = "form-visible";
 }
 
 /**
@@ -56,7 +54,6 @@ function acceptWord() {
   } else {
     console.log("ERROR: Unknown form mode: " + wordFormMode);
   }
-  document.getElementById("word-form").className = "form-hidden";
 }
 
 /**

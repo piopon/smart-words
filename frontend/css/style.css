@@ -145,14 +145,6 @@ header .filler {
   padding: 25px;
 }
 
-#word-form.form-hidden {
-  display: none;
-}
-
-#word-form.form-visible {
-  display: block;
-}
-
 #table-words {
   display: block;
   width: 100%;

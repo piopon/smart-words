@@ -70,13 +70,6 @@ function getWordFromUi() {
 }
 
 /**
- * Method used to cancel current word form and hide it (with no changes)
- */
-function cancelWord() {
-  document.getElementById("word-form").className = "form-hidden";
-}
-
-/**
  * Method used to delete word with specified name.
  *
  * @param {String} name word name to be deleted

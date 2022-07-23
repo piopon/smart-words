@@ -346,3 +346,18 @@ tr a.btn-delete:hover {
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.75);
   position: relative;
 }
+
+#word-form-btn-accept {
+  background-color: limegreen;
+  border: black solid 1px;
+  border-radius: 12px;
+  color: black;
+  padding: 5px 30px;
+  cursor: pointer;
+  font-family: "Pacifico", cursive;
+  font-size: 20px;
+}
+
+#word-form-btn-accept:hover {
+  background-color: greenyellow;
+}

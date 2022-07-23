@@ -361,3 +361,19 @@ tr a.btn-delete:hover {
 #word-form-btn-accept:hover {
   background-color: greenyellow;
 }
+
+.popup a:link {
+  text-decoration: none;
+}
+
+.popup a:visited {
+  text-decoration: none;
+}
+
+.popup a:hover {
+  text-decoration: none;
+}
+
+.popup a:active {
+  text-decoration: none;
+}

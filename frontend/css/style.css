@@ -347,6 +347,11 @@ tr a.btn-delete:hover {
   position: relative;
 }
 
+.popup #popup-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
 #word-form-btn-accept {
   background-color: limegreen;
   border: black solid 1px;

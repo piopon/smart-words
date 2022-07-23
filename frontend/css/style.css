@@ -362,6 +362,21 @@ tr a.btn-delete:hover {
   background-color: greenyellow;
 }
 
+#word-form-btn-cancel {
+  background-color: crimson;
+  border: black solid 1px;
+  border-radius: 15px;
+  color: black;
+  padding: 5px 30px;
+  cursor: pointer;
+  font-family: "Pacifico", cursive;
+  font-size: 20px;
+}
+
+#word-form-btn-cancel:hover {
+  background-color: red;
+}
+
 .popup a:link {
   text-decoration: none;
 }

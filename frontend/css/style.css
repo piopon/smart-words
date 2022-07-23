@@ -350,7 +350,7 @@ tr a.btn-delete:hover {
 #word-form-btn-accept {
   background-color: limegreen;
   border: black solid 1px;
-  border-radius: 12px;
+  border-radius: 15px;
   color: black;
   padding: 5px 30px;
   cursor: pointer;

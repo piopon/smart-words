@@ -11,6 +11,11 @@
   background: url(../images/dictionary-hover.png) no-repeat;
 }
 
+#quiz-start-frame {
+  background: white;
+  padding: 25px;
+}
+
 #btn-quiz-start {
   padding: 80px 100px;
   position: relative;
@@ -28,15 +33,6 @@
   animation-play-state: paused;
 }
 
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 var(--btn-quiz-shadow-size) 0 gray;
-  }
-  50% {
-    box-shadow: 0 0 0 0 gray;
-  }
-}
-
 #btn-quiz-start:before {
   inset: 0;
   position: absolute;
@@ -52,7 +48,11 @@
   --progress: 3%;
 }
 
-#quiz-start-frame {
-  background: white;
-  padding: 25px;
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 var(--btn-quiz-shadow-size) 0 gray;
+  }
+  50% {
+    box-shadow: 0 0 0 0 gray;
+  }
 }

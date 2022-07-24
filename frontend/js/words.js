@@ -125,18 +125,21 @@ function loadWordsUpdateUiState(state) {
   if(rowElement === null || textElement === null) return;
   if (LOAD_WORDS_OK === state) {
     addWordBtn.className = "enabled";
+    addWordBtn.href = "#modal";
     rowElement.className = "row-hidden";
     textElement.innerHTML = "";
     return;
   }
   if (LOAD_WORDS_LOAD === state) {
     addWordBtn.className = "disabled";
+    addWordBtn.href = "";
     rowElement.className = "row-loading";
     textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
     return;
   }
   if (LOAD_WORDS_ERROR === state) {
     addWordBtn.className = "disabled";
+    addWordBtn.href = "";
     rowElement.className = "row-visible";
     textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
     return;

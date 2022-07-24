@@ -23,14 +23,35 @@ header form {
   margin: 0px;
 }
 
-footer {
-  height: 40px;
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--primary-color);
+header .filler {
+  flex-grow: 1;
+  text-align: center;
+}
+
+header #site-logo {
+  height: 64px;
+  width: 64px;
+  margin: 0 0 8 10px;
+  background: url(../images/sw-logo.png) no-repeat;
+}
+
+header #site-title {
+  margin: 0 5px;
+  font-size: 50px;
   font-family: "Pacifico", cursive;
+}
+
+header #btn-page-back {
+  height: 64px;
+  width: 64px;
+  margin: 0 20 0 0px;
+  color: transparent !important;
+  border: 0px solid black;
+  background: url(../images/back.png) no-repeat;
+}
+
+header #btn-page-back:hover {
+  background: url(../images/back-hover.png) no-repeat;
 }
 
 #main-content {
@@ -42,33 +63,12 @@ footer {
   background-position: 15px 15px;
 }
 
-#site-logo {
-  height: 64px;
-  width: 64px;
-  margin: 0 0 8 10px;
-  background: url(../images/sw-logo.png) no-repeat;
-}
-
-#site-title {
-  margin: 0 5px;
-  font-size: 50px;
+footer {
+  height: 40px;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
   font-family: "Pacifico", cursive;
-}
-
-header .filler {
-  flex-grow: 1;
-  text-align: center;
-}
-
-#btn-page-back {
-  height: 64px;
-  width: 64px;
-  margin: 0 20 0 0px;
-  color: transparent !important;
-  border: 0px solid black;
-  background: url(../images/back.png) no-repeat;
-}
-
-#btn-page-back:hover {
-  background: url(../images/back-hover.png) no-repeat;
 }

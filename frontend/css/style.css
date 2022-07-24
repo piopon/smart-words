@@ -92,7 +92,16 @@ header .filler {
   margin: 0 10 0 0px;
   color: transparent !important;
   border: 0px solid black;
+}
+
+#btn-add-word.disabled {
+  background: url(../images/add-hover.png) no-repeat;
+  cursor: not-allowed;
+}
+
+#btn-add-word.enabled {
   background: url(../images/add.png) no-repeat;
+  cursor: pointer;
 }
 
 #btn-add-word:hover {

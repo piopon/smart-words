@@ -119,20 +119,24 @@ function getWordTableRow(item) {
  * @param {Integer} state current loading state (from: LOAD_WORDS_OK, LOAD_WORDS_LOAD, LOAD_WORDS_ERROR)
  */
 function loadWordsUpdateUiState(state) {
+  let addWordBtn = document.getElementById("btn-add-word");
   let rowElement = document.getElementById("no-words-row");
   let textElement = document.getElementById("no-words-text");
   if(rowElement === null || textElement === null) return;
   if (LOAD_WORDS_OK === state) {
+    addWordBtn.className = "enabled";
     rowElement.className = "row-hidden";
     textElement.innerHTML = "";
     return;
   }
   if (LOAD_WORDS_LOAD === state) {
+    addWordBtn.className = "disabled";
     rowElement.className = "row-loading";
     textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
     return;
   }
   if (LOAD_WORDS_ERROR === state) {
+    addWordBtn.className = "disabled";
     rowElement.className = "row-visible";
     textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
     return;

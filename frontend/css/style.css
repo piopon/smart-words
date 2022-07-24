@@ -353,12 +353,14 @@ tr a.btn-delete:hover {
 }
 
 #word-form-btn-accept {
+  width: 100px;
   background-color: limegreen;
   border: black solid 1px;
   border-radius: 15px;
   color: black;
   padding: 5px 30px;
   cursor: pointer;
+  text-align: center;
   font-family: "Pacifico", cursive;
   font-size: 20px;
 }
@@ -368,12 +370,14 @@ tr a.btn-delete:hover {
 }
 
 #word-form-btn-cancel {
+  width: 100px;
   background-color: crimson;
   border: black solid 1px;
   border-radius: 15px;
   color: black;
   padding: 5px 30px;
   cursor: pointer;
+  text-align: center;
   font-family: "Pacifico", cursive;
   font-size: 20px;
 }

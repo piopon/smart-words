@@ -30,11 +30,11 @@
         <div class="popup">
           <form>
             <fieldset>
-              <legend id="word-form-title">Add new word:</legend>
-              <label for="word-form-name">word:</label><br />
-              <input type="text" id="word-form-name" placeholder="word name" /><br />
-              <label for="word-form-cat">category:</label><br />
-              <input list="categories" id="word-form-cat" placeholder="select or add category" />
+              <legend id="word-form-title">add new word:</legend>
+              <label for="word-form-name" class="word-form-label">word:</label><br />
+              <input type="text" id="word-form-name" class="word-form-field" placeholder="word name" /><br />
+              <label for="word-form-cat" class="word-form-label">category:</label><br />
+              <input list="categories" id="word-form-cat" class="word-form-field" placeholder="select or add category" />
               <datalist id="categories">
                 <option value="verb"></option>
                 <option value="adjective"></option>
@@ -42,8 +42,8 @@
                 <option value="person"></option>
                 <option value="latin"></option>
               </datalist><br />
-              <label for="word-form-def">definition:</label><br />
-              <textarea id="word-form-def" rows="3" cols="21" placeholder="word definition"></textarea><br />
+              <label for="word-form-def" class="word-form-label">definition:</label><br />
+              <textarea id="word-form-def" rows="3" cols="21" class="word-form-field" placeholder="word definition"></textarea><br />
             </fieldset>
           </form>
           <div id="popup-buttons">

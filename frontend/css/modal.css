@@ -81,3 +81,8 @@
 .popup a:active {
   text-decoration: none;
 }
+
+.popup fieldset {
+  border: 0px;
+}
+

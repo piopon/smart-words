@@ -12,7 +12,7 @@ var wordUnderEdition = undefined;
 function addWord() {
   wordFormMode = FORM_MODE_ADD;
   wordUnderEdition = undefined;
-  document.getElementById("word-form-title").innerHTML = "Add word:";
+  document.getElementById("word-form-title").innerHTML = "add word:";
   document.getElementById("word-form-name").value = "";
   document.getElementById("word-form-cat").value = "";
   document.getElementById("word-form-def").value = "";
@@ -30,7 +30,7 @@ function addWord() {
 function editWord(name, category, definition) {
   wordFormMode = FORM_MODE_EDIT;
   wordUnderEdition = name;
-  document.getElementById("word-form-title").innerHTML = "Edit word:";
+  document.getElementById("word-form-title").innerHTML = "edit word:";
   document.getElementById("word-form-name").value = name;
   document.getElementById("word-form-cat").value = category;
   document.getElementById("word-form-def").value = definition;

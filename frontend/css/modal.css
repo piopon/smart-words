@@ -86,3 +86,12 @@
   border: 0px;
 }
 
+legend#word-form-title {
+  position: relative;
+  width: 100%;
+  display: block;
+  padding: 0 0px;
+  font-size: 40px;
+  font-family: "Pacifico", cursive;
+}
+

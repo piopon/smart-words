@@ -95,3 +95,15 @@ legend#word-form-title {
   font-family: "Pacifico", cursive;
 }
 
+.word-form-label {
+  margin: 0 5px;
+}
+
+.word-form-field {
+  background: var(--primary-color);
+  width: 95%;
+  margin: 0 5px;
+  border: 0px;
+  font-size: 13px;
+ font-family: 'Lucida Sans', 'Lucida Sans Regular',Geneva, Verdana, sans-serif;
+}

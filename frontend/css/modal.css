@@ -96,12 +96,15 @@ legend#word-form-title {
 }
 
 .word-form-label {
-  margin: 0 5px;
+  display: block;
+  padding: 10px 0px 0px 5px;
 }
 
 .word-form-field {
+  display: block;
   background: var(--primary-color);
   width: 95%;
+  height: 50px;
   margin: 0 5px;
   border: 0px;
   font-size: 13px;

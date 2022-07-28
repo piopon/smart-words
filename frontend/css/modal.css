@@ -29,16 +29,18 @@
 
 .popup #popup-buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  padding-top: 10px;
 }
 
 #word-form-btn-accept {
-  width: 100px;
+  width: 95px;
   background-color: limegreen;
   border: black solid 1px;
   border-radius: 15px;
   color: black;
   padding: 5px 30px;
+  margin-right: 5px;
   cursor: pointer;
   text-align: center;
   font-family: "Pacifico", cursive;
@@ -50,12 +52,13 @@
 }
 
 #word-form-btn-cancel {
-  width: 100px;
+  width: 95px;
   background-color: crimson;
   border: black solid 1px;
   border-radius: 15px;
   color: black;
   padding: 5px 30px;
+  margin-left: 5px;
   cursor: pointer;
   text-align: center;
   font-family: "Pacifico", cursive;
@@ -106,7 +109,7 @@ legend#word-form-title {
 .word-form-field {
   display: block;
   background: var(--primary-color);
-  width: 95%;
+  width: 97%;
   height: 50px;
   margin: 0 5px;
   border: 0px;

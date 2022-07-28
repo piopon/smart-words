@@ -97,6 +97,7 @@ legend#word-form-title {
   padding: 0 0px;
   font-size: 40px;
   font-family: "Pacifico", cursive;
+  text-decoration: underline;
 }
 
 .word-form-label {

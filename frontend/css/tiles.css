@@ -1,0 +1,17 @@
+.ui-size-big {
+  width: 500px;
+  flex-grow: 4;
+}
+
+.ui-size-medium {
+  width: 300px;
+  flex-grow: 2;
+}
+
+.ui-color-primary {
+  background-color: var(--primary-color);
+}
+
+.ui-color-red {
+  background-color: red;
+}

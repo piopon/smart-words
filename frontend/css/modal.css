@@ -118,7 +118,11 @@ legend#word-form-title {
   font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
 }
 
+.popup fieldset input {
+  padding-left: 7px;
+}
+
 textarea#word-form-def {
-  padding: 10px 3px;
+  padding: 10px 7px;
   height: 75px;
 }

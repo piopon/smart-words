@@ -75,7 +75,9 @@ function verifyQuestionNo(number) {
  * @param {Object} questionObject to be displayed (word + four options)
  */
 function displayQuestion(questionObject) {
+  let questionStatus = `question ${currentQuestionNo+1}/${totalQuestionsNo}`;
   document.getElementById("quiz-mode-container").className = "container-hidden";
+  document.getElementById("select-mode-title").innerHTML = `quiz - guess definition - ${questionStatus}:`;
   questionHtml = getWordHtml(questionObject.word);
   for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
     questionHtml += getOptionHtml(questionObject, optionNo);
@@ -197,6 +199,7 @@ function stopQuiz() {
  */
 function displaySummary(summaryValue) {
   document.getElementById("quiz-mode-container").className = "container-hidden";
+  document.getElementById("select-mode-title").innerHTML = "results:";
   document.getElementById("quiz-question").innerHTML = getSummaryHtml(summaryValue);
 }
 
@@ -220,5 +223,6 @@ function getSummaryHtml(summaryValue) {
  */
 function cleanQuiz() {
   document.getElementById("quiz-mode-container").className = "container-visible";
+  document.getElementById("select-mode-title").innerHTML = "select mode:";
   document.getElementById("quiz-question").innerHTML = "";
 }

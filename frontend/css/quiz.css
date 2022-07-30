@@ -4,3 +4,30 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+
+#select-mode-title {
+  margin: 5px 0px;
+  display: block;
+  font-size: 40px;
+  font-family: "Pacifico", cursive;
+}
+
+#quiz-mode-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#quiz-mode {
+  display: block;
+  height: 150px;
+  margin: 7px;
+  border: 1px black solid;
+}
+
+#quiz-mode-title {
+  position: relative;
+  padding: 10 5px;
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+}

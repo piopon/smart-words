@@ -31,3 +31,7 @@
   font-size: 25px;
   font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
 }
+
+#quiz-mode-content {
+    padding: 5px 10px;
+}

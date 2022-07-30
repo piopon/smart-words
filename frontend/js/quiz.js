@@ -75,7 +75,7 @@ function verifyQuestionNo(number) {
  * @param {Object} questionObject to be displayed (word + four options)
  */
 function displayQuestion(questionObject) {
-    document.getElementById("quiz-mode-form").className = "form-hidden";
+    document.getElementById("quiz-mode-container").className = "form-hidden";
     questionHtml = getWordHtml(questionObject.word);
     for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
       questionHtml += getOptionHtml(questionObject, optionNo);
@@ -196,7 +196,7 @@ function stopQuiz() {
  * @param {Float} summaryValue correct answers percentage
  */
 function displaySummary(summaryValue) {
-  document.getElementById("quiz-mode-form").className = "form-hidden";
+  document.getElementById("quiz-mode-container").className = "form-hidden";
   document.getElementById("quiz-question").innerHTML = getSummaryHtml(summaryValue);
 }
 
@@ -219,6 +219,6 @@ function getSummaryHtml(summaryValue) {
  * Method used to clean quiz summary and display initial quiz selector
  */
 function cleanQuiz() {
-  document.getElementById("quiz-mode-form").className = "form-visible";
+  document.getElementById("quiz-mode-container").className = "form-visible";
   document.getElementById("quiz-question").innerHTML = "";
 }

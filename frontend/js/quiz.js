@@ -75,15 +75,15 @@ function verifyQuestionNo(number) {
  * @param {Object} questionObject to be displayed (word + four options)
  */
 function displayQuestion(questionObject) {
-    document.getElementById("quiz-mode-container").className = "container-hidden";
-    questionHtml = getWordHtml(questionObject.word);
-    for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
-      questionHtml += getOptionHtml(questionObject, optionNo);
-    }
-    questionHtml += getControlButtonsHtml();
-    document.getElementById("quiz-question").innerHTML = questionHtml;
-    document.getElementById("prev-question").disabled = currentQuestionNo <= 0;
-    document.getElementById("next-question").disabled = currentQuestionNo >= totalQuestionsNo - 1;
+  document.getElementById("quiz-mode-container").className = "container-hidden";
+  questionHtml = getWordHtml(questionObject.word);
+  for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
+    questionHtml += getOptionHtml(questionObject, optionNo);
+  }
+  questionHtml += getControlButtonsHtml();
+  document.getElementById("quiz-question").innerHTML = questionHtml;
+  document.getElementById("prev-question").disabled = currentQuestionNo <= 0;
+  document.getElementById("next-question").disabled = currentQuestionNo >= totalQuestionsNo - 1;
 }
 
 /**
@@ -208,7 +208,7 @@ function displaySummary(summaryValue) {
  */
 function getSummaryHtml(summaryValue) {
   return `<div id="quiz-summary" class="quiz-summary-div">
-            <p><u>RESULT:</u><br><strong>${summaryValue*100}%</strong> of correct answers.</p>
+            <p><u>RESULT:</u><br><strong>${summaryValue * 100}%</strong> of correct answers.</p>
             <button id="end-summary" class="end-summary-btn" onclick="cleanQuiz()">
               OK
             </button>

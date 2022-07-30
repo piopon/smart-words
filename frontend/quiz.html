@@ -20,15 +20,15 @@
     <!-- main site content -->
     <div id="main-content">
       <!-- quiz mode form with start option -->
-      <p>SELECT MODE:</p>
-      <form id="quiz-mode-form" class="form-visible">
-        <fieldset>
-          <legend id="quiz-mode-title">guess definition:</legend>
+      <p id="select-mode-title">select mode:</p>
+      <div id="quiz-mode-container" class="form-visible">
+        <div id="quiz-mode">
+          <div id="quiz-mode-title">guess definition</div>
           <label for="quiz-mode-question-no">how many questions:</label>
           <input type="number" id="quiz-mode-question-no" value="10" min="5" max="25" />
-          <input type="button" value="start" id="quiz-mode-start" onclick="startQuiz()" />
-        </fieldset>
-      </form>
+          <button id="quiz-mode-start" onclick="startQuiz()">start</button>
+        </div>
+      </div>
       <div id="quiz-question"></div>
     </div>
     <!-- footer with author information and copyrights -->

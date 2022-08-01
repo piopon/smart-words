@@ -25,18 +25,21 @@
 }
 
 #quiz-mode {
-  display: block;
-  height: 180px;
-  margin: 7px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  margin: 0px 25px 25px 0px;
   border: 1px black solid;
+  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
 }
 
 #quiz-mode-title {
-  position: relative;
-  padding: 10 5px;
-  margin-bottom: 10px;
+  padding: 10 10px;
   font-size: 25px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+  letter-spacing: -1px;
+  font-weight: 500;
+  background-color: rgb(65, 65, 65);
+  color: white;
 }
 
 #quiz-mode-content {

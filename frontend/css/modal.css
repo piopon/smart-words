@@ -126,3 +126,15 @@ textarea#word-form-def {
   padding: 10px 7px;
   height: 75px;
 }
+
+select#word-form-cat option {
+  color: black;
+}
+
+select#word-form-cat:invalid {
+  color: gray;
+}
+
+select#word-form-cat option[value=""] {
+  color: gray;
+}

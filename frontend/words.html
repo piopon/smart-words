@@ -34,14 +34,14 @@
               <label for="word-form-name" class="word-form-label">word:</label>
               <input type="text" id="word-form-name" class="word-form-field" placeholder="word name" />
               <label for="word-form-cat" class="word-form-label">category:</label>
-              <input list="categories" id="word-form-cat" class="word-form-field" placeholder="select or add category" />
-              <datalist id="categories">
-                <option value="verb"></option>
-                <option value="adjective"></option>
-                <option value="noun"></option>
-                <option value="person"></option>
-                <option value="latin"></option>
-              </datalist>
+              <select name="categories" id="word-form-cat" class="word-form-field">
+                <option value="" disabled selected hidden>select category</option>
+                <option value="verb">verb</option>
+                <option value="adjective">adjective</option>
+                <option value="noun">noun</option>
+                <option value="person">person</option>
+                <option value="latin">latin</option>
+              </select>
               <label for="word-form-def" class="word-form-label">definition:</label>
               <textarea id="word-form-def" rows="3" cols="21" class="word-form-field" placeholder="word definition"></textarea>
             </fieldset>

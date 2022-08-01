@@ -44,4 +44,29 @@
 
 #quiz-mode-content {
   padding: 5px 10px;
+  font-size: 15px;
+}
+
+p.mode-section-label {
+  margin: 0px 0px;
+  padding: 12px 0px 0px 0px;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+#quiz-mode-start {
+  margin: auto 5px 10px 5px;
+  align-self: center;
+  height: 30px;
+  width: 95%;
+  background-color: chartreuse;
+  border: 1px black solid;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+#quiz-mode-start:hover {
+  background-color: greenyellow;
+  border: 2px black solid;
 }

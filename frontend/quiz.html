@@ -26,10 +26,17 @@
         <div id="quiz-mode" class="ui-size-big ui-color-primary">
           <div id="quiz-mode-title">guess definition</div>
           <div id="quiz-mode-content">
-            <label for="quiz-mode-question-no">how many questions:</label>
-            <input type="number" id="quiz-mode-question-no" value="10" min="5" max="25" />
-            <button id="quiz-mode-start" onclick="startQuiz()">start</button>
+            <div id="quiz-mode-description">
+              <p class="mode-section-label">decription:</p>
+              guess the word definition based on a provided word name
+            </div>
+            <div id="quiz-mode-settings">
+              <p class="mode-section-label">settings:</p>
+              <label for="quiz-mode-question-no">how many questions:</label>
+              <input type="number" id="quiz-mode-question-no" value="10" min="5" max="25" />
+            </div>
           </div>
+          <button id="quiz-mode-start" onclick="startQuiz()">start</button>
         </div>
       </div>
       <div id="quiz-question"></div>

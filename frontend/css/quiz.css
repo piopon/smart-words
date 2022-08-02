@@ -70,3 +70,9 @@ p.mode-section-label {
   background-color: greenyellow;
   border: 2px black solid;
 }
+
+#quiz-question {
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}

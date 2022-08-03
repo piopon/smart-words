@@ -111,7 +111,7 @@ function getWordHtml(word) {
 function getOptionHtml(question, optionNo) {
   buttonAction = getAnswerButtonAction(null === question.correct, optionNo);
   buttonClass = getAnswerButtonClass(optionNo == question.answer ? question.correct : null);
-  return `<div class="question-option-div">
+  return `<div id="question-option-div">
             <button id="answer-${optionNo}" class="${buttonClass}" onclick="${buttonAction}">
               ${optionNo}) ${question.options[optionNo]}
             </button>
@@ -124,14 +124,14 @@ function getOptionHtml(question, optionNo) {
  * @returns HTML code for question control buttons (previous and next)
  */
 function getControlButtonsHtml() {
-  return `<div id="question-control" class="question-control-div">
-            <button id="prev-question" class="prev-question-btn" onclick="requestPrevQuestion()">
+  return `<div id="question-control">
+            <button id="prev-question" onclick="requestPrevQuestion()">
               PREVIOUS
             </button>
-            <button id="next-question" class="next-question-btn" onclick="requestNextQuestion()">
+            <button id="next-question" onclick="requestNextQuestion()">
               NEXT
             </button>
-            <button id="stop-quiz" class="stop-quiz-btn" onclick="stopQuiz()">
+            <button id="stop-quiz" onclick="stopQuiz()">
               STOP
             </button>
           </div>`;

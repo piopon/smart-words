@@ -80,9 +80,11 @@ function displayQuestion(questionObject) {
   document.getElementById("quiz-question").className = "container-visible";
   document.getElementById("quiz-mode-container").className = "container-hidden";
   questionHtml = getWordHtml(questionObject.word);
+  questionHtml += `<div id="question-options">`;
   for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
     questionHtml += getOptionHtml(questionObject, optionNo);
   }
+  questionHtml += `</div>`;
   questionHtml += getControlButtonsHtml();
   document.getElementById("quiz-question").innerHTML = questionHtml;
   document.getElementById("prev-question").disabled = currentQuestionNo <= 0;

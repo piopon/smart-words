@@ -76,3 +76,32 @@ p.mode-section-label {
   width: 100%;
   height: 100%;
 }
+
+#question-word {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
+  height: 100px;
+  width: 100% - 25px;
+  font-size: 40px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+}
+
+#question-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 25px;
+  height: 100%;
+  width: 100% - 25px;
+}
+
+#question-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
+  height: 50px;
+  width: 100% - 25px;
+}

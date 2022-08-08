@@ -89,7 +89,7 @@ p.mode-section-label {
 }
 
 #question-options {
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   margin: 0 25px;

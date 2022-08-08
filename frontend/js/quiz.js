@@ -111,7 +111,7 @@ function getWordHtml(word) {
 function getOptionHtml(question, optionNo) {
   buttonAction = getAnswerButtonAction(null === question.correct, optionNo);
   buttonClass = getAnswerButtonClass(optionNo == question.answer ? question.correct : null);
-  return `<div id="question-option-div">
+  return `<div id="question-option-${optionNo}">
             <button id="answer-${optionNo}" class="${buttonClass}" onclick="${buttonAction}">
               ${optionNo}) ${question.options[optionNo]}
             </button>

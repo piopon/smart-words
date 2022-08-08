@@ -131,7 +131,7 @@ div[id^="question-option-"] {
   align-items: stretch;
   align-content: stretch;
   height: 100%;
-  width: 450px;
+  width: 600px;
 }
 
 button[id^="answer-"] {
@@ -145,16 +145,16 @@ button[class^="question-option-"] {
 }
 
 .question-option-btn {
-  background-color: gray;
-  color: black
+  background-color: lightgrey;
+  color: black;
 }
 
 .question-option-btn-ok {
-  background-color: green;
-  color: white;
+  background-color: greenyellow;
+  color: black;
 }
 
 .question-option-btn-nok {
-  background-color: red;
-  color: white;
+  background-color: lightcoral;
+  color: black;
 }

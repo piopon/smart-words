@@ -136,7 +136,12 @@ div[id^="question-option-"] {
 
 button[id^="answer-"] {
   width: 100%;
-  margin: 5px;
+  margin: 10px;
+}
+
+button[class^="question-option-"] {
+  font-size: 20px;
+  box-shadow: 5px 5px 10px gray;
 }
 
 .question-option-btn {

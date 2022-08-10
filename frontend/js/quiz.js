@@ -149,9 +149,13 @@ function answerQuestionNo(number, answerNo) {
       console.log("ERROR: " + err);
     } else {
       console.log(data);
-      document.getElementById("answer-" + answerNo).className = getAnswerButtonClass(data);
       for (let i in [0, 1, 2, 3]) {
         document.getElementById("answer-" + i).onclick = null;
+        if (answerNo === i) {
+          document.getElementById("answer-" + i).className = getAnswerButtonClass(data);
+        } else {
+          document.getElementById("answer-" + i).className = "question-option-btn-disabled";
+        }
       }
     }
   });

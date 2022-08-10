@@ -155,6 +155,11 @@ button[class^="question-option-"] {
   color: black;
 }
 
+.question-option-btn-disabled {
+  cursor: default;
+  background-color: grey;
+}
+
 .question-option-btn-ok {
   background-color: greenyellow;
   color: black;

@@ -109,8 +109,9 @@ function getWordHtml(word) {
  * @returns HTML code with word option
  */
 function getOptionHtml(question, optionNo) {
-  buttonAction = getAnswerButtonAction(null === question.correct, optionNo);
-  buttonClass = getAnswerButtonClass(optionNo == question.answer ? question.correct : null);
+  let isNewQuestion = null === question.correct;
+  buttonAction = getAnswerButtonAction(isNewQuestion, optionNo);
+  buttonClass = getAnswerButtonClass(isNewQuestion, optionNo == question.answer ? question.correct : null);
   return `<div id="question-option-${optionNo}">
             <button id="answer-${optionNo}" class="${buttonClass}" onclick="${buttonAction}">
               ${optionNo}) ${question.options[optionNo]}
@@ -150,8 +151,7 @@ function answerQuestionNo(number, answerNo) {
     } else {
       for (let i in [0, 1, 2, 3]) {
         document.getElementById("answer-" + i).onclick = null;
-        document.getElementById("answer-" + i).className =
-          answerNo === i ? getAnswerButtonClass(data) : "question-option-btn-disabled";
+        document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);
       }
     }
   });
@@ -174,9 +174,9 @@ function getAnswerButtonAction(isNewQuestion, optionNo) {
  * @param {Boolean} isAnswerCorrect flag indicating the current status of answer correctness
  * @returns "regular" class if input boolean is null, "ok" class if input is true, "nok" when false
  */
-function getAnswerButtonClass(isAnswerCorrect) {
+function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
   if (null === isAnswerCorrect) {
-    return "question-option-btn";
+    return isNewQuestion ? "question-option-btn" : "question-option-btn-disabled";
   }
   return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
 }

@@ -75,7 +75,7 @@ function verifyQuestionNo(number) {
  * @param {Object} questionObject to be displayed (word + four options)
  */
 function displayQuestion(questionObject) {
-  let questionStatus = `question ${currentQuestionNo+1}/${totalQuestionsNo}`;
+  let questionStatus = `question ${currentQuestionNo + 1}/${totalQuestionsNo}`;
   document.getElementById("select-mode-title").innerHTML = `quiz - guess definition - ${questionStatus}:`;
   document.getElementById("quiz-question").className = "container-visible";
   document.getElementById("quiz-mode-container").className = "container-hidden";
@@ -148,14 +148,10 @@ function answerQuestionNo(number, answerNo) {
     if (err) {
       console.log("ERROR: " + err);
     } else {
-      console.log(data);
       for (let i in [0, 1, 2, 3]) {
         document.getElementById("answer-" + i).onclick = null;
-        if (answerNo === i) {
-          document.getElementById("answer-" + i).className = getAnswerButtonClass(data);
-        } else {
-          document.getElementById("answer-" + i).className = "question-option-btn-disabled";
-        }
+        document.getElementById("answer-" + i).className =
+          answerNo === i ? getAnswerButtonClass(data) : "question-option-btn-disabled";
       }
     }
   });

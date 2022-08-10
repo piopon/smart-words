@@ -145,7 +145,13 @@ button[class^="question-option-"] {
 }
 
 .question-option-btn {
+  cursor: pointer;
   background-color: lightgrey;
+  color: black;
+}
+
+.question-option-btn:hover {
+  background-color: whitesmoke;
   color: black;
 }
 

@@ -183,11 +183,11 @@ button[class^="question-option-"] {
   justify-content: center;
   align-items: center;
   height: 50px;
-  width: 300px;
+  width: 350px;
 }
 
 #stop-quiz {
-  width: 100px;
+  width: 150px;
   margin-left: 50px;
   background-color: orange;
   border: 1px black solid;

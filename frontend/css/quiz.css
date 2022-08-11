@@ -174,3 +174,11 @@ button[class^="question-option-"] {
   display: flex;
   justify-content: center;
 }
+
+.question-control-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 300px;
+}

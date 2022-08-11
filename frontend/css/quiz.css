@@ -169,3 +169,8 @@ button[class^="question-option-"] {
   background-color: lightcoral;
   color: black;
 }
+
+#question-control {
+  display: flex;
+  justify-content: center;
+}

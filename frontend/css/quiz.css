@@ -186,6 +186,14 @@ button[class^="question-option-"] {
   width: 350px;
 }
 
+#prev-question {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#next-question {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 #stop-quiz {
   width: 150px;
   margin-left: 50px;

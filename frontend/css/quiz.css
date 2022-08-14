@@ -142,6 +142,7 @@ button[id^="answer-"] {
 button[class^="question-option-"] {
   font-size: 20px;
   box-shadow: 5px 5px 10px gray;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 .question-option-btn {
@@ -185,6 +186,7 @@ button[class^="question-option-"] {
   height: 50px;
   width: 350px;
   border: 1px black solid;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 .question-control-btn:hover:enabled {

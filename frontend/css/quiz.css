@@ -30,7 +30,7 @@
   height: 200px;
   margin: 0px 25px 25px 0px;
   border: 1px black solid;
-  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 #quiz-mode-title {
@@ -85,7 +85,7 @@ p.mode-section-label {
   height: 100px;
   width: 100% - 25px;
   font-size: 40px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 #question-options {

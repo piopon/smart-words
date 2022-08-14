@@ -104,7 +104,7 @@ legend#word-form-title {
   display: block;
   padding: 10px 0px 0px 5px;
   font-size: 12px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 .word-form-field {
@@ -115,7 +115,7 @@ legend#word-form-title {
   margin: 0 5px;
   border: 0px;
   font-size: 15px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 .popup fieldset input {

@@ -52,7 +52,7 @@
   max-height: 70vh;
   overflow-y: auto;
   font-size: 14px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 #table-words td {

@@ -187,6 +187,11 @@ button[class^="question-option-"] {
   border: 1px black solid;
 }
 
+.question-control-btn:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 2px black;
+}
+
 #prev-question {
   background-color: white;
   color: black;

@@ -184,6 +184,7 @@ button[class^="question-option-"] {
   align-items: center;
   height: 50px;
   width: 350px;
+  border: 1px black solid;
 }
 
 #prev-question {
@@ -197,6 +198,5 @@ button[class^="question-option-"] {
 #stop-quiz {
   width: 150px;
   margin-left: 50px;
-  background-color: orange;
-  border: 1px black solid;
+  background-color: lightcoral;
 }

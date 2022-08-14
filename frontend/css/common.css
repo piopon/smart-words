@@ -1,5 +1,8 @@
 :root {
   --primary-color: lightgray;
+  --styled-font: 'Pacifico';
+  --clear-font-primary: 'Roboto Condensed';
+  --clear-font-backup: 'Lucida Sans';
   --btn-quiz-shadow-size: 50px;
 }
 
@@ -38,7 +41,7 @@ header #site-logo {
 header #site-title {
   margin: 0 5px;
   font-size: 50px;
-  font-family: "Pacifico", cursive;
+  font-family: var(--styled-font), cursive;
 }
 
 header #btn-page-back {
@@ -70,7 +73,7 @@ footer {
   align-items: center;
   justify-content: center;
   background-color: var(--primary-color);
-  font-family: "Pacifico", cursive;
+  font-family: var(--styled-font), cursive;
 }
 
 .no-select {

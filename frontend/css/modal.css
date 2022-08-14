@@ -43,7 +43,7 @@
   margin-right: 5px;
   cursor: pointer;
   text-align: center;
-  font-family: "Pacifico", cursive;
+  font-family: var(--styled-font), cursive;
   font-size: 20px;
 }
 
@@ -61,7 +61,7 @@
   margin-left: 5px;
   cursor: pointer;
   text-align: center;
-  font-family: "Pacifico", cursive;
+  font-family: var(--styled-font), cursive;
   font-size: 20px;
 }
 
@@ -96,7 +96,7 @@ legend#word-form-title {
   display: block;
   padding: 0 0px;
   font-size: 40px;
-  font-family: "Pacifico", cursive;
+  font-family: var(--styled-font), cursive;
   text-decoration: underline;
 }
 

@@ -38,7 +38,7 @@
   line-height: 70px;
   text-align: center;
   background-color: var(--primary-color);
-  font-family: "Pacifico", cursive;
+  font-family: var(--styled-font), cursive;
   font-size: 25px;
 }
 
@@ -89,7 +89,7 @@
 }
 
 #table-words tbody td#no-words-text {
-  font-family: "Pacifico", cursive;
+  font-family: var(--styled-font), cursive;
   font-size: 20px;
   line-height: 30px;
 }

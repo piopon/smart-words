@@ -188,11 +188,25 @@ button[class^="question-option-"] {
 }
 
 #prev-question {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: white;
+  color: black;
+  margin-right: 5px;
+}
+
+#prev-question:disabled {
+  background-color: gainsboro;
+  color: gray;
 }
 
 #next-question {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: white;
+  color: black;
+  margin-left: 5px;
+}
+
+#next-question:disabled {
+  background-color: gainsboro;
+  color: gray;
 }
 
 #stop-quiz {

@@ -36,7 +36,7 @@
 #quiz-mode-title {
   padding: 10 10px;
   font-size: 25px;
-  letter-spacing: -1px;
+  letter-spacing: 0px;
   font-weight: 500;
   background-color: rgb(65, 65, 65);
   color: white;

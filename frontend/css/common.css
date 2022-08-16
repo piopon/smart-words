@@ -1,8 +1,8 @@
 :root {
   --primary-color: lightgray;
-  --styled-font: 'Pacifico';
-  --clear-font-primary: 'Roboto Condensed';
-  --clear-font-backup: 'Lucida Sans';
+  --styled-font: "Pacifico";
+  --clear-font-primary: "Roboto Condensed";
+  --clear-font-backup: "Lucida Sans";
   --btn-quiz-shadow-size: 50px;
 }
 
@@ -77,10 +77,10 @@ footer {
 }
 
 .no-select {
-  user-select: none;           /* Chrome, Edge, Opera and Firefox */
+  user-select: none; /* Chrome, Edge, Opera and Firefox */
   -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Safari */
-  -khtml-user-select: none;    /* Konqueror HTML */
-  -moz-user-select: none;      /* Old versions of Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }

@@ -122,7 +122,7 @@ function loadWordsUpdateUiState(state) {
   let addWordBtn = document.getElementById("btn-add-word");
   let rowElement = document.getElementById("no-words-row");
   let textElement = document.getElementById("no-words-text");
-  if(rowElement === null || textElement === null) return;
+  if (rowElement === null || textElement === null) return;
   if (LOAD_WORDS_OK === state) {
     addWordBtn.className = "enabled";
     addWordBtn.href = "#modal";

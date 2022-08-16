@@ -41,7 +41,7 @@ const getQuestionNo = (quizID, questionNo, callback) => {
   });
   getRequest.open("GET", URL + "quiz/" + quizID + "/question/" + questionNo);
   getRequest.send();
-}
+};
 
 /**
  * Method used to send a request to smart-words service to post an answer for specified question number
@@ -64,7 +64,7 @@ const postQuestionAnswer = (quizID, questionNo, answerNo, callback) => {
   });
   postRequest.open("POST", URL + "quiz/" + quizID + "/question/" + questionNo + "/" + answerNo);
   postRequest.send();
-}
+};
 
 /**
  * Method used to send a request to smart-words service to stop a quiz with specified ID

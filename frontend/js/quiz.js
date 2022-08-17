@@ -214,9 +214,9 @@ function displaySummary(summaryValue) {
  * @returns HTML code for quiz summary
  */
 function getSummaryHtml(summaryValue) {
-  let summaryTitle = "RESULT";
+  let summaryTitle = summaryValue >= 75 ? "AWESOME" : summaryValue <= 75 ? "YOU CAN DO BETTER" : "RESULT";
   return `<div id="quiz-summary">
-            <p id="quiz-summary-title"><u>${summaryTitle}</u></p>
+            <p id="quiz-summary-title"><u>${summaryTitle}: </u></p>
             <p><strong>${summaryValue * 100}%</strong> of correct answers.</p>
             <button id="end-summary" class="end-summary-btn" onclick="cleanQuiz()">
               OK

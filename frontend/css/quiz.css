@@ -221,3 +221,11 @@ button[class^="question-option-"] {
   margin-left: 50px;
   background-color: lightcoral;
 }
+
+#quiz-summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}

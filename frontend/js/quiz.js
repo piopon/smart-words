@@ -214,8 +214,17 @@ function displaySummary(summaryValue) {
  * @returns HTML code for quiz summary
  */
 function getSummaryHtml(summaryValue) {
-  let summaryTitle = summaryValue >= 75 ? "AWESOME" : summaryValue <= 75 ? "YOU CAN DO BETTER" : "RESULT";
+  let summaryTitle = "RESULT";
+  let summaryImage = "images/summary-medium.png";
+  if (summaryValue >= 0.75) {
+    summaryTitle = "AWESOME";
+    summaryImage = "images/summary-good.png";
+  } else if (summaryValue <= 0.25) {
+    summaryTitle = "YOU CAN DO BETTER";
+    summaryImage = "images/summary-bad.png";
+  }
   return `<div id="quiz-summary">
+            <img id="quiz-summary-img" src="${summaryImage}">
             <p id="quiz-summary-title"><u>${summaryTitle}: </u></p>
             <p><strong>${summaryValue * 100}%</strong> of correct answers.</p>
             <button id="end-summary" class="end-summary-btn" onclick="cleanQuiz()">

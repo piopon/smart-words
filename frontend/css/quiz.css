@@ -236,3 +236,14 @@ button[class^="question-option-"] {
   height: 200px;
   width: 200px;
 }
+
+#end-summary {
+  width: 150px;
+  background-color: white;
+  color: black;
+}
+
+#end-summary:disabled {
+  background-color: gainsboro;
+  color: gray;
+}

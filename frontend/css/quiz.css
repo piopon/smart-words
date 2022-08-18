@@ -230,3 +230,8 @@ button[class^="question-option-"] {
   height: 400px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
+
+#quiz-summary-img {
+  height: 200px;
+  width: 200px;
+}

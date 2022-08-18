@@ -228,6 +228,7 @@ button[class^="question-option-"] {
   align-items: center;
   flex-direction: column;
   height: 400px;
+  font-size: 20px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 

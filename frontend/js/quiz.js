@@ -227,7 +227,7 @@ function getSummaryHtml(summaryValue) {
             <img id="quiz-summary-img" src="${summaryImage}">
             <p id="quiz-summary-title"><u>${summaryTitle}: </u></p>
             <p><strong>${summaryValue * 100}%</strong> of correct answers.</p>
-            <button id="end-summary" class="end-summary-btn" onclick="cleanQuiz()">
+            <button id="end-summary" class="question-control-btn" onclick="cleanQuiz()">
               OK
             </button>
           </div>`;

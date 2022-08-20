@@ -179,49 +179,6 @@ button[class^="question-option-"] {
   margin: 5px;
 }
 
-.question-control-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 350px;
-  border: 1px black solid;
-  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
-}
-
-.question-control-btn:hover:enabled {
-  cursor: pointer;
-  box-shadow: 0 0 0 2px black;
-}
-
-#prev-question {
-  background-color: white;
-  color: black;
-  margin-right: 5px;
-}
-
-#prev-question:disabled {
-  background-color: gainsboro;
-  color: gray;
-}
-
-#next-question {
-  background-color: white;
-  color: black;
-  margin-left: 5px;
-}
-
-#next-question:disabled {
-  background-color: gainsboro;
-  color: gray;
-}
-
-#stop-quiz {
-  width: 150px;
-  margin-left: 50px;
-  background-color: lightcoral;
-}
-
 #quiz-summary {
   display: flex;
   justify-content: center;
@@ -235,15 +192,4 @@ button[class^="question-option-"] {
 #quiz-summary-img {
   height: 200px;
   width: 200px;
-}
-
-#end-summary {
-  width: 150px;
-  background-color: white;
-  color: black;
-}
-
-#end-summary:disabled {
-  background-color: gainsboro;
-  color: gray;
 }

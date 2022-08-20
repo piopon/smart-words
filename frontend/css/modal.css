@@ -1,0 +1,140 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.65);
+  transition: opacity 250ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 100;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 100px auto;
+  padding: 50px;
+  background: #fff;
+  border: 3px solid black;
+  width: 350px;
+  height: auto;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.75);
+  position: relative;
+}
+
+.popup #popup-buttons {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+#word-form-btn-accept {
+  width: 95px;
+  background-color: limegreen;
+  border: black solid 1px;
+  border-radius: 15px;
+  color: black;
+  padding: 5px 30px;
+  margin-right: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--styled-font), cursive;
+  font-size: 20px;
+}
+
+#word-form-btn-accept:hover {
+  background-color: greenyellow;
+}
+
+#word-form-btn-cancel {
+  width: 95px;
+  background-color: crimson;
+  border: black solid 1px;
+  border-radius: 15px;
+  color: black;
+  padding: 5px 30px;
+  margin-left: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--styled-font), cursive;
+  font-size: 20px;
+}
+
+#word-form-btn-cancel:hover {
+  background-color: red;
+}
+
+.popup a:link {
+  text-decoration: none;
+}
+
+.popup a:visited {
+  text-decoration: none;
+}
+
+.popup a:hover {
+  text-decoration: none;
+}
+
+.popup a:active {
+  text-decoration: none;
+}
+
+.popup fieldset {
+  border: 0px;
+  padding: 0 5px;
+}
+
+legend#word-form-title {
+  position: relative;
+  width: 100%;
+  display: block;
+  padding: 0 0px;
+  font-size: 40px;
+  font-family: var(--styled-font), cursive;
+  text-decoration: underline;
+}
+
+.word-form-label {
+  display: block;
+  padding: 10px 0px 0px 5px;
+  font-size: 12px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+.word-form-field {
+  display: block;
+  background: var(--primary-color);
+  width: 97%;
+  height: 50px;
+  margin: 0 5px;
+  border: 0px;
+  font-size: 15px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+.popup fieldset input {
+  padding-left: 7px;
+}
+
+textarea#word-form-def {
+  padding: 10px 7px;
+  height: 75px;
+}
+
+select#word-form-cat option {
+  color: black;
+}
+
+select#word-form-cat:invalid {
+  color: gray;
+}
+
+select#word-form-cat option[value=""] {
+  color: gray;
+}

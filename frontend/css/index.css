@@ -1,0 +1,58 @@
+#btn-show-words {
+  height: 64px;
+  width: 64px;
+  margin: 0 20px;
+  color: transparent !important;
+  border: 0px solid black;
+  background: url(../images/dictionary.png) no-repeat;
+}
+
+#btn-show-words:hover {
+  background: url(../images/dictionary-hover.png) no-repeat;
+}
+
+#quiz-start-frame {
+  background: white;
+  padding: 25px;
+}
+
+#btn-quiz-start {
+  padding: 80px 100px;
+  position: relative;
+  color: black;
+  background: none;
+  cursor: pointer;
+  border: 3px solid;
+  font-family: var(--styled-font), cursive;
+  font-size: 50px;
+  box-shadow: 0 0 var(--btn-quiz-shadow-size) 0 gray;
+  animation: glow 2.5s ease-in-out infinite 5s;
+}
+
+#btn-quiz-start:hover {
+  animation-play-state: paused;
+}
+
+#btn-quiz-start:before {
+  inset: 0;
+  position: absolute;
+  line-height: 248px;
+  content: "let's go !!!";
+  background: var(--primary-color);
+  --progress: 97%;
+  clip-path: polygon(100% 0, var(--progress) var(--progress), 0 100%, 100% 100%);
+  transition: clip-path 0.5s;
+}
+
+#btn-quiz-start:hover:before {
+  --progress: 3%;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 var(--btn-quiz-shadow-size) 0 gray;
+  }
+  50% {
+    box-shadow: 0 0 0 0 gray;
+  }
+}

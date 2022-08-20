@@ -75,15 +75,20 @@ function verifyQuestionNo(number) {
  * @param {Object} questionObject to be displayed (word + four options)
  */
 function displayQuestion(questionObject) {
-    document.getElementById("quiz-mode-form").className = "form-hidden";
-    questionHtml = getWordHtml(questionObject.word);
-    for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
-      questionHtml += getOptionHtml(questionObject, optionNo);
-    }
-    questionHtml += getControlButtonsHtml();
-    document.getElementById("quiz-question").innerHTML = questionHtml;
-    document.getElementById("prev-question").disabled = currentQuestionNo <= 0;
-    document.getElementById("next-question").disabled = currentQuestionNo >= totalQuestionsNo - 1;
+  let questionStatus = `question ${currentQuestionNo + 1}/${totalQuestionsNo}`;
+  document.getElementById("select-mode-title").innerHTML = `quiz - guess definition - ${questionStatus}:`;
+  document.getElementById("quiz-question").className = "container-visible";
+  document.getElementById("quiz-mode-container").className = "container-hidden";
+  questionHtml = getWordHtml(questionObject.word);
+  questionHtml += `<div id="question-options">`;
+  for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
+    questionHtml += getOptionHtml(questionObject, optionNo);
+  }
+  questionHtml += `</div>`;
+  questionHtml += getControlButtonsHtml();
+  document.getElementById("quiz-question").innerHTML = questionHtml;
+  document.getElementById("prev-question").disabled = currentQuestionNo <= 0;
+  document.getElementById("next-question").disabled = currentQuestionNo >= totalQuestionsNo - 1;
 }
 
 /**
@@ -104,9 +109,10 @@ function getWordHtml(word) {
  * @returns HTML code with word option
  */
 function getOptionHtml(question, optionNo) {
-  buttonAction = getAnswerButtonAction(null === question.correct, optionNo);
-  buttonClass = getAnswerButtonClass(optionNo == question.answer ? question.correct : null);
-  return `<div class="question-option-div">
+  let isNewQuestion = null === question.correct;
+  buttonAction = getAnswerButtonAction(isNewQuestion, optionNo);
+  buttonClass = getAnswerButtonClass(isNewQuestion, optionNo == question.answer ? question.correct : null);
+  return `<div id="question-option-${optionNo}">
             <button id="answer-${optionNo}" class="${buttonClass}" onclick="${buttonAction}">
               ${optionNo}) ${question.options[optionNo]}
             </button>
@@ -119,14 +125,14 @@ function getOptionHtml(question, optionNo) {
  * @returns HTML code for question control buttons (previous and next)
  */
 function getControlButtonsHtml() {
-  return `<div id="question-control" class="question-control-div">
-            <button id="prev-question" class="prev-question-btn" onclick="requestPrevQuestion()">
+  return `<div id="question-control">
+            <button id="prev-question" class="question-control-btn" onclick="requestPrevQuestion()">
               PREVIOUS
             </button>
-            <button id="next-question" class="next-question-btn" onclick="requestNextQuestion()">
+            <button id="next-question" class="question-control-btn" onclick="requestNextQuestion()">
               NEXT
             </button>
-            <button id="stop-quiz" class="stop-quiz-btn" onclick="stopQuiz()">
+            <button id="stop-quiz" class="question-control-btn" onclick="stopQuiz()">
               STOP
             </button>
           </div>`;
@@ -143,10 +149,9 @@ function answerQuestionNo(number, answerNo) {
     if (err) {
       console.log("ERROR: " + err);
     } else {
-      console.log(data);
-      document.getElementById("answer-" + answerNo).className = getAnswerButtonClass(data);
       for (let i in [0, 1, 2, 3]) {
         document.getElementById("answer-" + i).onclick = null;
+        document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);
       }
     }
   });
@@ -169,9 +174,9 @@ function getAnswerButtonAction(isNewQuestion, optionNo) {
  * @param {Boolean} isAnswerCorrect flag indicating the current status of answer correctness
  * @returns "regular" class if input boolean is null, "ok" class if input is true, "nok" when false
  */
-function getAnswerButtonClass(isAnswerCorrect) {
+function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
   if (null === isAnswerCorrect) {
-    return "question-option-btn";
+    return isNewQuestion ? "question-option-btn" : "question-option-btn-disabled";
   }
   return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
 }
@@ -196,7 +201,9 @@ function stopQuiz() {
  * @param {Float} summaryValue correct answers percentage
  */
 function displaySummary(summaryValue) {
-  document.getElementById("quiz-mode-form").className = "form-hidden";
+  document.getElementById("quiz-question").className = "container-visible";
+  document.getElementById("quiz-mode-container").className = "container-hidden";
+  document.getElementById("select-mode-title").innerHTML = "results:";
   document.getElementById("quiz-question").innerHTML = getSummaryHtml(summaryValue);
 }
 
@@ -207,9 +214,20 @@ function displaySummary(summaryValue) {
  * @returns HTML code for quiz summary
  */
 function getSummaryHtml(summaryValue) {
-  return `<div id="quiz-summary" class="quiz-summary-div">
-            <p><u>RESULT:</u><br><strong>${summaryValue*100}%</strong> of correct answers.</p>
-            <button id="end-summary" class="end-summary-btn" onclick="cleanQuiz()">
+  let summaryTitle = "RESULT";
+  let summaryImage = "images/summary-medium.png";
+  if (summaryValue >= 0.75) {
+    summaryTitle = "AWESOME";
+    summaryImage = "images/summary-good.png";
+  } else if (summaryValue <= 0.25) {
+    summaryTitle = "YOU CAN DO BETTER";
+    summaryImage = "images/summary-bad.png";
+  }
+  return `<div id="quiz-summary">
+            <img id="quiz-summary-img" src="${summaryImage}">
+            <p id="quiz-summary-title"><u>${summaryTitle}: </u></p>
+            <p><strong>${summaryValue * 100}%</strong> of correct answers.</p>
+            <button id="end-summary" class="question-control-btn" onclick="cleanQuiz()">
               OK
             </button>
           </div>`;
@@ -219,6 +237,8 @@ function getSummaryHtml(summaryValue) {
  * Method used to clean quiz summary and display initial quiz selector
  */
 function cleanQuiz() {
-  document.getElementById("quiz-mode-form").className = "form-visible";
+  document.getElementById("quiz-question").className = "container-hidden";
+  document.getElementById("quiz-mode-container").className = "container-visible";
+  document.getElementById("select-mode-title").innerHTML = "select mode:";
   document.getElementById("quiz-question").innerHTML = "";
 }

@@ -1,26 +1,33 @@
 <html>
-    <head>
-        <title>smart-words</title>
-        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-    </head>
-    <body>
-        <!-- title bar with site title and simple navbar -->
-        <header>
-            <h3 id="table-label">SMART WORDS</h3>
-            <form action="words.html">
-                <button class="show-words">WORDS</button>
-            </form>
-        </header>
-        <!-- main site content -->
-        <div id="main-content">
-            <!-- call to action and start quiz -->
-            <form action="quiz.html">
-                <button class="quiz-start">QUIZ</button>
-            </form>
-        </div>
-        <!-- footer with author information and copyrights -->
-        <footer>
-            Developed with 💗 by PNK @ 2022 🖖
-        </footer>
-    </body>
+  <head>
+    <title>smart-words</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- title bar with site title and simple navbar -->
+    <header>
+      <div id="site-logo"></div>
+      <h3 id="site-title" class="no-select">Smart Words</h3>
+      <div class="filler"></div>
+      <form action="words.html">
+        <button id="btn-show-words">WORDS</button>
+      </form>
+    </header>
+    <!-- main site content -->
+    <div id="main-content">
+      <div id="quiz-start-frame">
+        <!-- call to action and start quiz -->
+        <form action="quiz.html">
+          <button id="btn-quiz-start"><span>start quiz</span></button>
+        </form>
+      </div>
+    </div>
+    <!-- footer with author information and copyrights -->
+    <footer>developed with 💗 - Pnk @ 2022 🖖</footer>
+  </body>
 </html>

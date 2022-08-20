@@ -1,0 +1,249 @@
+#main-content {
+  padding: 20px 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+#select-mode-title {
+  margin: 5px 0px;
+  display: block;
+  font-size: 40px;
+  font-family: var(--styled-font), cursive;
+}
+
+#quiz-mode-container {
+  flex-wrap: wrap;
+}
+
+.container-hidden {
+  display: none;
+}
+
+.container-visible {
+  display: flex;
+}
+
+#quiz-mode {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  margin: 0px 25px 25px 0px;
+  border: 1px black solid;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#quiz-mode-title {
+  padding: 10 10px;
+  font-size: 25px;
+  letter-spacing: 0px;
+  font-weight: 500;
+  background-color: rgb(65, 65, 65);
+  color: white;
+}
+
+#quiz-mode-content {
+  padding: 5px 10px;
+  font-size: 15px;
+}
+
+p.mode-section-label {
+  margin: 0px 0px;
+  padding: 12px 0px 0px 0px;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+#quiz-mode-start {
+  margin: auto 5px 10px 5px;
+  align-self: center;
+  height: 30px;
+  width: 95%;
+  background-color: chartreuse;
+  border: 1px black solid;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+#quiz-mode-start:hover {
+  background-color: greenyellow;
+  border: 2px black solid;
+}
+
+#quiz-question {
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+#question-word {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
+  height: 100px;
+  width: 100% - 25px;
+  font-size: 40px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#question-options {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: 0 25px;
+  height: 100%;
+  width: 100% - 25px;
+}
+
+#question-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
+  height: 50px;
+  width: 100% - 25px;
+}
+
+#question-option-0 {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+#question-option-1 {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+#question-option-2 {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+#question-option-3 {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+div[id^="question-option-"] {
+  display: flex;
+  align-items: stretch;
+  align-content: stretch;
+  height: 100%;
+  width: 600px;
+}
+
+button[id^="answer-"] {
+  width: 100%;
+  margin: 10px;
+}
+
+button[class^="question-option-"] {
+  font-size: 20px;
+  box-shadow: 5px 5px 10px gray;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+.question-option-btn {
+  cursor: pointer;
+  background-color: lightgrey;
+  color: black;
+}
+
+.question-option-btn:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.question-option-btn-disabled {
+  cursor: default;
+  background-color: grey;
+}
+
+.question-option-btn-ok {
+  background-color: greenyellow;
+  color: black;
+}
+
+.question-option-btn-nok {
+  background-color: lightcoral;
+  color: black;
+}
+
+#question-control {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 125px;
+  margin: 5px;
+}
+
+.question-control-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 350px;
+  border: 1px black solid;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+.question-control-btn:hover:enabled {
+  cursor: pointer;
+  box-shadow: 0 0 0 2px black;
+}
+
+#prev-question {
+  background-color: white;
+  color: black;
+  margin-right: 5px;
+}
+
+#prev-question:disabled {
+  background-color: gainsboro;
+  color: gray;
+}
+
+#next-question {
+  background-color: white;
+  color: black;
+  margin-left: 5px;
+}
+
+#next-question:disabled {
+  background-color: gainsboro;
+  color: gray;
+}
+
+#stop-quiz {
+  width: 150px;
+  margin-left: 50px;
+  background-color: lightcoral;
+}
+
+#quiz-summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 400px;
+  font-size: 20px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#quiz-summary-img {
+  height: 200px;
+  width: 200px;
+}
+
+#end-summary {
+  width: 150px;
+  background-color: white;
+  color: black;
+}
+
+#end-summary:disabled {
+  background-color: gainsboro;
+  color: gray;
+}

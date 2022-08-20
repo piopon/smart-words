@@ -1,5 +1,8 @@
 const FORM_MODE_ADD = 0;
 const FORM_MODE_EDIT = 1;
+const LOAD_WORDS_OK = 0;
+const LOAD_WORDS_LOAD = 1;
+const LOAD_WORDS_ERROR = 2;
 var wordFormMode = FORM_MODE_ADD;
 var wordUnderEdition = undefined;
 
@@ -9,13 +12,12 @@ var wordUnderEdition = undefined;
 function addWord() {
   wordFormMode = FORM_MODE_ADD;
   wordUnderEdition = undefined;
-  document.getElementById("word-form-title").innerHTML = "Add word:";
+  document.getElementById("word-form-title").innerHTML = "add word:";
   document.getElementById("word-form-name").value = "";
   document.getElementById("word-form-cat").value = "";
   document.getElementById("word-form-def").value = "";
   document.getElementById("word-form-def").innerHTML = "";
-  document.getElementById("word-form-btn-accept").value = "add";
-  document.getElementById("word-form").className = "form-visible";
+  document.getElementById("word-form-btn-accept").innerHTML = "add";
 }
 
 /**
@@ -28,13 +30,12 @@ function addWord() {
 function editWord(name, category, definition) {
   wordFormMode = FORM_MODE_EDIT;
   wordUnderEdition = name;
-  document.getElementById("word-form-title").innerHTML = "Edit word:";
+  document.getElementById("word-form-title").innerHTML = "edit word:";
   document.getElementById("word-form-name").value = name;
   document.getElementById("word-form-cat").value = category;
   document.getElementById("word-form-def").value = definition;
   document.getElementById("word-form-def").innerHTML = definition;
-  document.getElementById("word-form-btn-accept").value = "edit";
-  document.getElementById("word-form").className = "form-visible";
+  document.getElementById("word-form-btn-accept").innerHTML = "edit";
 }
 
 /**
@@ -53,7 +54,6 @@ function acceptWord() {
   } else {
     console.log("ERROR: Unknown form mode: " + wordFormMode);
   }
-  document.getElementById("word-form").className = "form-hidden";
 }
 
 /**
@@ -67,13 +67,6 @@ function getWordFromUi() {
     category: document.getElementById("word-form-cat").value,
     description: document.getElementById("word-form-def").value,
   };
-}
-
-/**
- * Method used to cancel current word form and hide it (with no changes)
- */
-function cancelWord() {
-  document.getElementById("word-form").className = "form-hidden";
 }
 
 /**
@@ -107,15 +100,13 @@ function refreshWordsCallback(err, data) {
  * @returns HTML code in a String format to be added to words table DOM
  */
 function getWordTableRow(item) {
+  let editMethod = `editWord('${item.name}', '${item.category}', '${item.description}')`;
+  let deleteMethod = `removeWord('${item.name}')`;
   return `<tr>
             <td>${item.name}</td>
             <td>
-              <button class="btn-edit" onclick="editWord('${item.name}', '${item.category}', '${item.description}')">
-                  EDIT
-              </button>
-              <button class="btn-delete" onclick="removeWord('${item.name}')">
-                  DELETE
-              </button>
+              <a class="btn-edit" href="#modal" onclick="${editMethod}">EDIT</a>
+              <a class="btn-delete" onclick="${deleteMethod}">DELETE</a>
             </td>
             <td>${item.category}</td>
             <td>${item.description}</td>
@@ -123,13 +114,72 @@ function getWordTableRow(item) {
 }
 
 /**
+ * Method used to update GUI state while loading words from service
+ *
+ * @param {Integer} state current loading state (from: LOAD_WORDS_OK, LOAD_WORDS_LOAD, LOAD_WORDS_ERROR)
+ */
+function loadWordsUpdateUiState(state) {
+  let addWordBtn = document.getElementById("btn-add-word");
+  let rowElement = document.getElementById("no-words-row");
+  let textElement = document.getElementById("no-words-text");
+  if (rowElement === null || textElement === null) return;
+  if (LOAD_WORDS_OK === state) {
+    addWordBtn.className = "enabled";
+    addWordBtn.href = "#modal";
+    rowElement.className = "row-hidden";
+    textElement.innerHTML = "";
+    return;
+  }
+  if (LOAD_WORDS_LOAD === state) {
+    addWordBtn.className = "disabled";
+    addWordBtn.href = "";
+    rowElement.className = "row-loading";
+    textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
+    return;
+  }
+  if (LOAD_WORDS_ERROR === state) {
+    addWordBtn.className = "disabled";
+    addWordBtn.href = "";
+    rowElement.className = "row-visible";
+    textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
+    return;
+  }
+}
+
+/**
+ * Method used to generate HTML code responsible for creating a loader
+ *
+ * @returns HTML code with loader section
+ */
+function addLoadingWidget() {
+  return `<div id="loader-wrapper">
+            <div class="loader">
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+            </div>
+          </div>`;
+}
+
+/**
+ * Method used to generate HTML code with empty loader placeholder
+ *
+ * @returns HTML code with loader section placeholder
+ */
+function addErrorWidget() {
+  return `<div id="loader-wrapper"></div>`;
+}
+
+/**
  * Method used to load all words and add them to HTML table DOM
  */
 function loadWords() {
+  loadWordsUpdateUiState(LOAD_WORDS_LOAD);
   getWords((err, data) => {
     if (err) {
-      console.log("ERROR: " + err);
+      loadWordsUpdateUiState(LOAD_WORDS_ERROR);
     } else {
+      loadWordsUpdateUiState(LOAD_WORDS_OK);
       document.querySelector("tbody").innerHTML = Object.values(data)
         .map((item) => getWordTableRow(item))
         .join("");

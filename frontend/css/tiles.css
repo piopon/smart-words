@@ -1,0 +1,17 @@
+.tile-size-big {
+  width: 500px;
+  flex-grow: 4;
+}
+
+.tile-size-medium {
+  width: 300px;
+  flex-grow: 2;
+}
+
+.tile-color-primary {
+  background-color: var(--primary-color);
+}
+
+.tile-color-red {
+  background-color: red;
+}

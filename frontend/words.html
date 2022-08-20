@@ -1,58 +1,75 @@
 <html>
-    <head>
-        <title>smart-words</title>
-        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-        <script src="./js/api-words.js" defer></script>
-        <script src="./js/words.js" defer></script>
-    </head>
-    <body>
-        <!-- title bar with site title and simple navbar -->
-        <header>
-            <h3 id="table-label">WORDS</h3>
-            <form action="index.html">
-                <button class="back">BACK</button>
-            </form>
-            <button class="btn-add-word" onclick="addWord()">ADD</button>
-        </header>
-        <!-- main site content -->
-        <div id="main-content">
-            <!-- "popup" edit form with word components fields -->
-            <form id="word-form" class="form-hidden">
-                <fieldset>
-                    <legend id="word-form-title">Add new word:</legend>
-                    <label for="word-form-name">word:</label><br>
-                    <input type="text" id="word-form-name" placeholder="word name"/><br>
-                    <label for="word-form-cat">category:</label><br>
-                    <input list="categories" id="word-form-cat" placeholder="select or add category"/>
-                    <datalist id="categories">
-                        <option value="verb">
-                        <option value="adjective">
-                        <option value="noun">
-                        <option value="person">
-                        <option value="latin">
-                    </datalist><br>
-                    <label for="word-form-def">definition:</label><br>
-                    <textarea id="word-form-def" rows="3" cols="21" placeholder="word definition"></textarea><br>
-                    <input type="button" value="ok" id="word-form-btn-accept" onclick="acceptWord()"/>
-                    <input type="button" value="cancel" id="word-form-btn-cancel" onclick="cancelWord()"/>
-                </fieldset>
-            </form>
-            <!-- table with all words -->
-            <table id="table-words">
-                <thead>
-                    <tr>
-                        <th>word</th>
-                        <th>action</th>
-                        <th>category</th>
-                        <th>definition</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+  <head>
+    <title>smart-words</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/loader.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+    <link rel="stylesheet" href="css/words.css" />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <script src="./js/api-words.js" defer></script>
+    <script src="./js/words.js" defer></script>
+  </head>
+  <body>
+    <!-- title bar with site title and simple navbar -->
+    <header>
+      <a href="index.html" id="site-logo"></a>
+      <h3 id="site-title" class="no-select">Smart Words</h3>
+      <div class="filler"></div>
+      <a id="btn-add-word" class="disabled" onclick="addWord()">ADD</a>
+      <form action="index.html">
+        <button id="btn-page-back">BACK</button>
+      </form>
+    </header>
+    <!-- main site content -->
+    <div id="main-content">
+      <!-- "popup" edit form with word components fields -->
+      <div id="modal" class="overlay">
+        <div class="popup">
+          <form>
+            <fieldset>
+              <legend id="word-form-title">add new word:</legend>
+              <label for="word-form-name" class="word-form-label">word:</label>
+              <input type="text" id="word-form-name" class="word-form-field" placeholder="word name" />
+              <label for="word-form-cat" class="word-form-label">category:</label>
+              <select name="categories" id="word-form-cat" class="word-form-field" required>
+                <option value="" default selected hidden>select category</option>
+                <option value="verb">verb</option>
+                <option value="adjective">adjective</option>
+                <option value="noun">noun</option>
+                <option value="person">person</option>
+                <option value="latin">latin</option>
+              </select>
+              <label for="word-form-def" class="word-form-label">definition:</label>
+              <textarea id="word-form-def" rows="3" cols="21" class="word-form-field" placeholder="word definition"></textarea>
+            </fieldset>
+          </form>
+          <div id="popup-buttons">
+            <a href="#" id="word-form-btn-accept" onclick="acceptWord()">ok</a>
+            <a href="#" id="word-form-btn-cancel">cancel</a>
+          </div>
         </div>
-        <!-- footer with author information and copyrights -->
-        <footer>
-            Developed with 💗 by PNK @ 2022 🖖
-        </footer>
-    </body>
+      </div>
+      <!-- table with all words -->
+      <table id="table-words">
+        <thead>
+          <tr>
+            <th>word</th>
+            <th>action</th>
+            <th>category</th>
+            <th>definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="no-words-row" class="row-loading">
+            <td id="no-words-text" rowspan="4">loading...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- footer with author information and copyrights -->
+    <footer>developed with 💗 - Pnk @ 2022 🖖</footer>
+  </body>
 </html>

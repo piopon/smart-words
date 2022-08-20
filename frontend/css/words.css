@@ -1,0 +1,156 @@
+#btn-add-word {
+  height: 64px;
+  width: 64px;
+  margin: 0 10 0 0px;
+  color: transparent !important;
+  border: 0px solid black;
+}
+
+#btn-add-word.disabled {
+  background: url(../images/add-hover.png) no-repeat;
+  cursor: not-allowed;
+}
+
+#btn-add-word.enabled {
+  background: url(../images/add.png) no-repeat;
+  cursor: pointer;
+}
+
+#btn-add-word:hover {
+  background: url(../images/add-hover.png) no-repeat;
+}
+
+#table-words {
+  display: block;
+  width: 100%;
+  margin: 50px 100px;
+  empty-cells: show;
+  border: 1px solid black;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+#table-words thead {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 75px;
+  line-height: 70px;
+  text-align: center;
+  background-color: var(--primary-color);
+  font-family: var(--styled-font), cursive;
+  font-size: 25px;
+}
+
+#table-words thead tr {
+  display: flex;
+  height: 100%;
+}
+
+#table-words tbody {
+  display: block;
+  max-height: 70vh;
+  overflow-y: auto;
+  font-size: 14px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#table-words td {
+  height: 100%;
+  line-height: 45px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#table-words tbody tr {
+  display: flex;
+  padding: 3px 10px;
+  height: 50px;
+}
+
+#table-words tbody tr#no-words-row.row-hidden {
+  display: none;
+}
+
+#table-words tbody tr#no-words-row.row-loading {
+  display: block;
+  background-color: whitesmoke;
+  height: 30vh;
+  text-align: center;
+}
+
+#table-words tbody tr#no-words-row.row-visible {
+  display: block;
+  background-color: whitesmoke;
+  color: red;
+  height: 30vh;
+  text-align: center;
+}
+
+#table-words tbody td#no-words-text {
+  font-family: var(--styled-font), cursive;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+#table-words td:nth-child(1),
+#table-words th:nth-child(1) {
+  flex-basis: 15%;
+  flex-grow: 1;
+}
+
+#table-words td:nth-child(2),
+#table-words th:nth-child(2) {
+  flex-basis: 20%;
+  flex-grow: 1;
+  text-align: center;
+}
+
+#table-words td:nth-child(3),
+#table-words th:nth-child(3) {
+  flex-basis: 10%;
+  flex-grow: 1;
+}
+
+#table-words td:nth-child(4),
+#table-words th:nth-child(4) {
+  flex-basis: 75%;
+  flex-grow: 3;
+}
+
+#table-words tbody tr:nth-child(n) {
+  background-color: white;
+}
+
+#table-words tbody tr:nth-child(2n) {
+  background-color: #eeeeeeee;
+}
+
+tr a.btn-edit {
+  background: url(../images/edit.png) no-repeat center;
+  background-color: dodgerblue;
+  border: black solid 2px;
+  border-radius: 12px;
+  color: transparent;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+tr a.btn-edit:hover {
+  background-color: lightblue;
+}
+
+tr a.btn-delete {
+  background: url(../images/delete.png) no-repeat center;
+  background-color: firebrick;
+  border: black solid 2px;
+  border-radius: 12px;
+  color: transparent;
+  padding: 10px 5px;
+  cursor: pointer;
+}
+
+tr a.btn-delete:hover {
+  background-color: red;
+}

@@ -1,0 +1,86 @@
+:root {
+  --primary-color: lightgray;
+  --styled-font: "Pacifico";
+  --clear-font-primary: "Roboto Condensed";
+  --clear-font-backup: "Lucida Sans";
+  --btn-quiz-shadow-size: 50px;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+}
+
+header form {
+  margin: 0px;
+}
+
+header .filler {
+  flex-grow: 1;
+  text-align: center;
+}
+
+header #site-logo {
+  height: 64px;
+  width: 64px;
+  margin: 0 0 8 10px;
+  background: url(../images/sw-logo.png) no-repeat;
+}
+
+header #site-title {
+  margin: 0 5px;
+  font-size: 50px;
+  font-family: var(--styled-font), cursive;
+}
+
+header #btn-page-back {
+  height: 64px;
+  width: 64px;
+  margin: 0 20 0 0px;
+  color: transparent !important;
+  border: 0px solid black;
+  background: url(../images/back.png) no-repeat;
+}
+
+header #btn-page-back:hover {
+  background: url(../images/back-hover.png) no-repeat;
+}
+
+#main-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(../images/background/background.png);
+  background-position: 15px 15px;
+}
+
+footer {
+  height: 40px;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  font-family: var(--styled-font), cursive;
+}
+
+.no-select {
+  user-select: none; /* Chrome, Edge, Opera and Firefox */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}

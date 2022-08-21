@@ -118,43 +118,6 @@ div[id^="question-option-"] {
   width: 600px;
 }
 
-button[id^="answer-"] {
-  width: 100%;
-  margin: 10px;
-}
-
-button[class^="question-option-"] {
-  font-size: 20px;
-  box-shadow: 5px 5px 10px gray;
-  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
-}
-
-.question-option-btn {
-  cursor: pointer;
-  background-color: lightgrey;
-  color: black;
-}
-
-.question-option-btn:hover {
-  background-color: whitesmoke;
-  color: black;
-}
-
-.question-option-btn-disabled {
-  cursor: default;
-  background-color: grey;
-}
-
-.question-option-btn-ok {
-  background-color: greenyellow;
-  color: black;
-}
-
-.question-option-btn-nok {
-  background-color: lightcoral;
-  color: black;
-}
-
 #question-control {
   display: flex;
   justify-content: center;

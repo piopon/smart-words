@@ -3,6 +3,15 @@
 I really appreciate contributions via GitHub pull requests.
 To contribute take the following steps:
 
+### Forking and cloning Smart Words
+
+- Visit https://github.com/piopon/smart-words and click the "Fork" button to make a copy of the repository under your own GitHub account.
+- Navigate to your copy of the repository and click the green "Clone or download" button.
+- Copy the address and clone it to your local machine
+  ```sh
+     git clone <the pasted URL>
+  ```
+
 - Make sure you are up to date with the latest code on the master:
   ```sh
      git fetch upstream

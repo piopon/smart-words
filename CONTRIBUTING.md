@@ -12,15 +12,19 @@ To contribute take the following steps:
      git clone <the pasted URL>
   ```
 
-- Make sure you are up to date with the latest code on the master:
+### Making changes locally
+
+- Make sure you are up to date with the latest code on the master and checkout to your branch:
   ```sh
      git fetch upstream
      git checkout upstream/master -b <name_of_your_branch>
   ```     
 - Apply and verify your changes
- - Commit your changes:
+  Keep your changes as minimal as possible to fix a specified issue.
+  Fix only one issue in a single branch, otherwise your request may be rejected!
+- Commit your changes adding a clear and concise commit message
    ```sh
-     git commit -am "<your informative commit message>"
+     git commit -m "<your informative commit message>"
    ```
  - Push changes to your fork:
    ```sh

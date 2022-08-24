@@ -38,7 +38,7 @@ To contribute take the following steps:
 - Go to https://github.com/piopon/smart-words
 - You should see a big green button marked "Compare and pull request"
 - Click that button. You should see a page giving you the opportunity to open a pull request
-- **Review your changes** 
+- **Review your changes**
 - Write a clear and concise subject and description for your change. If your change is related to GUI please add a screenshot with your changes to speed up review/discussion process.
 - Click the green "Create pull request" button
 

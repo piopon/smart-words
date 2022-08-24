@@ -1,26 +1,28 @@
-# Contributing to the Smard Words repo
+# Contributing to the **smart-words** repo
 
-I really appreciate contributions via GitHub pull requests.
+I really appreciate all contributions via GitHub pull requests.
 To contribute take the following steps:
 
-### Forking and cloning Smart Words
+## Forking and cloning Smart Words
 
-- Visit https://github.com/piopon/smart-words and click the "Fork" button to make a copy of the repository under your own GitHub account.
+- Visit https://github.com/piopon/smart-words
+- Click the "Fork" button to make a copy of the repository under your own GitHub account.
 - Navigate to your copy of the repository and click the green "Clone or download" button.
 - Copy the address and clone it to your local machine
   ```sh
      git clone <the pasted URL>
   ```
 
-### Making changes locally
+## Making changes locally
 
-- Make sure you are up to date with the latest code on the master and checkout to your branch:
+- Make sure you are up to date with the latest code on the master and checkout to your branch
   ```sh
      git fetch upstream
      git checkout upstream/master -b <name_of_your_branch>
   ```     
 - Apply and verify your changes
-  Keep your changes as minimal as possible to fix a specified issue.
+
+  Keep your changes as minimal as possible to fix a specified issue.<br>
   Fix only one issue in a single branch, otherwise your request may be rejected!
 - Commit your changes adding a clear and concise commit message
    ```sh

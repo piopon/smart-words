@@ -33,19 +33,13 @@ To contribute take the following steps:
      git push origin <name_of_your_branch>
    ```
 
-### Send us your pull request:
+## Submitting pull request on GitHub
 
-Go to https://https://github.com/piopon/smart-words and click the "Compare & pull request" button.
+- Go to https://github.com/piopon/smart-words
+- You should see a big green button marked "Compare and pull request"
+- Click that button. You should see a page giving you the opportunity to open a pull request
+- **Review your changes** 
+- Write a clear and concise subject and description for your change. If your change is related to GUI please add a screenshot with your changes to speed up review/discussion process.
+- Click the green "Create pull request" button
 
-
-Please make sure you solved all warnings and errors reported by the static code analyses and that you fill in the full pull request template. Failing to do so will result in us asking you to fix it.
-
-    
-
-
-   [git]:<https://git-scm.com/>
-   [flutter]:<https://flutter.dev/docs/get-started/install>
-   [github]:<https://github.com/>
-   [git-ssh]:<https://help.github.com/articles/generating-ssh-keys/>
-   [git-repo-url]: <https://github.com/lejard-h/google_maps_webservice.git>
-   [dart]:<https://www.dartlang.org/tools/sdk>
+The rest of the procedure is the same as for editing a file directly on GitHub, the change is reviewed for conflicts against the base branch, the owner gets an email notification, and if happy will merge your change or start a review process.

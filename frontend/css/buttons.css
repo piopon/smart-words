@@ -92,14 +92,14 @@ button[class^="question-option-"] {
 }
 
 .dynamic-border::before {
-  border-bottom-width: 3px;
-  border-left-width: 3px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
 }
 
 .dynamic-border::after {
-  border-top-width: 3px;
-  border-right-width: 3px;
-} 
+  border-top-width: 2px;
+  border-right-width: 2px;
+}
 
 .dynamic-border:hover:enabled {
   cursor: pointer;

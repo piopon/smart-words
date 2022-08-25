@@ -75,6 +75,47 @@ button[class^="question-option-"] {
   border: 3px black solid;
 }
 
+.dynamic-border {
+  position: relative;
+}
+
+.dynamic-border::before, .dynamic-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.dynamic-border::before {
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+
+.dynamic-border::after {
+  border-top-width: 3px;
+  border-right-width: 3px;
+} 
+
+.dynamic-border:hover:enabled::before, .dynamic-border:hover:enabled::after {
+  border-color: black;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+
+.dynamic-border:hover:enabled::before {
+  transition-delay: 0s, 0s, 0.25s;
+}
+
+.dynamic-border:hover:enabled::after {
+  transition-delay: 0s, 0.25s, 0s;
+}
+
 #prev-question {
   background-color: white;
   color: black;

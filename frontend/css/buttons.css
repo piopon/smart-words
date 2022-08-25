@@ -149,8 +149,3 @@ button[class^="question-option-"] {
   background-color: white;
   color: black;
 }
-
-#end-summary:disabled {
-  background-color: gainsboro;
-  color: gray;
-}

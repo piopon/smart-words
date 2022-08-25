@@ -139,6 +139,21 @@ function getControlButtonsHtml() {
 }
 
 /**
+ * Method used to receive a HTML code for a single control button
+ *
+ * @param {String} id identifier for created control button (used for specific button style)
+ * @param {String} text label of the button
+ * @param {String} action method name executed after pressing button
+ * @param {String} borderType static or dynamic border
+ * @returns HTML code for question control button
+ */
+function getControlButtonHtml(id, text, action, borderType) {
+  return `<button id="${id}" class="question-control-btn ${borderType}" onclick="${action}">
+            ${text}
+          </button>`;
+}
+
+/**
  * Method used to answer a specified question number with input answer number
  *
  * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)

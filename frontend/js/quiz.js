@@ -88,7 +88,7 @@ function displayQuestion(questionObject) {
   questionHtml += getControlButtonsHtml();
   document.getElementById("quiz-question").innerHTML = questionHtml;
   document.getElementById("prev-question").disabled = currentQuestionNo <= 0;
-  document.getElementById("next-question").disabled = currentQuestionNo >= totalQuestionsNo - 1;
+  document.getElementById("stop-quiz").disabled = currentQuestionNo >= totalQuestionsNo - 1;
 }
 
 /**

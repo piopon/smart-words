@@ -70,9 +70,9 @@ button[class^="question-option-"] {
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
-.question-control-btn:hover:enabled {
+.static-border:hover:enabled {
   cursor: pointer;
-  box-shadow: 0 0 0 2px black;
+  border: 3px black solid;
 }
 
 #prev-question {

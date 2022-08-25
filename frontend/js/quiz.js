@@ -125,16 +125,15 @@ function getOptionHtml(question, optionNo) {
  * @returns HTML code for question control buttons (previous and next)
  */
 function getControlButtonsHtml() {
+  let placeholderForPrevBtn = getControlButtonHtml("prev-question", "PREVIOUS", "requestPrevQuestion()", "static-border");
+  let placeholderForNextBtn = currentQuestionNo === totalQuestionsNo - 1
+      ? getControlButtonHtml("finish-quiz", "FINISH", "stopQuiz()", "static-border")
+      : getControlButtonHtml("next-question", "NEXT", "requestNextQuestion()", "static-border");
+  let placeholderForStopBtn = getControlButtonHtml("stop-quiz", "STOP", "stopQuiz()", "dynamic-border");
   return `<div id="question-control">
-            <button id="prev-question" class="question-control-btn static-border" onclick="requestPrevQuestion()">
-              PREVIOUS
-            </button>
-            <button id="next-question" class="question-control-btn static-border" onclick="requestNextQuestion()">
-              NEXT
-            </button>
-            <button id="stop-quiz" class="question-control-btn dynamic-border" onclick="stopQuiz()">
-              STOP
-            </button>
+            ${placeholderForPrevBtn}
+            ${placeholderForNextBtn}
+            ${placeholderForStopBtn}
           </div>`;
 }
 

@@ -101,6 +101,10 @@ button[class^="question-option-"] {
   border-right-width: 3px;
 } 
 
+.dynamic-border:hover:enabled {
+  cursor: pointer;
+}
+
 .dynamic-border:hover:enabled::before, .dynamic-border:hover:enabled::after {
   border-color: black;
   transition: border-color 0.25s, width 0.25s, height 0.25s;

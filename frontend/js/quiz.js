@@ -126,13 +126,13 @@ function getOptionHtml(question, optionNo) {
  */
 function getControlButtonsHtml() {
   return `<div id="question-control">
-            <button id="prev-question" class="question-control-btn" onclick="requestPrevQuestion()">
+            <button id="prev-question" class="question-control-btn static-border" onclick="requestPrevQuestion()">
               PREVIOUS
             </button>
-            <button id="next-question" class="question-control-btn" onclick="requestNextQuestion()">
+            <button id="next-question" class="question-control-btn static-border" onclick="requestNextQuestion()">
               NEXT
             </button>
-            <button id="stop-quiz" class="question-control-btn" onclick="stopQuiz()">
+            <button id="stop-quiz" class="question-control-btn dynamic-border" onclick="stopQuiz()">
               STOP
             </button>
           </div>`;
@@ -227,7 +227,7 @@ function getSummaryHtml(summaryValue) {
             <img id="quiz-summary-img" src="${summaryImage}">
             <p id="quiz-summary-title"><u>${summaryTitle}: </u></p>
             <p><strong>${summaryValue * 100}%</strong> of correct answers.</p>
-            <button id="end-summary" class="question-control-btn" onclick="cleanQuiz()">
+            <button id="end-summary" class="question-control-btn dynamic-border" onclick="cleanQuiz()">
               OK
             </button>
           </div>`;

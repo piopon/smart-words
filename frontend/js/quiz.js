@@ -1,12 +1,17 @@
+const STATUS_NO_ANSWER = 0;
+const STATUS_ANSWER_OK = 1;
+const STATUS_ANSWER_NOK = -1;
 var quizID = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
+var questionsStatus = undefined;
 
 /**
  * Method used to receive number of question, start quiz and receive UUID
  */
 function startQuiz() {
   totalQuestionsNo = document.getElementById("quiz-mode-question-no").value;
+  questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);

@@ -168,6 +168,7 @@ function answerQuestionNo(number, answerNo) {
     if (err) {
       console.log("ERROR: " + err);
     } else {
+      questionsStatus[currentQuestionNo] = data === true ? STATUS_ANSWER_OK : STATUS_ANSWER_NOK;
       for (let i in [0, 1, 2, 3]) {
         document.getElementById("answer-" + i).onclick = null;
         document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);

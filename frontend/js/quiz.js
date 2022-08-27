@@ -209,7 +209,6 @@ function stopQuiz() {
     if (err) {
       console.log("ERROR: " + err);
     } else {
-      console.log(data);
       displaySummary(data);
     }
   });

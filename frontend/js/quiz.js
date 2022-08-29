@@ -206,16 +206,25 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
  */
 function checkQuizEnd() {
   if(questionsStatus.includes(STATUS_NO_ANSWER)) {
-    // show popup here
+    showQuizEndPopup();
   } else {
     stopQuiz();
   }
+}
+
+function showQuizEndPopup() {
+  document.getElementById("modal").className = "overlay open";
+}
+
+function hideQuizEndPopup() {
+  document.getElementById("modal").className = "overlay";  
 }
 
 /**
  * Method used to stop quiz (via quiz API) with specified ID
  */
 function stopQuiz() {
+  hideQuizEndPopup();
   getQuizStop(quizID, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);

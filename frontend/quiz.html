@@ -21,6 +21,16 @@
     </header>
     <!-- main site content -->
     <div id="main-content">
+      <!-- "popup" window with quiz end confirmation question -->
+      <div id="modal" class="overlay">
+        <div class="popup">
+          <p>Not all questions are answered.<br>Do you want to end quiz?</p>
+          <div id="popup-buttons">
+            <a href="#" id="end-quiz-btn-yes" onclick="stopQuiz()">yes</a>
+            <a href="#" id="end-quiz-btn-yes" onclick="hideQuizEndPopup()">no</a>
+          </div>
+        </div>
+      </div>
       <!-- quiz mode form with start option -->
       <p id="select-mode-title">select mode:</p>
       <div id="quiz-mode-container" class="container-visible">

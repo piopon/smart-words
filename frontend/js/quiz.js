@@ -132,9 +132,9 @@ function getOptionHtml(question, optionNo) {
 function getControlButtonsHtml() {
   let placeholderForPrevBtn = getControlButtonHtml("prev-question", "PREVIOUS", "requestPrevQuestion()", "static-border");
   let placeholderForNextBtn = currentQuestionNo === totalQuestionsNo - 1
-      ? getControlButtonHtml("finish-quiz", "FINISH", "stopQuiz()", "static-border")
+      ? getControlButtonHtml("finish-quiz", "FINISH", "checkQuizEnd()", "static-border")
       : getControlButtonHtml("next-question", "NEXT", "requestNextQuestion()", "static-border");
-  let placeholderForStopBtn = getControlButtonHtml("stop-quiz", "STOP", "stopQuiz()", "dynamic-border");
+  let placeholderForStopBtn = getControlButtonHtml("stop-quiz", "STOP", "checkQuizEnd()", "dynamic-border");
   return `<div id="question-control">
             ${placeholderForPrevBtn}
             ${placeholderForNextBtn}
@@ -199,6 +199,17 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
     return isNewQuestion ? "question-option-btn" : "question-option-btn-disabled";
   }
   return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
+}
+
+/**
+ * Method used to check is all questions are answered and depending on the result stop quiz or show confirmation popup
+ */
+function checkQuizEnd() {
+  if(questionsStatus.includes(STATUS_NO_ANSWER)) {
+    // show popup here
+  } else {
+    stopQuiz();
+  }
 }
 
 /**

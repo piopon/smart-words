@@ -82,7 +82,7 @@
   cursor: pointer;
   text-align: center;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   margin: 5px;
 }
 
@@ -98,7 +98,7 @@
   cursor: pointer;
   text-align: center;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   margin: 5px;
 }
 
@@ -144,6 +144,8 @@ legend#word-form-title {
 }
 
 span#title-bold {
+  display: block;
+  margin-top: 10px;
   font-size: 18px;
   font-weight: 700;
 }

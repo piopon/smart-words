@@ -202,29 +202,35 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
 }
 
 /**
- * Method used to check is all questions are answered and depending on the result stop quiz or show confirmation popup
+ * Method used to check is all questions are answered and depending on the result stop quiz or show confirmation modal
  */
 function checkQuizEnd() {
   if(questionsStatus.includes(STATUS_NO_ANSWER)) {
-    showQuizEndPopup();
+    showQuizEndModalDialog();
   } else {
     stopQuiz();
   }
 }
 
-function showQuizEndPopup() {
+/**
+ * Method wrapper to display modal dialog with quiz end confirmation question
+ */
+function showQuizEndModalDialog() {
   document.getElementById("modal").className = "overlay open";
 }
 
-function hideQuizEndPopup() {
-  document.getElementById("modal").className = "overlay";  
+/**
+ * Method wrapper to hide modal dialog with quiz end confirmation question
+ */
+function hideQuizEndModalDialog() {
+  document.getElementById("modal").className = "overlay";
 }
 
 /**
  * Method used to stop quiz (via quiz API) with specified ID
  */
 function stopQuiz() {
-  hideQuizEndPopup();
+  hideQuizEndModalDialog();
   getQuizStop(quizID, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);

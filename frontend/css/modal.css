@@ -105,6 +105,17 @@ legend#word-form-title {
   text-decoration: underline;
 }
 
+#question-title {
+  font-size: 17px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+  text-align: center;
+}
+
+span#title-bold {
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .word-form-label {
   display: block;
   padding: 10px 0px 0px 5px;

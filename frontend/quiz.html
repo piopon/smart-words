@@ -25,7 +25,8 @@
       <!-- "popup" window with quiz end confirmation question -->
       <div id="modal" class="overlay">
         <div class="popup">
-          <p>Not all questions are answered.<br>Do you want to end quiz?</p>
+          <p id="question-title">Not all questions are answered.<br>
+            <span id="title-bold">Do you want to end quiz?</span></p>
           <div id="popup-buttons">
             <button id="end-quiz-btn-yes" onclick="stopQuiz()">yes</button>
             <button id="end-quiz-btn-yes" onclick="hideQuizEndModalDialog()">no</button>

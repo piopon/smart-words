@@ -88,6 +88,7 @@
 
 #end-quiz-btn-yes:hover {
   background-color: red;
+  transition: background-color 1s;
 }
 
 #end-quiz-btn-no {
@@ -104,6 +105,7 @@
 
 #end-quiz-btn-no:hover {
   background-color: whitesmoke;
+  border: 3px black solid;
 }
 
 .popup a:link {

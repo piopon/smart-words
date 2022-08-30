@@ -163,11 +163,12 @@ button[class^="question-option-"] {
 
 #end-summary {
   width: 150px;
-  background-color: white;
+  background-color: var(--primary-color);
   color: black;
 }
 
 #end-summary:hover {
-  background-color: var(--primary-color);
-  transition: background-color 1s;
+  color: white;
+  background-color: dimgray;
+  transition: background-color 1s, color 1s;
 }

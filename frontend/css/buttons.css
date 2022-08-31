@@ -4,17 +4,17 @@
 #quiz-mode-start {
   margin: auto 5px 10px 5px;
   align-self: center;
-  height: 30px;
+  height: 40px;
   width: 95%;
-  background-color: chartreuse;
+  background-color: limegreen;
   border: 1px black solid;
-  font-size: 17px;
-  font-weight: 800;
+  font-size: 19px;
+  font-family: var(--styled-font), cursive;
 }
 
 #quiz-mode-start:hover {
-  background-color: greenyellow;
-  border: 2px black solid;
+  background-color: lime;
+  transition: background-color 0.75s;
 }
 
 /*******************************/

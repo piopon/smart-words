@@ -93,6 +93,15 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
   }
 
   /**
+   * Method used to generate specified number of rounds
+   * @param size desired number of rounds to be generated
+   * @return list of specified number of rounds
+   */
+  private def generateRounds(size: Int): List[Round] = {
+    List.fill(size)(generateRound())
+  }
+
+  /**
    * Method used to generate 4 answer options
    * @param correctDefinition correct word definition (one of answer options)
    * @param category word category from which to draw the remaining 3 answer options
@@ -110,6 +119,6 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
    * @return generated quiz object
    */
   private def generateQuiz(size: Int): Quiz = {
-    Quiz(List.fill(size)(generateRound()), 0)
+    Quiz(generateRounds(size), 0)
   }
 }

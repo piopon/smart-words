@@ -1,0 +1,174 @@
+/*******************************/
+/* quiz mode start button      */
+/*******************************/
+#quiz-mode-start {
+  margin: auto 5px 10px 5px;
+  align-self: center;
+  height: 40px;
+  width: 95%;
+  background-color: limegreen;
+  border: 1px black solid;
+  font-size: 19px;
+  font-family: var(--styled-font), cursive;
+}
+
+#quiz-mode-start:hover {
+  background-color: lime;
+  transition: background-color 0.75s;
+}
+
+/*******************************/
+/* quiz options buttons        */
+/*******************************/
+button[id^="answer-"] {
+  width: 100%;
+  margin: 10px;
+}
+
+button[class^="question-option-"] {
+  font-size: 20px;
+  box-shadow: 5px 5px 10px gray;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+.question-option-btn {
+  cursor: pointer;
+  background-color: lightgrey;
+  color: black;
+}
+
+.question-option-btn:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.question-option-btn-disabled {
+  cursor: default;
+  background-color: grey;
+}
+
+.question-option-btn-ok {
+  background-color: greenyellow;
+  color: black;
+}
+
+.question-option-btn-nok {
+  background-color: lightcoral;
+  color: black;
+}
+
+/*******************************/
+/* quiz control buttons        */
+/*******************************/
+.question-control-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 350px;
+  border: 1px black solid;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+.static-border:hover:enabled {
+  cursor: pointer;
+  border: 3px black solid;
+}
+
+.dynamic-border {
+  position: relative;
+}
+
+.dynamic-border::before, .dynamic-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.dynamic-border::before {
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
+
+.dynamic-border::after {
+  border-top-width: 2px;
+  border-right-width: 2px;
+}
+
+.dynamic-border:hover:enabled {
+  cursor: pointer;
+}
+
+.dynamic-border:hover:enabled::before, .dynamic-border:hover:enabled::after {
+  border-color: black;
+  transition: border-color 0.25s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+
+.dynamic-border:hover:enabled::before {
+  transition-delay: 0s, 0s, 0.25s;
+}
+
+.dynamic-border:hover:enabled::after {
+  transition-delay: 0s, 0.25s, 0s;
+}
+
+#prev-question {
+  background-color: white;
+  color: black;
+  margin-right: 5px;
+}
+
+#prev-question:disabled {
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
+}
+
+#next-question {
+  background-color: white;
+  color: black;
+  margin-left: 5px;
+}
+
+#finish-quiz {
+  background-color: lime;
+  color: black;
+  margin-left: 5px;
+}
+
+#stop-quiz {
+  width: 150px;
+  margin-left: 50px;
+  background-color: lightcoral;
+}
+
+#stop-quiz:hover {
+  background-color: red;
+  transition: background-color 1s;
+}
+
+#stop-quiz:disabled {
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
+}
+
+#end-summary {
+  width: 150px;
+  background-color: var(--primary-color);
+  color: black;
+}
+
+#end-summary:hover {
+  color: white;
+  background-color: dimgray;
+  transition: background-color 1s, color 1s;
+}

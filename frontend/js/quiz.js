@@ -1,12 +1,17 @@
+const STATUS_NO_ANSWER = 0;
+const STATUS_ANSWER_OK = 1;
+const STATUS_ANSWER_NOK = -1;
 var quizID = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
+var questionsStatus = undefined;
 
 /**
  * Method used to receive number of question, start quiz and receive UUID
  */
 function startQuiz() {
   totalQuestionsNo = document.getElementById("quiz-mode-question-no").value;
+  questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
@@ -88,7 +93,7 @@ function displayQuestion(questionObject) {
   questionHtml += getControlButtonsHtml();
   document.getElementById("quiz-question").innerHTML = questionHtml;
   document.getElementById("prev-question").disabled = currentQuestionNo <= 0;
-  document.getElementById("next-question").disabled = currentQuestionNo >= totalQuestionsNo - 1;
+  document.getElementById("stop-quiz").disabled = currentQuestionNo >= totalQuestionsNo - 1;
 }
 
 /**
@@ -125,17 +130,31 @@ function getOptionHtml(question, optionNo) {
  * @returns HTML code for question control buttons (previous and next)
  */
 function getControlButtonsHtml() {
+  let placeholderForPrevBtn = getControlButtonHtml("prev-question", "PREVIOUS", "requestPrevQuestion()", "static-border");
+  let placeholderForNextBtn = currentQuestionNo === totalQuestionsNo - 1
+      ? getControlButtonHtml("finish-quiz", "FINISH", "checkQuizEnd()", "static-border")
+      : getControlButtonHtml("next-question", "NEXT", "requestNextQuestion()", "static-border");
+  let placeholderForStopBtn = getControlButtonHtml("stop-quiz", "STOP", "checkQuizEnd()", "dynamic-border");
   return `<div id="question-control">
-            <button id="prev-question" class="question-control-btn" onclick="requestPrevQuestion()">
-              PREVIOUS
-            </button>
-            <button id="next-question" class="question-control-btn" onclick="requestNextQuestion()">
-              NEXT
-            </button>
-            <button id="stop-quiz" class="question-control-btn" onclick="stopQuiz()">
-              STOP
-            </button>
+            ${placeholderForPrevBtn}
+            ${placeholderForNextBtn}
+            ${placeholderForStopBtn}
           </div>`;
+}
+
+/**
+ * Method used to receive a HTML code for a single control button
+ *
+ * @param {String} id identifier for created control button (used for specific button style)
+ * @param {String} text label of the button
+ * @param {String} action method name executed after pressing button
+ * @param {String} borderType static or dynamic border
+ * @returns HTML code for question control button
+ */
+function getControlButtonHtml(id, text, action, borderType) {
+  return `<button id="${id}" class="question-control-btn ${borderType}" onclick="${action}">
+            ${text}
+          </button>`;
 }
 
 /**
@@ -149,6 +168,7 @@ function answerQuestionNo(number, answerNo) {
     if (err) {
       console.log("ERROR: " + err);
     } else {
+      questionsStatus[currentQuestionNo] = data === true ? STATUS_ANSWER_OK : STATUS_ANSWER_NOK;
       for (let i in [0, 1, 2, 3]) {
         document.getElementById("answer-" + i).onclick = null;
         document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);
@@ -182,14 +202,39 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
 }
 
 /**
+ * Method used to check is all questions are answered and depending on the result stop quiz or show confirmation modal
+ */
+function checkQuizEnd() {
+  if(questionsStatus.includes(STATUS_NO_ANSWER)) {
+    showQuizEndModalDialog();
+  } else {
+    stopQuiz();
+  }
+}
+
+/**
+ * Method wrapper to display modal dialog with quiz end confirmation question
+ */
+function showQuizEndModalDialog() {
+  document.getElementById("modal").className = "overlay open";
+}
+
+/**
+ * Method wrapper to hide modal dialog with quiz end confirmation question
+ */
+function hideQuizEndModalDialog() {
+  document.getElementById("modal").className = "overlay";
+}
+
+/**
  * Method used to stop quiz (via quiz API) with specified ID
  */
 function stopQuiz() {
+  hideQuizEndModalDialog();
   getQuizStop(quizID, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
     } else {
-      console.log(data);
       displaySummary(data);
     }
   });
@@ -227,7 +272,7 @@ function getSummaryHtml(summaryValue) {
             <img id="quiz-summary-img" src="${summaryImage}">
             <p id="quiz-summary-title"><u>${summaryTitle}: </u></p>
             <p><strong>${summaryValue * 100}%</strong> of correct answers.</p>
-            <button id="end-summary" class="question-control-btn" onclick="cleanQuiz()">
+            <button id="end-summary" class="question-control-btn dynamic-border" onclick="cleanQuiz()">
               OK
             </button>
           </div>`;

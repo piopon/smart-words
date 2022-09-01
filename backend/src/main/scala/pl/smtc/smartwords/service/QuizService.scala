@@ -85,11 +85,29 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
 
   /**
    * Method used to generate a new round object
+   * @param forbiddenWords list of currently used quiz words which cannot overlap while generating this round
    * @return generated round object with random word and 4 answer options
    */
-  private def generateRound(): Round = {
-    val word: Word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
+  private def generateRound(forbiddenWords: List[String] = List.empty): Round = {
+    var word: Word = null
+    do {
+      word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
+    } while (forbiddenWords.contains(word.name))
     Round(word, generateOptions(word.definition, word.category), None, None)
+  }
+
+  /**
+   * Method used to generate specified number of rounds
+   * @param size desired number of rounds to be generated
+   * @return list of specified number of rounds
+   */
+  private def generateRounds(size: Int): List[Round] = {
+    var rounds: List[Round] = List.fill(size)(generateRound()).distinctBy(_.word.name)
+    for (_ <- 0 until size-rounds.length) {
+      val replacement: Round = generateRound(rounds.map(r => r.word.name))
+      rounds = rounds.appended(replacement)
+    }
+    rounds
   }
 
   /**
@@ -99,8 +117,17 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
    * @return list of possible 4 answer options
    */
   private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
+    val totalOptionsNo = 4
     val incorrectOptions: List[String] = Random.shuffle(wordDB.getWordsByCategory(category).map(_.definition))
-    val options: List[String] = incorrectOptions.take(3) :+ correctDefinition
+    var options: List[String] = (incorrectOptions.take(3) :+ correctDefinition).distinct
+    for (_ <- 0 until totalOptionsNo-options.length) {
+      do {
+        val replacement: String = incorrectOptions.apply(Random.nextInt(incorrectOptions.length))
+        if (!options.contains(replacement)) {
+          options = options.appended(replacement)
+        }
+      } while (options.length != totalOptionsNo)
+    }
     Random.shuffle(options)
   }
 
@@ -110,6 +137,6 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
    * @return generated quiz object
    */
   private def generateQuiz(size: Int): Quiz = {
-    Quiz(List.fill(size)(generateRound()), 0)
+    Quiz(generateRounds(size), 0)
   }
 }

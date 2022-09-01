@@ -85,6 +85,7 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
 
   /**
    * Method used to generate a new round object
+   * @param forbiddenWords list of currently used quiz words which cannot overlap while generating this round
    * @return generated round object with random word and 4 answer options
    */
   private def generateRound(forbiddenWords: List[String] = List.empty): Round = {

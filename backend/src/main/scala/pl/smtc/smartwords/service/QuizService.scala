@@ -87,8 +87,11 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
    * Method used to generate a new round object
    * @return generated round object with random word and 4 answer options
    */
-  private def generateRound(): Round = {
-    val word: Word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
+  private def generateRound(forbiddenWords: List[String] = List.empty): Round = {
+    var word: Word = null
+    do {
+      word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
+    } while (forbiddenWords.contains(word.name))
     Round(word, generateOptions(word.definition, word.category), None, None)
   }
 

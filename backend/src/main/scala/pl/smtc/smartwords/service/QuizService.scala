@@ -101,8 +101,7 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
    * @return list of specified number of rounds
    */
   private def generateRounds(size: Int): List[Round] = {
-    var rounds: List[Round] = List.fill(size)(generateRound())
-    rounds = rounds.distinctBy(_.word.name)
+    var rounds: List[Round] = List.fill(size)(generateRound()).distinctBy(_.word.name)
     for (_ <- 0 until size-rounds.length) {
       val replacement: Round = generateRound(rounds.map(r => r.word.name))
       rounds = rounds.appended(replacement)

@@ -57,12 +57,12 @@
   {
     "name": "lampucera",
     "category": "person",
-    "description": "starsza kobieta, która używa ostrego makijażu, aby podobać się mężczyznom, pudernica"
+    "description": "starsza kobieta, używająca ostrego makijażu / pudernica"
   },
   {
     "name": "utensylia",
     "category": "noun",
-    "description": "narzędzia, przybory, akcesoria potrzebne do wykonywania jakichś prac, czynności"
+    "description": "narzędzia / przybory / akcesoria potrzebne do wykonywania prac"
   },
   {
     "name": "cezura",
@@ -72,17 +72,17 @@
   {
     "name": "eufemizm",
     "category": "noun",
-    "description": "wyrażenie użyte zastępczo w celu złagodzenia wyrażeń drastycznych, dosadnych lub nieprzyzwoitych"
+    "description": "wyrażenie zastępcze w celu złagodzenia wyrażeń drastycznych lub nieprzyzwoitych"
   },
   {
     "name": "eremita",
     "category": "person",
-    "description": "pustelnik, z pobudek religijnych decyduje się na życie w izolacji i celibacie"
+    "description": "pustelnik / osoba, która z pobudek religijnych decyduje się na życie w izolacji i celibacie"
   },
   {
     "name": "imponderabilia",
     "category": "latin",
-    "description": "coś, czego nie da się zmierzyć ale co ma wpływ na przebieg wydarzeń"
+    "description": "coś niemierzalnego ale mającego wpływ na przebieg wydarzeń"
   },
   {
     "name": "wiktuały",
@@ -97,22 +97,22 @@
   {
     "name": "mizogin",
     "category": "person",
-    "description": "osoba, która nienawidzi, czuje pogardę/uprzedzenie do kobiet"
+    "description": "osoba, która nienawidzi / czuje pogardę / jest uprzedzona do kobiet"
   },
   {
     "name": "tajemnica poliszynela",
     "category": "noun",
-    "description": "rzekoma tajemnica, o której wszyscy wiedzą, lecz nikt o niej głośno nie mówi"
+    "description": "tajemnica, o której wszyscy wiedzą, lecz nikt o niej głośno nie mówi"
   },
   {
     "name": "flexować się",
     "category": "verb",
-    "description": "chwalić się drogimi przedmiotami, ciuchami, telefonami"
+    "description": "chwalić się drogimi przedmiotami"
   },
   {
     "name": "taumaturg",
     "category": "person",
-    "description": "osoba posiadająca dar czynienia cudów/cudotwórca"
+    "description": "osoba posiadająca dar czynienia cudów / cudotwórca"
   },
   {
     "name": "defetyzm",
@@ -172,12 +172,12 @@
   {
     "name": "humbug",
     "category": "person",
-    "description": "oszust, ściemniacz, hipokryta"
+    "description": "oszust / ściemniacz / hipokryta"
   },
   {
     "name": "delikt",
     "category": "noun",
-    "description": "każdy czyn niedozwolony (przestępstwo)"
+    "description": "każdy czyn niedozwolony / przestępstwo"
   },
   {
     "name": "atrium",
@@ -197,12 +197,12 @@
   {
     "name": "labilny",
     "category": "adjective",
-    "description": "zmienny, niestały, niestabilny, chwiejny"
+    "description": "zmienny / niestały / niestabilny / chwiejny"
   },
   {
     "name": "labiedzić",
     "category": "verb",
-    "description": "narzekać, utyskiwać, biadać"
+    "description": "narzekać / utyskiwać / biadać"
   },
   {
     "name": "labelista",
@@ -217,17 +217,17 @@
   {
     "name": "megiera",
     "category": "person",
-    "description": "kobieta despotyczna, kłótliwa, zła"
+    "description": "kobieta despotyczna / kłótliwa, zła"
   },
   {
     "name": "urwipołeć",
     "category": "person",
-    "description": "urwis, psotnik"
+    "description": "urwis / psotnik"
   },
   {
     "name": "antyszambrować",
     "category": "verb",
-    "description": "długo czekać na audiencję, na spotkanie z osobą ważną i decyzyjną"
+    "description": "długo czekać na spotkanie z osobą ważną i decyzyjną"
   },
   {
     "name": "spolegliwy",
@@ -242,37 +242,37 @@
   {
     "name": "wciórności",
     "category": "noun",
-    "description": "przekleństwo: a niech to diabli! niech to licho!"
+    "description": "przekleństwa"
   },
   {
     "name": "monidło",
     "category": "noun",
-    "description": "rodzaj realistycznego obrazu, portretu namalowanego najczęściej na podstawie zdjęcia ślubnego"
+    "description": "rodzaj portretu namalowanego na podstawie zdjęcia ślubnego"
   },
   {
     "name": "przaśny",
     "category": "adjective",
-    "description": "mdły, bez smaku / zdrowo, radośnie"
+    "description": "mdły / bez smaku / radośnie"
   },
   {
     "name": "ambaras",
     "category": "adjective",
-    "description": "kłopot, trudna sytuacja"
+    "description": "kłopot / trudna sytuacja"
   },
   {
     "name": "austeria",
     "category": "noun",
-    "description": "karczma, zajazd, oberża, gospoda"
+    "description": "karczma / zajazd / oberża / gospoda"
   },
   {
     "name": "sobkostwo",
     "category": "noun",
-    "description": "myślenie tylko o sobie, dbanie wyłącznie o siebie / samolubstwo, samolubność, egoizm"
+    "description": "myślenie tylko o sobie / dbanie wyłącznie o siebie / samolubstwo, samolubność, egoizm"
   },
   {
     "name": "oniryzm",
     "category": "noun",
-    "description": "marzenie senne, zabieg literacki ukazujący rzeczywistość w formie snu"
+    "description": "marzenie senne / zabieg literacki ukazujący rzeczywistość w formie snu"
   },
   {
     "name": "ancymon",
@@ -282,12 +282,12 @@
   {
     "name": "achać",
     "category": "verb",
-    "description": "zachwycać się czymś w sposób afektowany (przesadny, sztuczny)"
+    "description": "zachwycać się czymś w sposób przesadny i sztuczny"
   },
   {
     "name": "fircyczka",
     "category": "person",
-    "description": "kobieta niepoważna, lekkomyślna; trzpiotka; modnisia, strojnisia, lalusia"
+    "description": "kobieta niepoważna / lekkomyślna / trzpiotka / modnisia"
   },
   {
     "name": "letnik",
@@ -302,12 +302,12 @@
   {
     "name": "refulacja",
     "category": "noun",
-    "description": "prace mające na celu poszerzanie oraz ochronę plaży, terenów brzegowych, wysp, portów"
+    "description": "prace mające na celu poszerzanie oraz ochronę terenów brzegowych"
   },
   {
-    "name": "klauzula abuzywna",
+    "name": "abuzywny",
     "category": "noun",
-    "description": "niedozwolone klauzule"
+    "description": "niedozwolony"
   },
   {
     "name": "repasaż",
@@ -317,17 +317,17 @@
   {
     "name": "serwitut",
     "category": "noun",
-    "description": "pozwolenie, zgoda"
+    "description": "pozwolenie / zgoda"
   },
   {
     "name": "saute",
     "category": "adjective",
-    "description": "smażony w niewielkiej ilości tłuszczu bez panierki, bez dodatków"
+    "description": "smażony w niewielkiej ilości tłuszczu bez dodatków"
   },
   {
     "name": "sukurs",
     "category": "noun",
-    "description": "odsiecz, pomoc, posiłki, wsparcie"
+    "description": "odsiecz / pomoc / wsparcie"
   },
   {
     "name": "badylarz",

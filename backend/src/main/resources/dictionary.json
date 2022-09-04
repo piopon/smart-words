@@ -612,12 +612,12 @@
   {
     "name": "dziad kalwaryjski",
     "category": "person",
-    "description": "żebrak, człowiek ubogi żyjący z tego co dostanieod ludzi"
+    "description": "żebrak / człowiek ubogi żyjący z tego co dostanie od innych"
   },
   {
     "name": "galimatias",
     "category": "noun",
-    "description": "nieład, harmider"
+    "description": "nieład / harmider"
   },
   {
     "name": "knajak",
@@ -632,7 +632,7 @@
   {
     "name": "konsolacja",
     "category": "noun",
-    "description": "pociecha, pocieszenie / poczęstunek po pogrzebie"
+    "description": "pociecha / pocieszenie / poczęstunek po pogrzebie"
   },
   {
     "name": "epitafium",
@@ -642,7 +642,7 @@
   {
     "name": "dupny",
     "category": "adjective",
-    "description": "wydrążony, próżny, pusty"
+    "description": "wydrążony / próżny / pusty"
   },
   {
     "name": "degrengolada",
@@ -667,12 +667,12 @@
   {
     "name": "masny",
     "category": "adjective",
-    "description": "gruby, tłusty"
+    "description": "gruby / tłusty"
   },
   {
     "name": "fatygant",
     "category": "person",
-    "description": "adorator, mężczyzna starający się o względy kobiety"
+    "description": "adorator / mężczyzna starający się o względy kobiety"
   },
   {
     "name": "mezalians",
@@ -717,12 +717,12 @@
   {
     "name": "umościć się",
     "category": "verb",
-    "description": "ułożyć się na czymś, usiąść gdzieś wygodnie"
+    "description": "ułożyć się na czymś / usiąść gdzieś wygodnie"
   },
   {
     "name": "rozrzewnienie",
     "category": "adjective",
-    "description": "uczucie tkliwości, czułości wywołane przez coś lub przez kogoś"
+    "description": "uczucie tkliwości / czułości"
   },
   {
     "name": "inkaust",
@@ -732,17 +732,17 @@
   {
     "name": "indolencja",
     "category": "noun",
-    "description": "bezradność, bezczynność, brak reakcji na sytuację, niezaradność"
+    "description": "bezradność / bezczynność / brak reakcji na sytuację / niezaradność"
   },
   {
     "name": "fantasmagoria",
     "category": "noun",
-    "description": "urojenie, iluzja"
+    "description": "urojenie / iluzja"
   },
   {
     "name": "gremialny",
     "category": "adjective",
-    "description": "odnoszący się do wielkiej liczby ludzi, masowy"
+    "description": "odnoszący się do wielkiej liczby ludzi / masowy"
   },
   {
     "name": "wysublimowany",
@@ -762,22 +762,22 @@
   {
     "name": "dendrofil",
     "category": "person",
-    "description": "osoba cierpiąca dewiację seksualną, w której obiektem seksualnym są drzewa"
+    "description": "osoba cierpiąca dewiację seksualną do drzew"
   },
   {
     "name": "brakarz",
     "category": "person",
-    "description": "pracownik kontroli technicznej w zakładzie produkcyjnym oceniający jakość gotowych wyrobów"
+    "description": "pracownik kontroli technicznej oceniający jakość gotowych wyrobów"
   },
   {
     "name": "abberacja",
     "category": "noun",
-    "description": "odchylenie, zboczenie od normalnego stanu"
+    "description": "odchylenie od normalnego stanu"
   },
   {
     "name": "spuneryzm",
     "category": "noun",
-    "description": "mimowolne przestawienie głoski lub kilku głosek w wyrazie/wyrazach"
+    "description": "mimowolne przestawienie głoski lub kilku głosek w wyrazach"
   },
   {
     "name": "dezynwoltura",
@@ -787,7 +787,7 @@
   {
     "name": "antruaż",
     "category": "noun",
-    "description": "otoczenie, środowisko"
+    "description": "otoczenie / środowisko"
   },
   {
     "name": "arywizm",
@@ -797,7 +797,7 @@
   {
     "name": "konfabulacja",
     "category": "noun",
-    "description": "ściemnianie, opowiadanie przeżyć zmyślonych, rzekomo objętych mgłą niepamięci"
+    "description": "ściemnianie / opowiadanie przeżyć zmyślonych / rzekomo objętych mgłą niepamięci"
   },
   {
     "name": "kaligynefobia",
@@ -812,7 +812,7 @@
   {
     "name": "satrapa",
     "category": "person",
-    "description": "despotyczny władca, tyran"
+    "description": "despotyczny władca / tyran"
   },
   {
     "name": "rejwach",
@@ -822,7 +822,7 @@
   {
     "name": "panicz",
     "category": "person",
-    "description": "mężczyzna młody, elegancki, żyjący wygodnie"
+    "description": "mężczyzna elegancki, żyjący wygodnie"
   },
   {
     "name": "autoteliczny",

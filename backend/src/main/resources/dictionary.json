@@ -347,7 +347,7 @@
   {
     "name": "kazamaty",
     "category": "noun",
-    "description": "schron w twierdzy bastionowej lub w forcie w dawnych fortyfikacjach"
+    "description": "schron w twierdzy bastionowej / forcie"
   },
   {
     "name": "szmaterlok",
@@ -377,7 +377,7 @@
   {
     "name": "wernakularny",
     "category": "adjective",
-    "description": "rodzimy / domowt"
+    "description": "rodzimy / domowy"
   },
   {
     "name": "eon",
@@ -387,7 +387,7 @@
   {
     "name": "enologia",
     "category": "noun",
-    "description": "nauka o produkcji, pielęgnacji i rodzajach wina"
+    "description": "nauka o produkcji / pielęgnacji / rodzajach wina"
   },
   {
     "name": "lepidopterolog",
@@ -427,12 +427,12 @@
   {
     "name": "urępny",
     "category": "adjective",
-    "description": "piękny, śliczny"
+    "description": "piękny / śliczny"
   },
   {
     "name": "lampartować",
     "category": "verb",
-    "description": "prowadzić rozpustne, holuszcze, próżniacze życie"
+    "description": "prowadzić rozpustne / holuszcze / próżniacze życie"
   },
   {
     "name": "tidsoptymista",
@@ -462,7 +462,7 @@
   {
     "name": "sowizdrzał",
     "category": "person",
-    "description": "człowiek niepoważny, trzpiotowaty, urwis"
+    "description": "człowiek niepoważny / urwis"
   },
   {
     "name": "egalitaryzm",
@@ -477,7 +477,7 @@
   {
     "name": "palamenter",
     "category": "person",
-    "description": "człowiek przemyślny, przebiegły i zdolny, ale próżniak, urwis"
+    "description": "człowiek zdolny, ale próżniak"
   },
   {
     "name": "pergola",
@@ -487,17 +487,17 @@
   {
     "name": "interlokutor",
     "category": "person",
-    "description": "osoba prowadząca z kimś rozmowę, partner w rozmowie"
+    "description": "osoba prowadząca z kimś rozmowę / partner w rozmowie"
   },
   {
     "name": "wadium",
     "category": "noun",
-    "description": "gwarancja, poręczenie składane w poczet zabezpieczenia dotrzymania warunków umowy"
+    "description": "gwarancja składane w poczet zabezpieczenia dotrzymania warunków umowy"
   },
   {
     "name": "trejaż",
     "category": "noun",
-    "description": " budowla ogrodowa, składająca się z szeregu słupków, połączonych u góry poziomą belką"
+    "description": "budowla ogrodowa, składająca się z szeregu słupków, połączonych u góry poziomą belką"
   },
   {
     "name": "drewutnia",
@@ -532,12 +532,12 @@
   {
     "name": "adonis",
     "category": "person",
-    "description": "urodziwy i/lub przesadnie dbający o urodę mężczyzna"
+    "description": "urodziwy / przesadnie dbający o urodę mężczyzna"
   },
   {
     "name": "butonierka",
     "category": "noun",
-    "description": "niewielki otwór na guzik w lewej klapie marynarki lub żakietu na wysokości obojczyka"
+    "description": "niewielki otwór na guzik w lewej klapie marynarki"
   },
   {
     "name": "brustasza",
@@ -552,17 +552,17 @@
   {
     "name": "fidrygałki",
     "category": "noun",
-    "description": "przedmioty niezbyt ważne, błahe, drobne;"
+    "description": "przedmioty niezbyt ważne / błahe / drobne"
   },
   {
     "name": "frymuśny",
     "category": "adjective",
-    "description": "wymyślny, fantazyjny"
+    "description": "wymyślny / fantazyjny"
   },
   {
     "name": "solenny",
     "category": "adjective",
-    "description": "podniosły, uroczysty / obowiązkowy i rzetelny"
+    "description": "podniosły / uroczysty / obowiązkowy / rzetelny"
   },
   {
     "name": "konotacja",
@@ -587,7 +587,7 @@
   {
     "name": "rachityczny",
     "category": "adjective",
-    "description": "słabo rozwinięty, wątły lub lichy"
+    "description": "słabo rozwinięty / wątły / lichy"
   },
   {
     "name": "wardęga",

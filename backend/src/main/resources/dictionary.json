@@ -837,7 +837,7 @@
   {
     "name": "mitrężyć",
     "category": "verb",
-    "description": "guzdrać się, trwonić/marnować czas na próżno"
+    "description": "guzdrać się / marnować czas na próżno"
   },
   {
     "name": "laudacja",
@@ -847,7 +847,7 @@
   {
     "name": "flegmatyk",
     "category": "person",
-    "description": "człowiek charakteryzuje opanowanie, spokój i swoista apatia"
+    "description": "człowiek o dużym spokoju i swoistą apatią"
   },
   {
     "name": "kosztorysant",
@@ -857,7 +857,7 @@
   {
     "name": "koncertina",
     "category": "noun",
-    "description": "luźne zwoje cienkiego, elastycznego drutu kolczastego żyletkowego"
+    "description": "luźne zwoje elastycznego drutu kolczastego żyletkowego"
   },
   {
     "name": "gerentokracja",
@@ -877,7 +877,7 @@
   {
     "name": "potępiać w czambuł",
     "category": "verb",
-    "description": "potępiać w całości, bez wyjątku, szybko i kategorycznie"
+    "description": "potępiać w całości, szybko i kategorycznie"
   },
   {
     "name": "knieja",
@@ -902,7 +902,7 @@
   {
     "name": "ceklacja",
     "category": "noun",
-    "description": "włóczenie, tułanie się po nocy"
+    "description": "tułanie się po nocy"
   },
   {
     "name": "eschatologia",
@@ -942,7 +942,7 @@
   {
     "name": "bałuch",
     "category": "noun",
-    "description": "wrzawa, zgiełk, hałas"
+    "description": "wrzawa / zgiełk / hałas"
   },
   {
     "name": "klinomania",
@@ -957,7 +957,7 @@
   {
     "name": "paciulok",
     "category": "person",
-    "description": "oferma, fajtłapa"
+    "description": "oferma / fajtłapa"
   },
   {
     "name": "sześdziesiona",
@@ -967,7 +967,7 @@
   {
     "name": "hiponim",
     "category": "noun",
-    "description": "wyraz, którego znaczenie jest węższe i podrzędne w stosunku do znaczenia innego wyrazu"
+    "description": "wyraz, którego znaczenie jest węższe w stosunku do znaczenia innego wyrazu"
   },
   {
     "name": "didaskalia",
@@ -1002,7 +1002,7 @@
   {
     "name": "fjut",
     "category": "noun",
-    "description": "cyrop = syrop z buraków cukrowych, o konsystencji płynnego miodu"
+    "description": "cyrop / syrop z buraków cukrowych"
   },
   {
     "name": "vis maior",
@@ -1017,7 +1017,7 @@
   {
     "name": "konterfekt",
     "category": "noun",
-    "description": "portret, wizerunek, obraz, malowidło"
+    "description": "portret / wizerunek / obraz"
   },
   {
     "name": "badlandy",
@@ -1027,7 +1027,7 @@
   {
     "name": "oniryczny",
     "category": "adjective",
-    "description": "związany ze snem, odnoszący się do niego/ powstaly na kształt marzenia sennego"
+    "description": "związany ze snem, odnoszący się do niego / powstaly na kształt marzenia sennego"
   },
   {
     "name": "paszenog",
@@ -1037,7 +1037,7 @@
   {
     "name": "immanentny",
     "category": "adjective",
-    "description": "taki, który nie wynika z działań zewnętrznych, tkwiący w naturze czegoś; zawarty w czymś"
+    "description": "taki, który nie wynika z działań zewnętrznych / tkwiący w naturze czegoś / zawarty w czymś"
   },
   {
     "name": "ekumena",

@@ -112,14 +112,15 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
 
   /**
    * Method used to generate 4 answer options
-   * @param correctDefinition correct word definition (one of answer options)
+   * @param correctDefinitions correct word definitions (from which one will be added to answer options)
    * @param category word category from which to draw the remaining 3 answer options
    * @return list of possible 4 answer options
    */
-  private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
+  private def generateOptions(correctDefinitions: List[String], category: Category.Value): List[String] = {
     val totalOptionsNo = 4
-    val incorrectOptions: List[String] = Random.shuffle(wordDB.getWordsByCategory(category).map(_.definition))
-    var options: List[String] = (incorrectOptions.take(3) :+ correctDefinition).distinct
+    val correctDefinition: String = correctDefinitions.apply(Random.nextInt(correctDefinitions.length))
+    val incorrectOptions: List[String] = wordDB.getWordsByCategory(category).map(w => Random.shuffle(w.definition).head)
+    var options: List[String] = (Random.shuffle(incorrectOptions).take(3) :+ correctDefinition).distinct
     for (_ <- 0 until totalOptionsNo-options.length) {
       do {
         val replacement: String = incorrectOptions.apply(Random.nextInt(incorrectOptions.length))

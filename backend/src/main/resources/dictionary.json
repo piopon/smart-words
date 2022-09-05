@@ -797,256 +797,256 @@
   {
     "name": "konfabulacja",
     "category": "noun",
-    "description": "ściemnianie / opowiadanie przeżyć zmyślonych / rzekomo objętych mgłą niepamięci"
+    "description": ["ściemnianie", "opowiadanie przeżyć zmyślonych objętych mgłą niepamięci"]
   },
   {
     "name": "kaligynefobia",
     "category": "latin",
-    "description": "lęk przed pięknymi kobietami"
+    "description": ["lęk przed pięknymi kobietami"]
   },
   {
     "name": "dysania",
     "category": "noun",
-    "description": "niezdolność do porannego wstawania / powracające pragnienie, aby ponownie się położyć"
+    "description": ["niezdolność do porannego wstawania", "powracające pragnienie, aby ponownie się położyć"]
   },
   {
     "name": "satrapa",
     "category": "person",
-    "description": "despotyczny władca / tyran"
+    "description": ["despotyczny władca", "tyran"]
   },
   {
     "name": "rejwach",
     "category": "noun",
-    "description": "hałas wywoływany przez głośne rozmowy lub krzyki"
+    "description": ["hałas wywoływany przez głośne rozmowy lub krzyki"]
   },
   {
     "name": "panicz",
     "category": "person",
-    "description": "mężczyzna elegancki, żyjący wygodnie"
+    "description": ["mężczyzna elegancki, żyjący wygodnie"]
   },
   {
     "name": "autoteliczny",
     "category": "adjective",
-    "description": "będącym celem samym w sobie"
+    "description": ["będącym celem samym w sobie"]
   },
   {
     "name": "perororwać",
     "category": "verb",
-    "description": "długa i nudna mowa zawierająca napuszone pouczenie"
+    "description": ["długa i nudna mowa zawierająca napuszone pouczenie"]
   },
   {
     "name": "mitrężyć",
     "category": "verb",
-    "description": "guzdrać się / marnować czas na próżno"
+    "description": ["guzdrać się", "marnować czas na próżno"]
   },
   {
     "name": "laudacja",
     "category": "noun",
-    "description": "mowa pochwalna obrazująca zalety danej osoby"
+    "description": ["mowa pochwalna obrazująca zalety danej osoby"]
   },
   {
     "name": "flegmatyk",
     "category": "person",
-    "description": "człowiek o dużym spokoju i swoistą apatią"
+    "description": ["człowiek o dużym spokoju i swoistą apatią"]
   },
   {
     "name": "kosztorysant",
     "category": "person",
-    "description": "osoba, która optymalizuje wydatki kapitałowe na inwestycje"
+    "description": ["osoba, która optymalizuje wydatki kapitałowe na inwestycje"]
   },
   {
     "name": "koncertina",
     "category": "noun",
-    "description": "luźne zwoje elastycznego drutu kolczastego żyletkowego"
+    "description": ["luźne zwoje elastycznego drutu kolczastego żyletkowego"]
   },
   {
     "name": "gerentokracja",
     "category": "noun",
-    "description": "rządy starych ludzi"
+    "description": ["rządy starych ludzi"]
   },
   {
     "name": "dekadencja",
     "category": "noun",
-    "description": "końcowa faza czegoś / chylenie się ku upadkowi / zbliżanie się do końca"
+    "description": ["końcowa faza czegoś", "chylenie się ku upadkowi", "zbliżanie się do końca"]
   },
   {
     "name": "bilokacja",
     "category": "noun",
-    "description": "bycie w dwóch miejscach na raz"
+    "description": ["bycie w dwóch miejscach na raz"]
   },
   {
     "name": "potępiać w czambuł",
     "category": "verb",
-    "description": "potępiać w całości, szybko i kategorycznie"
+    "description": ["potępiać w całości, szybko i kategorycznie"]
   },
   {
     "name": "knieja",
     "category": "noun",
-    "description": "wielki gęsty las, w którym mieszka zwierzyna"
+    "description": ["wielki gęsty las, w którym mieszka zwierzyna"]
   },
   {
     "name": "machinacja",
     "category": "noun",
-    "description": "podstępne działanie na czyjąś szkodę"
+    "description": ["podstępne działanie na czyjąś szkodę"]
   },
   {
     "name": "galanteria",
     "category": "noun",
-    "description": "niewielkie wyroby mające charakter zdobniczy"
+    "description": ["niewielkie wyroby mające charakter zdobniczy"]
   },
   {
     "name": "kontestacja",
     "category": "noun",
-    "description": "sprzeciw wyrażany publicznie poprzez wypowiedzi i zachowanie"
+    "description": ["sprzeciw wyrażany publicznie poprzez wypowiedzi i zachowanie"]
   },
   {
     "name": "ceklacja",
     "category": "noun",
-    "description": "tułanie się po nocy"
+    "description": ["tułanie się po nocy"]
   },
   {
     "name": "eschatologia",
     "category": "noun",
-    "description": "ogół poglądów dotyczących rzeczy ostatecznych"
+    "description": ["ogół poglądów dotyczących rzeczy ostatecznych"]
   },
   {
     "name": "eosofobia",
     "category": "latin",
-    "description": "strach przed świtem i światłem słonecznym"
+    "description": ["strach przed świtem i światłem słonecznym"]
   },
   {
     "name": "nomokracja",
     "category": "noun",
-    "description": "rządy oparte na poszanowaniu prawa"
+    "description": ["rządy oparte na poszanowaniu prawa"]
   },
   {
     "name": "eutymia",
     "category": "noun",
-    "description": "stan prawidłowego, wyrównanego stanu ducha"
+    "description": ["stan prawidłowego stanu ducha"]
   },
   {
     "name": "jutrać",
     "category": "verb",
-    "description": "odkładać na później / zwlekać / prokrastynować"
+    "description": ["odkładać na później", "zwlekać"]
   },
   {
     "name": "abulia",
     "category": "latin",
-    "description": "niemożność powzięcia decyzji lub realizacji postanowień"
+    "description": ["niemożność powzięcia decyzji lub realizacji postanowień"]
   },
   {
     "name": "tanoreksja",
     "category": "noun",
-    "description": "obsesyjna potrzeba posiadania opalonej skóry"
+    "description": ["obsesyjna potrzeba posiadania opalonej skóry"]
   },
   {
     "name": "bałuch",
     "category": "noun",
-    "description": "wrzawa / zgiełk / hałas"
+    "description": ["wrzawa", "zgiełk", "hałas"]
   },
   {
     "name": "klinomania",
     "category": "noun",
-    "description": "chorobowa potrzeba przebywania w pozycji leżącej"
+    "description": ["chorobowa potrzeba przebywania w pozycji leżącej"]
   },
   {
     "name": "smecz",
     "category": "noun",
-    "description": "zagrywka sportowa - ścięcie"
+    "description": ["zagrywka sportowa - ścięcie"]
   },
   {
     "name": "paciulok",
     "category": "person",
-    "description": "oferma / fajtłapa"
+    "description": ["oferma", "fajtłapa"]
   },
   {
     "name": "sześdziesiona",
     "category": "person",
-    "description": "donosiciel"
+    "description": ["donosiciel"]
   },
   {
     "name": "hiponim",
     "category": "noun",
-    "description": "wyraz, którego znaczenie jest węższe w stosunku do znaczenia innego wyrazu"
+    "description": ["wyraz, którego znaczenie jest węższe w stosunku do znaczenia innego wyrazu"]
   },
   {
     "name": "didaskalia",
     "category": "noun",
-    "description": "informacje autora sztuki dotyczące pobocznych czynności"
+    "description": ["informacje autora sztuki dotyczące pobocznych czynności"]
   },
   {
     "name": "apoteoza",
     "category": "noun",
-    "description": "wychwalanie idei bądź wartości"
+    "description": ["wychwalanie idei bądź wartości"]
   },
   {
     "name": "rzaz",
     "category": "noun",
-    "description": "szczelina w miejscu piłowania drzewa"
+    "description": ["szczelina w miejscu piłowania drzewa"]
   },
   {
     "name": "szynel",
     "category": "noun",
-    "description": "męski płaszcz dopasowany do figury"
+    "description": ["męski płaszcz dopasowany do figury"]
   },
   {
     "name": "flauta",
     "category": "noun",
-    "description": "określenie żeglarskie oznaczające brak wiatru"
+    "description": ["określenie żeglarskie oznaczające brak wiatru"]
   },
   {
     "name": "inseminator",
     "category": "person",
-    "description": "specjalista w dziedzinie sztucznego unasienienia zwierząt hodowlanych"
+    "description": ["specjalista w dziedzinie sztucznego unasienienia zwierząt hodowlanych"]
   },
   {
     "name": "fjut",
     "category": "noun",
-    "description": "cyrop / syrop z buraków cukrowych"
+    "description": ["cyrop", "syrop z buraków cukrowych"]
   },
   {
     "name": "vis maior",
     "category": "latin",
-    "description": "siła wyższa"
+    "description": ["siła wyższa"]
   },
   {
     "name": "metanoja",
     "category": "noun",
-    "description": "duchowa bądź intelektualna przemiana"
+    "description": ["duchowa bądź intelektualna przemiana"]
   },
   {
     "name": "konterfekt",
     "category": "noun",
-    "description": "portret / wizerunek / obraz"
+    "description": ["portret", "wizerunek", "obraz"]
   },
   {
     "name": "badlandy",
     "category": "noun",
-    "description": "obszary wyżynne, głównie w strefie klimatu suchego i półsuchego, o ubogiej roślinności"
+    "description": ["obszary wyżynne, głównie w strefie klimatu suchego i półsuchego, o ubogiej roślinności"]
   },
   {
     "name": "oniryczny",
     "category": "adjective",
-    "description": "związany ze snem, odnoszący się do niego / powstaly na kształt marzenia sennego"
+    "description": ["związany ze snem, odnoszący się do niego", "powstaly na kształt marzenia sennego"]
   },
   {
     "name": "paszenog",
     "category": "person",
-    "description": "mąż siostry żony"
+    "description": ["mąż siostry żony"]
   },
   {
     "name": "immanentny",
     "category": "adjective",
-    "description": "taki, który nie wynika z działań zewnętrznych / tkwiący w naturze czegoś / zawarty w czymś"
+    "description": ["taki, który nie wynika z działań zewnętrznych", "tkwiący w naturze czegoś", "zawarty w czymś"]
   },
   {
     "name": "ekumena",
     "category": "noun",
-    "description": "obszary kuli ziemskiej stale zamieszkane i wykorzystywane gospodarczo przez człowieka"
+    "description": ["obszary kuli ziemskiej stale zamieszkane i wykorzystywane gospodarczo przez człowieka"]
   },
   {
     "name": "gatofobia",
     "category": "latin",
-    "description": "strach przed kotami"
+    "description": ["strach przed kotami"]
   }
 ]

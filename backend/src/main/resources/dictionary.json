@@ -462,337 +462,337 @@
   {
     "name": "sowizdrzał",
     "category": "person",
-    "description": "człowiek niepoważny / urwis"
+    "description": ["człowiek niepoważny", "urwis"]
   },
   {
     "name": "egalitaryzm",
     "category": "noun",
-    "description": "przekonanie, że wszyscy ludzie są równi i powinni mieć jednakowe prawa"
+    "description": ["przekonanie, że wszyscy ludzie są równi i powinni mieć jednakowe prawa"]
   },
   {
     "name": "anomia",
     "category": "noun",
-    "description": "załamanie się ładu społecznego"
+    "description": ["załamanie się ładu społecznego"]
   },
   {
     "name": "palamenter",
     "category": "person",
-    "description": "człowiek zdolny, ale próżniak"
+    "description": ["człowiek zdolny, ale próżniak"]
   },
   {
     "name": "pergola",
     "category": "noun",
-    "description": "budowla ogrodowa jednego lub dwóch rzędów słupów podtrzymujących poziomą konstrukcję kratową"
+    "description": ["budowla ogrodowa jednego lub dwóch rzędów słupów podtrzymujących poziomą konstrukcję kratową"]
   },
   {
     "name": "interlokutor",
     "category": "person",
-    "description": "osoba prowadząca z kimś rozmowę / partner w rozmowie"
+    "description": ["osoba prowadząca z kimś rozmowę", "partner w rozmowie"]
   },
   {
     "name": "wadium",
     "category": "noun",
-    "description": "gwarancja składane w poczet zabezpieczenia dotrzymania warunków umowy"
+    "description": ["gwarancja składane w poczet zabezpieczenia dotrzymania warunków umowy"]
   },
   {
     "name": "trejaż",
     "category": "noun",
-    "description": "budowla ogrodowa, składająca się z szeregu słupków, połączonych u góry poziomą belką"
+    "description": ["budowla ogrodowa, składająca się z szeregu słupków, połączonych u góry poziomą belką"]
   },
   {
     "name": "drewutnia",
     "category": "noun",
-    "description": "pomieszczenie, w którym rąbie się i składa drwa przeznaczone na potrzeby gospodarstwa domowego"
+    "description": ["pomieszczenie, w którym rąbie się i składa drwa przeznaczone na potrzeby gospodarstwa domowego"]
   },
   {
     "name": "uzurpować",
     "category": "verb",
-    "description": "przywłaszczenie sobie praw do czegoś"
+    "description": ["przywłaszczenie sobie praw do czegoś"]
   },
   {
     "name": "cymelium",
     "category": "noun",
-    "description": "bardzo cenny druk lub rękopis"
+    "description": ["bardzo cenny druk lub rękopis"]
   },
   {
     "name": "żupa",
     "category": "noun",
-    "description": "kopalnia soli"
+    "description": ["kopalnia soli"]
   },
   {
     "name": "luminarz",
     "category": "person",
-    "description": "człowiek wybitnie wykształcony, znany w kręgach naukowych lub kulturalnych"
+    "description": ["człowiek wybitnie wykształcony, znany w kręgach naukowych lub kulturalnych"]
   },
   {
     "name": "słota",
     "category": "noun",
-    "description": "długo utrzymająca się niepogoda, charakteryzująca się uciążliwymi opadami"
+    "description": ["długo utrzymająca się niepogoda, charakteryzująca się uciążliwymi opadami"]
   },
   {
     "name": "adonis",
     "category": "person",
-    "description": "urodziwy / przesadnie dbający o urodę mężczyzna"
+    "description": ["urodziwy mężczyzna", "przesadnie dbający o urodę mężczyzna"]
   },
   {
     "name": "butonierka",
     "category": "noun",
-    "description": "niewielki otwór na guzik w lewej klapie marynarki"
+    "description": ["niewielki otwór na guzik w lewej klapie marynarki"]
   },
   {
     "name": "brustasza",
     "category": "noun",
-    "description": "mała kieszonka zewnętrzna w marynarce"
+    "description": ["mała kieszonka zewnętrzna w marynarce"]
   },
   {
     "name": "posztetka",
     "category": "noun",
-    "description": "ozdobna chusteczka wkładana do górnej kieszonki w marynarce"
+    "description": ["ozdobna chusteczka wkładana do górnej kieszonki w marynarce"]
   },
   {
     "name": "fidrygałki",
     "category": "noun",
-    "description": "przedmioty niezbyt ważne / błahe / drobne"
+    "description": ["przedmioty niezbyt ważne", "przedmioty błahe"]
   },
   {
     "name": "frymuśny",
     "category": "adjective",
-    "description": "wymyślny / fantazyjny"
+    "description": ["wymyślny", "fantazyjny"]
   },
   {
     "name": "solenny",
     "category": "adjective",
-    "description": "podniosły / uroczysty / obowiązkowy / rzetelny"
+    "description": ["podniosły", "uroczysty", "obowiązkowy", "rzetelny"]
   },
   {
     "name": "konotacja",
     "category": "noun",
-    "description": "znaczenie, treść nazwy"
+    "description": ["znaczenie, treść nazwy"]
   },
   {
     "name": "jowialny",
     "category": "adjective",
-    "description": "mający pogodne usposobienie i nieco rubaszne poczucie humoru"
+    "description": ["mający pogodne usposobienie i nieco rubaszne poczucie humoru"]
   },
   {
     "name": "weredyk",
     "category": "noun",
-    "description": "mówienie prawdy bez względu na konsekwencje"
+    "description": ["mówienie prawdy bez względu na konsekwencje"]
   },
   {
     "name": "tapet",
     "category": "noun",
-    "description": "stół pokryty najczęściej zielonym suknem, przy którym się obraduje"
+    "description": ["stół pokryty najczęściej zielonym suknem, przy którym się obraduje"]
   },
   {
     "name": "rachityczny",
     "category": "adjective",
-    "description": "słabo rozwinięty / wątły / lichy"
+    "description": ["słabo rozwinięty", "wątły", "lichy"]
   },
   {
     "name": "wardęga",
     "category": "person",
-    "description": "włóczęga"
+    "description": ["włóczęga"]
   },
   {
     "name": "triaż",
     "category": "noun",
-    "description": "segregacja / sortowanie"
+    "description": ["segregacja", "sortowanie"]
   },
   {
     "name": "opsomaniak",
     "category": "person",
-    "description": "osoba mająca obsesję na punkcie jakiegoś konkretnego rodzaju jedzenia"
+    "description": ["osoba mająca obsesję na punkcie jakiegoś konkretnego rodzaju jedzenia"]
   },
   {
     "name": "frela",
     "category": "person",
-    "description": "dziewczyna"
+    "description": ["dziewczyna"]
   },
   {
     "name": "dziad kalwaryjski",
     "category": "person",
-    "description": "żebrak / człowiek ubogi żyjący z tego co dostanie od innych"
+    "description": ["żebrak", "człowiek ubogi żyjący z tego co dostanie od innych"]
   },
   {
     "name": "galimatias",
     "category": "noun",
-    "description": "nieład / harmider"
+    "description": ["nieład", "harmider"]
   },
   {
     "name": "knajak",
     "category": "person",
-    "description": "człowiek z marginesu społecznego"
+    "description": ["człowiek z marginesu społecznego"]
   },
   {
     "name": "internalizować",
     "category": "verb",
-    "description": "przyjmowac za swoje własne, narzucane z zewnątrz postawy"
+    "description": ["przyjmowac za swoje własne, narzucane z zewnątrz postawy"]
   },
   {
     "name": "konsolacja",
     "category": "noun",
-    "description": "pociecha / pocieszenie / poczęstunek po pogrzebie"
+    "description": ["pocieszenie", "poczęstunek po pogrzebie"]
   },
   {
     "name": "epitafium",
     "category": "noun",
-    "description": "napis na nagrobku"
+    "description": ["napis na nagrobku"]
   },
   {
     "name": "dupny",
     "category": "adjective",
-    "description": "wydrążony / próżny / pusty"
+    "description": ["wydrążony", "próżny", "pusty"]
   },
   {
     "name": "degrengolada",
     "category": "noun",
-    "description": "zupełny rozkład wartości moralnych w jakimś środowisku"
+    "description": ["zupełny rozkład wartości moralnych w jakimś środowisku"]
   },
   {
     "name": "kunktator",
     "category": "person",
-    "description": "osoba umyślnie z czymś zwlekająca lub przeciągająca coś"
+    "description": ["osoba umyślnie z czymś zwlekająca lub przeciągająca coś"]
   },
   {
     "name": "perkal",
     "category": "noun",
-    "description": "cienkie płótno bawełniane"
+    "description": ["cienkie płótno bawełniane"]
   },
   {
     "name": "mizopedia",
     "category": "noun",
-    "description": "niechęć do dzieci"
+    "description": ["niechęć do dzieci"]
   },
   {
     "name": "masny",
     "category": "adjective",
-    "description": "gruby / tłusty"
+    "description": ["gruby", "tłusty"]
   },
   {
     "name": "fatygant",
     "category": "person",
-    "description": "adorator / mężczyzna starający się o względy kobiety"
+    "description": ["adorator", "mężczyzna starający się o względy kobiety"]
   },
   {
     "name": "mezalians",
     "category": "noun",
-    "description": "małżeństwo z osobą niższego stanu"
+    "description": ["małżeństwo z osobą niższego stanu"]
   },
   {
     "name": "letologika",
     "category": "noun",
-    "description": "stan niemożności przywołania potrzebnego słowa"
+    "description": ["stan niemożności przywołania potrzebnego słowa"]
   },
   {
     "name": "egzaltować",
     "category": "verb",
-    "description": "wpadać w stan nadmiernego zachwytu"
+    "description": ["wpadać w stan nadmiernego zachwytu"]
   },
   {
     "name": "turbować",
     "category": "verb",
-    "description": "sprawiać kłopot lub martwić kogoś"
+    "description": ["sprawiać kłopot lub martwić kogoś"]
   },
   {
     "name": "truizm",
     "category": "noun",
-    "description": "stwierdzenie prawdziwe, ale banalne"
+    "description": ["stwierdzenie prawdziwe, ale banalne"]
   },
   {
     "name": "altruizm",
     "category": "noun",
-    "description": "zachowanie polegające na działaniu na korzyść innych"
+    "description": ["zachowanie polegające na działaniu na korzyść innych"]
   },
   {
     "name": "prokura",
     "category": "noun",
-    "description": "pełnomocnictwo handlowe lub bankowe udzielane przez spółkę"
+    "description": ["pełnomocnictwo handlowe lub bankowe udzielane przez spółkę"]
   },
   {
     "name": "estuarium",
     "category": "noun",
-    "description": "poszerzone, lejkowate ujście rzeki"
+    "description": ["poszerzone, lejkowate ujście rzeki"]
   },
   {
     "name": "umościć się",
     "category": "verb",
-    "description": "ułożyć się na czymś / usiąść gdzieś wygodnie"
+    "description": ["ułożyć się na czymś", "usiąść gdzieś wygodnie"]
   },
   {
     "name": "rozrzewnienie",
     "category": "adjective",
-    "description": "uczucie tkliwości / czułości"
+    "description": ["uczucie tkliwości", "uczucie czułości"]
   },
   {
     "name": "inkaust",
     "category": "noun",
-    "description": "atrament"
+    "description": ["atrament"]
   },
   {
     "name": "indolencja",
     "category": "noun",
-    "description": "bezradność / bezczynność / brak reakcji na sytuację / niezaradność"
+    "description": ["bezradność", "bezczynność", "brak reakcji na sytuację", "niezaradność"]
   },
   {
     "name": "fantasmagoria",
     "category": "noun",
-    "description": "urojenie / iluzja"
+    "description": ["urojenie", "iluzja"]
   },
   {
     "name": "gremialny",
     "category": "adjective",
-    "description": "odnoszący się do wielkiej liczby ludzi / masowy"
+    "description": ["odnoszący się do wielkiej liczby ludzi", "masowy"]
   },
   {
     "name": "wysublimowany",
     "category": "adjective",
-    "description": "będący wyrazem wysokiego poziomu artystycznego lub umysłowego"
+    "description": ["będący wyrazem wysokiego poziomu artystycznego lub umysłowego"]
   },
   {
     "name": "krokiet",
     "category": "noun",
-    "description": "gra sportowa uprawiana głównie w Anglii i Stanach Zjednoczonych"
+    "description": ["gra sportowa uprawiana głównie w Anglii i Stanach Zjednoczonych"]
   },
   {
     "name": "rzucik",
     "category": "noun",
-    "description": "drobny wzór na jakimś tle"
+    "description": ["drobny wzór na jakimś tle"]
   },
   {
     "name": "dendrofil",
     "category": "person",
-    "description": "osoba cierpiąca dewiację seksualną do drzew"
+    "description": ["osoba cierpiąca dewiację seksualną do drzew"]
   },
   {
     "name": "brakarz",
     "category": "person",
-    "description": "pracownik kontroli technicznej oceniający jakość gotowych wyrobów"
+    "description": ["pracownik kontroli technicznej oceniający jakość gotowych wyrobów"]
   },
   {
     "name": "abberacja",
     "category": "noun",
-    "description": "odchylenie od normalnego stanu"
+    "description": ["odchylenie od normalnego stanu"]
   },
   {
     "name": "spuneryzm",
     "category": "noun",
-    "description": "mimowolne przestawienie głoski lub kilku głosek w wyrazach"
+    "description": ["mimowolne przestawienie głoski lub kilku głosek w wyrazach"]
   },
   {
     "name": "dezynwoltura",
     "category": "noun",
-    "description": "zachowanie wobec kogoś świadczące o lekceważeniu / lekceważące odnoszenie się do kogoś"
+    "description": ["zachowanie wobec kogoś świadczące o lekceważeniu", "lekceważące odnoszenie się do kogoś"]
   },
   {
     "name": "antruaż",
     "category": "noun",
-    "description": "otoczenie / środowisko"
+    "description": ["otoczenie", "środowisko"]
   },
   {
     "name": "arywizm",
     "category": "noun",
-    "description": "próba osiągnięcia celu z zaniechaniem wartości moralnych / po trupach do celu"
+    "description": ["próba osiągnięcia celu z zaniechaniem wartości moralnych", "po trupach do celu"]
   },
   {
     "name": "konfabulacja",

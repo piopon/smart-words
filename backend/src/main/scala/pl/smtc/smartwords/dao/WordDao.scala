@@ -14,7 +14,7 @@ object WordDao {
     (input: HCursor) => for {
       name <- input.downField("name").as[String]
       category <- input.downField("category").as[String]
-      definition <- input.downField("description").as[String]
+      definition <- input.downField("description").as[List[String]]
     } yield {
       Word(name, Category.fromString(category), definition)
     }

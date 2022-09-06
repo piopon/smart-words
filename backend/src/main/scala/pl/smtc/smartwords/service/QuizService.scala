@@ -118,13 +118,14 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
    */
   private def generateOptions(correctDefinitions: List[String], category: Category.Value): List[String] = {
     val totalOptionsNo = 4
-    val correctDefinition: String = correctDefinitions.apply(Random.nextInt(correctDefinitions.length))
+    val correctAnswer: String = correctDefinitions.apply(Random.nextInt(correctDefinitions.length))
     val incorrectOptions: List[String] = wordDB.getWordsByCategory(category).map(w => Random.shuffle(w.definition).head)
-    var options: List[String] = (Random.shuffle(incorrectOptions).take(3) :+ correctDefinition).distinct
-    for (_ <- 0 until totalOptionsNo-options.length) {
+    val incorrectAnswers: List[String] = Random.shuffle(incorrectOptions).take(3).filter(!correctDefinitions.contains(_))
+    var options: List[String] = (incorrectAnswers :+ correctAnswer).distinct
+    for (_ <- 0 until totalOptionsNo - options.length) {
       do {
         val replacement: String = incorrectOptions.apply(Random.nextInt(incorrectOptions.length))
-        if (!options.contains(replacement)) {
+        if (!options.contains(replacement) && !correctDefinitions.contains(replacement)) {
           options = options.appended(replacement)
         }
       } while (options.length != totalOptionsNo)

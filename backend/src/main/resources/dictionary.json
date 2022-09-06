@@ -37,7 +37,12 @@
   {
     "name": "absztyfikant",
     "category": "person",
-    "description": ["adorator", "zalotnik", "lowelas"]
+    "description": ["adorator", "zalotnik", "lowelas", "osoba starająca się o względy kobiety", "wielbiciel"]
+  },
+  {
+    "name": "bawidamek",
+    "category": "person",
+    "description": ["mężczyzna lubiący kobiety i nadskakujący kobietom"]
   },
   {
     "name": "efemeryczny",

@@ -57,22 +57,22 @@
   {
     "name": "tromtadracja",
     "category": "noun",
-    "description": ["krzykliwe wygłaszanie pustych haseł"]
+    "description": ["krzykliwe wygłaszanie pustych haseł", "efekciarskie przedstawienie mało znaczących poglądów"]
   },
   {
     "name": "lampucera",
     "category": "person",
-    "description": ["starsza kobieta używająca ostrego makijażu", "pudernica"]
+    "description": ["starsza kobieta używająca ostrego makijażu w celu zatuszowania swojego wieku"]
   },
   {
     "name": "utensylia",
     "category": "noun",
-    "description": ["narzędzia", "akcesoria potrzebne do wykonywania prac"]
+    "description": ["narzędzia", "akcesoria potrzebne do wykonywania prac", "różne sprzęty domowe"]
   },
   {
     "name": "cezura",
     "category": "noun",
-    "description": ["punkt zwrotny w życiu jednostki lub zbiorowości"]
+    "description": ["punkt zwrotny w życiu jednostki lub zbiorowości", "moment przełomowy rozdzielający różne etapy"]
   },
   {
     "name": "eufemizm",
@@ -92,7 +92,7 @@
   {
     "name": "wiktuały",
     "category": "noun",
-    "description": ["żywność", "prowiant"]
+    "description": ["żywność", "prowiant", "produkty spożywcze"]
   },
   {
     "name": "wierutny",
@@ -122,7 +122,7 @@
   {
     "name": "defetyzm",
     "category": "noun",
-    "description": ["brak wiary w zwycięstwo lub powodzenie jakiejś sprawy"]
+    "description": ["brak wiary w zwycięstwo lub powodzenie jakiejś sprawy", "ciągłe przewidywanie porażki"]
   },
   {
     "name": "defenestracja",
@@ -152,17 +152,17 @@
   {
     "name": "zzuć",
     "category": "verb",
-    "description": ["zdjąć obuwie"]
+    "description": ["zdjąć obuwie", "zdjąć ubranie"]
   },
   {
     "name": "wiarus",
     "category": "person",
-    "description": ["dobry, stary żołnierz"]
+    "description": ["dobry, zasłużony, stary żołnierz"]
   },
   {
     "name": "prozopagnozja",
     "category": "noun",
-    "description": ["utrata zdolności rozpoznawania twarzy"]
+    "description": ["utrata zdolności rozpoznawania twarzy", "ślepota twarzy"]
   },
   {
     "name": "zmitygować się",

@@ -2,17 +2,17 @@
   {
     "name": "utyskiwać",
     "category": "verb",
-    "description": ["narzekać"]
+    "description": ["narzekać", "uskarżać się na kogoś", "mieć pretensje", "wygłaszać złośliwe uwagi"]
   },
   {
     "name": "lapidarny",
     "category": "adjective",
-    "description": ["zwięzły"]
+    "description": ["zwięzły", "krótki i wyrazisty"]
   },
   {
     "name": "sadzić się",
     "category": "verb",
-    "description": ["czepiać się", "imponować"]
+    "description": ["czepiać się", "starać się zaimponować"]
   },
   {
     "name": "handryczyć się",
@@ -22,17 +22,17 @@
   {
     "name": "indyferencja",
     "category": "noun",
-    "description": ["obojętność"]
+    "description": ["obojętność", "bierność", "pasywność", "neutralność", "zobojętnienie"]
   },
   {
     "name": "otaksować",
     "category": "verb",
-    "description": ["mierzyć wzrokiem"]
+    "description": ["mierzyć wzrokiem", "określić materialną wartość", "uważnie przyjrzeć się czemuś"]
   },
   {
     "name": "dyskrecjonalny",
     "category": "adjective",
-    "description": ["pozostawiony do decyzji"]
+    "description": ["pozostawiony do decyzji", "poufny", "dyskretny"]
   },
   {
     "name": "absztyfikant",
@@ -42,7 +42,7 @@
   {
     "name": "efemeryczny",
     "category": "adjective",
-    "description": ["krótkotrwały", "szybki"]
+    "description": ["krótkotrwały", "szybki", "szybko przemijający"]
   },
   {
     "name": "rekapitulować",

@@ -120,6 +120,7 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
     val incorrectDefinitions: List[String] = wordDB.getWordsByCategory(category)
       .map(w => Random.shuffle(w.definition).head)
       .filter(!correctDefinitions.contains(_))
+      .distinct
     val incorrectOptions: List[String] = Random.shuffle(incorrectDefinitions).take(3)
     val correctOption: String = correctDefinitions.apply(Random.nextInt(correctDefinitions.length))
     val options: List[String] = (incorrectOptions :+ correctOption).distinct

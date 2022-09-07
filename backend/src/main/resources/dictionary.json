@@ -1053,5 +1053,80 @@
     "name": "gatofobia",
     "category": "latin",
     "description": ["strach przed kotami"]
+  },
+  {
+    "name": "deliberować",
+    "category": "verb",
+    "description": ["rozważać coś", "naradzać się nad czymś"]
+  },
+  {
+    "name": "antycypować",
+    "category": "verb",
+    "description": ["przewidywać", "wyprzedzać to, co ma nastąpić"]
+  },
+  {
+    "name": "dubiel",
+    "category": "noun",
+    "description": ["głupiec", "bałwan", "prostak"]
+  },
+  {
+    "name": "kołatka",
+    "category": "noun",
+    "description": ["drewniany instrument muzyczny", "ruchomy uchwyt na drzwiach służący do pukania"]
+  },
+  {
+    "name": "upupiać",
+    "category": "verb",
+    "description": ["traktować czyjeś działanie jako niedojarzałe", "traktować kogoś jak "]
+  },
+  {
+    "name": "szczeżuja",
+    "category": "noun",
+    "description": ["gatunek małży słodkowodnych"]
+  },
+  {
+    "name": "postaw",
+    "category": "noun",
+    "description": ["staropolska jednostka miary tkanin"]
+  },
+  {
+    "name": "ablutofobia",
+    "category": "latin",
+    "description": ["lęk przed kąpielą", "lęk przed czyszczeniem własnego ciała"]
+  },
+  {
+    "name": "gawra",
+    "category": "noun",
+    "description": ["zimowe legowisko niedźwiedzi"]
+  },
+  {
+    "name": "fordanser",
+    "category": "person",
+    "description": ["partner do tańca wynajmowany za pieniądze w lokalach rozrywkowych"]
+  },
+  {
+    "name": "otomana",
+    "category": "noun",
+    "description": ["niska kanapa o miękkim siedzeniu"]
+  },
+  {
+    "name": "holistyczny",
+    "category": "adjective",
+    "description": ["całościowy", "dotyczący całości"]
+  },
+  {
+    "name": "transcendentny",
+    "category": "adjective",
+    "description": ["istniejący na zewnątrz czegoś", "znajdujący się poza zasięgiem doświadczenia"]
+  },
+  {
+    "name": "fintifluszka",
+    "category": "noun",
+    "description": ["drobny przedmiot bez określonego przeznaczenia", "drobiazg"]
+  },
+  {
+    "name": "świekra",
+    "category": "person",
+    "description": ["matka męża"]
   }
 ]

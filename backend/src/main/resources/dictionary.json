@@ -1128,5 +1128,140 @@
     "name": "świekra",
     "category": "person",
     "description": ["matka męża"]
+  },
+  {
+    "name": "emfaza",
+    "category": "noun",
+    "description": ["akcent emocjonalny na zdania, wyrazy, sylaby", "nadmierna uczuciowość wypowiedzi"]
+  },
+  {
+    "name": "turpizm",
+    "category": "noun",
+    "description": ["kult brzydoty"]
+  },
+  {
+    "name": "eudemonista",
+    "category": "person",
+    "description": ["człowiek dążący do szczęścia osobistego", "człowiek uuważający szczęście osobiste za życiowy cel"]
+  },
+  {
+    "name": "serwantka",
+    "category": "noun",
+    "description": ["wolno stojąca oszklona szafka do przechowywania porcelany i zastawy stołowej"]
+  },
+  {
+    "name": "chabaź",
+    "category": "noun",
+    "description": ["roślina przypominająca chwast", "zielsko"]
+  },
+  {
+    "name": "lukarna",
+    "category": "noun",
+    "description": ["okno wystające pionowo z płaszczyzny dachu"]
+  },
+  {
+    "name": "szaławiła",
+    "category": "person",
+    "description": ["osoba lekkomyślna", "osoba prowadząca beztroski tryb życia"]
+  },
+  {
+    "name": "gawiedź",
+    "category": "person",
+    "description": ["natrętna grupa gapiów szukających sensacji"]
+  },
+  {
+    "name": "świszczypała",
+    "category": "person",
+    "description": ["osoba nieodpowiedzialna", "osoba lekkomyślna", "osoba nietraktująca niczego poważnie"]
+  },
+  {
+    "name": "odpulić",
+    "category": "verb",
+    "description": ["pozbywać się", "zignorować", "zostawiać w spokoju", "odpuścić", "opuszczać jakieś miejsce"]
+  },
+  {
+    "name": "jątrew",
+    "category": "person",
+    "description": ["żona brata", "bratowa"]
+  },
+  {
+    "name": "basałyk",
+    "category": "person",
+    "description": ["małe, niesforne dziecko"]
+  },
+  {
+    "name": "lapidarium",
+    "category": "latin",
+    "description": ["miejsce przechowywania i prezentowania okazów kamieni naturalnych"]
+  },
+  {
+    "name": "kartusz",
+    "category": "noun",
+    "description": ["pojemnik", "butla na gaz do zapalniczek", "ozdobne zdobienie herbów"]
+  },
+  {
+    "name": "ramota",
+    "category": "noun",
+    "description": ["utwór literacki o małej wartości artystycznej", "niewielki utwór satyryczno-humorystyczny"]
+  },
+  {
+    "name": "flaszetka",
+    "category": "noun",
+    "description": ["rzutki umieszczane w pociskach"]
+  },
+  {
+    "name": "liberia",
+    "category": "noun",
+    "description": ["umundurowanie służby", "strój pracujących w hotelu"]
+  },
+  {
+    "name": "antynatalizm",
+    "category": "latin",
+    "description": ["postrzeganie życia jako krzywdę", "postrzeganie życia jako karę"]
+  },
+  {
+    "name": "puryzm",
+    "category": "noun",
+    "description": ["przesadna dbałość o poprawność językową"]
+  },
+  {
+    "name": "żyrant",
+    "category": "person",
+    "description": ["poręczyciel przy kredycie"]
+  },
+  {
+    "name": "barbaryzm",
+    "category": "noun",
+    "description": ["wyrażenie lub konstrukcja składniowa obce danemu językowi"]
+  },
+  {
+    "name": "egzegeza",
+    "category": "noun",
+    "description": ["interpretacja tekstów biblijnych"]
+  },
+  {
+    "name": "powała",
+    "category": "noun",
+    "description": ["drewniany strop", "gęsta warstwa dymu unoszącego się w powietrzu"]
+  },
+  {
+    "name": "dysforia",
+    "category": "noun",
+    "description": ["uczucie niezadowolenia i niepokoju"]
+  },
+  {
+    "name": "sylogizm",
+    "category": "noun",
+    "description": ["schemat wnioskowania na podstawie dwóch przesłanek"]
+  },
+  {
+    "name": "amuzja",
+    "category": "latin",
+    "description": ["zaburzenie percepcji muzyki", "niezdolność wytwarzania muzyki"]
+  },
+  {
+    "name": "afazja",
+    "category": "latin",
+    "description": ["zaburzenia percepcji mowy"]
   }
 ]

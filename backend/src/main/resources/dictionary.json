@@ -1263,5 +1263,170 @@
     "name": "afazja",
     "category": "latin",
     "description": ["zaburzenia percepcji mowy"]
+  },
+  {
+    "name": "ataraksja",
+    "category": "noun",
+    "description": ["postawa niewzruszoności", "równowaga i spokój ducha", "zimna krew"]
+  },
+  {
+    "name": "wiwisekcja",
+    "category": "noun",
+    "description": ["zabieg dokonywany na żywym zwierzęciu w celach naukowych", "bardzo dokładna analiza czegoś"]
+  },
+  {
+    "name": "kafir",
+    "category": "noun",
+    "description": ["liść limonki"]
+  },
+  {
+    "name": "suponować",
+    "category": "verb",
+    "description": ["przypuszczać", "wstępnie określić jako założenie"]
+  },
+  {
+    "name": "dandys",
+    "category": "person",
+    "description": ["mężczyzna odznaczający się wyszukaną elegancją", "mężczyzna ekstrawagancki"]
+  },
+  {
+    "name": "jaźwiec",
+    "category": "noun",
+    "description": ["borsuk"]
+  },
+  {
+    "name": "hiperonim",
+    "category": "noun",
+    "description": ["wyraz o znaczeniu szerszym w stosunku do innych"]
+  },
+  {
+    "name": "dylogia",
+    "category": "noun",
+    "description": ["dzieło literackie składające się z dwóch łączących się utworów"]
+  },
+  {
+    "name": "kabotaż",
+    "category": "noun",
+    "description": ["żegluga odbywająca się między portami danego państwa", "żegluga przybrzeżna"]
+  },
+  {
+    "name": "antynomia",
+    "category": "noun",
+    "description": ["sprzeczność między dwoma twierdzeniami, z których każde osobno wydaje się prawdziwe"]
+  },
+  {
+    "name": "inwariant",
+    "category": "noun",
+    "description": ["cecha stała", "czynnik niezmieniający się w czasie"]
+  },
+  {
+    "name": "gors",
+    "category": "noun",
+    "description": ["górna część klatki piersiowej"]
+  },
+  {
+    "name": "arkany",
+    "category": "noun",
+    "description": ["tajemnice", "sekretna wiedza"]
+  },
+  {
+    "name": "ekslibris",
+    "category": "latin",
+    "description": ["ozdobny, graficzny znak własnościowy danego egzemplarza książki"]
+  },
+  {
+    "name": "sonder",
+    "category": "noun",
+    "description": ["świadomość, że inni ludzie mają podobnie złożone życie"]
+  },
+  {
+    "name": "amor fati",
+    "category": "latin",
+    "description": ["akceptacja ludzkiego losu"]
+  },
+  {
+    "name": "częstokół",
+    "category": "noun",
+    "description": ["obronne ogrodzenie z ostro zakończonych pali"]
+  },
+  {
+    "name": "eskulap",
+    "category": "person",
+    "description": ["lekarz"]
+  },
+  {
+    "name": "glebogryzarka",
+    "category": "noun",
+    "description": ["maszyna rolnicza spulchniająca glebę"]
+  },
+  {
+    "name": "korpulencja",
+    "category": "noun",
+    "description": ["cecha osoby z nadwagą", "tusza", "pulchność"]
+  },
+  {
+    "name": "farys",
+    "category": "person",
+    "description": ["rycerz arabski", "zapaleniec", "śmiałek"]
+  },
+  {
+    "name": "hurdycja",
+    "category": "noun",
+    "description": ["drewniany ganek w średniowiecznym budownictwie obronnym"]
+  },
+  {
+    "name": "huncwot",
+    "category": "person",
+    "description": ["hultaj", "gagatek", "łobuziak", "urwis"]
+  },
+  {
+    "name": "garsoniera",
+    "category": "noun",
+    "description": ["kawalerka"]
+  },
+  {
+    "name": "arborysta",
+    "category": "person",
+    "description": ["chirurg drzew", "osoba dokonująca zabiegów pielęgnacyjnych drzew"]
+  },
+  {
+    "name": "szkwał",
+    "category": "noun",
+    "description": ["nagły wzrost prędkości wiatru o co najmniej 8m/s"]
+  },
+  {
+    "name": "trychotomia",
+    "category": "noun",
+    "description": ["podział na trzy części"]
+  },
+  {
+    "name": "dychotomia",
+    "category": "noun",
+    "description": ["podział na dwie części"]
+  },
+  {
+    "name": "safanduła",
+    "category": "person",
+    "description": ["osoba powolna", "osoba niezdarna", "osoba nieumiejąca poradzić sobie w życiu"]
+  },
+  {
+    "name": "majuskuła",
+    "category": "noun",
+    "description": ["duża litera alfabetu"]
+  },
+  {
+    "name": "minuskuła",
+    "category": "noun",
+    "description": ["mała litera alfabetu"]
+  },
+  {
+    "name": "koherentny",
+    "category": "adjective",
+    "description": ["spoisty", "spójny", "zwarty"]
+  },
+  {
+    "name": "atawizm",
+    "category": "noun",
+    "description": ["regresja ewolucyjna danej cechy"]
   }
 ]

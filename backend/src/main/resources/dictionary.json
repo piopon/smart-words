@@ -172,7 +172,7 @@
   {
     "name": "konweniować",
     "category": "verb",
-    "description": ["być zgodnym z czymś"]
+    "description": ["być zgodnym z czymś", "odpowiadać", "przypadać do gustu"]
   },
   {
     "name": "humbug",
@@ -257,7 +257,7 @@
   {
     "name": "przaśny",
     "category": "adjective",
-    "description": ["mdły", "radosny"]
+    "description": ["mdły", "prosty", "naturalny", "radosny"]
   },
   {
     "name": "ambaras",
@@ -612,7 +612,7 @@
   {
     "name": "frela",
     "category": "person",
-    "description": ["dziewczyna"]
+    "description": ["dziewczyna", "dziołcha"]
   },
   {
     "name": "dziad kalwaryjski",
@@ -622,7 +622,7 @@
   {
     "name": "galimatias",
     "category": "noun",
-    "description": ["nieład", "harmider"]
+    "description": ["nieład", "harmider", "zamęt"]
   },
   {
     "name": "knajak",

@@ -6,4 +6,4 @@ package pl.smtc.smartwords.model
  * @param category word category
  * @param definition word correct definition
  */
-case class Word(name: String, category: Category.Value, definition: String)
+case class Word(name: String, category: Category.Value, definition: List[String])

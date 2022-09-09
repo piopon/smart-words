@@ -57,10 +57,10 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
       case None =>
         NotFound("Specified quiz does not exist")
       case Some(quiz) =>
-        val correctDefinition: String = quiz.rounds(questionNo.toInt).word.definition
+        val correctDefinitions: List[String] = quiz.rounds(questionNo.toInt).word.definition
         val selectedDefinition: String = quiz.rounds(questionNo.toInt).options(answerNo.toInt)
         quiz.rounds(questionNo.toInt).answer = Option(answerNo.toInt)
-        val isCorrect = correctDefinition.equals(selectedDefinition)
+        val isCorrect = correctDefinitions.contains(selectedDefinition)
         quiz.rounds(questionNo.toInt).correct = Option(isCorrect)
         Ok(isCorrect.toString)
     }
@@ -112,22 +112,18 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
 
   /**
    * Method used to generate 4 answer options
-   * @param correctDefinition correct word definition (one of answer options)
+   * @param correctDefinitions correct word definitions (from which one will be added to answer options)
    * @param category word category from which to draw the remaining 3 answer options
    * @return list of possible 4 answer options
    */
-  private def generateOptions(correctDefinition: String, category: Category.Value): List[String] = {
-    val totalOptionsNo = 4
-    val incorrectOptions: List[String] = Random.shuffle(wordDB.getWordsByCategory(category).map(_.definition))
-    var options: List[String] = (incorrectOptions.take(3) :+ correctDefinition).distinct
-    for (_ <- 0 until totalOptionsNo-options.length) {
-      do {
-        val replacement: String = incorrectOptions.apply(Random.nextInt(incorrectOptions.length))
-        if (!options.contains(replacement)) {
-          options = options.appended(replacement)
-        }
-      } while (options.length != totalOptionsNo)
-    }
+  private def generateOptions(correctDefinitions: List[String], category: Category.Value): List[String] = {
+    val incorrectDefinitions: List[String] = wordDB.getWordsByCategory(category)
+      .map(w => Random.shuffle(w.definition).head)
+      .filter(!correctDefinitions.contains(_))
+      .distinct
+    val incorrectOptions: List[String] = Random.shuffle(incorrectDefinitions).take(3)
+    val correctOption: String = correctDefinitions.apply(Random.nextInt(correctDefinitions.length))
+    val options: List[String] = (incorrectOptions :+ correctOption).distinct
     Random.shuffle(options)
   }
 

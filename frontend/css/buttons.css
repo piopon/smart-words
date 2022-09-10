@@ -17,6 +17,20 @@
   transition: background-color 0.75s;
 }
 
+#quiz-mode-start.loading {
+  color: white;
+  border-color: black;
+  background-color: forestgreen;
+  transition: background-color 0.5s, color 0.3s;
+}
+
+#quiz-mode-start:disabled {
+  color: gray;
+  border-color: black;
+  background-color: gainsboro;
+  transition: background-color 0.25s, color 0.15s;
+}
+
 /*******************************/
 /* quiz options buttons        */
 /*******************************/

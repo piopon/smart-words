@@ -13,16 +13,19 @@ var questionsStatus = undefined;
  * Method used to receive number of question, start quiz and receive UUID
  */
 function startQuiz() {
+  startQuizUpdateUiState(START_QUIZ_LOAD);
   totalQuestionsNo = document.getElementById("quiz-mode-question-no").value;
   questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
+      startQuizUpdateUiState(START_QUIZ_ERROR);
     } else {
       console.log(data);
       quizID = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);
+      startQuizUpdateUiState(START_QUIZ_OK);
     }
   });
 }

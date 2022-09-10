@@ -28,6 +28,36 @@ function startQuiz() {
 }
 
 /**
+ * Method used to update GUI state while starting quiz from service
+ *
+ * @param {Integer} state current loading state (from: START_QUIZ_OK, START_QUIZ_LOAD, START_QUIZ_ERROR)
+ */
+ function startQuizUpdateUiState(state) {
+  let startQuizBtn = document.getElementById("quiz-mode-start");
+  if (startQuizBtn === null) return;
+  if (START_QUIZ_OK === state) {
+    startQuizBtn.className = null;
+    startQuizBtn.disabled = false;
+    startQuizBtn.onclick = "startQuiz()";
+    startQuizBtn.innerHTML = "start";
+    return;
+  }
+  if (START_QUIZ_LOAD === state) {
+    startQuizBtn.className = "loading";
+    startQuizBtn.disabled = false;
+    startQuizBtn.onclick = null;
+    startQuizBtn.innerHTML = "loading...";
+    return;
+  }
+  if (START_QUIZ_ERROR === state) {
+    startQuizBtn.disabled = true;
+    startQuizBtn.onclick = null;
+    startQuizBtn.innerHTML = "cannot start new quiz...";
+    return;
+  }
+}
+
+/**
  * Method used to request a question with specified number
  *
  * @param {Integer} number of a requested question

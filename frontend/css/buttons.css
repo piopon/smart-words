@@ -2,10 +2,9 @@
 /* quiz mode start button      */
 /*******************************/
 #quiz-mode-start {
-  margin: auto 5px 10px 5px;
   align-self: center;
   height: 40px;
-  width: 95%;
+  width: 100%;
   background-color: limegreen;
   border: 1px black solid;
   font-size: 19px;

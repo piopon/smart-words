@@ -18,15 +18,17 @@
 }
 
 #quiz-mode-start.loading {
-  color: white;
+  color: black;
   border-color: black;
-  background-color: forestgreen;
-  transition: background-color 0.5s, color 0.3s;
+  border-width: 3px;
+  background-color: darkorange;
+  transition: background-color 0.75s;
 }
 
 #quiz-mode-start:disabled {
-  color: gray;
-  border-color: black;
+  color: darkred;
+  border-color: darkred;
+  border-width: 1px;
   background-color: gainsboro;
   transition: background-color 0.25s, color 0.15s;
 }

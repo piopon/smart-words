@@ -46,16 +46,16 @@ function startQuiz() {
     return;
   }
   if (START_QUIZ_LOAD === state) {
+    startQuizBtn.onclick = null;
     startQuizBtn.className = "loading";
     startQuizBtn.disabled = false;
-    startQuizBtn.onclick = null;
-    startQuizBtn.innerHTML = "loading...";
+    startQuizBtn.innerHTML = "connecting...";
     return;
   }
   if (START_QUIZ_ERROR === state) {
-    startQuizBtn.disabled = true;
     startQuizBtn.onclick = null;
-    startQuizBtn.innerHTML = "cannot start new quiz...";
+    startQuizBtn.disabled = true;
+    startQuizBtn.innerHTML = "service unavailable";
     return;
   }
 }

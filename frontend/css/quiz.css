@@ -54,6 +54,20 @@
   padding: 0px 10px;
 }
 
+#quiz-extra-info {
+  background: url(../images/info.png) no-repeat;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  bottom: 17px;
+  right: 18px;
+  z-index: 10;
+}
+
+#quiz-extra-info.hide {
+  display: none;
+}
+
 p.mode-section-label {
   margin: 0px 0px;
   padding: 12px 0px 0px 0px;

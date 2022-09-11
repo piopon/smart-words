@@ -39,9 +39,9 @@ function startQuiz() {
   let startQuizBtn = document.getElementById("quiz-mode-start");
   if (startQuizBtn === null) return;
   if (START_QUIZ_OK === state) {
-    startQuizBtn.className = null;
+    startQuizBtn.addEventListener("click", startQuiz);
+    startQuizBtn.className = "dynamic-border";
     startQuizBtn.disabled = false;
-    startQuizBtn.onclick = "startQuiz()";
     startQuizBtn.innerHTML = "start";
     return;
   }

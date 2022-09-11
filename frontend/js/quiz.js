@@ -21,7 +21,6 @@ function startQuiz() {
       console.log("ERROR: " + err);
       startQuizUpdateUiState(START_QUIZ_ERROR);
     } else {
-      console.log(data);
       quizID = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);

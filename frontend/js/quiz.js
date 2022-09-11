@@ -36,12 +36,14 @@ function startQuiz() {
  */
  function startQuizUpdateUiState(state) {
   let startQuizBtn = document.getElementById("quiz-mode-start");
+  let startQuizInfo = document.getElementById("quiz-extra-info");
   if (startQuizBtn === null) return;
   if (START_QUIZ_OK === state) {
     startQuizBtn.addEventListener("click", startQuiz);
     startQuizBtn.className = "dynamic-border";
     startQuizBtn.disabled = false;
     startQuizBtn.innerHTML = "start";
+    startQuizInfo.className = "hide";
     return;
   }
   if (START_QUIZ_LOAD === state) {
@@ -49,12 +51,17 @@ function startQuiz() {
     startQuizBtn.className = "loading";
     startQuizBtn.disabled = false;
     startQuizBtn.innerHTML = "connecting...";
+    startQuizInfo.className = "hide";
     return;
   }
   if (START_QUIZ_ERROR === state) {
     startQuizBtn.onclick = null;
     startQuizBtn.disabled = true;
     startQuizBtn.innerHTML = "service unavailable";
+    startQuizInfo.className = "";
+    startQuizInfo.title =
+      "Cannot connect to a backend service!\n" +
+      "Please verify its running and connection status and refresh this page.";
     return;
   }
 }

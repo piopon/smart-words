@@ -34,7 +34,7 @@ function startQuiz() {
  *
  * @param {Integer} state current loading state (from: START_QUIZ_OK, START_QUIZ_LOAD, START_QUIZ_ERROR)
  */
- function startQuizUpdateUiState(state) {
+function startQuizUpdateUiState(state) {
   let startQuizBtn = document.getElementById("quiz-mode-start");
   let startQuizInfo = document.getElementById("quiz-extra-info");
   if (startQuizBtn === null) return;
@@ -247,7 +247,7 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
  * Method used to check is all questions are answered and depending on the result stop quiz or show confirmation modal
  */
 function checkQuizEnd() {
-  if(questionsStatus.includes(STATUS_NO_ANSWER)) {
+  if (questionsStatus.includes(STATUS_NO_ANSWER)) {
     showQuizEndModalDialog();
   } else {
     stopQuiz();

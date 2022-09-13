@@ -1,6 +1,9 @@
 const STATUS_NO_ANSWER = 0;
 const STATUS_ANSWER_OK = 1;
 const STATUS_ANSWER_NOK = -1;
+const START_QUIZ_OK = 0;
+const START_QUIZ_LOAD = 1;
+const START_QUIZ_ERROR = 2;
 var quizID = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
@@ -10,18 +13,57 @@ var questionsStatus = undefined;
  * Method used to receive number of question, start quiz and receive UUID
  */
 function startQuiz() {
+  startQuizUpdateUiState(START_QUIZ_LOAD);
   totalQuestionsNo = document.getElementById("quiz-mode-question-no").value;
   questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
+      startQuizUpdateUiState(START_QUIZ_ERROR);
     } else {
-      console.log(data);
       quizID = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);
+      startQuizUpdateUiState(START_QUIZ_OK);
     }
   });
+}
+
+/**
+ * Method used to update GUI state while starting quiz from service
+ *
+ * @param {Integer} state current loading state (from: START_QUIZ_OK, START_QUIZ_LOAD, START_QUIZ_ERROR)
+ */
+function startQuizUpdateUiState(state) {
+  let startQuizBtn = document.getElementById("quiz-mode-start");
+  let startQuizInfo = document.getElementById("quiz-extra-info");
+  if (startQuizBtn === null) return;
+  if (START_QUIZ_OK === state) {
+    startQuizBtn.addEventListener("click", startQuiz);
+    startQuizBtn.className = "dynamic-border";
+    startQuizBtn.disabled = false;
+    startQuizBtn.innerHTML = "start";
+    startQuizInfo.className = "hide";
+    return;
+  }
+  if (START_QUIZ_LOAD === state) {
+    startQuizBtn.onclick = null;
+    startQuizBtn.className = "loading";
+    startQuizBtn.disabled = false;
+    startQuizBtn.innerHTML = "connecting...";
+    startQuizInfo.className = "hide";
+    return;
+  }
+  if (START_QUIZ_ERROR === state) {
+    startQuizBtn.onclick = null;
+    startQuizBtn.disabled = true;
+    startQuizBtn.innerHTML = "service unavailable";
+    startQuizInfo.className = "";
+    startQuizInfo.title =
+      "Cannot connect to a backend service!\n" +
+      "Please verify its running and connection status and refresh this page.";
+    return;
+  }
 }
 
 /**
@@ -205,7 +247,7 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
  * Method used to check is all questions are answered and depending on the result stop quiz or show confirmation modal
  */
 function checkQuizEnd() {
-  if(questionsStatus.includes(STATUS_NO_ANSWER)) {
+  if (questionsStatus.includes(STATUS_NO_ANSWER)) {
     showQuizEndModalDialog();
   } else {
     stopQuiz();

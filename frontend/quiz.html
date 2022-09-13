@@ -49,7 +49,10 @@
               <input type="number" id="quiz-mode-question-no" value="10" min="5" max="25" />
             </div>
           </div>
-          <button id="quiz-mode-start" class="dynamic-border" onclick="startQuiz()">start</button>
+          <div id="quiz-mode-controls">
+            <button id="quiz-mode-start" class="dynamic-border" onclick="startQuiz()">start</button>
+            <div id="quiz-extra-info" class="hide" title="PUT EXTRA INFO HERE"></div>
+          </div>
         </div>
       </div>
       <div id="quiz-question" class="container-hidden"></div>

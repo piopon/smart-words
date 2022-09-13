@@ -2,10 +2,9 @@
 /* quiz mode start button      */
 /*******************************/
 #quiz-mode-start {
-  margin: auto 5px 10px 5px;
   align-self: center;
   height: 40px;
-  width: 95%;
+  width: 100%;
   background-color: limegreen;
   border: 1px black solid;
   font-size: 19px;
@@ -15,6 +14,22 @@
 #quiz-mode-start:hover {
   background-color: lime;
   transition: background-color 0.75s;
+}
+
+#quiz-mode-start.loading {
+  color: black;
+  border-color: black;
+  border-width: 3px;
+  background-color: darkorange;
+  transition: background-color 0.75s;
+}
+
+#quiz-mode-start:disabled {
+  color: darkred;
+  border-color: darkred;
+  border-width: 1px;
+  background-color: gainsboro;
+  transition: background-color 0.25s, color 0.15s;
 }
 
 /*******************************/

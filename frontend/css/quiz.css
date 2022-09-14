@@ -30,7 +30,7 @@
   display: flex;
 }
 
-#quiz-mode {
+#quiz-mode-tile {
   display: flex;
   flex-direction: column;
   height: 210px;
@@ -39,7 +39,7 @@
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
-#quiz-mode-title {
+#quiz-mode-tile-title {
   padding: 10 10px;
   font-size: 25px;
   letter-spacing: 0px;
@@ -48,12 +48,12 @@
   color: white;
 }
 
-#quiz-mode-content {
+#quiz-mode-tile-content {
   padding: 5px 10px;
   font-size: 15px;
 }
 
-#quiz-mode-controls {
+#quiz-mode-tile-controls {
   display: flex;
   height: 100%;
   position: relative;

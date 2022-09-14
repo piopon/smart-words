@@ -14,7 +14,7 @@ var questionsStatus = undefined;
  */
 function startQuiz() {
   startQuizUpdateUiState(START_QUIZ_LOAD);
-  totalQuestionsNo = document.getElementById("quiz-mode-question-no").value;
+  totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
   questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {

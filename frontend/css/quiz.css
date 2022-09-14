@@ -11,14 +11,14 @@
   flex-direction: row;
 }
 
-#select-mode-title {
+#quiz-title-container-label {
   margin: 5px 0px;
   display: block;
   font-size: 40px;
   font-family: var(--styled-font), cursive;
 }
 
-#all-quiz-modes-container {
+#quiz-modes-container {
   flex-wrap: wrap;
 }
 

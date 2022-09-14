@@ -123,9 +123,9 @@ function verifyQuestionNo(number) {
  */
 function displayQuestion(questionObject) {
   let questionStatus = `question ${currentQuestionNo + 1}/${totalQuestionsNo}`;
-  document.getElementById("select-mode-title").innerHTML = `quiz - guess definition - ${questionStatus}:`;
+  document.getElementById("quiz-title-container-label").innerHTML = `quiz - guess definition - ${questionStatus}:`;
   document.getElementById("quiz-question-container").className = "container-visible";
-  document.getElementById("all-quiz-modes-container").className = "container-hidden";
+  document.getElementById("quiz-modes-container").className = "container-hidden";
   questionHtml = getWordHtml(questionObject.word);
   questionHtml += `<div id="question-options">`;
   for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
@@ -289,8 +289,8 @@ function stopQuiz() {
  */
 function displaySummary(summaryValue) {
   document.getElementById("quiz-question-container").className = "container-visible";
-  document.getElementById("all-quiz-modes-container").className = "container-hidden";
-  document.getElementById("select-mode-title").innerHTML = "results:";
+  document.getElementById("quiz-modes-container").className = "container-hidden";
+  document.getElementById("quiz-title-container-label").innerHTML = "results:";
   document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(summaryValue);
 }
 
@@ -325,7 +325,7 @@ function getSummaryHtml(summaryValue) {
  */
 function cleanQuiz() {
   document.getElementById("quiz-question-container").className = "container-hidden";
-  document.getElementById("all-quiz-modes-container").className = "container-visible";
-  document.getElementById("select-mode-title").innerHTML = "select mode:";
+  document.getElementById("quiz-modes-container").className = "container-visible";
+  document.getElementById("quiz-title-container-label").innerHTML = "select mode:";
   document.getElementById("quiz-question-container").innerHTML = "";
 }

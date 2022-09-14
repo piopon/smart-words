@@ -28,6 +28,26 @@
   margin-right: 50px;
 }
 
+div[class^="question-status"] {
+  height: 20px;
+  width: 20px;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin-left: 5px;
+}
+
+.question-status0 {
+  background-color: darkgrey;
+}
+
+.question-status-1 {
+  background-color: red;
+}
+
+.question-status1 {
+  background-color: lime;
+}
+
 #quiz-modes-container {
   flex-wrap: wrap;
 }

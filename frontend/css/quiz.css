@@ -18,6 +18,16 @@
   font-family: var(--styled-font), cursive;
 }
 
+#quiz-title-container-status {
+  margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 50px;
+}
+
 #quiz-modes-container {
   flex-wrap: wrap;
 }

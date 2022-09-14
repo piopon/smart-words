@@ -243,6 +243,18 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
   return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
 }
 
+function updateQuestionStatus() {
+  let quizStatusDiv = document.getElementById("quiz-title-container-status");
+  if (quizStatusDiv === null) return;
+  let questionStatusHtml = `current quiz question status:`;
+  console.log(questionsStatus.length);
+  for (let i = 0; i < questionsStatus.length; i++) {
+    questionStatusHtml += `<div class="question-status${questionsStatus[i]}"></div>`;
+  }
+  console.log(questionStatusHtml);
+  quizStatusDiv.innerHTML = questionStatusHtml;
+}
+
 /**
  * Method used to check is all questions are answered and depending on the result stop quiz or show confirmation modal
  */

@@ -35,8 +35,8 @@ function startQuiz() {
  * @param {Integer} state current loading state (from: START_QUIZ_OK, START_QUIZ_LOAD, START_QUIZ_ERROR)
  */
 function startQuizUpdateUiState(state) {
-  let startQuizBtn = document.getElementById("quiz-mode-start");
-  let startQuizInfo = document.getElementById("quiz-extra-info");
+  let startQuizBtn = document.getElementById("quiz-mode-controls-start");
+  let startQuizInfo = document.getElementById("quiz-mode-controls-info");
   if (startQuizBtn === null) return;
   if (START_QUIZ_OK === state) {
     startQuizBtn.addEventListener("click", startQuiz);

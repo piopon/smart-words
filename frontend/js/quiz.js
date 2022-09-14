@@ -24,6 +24,7 @@ function startQuiz() {
       quizID = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);
+      updateQuestionStatus();
       startQuizUpdateUiState(START_QUIZ_OK);
     }
   });
@@ -215,6 +216,7 @@ function answerQuestionNo(number, answerNo) {
         document.getElementById("answer-" + i).onclick = null;
         document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);
       }
+      updateQuestionStatus();
     }
   });
 }

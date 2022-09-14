@@ -12,7 +12,7 @@
   font-family: var(--styled-font), cursive;
 }
 
-#quiz-mode-container {
+#all-quiz-modes-container {
   flex-wrap: wrap;
 }
 
@@ -76,7 +76,7 @@ p.mode-section-label {
   text-decoration: underline;
 }
 
-#quiz-question {
+#quiz-question-container {
   flex-direction: column;
   width: 100%;
   height: 100%;

@@ -305,6 +305,7 @@ function displaySummary(summaryValue) {
   document.getElementById("quiz-question-container").className = "container-visible";
   document.getElementById("quiz-modes-container").className = "container-hidden";
   document.getElementById("quiz-title-container-label").innerHTML = "results:";
+  updateQuestionStatus(false);
   document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(summaryValue);
 }
 

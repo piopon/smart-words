@@ -246,15 +246,11 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
 }
 
 function updateQuestionStatus() {
-  let quizStatusDiv = document.getElementById("quiz-title-container-status");
-  if (quizStatusDiv === null) return;
-  let questionStatusHtml = `current quiz question status:`;
-  console.log(questionsStatus.length);
+  let questionStatusHtml = `quiz questions status:`;
   for (let i = 0; i < questionsStatus.length; i++) {
     questionStatusHtml += `<div class="question-status${questionsStatus[i]}"></div>`;
   }
-  console.log(questionStatusHtml);
-  quizStatusDiv.innerHTML = questionStatusHtml;
+  document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
 }
 
 /**

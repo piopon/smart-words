@@ -26,6 +26,8 @@
   justify-content: flex-end;
   align-items: center;
   margin-right: 50px;
+  font-size: 15px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 div[class^="question-status"] {

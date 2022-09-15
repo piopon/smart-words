@@ -336,6 +336,7 @@ function getSummaryHtml(summaryValue) {
 function cleanQuiz() {
   document.getElementById("quiz-question-container").className = "container-hidden";
   document.getElementById("quiz-modes-container").className = "container-visible";
+  document.getElementById("quiz-title-container-status").innerHTML = "";
   document.getElementById("quiz-title-container-label").innerHTML = "select mode:";
   document.getElementById("quiz-question-container").innerHTML = "";
 }

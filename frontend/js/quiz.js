@@ -38,7 +38,7 @@ function startQuiz() {
 function startQuizUpdateUiState(state) {
   let startQuizBtn = document.getElementById("quiz-mode-controls-start");
   let startQuizInfo = document.getElementById("quiz-mode-controls-info");
-  if (startQuizBtn === null) return;
+  if (startQuizBtn === null || startQuizInfo === null) return;
   if (START_QUIZ_OK === state) {
     startQuizBtn.addEventListener("click", startQuiz);
     startQuizBtn.className = "dynamic-border";

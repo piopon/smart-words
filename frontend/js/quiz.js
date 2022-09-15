@@ -247,7 +247,7 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
 }
 
 function updateQuestionStatus(enableStatusNavigation = true) {
-  let questionStatusHtml = `quiz questions status:`;
+  let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
     let clickClass = (true === enableStatusNavigation) ? "navigation-on" : "navigation-off";
     let clickAction = (true === enableStatusNavigation) ? `onclick="requestQuestionNo(${i})"` : ``;

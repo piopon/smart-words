@@ -77,6 +77,7 @@ function requestQuestionNo(number) {
     if (err) {
       console.log("ERROR: " + err);
     } else {
+      currentQuestionNo = number;
       console.log(data);
       displayQuestion(data);
     }

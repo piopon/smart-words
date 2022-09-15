@@ -245,10 +245,14 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
   return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
 }
 
-function updateQuestionStatus() {
+function updateQuestionStatus(enableStatusNavigation = true) {
   let questionStatusHtml = `quiz questions status:`;
   for (let i = 0; i < questionsStatus.length; i++) {
-    questionStatusHtml += `<div class="question-status${questionsStatus[i]}">${i+1}</div>`;
+    let clickClass = (true === enableStatusNavigation) ? "navigation-on" : "navigation-off";
+    let clickAction = (true === enableStatusNavigation) ? `onclick="requestQuestionNo(${i})"` : ``;
+    questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
+                            ${i+1}
+                           </div>`;
   }
   document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
 }

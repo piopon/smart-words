@@ -248,7 +248,7 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
 function updateQuestionStatus() {
   let questionStatusHtml = `quiz questions status:`;
   for (let i = 0; i < questionsStatus.length; i++) {
-    questionStatusHtml += `<div class="question-status${questionsStatus[i]}"></div>`;
+    questionStatusHtml += `<div class="question-status${questionsStatus[i]}">${i+1}</div>`;
   }
   document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
 }

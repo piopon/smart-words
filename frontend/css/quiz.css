@@ -31,11 +31,15 @@
 }
 
 div[class^="question-status"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 20px;
   width: 20px;
   border: 1px solid black;
   border-radius: 15px;
   margin-left: 5px;
+  font-size: 10px;
 }
 
 .question-status0 {

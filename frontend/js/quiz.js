@@ -246,6 +246,11 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
   return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
 }
 
+/**
+ * Method used to create and update question depending on current questionStatus array contents
+ *
+ * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities
+ */
 function updateQuestionStatus(enableStatusNavigation = true) {
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {

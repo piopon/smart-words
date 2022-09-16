@@ -7,7 +7,7 @@
 }
 
 #btn-add-word.disabled {
-  background: url(../images/add-hover.png) no-repeat;
+  background: url(../images/add-disabled.png) no-repeat;
   cursor: not-allowed;
 }
 
@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-#btn-add-word:hover {
+#btn-add-word.enabled:hover {
   background: url(../images/add-hover.png) no-repeat;
 }
 

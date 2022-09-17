@@ -322,13 +322,13 @@ function displaySummary(summaryValue) {
  * @returns HTML code for quiz summary
  */
 function getSummaryHtml(summaryValue) {
-  let summaryImage = getSummaryImage(summaryValue);
-  let summaryTitle = getSummaryTitle(summaryValue);
+  let displayImage = getSummaryImage(summaryValue);
+  let displayTitle = getSummaryTitle(summaryValue);
   let displayValue = summaryValue * 100;
   displayValue = +displayValue.toFixed(2);
   return `<div id="quiz-summary">
-            <img id="quiz-summary-img" src="${summaryImage}">
-            <p id="quiz-summary-title"><u>${summaryTitle}: </u></p>
+            <img id="quiz-summary-img" src="${displayImage}">
+            <p id="quiz-summary-title"><u>${displayTitle}: </u></p>
             <p><strong>${displayValue}%</strong> of correct answers.</p>
             <button id="end-summary" class="question-control-btn dynamic-border" onclick="cleanQuiz()">
               OK

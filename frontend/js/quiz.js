@@ -322,12 +322,7 @@ function displaySummary(summaryValue) {
  * @returns HTML code for quiz summary
  */
 function getSummaryHtml(summaryValue) {
-  let summaryImage = "images/summary-medium.png";
-  if (summaryValue >= 0.75) {
-    summaryImage = "images/summary-good.png";
-  } else if (summaryValue <= 0.25) {
-    summaryImage = "images/summary-bad.png";
-  }
+  let summaryImage = getSummaryImage(summaryValue);
   let summaryTitle = getSummaryTitle(summaryValue);
   let displayValue = summaryValue * 100;
   displayValue = +displayValue.toFixed(2);
@@ -355,6 +350,22 @@ function getSummaryTitle(summaryValue) {
     summaryTitle = "YOU CAN DO BETTER";
   }
   return summaryTitle
+}
+
+/**
+ * Method used to receive summary image based on current score
+ *
+ * @param {Float} summaryValue correct answers percentage to determine the end image
+ * @returns summary image path
+ */
+function getSummaryImage(summaryValue) {
+  let summaryImage = "images/summary-medium.png";
+  if (summaryValue >= 0.75) {
+    summaryImage = "images/summary-good.png";
+  } else if (summaryValue <= 0.25) {
+    summaryImage = "images/summary-bad.png";
+  }
+  return summaryImage;
 }
 
 /**

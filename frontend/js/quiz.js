@@ -344,12 +344,14 @@ function getSummaryHtml(summaryValue) {
  */
 function getSummaryTitle(summaryValue) {
   let summaryTitle = "RESULT";
-  if (summaryValue >= 0.75) {
+  if (summaryValue === 1.0) {
+    summaryTitle = "PERFECT";
+  } else if (summaryValue >= 0.75) {
     summaryTitle = "AWESOME";
   } else if (summaryValue <= 0.25) {
     summaryTitle = "YOU CAN DO BETTER";
   }
-  return summaryTitle
+  return summaryTitle;
 }
 
 /**
@@ -360,7 +362,9 @@ function getSummaryTitle(summaryValue) {
  */
 function getSummaryImage(summaryValue) {
   let summaryImage = "images/summary-medium.png";
-  if (summaryValue >= 0.75) {
+  if (summaryValue === 1.0) {
+    summaryImage = "images/summary-100.png";
+  } else if (summaryValue >= 0.75) {
     summaryImage = "images/summary-good.png";
   } else if (summaryValue <= 0.25) {
     summaryImage = "images/summary-bad.png";

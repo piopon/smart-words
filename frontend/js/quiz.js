@@ -331,10 +331,12 @@ function getSummaryHtml(summaryValue) {
     summaryTitle = "YOU CAN DO BETTER";
     summaryImage = "images/summary-bad.png";
   }
+  let displayValue = summaryValue * 100;
+  displayValue = +displayValue.toFixed(2);
   return `<div id="quiz-summary">
             <img id="quiz-summary-img" src="${summaryImage}">
             <p id="quiz-summary-title"><u>${summaryTitle}: </u></p>
-            <p><strong>${summaryValue * 100}%</strong> of correct answers.</p>
+            <p><strong>${displayValue}%</strong> of correct answers.</p>
             <button id="end-summary" class="question-control-btn dynamic-border" onclick="cleanQuiz()">
               OK
             </button>

@@ -133,7 +133,7 @@ function loadWordsUpdateUiState(state) {
   }
   if (LOAD_WORDS_LOAD === state) {
     addWordBtn.className = "disabled";
-    addWordBtn.href = "";
+    addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
     rowElement.className = "row-loading";
     textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
@@ -141,7 +141,7 @@ function loadWordsUpdateUiState(state) {
   }
   if (LOAD_WORDS_ERROR === state) {
     addWordBtn.className = "disabled";
-    addWordBtn.href = "";
+    addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
     rowElement.className = "row-visible";
     textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";

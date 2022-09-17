@@ -126,6 +126,7 @@ function loadWordsUpdateUiState(state) {
   if (LOAD_WORDS_OK === state) {
     addWordBtn.className = "enabled";
     addWordBtn.href = "#modal";
+    addWordBtn.addEventListener("click", addWord);
     rowElement.className = "row-hidden";
     textElement.innerHTML = "";
     return;
@@ -133,6 +134,7 @@ function loadWordsUpdateUiState(state) {
   if (LOAD_WORDS_LOAD === state) {
     addWordBtn.className = "disabled";
     addWordBtn.href = "";
+    addWordBtn.onclick = null;
     rowElement.className = "row-loading";
     textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
     return;
@@ -140,6 +142,7 @@ function loadWordsUpdateUiState(state) {
   if (LOAD_WORDS_ERROR === state) {
     addWordBtn.className = "disabled";
     addWordBtn.href = "";
+    addWordBtn.onclick = null;
     rowElement.className = "row-visible";
     textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
     return;

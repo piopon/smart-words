@@ -322,15 +322,13 @@ function displaySummary(summaryValue) {
  * @returns HTML code for quiz summary
  */
 function getSummaryHtml(summaryValue) {
-  let summaryTitle = "RESULT";
   let summaryImage = "images/summary-medium.png";
   if (summaryValue >= 0.75) {
-    summaryTitle = "AWESOME";
     summaryImage = "images/summary-good.png";
   } else if (summaryValue <= 0.25) {
-    summaryTitle = "YOU CAN DO BETTER";
     summaryImage = "images/summary-bad.png";
   }
+  let summaryTitle = getSummaryTitle(summaryValue);
   let displayValue = summaryValue * 100;
   displayValue = +displayValue.toFixed(2);
   return `<div id="quiz-summary">
@@ -341,6 +339,22 @@ function getSummaryHtml(summaryValue) {
               OK
             </button>
           </div>`;
+}
+
+/**
+ * Method used to receive summary title based on current score
+ *
+ * @param {Float} summaryValue correct answers percentage to determine the end title
+ * @returns summary title string (PERFECT, AWESOME, RESULT, YOU CAN DO BETTER)
+ */
+function getSummaryTitle(summaryValue) {
+  let summaryTitle = "RESULT";
+  if (summaryValue >= 0.75) {
+    summaryTitle = "AWESOME";
+  } else if (summaryValue <= 0.25) {
+    summaryTitle = "YOU CAN DO BETTER";
+  }
+  return summaryTitle
 }
 
 /**

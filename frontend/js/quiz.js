@@ -254,10 +254,10 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
 function updateQuestionStatus(enableStatusNavigation = true) {
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
-    let clickClass = (true === enableStatusNavigation) ? "navigation-on" : "navigation-off";
-    let clickAction = (true === enableStatusNavigation) ? `onclick="requestQuestionNo(${i})"` : ``;
+    let clickClass = true === enableStatusNavigation ? "navigation-on" : "navigation-off";
+    let clickAction = true === enableStatusNavigation ? `onclick="requestQuestionNo(${i})"` : ``;
     questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
-                            ${i+1}
+                            ${i + 1}
                            </div>`;
   }
   document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;

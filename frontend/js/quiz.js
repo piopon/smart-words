@@ -249,7 +249,8 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
 /**
  * Method used to create and update question depending on current questionStatus array contents
  *
- * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities
+ * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities.
+ *                                         If not provided by caller will be initialized to true.
  */
 function updateQuestionStatus(enableStatusNavigation = true) {
   let questionStatusHtml = `quiz questions:`;

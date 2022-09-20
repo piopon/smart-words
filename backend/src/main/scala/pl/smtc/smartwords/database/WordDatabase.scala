@@ -5,6 +5,7 @@ import io.circe.parser._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.dao._
 
+import java.io.File
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
@@ -27,6 +28,20 @@ class WordDatabase {
       case Right(words) =>
         words.foreach(word => testWordDB += word)
         true
+    }
+  }
+
+  /**
+   * Method used to receive all JSON files in input directory
+   * @param directory directory in which we want to search JSON files
+   * @return list of all JSON files
+   */
+  def getJsonFiles(directory: String): List[File] = {
+    val input = new File(directory)
+    if (input.exists && input.isDirectory) {
+      input.listFiles.filter(file => file.isFile && file.getName.endsWith("json")).toList
+    } else {
+      List[File]()
     }
   }
 

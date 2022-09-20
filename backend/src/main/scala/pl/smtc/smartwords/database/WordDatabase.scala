@@ -20,7 +20,8 @@ class WordDatabase {
    * @return true if file was read correctly, false if error occurred
    */
   def loadDatabase(): Boolean = {
-    getJsonFiles(getClass.getResource("/").getPath).foreach(file => {
+    val dictionaryExtension = "JSON"
+    getDirectoryFiles(getClass.getResource("/").getPath, Some(dictionaryExtension)).foreach(file => {
       Using(new BufferedInputStream(new FileInputStream(file))) { fileStream =>
         val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
         decode[List[Word]](lines) match {

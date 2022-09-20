@@ -5,7 +5,7 @@ import io.circe.parser._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.dao._
 
-import java.io.File
+import java.io.{File, FileInputStream}
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
@@ -20,7 +20,7 @@ class WordDatabase {
    */
   def initDatabase(): Boolean = {
     getJsonFiles(getClass.getResource("/").getPath).foreach(file => {
-      val fileStream =  getClass.getResourceAsStream(file.getPath)
+      val fileStream = new FileInputStream(file)
       val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
       decode[List[Word]](lines) match {
         case Right(words) =>

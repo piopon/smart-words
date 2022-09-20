@@ -45,8 +45,8 @@ header #site-title {
 }
 
 header #btn-page-back {
-  height: 64px;
-  width: 64px;
+  height: 80px;
+  width: 80px;
   margin: 0 20 0 0px;
   color: transparent !important;
   border: 0px solid black;

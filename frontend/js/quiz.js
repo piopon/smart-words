@@ -14,7 +14,7 @@ var questionsStatus = undefined;
  */
 function startQuiz() {
   startQuizUpdateUiState(START_QUIZ_LOAD);
-  totalQuestionsNo = document.getElementById("quiz-mode-question-no").value;
+  totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
   questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
@@ -24,6 +24,7 @@ function startQuiz() {
       quizID = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);
+      updateQuestionStatus();
       startQuizUpdateUiState(START_QUIZ_OK);
     }
   });
@@ -35,9 +36,9 @@ function startQuiz() {
  * @param {Integer} state current loading state (from: START_QUIZ_OK, START_QUIZ_LOAD, START_QUIZ_ERROR)
  */
 function startQuizUpdateUiState(state) {
-  let startQuizBtn = document.getElementById("quiz-mode-start");
-  let startQuizInfo = document.getElementById("quiz-extra-info");
-  if (startQuizBtn === null) return;
+  let startQuizBtn = document.getElementById("quiz-mode-controls-start");
+  let startQuizInfo = document.getElementById("quiz-mode-controls-info");
+  if (startQuizBtn === null || startQuizInfo === null) return;
   if (START_QUIZ_OK === state) {
     startQuizBtn.addEventListener("click", startQuiz);
     startQuizBtn.className = "dynamic-border";
@@ -76,6 +77,7 @@ function requestQuestionNo(number) {
     if (err) {
       console.log("ERROR: " + err);
     } else {
+      currentQuestionNo = number;
       console.log(data);
       displayQuestion(data);
     }
@@ -123,9 +125,9 @@ function verifyQuestionNo(number) {
  */
 function displayQuestion(questionObject) {
   let questionStatus = `question ${currentQuestionNo + 1}/${totalQuestionsNo}`;
-  document.getElementById("select-mode-title").innerHTML = `quiz - guess definition - ${questionStatus}:`;
-  document.getElementById("quiz-question").className = "container-visible";
-  document.getElementById("quiz-mode-container").className = "container-hidden";
+  document.getElementById("quiz-title-container-label").innerHTML = `quiz - guess definition - ${questionStatus}:`;
+  document.getElementById("quiz-question-container").className = "container-visible";
+  document.getElementById("quiz-modes-container").className = "container-hidden";
   questionHtml = getWordHtml(questionObject.word);
   questionHtml += `<div id="question-options">`;
   for (var optionNo = 0; optionNo < questionObject.options.length; optionNo++) {
@@ -133,7 +135,7 @@ function displayQuestion(questionObject) {
   }
   questionHtml += `</div>`;
   questionHtml += getControlButtonsHtml();
-  document.getElementById("quiz-question").innerHTML = questionHtml;
+  document.getElementById("quiz-question-container").innerHTML = questionHtml;
   document.getElementById("prev-question").disabled = currentQuestionNo <= 0;
   document.getElementById("stop-quiz").disabled = currentQuestionNo >= totalQuestionsNo - 1;
 }
@@ -215,6 +217,7 @@ function answerQuestionNo(number, answerNo) {
         document.getElementById("answer-" + i).onclick = null;
         document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);
       }
+      updateQuestionStatus();
     }
   });
 }
@@ -241,6 +244,24 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
     return isNewQuestion ? "question-option-btn" : "question-option-btn-disabled";
   }
   return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
+}
+
+/**
+ * Method used to create and update question depending on current questionStatus array contents
+ *
+ * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities.
+ *                                         If not provided by caller will be initialized to true.
+ */
+function updateQuestionStatus(enableStatusNavigation = true) {
+  let questionStatusHtml = `quiz questions:`;
+  for (let i = 0; i < questionsStatus.length; i++) {
+    let clickClass = true === enableStatusNavigation ? "navigation-on" : "navigation-off";
+    let clickAction = true === enableStatusNavigation ? `onclick="requestQuestionNo(${i})"` : ``;
+    questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
+                            ${i + 1}
+                           </div>`;
+  }
+  document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
 }
 
 /**
@@ -288,10 +309,11 @@ function stopQuiz() {
  * @param {Float} summaryValue correct answers percentage
  */
 function displaySummary(summaryValue) {
-  document.getElementById("quiz-question").className = "container-visible";
-  document.getElementById("quiz-mode-container").className = "container-hidden";
-  document.getElementById("select-mode-title").innerHTML = "results:";
-  document.getElementById("quiz-question").innerHTML = getSummaryHtml(summaryValue);
+  document.getElementById("quiz-question-container").className = "container-visible";
+  document.getElementById("quiz-modes-container").className = "container-hidden";
+  document.getElementById("quiz-title-container-label").innerHTML = "results:";
+  updateQuestionStatus(false);
+  document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(summaryValue);
 }
 
 /**
@@ -301,19 +323,14 @@ function displaySummary(summaryValue) {
  * @returns HTML code for quiz summary
  */
 function getSummaryHtml(summaryValue) {
-  let summaryTitle = "RESULT";
-  let summaryImage = "images/summary-medium.png";
-  if (summaryValue >= 0.75) {
-    summaryTitle = "AWESOME";
-    summaryImage = "images/summary-good.png";
-  } else if (summaryValue <= 0.25) {
-    summaryTitle = "YOU CAN DO BETTER";
-    summaryImage = "images/summary-bad.png";
-  }
+  let displayImage = getSummaryImage(summaryValue);
+  let displayTitle = getSummaryTitle(summaryValue);
+  let displayValue = summaryValue * 100;
+  displayValue = +displayValue.toFixed(2);
   return `<div id="quiz-summary">
-            <img id="quiz-summary-img" src="${summaryImage}">
-            <p id="quiz-summary-title"><u>${summaryTitle}: </u></p>
-            <p><strong>${summaryValue * 100}%</strong> of correct answers.</p>
+            <img id="quiz-summary-img" src="${displayImage}">
+            <p id="quiz-summary-title"><u>${displayTitle}: </u></p>
+            <p><strong>${displayValue}%</strong> of correct answers.</p>
             <button id="end-summary" class="question-control-btn dynamic-border" onclick="cleanQuiz()">
               OK
             </button>
@@ -321,11 +338,48 @@ function getSummaryHtml(summaryValue) {
 }
 
 /**
+ * Method used to receive summary title based on current score
+ *
+ * @param {Float} summaryValue correct answers percentage to determine the end title
+ * @returns summary title string (PERFECT, AWESOME, RESULT, YOU CAN DO BETTER)
+ */
+function getSummaryTitle(summaryValue) {
+  let summaryTitle = "RESULT";
+  if (summaryValue === 1.0) {
+    summaryTitle = "PERFECT";
+  } else if (summaryValue >= 0.75) {
+    summaryTitle = "AWESOME";
+  } else if (summaryValue <= 0.25) {
+    summaryTitle = "YOU CAN DO BETTER";
+  }
+  return summaryTitle;
+}
+
+/**
+ * Method used to receive summary image based on current score
+ *
+ * @param {Float} summaryValue correct answers percentage to determine the end image
+ * @returns summary image path
+ */
+function getSummaryImage(summaryValue) {
+  let summaryImage = "images/summary-medium.png";
+  if (summaryValue === 1.0) {
+    summaryImage = "images/summary-100.png";
+  } else if (summaryValue >= 0.75) {
+    summaryImage = "images/summary-good.png";
+  } else if (summaryValue <= 0.25) {
+    summaryImage = "images/summary-bad.png";
+  }
+  return summaryImage;
+}
+
+/**
  * Method used to clean quiz summary and display initial quiz selector
  */
 function cleanQuiz() {
-  document.getElementById("quiz-question").className = "container-hidden";
-  document.getElementById("quiz-mode-container").className = "container-visible";
-  document.getElementById("select-mode-title").innerHTML = "select mode:";
-  document.getElementById("quiz-question").innerHTML = "";
+  document.getElementById("quiz-question-container").className = "container-hidden";
+  document.getElementById("quiz-modes-container").className = "container-visible";
+  document.getElementById("quiz-title-container-status").innerHTML = "";
+  document.getElementById("quiz-title-container-label").innerHTML = "select mode:";
+  document.getElementById("quiz-question-container").innerHTML = "";
 }

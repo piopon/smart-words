@@ -34,28 +34,31 @@
         </div>
       </div>
       <!-- quiz mode form with start option -->
-      <p id="select-mode-title">select mode:</p>
-      <div id="quiz-mode-container" class="container-visible">
-        <div id="quiz-mode" class="tile-size-big tile-color-primary">
-          <div id="quiz-mode-title">guess definition</div>
-          <div id="quiz-mode-content">
-            <div id="quiz-mode-description">
+      <div id="quiz-title-container">
+        <p id="quiz-title-container-label">select mode:</p>
+        <div id="quiz-title-container-status"></div>
+      </div>
+      <div id="quiz-modes-container" class="container-visible">
+        <div id="quiz-mode-tile" class="tile-size-big tile-color-primary">
+          <div id="quiz-mode-tile-title">guess definition</div>
+          <div id="quiz-mode-tile-content">
+            <div id="quiz-mode-content-description">
               <p class="mode-section-label">decription:</p>
               guess the word definition based on a provided word name
             </div>
-            <div id="quiz-mode-settings">
+            <div id="quiz-mode-content-settings">
               <p class="mode-section-label">settings:</p>
-              <label for="quiz-mode-question-no">how many questions:</label>
-              <input type="number" id="quiz-mode-question-no" value="10" min="5" max="25" />
+              <label for="quiz-mode-settings-question-no">how many questions:</label>
+              <input type="number" id="quiz-mode-settings-question-no" value="10" min="5" max="25" />
             </div>
           </div>
-          <div id="quiz-mode-controls">
-            <button id="quiz-mode-start" class="dynamic-border" onclick="startQuiz()">start</button>
-            <div id="quiz-extra-info" class="hide" title="PUT EXTRA INFO HERE"></div>
+          <div id="quiz-mode-tile-controls">
+            <button id="quiz-mode-controls-start" class="dynamic-border" onclick="startQuiz()">start</button>
+            <div id="quiz-mode-controls-info" class="hide" title="PUT EXTRA INFO HERE"></div>
           </div>
         </div>
       </div>
-      <div id="quiz-question" class="container-hidden"></div>
+      <div id="quiz-question-container" class="container-hidden"></div>
     </div>
     <!-- footer with author information and copyrights -->
     <footer>developed with 💗 pnk @ 2022 🖖</footer>

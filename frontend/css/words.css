@@ -1,13 +1,13 @@
 #btn-add-word {
-  height: 64px;
-  width: 64px;
-  margin: 0 10 0 0px;
+  height: 80px;
+  width: 80px;
+  margin: 0 0 0 0px;
   color: transparent !important;
   border: 0px solid black;
 }
 
 #btn-add-word.disabled {
-  background: url(../images/add-hover.png) no-repeat;
+  background: url(../images/add-disabled.png) no-repeat;
   cursor: not-allowed;
 }
 
@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-#btn-add-word:hover {
+#btn-add-word.enabled:hover {
   background: url(../images/add-hover.png) no-repeat;
 }
 

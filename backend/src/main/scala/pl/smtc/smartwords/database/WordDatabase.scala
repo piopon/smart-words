@@ -19,16 +19,18 @@ class WordDatabase {
    * @return true if file was read correctly, false if error occurred
    */
   def initDatabase(): Boolean = {
-    val fileStream = getClass.getResourceAsStream("/dictionary.json")
-    val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
-    decode[List[Word]](lines) match {
-      case Left(fail) =>
-        println(s"Invalid dictionary file. ${fail.getMessage}")
-        false
-      case Right(words) =>
-        words.foreach(word => testWordDB += word)
-        true
-    }
+    getJsonFiles(getClass.getResource("/").getPath).foreach(file => {
+      val fileStream =  getClass.getResourceAsStream(file.getPath)
+      val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
+      decode[List[Word]](lines) match {
+        case Right(words) =>
+          words.foreach(word => testWordDB += word)
+        case Left(fail) =>
+          println(s"Invalid dictionary file - ${file.getName}: ${fail.getMessage}")
+          false
+      }
+    })
+    true
   }
 
   /**

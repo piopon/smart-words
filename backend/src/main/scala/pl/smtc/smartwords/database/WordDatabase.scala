@@ -5,9 +5,10 @@ import io.circe.parser._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.dao._
 
-import java.io.{File, FileInputStream}
+import java.io.{BufferedInputStream, File, FileInputStream}
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
+import scala.util.Using
 
 class WordDatabase {
 
@@ -20,14 +21,15 @@ class WordDatabase {
    */
   def initDatabase(): Boolean = {
     getJsonFiles(getClass.getResource("/").getPath).foreach(file => {
-      val fileStream = new FileInputStream(file)
-      val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
-      decode[List[Word]](lines) match {
-        case Right(words) =>
-          words.foreach(word => testWordDB += word)
-        case Left(fail) =>
-          println(s"Invalid dictionary file - ${file.getName}: ${fail.getMessage}")
-          false
+      Using(new BufferedInputStream(new FileInputStream(file))) { fileStream =>
+        val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
+        decode[List[Word]](lines) match {
+          case Right(words) =>
+            words.foreach(word => testWordDB += word)
+          case Left(fail) =>
+            println(s"Invalid dictionary file ${file.getName}: ${fail.getMessage}")
+            false
+        }
       }
     })
     true

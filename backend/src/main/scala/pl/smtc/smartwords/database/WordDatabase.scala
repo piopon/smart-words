@@ -25,7 +25,10 @@ class WordDatabase {
         val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
         decode[List[Word]](lines) match {
           case Right(words) =>
-            words.foreach(word => testWordDB += word)
+            words.foreach(word => {
+              word.dictionary = file.getName
+              testWordDB += word
+            })
           case Left(fail) =>
             println(s"Invalid dictionary file ${file.getName}: ${fail.getMessage}")
             false

@@ -25,6 +25,8 @@ object WordDao {
    * @return word object encoder
    */
   def getWordEncoder: Encoder[Word] = Encoder.instance {
-    (word: Word) => json"""{"name": ${word.name}, "category": ${word.category.toString}, "description": ${word.definition}}"""
+    (word: Word) => json"""{"name": ${word.name},
+                            "category": ${word.category.toString},
+                            "description": ${word.definition}}"""
   }
 }

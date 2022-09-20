@@ -39,14 +39,20 @@ class WordDatabase {
   }
 
   /**
-   * Method used to receive all JSON files in input directory
-   * @param directory directory in which we want to search JSON files
-   * @return list of all JSON files
+   * Method used to receive the list of files with optional extension filter in input directory
+   * @param directory directory in which we want to search for files
+   * @param extensionFilter optional extension filter
+   * @return list of all files present in input directory
    */
-  def getJsonFiles(directory: String): List[File] = {
+  def getDirectoryFiles(directory: String, extensionFilter: Option[String] = None): List[File] = {
     val input = new File(directory)
     if (input.exists && input.isDirectory) {
-      input.listFiles.filter(file => file.isFile && file.getName.endsWith("json")).toList
+      val ifFile = (input: File) => input.isFile
+      val ifExtension = (input: File) => extensionFilter match {
+        case None => true
+        case Some(filter) => input.getName.toLowerCase.endsWith(filter.toLowerCase)
+      }
+      input.listFiles.filter(file => ifFile.apply(file) && ifExtension.apply(file)).toList
     } else {
       List[File]()
     }

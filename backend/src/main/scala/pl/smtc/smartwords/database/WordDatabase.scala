@@ -16,10 +16,10 @@ class WordDatabase {
   implicit val WordDecoder: Decoder[Word] = WordDao.getWordDecoder
 
   /**
-   * Method used to initialize words database by reading dictionary.json file
+   * Method used to initialize words database by loading and reading dictionary.json file
    * @return true if file was read correctly, false if error occurred
    */
-  def initDatabase(): Boolean = {
+  def loadDatabase(): Boolean = {
     getJsonFiles(getClass.getResource("/").getPath).foreach(file => {
       Using(new BufferedInputStream(new FileInputStream(file))) { fileStream =>
         val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin

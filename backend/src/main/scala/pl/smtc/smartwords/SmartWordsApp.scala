@@ -16,7 +16,7 @@ object SmartWordsApp extends IOApp {
     val wordController: WordController = new WordController(wordDB)
     val quizController: QuizController = new QuizController(wordDB)
 
-    if (wordDB.initDatabase()) {
+    if (wordDB.loadDatabase()) {
       val apis = Router(
         "/quiz" -> CORS(quizController.getRoutes),
         "/words" -> CORS(wordController.getRoutes)

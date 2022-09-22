@@ -102,6 +102,15 @@ class WordDatabase {
   }
 
   /**
+   * Method used to receive all words objects from database with specified source dictionary file
+   * @param dictionary a source dictionary file of words to be found
+   * @return a List of all stored word objects with specified dictionary file
+   */
+  def getWordsByDictionary(dictionary: String): List[Word] = {
+    testWordDB.toList.filter(word => word.dictionary.equals(dictionary))
+  }
+
+  /**
    * Method used to add new word to database
    * @param word new word to be added in database
    * @return true if word was added correctly, false otherwise (word existed in DB)

@@ -8,7 +8,7 @@ import pl.smtc.smartwords.dao._
 
 import java.io.{BufferedInputStream, File, FileInputStream}
 import java.nio.charset.StandardCharsets
-import java.nio.file.{Files, Paths}
+import java.nio.file.{Files, Path, Paths}
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.Using
@@ -16,7 +16,7 @@ import scala.util.Using
 class WordDatabase {
 
   private val testWordDB: ListBuffer[Word] = ListBuffer()
-  private val resourceDir: String = getClass.getResource("/").getPath.substring(1)
+  private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
   implicit val WordDecoder: Decoder[Word] = WordDao.getWordDecoder
   implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 

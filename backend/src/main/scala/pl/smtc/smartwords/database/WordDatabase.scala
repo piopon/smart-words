@@ -40,6 +40,22 @@ class WordDatabase {
   }
 
   /**
+   * Method used to save current words database into appropriate dictionary JSON files
+   */
+  def saveDatabase(): Unit = {
+    val usedDictionaryFiles: List[String] = List()
+    usedDictionaryFiles.foreach(dictionaryFile => saveDictionary(dictionaryFile))
+  }
+
+  /**
+   * Method used to save words assigned to a specific dictionary file
+   * @param dictionaryFile which dictionary file words should be saved
+   */
+  def saveDictionary(dictionaryFile: String): Unit = {
+    getWordsByDictionary(dictionaryFile)
+  }
+
+  /**
    * Method used to receive the list of files with optional extension filter in input directory
    * @param directory directory in which we want to search for files
    * @param extensionFilter optional extension filter

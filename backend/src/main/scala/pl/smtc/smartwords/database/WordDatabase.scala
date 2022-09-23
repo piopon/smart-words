@@ -43,7 +43,7 @@ class WordDatabase {
    * Method used to save current words database into appropriate dictionary JSON files
    */
   def saveDatabase(): Unit = {
-    val usedDictionaryFiles: List[String] = List()
+    val usedDictionaryFiles: List[String] = testWordDB.map(word => word.dictionary).distinct.toList
     usedDictionaryFiles.foreach(dictionaryFile => saveDictionary(dictionaryFile))
   }
 

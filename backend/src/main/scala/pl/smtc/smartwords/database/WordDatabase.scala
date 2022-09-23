@@ -13,7 +13,9 @@ import scala.util.Using
 class WordDatabase {
 
   private val testWordDB: ListBuffer[Word] = ListBuffer()
+  private val resourceDir: String = getClass.getResource("/").getPath.substring(1)
   implicit val WordDecoder: Decoder[Word] = WordDao.getWordDecoder
+  implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 
   /**
    * Method used to initialize words database by loading and reading dictionary.json file
@@ -21,7 +23,7 @@ class WordDatabase {
    */
   def loadDatabase(): Boolean = {
     val dictionaryExtension = "JSON"
-    getDirectoryFiles(getClass.getResource("/").getPath, Some(dictionaryExtension)).foreach(file => {
+    getDirectoryFiles(resourceDir, Some(dictionaryExtension)).foreach(file => {
       Using(new BufferedInputStream(new FileInputStream(file))) { fileStream =>
         val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
         decode[List[Word]](lines) match {

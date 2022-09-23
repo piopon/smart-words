@@ -2,10 +2,13 @@ package pl.smtc.smartwords.database
 
 import io.circe._
 import io.circe.parser._
+import io.circe.syntax.EncoderOps
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.dao._
 
 import java.io.{BufferedInputStream, File, FileInputStream}
+import java.nio.charset.StandardCharsets
+import java.nio.file.{Files, Paths}
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.Using
@@ -54,7 +57,9 @@ class WordDatabase {
    * @param dictionaryFile which dictionary file words should be saved
    */
   def saveDictionary(dictionaryFile: String): Unit = {
-    getWordsByDictionary(dictionaryFile)
+    val dictWords: List[Word] = getWordsByDictionary(dictionaryFile)
+    val content: String = dictWords.asJson.toString()
+    Files.write(Paths.get(resourceDir).resolve(dictionaryFile), content.getBytes(StandardCharsets.UTF_8))
   }
 
   /**

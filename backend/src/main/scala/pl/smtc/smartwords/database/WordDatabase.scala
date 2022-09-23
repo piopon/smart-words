@@ -59,7 +59,7 @@ class WordDatabase {
   def saveDictionary(dictionaryFile: String): Unit = {
     val dictWords: List[Word] = getWordsByDictionary(dictionaryFile)
     val content: String = dictWords.asJson.toString()
-    Files.write(Paths.get(resourceDir).resolve(dictionaryFile), content.getBytes(StandardCharsets.UTF_8))
+    Files.write(resourceDir.resolve(dictionaryFile), content.getBytes(StandardCharsets.UTF_8))
   }
 
   /**
@@ -68,8 +68,8 @@ class WordDatabase {
    * @param extensionFilter optional extension filter
    * @return list of all files present in input directory
    */
-  def getDirectoryFiles(directory: String, extensionFilter: Option[String] = None): List[File] = {
-    val input = new File(directory)
+  def getDirectoryFiles(directory: Path, extensionFilter: Option[String] = None): List[File] = {
+    val input = new File(directory.toString)
     if (input.exists && input.isDirectory) {
       val ifFile = (input: File) => input.isFile
       val ifExtension = (input: File) => extensionFilter match {

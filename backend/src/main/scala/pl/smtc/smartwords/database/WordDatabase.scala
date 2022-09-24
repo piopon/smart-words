@@ -156,7 +156,9 @@ class WordDatabase {
    */
   def updateWord(index: Integer, word: Word): Boolean = {
     if (index >= 0 && index < testWordDB.length) {
+      word.dictionary = getWord(index).get.dictionary
       testWordDB.update(index, word)
+      saveDictionary(word.dictionary)
       true
     } else {
       false

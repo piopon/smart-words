@@ -9,6 +9,8 @@ import pl.smtc.smartwords.dao._
 import java.io.{BufferedInputStream, File, FileInputStream}
 import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Path, Paths}
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.Using
@@ -85,6 +87,14 @@ class WordDatabase {
     } else {
       List[File]()
     }
+  }
+
+  /**
+   * Method used to generate new dictionary file name
+   * @return generated dictionary file name containing current date with JSON extension
+   */
+  def generateDictionaryFileName(): String = {
+    DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now()) + ".json"
   }
 
   /**

@@ -59,7 +59,9 @@ class WordDatabase {
   def saveDictionary(dictionaryFile: String): Unit = {
     if (dictionaryFile.isEmpty) return
     val dictionaryWords: List[Word] = getWordsByDictionary(dictionaryFile)
-    if (!dictionaryWords.isEmpty) {
+    if (dictionaryWords.isEmpty) {
+      Files.delete(resourceDir.resolve(dictionaryFile))
+    } else {
       val content: String = dictionaryWords.asJson.toString()
       Files.write(resourceDir.resolve(dictionaryFile), content.getBytes(StandardCharsets.UTF_8))
     }

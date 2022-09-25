@@ -156,7 +156,9 @@ class WordDatabase {
   def addWord(word: Word): Boolean = {
     val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
     if (nameIndex < 0) {
+      word.dictionary = generateDictionaryFileName()
       testWordDB += word
+      saveDictionary(word.dictionary)
       true
     } else {
       false

@@ -17,6 +17,7 @@ import scala.util.Using
 
 class WordDatabase {
 
+  private val dictionaryExtension = "JSON"
   private val testWordDB: ListBuffer[Word] = ListBuffer()
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
   implicit val WordDecoder: Decoder[Word] = WordDao.getWordDecoder
@@ -27,7 +28,6 @@ class WordDatabase {
    * @return true if file was read correctly, false if error occurred
    */
   def loadDatabase(): Boolean = {
-    val dictionaryExtension = "JSON"
     getDirectoryFiles(resourceDir, Some(dictionaryExtension)).foreach(file => {
       Using(new BufferedInputStream(new FileInputStream(file))) { fileStream =>
         val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
@@ -94,7 +94,7 @@ class WordDatabase {
    * @return generated dictionary file name containing current date with JSON extension
    */
   def generateDictionaryFileName(): String = {
-    DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now()) + ".json"
+    DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now()) + "." + dictionaryExtension.toLowerCase()
   }
 
   /**

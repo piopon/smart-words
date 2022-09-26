@@ -33,7 +33,7 @@ function editWord(name, category, definition) {
   document.getElementById("word-form-title").innerHTML = "edit word:";
   document.getElementById("word-form-name").value = name;
   document.getElementById("word-form-cat").value = category;
-  document.getElementById("word-form-def").value = definition;
+  document.getElementById("word-form-def").value = definition.replaceAll("; ", "\n");
   document.getElementById("word-form-def").innerHTML = definition;
   document.getElementById("word-form-btn-accept").innerHTML = "edit";
 }

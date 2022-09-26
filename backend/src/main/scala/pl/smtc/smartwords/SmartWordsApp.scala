@@ -9,6 +9,8 @@ import org.http4s.ember.server._
 import pl.smtc.smartwords.controller._
 import pl.smtc.smartwords.database._
 
+import scala.concurrent.duration.DurationInt
+
 object SmartWordsApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
@@ -17,9 +19,10 @@ object SmartWordsApp extends IOApp {
     val quizController: QuizController = new QuizController(wordDB)
 
     if (wordDB.loadDatabase()) {
+      val config = CORSConfig(anyOrigin = true, allowCredentials = true, 1.day.toSeconds, anyMethod = true)
       val apis = Router(
-        "/quiz" -> CORS(quizController.getRoutes),
-        "/words" -> CORS(wordController.getRoutes)
+        "/quiz" -> CORS(quizController.getRoutes, config),
+        "/words" -> CORS(wordController.getRoutes, config)
       ).orNotFound
 
       EmberServerBuilder.default[IO]

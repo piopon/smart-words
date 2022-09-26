@@ -100,7 +100,8 @@ function refreshWordsCallback(err, data) {
  * @returns HTML code in a String format to be added to words table DOM
  */
 function getWordTableRow(item) {
-  let editMethod = `editWord('${item.name}', '${item.category}', '${item.description}')`;
+  let descriptionString = item.description.join("; ");
+  let editMethod = `editWord('${item.name}', '${item.category}', '${descriptionString}')`;
   let deleteMethod = `removeWord('${item.name}')`;
   return `<tr>
             <td>${item.name}</td>
@@ -109,7 +110,7 @@ function getWordTableRow(item) {
               <a class="btn-delete" onclick="${deleteMethod}">DELETE</a>
             </td>
             <td>${item.category}</td>
-            <td>${item.description}</td>
+            <td>${descriptionString}</td>
           </tr>`;
 }
 

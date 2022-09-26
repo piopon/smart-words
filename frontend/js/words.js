@@ -65,7 +65,7 @@ function getWordFromUi() {
   return {
     name: document.getElementById("word-form-name").value,
     category: document.getElementById("word-form-cat").value,
-    description: document.getElementById("word-form-def").value,
+    description: [document.getElementById("word-form-def").value],
   };
 }
 

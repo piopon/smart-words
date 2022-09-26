@@ -159,6 +159,10 @@ span#title-bold {
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
+span#label-extra-info {
+  color: rgb(51, 51, 51);
+}
+
 .word-form-field {
   display: block;
   background: var(--primary-color);

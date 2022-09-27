@@ -155,12 +155,13 @@ span#title-bold {
 .word-form-label {
   display: block;
   padding: 10px 0px 0px 5px;
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 span#label-extra-info {
   color: rgb(51, 51, 51);
+  font-size: 12px;
 }
 
 .word-form-field {
@@ -170,7 +171,7 @@ span#label-extra-info {
   height: 50px;
   margin: 0 5px;
   border: 0px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 

@@ -180,7 +180,7 @@ span#label-extra-info {
 
 textarea#word-form-def {
   padding: 10px 7px;
-  height: 75px;
+  height: 150px;
 }
 
 select#word-form-cat option {

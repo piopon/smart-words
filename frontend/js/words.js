@@ -106,8 +106,8 @@ function getWordTableRow(item) {
   return `<tr>
             <td>${item.name}</td>
             <td>
-              <a class="btn-edit" href="#modal" onclick="${editMethod}">EDIT</a>
-              <a class="btn-delete" onclick="${deleteMethod}">DELETE</a>
+              <a class="btn-edit no-select" href="#modal" onclick="${editMethod}">EDIT</a>
+              <a class="btn-delete no-select" onclick="${deleteMethod}">DELETE</a>
             </td>
             <td>${item.category}</td>
             <td>${descriptionString}</td>

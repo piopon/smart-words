@@ -125,7 +125,7 @@ function loadWordsUpdateUiState(state) {
   let textElement = document.getElementById("no-words-text");
   if (rowElement === null || textElement === null) return;
   if (LOAD_WORDS_OK === state) {
-    addWordBtn.className = "enabled";
+    addWordBtn.className = "enabled no-select";
     addWordBtn.href = "#modal";
     addWordBtn.addEventListener("click", addWord);
     rowElement.className = "row-hidden";
@@ -133,7 +133,7 @@ function loadWordsUpdateUiState(state) {
     return;
   }
   if (LOAD_WORDS_LOAD === state) {
-    addWordBtn.className = "disabled";
+    addWordBtn.className = "disabled no-select";
     addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
     rowElement.className = "row-loading";
@@ -141,7 +141,7 @@ function loadWordsUpdateUiState(state) {
     return;
   }
   if (LOAD_WORDS_ERROR === state) {
-    addWordBtn.className = "disabled";
+    addWordBtn.className = "disabled no-select";
     addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
     rowElement.className = "row-visible";

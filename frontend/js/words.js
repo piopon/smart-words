@@ -128,7 +128,7 @@ function loadWordsUpdateUiState(state) {
     addWordBtn.className = "enabled no-select";
     addWordBtn.href = "#modal";
     addWordBtn.addEventListener("click", addWord);
-    rowElement.className = "row-hidden";
+    rowElement.className = "row-hidden no-select";
     textElement.innerHTML = "";
     return;
   }
@@ -136,7 +136,7 @@ function loadWordsUpdateUiState(state) {
     addWordBtn.className = "disabled no-select";
     addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
-    rowElement.className = "row-loading";
+    rowElement.className = "row-loading no-select";
     textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
     return;
   }
@@ -144,7 +144,7 @@ function loadWordsUpdateUiState(state) {
     addWordBtn.className = "disabled no-select";
     addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
-    rowElement.className = "row-visible";
+    rowElement.className = "row-visible no-select";
     textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
     return;
   }
@@ -157,7 +157,7 @@ function loadWordsUpdateUiState(state) {
  */
 function addLoadingWidget() {
   return `<div id="loader-wrapper">
-            <div class="loader">
+            <div class="loader no-select">
               <div class="line"></div>
               <div class="line"></div>
               <div class="line"></div>

@@ -78,7 +78,6 @@ function requestQuestionNo(number) {
       console.log("ERROR: " + err);
     } else {
       currentQuestionNo = number;
-      console.log(data);
       displayQuestion(data);
     }
   });

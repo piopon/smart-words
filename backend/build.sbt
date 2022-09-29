@@ -14,3 +14,5 @@ libraryDependencies ++= Seq(
   "io.circe"        %% "circe-literal"       % CirceVersion,
   "io.circe"        %% "circe-parser"        % CirceVersion,
 )
+
+run := Defaults.runTask(fullClasspath in Runtime, mainClass in run in Compile, runner in run).evaluated

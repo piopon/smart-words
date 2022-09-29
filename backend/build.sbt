@@ -16,3 +16,4 @@ libraryDependencies ++= Seq(
 )
 
 run := Defaults.runTask(fullClasspath in Runtime, mainClass in run in Compile, runner in run).evaluated
+cancelable in Global := true

@@ -15,5 +15,10 @@ libraryDependencies ++= Seq(
   "io.circe"        %% "circe-parser"        % CirceVersion,
 )
 
-run := Defaults.runTask(fullClasspath in Runtime, mainClass in run in Compile, runner in run).evaluated
+run := Defaults
+  .runTask(
+    Runtime / fullClasspath,
+    Compile / run / mainClass,
+    run / runner
+  ).evaluated
 cancelable in Global := true

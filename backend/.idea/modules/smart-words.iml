@@ -32,7 +32,8 @@
     <orderEntry type="library" name="sbt: org.log4s:log4s_2.13:1.10.0-M6:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.13.6:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scodec:scodec-bits_2.13:1.1.25:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.slf4j:slf4j-api:1.7.30:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.slf4j:slf4j-api:2.0.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.slf4j:slf4j-nop:2.0.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.typelevel:case-insensitive_2.13:1.1.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.typelevel:cats-core_2.13:2.8.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.typelevel:cats-effect-kernel_2.13:3.0.1:jar" level="project" />

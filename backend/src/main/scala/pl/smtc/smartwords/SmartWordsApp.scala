@@ -2,6 +2,7 @@ package pl.smtc.smartwords
 
 import cats.effect._
 import com.comcast.ip4s._
+import org.http4s._
 import org.http4s.implicits._
 import org.http4s.server._
 import org.http4s.server.middleware._
@@ -29,6 +30,10 @@ object SmartWordsApp extends IOApp {
         .withHost(ipv4"0.0.0.0")
         .withPort(port"1234")
         .withHttpApp(apis)
+        .withErrorHandler { case error =>
+          IO(error.printStackTrace())
+            .as(Response(status = Status.InternalServerError))
+        }
         .build
         .use(_ => IO.never)
         .as(ExitCode.Success)

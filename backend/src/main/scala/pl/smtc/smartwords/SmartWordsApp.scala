@@ -32,10 +32,7 @@ object SmartWordsApp extends IOApp {
         .withHost(ipv4"0.0.0.0")
         .withPort(port"1234")
         .withHttpApp(apis)
-        .withErrorHandler { case error =>
-          IO(error.printStackTrace())
-            .as(Response(status = Status.InternalServerError))
-        }
+        .withErrorHandler { case err => IO(err.printStackTrace()).as(Response(status = Status.InternalServerError)) }
         .build
     } yield server
   }.use(server => {

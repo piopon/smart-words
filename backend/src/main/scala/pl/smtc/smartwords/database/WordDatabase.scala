@@ -25,9 +25,10 @@ class WordDatabase {
 
   /**
    * Method used to initialize words database by loading and reading dictionary.json file
-   * @return true if file was read correctly, false if error occurred
+   * @return true if at least on of dictionary files was read correctly, false if all files cannot be loaded
    */
   def loadDatabase(): Boolean = {
+    val dictionaryLoadStatus: ListBuffer[Boolean] = ListBuffer()
     getDirectoryFiles(resourceDir, Some(dictionaryExtension)).foreach(file => {
       Using(new BufferedInputStream(new FileInputStream(file))) { fileStream =>
         val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
@@ -37,13 +38,14 @@ class WordDatabase {
               word.dictionary = file.getName
               testWordDB += word
             })
+            dictionaryLoadStatus.addOne(true)
           case Left(fail) =>
             println(s"Invalid dictionary file ${file.getName}: ${fail.getMessage}")
-            false
+            dictionaryLoadStatus.addOne(false)
         }
       }
     })
-    true
+    dictionaryLoadStatus.contains(true)
   }
 
   /**

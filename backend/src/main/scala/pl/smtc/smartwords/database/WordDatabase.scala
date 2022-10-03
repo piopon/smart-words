@@ -29,7 +29,11 @@ class WordDatabase {
    */
   def loadDatabase(): Boolean = {
     val dictionaryLoadStatus: ListBuffer[Boolean] = ListBuffer()
-    getDirectoryFiles(resourceDir, Some(dictionaryExtension)).foreach(file => {
+    val dictionaryFiles: List[File] = getDirectoryFiles(resourceDir, Some(dictionaryExtension))
+    if (dictionaryFiles.isEmpty) {
+      return true
+    }
+    dictionaryFiles.foreach(file => {
       Using(new BufferedInputStream(new FileInputStream(file))) { fileStream =>
         val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
         decode[List[Word]](lines) match {

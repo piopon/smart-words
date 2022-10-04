@@ -78,7 +78,6 @@ function requestQuestionNo(number) {
       console.log("ERROR: " + err);
     } else {
       currentQuestionNo = number;
-      console.log(data);
       displayQuestion(data);
     }
   });
@@ -279,7 +278,7 @@ function checkQuizEnd() {
  * Method wrapper to display modal dialog with quiz end confirmation question
  */
 function showQuizEndModalDialog() {
-  document.getElementById("modal").className = "overlay open";
+  document.getElementById("modal").className = "overlay open no-select";
 }
 
 /**

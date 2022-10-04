@@ -18,9 +18,9 @@
       <a href="index.html" id="site-logo"></a>
       <h3 id="site-title" class="no-select">Smart Words</h3>
       <div class="filler"></div>
-      <a id="btn-add-word" class="disabled" onclick="addWord()">ADD</a>
+      <a id="btn-add-word" class="disabled no-select" onclick="addWord()">ADD</a>
       <form action="index.html">
-        <button id="btn-page-back">BACK</button>
+        <button id="btn-page-back" class="no-select">BACK</button>
       </form>
     </header>
     <!-- main site content -->
@@ -30,7 +30,7 @@
         <div class="popup">
           <form>
             <fieldset>
-              <legend id="word-form-title">add new word:</legend>
+              <legend id="word-form-title" class="no-select">add new word:</legend>
               <label for="word-form-name" class="word-form-label">word:</label>
               <input type="text" id="word-form-name" class="word-form-field" placeholder="word name" />
               <label for="word-form-cat" class="word-form-label">category:</label>
@@ -42,8 +42,10 @@
                 <option value="person">person</option>
                 <option value="latin">latin</option>
               </select>
-              <label for="word-form-def" class="word-form-label">definition:</label>
-              <textarea id="word-form-def" rows="3" cols="21" class="word-form-field" placeholder="word definition"></textarea>
+              <label for="word-form-def" class="word-form-label">
+                definition <span id="label-extra-info">(put multiple definitions in new lines)</span>:
+              </label>
+              <textarea id="word-form-def" class="word-form-field" placeholder="word definition"></textarea>
             </fieldset>
           </form>
           <div id="popup-buttons">
@@ -70,6 +72,6 @@
       </table>
     </div>
     <!-- footer with author information and copyrights -->
-    <footer>developed with 💗 pnk @ 2022 🖖</footer>
+    <footer class="no-select">developed with 💗 pnk @ 2022 🖖</footer>
   </body>
 </html>

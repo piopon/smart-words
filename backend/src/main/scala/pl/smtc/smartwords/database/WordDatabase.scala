@@ -2,32 +2,105 @@ package pl.smtc.smartwords.database
 
 import io.circe._
 import io.circe.parser._
+import io.circe.syntax.EncoderOps
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.dao._
 
+import java.io.{BufferedInputStream, File, FileInputStream}
+import java.nio.charset.StandardCharsets
+import java.nio.file.{Files, Path, Paths}
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
+import scala.util.Using
 
 class WordDatabase {
 
+  private val dictionaryExtension = "JSON"
   private val testWordDB: ListBuffer[Word] = ListBuffer()
+  private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
   implicit val WordDecoder: Decoder[Word] = WordDao.getWordDecoder
+  implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 
   /**
-   * Method used to initialize words database by reading dictionary.json file
-   * @return true if file was read correctly, false if error occurred
+   * Method used to initialize words database by loading and reading dictionary.json file
+   * @return true if at least on of dictionary files was read correctly, false if all files cannot be loaded
    */
-  def initDatabase(): Boolean = {
-    val fileStream = getClass.getResourceAsStream("/dictionary.json")
-    val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
-    decode[List[Word]](lines) match {
-      case Left(fail) =>
-        println(s"Invalid dictionary file. ${fail.getMessage}")
-        false
-      case Right(words) =>
-        words.foreach(word => testWordDB += word)
-        true
+  def loadDatabase(): Boolean = {
+    val dictionaryLoadStatus: ListBuffer[Boolean] = ListBuffer()
+    val dictionaryFiles: List[File] = getDirectoryFiles(resourceDir, Some(dictionaryExtension))
+    if (dictionaryFiles.isEmpty) {
+      return true
     }
+    dictionaryFiles.foreach(file => {
+      Using(new BufferedInputStream(new FileInputStream(file))) { fileStream =>
+        val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
+        decode[List[Word]](lines) match {
+          case Right(words) =>
+            words.foreach(word => {
+              word.dictionary = file.getName
+              testWordDB += word
+            })
+            dictionaryLoadStatus.addOne(true)
+          case Left(fail) =>
+            println(s"Invalid dictionary file ${file.getName}: ${fail.getMessage}")
+            dictionaryLoadStatus.addOne(false)
+        }
+      }
+    })
+    dictionaryLoadStatus.contains(true)
+  }
+
+  /**
+   * Method used to save current words database into appropriate dictionary JSON files
+   */
+  def saveDatabase(): Unit = {
+    val usedDictionaryFiles: List[String] = testWordDB.map(word => word.dictionary).distinct.toList
+    usedDictionaryFiles.foreach(dictionaryFile => saveDictionary(dictionaryFile))
+  }
+
+  /**
+   * Method used to save words assigned to a specific dictionary file
+   * @param dictionaryFile which dictionary file words should be saved
+   */
+  def saveDictionary(dictionaryFile: String): Unit = {
+    if (dictionaryFile.isEmpty) return
+    val dictionaryWords: List[Word] = getWordsByDictionary(dictionaryFile)
+    if (dictionaryWords.isEmpty) {
+      Files.delete(resourceDir.resolve(dictionaryFile))
+    } else {
+      val content: String = dictionaryWords.asJson.toString()
+      Files.write(resourceDir.resolve(dictionaryFile), content.getBytes(StandardCharsets.UTF_8))
+    }
+  }
+
+  /**
+   * Method used to receive the list of files with optional extension filter in input directory
+   * @param directory directory in which we want to search for files
+   * @param extensionFilter optional extension filter
+   * @return list of all files present in input directory
+   */
+  def getDirectoryFiles(directory: Path, extensionFilter: Option[String] = None): List[File] = {
+    val input = new File(directory.toString)
+    if (input.exists && input.isDirectory) {
+      val ifFile = (input: File) => input.isFile
+      val ifExtension = (input: File) => extensionFilter match {
+        case None => true
+        case Some(filter) => input.getName.toLowerCase.endsWith(filter.toLowerCase)
+      }
+      input.listFiles.filter(file => ifFile.apply(file) && ifExtension.apply(file)).toList
+    } else {
+      List[File]()
+    }
+  }
+
+  /**
+   * Method used to generate new dictionary file name
+   * @return generated dictionary file name containing current date with JSON extension
+   */
+  def generateDictionaryFileName(): String = {
+    DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now()) + "." + dictionaryExtension.toLowerCase()
   }
 
   /**
@@ -73,6 +146,15 @@ class WordDatabase {
   }
 
   /**
+   * Method used to receive all words objects from database with specified source dictionary file
+   * @param dictionary a source dictionary file of words to be found
+   * @return a List of all stored word objects with specified dictionary file
+   */
+  def getWordsByDictionary(dictionary: String): List[Word] = {
+    testWordDB.toList.filter(word => word.dictionary.equals(dictionary))
+  }
+
+  /**
    * Method used to add new word to database
    * @param word new word to be added in database
    * @return true if word was added correctly, false otherwise (word existed in DB)
@@ -80,7 +162,9 @@ class WordDatabase {
   def addWord(word: Word): Boolean = {
     val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
     if (nameIndex < 0) {
+      word.dictionary = generateDictionaryFileName()
       testWordDB += word
+      saveDictionary(word.dictionary)
       true
     } else {
       false
@@ -95,7 +179,9 @@ class WordDatabase {
    */
   def updateWord(index: Integer, word: Word): Boolean = {
     if (index >= 0 && index < testWordDB.length) {
+      word.dictionary = getWord(index).get.dictionary
       testWordDB.update(index, word)
+      saveDictionary(word.dictionary)
       true
     } else {
       false
@@ -110,7 +196,8 @@ class WordDatabase {
   def removeWord(word: Word): Boolean = {
     val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
     if (nameIndex >= 0) {
-      testWordDB.remove(nameIndex)
+      val removedWord: Word = testWordDB.remove(nameIndex)
+      saveDictionary(removedWord.dictionary)
       true
     } else {
       false

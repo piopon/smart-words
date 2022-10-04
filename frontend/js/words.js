@@ -33,7 +33,7 @@ function editWord(name, category, definition) {
   document.getElementById("word-form-title").innerHTML = "edit word:";
   document.getElementById("word-form-name").value = name;
   document.getElementById("word-form-cat").value = category;
-  document.getElementById("word-form-def").value = definition;
+  document.getElementById("word-form-def").value = definition.replaceAll("; ", "\n");
   document.getElementById("word-form-def").innerHTML = definition;
   document.getElementById("word-form-btn-accept").innerHTML = "edit";
 }
@@ -65,7 +65,7 @@ function getWordFromUi() {
   return {
     name: document.getElementById("word-form-name").value,
     category: document.getElementById("word-form-cat").value,
-    description: document.getElementById("word-form-def").value,
+    description: document.getElementById("word-form-def").value.split("\n"),
   };
 }
 
@@ -100,16 +100,17 @@ function refreshWordsCallback(err, data) {
  * @returns HTML code in a String format to be added to words table DOM
  */
 function getWordTableRow(item) {
-  let editMethod = `editWord('${item.name}', '${item.category}', '${item.description}')`;
+  let descriptionString = item.description.join("; ");
+  let editMethod = `editWord('${item.name}', '${item.category}', '${descriptionString}')`;
   let deleteMethod = `removeWord('${item.name}')`;
   return `<tr>
             <td>${item.name}</td>
             <td>
-              <a class="btn-edit" href="#modal" onclick="${editMethod}">EDIT</a>
-              <a class="btn-delete" onclick="${deleteMethod}">DELETE</a>
+              <a class="btn-edit no-select" href="#modal" onclick="${editMethod}">EDIT</a>
+              <a class="btn-delete no-select" onclick="${deleteMethod}">DELETE</a>
             </td>
             <td>${item.category}</td>
-            <td>${item.description}</td>
+            <td>${descriptionString}</td>
           </tr>`;
 }
 
@@ -124,26 +125,26 @@ function loadWordsUpdateUiState(state) {
   let textElement = document.getElementById("no-words-text");
   if (rowElement === null || textElement === null) return;
   if (LOAD_WORDS_OK === state) {
-    addWordBtn.className = "enabled";
+    addWordBtn.className = "enabled no-select";
     addWordBtn.href = "#modal";
     addWordBtn.addEventListener("click", addWord);
-    rowElement.className = "row-hidden";
+    rowElement.className = "row-hidden no-select";
     textElement.innerHTML = "";
     return;
   }
   if (LOAD_WORDS_LOAD === state) {
-    addWordBtn.className = "disabled";
+    addWordBtn.className = "disabled no-select";
     addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
-    rowElement.className = "row-loading";
+    rowElement.className = "row-loading no-select";
     textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
     return;
   }
   if (LOAD_WORDS_ERROR === state) {
-    addWordBtn.className = "disabled";
+    addWordBtn.className = "disabled no-select";
     addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
-    rowElement.className = "row-visible";
+    rowElement.className = "row-visible no-select";
     textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
     return;
   }
@@ -156,7 +157,7 @@ function loadWordsUpdateUiState(state) {
  */
 function addLoadingWidget() {
   return `<div id="loader-wrapper">
-            <div class="loader">
+            <div class="loader no-select">
               <div class="line"></div>
               <div class="line"></div>
               <div class="line"></div>

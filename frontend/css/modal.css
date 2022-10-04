@@ -36,6 +36,11 @@
   display: flex;
   justify-content: center;
   padding-top: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 #word-form-btn-accept {
@@ -155,8 +160,18 @@ span#title-bold {
 .word-form-label {
   display: block;
   padding: 10px 0px 0px 5px;
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+span#label-extra-info {
+  color: rgb(51, 51, 51);
+  font-size: 12px;
 }
 
 .word-form-field {
@@ -166,7 +181,7 @@ span#title-bold {
   height: 50px;
   margin: 0 5px;
   border: 0px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
@@ -176,7 +191,7 @@ span#title-bold {
 
 textarea#word-form-def {
   padding: 10px 7px;
-  height: 75px;
+  height: 150px;
 }
 
 select#word-form-cat option {

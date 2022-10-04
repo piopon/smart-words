@@ -40,6 +40,11 @@
   background-color: var(--primary-color);
   font-family: var(--styled-font), cursive;
   font-size: 25px;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 #table-words thead tr {

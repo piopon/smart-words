@@ -12,7 +12,7 @@ import pl.smtc.smartwords.database._
 
 import scala.concurrent.duration.DurationInt
 
-object ServiceQuiz extends IOApp {
+object SmartWordsQuizService extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
     val wordDB: WordDatabase = new WordDatabase()

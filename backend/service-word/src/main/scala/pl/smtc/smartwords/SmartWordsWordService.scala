@@ -12,7 +12,7 @@ import pl.smtc.smartwords.database._
 
 import scala.concurrent.duration.DurationInt
 
-object SmartWordsApp extends IOApp {
+object SmartWordsWordService extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
     val wordDB: WordDatabase = new WordDatabase()
@@ -38,6 +38,8 @@ object SmartWordsApp extends IOApp {
   }.use(server => {
     val serverAddress = server.address.getAddress.getHostAddress
     val serverPort = server.address.getPort
-    IO.delay(println(s"Service started: IPv6=$serverAddress, port=$serverPort")) >> IO.never.as(ExitCode.Success)
+    IO.delay(println(s"Service: WORD\n" +
+      s"- state: started\n" +
+      s"- address: IPv6=$serverAddress, port=$serverPort")) >> IO.never.as(ExitCode.Success)
   })
 }

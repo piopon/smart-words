@@ -16,7 +16,7 @@ object WordDao {
       category <- input.downField("category").as[String]
       definition <- input.downField("description").as[List[String]]
     } yield {
-      Word(name, Category.fromString(category), definition, "")
+      Word(name, category, definition)
     }
   }
 
@@ -26,7 +26,7 @@ object WordDao {
    */
   def getWordEncoder: Encoder[Word] = Encoder.instance {
     (word: Word) => json"""{"name": ${word.name},
-                            "category": ${word.category.toString},
+                            "category": ${word.category},
                             "description": ${word.definition}}"""
   }
 }

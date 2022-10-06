@@ -116,7 +116,7 @@ class QuizService(quizDB: QuizDatabase, wordDB: WordDatabase) {
    * @param category word category from which to draw the remaining 3 answer options
    * @return list of possible 4 answer options
    */
-  private def generateOptions(correctDefinitions: List[String], category: Category.Value): List[String] = {
+  private def generateOptions(correctDefinitions: List[String], category: String): List[String] = {
     val incorrectDefinitions: List[String] = wordDB.getWordsByCategory(category)
       .map(w => Random.shuffle(w.definition).head)
       .filter(!correctDefinitions.contains(_))

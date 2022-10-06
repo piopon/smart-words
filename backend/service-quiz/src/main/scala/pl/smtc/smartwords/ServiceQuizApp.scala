@@ -12,25 +12,17 @@ import pl.smtc.smartwords.database._
 
 import scala.concurrent.duration.DurationInt
 
-object SmartWordsQuizService extends IOApp {
+object ServiceQuizApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
-    val wordDB: WordDatabase = new WordDatabase()
-    val wordController: WordController = new WordController(wordDB)
-    val quizController: QuizController = new QuizController(wordDB)
+    val quizController: QuizController = new QuizController()
 
-    if (!wordDB.loadDatabase()) {
-      return IO.canceled.as(ExitCode.Error)
-    }
     val config = CORSConfig(anyOrigin = true, allowCredentials = true, 1.day.toSeconds, anyMethod = true)
-    val apis = Router(
-      "/quiz" -> CORS(quizController.getRoutes, config),
-      "/words" -> CORS(wordController.getRoutes, config)
-    ).orNotFound
+    val apis = Router("/quiz" -> CORS(quizController.getRoutes, config)).orNotFound
     for {
       server <- EmberServerBuilder.default[IO]
         .withHost(ipv4"0.0.0.0")
-        .withPort(port"1234")
+        .withPort(port"2222")
         .withHttpApp(apis)
         .withErrorHandler { case err => IO(err.printStackTrace()).as(Response(status = Status.InternalServerError)) }
         .build

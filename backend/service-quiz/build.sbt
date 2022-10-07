@@ -10,6 +10,7 @@ val Log4JVersion = "2.0.3"
 libraryDependencies ++= Seq(
   "org.slf4j"       %  "slf4j-api"           % Log4JVersion,
   "org.slf4j"       %  "slf4j-nop"           % Log4JVersion,
+  "org.http4s"      %% "http4s-ember-client" % Http4sVersion,
   "org.http4s"      %% "http4s-ember-server" % Http4sVersion,
   "org.http4s"      %% "http4s-circe"        % Http4sVersion,
   "org.http4s"      %% "http4s-dsl"          % Http4sVersion,

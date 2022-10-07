@@ -7,7 +7,7 @@ import org.http4s.dsl.io._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.service._
 
-class QuizController(wordDB: WordDatabase) {
+class QuizController() {
 
   val quizDB: QuizDatabase = new QuizDatabase()
 
@@ -23,7 +23,7 @@ class QuizController(wordDB: WordDatabase) {
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {
-    val service: QuizService = new QuizService(quizDB, wordDB)
+    val service: QuizService = new QuizService(quizDB)
     val dsl = Http4sDsl[IO]; import dsl._
     HttpRoutes.of[IO] {
       case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) =>

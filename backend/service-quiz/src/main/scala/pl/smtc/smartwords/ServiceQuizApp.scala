@@ -8,7 +8,6 @@ import org.http4s.server._
 import org.http4s.server.middleware._
 import org.http4s.ember.server._
 import pl.smtc.smartwords.controller._
-import pl.smtc.smartwords.database._
 
 import scala.concurrent.duration.DurationInt
 

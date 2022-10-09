@@ -24,6 +24,7 @@ object ServiceQuizApp extends IOApp {
         .withHost(ipv4"0.0.0.0")
         .withPort(port"2222")
         .withHttpApp(apis)
+        .withIdleTimeout(30.minutes)
         .withErrorHandler { case err => IO(err.printStackTrace()).as(Response(status = Status.InternalServerError)) }
         .build
     } yield server

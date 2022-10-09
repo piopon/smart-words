@@ -17,14 +17,21 @@ class WordService(wordDB: WordDatabase) {
   /**
    * Method used to receive words
    * @param maybeCategory optional word category
+   * @param maybeSize optional number of words to receive
    * @return response with words from specified category, or all words if category is None
    */
-  def getWords(maybeCategory: Option[Category.Value]): IO[Response[IO]] = {
+  def getWords(maybeCategory: Option[Category.Value], maybeSize: Option[Int]): IO[Response[IO]] = {
     maybeCategory match {
       case None =>
-        Ok(wordDB.getWords.asJson)
+        maybeSize match {
+          case None => Ok(wordDB.getWords.asJson)
+          case Some(size) => Ok(wordDB.getWords.take(size).asJson)
+        }
       case Some(category) =>
-        Ok(wordDB.getWordsByCategory(category).asJson)
+        maybeSize match {
+          case None => Ok(wordDB.getWordsByCategory(category).asJson)
+          case Some(size) => Ok(wordDB.getWordsByCategory(category).take(size).asJson)
+        }
     }
   }
 

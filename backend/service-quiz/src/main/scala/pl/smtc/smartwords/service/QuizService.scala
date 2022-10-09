@@ -1,11 +1,16 @@
 package pl.smtc.smartwords.service
 
 import cats.effect._
-import org.http4s.circe._
+import cats.effect.unsafe.implicits._
 import io.circe._
 import io.circe.syntax._
+import io.circe.generic.auto._
 import org.http4s._
+import org.http4s.circe._
+import org.http4s.client.dsl.io._
 import org.http4s.dsl.io._
+import org.http4s.ember.client._
+import org.http4s.implicits._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.dao._
@@ -16,6 +21,7 @@ import scala.util.Random
 class QuizService(quizDB: QuizDatabase) {
 
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
+  implicit val WordsDecoder: EntityDecoder[IO, List[Word]] = jsonOf[IO, List[Word]]
 
   /**
    * Method used to start a new quiz
@@ -90,10 +96,13 @@ class QuizService(quizDB: QuizDatabase) {
    */
   private def generateRound(forbiddenWords: List[String] = List.empty): Round = {
     var word: Word = null
+    val getWordRequest = GET(uri"http://localhost:1111/words?size=1&random=true")
     do {
-      word = wordDB.getWord(Random.nextInt(wordDB.getWords.length)).get
+      EmberClientBuilder.default[IO].build.use(client =>
+        client.expect[List[Word]](getWordRequest).map(response => word = response.head)
+      ).unsafeRunSync()
     } while (forbiddenWords.contains(word.name))
-    Round(word, generateOptions(word.definition, word.category), None, None)
+    Round(word, generateOptions(word.description, word.category), None, None)
   }
 
   /**

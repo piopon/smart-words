@@ -22,11 +22,11 @@ class WordController(wordDB: WordDatabase) {
   /**
    * Routes (request -> response) for admin endpoints/resources
    * <ul>
-   *  <li>Receive all words: <u>GET</u> /admin/words -> RET: OK 200 + ALL WORDS JSON / ERR 500</li>
-   *  <li>Receive category-specific words: <u>GET</u> /admin/words?cat=adj -> RET: OK 200 + Word JSON / ERR 500</li>
-   *  <li>Add a new word: <u>POST</u> /admin/words + Word JSON -> RET: OK 200 / ERR 500</li>
-   *  <li>Delete word: <u>DELETE</u> /admin/words/{name} -> RET: OK 200 / ERR 404</li>
-   *  <li>Update word: <u>PUT</u> /admin/words/{name} + Word JSON -> RET: OK 200 + Word JSON / ERR 404</li>
+   *  <li>Receive all words: <u>GET</u> /words -> RET: OK 200 + ALL WORDS JSON / ERR 500</li>
+   *  <li>Receive category-specific words: <u>GET</u> /words?cat=adj -> RET: OK 200 + Word JSON / ERR 500</li>
+   *  <li>Add a new word: <u>POST</u> /words + Word JSON -> RET: OK 200 / ERR 500</li>
+   *  <li>Delete word: <u>DELETE</u> /words/{name} -> RET: OK 200 / ERR 404</li>
+   *  <li>Update word: <u>PUT</u> /words/{name} + Word JSON -> RET: OK 200 + Word JSON / ERR 404</li>
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {

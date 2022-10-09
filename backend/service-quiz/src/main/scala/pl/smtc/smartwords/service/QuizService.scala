@@ -63,7 +63,7 @@ class QuizService(quizDB: QuizDatabase) {
       case None =>
         NotFound("Specified quiz does not exist")
       case Some(quiz) =>
-        val correctDefinitions: List[String] = quiz.rounds(questionNo.toInt).word.definition
+        val correctDefinitions: List[String] = quiz.rounds(questionNo.toInt).word.description
         val selectedDefinition: String = quiz.rounds(questionNo.toInt).options(answerNo.toInt)
         quiz.rounds(questionNo.toInt).answer = Option(answerNo.toInt)
         val isCorrect = correctDefinitions.contains(selectedDefinition)
@@ -127,7 +127,7 @@ class QuizService(quizDB: QuizDatabase) {
    */
   private def generateOptions(correctDefinitions: List[String], category: String): List[String] = {
     val incorrectDefinitions: List[String] = wordDB.getWordsByCategory(category)
-      .map(w => Random.shuffle(w.definition).head)
+      .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))
       .distinct
     val incorrectOptions: List[String] = Random.shuffle(incorrectDefinitions).take(3)

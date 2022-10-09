@@ -17,6 +17,7 @@ class WordController(wordDB: WordDatabase) {
 
   implicit val categoryParamDecoder: QueryParamDecoder[Category.Value] =
     QueryParamDecoder[String].map(categoryStr => Category.fromString(categoryStr))
+  object OptionalRandomizeParamMatcher extends OptionalQueryParamDecoderMatcher[Boolean]("random")
   object OptionalCategoryParamMatcher extends OptionalQueryParamDecoderMatcher[Category.Value]("cat")
   object OptionalSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
 
@@ -36,8 +37,10 @@ class WordController(wordDB: WordDatabase) {
     val dsl = Http4sDsl[IO]; import dsl._
     implicit val wordDecoder: EntityDecoder[IO, Word] = jsonOf[IO, Word]
     HttpRoutes.of[IO] {
-      case GET -> Root :? OptionalCategoryParamMatcher(maybeCategory) +& OptionalSizeParamMatcher(maybeSize) =>
-        service.getWords(maybeCategory, maybeSize)
+      case GET -> Root :? OptionalCategoryParamMatcher(maybeCategory)
+                       +& OptionalSizeParamMatcher(maybeSize)
+                       +& OptionalRandomizeParamMatcher(maybeRandom) =>
+        service.getWords(maybeCategory, maybeSize, maybeRandom)
       case request@POST -> Root  =>
         for {
           newWord <- request.as[Word]

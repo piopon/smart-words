@@ -10,29 +10,33 @@ import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.dao._
 
+import scala.util.Random
+
 class WordService(wordDB: WordDatabase) {
 
   implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 
   /**
    * Method used to receive words
-   * @param maybeCategory optional word category
-   * @param maybeSize optional number of words to receive
+   * @param category optional word category
+   * @param size optional number of words to receive
+   * @param random optional flag to determine if output should be randomized
    * @return response with words from specified category, or all words if category is None
    */
-  def getWords(maybeCategory: Option[Category.Value], maybeSize: Option[Int]): IO[Response[IO]] = {
-    maybeCategory match {
-      case None =>
-        maybeSize match {
-          case None => Ok(wordDB.getWords.asJson)
-          case Some(size) => Ok(wordDB.getWords.take(size).asJson)
-        }
-      case Some(category) =>
-        maybeSize match {
-          case None => Ok(wordDB.getWordsByCategory(category).asJson)
-          case Some(size) => Ok(wordDB.getWordsByCategory(category).take(size).asJson)
-        }
+  def getWords(category: Option[Category.Value], size: Option[Int], random: Option[Boolean]): IO[Response[IO]] = {
+    val afterCategoryFilter: List[Word] = category match {
+      case None => wordDB.getWords
+      case Some(categoryValue) => wordDB.getWordsByCategory(categoryValue)
     }
+    val afterRandomFilter: List[Word] = random match {
+      case None => afterCategoryFilter
+      case Some(randomValue) => if (randomValue) Random.shuffle(afterCategoryFilter) else afterCategoryFilter
+    }
+    val afterSizeFilter: List[Word] = size match {
+      case None => afterRandomFilter
+      case Some(sizeValue) => afterRandomFilter.take(sizeValue)
+    }
+    Ok(afterSizeFilter.asJson)
   }
 
   /**

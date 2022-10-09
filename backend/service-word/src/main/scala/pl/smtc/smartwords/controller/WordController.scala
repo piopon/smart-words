@@ -18,11 +18,13 @@ class WordController(wordDB: WordDatabase) {
   implicit val categoryParamDecoder: QueryParamDecoder[Category.Value] =
     QueryParamDecoder[String].map(categoryStr => Category.fromString(categoryStr))
   object OptionalCategoryParamMatcher extends OptionalQueryParamDecoderMatcher[Category.Value]("cat")
+  object OptionalSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
 
   /**
    * Routes (request -> response) for admin endpoints/resources
    * <ul>
    *  <li>Receive all words: <u>GET</u> /words -> RET: OK 200 + ALL WORDS JSON / ERR 500</li>
+   *  <li>Receive specified number of words: <u>GET</u> /words?size=no -> RET: OK 200 + Word JSON / ERR 500</li>
    *  <li>Receive category-specific words: <u>GET</u> /words?cat=adj -> RET: OK 200 + Word JSON / ERR 500</li>
    *  <li>Add a new word: <u>POST</u> /words + Word JSON -> RET: OK 200 / ERR 500</li>
    *  <li>Delete word: <u>DELETE</u> /words/{name} -> RET: OK 200 / ERR 404</li>
@@ -34,8 +36,8 @@ class WordController(wordDB: WordDatabase) {
     val dsl = Http4sDsl[IO]; import dsl._
     implicit val wordDecoder: EntityDecoder[IO, Word] = jsonOf[IO, Word]
     HttpRoutes.of[IO] {
-      case GET -> Root :? OptionalCategoryParamMatcher(maybeCategory) =>
-        service.getWords(maybeCategory)
+      case GET -> Root :? OptionalCategoryParamMatcher(maybeCategory) +& OptionalSizeParamMatcher(maybeSize) =>
+        service.getWords(maybeCategory, maybeSize)
       case request@POST -> Root  =>
         for {
           newWord <- request.as[Word]

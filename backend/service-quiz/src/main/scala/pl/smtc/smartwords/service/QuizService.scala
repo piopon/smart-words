@@ -126,7 +126,12 @@ class QuizService(quizDB: QuizDatabase) {
    * @return list of possible 4 answer options
    */
   private def generateOptions(correctDefinitions: List[String], category: String): List[String] = {
-    val incorrectDefinitions: List[String] = wordDB.getWordsByCategory(category)
+    var categoryWords: List[Word] = List();
+    val wordServiceRequest = GET(uri"http://localhost:1111/words".withQueryParam("cat", category))
+    EmberClientBuilder.default[IO].build.use(client =>
+      client.expect[List[Word]](wordServiceRequest).map(response => categoryWords = response)
+    ).unsafeRunSync()
+    val incorrectDefinitions: List[String] = categoryWords
       .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))
       .distinct

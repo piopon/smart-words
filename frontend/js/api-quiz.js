@@ -1,4 +1,4 @@
-const URL = "http://localhost:1234/";
+const URL = "http://localhost:2222/";
 
 /**
  * Method used to send a request to smart-words service to start a new quiz

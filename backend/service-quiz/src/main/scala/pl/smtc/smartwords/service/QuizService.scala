@@ -97,7 +97,7 @@ class QuizService(quizDB: QuizDatabase) {
   private def generateRound(forbiddenWords: List[String] = List.empty): Round = {
     var word: Word = null
     do {
-      word = getRandomWord()
+      word = getRandomWord
     } while (forbiddenWords.contains(word.name))
     Round(word, generateOptions(word.description, word.category), None, None)
   }
@@ -146,7 +146,7 @@ class QuizService(quizDB: QuizDatabase) {
    * Method used to communicate with words service and retrieve a random word
    * @return random word object
    */
-  private def getRandomWord(): Word = {
+  private def getRandomWord: Word = {
     var word: Word = null
     val getWordRequest = GET(uri"http://localhost:1111/words?size=1&random=true")
     EmberClientBuilder.default[IO].build.use(client =>
@@ -161,7 +161,7 @@ class QuizService(quizDB: QuizDatabase) {
    * @return list of all words with specified category
    */
   private def getWordsByCategory(category: String): List[Word] = {
-    var categoryWords: List[Word] = List();
+    var categoryWords: List[Word] = List()
     val wordServiceRequest = GET(uri"http://localhost:1111/words".withQueryParam("cat", category))
     EmberClientBuilder.default[IO].build.use(client =>
       client.expect[List[Word]](wordServiceRequest).map(response => categoryWords = response)

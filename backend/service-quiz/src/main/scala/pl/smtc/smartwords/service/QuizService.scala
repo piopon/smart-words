@@ -11,6 +11,7 @@ import org.http4s.client.dsl.io._
 import org.http4s.dsl.io._
 import org.http4s.ember.client._
 import org.http4s.implicits._
+import pl.smtc.smartwords.client._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.dao._
@@ -20,6 +21,7 @@ import scala.util.Random
 
 class QuizService(quizDB: QuizDatabase) {
 
+  implicit val WordService: WordService = new WordService()
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
   implicit val WordsDecoder: EntityDecoder[IO, List[Word]] = jsonOf[IO, List[Word]]
 
@@ -97,7 +99,7 @@ class QuizService(quizDB: QuizDatabase) {
   private def generateRound(forbiddenWords: List[String] = List.empty): Round = {
     var word: Word = null
     do {
-      word = getRandomWord
+      word = WordService.getRandomWord
     } while (forbiddenWords.contains(word.name))
     Round(word, generateOptions(word.description, word.category), None, None)
   }
@@ -123,7 +125,7 @@ class QuizService(quizDB: QuizDatabase) {
    * @return list of possible 4 answer options
    */
   private def generateOptions(correctDefinitions: List[String], category: String): List[String] = {
-    val incorrectDefinitions: List[String] = getWordsByCategory(category)
+    val incorrectDefinitions: List[String] = WordService.getWordsByCategory(category)
       .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))
       .distinct
@@ -140,32 +142,5 @@ class QuizService(quizDB: QuizDatabase) {
    */
   private def generateQuiz(size: Int): Quiz = {
     Quiz(generateRounds(size), 0)
-  }
-
-  /**
-   * Method used to communicate with words service and retrieve a random word
-   * @return random word object
-   */
-  private def getRandomWord: Word = {
-    var word: Word = null
-    val getWordRequest = GET(uri"http://localhost:1111/words?size=1&random=true")
-    EmberClientBuilder.default[IO].build.use(client =>
-      client.expect[List[Word]](getWordRequest).map(response => word = response.head)
-    ).unsafeRunSync()
-    word
-  }
-
-  /**
-   * Method used to communicate with words service and retrieve all words with specified category
-   * @param category category type of words to be retrieved
-   * @return list of all words with specified category
-   */
-  private def getWordsByCategory(category: String): List[Word] = {
-    var categoryWords: List[Word] = List()
-    val wordServiceRequest = GET(uri"http://localhost:1111/words".withQueryParam("cat", category))
-    EmberClientBuilder.default[IO].build.use(client =>
-      client.expect[List[Word]](wordServiceRequest).map(response => categoryWords = response)
-    ).unsafeRunSync()
-    categoryWords
   }
 }

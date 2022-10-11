@@ -126,12 +126,7 @@ class QuizService(quizDB: QuizDatabase) {
    * @return list of possible 4 answer options
    */
   private def generateOptions(correctDefinitions: List[String], category: String): List[String] = {
-    var categoryWords: List[Word] = List();
-    val wordServiceRequest = GET(uri"http://localhost:1111/words".withQueryParam("cat", category))
-    EmberClientBuilder.default[IO].build.use(client =>
-      client.expect[List[Word]](wordServiceRequest).map(response => categoryWords = response)
-    ).unsafeRunSync()
-    val incorrectDefinitions: List[String] = categoryWords
+    val incorrectDefinitions: List[String] = getWordsByCategory(category)
       .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))
       .distinct
@@ -148,5 +143,19 @@ class QuizService(quizDB: QuizDatabase) {
    */
   private def generateQuiz(size: Int): Quiz = {
     Quiz(generateRounds(size), 0)
+  }
+
+  /**
+   * Method used to communicate with words service and retrieve all words with specified category
+   * @param category category type of words to be retrieved
+   * @return list of all words with specified category
+   */
+  private def getWordsByCategory(category: String): List[Word] = {
+    var categoryWords: List[Word] = List();
+    val wordServiceRequest = GET(uri"http://localhost:1111/words".withQueryParam("cat", category))
+    EmberClientBuilder.default[IO].build.use(client =>
+      client.expect[List[Word]](wordServiceRequest).map(response => categoryWords = response)
+    ).unsafeRunSync()
+    categoryWords
   }
 }

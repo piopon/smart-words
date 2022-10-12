@@ -22,10 +22,10 @@ class WordService {
    * @return random word object
    */
   def getRandomWord: Word = {
-    val getWordRequest = GET(address.withPath(path"words")
-                                    .withQueryParam("size", "1")
-                                    .withQueryParam("random", "true"))
-    sendRequest(getWordRequest).head
+    val getWordRequest = address.withPath(path"words")
+                                .withQueryParam("size", "1")
+                                .withQueryParam("random", "true")
+    sendGetRequest(getWordRequest).head
   }
 
   /**
@@ -34,17 +34,17 @@ class WordService {
    * @return list of all words with specified category
    */
   def getWordsByCategory(category: String): List[Word] = {
-    val wordServiceRequest = GET(address.withPath(path"words")
-                                        .withQueryParam("cat", category))
-    sendRequest(wordServiceRequest)
+    val wordServiceRequest = address.withPath(path"words")
+                                    .withQueryParam("cat", category)
+    sendGetRequest(wordServiceRequest)
   }
 
   /**
    * Method used to send GET request to words service
-   * @param request to be send to words service
+   * @param endpoint to be send as a request to words service
    * @return list of received words
    */
-  private def sendRequest(request: Request[IO]): List[Word] = {
-    EmberClientBuilder.default[IO].build.use(client => client.expect[List[Word]](request)).unsafeRunSync()
+  private def sendGetRequest(endpoint: Uri): List[Word] = {
+    EmberClientBuilder.default[IO].build.use(client => client.expect[List[Word]](GET(endpoint))).unsafeRunSync()
   }
 }

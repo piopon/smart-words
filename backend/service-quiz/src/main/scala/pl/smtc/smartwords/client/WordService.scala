@@ -46,4 +46,13 @@ class WordService {
     ).unsafeRunSync()
     categoryWords
   }
+
+  /**
+   * Method used to send GET request to words service
+   * @param request to be send to words service
+   * @return list of received words
+   */
+  private def sendRequest(request: Request[IO]): List[Word] = {
+    EmberClientBuilder.default[IO].build.use(client => client.expect[List[Word]](request)).unsafeRunSync()
+  }
 }

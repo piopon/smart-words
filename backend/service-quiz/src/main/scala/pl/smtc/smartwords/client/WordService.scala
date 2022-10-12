@@ -22,14 +22,10 @@ class WordService {
    * @return random word object
    */
   def getRandomWord: Word = {
-    var word: Word = null
     val getWordRequest = GET(address.withPath(path"words")
                                     .withQueryParam("size", "1")
                                     .withQueryParam("random", "true"))
-    EmberClientBuilder.default[IO].build.use(client =>
-      client.expect[List[Word]](getWordRequest).map(response => word = response.head)
-    ).unsafeRunSync()
-    word
+    sendRequest(getWordRequest).head
   }
 
   /**
@@ -38,13 +34,9 @@ class WordService {
    * @return list of all words with specified category
    */
   def getWordsByCategory(category: String): List[Word] = {
-    var categoryWords: List[Word] = List()
     val wordServiceRequest = GET(address.withPath(path"words")
                                         .withQueryParam("cat", category))
-    EmberClientBuilder.default[IO].build.use(client =>
-      client.expect[List[Word]](wordServiceRequest).map(response => categoryWords = response)
-    ).unsafeRunSync()
-    categoryWords
+    sendRequest(wordServiceRequest)
   }
 
   /**

@@ -14,6 +14,7 @@ import pl.smtc.smartwords.model._
 class WordService {
 
   val address: Uri = uri"http://localhost:1111"
+  val wordsEndpoint: Uri = address.withPath(path"words")
 
   implicit val WordsDecoder: EntityDecoder[IO, List[Word]] = jsonOf[IO, List[Word]]
 
@@ -22,10 +23,7 @@ class WordService {
    * @return random word object
    */
   def getRandomWord: Word = {
-    val getWordRequest = address.withPath(path"words")
-                                .withQueryParam("size", "1")
-                                .withQueryParam("random", "true")
-    sendGetRequest(getWordRequest).head
+    sendGetRequest(wordsEndpoint.withQueryParam("size", "1").withQueryParam("random", "true")).head
   }
 
   /**
@@ -34,9 +32,7 @@ class WordService {
    * @return list of all words with specified category
    */
   def getWordsByCategory(category: String): List[Word] = {
-    val wordServiceRequest = address.withPath(path"words")
-                                    .withQueryParam("cat", category)
-    sendGetRequest(wordServiceRequest)
+    sendGetRequest(wordsEndpoint.withQueryParam("cat", category))
   }
 
   /**

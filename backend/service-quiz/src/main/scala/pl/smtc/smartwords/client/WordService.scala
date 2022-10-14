@@ -15,8 +15,17 @@ class WordService {
 
   val address: Uri = uri"http://localhost:1111"
   val wordsEndpoint: Uri = address.withPath(path"words")
+  val healthEndpoint: Uri = address.withPath(path"health")
 
   implicit val WordsDecoder: EntityDecoder[IO, List[Word]] = jsonOf[IO, List[Word]]
+
+  /**
+   * Method used to check if word service is alive and working correctly
+   * @return true if word service is correctly running, false otherwise
+   */
+  def isAlive: Boolean = {
+    setGetHealthRequest(healthEndpoint).endsWith("OK")
+  }
 
   /**
    * Method used to communicate with word service and retrieve a random word
@@ -43,5 +52,14 @@ class WordService {
    */
   private def sendGetWordsRequest(endpoint: Uri): List[Word] = {
     EmberClientBuilder.default[IO].build.use(client => client.expect[List[Word]](GET(endpoint))).unsafeRunSync()
+  }
+
+  /**
+   * Method used to send GET health request to word service
+   * @param endpoint to be send as a request to word service
+   * @return health status as a String
+   */
+  private def setGetHealthRequest(endpoint: Uri): String = {
+    EmberClientBuilder.default[IO].build.use(client => client.expect[String](GET(endpoint))).unsafeRunSync()
   }
 }

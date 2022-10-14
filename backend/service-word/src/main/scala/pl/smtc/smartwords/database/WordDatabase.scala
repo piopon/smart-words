@@ -25,7 +25,8 @@ class WordDatabase {
 
   /**
    * Method used to initialize words database by loading and reading dictionary.json file
-   * @return true if at least on of dictionary files was read correctly, false if all files cannot be loaded
+   * @return true if at least one of existing dictionary files was read correctly or if no dictionary files are present,
+   *         false if all files cannot be loaded
    */
   def loadDatabase(): Boolean = {
     val dictionaryLoadStatus: ListBuffer[Boolean] = ListBuffer()

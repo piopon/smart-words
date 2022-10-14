@@ -23,7 +23,8 @@ class WordService {
    * @return random word object
    */
   def getRandomWord: Word = {
-    sendGetRequest(wordsEndpoint.withQueryParam("size", "1").withQueryParam("random", "true")).head
+    sendGetWordsRequest(wordsEndpoint.withQueryParam("size", "1")
+                                     .withQueryParam("random", "true")).head
   }
 
   /**
@@ -32,7 +33,7 @@ class WordService {
    * @return list of all words with specified category
    */
   def getWordsByCategory(category: String): List[Word] = {
-    sendGetRequest(wordsEndpoint.withQueryParam("cat", category))
+    sendGetWordsRequest(wordsEndpoint.withQueryParam("cat", category))
   }
 
   /**
@@ -40,7 +41,7 @@ class WordService {
    * @param endpoint to be send as a request to words service
    * @return list of received words
    */
-  private def sendGetRequest(endpoint: Uri): List[Word] = {
+  private def sendGetWordsRequest(endpoint: Uri): List[Word] = {
     EmberClientBuilder.default[IO].build.use(client => client.expect[List[Word]](GET(endpoint))).unsafeRunSync()
   }
 }

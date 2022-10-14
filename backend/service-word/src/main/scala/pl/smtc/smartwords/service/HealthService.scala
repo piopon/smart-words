@@ -10,14 +10,14 @@ class HealthService {
 
   /**
    * Method used to check current health status of word service
-   * @return responose of status 200 if health ok, otherwise status 500 will be returned
+   * @return response of status 200 if health ok, otherwise status 500 will be returned
    */
   def checkHealth(): IO[Response[IO]] = {
     val status: String = checkStatus()
     if (status.startsWith(statusOk)) {
-      Ok(s"Service: WORD - status: ${status}")
+      Ok(s"Service: WORD - status: $status")
     } else {
-      InternalServerError(s"Service: WORD - status: ${status}")
+      InternalServerError(s"Service: WORD - status: $status")
     }
   }
 

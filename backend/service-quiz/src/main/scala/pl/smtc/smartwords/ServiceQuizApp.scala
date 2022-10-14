@@ -14,10 +14,14 @@ import scala.concurrent.duration.DurationInt
 object ServiceQuizApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
+    val healthController: HealthController = new HealthController()
     val quizController: QuizController = new QuizController()
 
     val config = CORSConfig(anyOrigin = true, allowCredentials = true, 1.day.toSeconds, anyMethod = true)
-    val apis = Router("/quiz" -> CORS(quizController.getRoutes, config)).orNotFound
+    val apis = Router(
+      "/health" -> CORS(healthController.getRoutes, config),
+      "/quiz" -> CORS(quizController.getRoutes, config)
+    ).orNotFound
     for {
       server <- EmberServerBuilder.default[IO]
         .withHost(ipv4"0.0.0.0")

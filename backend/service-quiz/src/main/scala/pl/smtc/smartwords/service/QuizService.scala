@@ -29,7 +29,11 @@ class QuizService(quizDB: QuizDatabase) {
       case None => 10
       case Some(size) => size
     }
-    Ok(quizDB.addQuiz(generateQuiz(size)).toString)
+    if (WordService.isAlive) {
+      Ok(quizDB.addQuiz(generateQuiz(size)).toString)
+    } else {
+      InternalServerError("Cannot start quiz: word service is not running correctly.")
+    }
   }
 
   /**

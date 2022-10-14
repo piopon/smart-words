@@ -19,7 +19,7 @@ class WordService {
   implicit val WordsDecoder: EntityDecoder[IO, List[Word]] = jsonOf[IO, List[Word]]
 
   /**
-   * Method used to communicate with words service and retrieve a random word
+   * Method used to communicate with word service and retrieve a random word
    * @return random word object
    */
   def getRandomWord: Word = {
@@ -28,8 +28,8 @@ class WordService {
   }
 
   /**
-   * Method used to communicate with words service and retrieve all words with specified category
-   * @param category category type of words to be retrieved
+   * Method used to communicate with word service and retrieve all words with specified category
+   * @param category type of words category to be retrieved
    * @return list of all words with specified category
    */
   def getWordsByCategory(category: String): List[Word] = {
@@ -37,8 +37,8 @@ class WordService {
   }
 
   /**
-   * Method used to send GET request to words service
-   * @param endpoint to be send as a request to words service
+   * Method used to send GET words request to word service
+   * @param endpoint to be send as a request to word service
    * @return list of received words
    */
   private def sendGetWordsRequest(endpoint: Uri): List[Word] = {

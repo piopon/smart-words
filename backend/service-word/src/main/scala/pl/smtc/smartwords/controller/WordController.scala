@@ -22,7 +22,7 @@ class WordController(wordDB: WordDatabase) {
   object OptionalSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
 
   /**
-   * Routes (request -> response) for admin endpoints/resources
+   * Routes (request -> response) for words endpoints/resources
    * <ul>
    *  <li>Receive all words: <u>GET</u> /words -> RET: OK 200 + ALL WORDS JSON / ERR 500</li>
    *  <li>Receive specified number of words: <u>GET</u> /words?size=no -> RET: OK 200 + Word JSON / ERR 500</li>

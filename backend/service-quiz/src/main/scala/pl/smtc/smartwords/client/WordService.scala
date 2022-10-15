@@ -24,7 +24,11 @@ class WordService {
    * @return true if word service is correctly running, false otherwise
    */
   def isAlive: Boolean = {
-    setGetHealthRequest(healthEndpoint).endsWith("OK")
+    try {
+      setGetHealthRequest(healthEndpoint).endsWith("OK")
+    } catch {
+      case _: Exception => false
+    }
   }
 
   /**

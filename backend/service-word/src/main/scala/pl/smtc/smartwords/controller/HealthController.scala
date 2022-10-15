@@ -5,7 +5,7 @@ import org.http4s._
 import org.http4s.dsl._
 import pl.smtc.smartwords.service._
 
-class HealthController() {
+class HealthController {
 
   /**
    * Routes (request -> response) for health endpoints/resources

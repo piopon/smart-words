@@ -11,6 +11,8 @@ import org.http4s.ember.client._
 import org.http4s.implicits._
 import pl.smtc.smartwords.model._
 
+import scala.concurrent.duration.DurationDouble
+
 class WordService {
 
   val address: Uri = uri"http://localhost:1111"
@@ -25,7 +27,10 @@ class WordService {
    */
   def isAlive: Boolean = {
     try {
-      setGetHealthRequest(healthEndpoint).endsWith("OK")
+      setGetHealthRequest(healthEndpoint) match {
+        case None => false
+        case Some(status) => status.endsWith("OK")
+      }
     } catch {
       case _: Exception => false
     }
@@ -63,7 +68,7 @@ class WordService {
    * @param endpoint to be send as a request to word service
    * @return health status as a String
    */
-  private def setGetHealthRequest(endpoint: Uri): String = {
-    EmberClientBuilder.default[IO].build.use(client => client.expect[String](GET(endpoint))).unsafeRunSync()
+  private def setGetHealthRequest(endpoint: Uri): Option[String] = {
+    EmberClientBuilder.default[IO].build.use(client => client.expect[String](GET(endpoint))).unsafeRunTimed(1.0.seconds)
   }
 }

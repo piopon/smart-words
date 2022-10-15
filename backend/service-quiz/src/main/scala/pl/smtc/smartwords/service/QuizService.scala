@@ -32,7 +32,7 @@ class QuizService(quizDB: QuizDatabase) {
     if (WordService.isAlive) {
       Ok(quizDB.addQuiz(generateQuiz(size)).toString)
     } else {
-      InternalServerError("Cannot start quiz: word service is not running correctly.")
+      ServiceUnavailable("Cannot start quiz: word service is not running correctly.")
     }
   }
 

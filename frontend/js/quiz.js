@@ -19,7 +19,7 @@ function startQuiz() {
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
-      startQuizUpdateUiState(START_QUIZ_ERROR);
+      startQuizUpdateUiState(START_QUIZ_ERROR, err);
     } else {
       quizID = data;
       currentQuestionNo = 0;

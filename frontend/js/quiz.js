@@ -34,8 +34,9 @@ function startQuiz() {
  * Method used to update GUI state while starting quiz from service
  *
  * @param {Integer} state current loading state (from: START_QUIZ_OK, START_QUIZ_LOAD, START_QUIZ_ERROR)
+ * @param {String} message containing detailed information about current state (undefined by default)
  */
-function startQuizUpdateUiState(state) {
+function startQuizUpdateUiState(state, detailedMessage = undefined) {
   let startQuizBtn = document.getElementById("quiz-mode-controls-start");
   let startQuizInfo = document.getElementById("quiz-mode-controls-info");
   if (startQuizBtn === null || startQuizInfo === null) return;
@@ -60,9 +61,7 @@ function startQuizUpdateUiState(state) {
     startQuizBtn.disabled = true;
     startQuizBtn.innerHTML = "service unavailable";
     startQuizInfo.className = "";
-    startQuizInfo.title =
-      "Cannot connect to a backend service!\n" +
-      "Please verify its running and connection status and refresh this page.";
+    startQuizInfo.title = getQuizErrorMessage(detailedMessage);
     return;
   }
 }

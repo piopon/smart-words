@@ -67,6 +67,18 @@ function startQuizUpdateUiState(state) {
   }
 }
 
+function getQuizErrorMessage(sourceMessage) {
+  let message = "Cannot connect to a quiz backend service!\n" +
+                "Please verify its running and connection status and refresh this page.";
+  if (sourceMessage) {
+    let errorCode = 0;
+    if (503 === errorCode) {
+
+    }
+  }
+  return message;
+}
+
 /**
  * Method used to request a question with specified number
  *

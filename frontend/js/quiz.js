@@ -66,6 +66,12 @@ function startQuizUpdateUiState(state, detailedMessage = undefined) {
   }
 }
 
+/**
+ * Method used to receive concrete error message for user depending on source message
+ *
+ * @param {String} sourceMessage containing error message from API
+ * @returns quiz error message string
+ */
 function getQuizErrorMessage(sourceMessage) {
   let message = "Cannot connect to a quiz backend service!\n" +
                 "Please verify its running and connection status and refresh this page.";

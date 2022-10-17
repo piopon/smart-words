@@ -70,9 +70,13 @@ function getQuizErrorMessage(sourceMessage) {
   let message = "Cannot connect to a quiz backend service!\n" +
                 "Please verify its running and connection status and refresh this page.";
   if (sourceMessage) {
-    let errorCode = 0;
-    if (503 === errorCode) {
-
+    let findCodeValue = /\[([^\]]+)]/.exec(sourceMessage);
+    if (findCodeValue && !isNaN(findCodeValue[1])) {
+      let errorCode = parseInt(findCodeValue[1]);
+      if (503 === errorCode) {
+        message = "Quiz backend service cannot connect to word service!\n" +
+                  "Please verify word service running status and refresh this page.";
+      }
     }
   }
   return message;

@@ -1,4 +1,4 @@
-const URL = "http://localhost:1234/";
+const URL = "http://localhost:1111/";
 
 /**
  * Method used to receive all words from smart-words service

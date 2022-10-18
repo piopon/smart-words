@@ -19,7 +19,7 @@ function startQuiz() {
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
-      startQuizUpdateUiState(START_QUIZ_ERROR);
+      startQuizUpdateUiState(START_QUIZ_ERROR, err);
     } else {
       quizID = data;
       currentQuestionNo = 0;
@@ -34,8 +34,9 @@ function startQuiz() {
  * Method used to update GUI state while starting quiz from service
  *
  * @param {Integer} state current loading state (from: START_QUIZ_OK, START_QUIZ_LOAD, START_QUIZ_ERROR)
+ * @param {String} message containing detailed information about current state (undefined by default)
  */
-function startQuizUpdateUiState(state) {
+function startQuizUpdateUiState(state, detailedMessage = undefined) {
   let startQuizBtn = document.getElementById("quiz-mode-controls-start");
   let startQuizInfo = document.getElementById("quiz-mode-controls-info");
   if (startQuizBtn === null || startQuizInfo === null) return;
@@ -60,11 +61,31 @@ function startQuizUpdateUiState(state) {
     startQuizBtn.disabled = true;
     startQuizBtn.innerHTML = "service unavailable";
     startQuizInfo.className = "";
-    startQuizInfo.title =
-      "Cannot connect to a backend service!\n" +
-      "Please verify its running and connection status and refresh this page.";
+    startQuizInfo.title = getQuizErrorMessage(detailedMessage);
     return;
   }
+}
+
+/**
+ * Method used to receive concrete error message for user depending on source message
+ *
+ * @param {String} sourceMessage containing error message from API
+ * @returns quiz error message string
+ */
+function getQuizErrorMessage(sourceMessage) {
+  let message = "Cannot connect to a quiz backend service!\n" +
+                "Please verify its running and connection status and refresh this page.";
+  if (sourceMessage) {
+    let findCodeValue = /\[([^\]]+)]/.exec(sourceMessage);
+    if (findCodeValue && !isNaN(findCodeValue[1])) {
+      let errorCode = parseInt(findCodeValue[1]);
+      if (503 === errorCode) {
+        message = "Quiz backend service cannot connect to word service!\n" +
+                  "Please verify word service running status and refresh this page.";
+      }
+    }
+  }
+  return message;
 }
 
 /**

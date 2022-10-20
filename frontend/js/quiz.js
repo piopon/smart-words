@@ -1,4 +1,4 @@
-const STATUS_NO_ANSWER = 0;
+const STATUS_NO_ANSWER = 0; 
 const STATUS_ANSWER_OK = 1;
 const STATUS_ANSWER_NOK = -1;
 const START_QUIZ_OK = 0;

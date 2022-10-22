@@ -93,15 +93,37 @@ function getQuizErrorMessage(sourceMessage) {
  *
  * @param {Integer} number of a requested question
  */
-function requestQuestionNo(number) {
+function requestQuestionNo(number, buttonId = undefined) {
+  requestQuestionUpdateUI(STATE_QUIZ_LOAD, buttonId)
   getQuestionNo(quizID, number, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
+      requestQuestionUpdateUI(STATE_QUIZ_ERROR, buttonId)
     } else {
       currentQuestionNo = number;
       displayQuestion(data);
+      requestQuestionUpdateUI(STATE_QUIZ_OK, buttonId)
     }
   });
+}
+
+/**
+ * Method used to update UI state when requesting quiz service for a specified question
+ *
+ * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
+ * @param {String} buttonId which button was pressed (acceptable next or previous)
+ * @param {String} detailedMessage containing detailed information about current state (undefined by default)
+ */
+function requestQuestionUpdateUI(newUiState, buttonId = undefined, detailedMessage = undefined) {
+  if (STATE_QUIZ_OK === newUiState) {
+    // service connected, response received - ok
+  } else if (STATE_QUIZ_LOAD === newUiState) {
+    // trying to connect to service - loading
+  } else if (STATE_QUIZ_ERROR === newUiState) {
+    // cannot connect to service - show error
+  } else {
+    // invalid UI state - show error
+  }
 }
 
 /**

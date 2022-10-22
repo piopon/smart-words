@@ -105,26 +105,6 @@ function requestQuestionNo(number) {
 }
 
 /**
- * Method (wrapper) used request a next question (relative to currently displayed one)
- */
-function requestNextQuestion() {
-  if (!verifyQuestionNo(++currentQuestionNo)) {
-    console.log("Invalid question number value [" + number + "]");
-  }
-  requestQuestionNo(currentQuestionNo);
-}
-
-/**
- * Method (wrapper) used request a previous question (relative to currently displayed one)
- */
-function requestPrevQuestion() {
-  if (!verifyQuestionNo(--currentQuestionNo)) {
-    console.log("Invalid question number value [" + number + "]");
-  }
-  requestQuestionNo(currentQuestionNo);
-}
-
-/**
  * Method used to verify specified question number
  *
  * @param {Integer} number of a question to be verified
@@ -189,6 +169,51 @@ function getOptionHtml(question, optionNo) {
 }
 
 /**
+ * Method used to receive answer button action for HTML code
+ *
+ * @param {Boolean} isNewQuestion flag indicating if this question is new or not
+ * @param {Integer} optionNo number of option for which to update action
+ * @returns answer option action (if new question is true), or empty (if new question is false)
+ */
+ function getAnswerButtonAction(isNewQuestion, optionNo) {
+  return isNewQuestion ? `answerQuestionNo('${currentQuestionNo}', '${optionNo}')` : ``;
+}
+
+/**
+ * Method used to receive answer button class for HTML code
+ *
+ * @param {Boolean} isAnswerCorrect flag indicating the current status of answer correctness
+ * @returns "regular" class if input boolean is null, "ok" class if input is true, "nok" when false
+ */
+function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
+  if (null === isAnswerCorrect) {
+    return isNewQuestion ? "question-option-btn" : "question-option-btn-disabled";
+  }
+  return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
+}
+
+/**
+ * Method used to answer a specified question number with input answer number
+ *
+ * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
+ * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
+ */
+ function answerQuestionNo(number, answerNo) {
+  postQuestionAnswer(quizID, number, answerNo, (err, data) => {
+    if (err) {
+      console.log("ERROR: " + err);
+    } else {
+      questionsStatus[currentQuestionNo] = data === true ? STATUS_ANSWER_OK : STATUS_ANSWER_NOK;
+      for (let i in [0, 1, 2, 3]) {
+        document.getElementById("answer-" + i).onclick = null;
+        document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);
+      }
+      updateQuestionStatus();
+    }
+  });
+}
+
+/**
  * Method used to receive control buttons HTML code
  *
  * @returns HTML code for question control buttons (previous and next)
@@ -207,6 +232,26 @@ function getControlButtonsHtml() {
 }
 
 /**
+ * Method (wrapper) used request a next question (relative to currently displayed one)
+ */
+ function requestNextQuestion() {
+  if (!verifyQuestionNo(++currentQuestionNo)) {
+    console.log("Invalid question number value [" + number + "]");
+  }
+  requestQuestionNo(currentQuestionNo);
+}
+
+/**
+ * Method (wrapper) used request a previous question (relative to currently displayed one)
+ */
+function requestPrevQuestion() {
+  if (!verifyQuestionNo(--currentQuestionNo)) {
+    console.log("Invalid question number value [" + number + "]");
+  }
+  requestQuestionNo(currentQuestionNo);
+}
+
+/**
  * Method used to receive a HTML code for a single control button
  *
  * @param {String} id identifier for created control button (used for specific button style)
@@ -219,51 +264,6 @@ function getControlButtonHtml(id, text, action, borderType) {
   return `<button id="${id}" class="question-control-btn ${borderType}" onclick="${action}">
             ${text}
           </button>`;
-}
-
-/**
- * Method used to answer a specified question number with input answer number
- *
- * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
- * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
- */
-function answerQuestionNo(number, answerNo) {
-  postQuestionAnswer(quizID, number, answerNo, (err, data) => {
-    if (err) {
-      console.log("ERROR: " + err);
-    } else {
-      questionsStatus[currentQuestionNo] = data === true ? STATUS_ANSWER_OK : STATUS_ANSWER_NOK;
-      for (let i in [0, 1, 2, 3]) {
-        document.getElementById("answer-" + i).onclick = null;
-        document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);
-      }
-      updateQuestionStatus();
-    }
-  });
-}
-
-/**
- * Method used to receive answer button action for HTML code
- *
- * @param {Boolean} isNewQuestion flag indicating if this question is new or not
- * @param {Integer} optionNo number of option for which to update action
- * @returns answer option action (if new question is true), or empty (if new question is false)
- */
-function getAnswerButtonAction(isNewQuestion, optionNo) {
-  return isNewQuestion ? `answerQuestionNo('${currentQuestionNo}', '${optionNo}')` : ``;
-}
-
-/**
- * Method used to receive answer button class for HTML code
- *
- * @param {Boolean} isAnswerCorrect flag indicating the current status of answer correctness
- * @returns "regular" class if input boolean is null, "ok" class if input is true, "nok" when false
- */
-function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
-  if (null === isAnswerCorrect) {
-    return isNewQuestion ? "question-option-btn" : "question-option-btn-disabled";
-  }
-  return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
 }
 
 /**

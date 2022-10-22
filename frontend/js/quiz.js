@@ -34,7 +34,7 @@ function startQuiz() {
  * Method used to update GUI state while starting quiz from service
  *
  * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
- * @param {String} message containing detailed information about current state (undefined by default)
+ * @param {String} detailedMessage containing detailed information about current state (undefined by default)
  */
 function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
   let startQuizBtn = document.getElementById("quiz-mode-controls-start");
@@ -92,6 +92,7 @@ function getQuizErrorMessage(sourceMessage) {
  * Method used to request a question with specified number
  *
  * @param {Integer} number of a requested question
+ * @param {String} buttonId which button was pressed (next or previous, undefined by default)
  */
 function requestQuestionNo(number, buttonId = undefined) {
   requestQuestionUpdateUI(STATE_QUIZ_LOAD, buttonId)
@@ -111,10 +112,10 @@ function requestQuestionNo(number, buttonId = undefined) {
  * Method used to update UI state when requesting quiz service for a specified question
  *
  * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
- * @param {String} buttonId which button was pressed (acceptable next or previous)
- * @param {String} detailedMessage containing detailed information about current state (undefined by default)
+ * @param {String} buttonId which button was pressed (next or previous, undefined by default)
+ * @param {String} displayMessage containing information about current state (undefined by default)
  */
-function requestQuestionUpdateUI(newUiState, buttonId = undefined, detailedMessage = undefined) {
+function requestQuestionUpdateUI(newUiState, buttonId = undefined, displayMessage = undefined) {
   if (STATE_QUIZ_OK === newUiState) {
     // service connected, response received - ok
   } else if (STATE_QUIZ_LOAD === newUiState) {

@@ -153,10 +153,22 @@ button[class^="question-option-"] {
   margin-left: 5px;
 }
 
+#next-question:disabled {
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
+}
+
 #finish-quiz {
   background-color: lime;
   color: black;
   margin-left: 5px;
+}
+
+#finish-quiz:disabled {
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
 }
 
 #stop-quiz {

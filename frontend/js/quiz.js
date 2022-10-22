@@ -284,7 +284,7 @@ function requestNextQuestion() {
   if (!verifyQuestionNo(++currentQuestionNo)) {
     requestQuestionUpdateUI(STATE_QUIZ_ERROR, 'next-question', `Invalid question number value [${number}]`);
   } else {
-    requestQuestionNo(currentQuestionNo);
+    requestQuestionNo(currentQuestionNo, 'next-question');
   }
 }
 
@@ -295,7 +295,7 @@ function requestPrevQuestion() {
   if (!verifyQuestionNo(--currentQuestionNo)) {
     requestQuestionUpdateUI(STATE_QUIZ_ERROR, 'prev-question', `Invalid question number value [${number}]`);
   } else {
-    requestQuestionNo(currentQuestionNo);
+    requestQuestionNo(currentQuestionNo, 'prev-question');
   }
 }
 

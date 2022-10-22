@@ -175,7 +175,7 @@ function getOptionHtml(question, optionNo) {
  * @param {Integer} optionNo number of option for which to update action
  * @returns answer option action (if new question is true), or empty (if new question is false)
  */
- function getAnswerButtonAction(isNewQuestion, optionNo) {
+function getAnswerButtonAction(isNewQuestion, optionNo) {
   return isNewQuestion ? `answerQuestionNo('${currentQuestionNo}', '${optionNo}')` : ``;
 }
 
@@ -198,7 +198,7 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
  * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
  * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
  */
- function answerQuestionNo(number, answerNo) {
+function answerQuestionNo(number, answerNo) {
   postQuestionAnswer(quizID, number, answerNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
@@ -234,7 +234,7 @@ function getControlButtonsHtml() {
 /**
  * Method (wrapper) used request a next question (relative to currently displayed one)
  */
- function requestNextQuestion() {
+function requestNextQuestion() {
   if (!verifyQuestionNo(++currentQuestionNo)) {
     console.log("Invalid question number value [" + number + "]");
   }

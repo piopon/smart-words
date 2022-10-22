@@ -1,9 +1,9 @@
 const STATUS_NO_ANSWER = 0;
 const STATUS_ANSWER_OK = 1;
 const STATUS_ANSWER_NOK = -1;
-const START_QUIZ_OK = 0;
-const START_QUIZ_LOAD = 1;
-const START_QUIZ_ERROR = 2;
+const STATE_QUIZ_OK = 0;
+const STATE_QUIZ_LOAD = 1;
+const STATE_QUIZ_ERROR = 2;
 var quizID = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
@@ -13,19 +13,19 @@ var questionsStatus = undefined;
  * Method used to receive number of question, start quiz and receive UUID
  */
 function startQuiz() {
-  startQuizUpdateUiState(START_QUIZ_LOAD);
+  startQuizUpdateUiState(STATE_QUIZ_LOAD);
   totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
   questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
-      startQuizUpdateUiState(START_QUIZ_ERROR, err);
+      startQuizUpdateUiState(STATE_QUIZ_ERROR, err);
     } else {
       quizID = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);
       updateQuestionStatus();
-      startQuizUpdateUiState(START_QUIZ_OK);
+      startQuizUpdateUiState(STATE_QUIZ_OK);
     }
   });
 }
@@ -33,14 +33,14 @@ function startQuiz() {
 /**
  * Method used to update GUI state while starting quiz from service
  *
- * @param {Integer} state current loading state (from: START_QUIZ_OK, START_QUIZ_LOAD, START_QUIZ_ERROR)
+ * @param {Integer} state current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {String} message containing detailed information about current state (undefined by default)
  */
 function startQuizUpdateUiState(state, detailedMessage = undefined) {
   let startQuizBtn = document.getElementById("quiz-mode-controls-start");
   let startQuizInfo = document.getElementById("quiz-mode-controls-info");
   if (startQuizBtn === null || startQuizInfo === null) return;
-  if (START_QUIZ_OK === state) {
+  if (STATE_QUIZ_OK === state) {
     startQuizBtn.addEventListener("click", startQuiz);
     startQuizBtn.className = "dynamic-border";
     startQuizBtn.disabled = false;
@@ -48,7 +48,7 @@ function startQuizUpdateUiState(state, detailedMessage = undefined) {
     startQuizInfo.className = "hide";
     return;
   }
-  if (START_QUIZ_LOAD === state) {
+  if (STATE_QUIZ_LOAD === state) {
     startQuizBtn.onclick = null;
     startQuizBtn.className = "loading";
     startQuizBtn.disabled = false;
@@ -56,7 +56,7 @@ function startQuizUpdateUiState(state, detailedMessage = undefined) {
     startQuizInfo.className = "hide";
     return;
   }
-  if (START_QUIZ_ERROR === state) {
+  if (STATE_QUIZ_ERROR === state) {
     startQuizBtn.onclick = null;
     startQuizBtn.disabled = true;
     startQuizBtn.innerHTML = "service unavailable";

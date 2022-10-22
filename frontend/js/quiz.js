@@ -83,6 +83,8 @@ function getQuizErrorMessage(sourceMessage) {
         message = "Quiz backend service cannot connect to word service!\n" +
                   "Please verify word service running status and refresh this page.";
       }
+    } else {
+      message = sourceMessage;
     }
   }
   return message;

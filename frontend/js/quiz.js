@@ -258,9 +258,10 @@ function getControlButtonsHtml() {
  */
 function requestNextQuestion() {
   if (!verifyQuestionNo(++currentQuestionNo)) {
-    console.log("Invalid question number value [" + number + "]");
+    requestQuestionUpdateUI(STATE_QUIZ_ERROR, 'next-question', `Invalid question number value [${number}]`);
+  } else {
+    requestQuestionNo(currentQuestionNo);
   }
-  requestQuestionNo(currentQuestionNo);
 }
 
 /**
@@ -268,9 +269,10 @@ function requestNextQuestion() {
  */
 function requestPrevQuestion() {
   if (!verifyQuestionNo(--currentQuestionNo)) {
-    console.log("Invalid question number value [" + number + "]");
+    requestQuestionUpdateUI(STATE_QUIZ_ERROR, 'prev-question', `Invalid question number value [${number}]`);
+  } else {
+    requestQuestionNo(currentQuestionNo);
   }
-  requestQuestionNo(currentQuestionNo);
 }
 
 /**

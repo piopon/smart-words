@@ -13,19 +13,19 @@ var questionsStatus = undefined;
  * Method used to receive number of question, start quiz and receive UUID
  */
 function startQuiz() {
-  startQuizUpdateUiState(STATE_QUIZ_LOAD);
+  startQuizUpdateUI(STATE_QUIZ_LOAD);
   totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
   questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
-      startQuizUpdateUiState(STATE_QUIZ_ERROR, err);
+      startQuizUpdateUI(STATE_QUIZ_ERROR, err);
     } else {
       quizID = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);
       updateQuestionStatus();
-      startQuizUpdateUiState(STATE_QUIZ_OK);
+      startQuizUpdateUI(STATE_QUIZ_OK);
     }
   });
 }
@@ -33,14 +33,14 @@ function startQuiz() {
 /**
  * Method used to update GUI state while starting quiz from service
  *
- * @param {Integer} state current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
+ * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {String} message containing detailed information about current state (undefined by default)
  */
-function startQuizUpdateUiState(state, detailedMessage = undefined) {
+function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
   let startQuizBtn = document.getElementById("quiz-mode-controls-start");
   let startQuizInfo = document.getElementById("quiz-mode-controls-info");
   if (startQuizBtn === null || startQuizInfo === null) return;
-  if (STATE_QUIZ_OK === state) {
+  if (STATE_QUIZ_OK === newUiState) {
     startQuizBtn.addEventListener("click", startQuiz);
     startQuizBtn.className = "dynamic-border";
     startQuizBtn.disabled = false;
@@ -48,7 +48,7 @@ function startQuizUpdateUiState(state, detailedMessage = undefined) {
     startQuizInfo.className = "hide";
     return;
   }
-  if (STATE_QUIZ_LOAD === state) {
+  if (STATE_QUIZ_LOAD === newUiState) {
     startQuizBtn.onclick = null;
     startQuizBtn.className = "loading";
     startQuizBtn.disabled = false;
@@ -56,7 +56,7 @@ function startQuizUpdateUiState(state, detailedMessage = undefined) {
     startQuizInfo.className = "hide";
     return;
   }
-  if (STATE_QUIZ_ERROR === state) {
+  if (STATE_QUIZ_ERROR === newUiState) {
     startQuizBtn.onclick = null;
     startQuizBtn.disabled = true;
     startQuizBtn.innerHTML = "service unavailable";

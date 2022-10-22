@@ -116,14 +116,35 @@ function requestQuestionNo(number, buttonId = undefined) {
  * @param {String} displayMessage containing information about current state (undefined by default)
  */
 function requestQuestionUpdateUI(newUiState, buttonId = undefined, displayMessage = undefined) {
+  let stopBtn = document.getElementById("stop-quiz");
+  let prevBtn = document.getElementById("prev-question");
+  let nextBtn = (document.getElementById("next-question") !== null)
+    ? document.getElementById("next-question")
+    : document.getElementById("finish-quiz");
+  let activeBtn = (buttonId) ? document.getElementById(buttonId) : undefined
+  if (stopBtn === null || prevBtn === null || nextBtn === null || activeBtn === null) return;
   if (STATE_QUIZ_OK === newUiState) {
-    // service connected, response received - ok
-  } else if (STATE_QUIZ_LOAD === newUiState) {
-    // trying to connect to service - loading
-  } else if (STATE_QUIZ_ERROR === newUiState) {
-    // cannot connect to service - show error
-  } else {
-    // invalid UI state - show error
+    if (activeBtn) {
+      activeBtn.classList.remove("service-wait");
+      activeBtn.classList.remove("service-error");
+    }
+    return;
+  }
+  if (STATE_QUIZ_LOAD === newUiState) {
+    if (activeBtn) {
+      activeBtn.classList.add("service-wait");
+      activeBtn.classList.remove("service-error");
+    }
+    return;
+  }
+  if (STATE_QUIZ_ERROR === newUiState) {
+    activeBtn.classList.remove("service-wait");
+    activeBtn.classList.add("service-error");
+    activeBtn.title = getQuizErrorMessage(displayMessage);
+    stopBtn.disabled = true;
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    return;
   }
 }
 

@@ -188,6 +188,13 @@ button[class^="question-option-"] {
   color: gray;
 }
 
+div[id$="-wrapper"] {
+  display: flex;
+  height: 100%;
+  position: relative;
+  padding: 0px 10px;
+}
+
 #end-summary {
   width: 150px;
   background-color: var(--primary-color);

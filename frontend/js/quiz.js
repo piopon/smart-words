@@ -123,26 +123,29 @@ function requestQuestionUpdateUI(newUiState, buttonId = undefined, displayMessag
   let nextBtn = (document.getElementById("next-question") !== null)
     ? document.getElementById("next-question")
     : document.getElementById("finish-quiz");
-  let activeBtn = (buttonId) ? document.getElementById(buttonId) : undefined
-  if (stopBtn === null || prevBtn === null || nextBtn === null || activeBtn === null) return;
+  let activeBtnInfo = (buttonId) ? document.getElementById(`${buttonId}-info`) : undefined
+  if (stopBtn === null || prevBtn === null || nextBtn === null || activeBtnInfo === null) return;
   if (STATE_QUIZ_OK === newUiState) {
-    if (activeBtn) {
-      activeBtn.classList.remove("service-wait");
-      activeBtn.classList.remove("service-error");
+    if (activeBtnInfo) {
+      activeBtnInfo.classList.add("service-ok");
+      activeBtnInfo.classList.remove("service-wait");
+      activeBtnInfo.classList.remove("service-error");
     }
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
-    if (activeBtn) {
-      activeBtn.classList.add("service-wait");
-      activeBtn.classList.remove("service-error");
+    if (activeBtnInfo) {
+      activeBtnInfo.classList.remove("service-ok");
+      activeBtnInfo.classList.add("service-wait");
+      activeBtnInfo.classList.remove("service-error");
     }
     return;
   }
   if (STATE_QUIZ_ERROR === newUiState) {
-    activeBtn.classList.remove("service-wait");
-    activeBtn.classList.add("service-error");
-    activeBtn.title = getQuizErrorMessage(displayMessage);
+    activeBtnInfo.classList.remove("service-ok");
+    activeBtnInfo.classList.remove("service-wait");
+    activeBtnInfo.classList.add("service-error");
+    activeBtnInfo.title = getQuizErrorMessage(displayMessage);
     stopBtn.disabled = true;
     prevBtn.disabled = true;
     nextBtn.disabled = true;

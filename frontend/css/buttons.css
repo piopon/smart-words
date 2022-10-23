@@ -204,6 +204,18 @@ div[id$="-wrapper"] div[id$="-info"] {
   z-index: 10;
 }
 
+div[id$="-wrapper"] div[id$="-info"].service-ok {
+  display: none;
+}
+
+div[id$="-wrapper"] div[id$="-info"].service-wait {
+  background-color: orange;
+}
+
+div[id$="-wrapper"] div[id$="-info"].service-error {
+  background-color: red;
+}
+
 #end-summary {
   width: 150px;
   background-color: var(--primary-color);

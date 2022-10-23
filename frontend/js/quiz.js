@@ -309,9 +309,9 @@ function requestPrevQuestion() {
  * @returns HTML code for question control button
  */
 function getControlButtonHtml(id, text, action, borderType) {
-  return `<button id="${id}" class="question-control-btn ${borderType}" onclick="${action}">
-            ${text}
-          </button>`;
+  return `<div id="${id}-wrapper">
+            <button id="${id}" class="question-control-btn ${borderType}" onclick="${action}">${text}</button>
+          </div>`;
 }
 
 /**

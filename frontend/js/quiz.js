@@ -311,6 +311,7 @@ function requestPrevQuestion() {
 function getControlButtonHtml(id, text, action, borderType) {
   return `<div id="${id}-wrapper">
             <button id="${id}" class="question-control-btn ${borderType}" onclick="${action}">${text}</button>
+            <div id="${id}-info" title="PUT EXTRA INFO HERE"></div>
           </div>`;
 }
 

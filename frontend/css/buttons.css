@@ -195,6 +195,15 @@ div[id$="-wrapper"] {
   padding: 0px 10px;
 }
 
+div[id$="-wrapper"] div[id$="-info"] {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 13px;
+  right: 25px;
+  z-index: 10;
+}
+
 #end-summary {
   width: 150px;
   background-color: var(--primary-color);

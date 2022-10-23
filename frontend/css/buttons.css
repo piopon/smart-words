@@ -209,11 +209,13 @@ div[id$="-wrapper"] div[id$="-info"].service-ok {
 }
 
 div[id$="-wrapper"] div[id$="-info"].service-wait {
-  background-color: orange;
+  background-image: url(../images/wait.png);
+  background-repeat: no-repeat;
 }
 
 div[id$="-wrapper"] div[id$="-info"].service-error {
-  background-color: red;
+  background-image: url(../images/info.png);
+  background-repeat: no-repeat;
 }
 
 #end-summary {

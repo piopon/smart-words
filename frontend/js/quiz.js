@@ -145,10 +145,12 @@ function questionViewUpdateUI(newUiState, buttonId = undefined, displayMessage =
     return;
   }
   if (STATE_QUIZ_ERROR === newUiState) {
-    activeBtnInfo.classList.remove("service-ok");
-    activeBtnInfo.classList.remove("service-wait");
-    activeBtnInfo.classList.add("service-error");
-    activeBtnInfo.title = getQuizErrorMessage(displayMessage);
+    if (activeBtnInfo) {
+      activeBtnInfo.classList.remove("service-ok");
+      activeBtnInfo.classList.remove("service-wait");
+      activeBtnInfo.classList.add("service-error");
+      activeBtnInfo.title = getQuizErrorMessage(displayMessage);
+    }
     stopBtn.disabled = true;
     prevBtn.disabled = true;
     nextBtn.disabled = true;

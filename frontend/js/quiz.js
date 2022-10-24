@@ -273,9 +273,9 @@ function answerQuestionNo(number, answerNo) {
 function getControlButtonsHtml() {
   let placeholderForPrevBtn = getControlButtonHtml("prev-question", "PREVIOUS", "requestPrevQuestion()", "static-border");
   let placeholderForNextBtn = currentQuestionNo === totalQuestionsNo - 1
-      ? getControlButtonHtml("finish-quiz", "FINISH", "checkQuizEnd()", "static-border")
+      ? getControlButtonHtml("finish-quiz", "FINISH", "checkQuizEnd(" + END_QUIZ_FINISH + ")", "static-border")
       : getControlButtonHtml("next-question", "NEXT", "requestNextQuestion()", "static-border");
-  let placeholderForStopBtn = getControlButtonHtml("stop-quiz", "STOP", "checkQuizEnd()", "dynamic-border");
+  let placeholderForStopBtn = getControlButtonHtml("stop-quiz", "STOP", "checkQuizEnd(" + END_QUIZ_STOP + ")", "dynamic-border");
   return `<div id="question-control">
             ${placeholderForPrevBtn}
             ${placeholderForNextBtn}

@@ -341,6 +341,8 @@ function updateQuestionStatus(enableStatusNavigation = true) {
 
 /**
  * Method used to check is all questions are answered and depending on the result stop quiz or show confirmation modal
+ *
+ * @param {Integer} currentEndMode reson (FINISH or END) why we should check quiz end status
  */
 function checkQuizEnd(currentEndMode) {
   endQuizReason = currentEndMode;

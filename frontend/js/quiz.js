@@ -4,7 +4,10 @@ const STATUS_ANSWER_NOK = -1;
 const STATE_QUIZ_OK = 0;
 const STATE_QUIZ_LOAD = 1;
 const STATE_QUIZ_ERROR = 2;
+const END_QUIZ_FINISH = 0;
+const END_QUIZ_STOP = 1;
 var quizID = undefined;
+var endQuizReason = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
 var questionsStatus = undefined;
@@ -339,7 +342,8 @@ function updateQuestionStatus(enableStatusNavigation = true) {
 /**
  * Method used to check is all questions are answered and depending on the result stop quiz or show confirmation modal
  */
-function checkQuizEnd() {
+function checkQuizEnd(currentEndMode) {
+  endQuizReason = currentEndMode;
   if (questionsStatus.includes(STATUS_NO_ANSWER)) {
     showQuizEndModalDialog();
   } else {
@@ -359,6 +363,7 @@ function showQuizEndModalDialog() {
  */
 function hideQuizEndModalDialog() {
   document.getElementById("modal").className = "overlay";
+  endQuizReason = undefined;
 }
 
 /**

@@ -154,9 +154,8 @@ p.mode-section-label {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 25px;
-  height: 100px;
-  width: 100% - 25px;
+  margin: 20px;
+  height: 65px;
   font-size: 40px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
@@ -166,7 +165,6 @@ p.mode-section-label {
   justify-content: center;
   align-items: center;
   margin: 0 25px;
-  height: 100%;
   width: 100% - 25px;
 }
 
@@ -219,8 +217,7 @@ div.answer-header {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  height: 125px;
-  margin: 5px;
+  margin: 35px 0px 0px 0px;
 }
 
 #quiz-summary {

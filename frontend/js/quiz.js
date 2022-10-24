@@ -114,9 +114,9 @@ function requestQuestionNo(number, buttonId = undefined) {
 }
 
 /**
- * Method used to update UI state when requesting quiz service for a specified question
+ * Method used to update UI state when changing quiz view and communicating with quiz service
  *
- * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
+ * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {String} buttonId which button was pressed (next or previous, undefined by default)
  * @param {String} displayMessage containing information about current state (undefined by default)
  */
@@ -388,6 +388,12 @@ function stopQuiz() {
   });
 }
 
+/**
+ * Method used to map end reason state to correct button ID
+ *
+ * @param {Integer} endQuizReason state with appropriate end quiz value
+ * @returns string containing button ID responsinble for specified end quiz reason
+ */
 function getButtonIdFromEndReason(endQuizReason) {
   var buttonId = undefined;
   if (END_QUIZ_FINISH === endQuizReason) {

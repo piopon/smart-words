@@ -362,7 +362,7 @@ function showQuizEndModalDialog() {
  * Method wrapper to hide modal dialog with quiz end confirmation question
  */
 function hideQuizEndModalDialog() {
-  document.getElementById("modal").className = "overlay";
+  document.getElementById("modal").className = "overlay no-select";
   endQuizReason = undefined;
 }
 

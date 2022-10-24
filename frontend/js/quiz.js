@@ -370,12 +370,21 @@ function hideQuizEndModalDialog() {
  * Method used to stop quiz (via quiz API) with specified ID
  */
 function stopQuiz() {
+  var stopButtonId = undefined;
+  if (END_QUIZ_FINISH === endQuizReason) {
+    stopButtonId = 'finish-quiz';
+  } else if(END_QUIZ_STOP === endQuizReason) {
+    stopButtonId = 'stop-quiz';
+  }
   hideQuizEndModalDialog();
+  requestQuestionUpdateUI(STATE_QUIZ_LOAD, stopButtonId);
   getQuizStop(quizID, (err, data) => {
     if (err) {
+      requestQuestionUpdateUI(STATE_QUIZ_ERROR, stopButtonId);
       console.log("ERROR: " + err);
     } else {
       displaySummary(data);
+      requestQuestionUpdateUI(STATE_QUIZ_OK, stopButtonId);
     }
   });
 }

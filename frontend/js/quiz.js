@@ -97,15 +97,15 @@ function getQuizErrorMessage(sourceMessage) {
  * @param {String} buttonId which button was pressed (next or previous, undefined by default)
  */
 function requestQuestionNo(number, buttonId = undefined) {
-  requestQuestionUpdateUI(STATE_QUIZ_LOAD, buttonId)
+  requestQuestionUpdateUI(STATE_QUIZ_LOAD, buttonId);
   getQuestionNo(quizID, number, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
-      requestQuestionUpdateUI(STATE_QUIZ_ERROR, buttonId)
+      requestQuestionUpdateUI(STATE_QUIZ_ERROR, buttonId);
     } else {
       currentQuestionNo = number;
       displayQuestion(data);
-      requestQuestionUpdateUI(STATE_QUIZ_OK, buttonId)
+      requestQuestionUpdateUI(STATE_QUIZ_OK, buttonId);
     }
   });
 }

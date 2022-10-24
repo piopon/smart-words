@@ -174,8 +174,25 @@ div[id^="question-option-"] {
   display: flex;
   align-items: stretch;
   align-content: stretch;
-  height: 100%;
+  position: relative;
+  height: 300px;
   width: 600px;
+}
+
+div.answer-header {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  width: 75px;
+  height: 75px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: black;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 #question-option-0 {

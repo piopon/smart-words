@@ -212,7 +212,7 @@ div[id$="-wrapper"] div[id$="-info"].service-ok {
 div[id$="-wrapper"] div[id$="-info"].service-wait {
   background-image: url(../images/wait.png);
   background-repeat: no-repeat;
-  opacity: 0.8;
+  animation: smooth-opacity 0.75s ease-in;
 }
 
 div[id$="-wrapper"] div[id$="-info"].service-error {
@@ -231,4 +231,9 @@ div[id$="-wrapper"] div[id$="-info"].service-error {
   color: white;
   background-color: dimgray;
   transition: background-color 1s, color 1s;
+}
+
+@keyframes smooth-opacity {
+  from {opacity: 0;}
+  to {opacity: 0.8;}
 }

@@ -100,15 +100,15 @@ function getQuizErrorMessage(sourceMessage) {
  * @param {String} buttonId which button was pressed (next or previous, undefined by default)
  */
 function requestQuestionNo(number, buttonId = undefined) {
-  requestQuestionUpdateUI(STATE_QUIZ_LOAD, buttonId);
+  questionViewUpdateUI(STATE_QUIZ_LOAD, buttonId);
   getQuestionNo(quizID, number, (err, data) => {
     if (err) {
       console.log("ERROR: " + err);
-      requestQuestionUpdateUI(STATE_QUIZ_ERROR, buttonId);
+      questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
     } else {
       currentQuestionNo = number;
       displayQuestion(data);
-      requestQuestionUpdateUI(STATE_QUIZ_OK, buttonId);
+      questionViewUpdateUI(STATE_QUIZ_OK, buttonId);
     }
   });
 }
@@ -120,7 +120,7 @@ function requestQuestionNo(number, buttonId = undefined) {
  * @param {String} buttonId which button was pressed (next or previous, undefined by default)
  * @param {String} displayMessage containing information about current state (undefined by default)
  */
-function requestQuestionUpdateUI(newUiState, buttonId = undefined, displayMessage = undefined) {
+function questionViewUpdateUI(newUiState, buttonId = undefined, displayMessage = undefined) {
   let stopBtn = document.getElementById("stop-quiz");
   let prevBtn = document.getElementById("prev-question");
   let nextBtn = (document.getElementById("next-question") !== null)
@@ -288,7 +288,7 @@ function getControlButtonsHtml() {
  */
 function requestNextQuestion() {
   if (!verifyQuestionNo(++currentQuestionNo)) {
-    requestQuestionUpdateUI(STATE_QUIZ_ERROR, 'next-question', `Invalid question number value [${number}]`);
+    questionViewUpdateUI(STATE_QUIZ_ERROR, 'next-question', `Invalid question number value [${number}]`);
   } else {
     requestQuestionNo(currentQuestionNo, 'next-question');
   }
@@ -299,7 +299,7 @@ function requestNextQuestion() {
  */
 function requestPrevQuestion() {
   if (!verifyQuestionNo(--currentQuestionNo)) {
-    requestQuestionUpdateUI(STATE_QUIZ_ERROR, 'prev-question', `Invalid question number value [${number}]`);
+    questionViewUpdateUI(STATE_QUIZ_ERROR, 'prev-question', `Invalid question number value [${number}]`);
   } else {
     requestQuestionNo(currentQuestionNo, 'prev-question');
   }
@@ -377,14 +377,14 @@ function stopQuiz() {
     stopButtonId = 'stop-quiz';
   }
   hideQuizEndModalDialog();
-  requestQuestionUpdateUI(STATE_QUIZ_LOAD, stopButtonId);
+  questionViewUpdateUI(STATE_QUIZ_LOAD, endButtonId);
   getQuizStop(quizID, (err, data) => {
     if (err) {
-      requestQuestionUpdateUI(STATE_QUIZ_ERROR, stopButtonId);
+      questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
       console.log("ERROR: " + err);
     } else {
       displaySummary(data);
-      requestQuestionUpdateUI(STATE_QUIZ_OK, stopButtonId);
+      questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
     }
   });
 }

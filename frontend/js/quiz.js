@@ -212,6 +212,7 @@ function getWordHtml(word) {
  * @returns HTML code with word option
  */
 function getOptionHtml(question, optionNo) {
+  let headersMap = new Map([[0, 'A'], [1, 'B'], [2, 'C'], [3, 'D']]);
   let isNewQuestion = null === question.correct;
   buttonAction = getAnswerButtonAction(isNewQuestion, optionNo);
   buttonClass = getAnswerButtonClass(isNewQuestion, optionNo == question.answer ? question.correct : null);

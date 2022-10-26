@@ -189,6 +189,16 @@ div.answer-header {
   border-right: 60px solid transparent;
 }
 
+div.answer-header span {
+  position: absolute;
+  transform: rotate(45deg);
+  font-size: 30px;
+  top: 18px;
+  left: -11px;
+  color: white;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
 #question-option-0 {
   grid-row: 1;
   grid-column: 1;

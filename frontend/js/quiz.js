@@ -217,7 +217,7 @@ function getOptionHtml(question, optionNo) {
   buttonAction = getAnswerButtonAction(isNewQuestion, optionNo);
   buttonClass = getAnswerButtonClass(isNewQuestion, optionNo == question.answer ? question.correct : null);
   return `<div id="question-option-${optionNo}">
-            <div class="answer-header">${headersMap.get(optionNo)}</div>
+            <div class="answer-header"><span>${headersMap.get(optionNo)}</span></div>
             <button id="answer-${optionNo}" class="${buttonClass}" onclick="${buttonAction}">
               ${question.options[optionNo]}
             </button>

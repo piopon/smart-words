@@ -173,8 +173,8 @@ div[id^="question-option-"] {
   align-items: stretch;
   align-content: stretch;
   position: relative;
-  height: 300px;
-  width: 600px;
+  height: 350px;
+  width: 700px;
 }
 
 div.answer-header {

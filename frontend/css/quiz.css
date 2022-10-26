@@ -155,7 +155,7 @@ p.mode-section-label {
   justify-content: center;
   align-items: center;
   margin: 20px;
-  height: 65px;
+  height: 75px;
   font-size: 40px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }

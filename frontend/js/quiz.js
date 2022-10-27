@@ -51,20 +51,6 @@ function requestQuestionNo(number, buttonId = undefined) {
 }
 
 /**
- * Method used to verify specified question number
- *
- * @param {Integer} number of a question to be verified
- * @returns true if number is correct, false otherwise
- */
-function verifyQuestionNo(number) {
-  if (number === undefined) return false;
-  if (number < 0 || number > totalQuestionsNo) {
-    return false;
-  }
-  return true;
-}
-
-/**
  * Method used to display a specified question number with its all four options
  *
  * @param {Object} questionObject to be displayed (word + four options)
@@ -200,6 +186,20 @@ function requestPrevQuestion() {
   } else {
     requestQuestionNo(currentQuestionNo, 'prev-question');
   }
+}
+
+/**
+ * Method used to verify specified question number
+ *
+ * @param {Integer} number of a question to be verified
+ * @returns true if number is correct, false otherwise
+ */
+function verifyQuestionNo(number) {
+  if (number === undefined) return false;
+  if (number < 0 || number > totalQuestionsNo) {
+    return false;
+  }
+  return true;
 }
 
 /**

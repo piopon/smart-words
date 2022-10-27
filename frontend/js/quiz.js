@@ -31,6 +31,42 @@ function startQuiz() {
 }
 
 /**
+ * Method (wrapper) used request a next question (relative to currently displayed one)
+ */
+function requestNextQuestion() {
+  if (!verifyQuestionNo(++currentQuestionNo)) {
+    questionViewUpdateUI(STATE_QUIZ_ERROR, 'next-question', `Invalid question number value [${number}]`);
+  } else {
+    requestQuestionNo(currentQuestionNo, 'next-question');
+  }
+}
+
+/**
+ * Method (wrapper) used request a previous question (relative to currently displayed one)
+ */
+function requestPrevQuestion() {
+  if (!verifyQuestionNo(--currentQuestionNo)) {
+    questionViewUpdateUI(STATE_QUIZ_ERROR, 'prev-question', `Invalid question number value [${number}]`);
+  } else {
+    requestQuestionNo(currentQuestionNo, 'prev-question');
+  }
+}
+
+/**
+ * Method used to verify specified question number
+ *
+ * @param {Integer} number of a question to be verified
+ * @returns true if number is correct, false otherwise
+ */
+function verifyQuestionNo(number) {
+  if (number === undefined) return false;
+  if (number < 0 || number > totalQuestionsNo) {
+    return false;
+  }
+  return true;
+}
+
+/**
  * Method used to request a question with specified number
  *
  * @param {Integer} number of a requested question
@@ -127,27 +163,6 @@ function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
 }
 
 /**
- * Method used to answer a specified question number with input answer number
- *
- * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
- * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
- */
-function answerQuestionNo(number, answerNo) {
-  postQuestionAnswer(quizID, number, answerNo, (err, data) => {
-    if (err) {
-      console.log("ERROR: " + err);
-    } else {
-      questionsStatus[currentQuestionNo] = data === true ? STATUS_ANSWER_OK : STATUS_ANSWER_NOK;
-      for (let i in [0, 1, 2, 3]) {
-        document.getElementById("answer-" + i).onclick = null;
-        document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);
-      }
-      updateQuestionStatus();
-    }
-  });
-}
-
-/**
  * Method used to receive control buttons HTML code
  *
  * @returns HTML code for question control buttons (previous and next)
@@ -167,42 +182,6 @@ function getControlButtonsHtml() {
 }
 
 /**
- * Method (wrapper) used request a next question (relative to currently displayed one)
- */
-function requestNextQuestion() {
-  if (!verifyQuestionNo(++currentQuestionNo)) {
-    questionViewUpdateUI(STATE_QUIZ_ERROR, 'next-question', `Invalid question number value [${number}]`);
-  } else {
-    requestQuestionNo(currentQuestionNo, 'next-question');
-  }
-}
-
-/**
- * Method (wrapper) used request a previous question (relative to currently displayed one)
- */
-function requestPrevQuestion() {
-  if (!verifyQuestionNo(--currentQuestionNo)) {
-    questionViewUpdateUI(STATE_QUIZ_ERROR, 'prev-question', `Invalid question number value [${number}]`);
-  } else {
-    requestQuestionNo(currentQuestionNo, 'prev-question');
-  }
-}
-
-/**
- * Method used to verify specified question number
- *
- * @param {Integer} number of a question to be verified
- * @returns true if number is correct, false otherwise
- */
-function verifyQuestionNo(number) {
-  if (number === undefined) return false;
-  if (number < 0 || number > totalQuestionsNo) {
-    return false;
-  }
-  return true;
-}
-
-/**
  * Method used to receive a HTML code for a single control button
  *
  * @param {String} id identifier for created control button (used for specific button style)
@@ -216,6 +195,27 @@ function getControlButtonHtml(id, text, action, borderType) {
             <button id="${id}" class="question-control-btn ${borderType}" onclick="${action}">${text}</button>
             <div id="${id}-info" class="service-ok" title="PUT EXTRA INFO HERE"></div>
           </div>`;
+}
+
+/**
+ * Method used to answer a specified question number with input answer number
+ *
+ * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
+ * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
+ */
+function answerQuestionNo(number, answerNo) {
+  postQuestionAnswer(quizID, number, answerNo, (err, data) => {
+    if (err) {
+      console.log("ERROR: " + err);
+    } else {
+      questionsStatus[currentQuestionNo] = data === true ? STATUS_ANSWER_OK : STATUS_ANSWER_NOK;
+      for (let i in [0, 1, 2, 3]) {
+        document.getElementById("answer-" + i).onclick = null;
+        document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);
+      }
+      updateQuestionStatus();
+    }
+  });
 }
 
 /**

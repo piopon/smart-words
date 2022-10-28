@@ -284,10 +284,10 @@ function getButtonIdFromEndReason(endQuizReason) {
  * @param {Float} summaryValue correct answers percentage
  */
 function displaySummary(summaryValue) {
+  questionStatusUpdateUI(STATE_QUIZ_OFF);
   document.getElementById("quiz-question-container").className = "container-visible";
   document.getElementById("quiz-modes-container").className = "container-hidden";
   document.getElementById("quiz-title-container-label").innerHTML = "results:";
-  questionStatusUpdateUI(STATE_QUIZ_ERROR);
   document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(summaryValue);
 }
 

@@ -73,6 +73,17 @@ function getQuizErrorMessage(sourceMessage) {
  * @param {String} displayMessage containing information about current state (undefined by default)
  */
 function questionViewUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
+  questionControlUpdateUI(newUiState, pressedButtonId, displayMessage);
+}
+
+/**
+ * Method used to update UI state of question control buttons
+ *
+ * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
+ * @param {String} pressedButtonId which button was pressed (next or previous, undefined by default)
+ * @param {String} displayMessage containing information about current state (undefined by default)
+ */
+function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
   let stopBtn = document.getElementById("stop-quiz");
   let prevBtn = document.getElementById("prev-question");
   let nextBtn = document.getElementById("next-question") !== null

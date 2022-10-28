@@ -19,6 +19,7 @@ function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
     startQuizBtn.disabled = false;
     startQuizBtn.innerHTML = "start";
     startQuizInfo.className = "hide";
+    updateQuestionStatus();
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
@@ -27,6 +28,7 @@ function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
     startQuizBtn.disabled = false;
     startQuizBtn.innerHTML = "connecting...";
     startQuizInfo.className = "hide";
+    questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
     return;
   }
   if (STATE_QUIZ_ERROR === newUiState) {
@@ -35,6 +37,7 @@ function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
     startQuizBtn.innerHTML = "service unavailable";
     startQuizInfo.className = "";
     startQuizInfo.title = getQuizErrorMessage(detailedMessage);
+    questionsStatus = undefined;
     return;
   }
 }

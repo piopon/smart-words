@@ -1,6 +1,7 @@
 const STATE_QUIZ_OK = 0;
-const STATE_QUIZ_LOAD = 1;
-const STATE_QUIZ_ERROR = 2;
+const STATE_QUIZ_OFF = 1;
+const STATE_QUIZ_LOAD = 2;
+const STATE_QUIZ_ERROR = 3;
 var questionsStatus = undefined;
 
 /**

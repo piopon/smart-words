@@ -74,6 +74,7 @@ function getQuizErrorMessage(sourceMessage) {
  */
 function questionViewUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
   questionControlUpdateUI(newUiState, pressedButtonId, displayMessage);
+  questionStatusUpdateUI(newUiState);
 }
 
 /**
@@ -97,7 +98,6 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
       activeBtnInfo.classList.remove("service-wait");
       activeBtnInfo.classList.remove("service-error");
     }
-    questionStatusUpdateUI();
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {

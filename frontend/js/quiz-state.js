@@ -134,9 +134,6 @@ function questionStatusUpdateUI(newUiState) {
   for (let i = 0; i < questionsStatus.length; i++) {
     let clickClass = STATE_QUIZ_OK === newUiState ? "navigation-on" : "navigation-off";
     let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i})"` : ``;
-
-    console.log("nav click action => " + clickAction)
-
     questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
                             ${i + 1}
                             </div>`;

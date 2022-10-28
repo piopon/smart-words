@@ -19,7 +19,6 @@ function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
     startQuizBtn.disabled = false;
     startQuizBtn.innerHTML = "start";
     startQuizInfo.className = "hide";
-    updateQuestionStatus();
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
@@ -40,24 +39,6 @@ function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
     questionsStatus = undefined;
     return;
   }
-}
-
-/**
- * Method used to create and update question depending on current questionStatus array contents
- *
- * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities.
- *                                         If not provided by caller will be initialized to true.
- */
-function updateQuestionStatus(enableStatusNavigation = true) {
-  let questionStatusHtml = `quiz questions:`;
-  for (let i = 0; i < questionsStatus.length; i++) {
-    let clickClass = true === enableStatusNavigation ? "navigation-on" : "navigation-off";
-    let clickAction = true === enableStatusNavigation ? `onclick="requestQuestionNo(${i})"` : ``;
-    questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
-                            ${i + 1}
-                            </div>`;
-  }
-  document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
 }
 
 /**
@@ -105,6 +86,7 @@ function questionViewUpdateUI(newUiState, buttonId = undefined, displayMessage =
       activeBtnInfo.classList.remove("service-wait");
       activeBtnInfo.classList.remove("service-error");
     }
+    updateQuestionStatus();
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
@@ -127,4 +109,23 @@ function questionViewUpdateUI(newUiState, buttonId = undefined, displayMessage =
     nextBtn.disabled = true;
     return;
   }
+}
+
+
+/**
+ * Method used to create and update question depending on current questionStatus array contents
+ *
+ * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities.
+ *                                         If not provided by caller will be initialized to true.
+ */
+function updateQuestionStatus(enableStatusNavigation = true) {
+  let questionStatusHtml = `quiz questions:`;
+  for (let i = 0; i < questionsStatus.length; i++) {
+    let clickClass = true === enableStatusNavigation ? "navigation-on" : "navigation-off";
+    let clickAction = true === enableStatusNavigation ? `onclick="requestQuestionNo(${i})"` : ``;
+    questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
+                            ${i + 1}
+                            </div>`;
+  }
+  document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
 }

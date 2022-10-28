@@ -16,13 +16,13 @@ function startQuiz() {
   startQuizUpdateUI(STATE_QUIZ_LOAD);
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
-      console.log("ERROR: " + err);
       startQuizUpdateUI(STATE_QUIZ_ERROR, err);
+      console.log("ERROR: " + err);
     } else {
+      startQuizUpdateUI(STATE_QUIZ_OK);
       quizID = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);
-      startQuizUpdateUI(STATE_QUIZ_OK);
     }
   });
 }
@@ -73,12 +73,12 @@ function requestQuestionNo(number, buttonId = undefined) {
   questionViewUpdateUI(STATE_QUIZ_LOAD, buttonId);
   getQuestionNo(quizID, number, (err, data) => {
     if (err) {
-      console.log("ERROR: " + err);
       questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
+      console.log("ERROR: " + err);
     } else {
+      questionViewUpdateUI(STATE_QUIZ_OK, buttonId);
       currentQuestionNo = number;
       displayQuestion(data);
-      questionViewUpdateUI(STATE_QUIZ_OK, buttonId);
     }
   });
 }
@@ -256,8 +256,8 @@ function stopQuiz() {
       questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
       console.log("ERROR: " + err);
     } else {
-      displaySummary(data);
       questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
+      displaySummary(data);
     }
   });
 }

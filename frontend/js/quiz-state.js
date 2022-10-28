@@ -140,3 +140,12 @@ function questionStatusUpdateUI(newUiState) {
   }
   document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
 }
+
+/**
+ * Method used to check if current quiz has unanswered questions
+ *
+ * @returns true if there are question without posted answer, false otherwise
+ */
+function quizHasUnansweredQuestions() {
+  return questionsStatus.includes(STATUS_NO_ANSWER);
+}

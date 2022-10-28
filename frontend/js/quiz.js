@@ -222,7 +222,7 @@ function answerQuestionNo(number, answerNo) {
  */
 function checkQuizEnd(currentEndMode) {
   endQuizReason = currentEndMode;
-  if (questionsStatus.includes(STATUS_NO_ANSWER)) {
+  if (quizHasUnansweredQuestions()) {
     showQuizEndModalDialog();
   } else {
     stopQuiz();

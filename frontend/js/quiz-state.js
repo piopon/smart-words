@@ -1,6 +1,7 @@
 const STATE_QUIZ_OK = 0;
 const STATE_QUIZ_LOAD = 1;
 const STATE_QUIZ_ERROR = 2;
+var questionsStatus = undefined;
 
 /**
  * Method used to update GUI state while starting quiz from service
@@ -36,6 +37,24 @@ function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
     startQuizInfo.title = getQuizErrorMessage(detailedMessage);
     return;
   }
+}
+
+/**
+ * Method used to create and update question depending on current questionStatus array contents
+ *
+ * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities.
+ *                                         If not provided by caller will be initialized to true.
+ */
+function updateQuestionStatus(enableStatusNavigation = true) {
+  let questionStatusHtml = `quiz questions:`;
+  for (let i = 0; i < questionsStatus.length; i++) {
+    let clickClass = true === enableStatusNavigation ? "navigation-on" : "navigation-off";
+    let clickAction = true === enableStatusNavigation ? `onclick="requestQuestionNo(${i})"` : ``;
+    questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
+                            ${i + 1}
+                            </div>`;
+  }
+  document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
 }
 
 /**

@@ -7,7 +7,6 @@ var quizID = undefined;
 var endQuizReason = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
-var questionsStatus = undefined;
 
 /**
  * Method used to receive number of question, start quiz and receive UUID
@@ -216,24 +215,6 @@ function answerQuestionNo(number, answerNo) {
       updateQuestionStatus();
     }
   });
-}
-
-/**
- * Method used to create and update question depending on current questionStatus array contents
- *
- * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities.
- *                                         If not provided by caller will be initialized to true.
- */
-function updateQuestionStatus(enableStatusNavigation = true) {
-  let questionStatusHtml = `quiz questions:`;
-  for (let i = 0; i < questionsStatus.length; i++) {
-    let clickClass = true === enableStatusNavigation ? "navigation-on" : "navigation-off";
-    let clickAction = true === enableStatusNavigation ? `onclick="requestQuestionNo(${i})"` : ``;
-    questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
-                            ${i + 1}
-                           </div>`;
-  }
-  document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
 }
 
 /**

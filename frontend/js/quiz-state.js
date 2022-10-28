@@ -86,7 +86,7 @@ function questionViewUpdateUI(newUiState, buttonId = undefined, displayMessage =
       activeBtnInfo.classList.remove("service-wait");
       activeBtnInfo.classList.remove("service-error");
     }
-    updateQuestionStatus();
+    questionStatusUpdateUI();
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
@@ -118,7 +118,7 @@ function questionViewUpdateUI(newUiState, buttonId = undefined, displayMessage =
  * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities.
  *                                         If not provided by caller will be initialized to true.
  */
-function updateQuestionStatus(enableStatusNavigation = true) {
+function questionStatusUpdateUI(enableStatusNavigation = true) {
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
     let clickClass = true === enableStatusNavigation ? "navigation-on" : "navigation-off";

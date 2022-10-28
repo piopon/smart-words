@@ -69,16 +69,16 @@ function getQuizErrorMessage(sourceMessage) {
  * Method used to update UI state when changing quiz view and communicating with quiz service
  *
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
- * @param {String} buttonId which button was pressed (next or previous, undefined by default)
+ * @param {String} pressedButtonId which button was pressed (next or previous, undefined by default)
  * @param {String} displayMessage containing information about current state (undefined by default)
  */
-function questionViewUpdateUI(newUiState, buttonId = undefined, displayMessage = undefined) {
+function questionViewUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
   let stopBtn = document.getElementById("stop-quiz");
   let prevBtn = document.getElementById("prev-question");
   let nextBtn = document.getElementById("next-question") !== null
       ? document.getElementById("next-question")
       : document.getElementById("finish-quiz");
-  let activeBtnInfo = buttonId ? document.getElementById(`${buttonId}-info`) : undefined;
+  let activeBtnInfo = pressedButtonId ? document.getElementById(`${pressedButtonId}-info`) : undefined;
   if (stopBtn === null || prevBtn === null || nextBtn === null || activeBtnInfo === null) return;
   if (STATE_QUIZ_OK === newUiState) {
     if (activeBtnInfo) {

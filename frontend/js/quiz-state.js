@@ -124,16 +124,18 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
 
 
 /**
- * Method used to create and update question depending on current questionStatus array contents
+ * Method used to update question navigation depending on current questionStatus and new UI state variable
  *
- * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities.
- *                                         If not provided by caller will be initialized to true.
+ * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  */
-function questionStatusUpdateUI(enableStatusNavigation = true) {
+function questionStatusUpdateUI(newUiState) {
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
-    let clickClass = true === enableStatusNavigation ? "navigation-on" : "navigation-off";
-    let clickAction = true === enableStatusNavigation ? `onclick="requestQuestionNo(${i})"` : ``;
+    let clickClass = STATE_QUIZ_OK === newUiState ? "navigation-on" : "navigation-off";
+    let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i})"` : ``;
+
+    console.log("nav click action => " + clickAction)
+
     questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
                             ${i + 1}
                             </div>`;

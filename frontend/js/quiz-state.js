@@ -92,9 +92,9 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
       ? document.getElementById("next-question")
       : document.getElementById("finish-quiz");
   let activeBtnInfo = pressedButtonId ? document.getElementById(`${pressedButtonId}-info`) : undefined;
-  if (stopBtn === null || prevBtn === null || nextBtn === null || activeBtnInfo === null) return;
+  if (stopBtn === null || prevBtn === null || nextBtn === null) return;
   if (STATE_QUIZ_OK === newUiState) {
-    if (activeBtnInfo) {
+    if (activeBtnInfo && activeBtnInfo !== null) {
       activeBtnInfo.classList.add("service-ok");
       activeBtnInfo.classList.remove("service-wait");
       activeBtnInfo.classList.remove("service-error");
@@ -102,7 +102,7 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
-    if (activeBtnInfo) {
+    if (activeBtnInfo && activeBtnInfo !== null) {
       activeBtnInfo.classList.remove("service-ok");
       activeBtnInfo.classList.add("service-wait");
       activeBtnInfo.classList.remove("service-error");
@@ -110,7 +110,7 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
     return;
   }
   if (STATE_QUIZ_ERROR === newUiState) {
-    if (activeBtnInfo) {
+    if (activeBtnInfo && activeBtnInfo !== null) {
       activeBtnInfo.classList.remove("service-ok");
       activeBtnInfo.classList.remove("service-wait");
       activeBtnInfo.classList.add("service-error");

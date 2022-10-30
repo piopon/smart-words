@@ -133,7 +133,7 @@ function questionStatusUpdateUI(newUiState) {
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
     let clickClass = STATE_QUIZ_OK === newUiState ? "navigation-on" : "navigation-off";
-    let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i})"` : ``;
+    let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i}, 'nav-${i}')"` : ``;
     questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
                             ${i + 1}
                             </div>`;

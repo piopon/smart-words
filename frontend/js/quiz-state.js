@@ -129,13 +129,16 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
  *
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  */
-function questionStatusUpdateUI(newUiState) {
+function questionStatusUpdateUI(newUiState, pressedButtonId = undefined) {
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
     let clickClass = STATE_QUIZ_OK === newUiState ? "navigation-on" : "navigation-off";
     let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i}, 'nav-${i}')"` : ``;
+    let clickLabel = (STATE_QUIZ_ERROR === newUiState && pressedButtonId && pressedButtonId.startsWith("nav-"))
+        ? i === parseInt(pressedButtonId.substring(4)) ? "!" : i + 1
+        : i + 1;
     questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
-                            ${i + 1}
+                            ${clickLabel}
                             </div>`;
   }
   document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;

@@ -70,12 +70,12 @@ function getQuizErrorMessage(sourceMessage) {
  * Method used to update UI state when changing quiz view and communicating with quiz service
  *
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
- * @param {String} pressedButtonId which button was pressed (next or previous, undefined by default)
+ * @param {String} pressedButtonId which button was pressed (and triggered update UI, undefined by default)
  * @param {String} displayMessage containing information about current state (undefined by default)
  */
 function questionViewUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
   questionControlUpdateUI(newUiState, pressedButtonId, displayMessage);
-  questionStatusUpdateUI(newUiState);
+  questionStatusUpdateUI(newUiState, pressedButtonId);
 }
 
 /**

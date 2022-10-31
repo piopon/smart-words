@@ -128,6 +128,7 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
  * Method used to update question navigation depending on current questionStatus and new UI state variable
  *
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
+ * @param {String} pressedButtonId which button was pressed (next or previous, undefined by default)
  */
 function questionStatusUpdateUI(newUiState, pressedButtonId = undefined) {
   let questionStatusHtml = `quiz questions:`;

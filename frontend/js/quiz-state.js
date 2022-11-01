@@ -128,16 +128,16 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
  * Method used to update question navigation depending on current questionStatus and new UI state variable
  *
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
- * @param {String} pressedButtonId which button was pressed (next or previous, undefined by default)
+ * @param {String} buttonId which button was pressed (next or previous, undefined by default)
  */
-function questionStatusUpdateUI(newUiState, pressedButtonId = undefined) {
+function questionStatusUpdateUI(newUiState, buttonId = undefined) {
   let idPrefix = "nav-";
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
     let clickId = idPrefix + i;
     let clickClass = STATE_QUIZ_OK === newUiState ? "navigation-on" : "navigation-off";
     let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i}, '${clickId}')"` : ``;
-    let infoClass = pressedButtonId && pressedButtonId.startsWith(idPrefix) && i === parseInt(pressedButtonId.substring(idPrefix.length))
+    let infoClass = buttonId && buttonId.startsWith(idPrefix) && i === parseInt(buttonId.substring(idPrefix.length))
         ? STATE_QUIZ_ERROR === newUiState ? "nav-error" : STATE_QUIZ_LOAD === newUiState ? "nav-wait" : "nav-ok"
         : "nav-ok";
     questionStatusHtml += `<div id="${clickId}" class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>

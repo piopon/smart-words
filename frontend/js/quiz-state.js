@@ -137,11 +137,11 @@ function questionStatusUpdateUI(newUiState, pressedButtonId = undefined) {
     let clickId = idPrefix + i;
     let clickClass = STATE_QUIZ_OK === newUiState ? "navigation-on" : "navigation-off";
     let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i}, '${clickId}')"` : ``;
-    let clickLabel = (STATE_QUIZ_ERROR === newUiState && pressedButtonId && pressedButtonId.startsWith(idPrefix))
-        ? i === parseInt(pressedButtonId.substring(idPrefix.length)) ? "!" : i + 1
-        : i + 1;
+    let infoClass = pressedButtonId && pressedButtonId.startsWith(idPrefix) && i === parseInt(pressedButtonId.substring(idPrefix.length))
+        ? STATE_QUIZ_ERROR === newUiState ? "nav-error" : STATE_QUIZ_LOAD === newUiState ? "nav-wait" : "nav-ok"
+        : "nav-ok";
     questionStatusHtml += `<div id="${clickId}" class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
-                             ${clickLabel}
+                             ${i + 1}
                            </div>`;
   }
   document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;

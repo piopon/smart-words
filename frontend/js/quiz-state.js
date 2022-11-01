@@ -141,6 +141,7 @@ function questionStatusUpdateUI(newUiState, pressedButtonId = undefined) {
         ? STATE_QUIZ_ERROR === newUiState ? "nav-error" : STATE_QUIZ_LOAD === newUiState ? "nav-wait" : "nav-ok"
         : "nav-ok";
     questionStatusHtml += `<div id="${clickId}" class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
+                             <div id="nav-info" class="${infoClass}"></div>
                              ${i + 1}
                            </div>`;
   }

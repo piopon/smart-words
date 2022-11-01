@@ -131,16 +131,18 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
  * @param {String} pressedButtonId which button was pressed (next or previous, undefined by default)
  */
 function questionStatusUpdateUI(newUiState, pressedButtonId = undefined) {
+  let idPrefix = "nav-";
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
+    let clickId = idPrefix + i;
     let clickClass = STATE_QUIZ_OK === newUiState ? "navigation-on" : "navigation-off";
-    let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i}, 'nav-${i}')"` : ``;
-    let clickLabel = (STATE_QUIZ_ERROR === newUiState && pressedButtonId && pressedButtonId.startsWith("nav-"))
-        ? i === parseInt(pressedButtonId.substring(4)) ? "!" : i + 1
+    let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i}, '${clickId}')"` : ``;
+    let clickLabel = (STATE_QUIZ_ERROR === newUiState && pressedButtonId && pressedButtonId.startsWith(idPrefix))
+        ? i === parseInt(pressedButtonId.substring(idPrefix.length)) ? "!" : i + 1
         : i + 1;
-    questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
-                            ${clickLabel}
-                            </div>`;
+    questionStatusHtml += `<div id="${clickId}" class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
+                             ${clickLabel}
+                           </div>`;
   }
   document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
 }

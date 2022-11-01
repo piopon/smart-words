@@ -75,6 +75,31 @@ div[class^="question-status"].navigation-on:hover {
   box-shadow: 0px 0px 10px green;
 }
 
+#nav-info {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  background-color: darkgrey;
+  position: absolute;
+}
+
+#nav-info.nav-ok {
+  display: none;
+  opacity: 0;
+}
+
+#nav-info.nav-wait {
+  background-image: url(../images/wait.png);
+  background-repeat: no-repeat;
+  opacity: 1.0;
+}
+
+#nav-info.nav-error {
+  background-image: url(../images/info.png);
+  background-repeat: no-repeat;
+  opacity: 1.0;
+}
+
 #quiz-modes-container {
   flex-wrap: wrap;
 }

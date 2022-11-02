@@ -92,13 +92,18 @@ div[class^="question-status"].navigation-on:hover {
 #nav-info.nav-wait {
   background-image: url(../images/wait.png);
   background-repeat: no-repeat;
-  opacity: 1.0;
+  animation: status-opacity 0.75s ease-in;
 }
 
 #nav-info.nav-error {
   background-image: url(../images/info.png);
   background-repeat: no-repeat;
   opacity: 1.0;
+}
+
+@keyframes status-opacity {
+  from {opacity: 0;}
+  to {opacity: 1.0;}
 }
 
 #quiz-modes-container {

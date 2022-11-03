@@ -130,7 +130,7 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {String} buttonId which button was pressed (next or previous, undefined by default)
  */
-function questionStatusUpdateUI(newUiState, buttonId = undefined) {
+function questionStatusUpdateUI(newUiState, buttonId = undefined, displayMessage = undefined) {
   let idPrefix = "nav-";
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
@@ -142,8 +142,9 @@ function questionStatusUpdateUI(newUiState, buttonId = undefined) {
     let infoClass = buttonId && buttonId.startsWith(idPrefix) && i === parseInt(buttonId.substring(idPrefix.length))
         ? STATE_QUIZ_ERROR === newUiState ? "nav-error" : STATE_QUIZ_LOAD === newUiState ? "nav-wait" : "nav-ok"
         : "nav-ok";
+    let infoMessage = STATE_QUIZ_ERROR === newUiState ? getQuizErrorMessage(displayMessage) : "";
     questionStatusHtml += `<div id="${clickId}" class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
-                             <div id="nav-info" class="${infoClass}"></div>
+                             <div id="nav-info" class="${infoClass}" title="${infoMessage}"></div>
                              ${i + 1}
                            </div>`;
   }

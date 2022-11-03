@@ -136,14 +136,14 @@ function questionStatusUpdateUI(newUiState, buttonId = undefined, displayMessage
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
     let clickId = idPrefix + i;
+    let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i}, '${clickId}')"` : ``;
     let clickClass = STATE_QUIZ_ERROR === newUiState
         ? "nav-disabled"
         : STATE_QUIZ_LOAD === newUiState || STATE_QUIZ_OFF === newUiState ? "nav-off" : "nav-on"
-    let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i}, '${clickId}')"` : ``;
+    let infoMessage = STATE_QUIZ_ERROR === newUiState ? getQuizErrorMessage(displayMessage) : "";
     let infoClass = buttonId && buttonId.startsWith(idPrefix) && i === parseInt(buttonId.substring(idPrefix.length))
         ? STATE_QUIZ_ERROR === newUiState ? "nav-error" : STATE_QUIZ_LOAD === newUiState ? "nav-wait" : "nav-ok"
         : "nav-ok";
-    let infoMessage = STATE_QUIZ_ERROR === newUiState ? getQuizErrorMessage(displayMessage) : "";
     questionStatusHtml += `<div id="${clickId}" class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
                              <div id="nav-info" class="${infoClass}" title="${infoMessage}"></div>
                              ${i + 1}

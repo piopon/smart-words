@@ -48,6 +48,12 @@ div[class^="question-status"] {
   font-size: 10px;
 }
 
+div[id^="nav-"][class^="question-status"].nav-disabled {
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
+}
+
 div[class^="question-status"].nav-on:hover {
   cursor: pointer;
 }

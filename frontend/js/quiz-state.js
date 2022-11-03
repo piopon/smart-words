@@ -75,7 +75,7 @@ function getQuizErrorMessage(sourceMessage) {
  */
 function questionViewUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
   questionControlUpdateUI(newUiState, pressedButtonId, displayMessage);
-  questionStatusUpdateUI(newUiState, pressedButtonId);
+  questionStatusUpdateUI(newUiState, pressedButtonId, displayMessage);
 }
 
 /**

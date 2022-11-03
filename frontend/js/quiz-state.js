@@ -135,7 +135,9 @@ function questionStatusUpdateUI(newUiState, buttonId = undefined) {
   let questionStatusHtml = `quiz questions:`;
   for (let i = 0; i < questionsStatus.length; i++) {
     let clickId = idPrefix + i;
-    let clickClass = STATE_QUIZ_ERROR === newUiState ? "nav-disabled" : STATE_QUIZ_LOAD === newUiState ? "nav-off" : "nav-on"
+    let clickClass = STATE_QUIZ_ERROR === newUiState
+        ? "nav-disabled"
+        : STATE_QUIZ_LOAD === newUiState || STATE_QUIZ_OFF === newUiState ? "nav-off" : "nav-on"
     let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i}, '${clickId}')"` : ``;
     let infoClass = buttonId && buttonId.startsWith(idPrefix) && i === parseInt(buttonId.substring(idPrefix.length))
         ? STATE_QUIZ_ERROR === newUiState ? "nav-error" : STATE_QUIZ_LOAD === newUiState ? "nav-wait" : "nav-ok"

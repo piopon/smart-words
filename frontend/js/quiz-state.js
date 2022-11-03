@@ -129,6 +129,7 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
  *
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {String} buttonId which button was pressed (next or previous, undefined by default)
+ * @param {String} displayMessage containing information about current state (undefined by default)
  */
 function questionStatusUpdateUI(newUiState, buttonId = undefined, displayMessage = undefined) {
   let idPrefix = "nav-";

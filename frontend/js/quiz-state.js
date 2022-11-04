@@ -123,7 +123,6 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
   }
 }
 
-
 /**
  * Method used to update question navigation depending on current questionStatus and new UI state variable
  *

@@ -143,7 +143,7 @@ function getOptionHtml(question, optionNo) {
  * @returns answer option action (if new question is true), or empty (if new question is false)
  */
 function getAnswerButtonAction(isNewQuestion, optionNo) {
-  return isNewQuestion ? `answerQuestionNo('${currentQuestionNo}', '${optionNo}')` : ``;
+  return isNewQuestion ? `answerQuestionNo('${currentQuestionNo}', '${optionNo}', 'question-option-${optionNo}')` : ``;
 }
 
 /**

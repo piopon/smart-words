@@ -199,14 +199,17 @@ function getControlButtonHtml(id, text, action, borderType) {
  *
  * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
  * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
+ * @param {String} buttonId which button was pressed (answer button ID, undefined by default)
  */
-function answerQuestionNo(number, answerNo) {
+function answerQuestionNo(number, answerNo, buttonId = undefined) {
+  questionViewUpdateUI(STATE_QUIZ_LOAD, buttonId);
   postQuestionAnswer(quizID, number, answerNo, (err, data) => {
     if (err) {
+      questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
       console.log("ERROR: " + err);
     } else {
       questionsStatus[currentQuestionNo] = data === true ? STATUS_ANSWER_OK : STATUS_ANSWER_NOK;
-      questionViewUpdateUI(STATE_QUIZ_OK);
+      questionViewUpdateUI(STATE_QUIZ_OK, buttonId);
       for (let i in [0, 1, 2, 3]) {
         document.getElementById("answer-" + i).onclick = null;
         document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);

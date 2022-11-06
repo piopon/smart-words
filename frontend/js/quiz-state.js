@@ -75,6 +75,7 @@ function getQuizErrorMessage(sourceMessage) {
  */
 function questionViewUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
   questionControlUpdateUI(newUiState, pressedButtonId, displayMessage);
+  questionAnswersUpdateUI(newUiState, pressedButtonId, displayMessage);
   questionStatusUpdateUI(newUiState, pressedButtonId, displayMessage);
 }
 
@@ -121,6 +122,17 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
     nextBtn.disabled = true;
     return;
   }
+}
+
+/**
+ * Method used to update UI state of question answer buttons
+ *
+ * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
+ * @param {String} pressedButtonId which button was pressed (next or previous, undefined by default)
+ * @param {String} displayMessage containing information about current state (undefined by default)
+ */
+function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
+  console.log('questionAnswersUpdateUI');
 }
 
 /**

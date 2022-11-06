@@ -132,7 +132,23 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
  * @param {String} displayMessage containing information about current state (undefined by default)
  */
 function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
-  console.log('questionAnswersUpdateUI');
+  let okGroupId = "question-option-";
+  let answerDiv = pressedButtonId && pressedButtonId.startsWith(okGroupId)
+      ? document.getElementById(pressedButtonId)
+      : undefined;
+  let answerButton = answerDiv ? answerDiv.lastChild : undefined;
+  let answerHeader = answerDiv
+      ? document.getElementById("question-info-" + pressedButtonId.split(okGroupId)[1])
+      : undefined;
+  if (STATE_QUIZ_OK === newUiState) {
+    return;
+  }
+  if (STATE_QUIZ_LOAD === newUiState) {
+    return;
+  }
+  if (STATE_QUIZ_ERROR === newUiState) {
+    return;
+  }
 }
 
 /**

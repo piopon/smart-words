@@ -214,7 +214,7 @@ div[id^="question-option-"] {
   width: 600px;
 }
 
-div.answer-header {
+div[id^="question-header-"] {
   z-index: 10;
   position: absolute;
   transform: rotate(-45deg);
@@ -226,7 +226,7 @@ div.answer-header {
   border-right: 60px solid transparent;
 }
 
-div.answer-header span {
+div[id^="question-header-"] span {
   position: absolute;
   transform: rotate(45deg);
   font-size: 30px;

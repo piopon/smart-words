@@ -128,7 +128,7 @@ function getOptionHtml(question, optionNo) {
   buttonAction = getAnswerButtonAction(isNewQuestion, optionNo);
   buttonClass = getAnswerButtonClass(isNewQuestion, optionNo == question.answer ? question.correct : null);
   return `<div id="question-option-${optionNo}">
-            <div class="answer-header">
+            <div id="question-header-${optionNo}">
               <span>${headersMap.get(optionNo)}</span>
               <div id="question-info-${optionNo}" class="service-ok" title="PUT EXTRA INFO HERE"></div>
             </div>

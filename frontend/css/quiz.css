@@ -214,7 +214,7 @@ div[id^="question-option-"] {
   width: 600px;
 }
 
-div[id^="question-header-"] {
+div[id^="question-header-"].answer-header-enabled {
   z-index: 10;
   position: absolute;
   transform: rotate(-45deg);
@@ -226,7 +226,7 @@ div[id^="question-header-"] {
   border-right: 60px solid transparent;
 }
 
-div[id^="question-header-"] span {
+div[id^="question-header-"].answer-header-enabled span {
   position: absolute;
   transform: rotate(45deg);
   font-size: 30px;

@@ -226,6 +226,18 @@ div[id^="question-header-"].answer-header-enabled {
   border-right: 60px solid transparent;
 }
 
+div[id^="question-header-"].answer-header-disabled {
+  z-index: 10;
+  position: absolute;
+  transform: rotate(-45deg);
+  top: 2px;
+  left: -28px;
+  background-color: transparent;
+  border-bottom: 60px solid lightgray;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+}
+
 div[id^="question-header-"].answer-header-enabled span {
   position: absolute;
   transform: rotate(45deg);
@@ -233,6 +245,16 @@ div[id^="question-header-"].answer-header-enabled span {
   top: 18px;
   left: -11px;
   color: white;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+div[id^="question-header-"].answer-header-disabled span {
+  position: absolute;
+  transform: rotate(45deg);
+  font-size: 30px;
+  top: 18px;
+  left: -11px;
+  color: gray;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 

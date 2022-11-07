@@ -233,24 +233,21 @@ div[id^="question-header-"].answer-header-disabled {
   border-bottom: 60px solid lightgray;
 }
 
-div[id^="question-header-"].answer-header-enabled span {
+div[id^="question-header-"] span {
   position: absolute;
   transform: rotate(45deg);
   font-size: 30px;
   top: 18px;
   left: -11px;
-  color: white;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
+div[id^="question-header-"].answer-header-enabled span {
+  color: white;
+}
+
 div[id^="question-header-"].answer-header-disabled span {
-  position: absolute;
-  transform: rotate(45deg);
-  font-size: 30px;
-  top: 18px;
-  left: -11px;
   color: gray;
-  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 #question-option-0 {

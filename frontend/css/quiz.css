@@ -214,28 +214,23 @@ div[id^="question-option-"] {
   width: 600px;
 }
 
-div[id^="question-header-"].answer-header-enabled {
+div[id^="question-header-"] {
   z-index: 10;
   position: absolute;
   transform: rotate(-45deg);
   top: 2px;
   left: -28px;
   background-color: transparent;
-  border-bottom: 60px solid black;
   border-left: 60px solid transparent;
   border-right: 60px solid transparent;
 }
 
+div[id^="question-header-"].answer-header-enabled {
+  border-bottom: 60px solid black;
+}
+
 div[id^="question-header-"].answer-header-disabled {
-  z-index: 10;
-  position: absolute;
-  transform: rotate(-45deg);
-  top: 2px;
-  left: -28px;
-  background-color: transparent;
   border-bottom: 60px solid lightgray;
-  border-left: 60px solid transparent;
-  border-right: 60px solid transparent;
 }
 
 div[id^="question-header-"].answer-header-enabled span {

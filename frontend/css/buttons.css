@@ -40,6 +40,13 @@ button[id^="answer-"] {
   margin: 10px;
 }
 
+button[id^="answer-"]:disabled {
+  cursor: default;
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
+}
+
 button[class^="question-option-"] {
   font-size: 20px;
   box-shadow: 5px 5px 10px gray;

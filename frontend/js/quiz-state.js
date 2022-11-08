@@ -133,16 +133,15 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
  */
 function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
   let okGroupId = "question-option-";
-  let answerDiv = pressedButtonId && pressedButtonId.startsWith(okGroupId)
-      ? document.getElementById(pressedButtonId)
-      : undefined;
-  let answerButton = answerDiv ? answerDiv.lastChild : undefined;
-  let answerHeader = answerDiv
-      ? document.getElementById("question-info-" + pressedButtonId.split(okGroupId)[1])
+  let pressedAnswerNo = pressedButtonId && pressedButtonId.startsWith(okGroupId)
+      ? pressedButtonId.split(okGroupId)[1]
       : undefined;
   for (let answerNo in [0, 1, 2, 3]) {
     let answerButton = document.getElementById("answer-" + answerNo);
     let answerHeader = document.getElementById("question-header-" + answerNo);
+    let answerInfo = pressedAnswerNo && pressedAnswerNo === answerNo
+        ? document.getElementById("question-info-" + pressedAnswerNo)
+        : undefined;
     if (answerButton === null || answerHeader === null) return;
     if (STATE_QUIZ_OK === newUiState) {
       answerButton.disabled = false;

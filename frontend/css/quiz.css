@@ -259,6 +259,23 @@ div[id^="question-info-"] {
   left: -14px;
 }
 
+div[id^="question-info-"].service-ok {
+  display: none;
+  opacity: 0;
+}
+
+div[id^="question-info-"].service-wait {
+  background-image: url(../images/wait.png);
+  background-repeat: no-repeat;
+  animation: status-opacity 0.75s ease-in;
+}
+
+div[id^="question-info-"].service-error {
+  background-image: url(../images/info.png);
+  background-repeat: no-repeat;
+  opacity: 1.0;
+}
+
 #question-option-0 {
   grid-row: 1;
   grid-column: 1;

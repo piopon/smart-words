@@ -140,29 +140,25 @@ function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displa
   let answerHeader = answerDiv
       ? document.getElementById("question-info-" + pressedButtonId.split(okGroupId)[1])
       : undefined;
-  for (let i in [0, 1, 2, 3]) {
-    answerDivisionUpdateUI(newUiState, i);
-  }
-}
-
-function answerDivisionUpdateUI(newUiState, answerNo) {
-  let answerButton = document.getElementById("answer-" + answerNo);
-  let answerHeader = document.getElementById("question-header-" + answerNo);
-  if (answerButton === null || answerHeader === null) return;
-  if (STATE_QUIZ_OK === newUiState) {
-    answerButton.disabled = false;
-    answerHeader.className = "answer-header-enabled";
-    return;
-  }
-  if (STATE_QUIZ_LOAD === newUiState) {
-    answerButton.disabled = false;
-    answerHeader.className = "answer-header-enabled";
-    return;
-  }
-  if (STATE_QUIZ_ERROR === newUiState) {
-    answerButton.disabled = true;
-    answerHeader.className = "answer-header-disabled";
-    return;
+  for (let answerNo in [0, 1, 2, 3]) {
+    let answerButton = document.getElementById("answer-" + answerNo);
+    let answerHeader = document.getElementById("question-header-" + answerNo);
+    if (answerButton === null || answerHeader === null) return;
+    if (STATE_QUIZ_OK === newUiState) {
+      answerButton.disabled = false;
+      answerHeader.className = "answer-header-enabled";
+      continue;
+    }
+    if (STATE_QUIZ_LOAD === newUiState) {
+      answerButton.disabled = false;
+      answerHeader.className = "answer-header-enabled";
+      continue;
+    }
+    if (STATE_QUIZ_ERROR === newUiState) {
+      answerButton.disabled = true;
+      answerHeader.className = "answer-header-disabled";
+      continue;
+    }
   }
 }
 

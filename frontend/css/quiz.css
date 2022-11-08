@@ -250,6 +250,15 @@ div[id^="question-header-"].answer-header-disabled span {
   color: gray;
 }
 
+div[id^="question-info-"] {
+  position: absolute;
+  transform: rotate(45deg);
+  height: 28px;
+  width: 28px;
+  top: 23px;
+  left: -14px;
+}
+
 #question-option-0 {
   grid-row: 1;
   grid-column: 1;

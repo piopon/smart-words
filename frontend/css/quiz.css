@@ -265,12 +265,14 @@ div[id^="question-info-"].service-ok {
 }
 
 div[id^="question-info-"].service-wait {
+  background-color: black;
   background-image: url(../images/wait.png);
   background-repeat: no-repeat;
   animation: status-opacity 0.75s ease-in;
 }
 
 div[id^="question-info-"].service-error {
+  background-color: lightgray;
   background-image: url(../images/info.png);
   background-repeat: no-repeat;
   opacity: 1.0;

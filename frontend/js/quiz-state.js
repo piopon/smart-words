@@ -164,6 +164,7 @@ function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displa
       answerHeader.className = "answer-header-disabled";
       if (answerInfo) {
         answerInfo.className = "service-error";
+        answerInfo.title = getQuizErrorMessage(displayMessage);
       }
       continue;
     }

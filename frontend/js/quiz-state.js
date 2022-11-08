@@ -146,16 +146,25 @@ function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displa
     if (STATE_QUIZ_OK === newUiState) {
       answerButton.disabled = false;
       answerHeader.className = "answer-header-enabled";
+      if (answerInfo) {
+        answerInfo.className = "service-ok";
+      }
       continue;
     }
     if (STATE_QUIZ_LOAD === newUiState) {
       answerButton.disabled = false;
       answerHeader.className = "answer-header-enabled";
+      if (answerInfo) {
+        answerInfo.className = "service-wait";
+      }
       continue;
     }
     if (STATE_QUIZ_ERROR === newUiState) {
       answerButton.disabled = true;
       answerHeader.className = "answer-header-disabled";
+      if (answerInfo) {
+        answerInfo.className = "service-error";
+      }
       continue;
     }
   }

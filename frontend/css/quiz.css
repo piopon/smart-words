@@ -18,6 +18,14 @@
   font-family: var(--styled-font), cursive;
 }
 
+.label-enabled {
+  color: black;
+}
+
+.label-disabled {
+  color: gray;
+}
+
 #quiz-title-container-status {
   margin: auto;
   height: 100%;

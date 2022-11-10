@@ -187,7 +187,7 @@ function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displa
  */
 function questionStatusUpdateUI(newUiState, buttonId = undefined, displayMessage = undefined) {
   let idPrefix = "nav-";
-  let questionStatusHtml = `<span id="status-title-label">quiz questions:</span>`;
+  let questionStatusHtml = `<span id="status-title-label" class="label-enabled">quiz questions:</span>`;
   for (let i = 0; i < questionsStatus.length; i++) {
     let clickId = idPrefix + i;
     let clickAction = STATE_QUIZ_OK === newUiState ? `onclick="requestQuestionNo(${i}, '${clickId}')"` : ``;

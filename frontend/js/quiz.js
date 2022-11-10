@@ -112,7 +112,7 @@ function displayQuestion(questionObject) {
  * @returns HTML code with word name
  */
 function getWordHtml(word) {
-  return `<div id="question-word" class="question-word-div">${word}</div>`;
+  return `<div id="question-word" class="question-word-div label-enabled">${word}</div>`;
 }
 
 /**

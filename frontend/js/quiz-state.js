@@ -84,6 +84,16 @@ function questionLabelsUpdateUI(newUiState) {
   let modeTitleLabel = document.getElementById("quiz-title-container-label");
   let wordNameLabel = document.getElementById("question-word");
   let navStatusLabel = document.getElementById("status-title-label");
+  if (modeTitleLabel === null || wordNameLabel === null || navStatusLabel === null) return;
+  if (STATE_QUIZ_OK === newUiState) {
+    return;
+  }
+  if (STATE_QUIZ_LOAD === newUiState) {
+    return;
+  }
+  if (STATE_QUIZ_ERROR === newUiState) {
+    return;
+  }
 }
 
 /**

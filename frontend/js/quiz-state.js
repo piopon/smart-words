@@ -74,9 +74,16 @@ function getQuizErrorMessage(sourceMessage) {
  * @param {String} displayMessage containing information about current state (undefined by default)
  */
 function questionViewUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
+  questionLabelsUpdateUI(newUiState);
   questionControlUpdateUI(newUiState, pressedButtonId, displayMessage);
   questionAnswersUpdateUI(newUiState, pressedButtonId, displayMessage);
   questionStatusUpdateUI(newUiState, pressedButtonId, displayMessage);
+}
+
+function questionLabelsUpdateUI(newUiState) {
+  let modeTitleLabel = document.getElementById("quiz-title-container-label");
+  let wordNameLabel = document.getElementById("question-word");
+  let navStatusLabel = document.getElementById("status-title-label");
 }
 
 /**

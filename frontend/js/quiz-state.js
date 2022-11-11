@@ -80,6 +80,11 @@ function questionViewUpdateUI(newUiState, pressedButtonId = undefined, displayMe
   questionStatusUpdateUI(newUiState, pressedButtonId, displayMessage);
 }
 
+/**
+ * Method used to update UI state of quiz label when changing quiz view and communicating with quiz service
+ *
+ * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
+ */
 function questionLabelsUpdateUI(newUiState) {
   let modeTitleLabel = document.getElementById("quiz-title-container-label");
   let wordNameLabel = document.getElementById("question-word");

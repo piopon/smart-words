@@ -74,10 +74,10 @@ function getQuizErrorMessage(sourceMessage) {
  * @param {String} displayMessage containing information about current state (undefined by default)
  */
 function questionViewUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
-  questionLabelsUpdateUI(newUiState);
   questionControlUpdateUI(newUiState, pressedButtonId, displayMessage);
   questionAnswersUpdateUI(newUiState, pressedButtonId, displayMessage);
   questionStatusUpdateUI(newUiState, pressedButtonId, displayMessage);
+  questionLabelsUpdateUI(newUiState);
 }
 
 /**

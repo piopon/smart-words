@@ -86,12 +86,30 @@ function questionLabelsUpdateUI(newUiState) {
   let navStatusLabel = document.getElementById("status-title-label");
   if (modeTitleLabel === null || wordNameLabel === null || navStatusLabel === null) return;
   if (STATE_QUIZ_OK === newUiState) {
+    modeTitleLabel.classList.remove("label-disabled");
+    navStatusLabel.classList.remove("label-disabled");
+    wordNameLabel.classList.remove("label-disabled");
+    modeTitleLabel.classList.add("label-enabled");
+    navStatusLabel.classList.add("label-enabled");
+    wordNameLabel.classList.add("label-enabled");
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
+    modeTitleLabel.classList.remove("label-disabled");
+    navStatusLabel.classList.remove("label-disabled");
+    wordNameLabel.classList.remove("label-disabled");
+    modeTitleLabel.classList.add("label-enabled");
+    navStatusLabel.classList.add("label-enabled");
+    wordNameLabel.classList.add("label-enabled");
     return;
   }
   if (STATE_QUIZ_ERROR === newUiState) {
+    modeTitleLabel.classList.remove("label-enabled");
+    navStatusLabel.classList.remove("label-enabled");
+    wordNameLabel.classList.remove("label-enabled");
+    modeTitleLabel.classList.add("label-disabled");
+    navStatusLabel.classList.add("label-disabled");
+    wordNameLabel.classList.add("label-disabled");
     return;
   }
 }

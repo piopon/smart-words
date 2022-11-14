@@ -168,7 +168,7 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
     }
     return;
   }
-  if (STATE_QUIZ_ERROR === newUiState) {
+  if (STATE_QUIZ_ERROR === newUiState || STATE_QUIZ_OFF === newUiState) {
     if (activeBtnInfo && activeBtnInfo !== null) {
       activeBtnInfo.classList.remove("service-ok");
       activeBtnInfo.classList.remove("service-wait");
@@ -217,7 +217,7 @@ function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displa
       }
       continue;
     }
-    if (STATE_QUIZ_ERROR === newUiState) {
+    if (STATE_QUIZ_ERROR === newUiState || STATE_QUIZ_OFF === newUiState) {
       answerButton.disabled = true;
       answerHeader.className = "answer-header-disabled";
       if (answerInfo) {

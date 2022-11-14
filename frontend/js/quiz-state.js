@@ -40,6 +40,15 @@ function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
     questionsStatus = undefined;
     return;
   }
+  if (STATE_QUIZ_OFF === newUiState) {
+    startQuizBtn.onclick = null;
+    startQuizBtn.disabled = true;
+    startQuizBtn.innerHTML = "service disabled";
+    startQuizInfo.className = "";
+    startQuizInfo.title = "Logic entered quiz off state. Reload page and try again.";
+    questionsStatus = undefined;
+    return;
+  }
 }
 
 /**

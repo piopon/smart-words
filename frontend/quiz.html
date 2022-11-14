@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/tiles.css" />
     <link rel="stylesheet" href="css/quiz.css" />
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
-    <script src="./js/api-quiz.js" defer></script>
+    <script src="./js/quiz-api.js" defer></script>
+    <script src="./js/quiz-state.js" defer></script>
     <script src="./js/quiz.js" defer></script>
   </head>
   <body>
@@ -35,7 +36,7 @@
       </div>
       <!-- quiz mode form with start option -->
       <div id="quiz-title-container" class="no-select">
-        <p id="quiz-title-container-label">select mode:</p>
+        <p id="quiz-title-container-label" class="label-enabled">select mode:</p>
         <div id="quiz-title-container-status"></div>
       </div>
       <div id="quiz-modes-container" class="container-visible">

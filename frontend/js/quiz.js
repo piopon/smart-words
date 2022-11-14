@@ -1,105 +1,28 @@
 const STATUS_NO_ANSWER = 0;
 const STATUS_ANSWER_OK = 1;
 const STATUS_ANSWER_NOK = -1;
-const START_QUIZ_OK = 0;
-const START_QUIZ_LOAD = 1;
-const START_QUIZ_ERROR = 2;
+const END_QUIZ_FINISH = 0;
+const END_QUIZ_STOP = 1;
 var quizID = undefined;
+var endQuizReason = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
-var questionsStatus = undefined;
 
 /**
  * Method used to receive number of question, start quiz and receive UUID
  */
 function startQuiz() {
-  startQuizUpdateUiState(START_QUIZ_LOAD);
   totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
-  questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
+  startQuizUpdateUI(STATE_QUIZ_LOAD);
   postQuizStart(totalQuestionsNo, (err, data) => {
     if (err) {
+      startQuizUpdateUI(STATE_QUIZ_ERROR, err);
       console.log("ERROR: " + err);
-      startQuizUpdateUiState(START_QUIZ_ERROR, err);
     } else {
+      startQuizUpdateUI(STATE_QUIZ_OK);
       quizID = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);
-      updateQuestionStatus();
-      startQuizUpdateUiState(START_QUIZ_OK);
-    }
-  });
-}
-
-/**
- * Method used to update GUI state while starting quiz from service
- *
- * @param {Integer} state current loading state (from: START_QUIZ_OK, START_QUIZ_LOAD, START_QUIZ_ERROR)
- * @param {String} message containing detailed information about current state (undefined by default)
- */
-function startQuizUpdateUiState(state, detailedMessage = undefined) {
-  let startQuizBtn = document.getElementById("quiz-mode-controls-start");
-  let startQuizInfo = document.getElementById("quiz-mode-controls-info");
-  if (startQuizBtn === null || startQuizInfo === null) return;
-  if (START_QUIZ_OK === state) {
-    startQuizBtn.addEventListener("click", startQuiz);
-    startQuizBtn.className = "dynamic-border";
-    startQuizBtn.disabled = false;
-    startQuizBtn.innerHTML = "start";
-    startQuizInfo.className = "hide";
-    return;
-  }
-  if (START_QUIZ_LOAD === state) {
-    startQuizBtn.onclick = null;
-    startQuizBtn.className = "loading";
-    startQuizBtn.disabled = false;
-    startQuizBtn.innerHTML = "connecting...";
-    startQuizInfo.className = "hide";
-    return;
-  }
-  if (START_QUIZ_ERROR === state) {
-    startQuizBtn.onclick = null;
-    startQuizBtn.disabled = true;
-    startQuizBtn.innerHTML = "service unavailable";
-    startQuizInfo.className = "";
-    startQuizInfo.title = getQuizErrorMessage(detailedMessage);
-    return;
-  }
-}
-
-/**
- * Method used to receive concrete error message for user depending on source message
- *
- * @param {String} sourceMessage containing error message from API
- * @returns quiz error message string
- */
-function getQuizErrorMessage(sourceMessage) {
-  let message = "Cannot connect to a quiz backend service!\n" +
-                "Please verify its running and connection status and refresh this page.";
-  if (sourceMessage) {
-    let findCodeValue = /\[([^\]]+)]/.exec(sourceMessage);
-    if (findCodeValue && !isNaN(findCodeValue[1])) {
-      let errorCode = parseInt(findCodeValue[1]);
-      if (503 === errorCode) {
-        message = "Quiz backend service cannot connect to word service!\n" +
-                  "Please verify word service running status and refresh this page.";
-      }
-    }
-  }
-  return message;
-}
-
-/**
- * Method used to request a question with specified number
- *
- * @param {Integer} number of a requested question
- */
-function requestQuestionNo(number) {
-  getQuestionNo(quizID, number, (err, data) => {
-    if (err) {
-      console.log("ERROR: " + err);
-    } else {
-      currentQuestionNo = number;
-      displayQuestion(data);
     }
   });
 }
@@ -109,9 +32,10 @@ function requestQuestionNo(number) {
  */
 function requestNextQuestion() {
   if (!verifyQuestionNo(++currentQuestionNo)) {
-    console.log("Invalid question number value [" + number + "]");
+    questionViewUpdateUI(STATE_QUIZ_ERROR, 'next-question', `Invalid question number value [${number}]`);
+  } else {
+    requestQuestionNo(currentQuestionNo, 'next-question');
   }
-  requestQuestionNo(currentQuestionNo);
 }
 
 /**
@@ -119,9 +43,10 @@ function requestNextQuestion() {
  */
 function requestPrevQuestion() {
   if (!verifyQuestionNo(--currentQuestionNo)) {
-    console.log("Invalid question number value [" + number + "]");
+    questionViewUpdateUI(STATE_QUIZ_ERROR, 'prev-question', `Invalid question number value [${number}]`);
+  } else {
+    requestQuestionNo(currentQuestionNo, 'prev-question');
   }
-  requestQuestionNo(currentQuestionNo);
 }
 
 /**
@@ -136,6 +61,26 @@ function verifyQuestionNo(number) {
     return false;
   }
   return true;
+}
+
+/**
+ * Method used to request a question with specified number
+ *
+ * @param {Integer} number of a requested question
+ * @param {String} buttonId which button was pressed (next or previous, undefined by default)
+ */
+function requestQuestionNo(number, buttonId = undefined) {
+  questionViewUpdateUI(STATE_QUIZ_LOAD, buttonId);
+  getQuestionNo(quizID, number, (err, data) => {
+    if (err) {
+      questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
+      console.log("ERROR: " + err);
+    } else {
+      questionViewUpdateUI(STATE_QUIZ_OK, buttonId);
+      currentQuestionNo = number;
+      displayQuestion(data);
+    }
+  });
 }
 
 /**
@@ -167,7 +112,7 @@ function displayQuestion(questionObject) {
  * @returns HTML code with word name
  */
 function getWordHtml(word) {
-  return `<div id="question-word" class="question-word-div">${word}</div>`;
+  return `<div id="question-word" class="question-word-div label-enabled">${word}</div>`;
 }
 
 /**
@@ -178,14 +123,43 @@ function getWordHtml(word) {
  * @returns HTML code with word option
  */
 function getOptionHtml(question, optionNo) {
+  let headersMap = new Map([[0, 'A'], [1, 'B'], [2, 'C'], [3, 'D']]);
   let isNewQuestion = null === question.correct;
   buttonAction = getAnswerButtonAction(isNewQuestion, optionNo);
   buttonClass = getAnswerButtonClass(isNewQuestion, optionNo == question.answer ? question.correct : null);
   return `<div id="question-option-${optionNo}">
+            <div id="question-header-${optionNo}" class="answer-header-enabled">
+              <span>${headersMap.get(optionNo)}</span>
+              <div id="question-info-${optionNo}" class="service-ok" title="PUT EXTRA INFO HERE"></div>
+            </div>
             <button id="answer-${optionNo}" class="${buttonClass}" onclick="${buttonAction}">
-              ${optionNo}) ${question.options[optionNo]}
+              ${question.options[optionNo]}
             </button>
           </div>`;
+}
+
+/**
+ * Method used to receive answer button action for HTML code
+ *
+ * @param {Boolean} isNewQuestion flag indicating if this question is new or not
+ * @param {Integer} optionNo number of option for which to update action
+ * @returns answer option action (if new question is true), or empty (if new question is false)
+ */
+function getAnswerButtonAction(isNewQuestion, optionNo) {
+  return isNewQuestion ? `answerQuestionNo('${currentQuestionNo}', '${optionNo}', 'question-option-${optionNo}')` : ``;
+}
+
+/**
+ * Method used to receive answer button class for HTML code
+ *
+ * @param {Boolean} isAnswerCorrect flag indicating the current status of answer correctness
+ * @returns "regular" class if input boolean is null, "ok" class if input is true, "nok" when false
+ */
+function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
+  if (null === isAnswerCorrect) {
+    return isNewQuestion ? "question-option-btn" : "question-option-btn-disabled";
+  }
+  return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
 }
 
 /**
@@ -196,9 +170,10 @@ function getOptionHtml(question, optionNo) {
 function getControlButtonsHtml() {
   let placeholderForPrevBtn = getControlButtonHtml("prev-question", "PREVIOUS", "requestPrevQuestion()", "static-border");
   let placeholderForNextBtn = currentQuestionNo === totalQuestionsNo - 1
-      ? getControlButtonHtml("finish-quiz", "FINISH", "checkQuizEnd()", "static-border")
+      ? getControlButtonHtml(getButtonIdFromEndReason(END_QUIZ_FINISH), "FINISH", `checkQuizEnd(${END_QUIZ_FINISH})`, "static-border")
       : getControlButtonHtml("next-question", "NEXT", "requestNextQuestion()", "static-border");
-  let placeholderForStopBtn = getControlButtonHtml("stop-quiz", "STOP", "checkQuizEnd()", "dynamic-border");
+  let placeholderForStopBtn =
+      getControlButtonHtml(getButtonIdFromEndReason(END_QUIZ_STOP), "STOP", `checkQuizEnd(${END_QUIZ_STOP})`, "dynamic-border");
   return `<div id="question-control">
             ${placeholderForPrevBtn}
             ${placeholderForNextBtn}
@@ -216,9 +191,10 @@ function getControlButtonsHtml() {
  * @returns HTML code for question control button
  */
 function getControlButtonHtml(id, text, action, borderType) {
-  return `<button id="${id}" class="question-control-btn ${borderType}" onclick="${action}">
-            ${text}
-          </button>`;
+  return `<div id="${id}-wrapper">
+            <button id="${id}" class="question-control-btn ${borderType}" onclick="${action}">${text}</button>
+            <div id="${id}-info" class="service-ok" title="PUT EXTRA INFO HERE"></div>
+          </div>`;
 }
 
 /**
@@ -226,69 +202,33 @@ function getControlButtonHtml(id, text, action, borderType) {
  *
  * @param {Integer} number of a question to be answered (accepted values: 0 - totalQuestionsNo)
  * @param {Integer} answerNo number of answer for specified question (accepted values: 0-3)
+ * @param {String} buttonId which button was pressed (answer button ID, undefined by default)
  */
-function answerQuestionNo(number, answerNo) {
+function answerQuestionNo(number, answerNo, buttonId = undefined) {
+  questionViewUpdateUI(STATE_QUIZ_LOAD, buttonId);
   postQuestionAnswer(quizID, number, answerNo, (err, data) => {
     if (err) {
+      questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
       console.log("ERROR: " + err);
     } else {
       questionsStatus[currentQuestionNo] = data === true ? STATUS_ANSWER_OK : STATUS_ANSWER_NOK;
+      questionViewUpdateUI(STATE_QUIZ_OK, buttonId);
       for (let i in [0, 1, 2, 3]) {
         document.getElementById("answer-" + i).onclick = null;
         document.getElementById("answer-" + i).className = getAnswerButtonClass(false, answerNo === i ? data : null);
       }
-      updateQuestionStatus();
     }
   });
 }
 
 /**
- * Method used to receive answer button action for HTML code
- *
- * @param {Boolean} isNewQuestion flag indicating if this question is new or not
- * @param {Integer} optionNo number of option for which to update action
- * @returns answer option action (if new question is true), or empty (if new question is false)
- */
-function getAnswerButtonAction(isNewQuestion, optionNo) {
-  return isNewQuestion ? `answerQuestionNo('${currentQuestionNo}', '${optionNo}')` : ``;
-}
-
-/**
- * Method used to receive answer button class for HTML code
- *
- * @param {Boolean} isAnswerCorrect flag indicating the current status of answer correctness
- * @returns "regular" class if input boolean is null, "ok" class if input is true, "nok" when false
- */
-function getAnswerButtonClass(isNewQuestion, isAnswerCorrect) {
-  if (null === isAnswerCorrect) {
-    return isNewQuestion ? "question-option-btn" : "question-option-btn-disabled";
-  }
-  return isAnswerCorrect ? "question-option-btn-ok" : "question-option-btn-nok";
-}
-
-/**
- * Method used to create and update question depending on current questionStatus array contents
- *
- * @param {Boolean} enableStatusNavigation flag indicating if status should also have question navigation functionalities.
- *                                         If not provided by caller will be initialized to true.
- */
-function updateQuestionStatus(enableStatusNavigation = true) {
-  let questionStatusHtml = `quiz questions:`;
-  for (let i = 0; i < questionsStatus.length; i++) {
-    let clickClass = true === enableStatusNavigation ? "navigation-on" : "navigation-off";
-    let clickAction = true === enableStatusNavigation ? `onclick="requestQuestionNo(${i})"` : ``;
-    questionStatusHtml += `<div class="question-status${questionsStatus[i]} ${clickClass}" ${clickAction}>
-                            ${i + 1}
-                           </div>`;
-  }
-  document.getElementById("quiz-title-container-status").innerHTML = questionStatusHtml;
-}
-
-/**
  * Method used to check is all questions are answered and depending on the result stop quiz or show confirmation modal
+ *
+ * @param {Integer} currentEndMode reson (FINISH or END) why we should check quiz end status
  */
-function checkQuizEnd() {
-  if (questionsStatus.includes(STATUS_NO_ANSWER)) {
+function checkQuizEnd(currentEndMode) {
+  endQuizReason = currentEndMode;
+  if (quizHasUnansweredQuestions()) {
     showQuizEndModalDialog();
   } else {
     stopQuiz();
@@ -306,21 +246,42 @@ function showQuizEndModalDialog() {
  * Method wrapper to hide modal dialog with quiz end confirmation question
  */
 function hideQuizEndModalDialog() {
-  document.getElementById("modal").className = "overlay";
+  document.getElementById("modal").className = "overlay no-select";
+  endQuizReason = undefined;
 }
 
 /**
  * Method used to stop quiz (via quiz API) with specified ID
  */
 function stopQuiz() {
+  var endButtonId = getButtonIdFromEndReason(endQuizReason);
   hideQuizEndModalDialog();
+  questionViewUpdateUI(STATE_QUIZ_LOAD, endButtonId);
   getQuizStop(quizID, (err, data) => {
     if (err) {
+      questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
       console.log("ERROR: " + err);
     } else {
+      questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
       displaySummary(data);
     }
   });
+}
+
+/**
+ * Method used to map end reason state to correct button ID
+ *
+ * @param {Integer} endQuizReason state with appropriate end quiz value
+ * @returns string containing button ID responsinble for specified end quiz reason
+ */
+function getButtonIdFromEndReason(endQuizReason) {
+  var buttonId = undefined;
+  if (END_QUIZ_FINISH === endQuizReason) {
+    buttonId = 'finish-quiz';
+  } else if(END_QUIZ_STOP === endQuizReason) {
+    buttonId = 'stop-quiz';
+  }
+  return buttonId;
 }
 
 /**
@@ -329,10 +290,10 @@ function stopQuiz() {
  * @param {Float} summaryValue correct answers percentage
  */
 function displaySummary(summaryValue) {
+  questionViewUpdateUI(STATE_QUIZ_OFF);
   document.getElementById("quiz-question-container").className = "container-visible";
   document.getElementById("quiz-modes-container").className = "container-hidden";
   document.getElementById("quiz-title-container-label").innerHTML = "results:";
-  updateQuestionStatus(false);
   document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(summaryValue);
 }
 

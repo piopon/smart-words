@@ -18,6 +18,14 @@
   font-family: var(--styled-font), cursive;
 }
 
+.label-enabled {
+  color: black;
+}
+
+.label-disabled {
+  color: darkgray;
+}
+
 #quiz-title-container-status {
   margin: auto;
   height: 100%;
@@ -35,19 +43,26 @@
   -ms-user-select: none;
 }
 
-div[class^="question-status"] {
+div[id^="nav-"][class^="question-status"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20px;
-  width: 20px;
+  position: relative;
+  height: 24px;
+  width: 24px;
   border: 1px solid black;
   border-radius: 15px;
   margin-left: 7px;
   font-size: 10px;
 }
 
-div[class^="question-status"].navigation-on:hover {
+div[id^="nav-"][class^="question-status"].nav-disabled {
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
+}
+
+div[class^="question-status"].nav-on:hover {
   cursor: pointer;
 }
 
@@ -55,7 +70,7 @@ div[class^="question-status"].navigation-on:hover {
   background-color: darkgrey;
 }
 
-.question-status0.navigation-on:hover {
+.question-status0.nav-on:hover {
   box-shadow: 0px 0px 10px black;
 }
 
@@ -63,7 +78,7 @@ div[class^="question-status"].navigation-on:hover {
   background-color: red;
 }
 
-.question-status-1.navigation-on:hover {
+.question-status-1.nav-on:hover {
   box-shadow: 0px 0px 10px darkred;
 }
 
@@ -71,8 +86,38 @@ div[class^="question-status"].navigation-on:hover {
   background-color: lime;
 }
 
-.question-status1.navigation-on:hover {
+.question-status1.nav-on:hover {
   box-shadow: 0px 0px 10px green;
+}
+
+#nav-info {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  background-color: darkgrey;
+  position: absolute;
+}
+
+#nav-info.nav-ok {
+  display: none;
+  opacity: 0;
+}
+
+#nav-info.nav-wait {
+  background-image: url(../images/wait.png);
+  background-repeat: no-repeat;
+  animation: status-opacity 0.75s ease-in;
+}
+
+#nav-info.nav-error {
+  background-image: url(../images/info.png);
+  background-repeat: no-repeat;
+  opacity: 1.0;
+}
+
+@keyframes status-opacity {
+  from {opacity: 0;}
+  to {opacity: 1.0;}
 }
 
 #quiz-modes-container {
@@ -154,9 +199,8 @@ p.mode-section-label {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 25px;
-  height: 100px;
-  width: 100% - 25px;
+  margin: 20px;
+  height: 65px;
   font-size: 40px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
@@ -166,7 +210,6 @@ p.mode-section-label {
   justify-content: center;
   align-items: center;
   margin: 0 25px;
-  height: 100%;
   width: 100% - 25px;
 }
 
@@ -174,8 +217,73 @@ div[id^="question-option-"] {
   display: flex;
   align-items: stretch;
   align-content: stretch;
-  height: 100%;
+  position: relative;
+  height: 300px;
   width: 600px;
+}
+
+div[id^="question-header-"] {
+  z-index: 10;
+  position: absolute;
+  transform: rotate(-45deg);
+  top: 2px;
+  left: -28px;
+  background-color: transparent;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+}
+
+div[id^="question-header-"].answer-header-enabled {
+  border-bottom: 60px solid black;
+}
+
+div[id^="question-header-"].answer-header-disabled {
+  border-bottom: 60px solid lightgray;
+}
+
+div[id^="question-header-"] span {
+  position: absolute;
+  transform: rotate(45deg);
+  font-size: 30px;
+  top: 18px;
+  left: -11px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+div[id^="question-header-"].answer-header-enabled span {
+  color: white;
+}
+
+div[id^="question-header-"].answer-header-disabled span {
+  color: gray;
+}
+
+div[id^="question-info-"] {
+  position: absolute;
+  transform: rotate(45deg);
+  height: 28px;
+  width: 28px;
+  top: 23px;
+  left: -14px;
+}
+
+div[id^="question-info-"].service-ok {
+  display: none;
+  opacity: 0;
+}
+
+div[id^="question-info-"].service-wait {
+  background-color: black;
+  background-image: url(../images/wait.png);
+  background-repeat: no-repeat;
+  animation: status-opacity 0.75s ease-in;
+}
+
+div[id^="question-info-"].service-error {
+  background-color: lightgray;
+  background-image: url(../images/info.png);
+  background-repeat: no-repeat;
+  opacity: 1.0;
 }
 
 #question-option-0 {
@@ -202,8 +310,7 @@ div[id^="question-option-"] {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  height: 125px;
-  margin: 5px;
+  margin: 35px 0px 0px 0px;
 }
 
 #quiz-summary {

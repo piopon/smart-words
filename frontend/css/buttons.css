@@ -40,6 +40,13 @@ button[id^="answer-"] {
   margin: 10px;
 }
 
+button[id^="answer-"]:disabled {
+  cursor: default;
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
+}
+
 button[class^="question-option-"] {
   font-size: 20px;
   box-shadow: 5px 5px 10px gray;
@@ -153,10 +160,22 @@ button[class^="question-option-"] {
   margin-left: 5px;
 }
 
+#next-question:disabled {
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
+}
+
 #finish-quiz {
   background-color: lime;
   color: black;
   margin-left: 5px;
+}
+
+#finish-quiz:disabled {
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
 }
 
 #stop-quiz {
@@ -176,6 +195,39 @@ button[class^="question-option-"] {
   color: gray;
 }
 
+div[id$="-wrapper"] {
+  display: flex;
+  height: 100%;
+  position: relative;
+  padding: 0px 10px;
+}
+
+div[id$="-wrapper"] div[id$="-info"] {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 13px;
+  right: 25px;
+  z-index: 10;
+}
+
+div[id$="-wrapper"] div[id$="-info"].service-ok {
+  display: none;
+  opacity: 0;
+}
+
+div[id$="-wrapper"] div[id$="-info"].service-wait {
+  background-image: url(../images/wait.png);
+  background-repeat: no-repeat;
+  animation: smooth-opacity 0.75s ease-in;
+}
+
+div[id$="-wrapper"] div[id$="-info"].service-error {
+  background-image: url(../images/info.png);
+  background-repeat: no-repeat;
+  opacity: 0.8;
+}
+
 #end-summary {
   width: 150px;
   background-color: var(--primary-color);
@@ -186,4 +238,9 @@ button[class^="question-option-"] {
   color: white;
   background-color: dimgray;
   transition: background-color 1s, color 1s;
+}
+
+@keyframes smooth-opacity {
+  from {opacity: 0;}
+  to {opacity: 0.8;}
 }

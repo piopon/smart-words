@@ -126,6 +126,15 @@ function questionLabelsUpdateUI(newUiState) {
     wordNameLabel.classList.add("label-disabled");
     return;
   }
+  if (STATE_QUIZ_OFF === newUiState) {
+    modeTitleLabel.classList.remove("label-disabled");
+    navStatusLabel.classList.remove("label-disabled");
+    wordNameLabel.classList.remove("label-disabled");
+    modeTitleLabel.classList.add("label-enabled");
+    navStatusLabel.classList.add("label-enabled");
+    wordNameLabel.classList.add("label-enabled");
+    return;
+  }
 }
 
 /**

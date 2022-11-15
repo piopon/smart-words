@@ -191,5 +191,14 @@ function loadWords() {
   });
 }
 
+function wordChangeConfirmation(message) {
+  var wordToast = document.getElementById("word-edit-toast");
+  wordToast.className = "show";
+  wordToast.innerHTML = message;
+  setTimeout(function() {
+    wordToast.className = wordToast.className.replace("show", "");
+  }, 3000);
+}
+
 // called on words.html site load
 loadWords();

@@ -36,6 +36,12 @@
   font-size: 17px;
 }
 
+#word-edit-toast.show {
+  visibility: visible;
+  animation: toast-fade-in 0.5s, toast-fade-out 0.5s 2.5s;
+  -webkit-animation: toast-fade-in 0.5s, toast-fade-out 0.5s 2.5s;
+}
+
 #table-words {
   display: block;
   width: 100%;
@@ -175,3 +181,14 @@ tr a.btn-delete {
 tr a.btn-delete:hover {
   background-color: red;
 }
+
+@keyframes toast-fade-in {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes toast-fade-out {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+

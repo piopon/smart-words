@@ -195,6 +195,11 @@ function loadWords() {
   });
 }
 
+/**
+ * Method used to display word change confirmation toast to the user
+ *
+ * @param {String} message text to be displayed in word change toast
+ */
 function wordChangeConfirmation(message) {
   var wordToast = document.getElementById("word-edit-toast");
   wordToast.className = "show";

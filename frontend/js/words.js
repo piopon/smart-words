@@ -4,6 +4,7 @@ const LOAD_WORDS_OK = 0;
 const LOAD_WORDS_LOAD = 1;
 const LOAD_WORDS_ERROR = 2;
 var wordFormMode = FORM_MODE_ADD;
+var toastTimeout = 3000;
 var wordUnderEdition = undefined;
 
 /**
@@ -200,7 +201,7 @@ function wordChangeConfirmation(message) {
   wordToast.innerHTML = message;
   setTimeout(function() {
     wordToast.className = wordToast.className.replace("show", "");
-  }, 3000);
+  }, toastTimeout);
 }
 
 // called on words.html site load

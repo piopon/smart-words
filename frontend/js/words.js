@@ -201,7 +201,7 @@ function loadWords() {
  * @param {String} message text to be displayed in word change toast
  */
 function wordChangeConfirmation(message) {
-  var wordToast = document.getElementById("word-edit-toast");
+  var wordToast = document.getElementById("word-change-toast");
   wordToast.className = "show";
   wordToast.innerHTML = message;
   setTimeout(function() {

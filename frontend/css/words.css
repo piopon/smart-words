@@ -20,7 +20,7 @@
   background: url(../images/add-hover.png) no-repeat;
 }
 
-#word-edit-toast {
+#word-change-toast {
   visibility: hidden;
   z-index: 1;
   padding: 15px;
@@ -37,7 +37,7 @@
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
-#word-edit-toast.show {
+#word-change-toast.show {
   visibility: visible;
   animation: toast-fade-in 0.5s, toast-fade-out 0.5s 2.5s;
   -webkit-animation: toast-fade-in 0.5s, toast-fade-out 0.5s 2.5s;

@@ -197,3 +197,12 @@ tr a.btn-delete:hover {
   to {bottom: 0; opacity: 0;}
 }
 
+@-webkit-keyframes toast-fade-in {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: var(--toast-bottom-dist-px); opacity: 1;}
+}
+
+@-webkit-keyframes toast-fade-out {
+  from {bottom: var(--toast-bottom-dist-px); opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}

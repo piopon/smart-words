@@ -77,7 +77,7 @@ const deleteWord = (wordName, callback) => {
   deleteRequest.addEventListener("readystatechange", () => {
     if (deleteRequest.DONE !== deleteRequest.readyState) return;
     if (deleteRequest.status === 200) {
-      callback(undefined, JSON.parse(deleteRequest.responseText));
+      callback(undefined, deleteRequest.responseText);
     } else {
       callback("cannot delete word [" + deleteRequest.status + "]", undefined);
     }

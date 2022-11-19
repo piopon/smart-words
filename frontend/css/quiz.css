@@ -115,11 +115,6 @@ div[class^="question-status"].nav-on:hover {
   opacity: 1.0;
 }
 
-@keyframes status-opacity {
-  from {opacity: 0;}
-  to {opacity: 1.0;}
-}
-
 #quiz-modes-container {
   flex-wrap: wrap;
 }
@@ -326,4 +321,14 @@ div[id^="question-info-"].service-error {
 #quiz-summary-img {
   height: 200px;
   width: 200px;
+}
+
+@keyframes status-opacity {
+  from {opacity: 0;}
+  to {opacity: 1.0;}
+}
+
+@-webkit-keyframes status-opacity {
+  from {opacity: 0;}
+  to {opacity: 1.0;}
 }

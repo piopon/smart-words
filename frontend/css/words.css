@@ -42,7 +42,7 @@
 }
 
 #word-change-toast.show {
-    animation: toast-fade 3s linear;
+  animation: toast-fade 3s linear;
 }
 
 #table-words {
@@ -186,11 +186,27 @@ tr a.btn-delete:hover {
 }
 
 @keyframes toast-fade {
-  0%, 100% { bottom: 0; opacity: 0; }
-  10%, 90% { bottom: var(--toast-bottom-dist-px); opacity: 1; }
+  0%,
+  100% {
+    bottom: 0;
+    opacity: 0;
+  }
+  10%,
+  90% {
+    bottom: var(--toast-bottom-dist-px);
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes toast-fade {
-  0%, 100% { bottom: 0; opacity: 0; }
-  10%, 90% { bottom: var(--toast-bottom-dist-px); opacity: 1; }
+  0%,
+  100% {
+    bottom: 0;
+    opacity: 0;
+  }
+  10%,
+  90% {
+    bottom: var(--toast-bottom-dist-px);
+    opacity: 1;
+  }
 }

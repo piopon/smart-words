@@ -112,7 +112,7 @@ div[class^="question-status"].nav-on:hover {
 #nav-info.nav-error {
   background-image: url(../images/info.png);
   background-repeat: no-repeat;
-  opacity: 1.0;
+  opacity: 1;
 }
 
 #quiz-modes-container {
@@ -278,7 +278,7 @@ div[id^="question-info-"].service-error {
   background-color: lightgray;
   background-image: url(../images/info.png);
   background-repeat: no-repeat;
-  opacity: 1.0;
+  opacity: 1;
 }
 
 #question-option-0 {
@@ -324,11 +324,19 @@ div[id^="question-info-"].service-error {
 }
 
 @keyframes status-opacity {
-  from {opacity: 0;}
-  to {opacity: 1.0;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes status-opacity {
-  from {opacity: 0;}
-  to {opacity: 1.0;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

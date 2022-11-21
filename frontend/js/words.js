@@ -62,6 +62,10 @@ function acceptWord() {
       console.log("ERROR: word under edition cannot be undefined");
       return;
     }
+    if (JSON.stringify(acceptedWord) === JSON.stringify(wordUnderEdition)) {
+      wordChangeConfirmation("no changes made");
+      return;
+    }
     changeWordUpdateUiState(LOAD_WORDS_LOAD);
     putWord(wordUnderEdition.name, acceptedWord, refreshWordsCallback);
   } else {

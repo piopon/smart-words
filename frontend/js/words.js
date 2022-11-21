@@ -8,14 +8,14 @@ var wordUnderEdition = undefined;
  * Method used to add new word and show edit word UI form with empty word data.
  */
 function addWord() {
-  wordFormMode = FORM_MODE_ADD;
-  wordUnderEdition = undefined;
   document.getElementById("word-form-title").innerHTML = "add word:";
   document.getElementById("word-form-name").value = "";
   document.getElementById("word-form-cat").value = "";
   document.getElementById("word-form-def").value = "";
   document.getElementById("word-form-def").innerHTML = "";
   document.getElementById("word-form-btn-accept").innerHTML = "add";
+  wordFormMode = FORM_MODE_ADD;
+  wordUnderEdition = undefined;
 }
 
 /**
@@ -26,14 +26,14 @@ function addWord() {
  * @param {String} definition current word definition to be used in UI form and available for edition
  */
 function editWord(name, category, definition) {
-  wordFormMode = FORM_MODE_EDIT;
-  wordUnderEdition = name;
   document.getElementById("word-form-title").innerHTML = "edit word:";
   document.getElementById("word-form-name").value = name;
   document.getElementById("word-form-cat").value = category;
   document.getElementById("word-form-def").value = definition.replaceAll("; ", "\n");
   document.getElementById("word-form-def").innerHTML = definition;
   document.getElementById("word-form-btn-accept").innerHTML = "edit";
+  wordFormMode = FORM_MODE_EDIT;
+  wordUnderEdition = getWordFromUi();
 }
 
 /**
@@ -50,7 +50,7 @@ function acceptWord() {
       return;
     }
     changeWordUpdateUiState(LOAD_WORDS_LOAD);
-    putWord(wordUnderEdition, acceptedWord, refreshWordsCallback);
+    putWord(wordUnderEdition.name, acceptedWord, refreshWordsCallback);
   } else {
     console.log("ERROR: Unknown form mode: " + wordFormMode);
   }

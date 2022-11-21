@@ -61,3 +61,18 @@ function addLoadingWidget() {
 function addErrorWidget() {
   return `<div id="loader-wrapper"></div>`;
 }
+
+function changeWordUpdateUiState(state) {
+  if (LOAD_WORDS_OK === state) {
+    console.log("changeWordUpdateUiState -> OK");
+    return;
+  }
+  if (LOAD_WORDS_LOAD === state) {
+    console.log("changeWordUpdateUiState -> LOAD");
+    return;
+  }
+  if (LOAD_WORDS_ERROR === state) {
+    console.log("changeWordUpdateUiState -> ERROR");
+    return;
+  }
+}

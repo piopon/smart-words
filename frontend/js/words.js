@@ -42,12 +42,14 @@ function editWord(name, category, definition) {
 function acceptWord() {
   var acceptedWord = getWordFromUi();
   if (FORM_MODE_ADD === wordFormMode) {
+    changeWordUpdateUiState(LOAD_WORDS_LOAD);
     postWord(acceptedWord, refreshWordsCallback);
   } else if (FORM_MODE_EDIT === wordFormMode) {
     if (undefined === wordUnderEdition) {
       console.log("ERROR: word under edition cannot be undefined");
       return;
     }
+    changeWordUpdateUiState(LOAD_WORDS_LOAD);
     putWord(wordUnderEdition, acceptedWord, refreshWordsCallback);
   } else {
     console.log("ERROR: Unknown form mode: " + wordFormMode);
@@ -73,6 +75,7 @@ function getWordFromUi() {
  * @param {String} name word name to be deleted
  */
 function removeWord(name) {
+  changeWordUpdateUiState(LOAD_WORDS_LOAD);
   deleteWord(name, refreshWordsCallback);
 }
 
@@ -85,9 +88,11 @@ function removeWord(name) {
 function refreshWordsCallback(err, data) {
   if (err) {
     console.log("ERROR: " + err);
+    changeWordUpdateUiState(LOAD_WORDS_ERROR);
   } else {
     wordChangeConfirmation(data);
     loadWords();
+    changeWordUpdateUiState(LOAD_WORDS_OK);
   }
 }
 

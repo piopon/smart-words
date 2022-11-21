@@ -56,6 +56,9 @@ function acceptWord() {
       wordChangeConfirmation("no changes made");
       return;
     }
+    if (!validateWord(acceptedWord)) {
+      return;
+    }
     changeWordUpdateUiState(LOAD_WORDS_LOAD);
     putWord(wordUnderEdition.name, acceptedWord, refreshWordsCallback);
   } else {

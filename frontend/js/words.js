@@ -138,9 +138,7 @@ function wordChangeConfirmation(message) {
   var wordToast = document.getElementById("word-change-toast");
   wordToast.className = "show";
   wordToast.innerHTML = message;
-  setTimeout(function() {
-    wordToast.className = wordToast.className.replace("show", "");
-  }, toastTimeout);
+  setTimeout(() => wordToast.className = wordToast.className.replace("show", ""), toastTimeout);
 }
 
 // called on words.html site load

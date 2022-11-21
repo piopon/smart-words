@@ -1,18 +1,18 @@
-const LOAD_WORDS_OK = 0;
-const LOAD_WORDS_LOAD = 1;
-const LOAD_WORDS_ERROR = 2;
+const STATE_WORDS_OK = 0;
+const STATE_WORDS_LOAD = 1;
+const STATE_WORDS_ERROR = 2;
 
 /**
  * Method used to update GUI state while loading words from service
  *
- * @param {Integer} state current loading state (from: LOAD_WORDS_OK, LOAD_WORDS_LOAD, LOAD_WORDS_ERROR)
+ * @param {Integer} state current loading state (from: STATE_WORDS_OK, STATE_WORDS_LOAD, STATE_WORDS_ERROR)
  */
 function loadWordsUpdateUiState(state) {
   let addWordBtn = document.getElementById("btn-add-word");
   let rowElement = document.getElementById("no-words-row");
   let textElement = document.getElementById("no-words-text");
   if (rowElement === null || textElement === null) return;
-  if (LOAD_WORDS_OK === state) {
+  if (STATE_WORDS_OK === state) {
     addWordBtn.className = "enabled no-select";
     addWordBtn.href = "#modal";
     addWordBtn.addEventListener("click", addWord);
@@ -20,7 +20,7 @@ function loadWordsUpdateUiState(state) {
     textElement.innerHTML = "";
     return;
   }
-  if (LOAD_WORDS_LOAD === state) {
+  if (STATE_WORDS_LOAD === state) {
     addWordBtn.className = "disabled no-select";
     addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
@@ -28,7 +28,7 @@ function loadWordsUpdateUiState(state) {
     textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
     return;
   }
-  if (LOAD_WORDS_ERROR === state) {
+  if (STATE_WORDS_ERROR === state) {
     addWordBtn.className = "disabled no-select";
     addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
@@ -65,18 +65,18 @@ function addErrorWidget() {
 /**
  * Method used to update word dictionary UI state after changing (adding/updating) word
  *
- * @param {Integer} newUiState current loading state (from: LOAD_WORDS_OK, LOAD_WORDS_LOAD, LOAD_WORDS_ERROR)
+ * @param {Integer} newUiState current loading state (from: STATE_WORDS_OK, STATE_WORDS_LOAD, STATE_WORDS_ERROR)
  */
 function changeWordUpdateUiState(newUiState) {
-  if (LOAD_WORDS_OK === newUiState) {
+  if (STATE_WORDS_OK === newUiState) {
     console.log("changeWordUpdateUiState -> OK");
     return;
   }
-  if (LOAD_WORDS_LOAD === newUiState) {
+  if (STATE_WORDS_LOAD === newUiState) {
     console.log("changeWordUpdateUiState -> LOAD");
     return;
   }
-  if (LOAD_WORDS_ERROR === newUiState) {
+  if (STATE_WORDS_ERROR === newUiState) {
     console.log("changeWordUpdateUiState -> ERROR");
     return;
   }

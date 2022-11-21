@@ -42,6 +42,19 @@ function editWord(name, category, definition) {
 function acceptWord() {
   var acceptedWord = getWordFromUi();
   if (FORM_MODE_ADD === wordFormMode) {
+    console.log(acceptedWord);
+    if (acceptedWord.name === "") {
+      wordChangeConfirmation("please specify word name");
+      return;
+    }
+    if (acceptedWord.category === "") {
+      wordChangeConfirmation("please specify word category");
+      return;
+    }
+    if (acceptedWord.description === "") {
+      wordChangeConfirmation("please provide at least one word definition");
+      return;
+    }
     changeWordUpdateUiState(LOAD_WORDS_LOAD);
     postWord(acceptedWord, refreshWordsCallback);
   } else if (FORM_MODE_EDIT === wordFormMode) {

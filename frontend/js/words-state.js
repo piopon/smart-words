@@ -62,16 +62,21 @@ function addErrorWidget() {
   return `<div id="loader-wrapper"></div>`;
 }
 
-function changeWordUpdateUiState(state) {
-  if (LOAD_WORDS_OK === state) {
+/**
+ * Method used to update word dictionary UI state after changing (adding/updating) word
+ *
+ * @param {Integer} newUiState current loading state (from: LOAD_WORDS_OK, LOAD_WORDS_LOAD, LOAD_WORDS_ERROR)
+ */
+function changeWordUpdateUiState(newUiState) {
+  if (LOAD_WORDS_OK === newUiState) {
     console.log("changeWordUpdateUiState -> OK");
     return;
   }
-  if (LOAD_WORDS_LOAD === state) {
+  if (LOAD_WORDS_LOAD === newUiState) {
     console.log("changeWordUpdateUiState -> LOAD");
     return;
   }
-  if (LOAD_WORDS_ERROR === state) {
+  if (LOAD_WORDS_ERROR === newUiState) {
     console.log("changeWordUpdateUiState -> ERROR");
     return;
   }

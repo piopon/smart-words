@@ -42,17 +42,7 @@ function editWord(name, category, definition) {
 function acceptWord() {
   var acceptedWord = getWordFromUi();
   if (FORM_MODE_ADD === wordFormMode) {
-    console.log(acceptedWord);
-    if (acceptedWord.name === "") {
-      wordChangeConfirmation("please specify word name");
-      return;
-    }
-    if (acceptedWord.category === "") {
-      wordChangeConfirmation("please specify word category");
-      return;
-    }
-    if (acceptedWord.description === "") {
-      wordChangeConfirmation("please provide at least one word definition");
+    if (!validateWord(acceptedWord)) {
       return;
     }
     changeWordUpdateUiState(LOAD_WORDS_LOAD);
@@ -161,6 +151,22 @@ function wordChangeConfirmation(message) {
   wordToast.className = "show";
   wordToast.innerHTML = message;
   setTimeout(() => wordToast.className = wordToast.className.replace("show", ""), toastTimeout);
+}
+
+function validateWord(word) {
+  if (word.name === "") {
+    wordChangeConfirmation("please specify word name");
+    return false;
+  }
+  if (word.category === "") {
+    wordChangeConfirmation("please specify word category");
+    return false;
+  }
+  if (word.description === "") {
+    wordChangeConfirmation("please provide at least one word definition");
+    return false;
+  }
+  return true;
 }
 
 // called on words.html site load

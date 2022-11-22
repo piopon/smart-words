@@ -156,6 +156,12 @@ function wordChangeConfirmation(message) {
   setTimeout(() => wordToast.className = wordToast.className.replace("show", ""), toastTimeout);
 }
 
+/**
+ * Method used to validate specified word object (name, category and description not empty)
+ *
+ * @param {Object} word to be validated
+ * @returns true if object is correct, false otherwise
+ */
 function validateWord(word) {
   if (word.name === "") {
     wordChangeConfirmation("please specify word name");

@@ -165,8 +165,8 @@ function validateWord(word) {
     wordChangeConfirmation("please specify word category");
     return false;
   }
-  if (word.description === "") {
-    wordChangeConfirmation("please provide at least one word definition");
+  if (0 === word.description.length || undefined !== word.description.find(item => item === "")) {
+    wordChangeConfirmation("please provide correct word definition");
     return false;
   }
   return true;

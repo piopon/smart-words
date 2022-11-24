@@ -46,8 +46,17 @@
 }
 
 #table-container {
+  position: relative;
   width: 100%;
   margin: 50px 100px;
+}
+
+#table-overlay.overlay-hide {
+  display: none;
+}
+
+#table-overlay-text.overlay-hide {
+  display: none;
 }
 
 #table-words {

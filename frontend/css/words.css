@@ -70,14 +70,24 @@
 
 #table-overlay-text.overlay-show {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 60px;
   top: 50%;
   z-index: 5;
+}
+
+#table-overlay-text span {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  border: 3px solid black;
+  width: 300px;
+  height: 100px;
+  font-family: var(--styled-font), cursive;
+  font-size: 18px;
 }
 
 #table-words {

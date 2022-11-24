@@ -8,32 +8,45 @@ const STATE_WORDS_ERROR = 2;
  * @param {Integer} state current loading state (from: STATE_WORDS_OK, STATE_WORDS_LOAD, STATE_WORDS_ERROR)
  */
 function loadWordsUpdateUiState(state) {
-  let addWordBtn = document.getElementById("btn-add-word");
   let rowElement = document.getElementById("no-words-row");
   let textElement = document.getElementById("no-words-text");
   if (rowElement === null || textElement === null) return;
+  addWordUpdateUiState(state);
+  if (STATE_WORDS_OK === state) {
+    rowElement.className = "row-hidden no-select";
+    textElement.innerHTML = "";
+    return;
+  }
+  if (STATE_WORDS_LOAD === state) {
+    rowElement.className = "row-loading no-select";
+    textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
+    return;
+  }
+  if (STATE_WORDS_ERROR === state) {
+    rowElement.className = "row-visible no-select";
+    textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
+    return;
+  }
+}
+
+function addWordUpdateUiState(state) {
+  let addWordBtn = document.getElementById("btn-add-word");
   if (STATE_WORDS_OK === state) {
     addWordBtn.className = "enabled no-select";
     addWordBtn.href = "#modal";
     addWordBtn.addEventListener("click", addWord);
-    rowElement.className = "row-hidden no-select";
-    textElement.innerHTML = "";
     return;
   }
   if (STATE_WORDS_LOAD === state) {
     addWordBtn.className = "disabled no-select";
     addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
-    rowElement.className = "row-loading no-select";
-    textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
     return;
   }
   if (STATE_WORDS_ERROR === state) {
     addWordBtn.className = "disabled no-select";
     addWordBtn.removeAttribute("href");
     addWordBtn.onclick = null;
-    rowElement.className = "row-visible no-select";
-    textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
     return;
   }
 }

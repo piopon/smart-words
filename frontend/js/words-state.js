@@ -68,16 +68,24 @@ function addErrorWidget() {
  * @param {Integer} newUiState current loading state (from: STATE_WORDS_OK, STATE_WORDS_LOAD, STATE_WORDS_ERROR)
  */
 function changeWordUpdateUiState(newUiState) {
+  let wordsTableOverlay = document.getElementById("table-overlay");
+  let overlayTextContainer = document.getElementById("table-overlay-text");
+  let overlayTextValue = document.getElementById("overlay-text-content");
   if (STATE_WORDS_OK === newUiState) {
-    console.log("changeWordUpdateUiState -> OK");
+    wordsTableOverlay.className = "overlay-hide";
+    overlayTextContainer.className = "overlay-hide";
     return;
   }
   if (STATE_WORDS_LOAD === newUiState) {
-    console.log("changeWordUpdateUiState -> LOAD");
+    wordsTableOverlay.className = "overlay-show";
+    overlayTextContainer.className = "overlay-show";
+    overlayTextValue.className = "text-load";
     return;
   }
   if (STATE_WORDS_ERROR === newUiState) {
-    console.log("changeWordUpdateUiState -> ERROR");
+    wordsTableOverlay.className = "overlay-show";
+    overlayTextContainer.className = "overlay-show";
+    overlayTextValue.className = "text-error";
     return;
   }
 }

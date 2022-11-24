@@ -45,10 +45,13 @@
   animation: toast-fade 3s linear;
 }
 
-#table-words {
-  display: block;
+#table-container {
   width: 100%;
   margin: 50px 100px;
+}
+
+#table-words {
+  display: block;
   empty-cells: show;
   border: 1px solid black;
   border-spacing: 0;

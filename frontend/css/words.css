@@ -68,6 +68,18 @@
   display: none;
 }
 
+#table-overlay-text.overlay-show {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  top: 50%;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+
 #table-words {
   display: block;
   empty-cells: show;

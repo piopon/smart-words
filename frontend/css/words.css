@@ -90,6 +90,14 @@
   font-size: 18px;
 }
 
+#table-overlay-text span.text-load {
+  background-color: orange;
+}
+
+#table-overlay-text span.text-error {
+  background-color: red;
+}
+
 #table-words {
   display: block;
   empty-cells: show;

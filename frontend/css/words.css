@@ -55,6 +55,15 @@
   display: none;
 }
 
+#table-overlay.overlay-show {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: gray;
+  opacity: 0.35;
+}
+
 #table-overlay-text.overlay-hide {
   display: none;
 }

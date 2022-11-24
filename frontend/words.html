@@ -56,21 +56,24 @@
         </div>
       </div>
       <!-- table with all words -->
-      <table id="table-words">
-        <thead>
-          <tr>
-            <th>word</th>
-            <th>action</th>
-            <th>category</th>
-            <th>definition</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="no-words-row" class="row-loading">
-            <td id="no-words-text" rowspan="4">loading...</td>
-          </tr>
-        </tbody>
-      </table>
+      <div id="table-container">
+        <div id="table-overlay"></div>
+        <table id="table-words">
+          <thead>
+            <tr>
+              <th>word</th>
+              <th>action</th>
+              <th>category</th>
+              <th>definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="no-words-row" class="row-loading">
+              <td id="no-words-text" rowspan="4">loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div id="word-change-toast">WORD ADJUSTMENT CONFIRMATION</div>
     <!-- footer with author information and copyrights -->

@@ -84,6 +84,8 @@ function changeWordUpdateUiState(newUiState) {
   let wordsTableOverlay = document.getElementById("table-overlay");
   let overlayTextContainer = document.getElementById("table-overlay-text");
   let overlayTextValue = document.getElementById("overlay-text-content");
+  if (wordsTableOverlay === null || overlayTextContainer === null) return;
+  addWordUpdateUiState(newUiState);
   if (STATE_WORDS_OK === newUiState) {
     wordsTableOverlay.className = "overlay-hide";
     overlayTextContainer.className = "overlay-hide";

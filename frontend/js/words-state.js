@@ -29,6 +29,11 @@ function loadWordsUpdateUiState(state) {
   }
 }
 
+/**
+ * Method used to update UI state of add word button
+ *
+ * @param {Integer} state current loading state (from: STATE_WORDS_OK, STATE_WORDS_LOAD, STATE_WORDS_ERROR)
+ */
 function addWordUpdateUiState(state) {
   let addWordBtn = document.getElementById("btn-add-word");
   if (STATE_WORDS_OK === state) {

@@ -99,14 +99,14 @@ function changeWordUpdateUI(newUiState) {
   if (STATE_WORDS_LOAD === newUiState) {
     wordsTableOverlay.className = "overlay-show";
     overlayTextContainer.className = "overlay-show";
-    overlayTextValue.className = "text-load";
+    overlayTextValue.className = "text-load no-select";
     overlayTextValue.innerHTML = "connecting...";
     return;
   }
   if (STATE_WORDS_ERROR === newUiState) {
     wordsTableOverlay.className = "overlay-show";
     overlayTextContainer.className = "overlay-show";
-    overlayTextValue.className = "text-error";
+    overlayTextValue.className = "text-error no-select";
     overlayTextValue.innerHTML = "connection error!";
     return;
   }

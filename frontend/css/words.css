@@ -13,6 +13,7 @@
 #btn-add-word.disabled {
   background: url(../images/add-disabled.png) no-repeat;
   cursor: not-allowed;
+  animation: add-word-background 0.75s ease-in;
 }
 
 #btn-add-word.enabled {
@@ -236,6 +237,24 @@ tr a.btn-delete {
 
 tr a.btn-delete:hover {
   background-color: red;
+}
+
+@keyframes add-word-background {
+  from {
+    background: url(../images/add.png) no-repeat
+  }
+  to {
+    background: url(../images/add-disabled.png) no-repeat;
+  }
+}
+
+@-webkit-keyframes add-word-background {
+  from {
+    background: url(../images/add.png) no-repeat
+  }
+  to {
+    background: url(../images/add-disabled.png) no-repeat;
+  }
 }
 
 @keyframes toast-fade {

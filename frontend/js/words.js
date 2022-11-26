@@ -45,7 +45,7 @@ function acceptWord() {
     if (!validateWord(acceptedWord)) {
       return;
     }
-    changeWordUpdateUiState(STATE_WORDS_LOAD);
+    changeWordUpdateUI(STATE_WORDS_LOAD);
     postWord(acceptedWord, refreshWordsCallback);
   } else if (FORM_MODE_EDIT === wordFormMode) {
     if (undefined === wordUnderEdition) {
@@ -59,7 +59,7 @@ function acceptWord() {
     if (!validateWord(acceptedWord)) {
       return;
     }
-    changeWordUpdateUiState(STATE_WORDS_LOAD);
+    changeWordUpdateUI(STATE_WORDS_LOAD);
     putWord(wordUnderEdition.name, acceptedWord, refreshWordsCallback);
   } else {
     console.log("ERROR: Unknown form mode: " + wordFormMode);
@@ -85,7 +85,7 @@ function getWordFromUi() {
  * @param {String} name word name to be deleted
  */
 function removeWord(name) {
-  changeWordUpdateUiState(STATE_WORDS_LOAD);
+  changeWordUpdateUI(STATE_WORDS_LOAD);
   deleteWord(name, refreshWordsCallback);
 }
 
@@ -98,11 +98,11 @@ function removeWord(name) {
 function refreshWordsCallback(err, data) {
   if (err) {
     console.log("ERROR: " + err);
-    changeWordUpdateUiState(STATE_WORDS_ERROR);
+    changeWordUpdateUI(STATE_WORDS_ERROR);
   } else {
     wordChangeConfirmation(data);
     loadWords();
-    changeWordUpdateUiState(STATE_WORDS_OK);
+    changeWordUpdateUI(STATE_WORDS_OK);
   }
 }
 
@@ -131,12 +131,12 @@ function getWordTableRow(item) {
  * Method used to load all words and add them to HTML table DOM
  */
 function loadWords() {
-  loadWordsUpdateUiState(STATE_WORDS_LOAD);
+  loadWordsUpdateUI(STATE_WORDS_LOAD);
   getWords((err, data) => {
     if (err) {
-      loadWordsUpdateUiState(STATE_WORDS_ERROR);
+      loadWordsUpdateUI(STATE_WORDS_ERROR);
     } else {
-      loadWordsUpdateUiState(STATE_WORDS_OK);
+      loadWordsUpdateUI(STATE_WORDS_OK);
       document.querySelector("tbody").innerHTML = Object.values(data)
         .map((item) => getWordTableRow(item))
         .join("");

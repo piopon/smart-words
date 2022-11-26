@@ -7,11 +7,11 @@ const STATE_WORDS_ERROR = 2;
  *
  * @param {Integer} state current loading state (from: STATE_WORDS_OK, STATE_WORDS_LOAD, STATE_WORDS_ERROR)
  */
-function loadWordsUpdateUiState(state) {
+function loadWordsUpdateUI(state) {
   let rowElement = document.getElementById("no-words-row");
   let textElement = document.getElementById("no-words-text");
   if (rowElement === null || textElement === null) return;
-  addWordUpdateUiState(state);
+  addWordUpdateUI(state);
   if (STATE_WORDS_OK === state) {
     rowElement.className = "row-hidden no-select";
     textElement.innerHTML = "";
@@ -34,7 +34,7 @@ function loadWordsUpdateUiState(state) {
  *
  * @param {Integer} state current loading state (from: STATE_WORDS_OK, STATE_WORDS_LOAD, STATE_WORDS_ERROR)
  */
-function addWordUpdateUiState(state) {
+function addWordUpdateUI(state) {
   let addWordBtn = document.getElementById("btn-add-word");
   if (STATE_WORDS_OK === state) {
     addWordBtn.className = "enabled no-select";
@@ -85,12 +85,12 @@ function addErrorWidget() {
  *
  * @param {Integer} newUiState current loading state (from: STATE_WORDS_OK, STATE_WORDS_LOAD, STATE_WORDS_ERROR)
  */
-function changeWordUpdateUiState(newUiState) {
+function changeWordUpdateUI(newUiState) {
   let wordsTableOverlay = document.getElementById("table-overlay");
   let overlayTextContainer = document.getElementById("table-overlay-text");
   let overlayTextValue = document.getElementById("overlay-text-content");
   if (wordsTableOverlay === null || overlayTextContainer === null) return;
-  addWordUpdateUiState(newUiState);
+  addWordUpdateUI(newUiState);
   if (STATE_WORDS_OK === newUiState) {
     wordsTableOverlay.className = "overlay-hide";
     overlayTextContainer.className = "overlay-hide";

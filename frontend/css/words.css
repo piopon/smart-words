@@ -62,6 +62,7 @@
   z-index: 1;
   background-color: gray;
   opacity: 0.35;
+  animation: overlay-opacity 0.75s ease-in;
 }
 
 #table-overlay-text.overlay-hide {
@@ -259,5 +260,23 @@ tr a.btn-delete:hover {
   90% {
     bottom: var(--toast-bottom-dist-px);
     opacity: 1;
+  }
+}
+
+@keyframes overlay-opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.35;
+  }
+}
+
+@-webkit-keyframes overlay-opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.35;
   }
 }

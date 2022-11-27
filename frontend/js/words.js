@@ -1,5 +1,8 @@
 const FORM_MODE_ADD = 0;
 const FORM_MODE_EDIT = 1;
+const WORD_TOAST_INFO = 0;
+const WORD_TOAST_WARNING = 1;
+const WORD_TOAST_ERROR = 2;
 var wordFormMode = FORM_MODE_ADD;
 var toastTimeout = 3000;
 var wordUnderEdition = undefined;
@@ -147,9 +150,10 @@ function loadWords() {
 /**
  * Method used to display word change confirmation toast to the user
  *
+ * @param {Integer} type of toast to be displayed (accepted values: WORD_TOAST_INFO, WORD_TOAST_WARNING, WORD_TOAST_ERROR)
  * @param {String} message text to be displayed in word change toast
  */
-function wordChangeConfirmation(message) {
+function wordChangeShowToast(type, message) {
   var wordToast = document.getElementById("word-change-toast");
   wordToast.className = "show";
   wordToast.innerHTML = message;

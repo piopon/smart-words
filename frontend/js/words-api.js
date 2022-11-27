@@ -13,7 +13,8 @@ const getWords = (callback) => {
     if (getRequest.status === 200) {
       callback(undefined, JSON.parse(getRequest.responseText));
     } else {
-      callback(createErrorObject("cannot get words", getRequest.status), undefined);
+      details = (0 === getRequest.status) ? " - service unavailable" : " - " + getRequest.responseText;
+      callback(createErrorObject("cannot get words" + details, getRequest.status), undefined);
     }
   });
   getRequest.open("GET", URL + "words");
@@ -34,7 +35,8 @@ const postWord = (newWordObject, callback) => {
     if (postRequest.status === 200) {
       callback(undefined, postRequest.responseText);
     } else {
-      callback(createErrorObject("cannot add word", postRequest.status), undefined);
+      details = (0 === postRequest.status) ? " - service unavailable" : " - " + postRequest.responseText;
+      callback(createErrorObject("cannot add word" + details, postRequest.status), undefined);
     }
   });
   postRequest.open("POST", URL + "words");
@@ -57,7 +59,8 @@ const putWord = (currWord, newWordObject, callback) => {
     if (putRequest.status === 200) {
       callback(undefined, putRequest.responseText);
     } else {
-      callback(createErrorObject("cannot edit word", putRequest.status), undefined);
+      details = (0 === putRequest.status) ? " - service unavailable" : " - " + putRequest.responseText;
+      callback(createErrorObject("cannot edit word" + details, putRequest.status), undefined);
     }
   });
   putRequest.open("PUT", URL + "words/" + currWord);
@@ -79,7 +82,8 @@ const deleteWord = (wordName, callback) => {
     if (deleteRequest.status === 200) {
       callback(undefined, deleteRequest.responseText);
     } else {
-      callback(createErrorObject("cannot delete word", deleteRequest.status), undefined);
+      details = (0 === deleteRequest.status) ? " - service unavailable" : " - " + deleteRequest.responseText;
+      callback(createErrorObject("cannot delete word" + details, deleteRequest.status), undefined);
     }
   });
   deleteRequest.open("DELETE", URL + "words/" + wordName);

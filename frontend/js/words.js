@@ -52,7 +52,7 @@ function acceptWord() {
     postWord(acceptedWord, refreshWordsCallback);
   } else if (FORM_MODE_EDIT === wordFormMode) {
     if (undefined === wordUnderEdition) {
-      console.log("ERROR: word under edition cannot be undefined");
+      wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: word under edition cannot be undefined");
       return;
     }
     if (JSON.stringify(acceptedWord) === JSON.stringify(wordUnderEdition)) {
@@ -65,7 +65,7 @@ function acceptWord() {
     changeWordUpdateUI(STATE_WORDS_LOAD);
     putWord(wordUnderEdition.name, acceptedWord, refreshWordsCallback);
   } else {
-    console.log("ERROR: Unknown form mode: " + wordFormMode);
+    wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: Unknown form mode: " + wordFormMode);
   }
 }
 
@@ -100,7 +100,7 @@ function removeWord(name) {
  */
 function refreshWordsCallback(err, data) {
   if (err) {
-    console.log("ERROR: " + err);
+    wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: " + err);
     changeWordUpdateUI(STATE_WORDS_ERROR);
   } else {
     wordChangeShowToast(WORD_TOAST_INFO, data);

@@ -100,8 +100,8 @@ function removeWord(name) {
  */
 function refreshWordsCallback(err, data) {
   if (err) {
-    wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: " + err);
-    changeWordUpdateUI(STATE_WORDS_ERROR);
+    wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: " + err.message);
+    changeWordUpdateUI(0 === err.status ? STATE_WORDS_ERROR : STATE_WORDS_OK);
   } else {
     wordChangeShowToast(WORD_TOAST_INFO, data);
     loadWords();

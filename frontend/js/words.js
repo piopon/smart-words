@@ -167,7 +167,7 @@ function wordChangeShowToast(type, message) {
     wordToast.className = "fatal show";
   }
   wordToast.innerHTML = message;
-  setTimeout(() => wordToast.className = wordToast.className.replace("show", ""), toastTimeout);
+  setTimeout(() => (wordToast.className = wordToast.className.replace("show", "")), toastTimeout);
 }
 
 /**
@@ -185,7 +185,7 @@ function validateWord(word) {
     wordChangeShowToast(WORD_TOAST_WARNING, "please specify word category");
     return false;
   }
-  if (0 === word.description.length || undefined !== word.description.find(item => item === "")) {
+  if (0 === word.description.length || undefined !== word.description.find((item) => item === "")) {
     wordChangeShowToast(WORD_TOAST_WARNING, "please provide correct word definition");
     return false;
   }

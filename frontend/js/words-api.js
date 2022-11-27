@@ -13,7 +13,7 @@ const getWords = (callback) => {
     if (getRequest.status === 200) {
       callback(undefined, JSON.parse(getRequest.responseText));
     } else {
-      details = (0 === getRequest.status) ? " - service unavailable" : " - " + getRequest.responseText;
+      details = 0 === getRequest.status ? " - service unavailable" : " - " + getRequest.responseText;
       callback(createErrorObject("cannot get words" + details, getRequest.status), undefined);
     }
   });
@@ -35,7 +35,7 @@ const postWord = (newWordObject, callback) => {
     if (postRequest.status === 200) {
       callback(undefined, postRequest.responseText);
     } else {
-      details = (0 === postRequest.status) ? " - service unavailable" : " - " + postRequest.responseText;
+      details = 0 === postRequest.status ? " - service unavailable" : " - " + postRequest.responseText;
       callback(createErrorObject("cannot add word" + details, postRequest.status), undefined);
     }
   });
@@ -59,7 +59,7 @@ const putWord = (currWord, newWordObject, callback) => {
     if (putRequest.status === 200) {
       callback(undefined, putRequest.responseText);
     } else {
-      details = (0 === putRequest.status) ? " - service unavailable" : " - " + putRequest.responseText;
+      details = 0 === putRequest.status ? " - service unavailable" : " - " + putRequest.responseText;
       callback(createErrorObject("cannot edit word" + details, putRequest.status), undefined);
     }
   });
@@ -82,7 +82,7 @@ const deleteWord = (wordName, callback) => {
     if (deleteRequest.status === 200) {
       callback(undefined, deleteRequest.responseText);
     } else {
-      details = (0 === deleteRequest.status) ? " - service unavailable" : " - " + deleteRequest.responseText;
+      details = 0 === deleteRequest.status ? " - service unavailable" : " - " + deleteRequest.responseText;
       callback(createErrorObject("cannot delete word" + details, deleteRequest.status), undefined);
     }
   });
@@ -99,7 +99,7 @@ const deleteWord = (wordName, callback) => {
  */
 function createErrorObject(message, status) {
   return {
-    "message": message,
-    "status": status
+    message: message,
+    status: status,
   };
 }

@@ -48,7 +48,7 @@ class WordService(wordDB: WordDatabase) {
     if (wordDB.addWord(word)) {
       Ok(s"added word '${word.name}'")
     } else {
-      Ok(s"word '${word.name}' already defined")
+      Found(s"word '${word.name}' already defined")
     }
   }
 

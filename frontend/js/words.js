@@ -56,7 +56,7 @@ function acceptWord() {
       return;
     }
     if (JSON.stringify(acceptedWord) === JSON.stringify(wordUnderEdition)) {
-      wordChangeConfirmation("no changes made");
+      wordChangeShowToast(WORD_TOAST_WARNING, "no changes made");
       return;
     }
     if (!validateWord(acceptedWord)) {
@@ -103,7 +103,7 @@ function refreshWordsCallback(err, data) {
     console.log("ERROR: " + err);
     changeWordUpdateUI(STATE_WORDS_ERROR);
   } else {
-    wordChangeConfirmation(data);
+    wordChangeShowToast(WORD_TOAST_INFO, data);
     loadWords();
     changeWordUpdateUI(STATE_WORDS_OK);
   }
@@ -168,15 +168,15 @@ function wordChangeShowToast(type, message) {
  */
 function validateWord(word) {
   if (word.name === "") {
-    wordChangeConfirmation("please specify word name");
+    wordChangeShowToast(WORD_TOAST_WARNING, "please specify word name");
     return false;
   }
   if (word.category === "") {
-    wordChangeConfirmation("please specify word category");
+    wordChangeShowToast(WORD_TOAST_WARNING, "please specify word category");
     return false;
   }
   if (0 === word.description.length || undefined !== word.description.find(item => item === "")) {
-    wordChangeConfirmation("please provide correct word definition");
+    wordChangeShowToast(WORD_TOAST_WARNING, "please provide correct word definition");
     return false;
   }
   return true;

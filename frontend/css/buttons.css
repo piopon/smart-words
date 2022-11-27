@@ -101,7 +101,8 @@ button[class^="question-option-"] {
   position: relative;
 }
 
-.dynamic-border::before, .dynamic-border::after {
+.dynamic-border::before,
+.dynamic-border::after {
   border: 0 solid transparent;
   box-sizing: border-box;
   content: "";
@@ -127,7 +128,8 @@ button[class^="question-option-"] {
   cursor: pointer;
 }
 
-.dynamic-border:hover:enabled::before, .dynamic-border:hover:enabled::after {
+.dynamic-border:hover:enabled::before,
+.dynamic-border:hover:enabled::after {
   border-color: black;
   transition: border-color 0.25s, width 0.25s, height 0.25s;
   width: 100%;
@@ -241,6 +243,19 @@ div[id$="-wrapper"] div[id$="-info"].service-error {
 }
 
 @keyframes smooth-opacity {
-  from {opacity: 0;}
-  to {opacity: 0.8;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+
+@-webkit-keyframes smooth-opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
 }

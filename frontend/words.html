@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
     <script src="./js/words-api.js" defer></script>
+    <script src="./js/words-state.js" defer></script>
     <script src="./js/words.js" defer></script>
   </head>
   <body>
@@ -55,22 +56,29 @@
         </div>
       </div>
       <!-- table with all words -->
-      <table id="table-words">
-        <thead>
-          <tr>
-            <th>word</th>
-            <th>action</th>
-            <th>category</th>
-            <th>definition</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="no-words-row" class="row-loading">
-            <td id="no-words-text" rowspan="4">loading...</td>
-          </tr>
-        </tbody>
-      </table>
+      <div id="table-container">
+        <div id="table-overlay" class="overlay-hide"></div>
+        <div id="table-overlay-text" class="overlay-hide">
+          <span id="overlay-text-content" class="text-error">loading...</span>
+        </div>
+        <table id="table-words">
+          <thead>
+            <tr>
+              <th>word</th>
+              <th>action</th>
+              <th>category</th>
+              <th>definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="no-words-row" class="row-loading">
+              <td id="no-words-text" rowspan="4">loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+    <div id="word-change-toast">WORD ADJUSTMENT CONFIRMATION</div>
     <!-- footer with author information and copyrights -->
     <footer class="no-select">developed with 💗 pnk @ 2022 🖖</footer>
   </body>

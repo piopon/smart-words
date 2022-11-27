@@ -46,9 +46,9 @@ class WordService(wordDB: WordDatabase) {
    */
   def addWord(word: Word): IO[Response[IO]] = {
     if (wordDB.addWord(word)) {
-      Ok(s"Added new word \"${word.name}\".")
+      Ok(s"added word '${word.name}'")
     } else {
-      Ok(s"Word \"${word.name}\" already defined.")
+      Found(s"word '${word.name}' already defined")
     }
   }
 
@@ -61,9 +61,9 @@ class WordService(wordDB: WordDatabase) {
   def updateWord(name: String, word: Word): IO[Response[IO]] = {
     val nameIndex = wordDB.getWords.indexWhere((word: Word) => word.name.equals(name))
     if (wordDB.updateWord(nameIndex, word)) {
-      Ok(s"Updated word \"$name\".")
+      Ok(s"updated word '$name'")
     } else {
-      NotFound(s"Word \"$name\" not found in DB.")
+      NotFound(s"word '$name' not found in DB")
     }
   }
 
@@ -74,10 +74,10 @@ class WordService(wordDB: WordDatabase) {
    */
   def deleteWord(name: String): IO[Response[IO]] = {
     wordDB.getWordByName(name) match {
-      case None => NotFound(s"Word \"$name\" not found in DB.")
+      case None => NotFound(s"word '$name' not found in DB")
       case Some(word) =>
         wordDB.removeWord(word)
-        Ok(word.asJson)
+        Ok(s"removed word '$name'")
     }
   }
 }

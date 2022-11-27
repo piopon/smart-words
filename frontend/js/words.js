@@ -1,23 +1,24 @@
 const FORM_MODE_ADD = 0;
 const FORM_MODE_EDIT = 1;
-const LOAD_WORDS_OK = 0;
-const LOAD_WORDS_LOAD = 1;
-const LOAD_WORDS_ERROR = 2;
+const WORD_TOAST_INFO = 0;
+const WORD_TOAST_WARNING = 1;
+const WORD_TOAST_ERROR = 2;
 var wordFormMode = FORM_MODE_ADD;
+var toastTimeout = 3000;
 var wordUnderEdition = undefined;
 
 /**
  * Method used to add new word and show edit word UI form with empty word data.
  */
 function addWord() {
-  wordFormMode = FORM_MODE_ADD;
-  wordUnderEdition = undefined;
   document.getElementById("word-form-title").innerHTML = "add word:";
   document.getElementById("word-form-name").value = "";
   document.getElementById("word-form-cat").value = "";
   document.getElementById("word-form-def").value = "";
   document.getElementById("word-form-def").innerHTML = "";
   document.getElementById("word-form-btn-accept").innerHTML = "add";
+  wordFormMode = FORM_MODE_ADD;
+  wordUnderEdition = undefined;
 }
 
 /**
@@ -28,14 +29,14 @@ function addWord() {
  * @param {String} definition current word definition to be used in UI form and available for edition
  */
 function editWord(name, category, definition) {
-  wordFormMode = FORM_MODE_EDIT;
-  wordUnderEdition = name;
   document.getElementById("word-form-title").innerHTML = "edit word:";
   document.getElementById("word-form-name").value = name;
   document.getElementById("word-form-cat").value = category;
   document.getElementById("word-form-def").value = definition.replaceAll("; ", "\n");
   document.getElementById("word-form-def").innerHTML = definition;
   document.getElementById("word-form-btn-accept").innerHTML = "edit";
+  wordFormMode = FORM_MODE_EDIT;
+  wordUnderEdition = getWordFromUi();
 }
 
 /**
@@ -44,15 +45,27 @@ function editWord(name, category, definition) {
 function acceptWord() {
   var acceptedWord = getWordFromUi();
   if (FORM_MODE_ADD === wordFormMode) {
+    if (!validateWord(acceptedWord)) {
+      return;
+    }
+    changeWordUpdateUI(STATE_WORDS_LOAD);
     postWord(acceptedWord, refreshWordsCallback);
   } else if (FORM_MODE_EDIT === wordFormMode) {
     if (undefined === wordUnderEdition) {
-      console.log("ERROR: word under edition cannot be undefined");
+      wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: word under edition cannot be undefined");
       return;
     }
-    putWord(wordUnderEdition, acceptedWord, refreshWordsCallback);
+    if (JSON.stringify(acceptedWord) === JSON.stringify(wordUnderEdition)) {
+      wordChangeShowToast(WORD_TOAST_WARNING, "no changes made");
+      return;
+    }
+    if (!validateWord(acceptedWord)) {
+      return;
+    }
+    changeWordUpdateUI(STATE_WORDS_LOAD);
+    putWord(wordUnderEdition.name, acceptedWord, refreshWordsCallback);
   } else {
-    console.log("ERROR: Unknown form mode: " + wordFormMode);
+    wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: Unknown form mode: " + wordFormMode);
   }
 }
 
@@ -75,6 +88,7 @@ function getWordFromUi() {
  * @param {String} name word name to be deleted
  */
 function removeWord(name) {
+  changeWordUpdateUI(STATE_WORDS_LOAD);
   deleteWord(name, refreshWordsCallback);
 }
 
@@ -86,10 +100,12 @@ function removeWord(name) {
  */
 function refreshWordsCallback(err, data) {
   if (err) {
-    console.log("ERROR: " + err);
+    wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: " + err.message);
+    changeWordUpdateUI(0 === err.status ? STATE_WORDS_ERROR : STATE_WORDS_OK);
   } else {
-    console.log(data);
+    wordChangeShowToast(WORD_TOAST_INFO, data);
     loadWords();
+    changeWordUpdateUI(STATE_WORDS_OK);
   }
 }
 
@@ -115,80 +131,65 @@ function getWordTableRow(item) {
 }
 
 /**
- * Method used to update GUI state while loading words from service
- *
- * @param {Integer} state current loading state (from: LOAD_WORDS_OK, LOAD_WORDS_LOAD, LOAD_WORDS_ERROR)
- */
-function loadWordsUpdateUiState(state) {
-  let addWordBtn = document.getElementById("btn-add-word");
-  let rowElement = document.getElementById("no-words-row");
-  let textElement = document.getElementById("no-words-text");
-  if (rowElement === null || textElement === null) return;
-  if (LOAD_WORDS_OK === state) {
-    addWordBtn.className = "enabled no-select";
-    addWordBtn.href = "#modal";
-    addWordBtn.addEventListener("click", addWord);
-    rowElement.className = "row-hidden no-select";
-    textElement.innerHTML = "";
-    return;
-  }
-  if (LOAD_WORDS_LOAD === state) {
-    addWordBtn.className = "disabled no-select";
-    addWordBtn.removeAttribute("href");
-    addWordBtn.onclick = null;
-    rowElement.className = "row-loading no-select";
-    textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
-    return;
-  }
-  if (LOAD_WORDS_ERROR === state) {
-    addWordBtn.className = "disabled no-select";
-    addWordBtn.removeAttribute("href");
-    addWordBtn.onclick = null;
-    rowElement.className = "row-visible no-select";
-    textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
-    return;
-  }
-}
-
-/**
- * Method used to generate HTML code responsible for creating a loader
- *
- * @returns HTML code with loader section
- */
-function addLoadingWidget() {
-  return `<div id="loader-wrapper">
-            <div class="loader no-select">
-              <div class="line"></div>
-              <div class="line"></div>
-              <div class="line"></div>
-            </div>
-          </div>`;
-}
-
-/**
- * Method used to generate HTML code with empty loader placeholder
- *
- * @returns HTML code with loader section placeholder
- */
-function addErrorWidget() {
-  return `<div id="loader-wrapper"></div>`;
-}
-
-/**
  * Method used to load all words and add them to HTML table DOM
  */
 function loadWords() {
-  loadWordsUpdateUiState(LOAD_WORDS_LOAD);
+  loadWordsUpdateUI(STATE_WORDS_LOAD);
   getWords((err, data) => {
     if (err) {
-      loadWordsUpdateUiState(LOAD_WORDS_ERROR);
+      loadWordsUpdateUI(STATE_WORDS_ERROR);
     } else {
-      loadWordsUpdateUiState(LOAD_WORDS_OK);
+      loadWordsUpdateUI(STATE_WORDS_OK);
       document.querySelector("tbody").innerHTML = Object.values(data)
         .map((item) => getWordTableRow(item))
         .join("");
     }
   });
+}
+
+/**
+ * Method used to display word change confirmation toast to the user
+ *
+ * @param {Integer} type of toast to be displayed (accepted values: WORD_TOAST_INFO, WORD_TOAST_WARNING, WORD_TOAST_ERROR)
+ * @param {String} message text to be displayed in word change toast
+ */
+function wordChangeShowToast(type, message) {
+  console.log(message);
+  var wordToast = document.getElementById("word-change-toast");
+  if (wordToast === null) return;
+  if (WORD_TOAST_INFO === type) {
+    wordToast.className = "information show";
+  } else if (WORD_TOAST_WARNING === type) {
+    wordToast.className = "warning show";
+  } else if (WORD_TOAST_ERROR === type) {
+    wordToast.className = "error show";
+  } else {
+    wordToast.className = "fatal show";
+  }
+  wordToast.innerHTML = message;
+  setTimeout(() => (wordToast.className = wordToast.className.replace("show", "")), toastTimeout);
+}
+
+/**
+ * Method used to validate specified word object (name, category and description not empty)
+ *
+ * @param {Object} word to be validated
+ * @returns true if object is correct, false otherwise
+ */
+function validateWord(word) {
+  if (word.name === "") {
+    wordChangeShowToast(WORD_TOAST_WARNING, "please specify word name");
+    return false;
+  }
+  if (word.category === "") {
+    wordChangeShowToast(WORD_TOAST_WARNING, "please specify word category");
+    return false;
+  }
+  if (0 === word.description.length || undefined !== word.description.find((item) => item === "")) {
+    wordChangeShowToast(WORD_TOAST_WARNING, "please provide correct word definition");
+    return false;
+  }
+  return true;
 }
 
 // called on words.html site load

@@ -154,8 +154,18 @@ function loadWords() {
  * @param {String} message text to be displayed in word change toast
  */
 function wordChangeShowToast(type, message) {
+  console.log(message);
   var wordToast = document.getElementById("word-change-toast");
-  wordToast.className = "show";
+  if (wordToast === null) return;
+  if (WORD_TOAST_INFO === type) {
+    wordToast.className = "information show";
+  } else if (WORD_TOAST_WARNING === type) {
+    wordToast.className = "warning show";
+  } else if (WORD_TOAST_ERROR === type) {
+    wordToast.className = "error show";
+  } else {
+    wordToast.className = "fatal show";
+  }
   wordToast.innerHTML = message;
   setTimeout(() => wordToast.className = wordToast.className.replace("show", ""), toastTimeout);
 }

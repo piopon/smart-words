@@ -4,7 +4,7 @@ const URL = "http://localhost:1111/";
  * Method used to receive all words from smart-words service
  *
  * @param {Function} callback function to be invoked when request is completed.
- *                            It should contain 2 parameters: error string and data object.
+ *                            It should contain 2 parameters: error object and data object.
  */
 const getWords = (callback) => {
   const getRequest = new XMLHttpRequest();
@@ -13,7 +13,7 @@ const getWords = (callback) => {
     if (getRequest.status === 200) {
       callback(undefined, JSON.parse(getRequest.responseText));
     } else {
-      callback("cannot get words [" + getRequest.status + "]", undefined);
+      callback(createErrorObject("cannot get words", getRequest.status), undefined);
     }
   });
   getRequest.open("GET", URL + "words");
@@ -25,7 +25,7 @@ const getWords = (callback) => {
  *
  * @param {Object} newWordObject new word to be added to service
  * @param {Function} callback function to be invoked when request is completed.
- *                            It should contain 2 parameters: error string and data object.
+ *                            It should contain 2 parameters: error object and data object.
  */
 const postWord = (newWordObject, callback) => {
   const postRequest = new XMLHttpRequest();
@@ -34,7 +34,7 @@ const postWord = (newWordObject, callback) => {
     if (postRequest.status === 200) {
       callback(undefined, postRequest.responseText);
     } else {
-      callback("cannot add word [" + postRequest.status + "]", undefined);
+      callback(createErrorObject("cannot add word", postRequest.status), undefined);
     }
   });
   postRequest.open("POST", URL + "words");
@@ -48,7 +48,7 @@ const postWord = (newWordObject, callback) => {
  * @param {String} currWord object name to be updated
  * @param {Object} newWordObject new word object values to be used and updated in service
  * @param {Function} callback function to be invoked when request is completed.
- *                            It should contain 2 parameters: error string and data object.
+ *                            It should contain 2 parameters: error object and data object.
  */
 const putWord = (currWord, newWordObject, callback) => {
   const putRequest = new XMLHttpRequest();
@@ -57,7 +57,7 @@ const putWord = (currWord, newWordObject, callback) => {
     if (putRequest.status === 200) {
       callback(undefined, putRequest.responseText);
     } else {
-      callback("cannot edit word [" + putRequest.status + "]", undefined);
+      callback(createErrorObject("cannot edit word", putRequest.status), undefined);
     }
   });
   putRequest.open("PUT", URL + "words/" + currWord);
@@ -70,7 +70,7 @@ const putWord = (currWord, newWordObject, callback) => {
  *
  * @param {String} wordName object name to be removed
  * @param {Function} callback function to be invoked when request is completed.
- *                            It should contain 2 parameters: error string and data object.
+ *                            It should contain 2 parameters: error object and data object.
  */
 const deleteWord = (wordName, callback) => {
   const deleteRequest = new XMLHttpRequest();
@@ -79,9 +79,23 @@ const deleteWord = (wordName, callback) => {
     if (deleteRequest.status === 200) {
       callback(undefined, deleteRequest.responseText);
     } else {
-      callback("cannot delete word [" + deleteRequest.status + "]", undefined);
+      callback(createErrorObject("cannot delete word", deleteRequest.status), undefined);
     }
   });
   deleteRequest.open("DELETE", URL + "words/" + wordName);
   deleteRequest.send();
 };
+
+/**
+ * Method used to create error object from message and response status
+ *
+ * @param {String} message of the error to be stored in error object
+ * @param {Integer} status of the response to be stored in error object
+ * @returns error callback object
+ */
+function createErrorObject(message, status) {
+  return {
+    "message": message,
+    "status": status
+  };
+}

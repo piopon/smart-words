@@ -1,0 +1,18 @@
+[
+  {
+    "name": "guess definition",
+    "description": "guess the word definition based on a provided word name",
+    "settings": [
+      {
+        "label": "select language:",
+        "type": "language",
+        "details": "pl en fr de"
+      },
+      {
+        "label": "how many questions:",
+        "type": "number",
+        "details": "value='10' min='5' max='25'"
+      }
+    ]
+  }
+]

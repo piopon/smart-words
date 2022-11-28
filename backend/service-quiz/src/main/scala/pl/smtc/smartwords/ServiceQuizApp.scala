@@ -15,11 +15,13 @@ object ServiceQuizApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
     val healthController: HealthController = new HealthController()
+    val modeController: ModeController = new ModeController()
     val quizController: QuizController = new QuizController()
 
     val config = CORSConfig(anyOrigin = true, allowCredentials = true, 1.day.toSeconds, anyMethod = true)
     val apis = Router(
       "/health" -> CORS(healthController.getRoutes, config),
+      "/modes" -> CORS(modeController.getRoutes, config),
       "/quiz" -> CORS(quizController.getRoutes, config)
     ).orNotFound
     for {

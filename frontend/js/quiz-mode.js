@@ -11,6 +11,19 @@ function showQuizModes() {
   });
 }
 
+function getModeHtml(mode) {
+  return `<div id="quiz-mode-tile" class="tile-size-big tile-color-primary">
+            ${getModeTitle(mode.name)}
+            <div id="quiz-mode-tile-content">
+              ${getModeDescription(mode.description)}
+              <div id="quiz-mode-content-settings">
+                ${getModeSettings(mode.settings)}
+              </div>
+            </div>
+            ${getModeControls()}
+          </div>`;
+}
+
 function getModeTitle(title) {
   return `<div id="quiz-mode-tile-title">${title}</div>`;
 }

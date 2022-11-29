@@ -11,6 +11,10 @@ function showQuizModes() {
   });
 }
 
+function getModeTitle(title) {
+  return `<div id="quiz-mode-tile-title">${title}</div>`;
+}
+
 function getModeControls() {
   return `<div id="quiz-mode-tile-controls">
             <button id="quiz-mode-controls-start" class="dynamic-border" onclick="startQuiz()">start</button>

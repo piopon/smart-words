@@ -5,12 +5,12 @@
     "settings": [
       {
         "label": "select language:",
-        "type": "language",
+        "type": "languages",
         "details": "pl en fr de"
       },
       {
         "label": "how many questions:",
-        "type": "number",
+        "type": "questions",
         "details": "value='10' min='5' max='25'"
       }
     ]

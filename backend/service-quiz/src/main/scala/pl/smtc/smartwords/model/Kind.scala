@@ -6,7 +6,7 @@ package pl.smtc.smartwords.model
  */
 object Kind extends Enumeration {
   type Kind = Value
-  val number, language, unknown = Value
+  val questions, languages, unknown = Value
   def fromString(string: String): Value =
     values.find(_.toString.toLowerCase() == string.toLowerCase()).getOrElse(unknown)
 }

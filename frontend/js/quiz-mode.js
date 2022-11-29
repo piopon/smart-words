@@ -11,4 +11,11 @@ function showQuizModes() {
   });
 }
 
+function getModeControls() {
+  return `<div id="quiz-mode-tile-controls">
+            <button id="quiz-mode-controls-start" class="dynamic-border" onclick="startQuiz()">start</button>
+            <div id="quiz-mode-controls-info" class="hide" title="PUT EXTRA INFO HERE"></div>
+          </div>`;
+}
+
 showQuizModes();

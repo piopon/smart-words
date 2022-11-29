@@ -9,6 +9,19 @@ var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
 
 /**
+ * Method used to show quiz modes
+ */
+function showQuizModes() {
+  getQuizModes((err, data) => {
+    if (err) {
+      console.log("ERROR: " + err);
+    } else {
+      console.log(data);
+    }
+  });
+}
+
+/**
  * Method used to receive number of question, start quiz and receive UUID
  */
 function startQuiz() {
@@ -364,3 +377,5 @@ function cleanQuiz() {
   document.getElementById("quiz-title-container-label").innerHTML = "select mode:";
   document.getElementById("quiz-question-container").innerHTML = "";
 }
+
+showQuizModes();

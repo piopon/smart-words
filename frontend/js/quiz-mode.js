@@ -6,7 +6,11 @@ function showQuizModes() {
     if (err) {
       console.log("ERROR: " + err);
     } else {
-      console.log(data);
+      let quizModeContainer = document.getElementById("quiz-modes-container");
+      if (quizModeContainer === null) return;
+      quizModeContainer.innerHTML = Object.values(data)
+        .map((item) => getModeHtml(item))
+        .join("");
     }
   });
 }

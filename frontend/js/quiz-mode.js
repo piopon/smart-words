@@ -40,17 +40,23 @@ function getModeDescription(description) {
 }
 
 function getModeSettings(settings) {
-  return `<p class="mode-section-label">settings:</p>
-          <div>
-            <label for="setting-1">select language:</label>
+  return `<p class="mode-section-label">settings:</p>`;
+}
+
+function getLanguagesHtml(label, details) {
+  return `<div>
+            <label for="setting-1">${label}</label>
             <img src="images/languages/pl.png"/>
             <img src="images/languages/en.png"/>
             <img src="images/languages/fr.png"/>
             <img src="images/languages/de.png"/>
-          </div>
-          <div>
-            <label for="setting-2">how many questions:</label>
-            <input type="number" id="setting-2" value="10" min="5" max="25" />
+          </div>`;
+}
+
+function getOptionsHtml(label, details) {
+  return `<div>
+            <label for="setting-2">${label}</label>
+            <input type="number" id="setting-2" ${details} />
           </div>`;
 }
 

@@ -69,8 +69,8 @@ function getLanguagesHtml(label, details) {
 
 function getQuestionsHtml(label, details) {
   return `<div>
-            <label for="setting-2">${label}</label>
-            <input type="number" id="setting-2" ${details} />
+            <label for="quiz-mode-settings-question-no">${label}</label>
+            <input type="number" id="quiz-mode-settings-question-no" ${details} />
           </div>`;
 }
 

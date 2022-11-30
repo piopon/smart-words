@@ -17,29 +17,29 @@ function showQuizModes() {
 
 function getModeHtml(mode) {
   return `<div id="quiz-mode-tile" class="tile-size-big tile-color-primary">
-            ${getModeTitle(mode.name)}
+            ${getTitleHtml(mode.name)}
             <div id="quiz-mode-tile-content">
-              ${getModeDescription(mode.description)}
+              ${getDescriptionHtml(mode.description)}
               <div id="quiz-mode-content-settings">
-                ${getModeSettings(mode.settings)}
+                ${getSettingsHtml(mode.settings)}
               </div>
             </div>
-            ${getModeControls()}
+            ${getControlsHtml()}
           </div>`;
 }
 
-function getModeTitle(title) {
+function getTitleHtml(title) {
   return `<div id="quiz-mode-tile-title">${title}</div>`;
 }
 
-function getModeDescription(description) {
+function getDescriptionHtml(description) {
   return `<div id="quiz-mode-content-description">
             <p class="mode-section-label">decription:</p>
             ${description}
           </div>`;
 }
 
-function getModeSettings(settings) {
+function getSettingsHtml(settings) {
   return `<p class="mode-section-label">settings:</p>`;
 }
 
@@ -53,14 +53,14 @@ function getLanguagesHtml(label, details) {
           </div>`;
 }
 
-function getOptionsHtml(label, details) {
+function getQuestionsHtml(label, details) {
   return `<div>
             <label for="setting-2">${label}</label>
             <input type="number" id="setting-2" ${details} />
           </div>`;
 }
 
-function getModeControls() {
+function getControlsHtml() {
   return `<div id="quiz-mode-tile-controls">
             <button id="quiz-mode-controls-start" class="dynamic-border" onclick="startQuiz()">start</button>
             <div id="quiz-mode-controls-info" class="hide" title="PUT EXTRA INFO HERE"></div>

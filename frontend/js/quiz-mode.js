@@ -43,6 +43,17 @@ function getSettingsHtml(settings) {
   return `<p class="mode-section-label">settings:</p>`;
 }
 
+function getSettingHtml(setting) {
+  switch (setting.type) {
+    case "languages":
+      return getLanguagesHtml(setting.label, setting.details);
+    case "questions":
+      return getQuestionsHtml(setting.label, setting.details);
+    default:
+      return "";
+  }
+}
+
 function getLanguagesHtml(label, details) {
   return `<div>
             <label for="setting-1">${label}</label>

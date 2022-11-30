@@ -40,7 +40,10 @@ function getDescriptionHtml(description) {
 }
 
 function getSettingsHtml(settings) {
-  return `<p class="mode-section-label">settings:</p>`;
+  let allSettingsHtml = Object.values(settings)
+    .map((item) => getSettingHtml(item))
+    .join("");
+  return `<p class="mode-section-label">settings:</p>` + allSettingsHtml;
 }
 
 function getSettingHtml(setting) {

@@ -58,8 +58,8 @@ function getSettingHtml(setting) {
 }
 
 function getLanguagesHtml(label, details) {
-  return `<div>
-            <label for="setting-1">${label}</label>
+  return `<div id="quiz-mode-settings-languages">
+            <label>${label}</label>
             <img src="images/languages/pl.png"/>
             <img src="images/languages/en.png"/>
             <img src="images/languages/fr.png"/>

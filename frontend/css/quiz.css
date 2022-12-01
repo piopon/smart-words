@@ -167,8 +167,9 @@ div[class^="question-status"].nav-on:hover {
   align-items: center;
 }
 
-.language-flag{
-  margin: 1px 2px;
+.language-flag {
+  cursor: pointer;
+  margin: 0px 5px 0px 0px;
 }
 
 #quiz-mode-tile-controls {

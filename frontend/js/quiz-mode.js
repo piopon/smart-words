@@ -58,12 +58,13 @@ function getSettingHtml(setting) {
 }
 
 function getLanguagesHtml(label, details) {
+  let supportedLanguages = details
+    .split(" ")
+    .map((item) => `<img class="language-flag" src="images/languages/${item}.png"/>`)
+    .join("");
   return `<div id="quiz-mode-settings-languages">
             <label>${label}</label>
-            <img src="images/languages/pl.png"/>
-            <img src="images/languages/en.png"/>
-            <img src="images/languages/fr.png"/>
-            <img src="images/languages/de.png"/>
+            ${supportedLanguages}
           </div>`;
 }
 

@@ -60,12 +60,16 @@ function getSettingHtml(setting) {
 function getLanguagesHtml(label, details) {
   let supportedLanguages = details
     .split(" ")
-    .map((item) => `<img class="language-flag" src="images/languages/${item}.png"/>`)
+    .map((item) => getLanguageHtml(item))
     .join("");
   return `<div class="quiz-mode-setting-container">
             <label>${label}</label>
             ${supportedLanguages}
           </div>`;
+}
+
+function getLanguageHtml(language) {
+  return `<img class="language-flag" src="images/languages/${language}-24.png"/>`;
 }
 
 function getQuestionsHtml(label, details) {

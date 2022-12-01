@@ -62,14 +62,14 @@ function getLanguagesHtml(label, details) {
     .split(" ")
     .map((item) => `<img class="language-flag" src="images/languages/${item}.png"/>`)
     .join("");
-  return `<div id="quiz-mode-settings-languages">
+  return `<div class="quiz-mode-setting-container">
             <label>${label}</label>
             ${supportedLanguages}
           </div>`;
 }
 
 function getQuestionsHtml(label, details) {
-  return `<div>
+  return `<div class="quiz-mode-setting-container">
             <label for="quiz-mode-settings-question-no">${label}</label>
             <input type="number" id="quiz-mode-settings-question-no" ${details} />
           </div>`;

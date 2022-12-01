@@ -35,7 +35,7 @@ function getTitleHtml(title) {
 function getDescriptionHtml(description) {
   return `<div id="quiz-mode-content-description">
             <p class="mode-section-label">decription:</p>
-            ${description}
+            <div id="mode-description-text">${description}</div>
           </div>`;
 }
 

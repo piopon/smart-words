@@ -150,6 +150,11 @@ div[class^="question-status"].nav-on:hover {
   color: white;
 }
 
+#mode-description-text {
+  display: flex;
+  height: 21px;
+}
+
 #quiz-mode-tile-content {
   padding: 5px 10px;
   font-size: 15px;

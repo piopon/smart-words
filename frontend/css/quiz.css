@@ -155,6 +155,13 @@ div[class^="question-status"].nav-on:hover {
   font-size: 15px;
 }
 
+.quiz-mode-setting-container {
+  height: 21px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 #quiz-mode-tile-controls {
   display: flex;
   height: 100%;

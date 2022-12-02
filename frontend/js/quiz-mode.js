@@ -95,13 +95,14 @@ function getSettingHtml(setting) {
  * @returns HTML content with mode languages setting
  */
 function getLanguagesHtml(label, details) {
-  let supportedLanguages = details
-    .split(" ")
+  let allLanguages = details.split(" ");
+  let hasDefaultLanguage = details.indexOf("!") > 0;
+  let allLanguagesHtml = allLanguages
     .map((item) => getLanguageHtml(item, true))
     .join("");
   return `<div class="quiz-mode-setting-container">
             <label>${label}</label>
-            ${supportedLanguages}
+            ${allLanguagesHtml}
           </div>`;
 }
 

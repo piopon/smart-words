@@ -119,7 +119,12 @@ function getLanguageHtml(language, selected) {
   let languageClass = `language-flag ${selected ? "language-selected" : ""}`;
   let languageName = selected ? language.substring(0, 2) : language;
   let languageFile = `images/languages/${languageName}-24.png`;
-  return `<img class="${languageClass}" src="${languageFile}"/>`;
+  let languageClick = `changeLanguage('${languageName}')`;
+  return `<img class="${languageClass}" src="${languageFile}" onclick="${languageClick}"/>`;
+}
+
+function changeLanguage(newLanguage) {
+  console.log("change language to: " + newLanguage);
 }
 
 /**

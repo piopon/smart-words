@@ -116,9 +116,10 @@ function getLanguagesHtml(label, details) {
  * @returns HTML content with specified language icon
  */
 function getLanguageHtml(language, selected) {
-  let selectedClass = selected ? "selected" : "";
-  let languageFile = selected ? language.substring(0, 2) : language;
-  return `<img class="language-flag ${selectedClass}" src="images/languages/${languageFile}-24.png"/>`;
+  let languageClass = `language-flag ${selected ? "language-selected" : ""}`;
+  let languageName = selected ? language.substring(0, 2) : language;
+  let languageFile = `images/languages/${languageName}-24.png`;
+  return `<img class="${languageClass}" src="${languageFile}"/>`;
 }
 
 /**

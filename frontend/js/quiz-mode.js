@@ -98,7 +98,10 @@ function getLanguagesHtml(label, details) {
   let allLanguages = details.split(" ");
   let hasDefaultLanguage = details.indexOf("!") > 0;
   let allLanguagesHtml = allLanguages
-    .map((item) => getLanguageHtml(item, true))
+    .map((item) => {
+      let isSelected = hasDefaultLanguage ? item.indexOf("!") > 0 : details.startsWith(item);
+      return getLanguageHtml(item, isSelected);
+    })
     .join("");
   return `<div class="quiz-mode-setting-container">
             <label>${label}</label>

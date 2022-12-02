@@ -117,7 +117,8 @@ function getLanguagesHtml(label, details) {
  */
 function getLanguageHtml(language, selected) {
   let selectedClass = selected ? "selected" : "";
-  return `<img class="language-flag ${selectedClass}" src="images/languages/${language}-24.png"/>`;
+  let languageFile = selected ? language.substring(0, 2) : language;
+  return `<img class="language-flag ${selectedClass}" src="images/languages/${languageFile}-24.png"/>`;
 }
 
 /**

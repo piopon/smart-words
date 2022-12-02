@@ -135,7 +135,7 @@ div[class^="question-status"].nav-on:hover {
 #quiz-mode-tile {
   display: flex;
   flex-direction: column;
-  height: 210px;
+  min-height: 210px;
   margin: 0px 25px 25px 0px;
   border: 1px black solid;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;

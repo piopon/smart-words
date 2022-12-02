@@ -173,7 +173,12 @@ div[class^="question-status"].nav-on:hover {
 
 .language-flag {
   cursor: pointer;
+  filter: grayscale(0.85);
   margin: 0px 5px 0px 0px;
+}
+
+.language-flag.selected {
+  filter: grayscale(0);
 }
 
 #quiz-mode-tile-controls {

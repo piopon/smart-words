@@ -178,6 +178,7 @@ div[class^="question-status"].nav-on:hover {
 }
 
 .language-flag.selected {
+  cursor: default;
   filter: grayscale(0);
 }
 

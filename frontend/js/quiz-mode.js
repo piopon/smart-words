@@ -97,7 +97,7 @@ function getSettingHtml(setting) {
 function getLanguagesHtml(label, details) {
   let supportedLanguages = details
     .split(" ")
-    .map((item) => getLanguageHtml(item))
+    .map((item) => getLanguageHtml(item, true))
     .join("");
   return `<div class="quiz-mode-setting-container">
             <label>${label}</label>
@@ -111,8 +111,9 @@ function getLanguagesHtml(label, details) {
  * @param {String} language flag name representing specific image in languages resources
  * @returns HTML content with specified language icon
  */
-function getLanguageHtml(language) {
-  return `<img class="language-flag" src="images/languages/${language}-24.png"/>`;
+function getLanguageHtml(language, selected) {
+  let selectedClass = selected ? "selected" : "";
+  return `<img class="language-flag ${selectedClass}" src="images/languages/${language}-24.png"/>`;
 }
 
 /**

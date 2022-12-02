@@ -113,6 +113,7 @@ function getLanguagesHtml(label, details) {
  * Method used to receive specified language flag HTML code
  *
  * @param {String} language flag name representing specific image in languages resources
+ * @param {Boolean} selected if current language HTML flag should have selected class added
  * @returns HTML content with specified language icon
  */
 function getLanguageHtml(language, selected) {

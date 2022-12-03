@@ -1,4 +1,5 @@
 const DEFAULT_LANGUAGE_MARK = "!";
+var selectedLanguage = undefined;
 
 /**
  * Method used to show quiz modes
@@ -102,6 +103,9 @@ function getLanguagesHtml(label, details) {
   let allLanguagesHtml = allLanguages
     .map((item) => {
       let isSelected = hasDefaultLanguage ? item.indexOf(DEFAULT_LANGUAGE_MARK) > 0 : details.startsWith(item);
+      if (isSelected) {
+        selectedLanguage = item;
+      }
       return getLanguageHtml(item, isSelected);
     })
     .join("");
@@ -138,6 +142,7 @@ function changeLanguage(newLanguage) {
     let selectedClass = flagElement.getAttribute("src").indexOf(searchString) > 0 ? "language-selected" : "";
     flagElement.className = `language-flag ${selectedClass}`;
   });
+  selectedLanguage = newLanguage;
 }
 
 /**

@@ -126,6 +126,11 @@ function getLanguageHtml(language, selected) {
   return `<img class="${languageClass}" src="${languageFile}" onclick="${languageClick}"/>`;
 }
 
+/**
+ * Method used to change active language by updating 'language-selected' class in flags elements
+ *
+ * @param {String} newLanguage name of image flag which should be marked with 'language-selected' class
+ */
 function changeLanguage(newLanguage) {
   const searchString = `/${newLanguage}-24.png`;
   const languageFlags = Array.from(document.getElementsByClassName("language-flag"));

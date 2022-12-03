@@ -125,7 +125,12 @@ function getLanguageHtml(language, selected) {
 }
 
 function changeLanguage(newLanguage) {
-  console.log("change language to: " + newLanguage);
+  const searchString = `/${newLanguage}-24.png`;
+  const languageFlags = Array.from(document.getElementsByClassName("language-flag"));
+  languageFlags.map((flagElement) => {
+    let selectedClass = flagElement.getAttribute("src").indexOf(searchString) > 0 ? "language-selected" : "";
+    flagElement.className = `language-flag ${selectedClass}`;
+  });
 }
 
 /**

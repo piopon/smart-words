@@ -14,7 +14,7 @@ var currentQuestionNo = undefined;
 function startQuiz() {
   totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
   startQuizUpdateUI(STATE_QUIZ_LOAD);
-  postQuizStart(totalQuestionsNo, (err, data) => {
+  postQuizStart(totalQuestionsNo, selectedLanguage, (err, data) => {
     if (err) {
       startQuizUpdateUI(STATE_QUIZ_ERROR, err);
       console.log("ERROR: " + err);

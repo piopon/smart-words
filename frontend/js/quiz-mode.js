@@ -1,3 +1,5 @@
+const DEFAULT_LANGUAGE_MARK = "!";
+
 /**
  * Method used to show quiz modes
  */
@@ -96,10 +98,10 @@ function getSettingHtml(setting) {
  */
 function getLanguagesHtml(label, details) {
   let allLanguages = details.split(" ");
-  let hasDefaultLanguage = details.indexOf("!") > 0;
+  let hasDefaultLanguage = details.indexOf(DEFAULT_LANGUAGE_MARK) > 0;
   let allLanguagesHtml = allLanguages
     .map((item) => {
-      let isSelected = hasDefaultLanguage ? item.indexOf("!") > 0 : details.startsWith(item);
+      let isSelected = hasDefaultLanguage ? item.indexOf(DEFAULT_LANGUAGE_MARK) > 0 : details.startsWith(item);
       return getLanguageHtml(item, isSelected);
     })
     .join("");

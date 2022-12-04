@@ -29,7 +29,7 @@ class QuizController() {
     HttpRoutes.of[IO] {
       case POST -> Root / "start" :? OptionalQuizSizeParamMatcher(maybeSize)
                                   +& OptionalQuizLanguageParamMatcher(maybeLanguage)=>
-        service.startQuiz(maybeSize)
+        service.startQuiz(maybeSize, maybeLanguage)
       case GET -> Root / UUIDVar(quizId) / "question" / questionNo =>
         service.getQuizQuestionNo(quizId, questionNo)
       case POST -> Root / UUIDVar(quizId) / "question" / questionNo / answerNo =>

@@ -21,16 +21,21 @@ class QuizService(quizDB: QuizDatabase) {
 
   /**
    * Method used to start a new quiz
-   * @param maybeSize an optional size value (if none then default value 10 will be applied)
+   * @param maybeSize an optional size value (if none then default value will be applied)
+   * @param maybeLanguage an optional language value (if non then the default value will be applied)
    * @return response with appropriate status
    */
-  def startQuiz(maybeSize: Option[Int]): IO[Response[IO]] = {
+  def startQuiz(maybeSize: Option[Int], maybeLanguage: Option[String]): IO[Response[IO]] = {
     val size: Int = maybeSize match {
       case None => 10
       case Some(size) => size
     }
+    val language: String = maybeLanguage match {
+      case None => "pl"
+      case Some(language) => language
+    }
     if (WordService.isAlive) {
-      Ok(quizDB.addQuiz(generateQuiz(size)).toString)
+      Ok(quizDB.addQuiz(generateQuiz(size, language)).toString)
     } else {
       ServiceUnavailable("Cannot start quiz. Service: WORD - not available.")
     }
@@ -136,9 +141,10 @@ class QuizService(quizDB: QuizDatabase) {
   /**
    * Method used to generate a new quiz object
    * @param size desired size of quiz (number of questions)
+   * @param language string containing the language selection used in the new quiz object
    * @return generated quiz object
    */
-  private def generateQuiz(size: Int): Quiz = {
+  private def generateQuiz(size: Int, language: String): Quiz = {
     Quiz(generateRounds(size), 0)
   }
 }

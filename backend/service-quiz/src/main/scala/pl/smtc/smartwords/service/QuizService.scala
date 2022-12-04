@@ -99,10 +99,11 @@ class QuizService(quizDB: QuizDatabase) {
 
   /**
    * Method used to generate a new round object
+   * @param language string containing the language selection for the generated round
    * @param forbiddenWords list of currently used quiz words which cannot overlap while generating this round
    * @return generated round object with random word and 4 answer options
    */
-  private def generateRound(forbiddenWords: List[String] = List.empty): Round = {
+  private def generateRound(language: String, forbiddenWords: List[String] = List.empty): Round = {
     var word: Word = null
     do {
       word = WordService.getRandomWord
@@ -113,12 +114,13 @@ class QuizService(quizDB: QuizDatabase) {
   /**
    * Method used to generate specified number of rounds
    * @param size desired number of rounds to be generated
+   * @param language string containing the language selection used in the generated rounds
    * @return list of specified number of rounds
    */
-  private def generateRounds(size: Int): List[Round] = {
-    var rounds: List[Round] = List.fill(size)(generateRound()).distinctBy(_.word.name)
+  private def generateRounds(size: Int, language: String): List[Round] = {
+    var rounds: List[Round] = List.fill(size)(generateRound(language)).distinctBy(_.word.name)
     for (_ <- 0 until size-rounds.length) {
-      val replacement: Round = generateRound(rounds.map(r => r.word.name))
+      val replacement: Round = generateRound(language, rounds.map(r => r.word.name))
       rounds = rounds.appended(replacement)
     }
     rounds
@@ -148,6 +150,6 @@ class QuizService(quizDB: QuizDatabase) {
    * @return generated quiz object
    */
   private def generateQuiz(size: Int, language: String): Quiz = {
-    Quiz(generateRounds(size), 0)
+    Quiz(generateRounds(size, language), 0)
   }
 }

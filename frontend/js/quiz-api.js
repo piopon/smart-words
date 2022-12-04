@@ -18,7 +18,7 @@ const postQuizStart = (questionsNo, language, callback) => {
       callback("cannot start new quiz [" + postRequest.status + "]", undefined);
     }
   });
-  postRequest.open("POST", URL + "quiz/start?size=" + questionsNo);
+  postRequest.open("POST", URL + "quiz/start?size=" + questionsNo + "&lang=" + language);
   postRequest.send();
 };
 

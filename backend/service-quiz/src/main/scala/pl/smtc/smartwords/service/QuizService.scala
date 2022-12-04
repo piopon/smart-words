@@ -19,6 +19,9 @@ class QuizService(quizDB: QuizDatabase) {
   implicit val WordService: WordService = new WordService()
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 
+  private final val defaultQuizSize: Int = 10
+  private final val defaultQuizLang: String = "pl"
+
   /**
    * Method used to start a new quiz
    * @param maybeSize an optional size value (if none then default value will be applied)
@@ -27,11 +30,11 @@ class QuizService(quizDB: QuizDatabase) {
    */
   def startQuiz(maybeSize: Option[Int], maybeLanguage: Option[String]): IO[Response[IO]] = {
     val size: Int = maybeSize match {
-      case None => 10
+      case None => defaultQuizSize
       case Some(size) => size
     }
     val language: String = maybeLanguage match {
-      case None => "pl"
+      case None => defaultQuizLang
       case Some(language) => language
     }
     if (WordService.isAlive) {

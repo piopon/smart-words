@@ -135,7 +135,13 @@ class WordDatabase {
    * Method used to receive all words stored in database
    * @return a List of all stored word objects
    */
-  def getWords(language: Option[String]): List[Word] = testWordDB.toList
+  def getWords(language: Option[String]): List[Word] = {
+    val words: List[Word] = language match {
+      case None => testWordDB.toList
+      case Some(languageValue) => testWordDB.toList
+    }
+    words
+  }
 
   /**
    * Method used to receive all words objects from database with specified category

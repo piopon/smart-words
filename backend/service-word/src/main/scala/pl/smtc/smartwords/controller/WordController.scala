@@ -26,6 +26,7 @@ class WordController(wordDB: WordDatabase) {
    * Routes (request -> response) for words endpoints/resources
    * <ul>
    *  <li>Receive all words: <u>GET</u> /words -> RET: OK 200 + ALL WORDS JSON / ERR 500</li>
+   *  <li>Receive language-specific words: <u>GET</u> /words?lang=pl -> RET: OK 200 + ALL WORDS JSON / ERR 500</li>
    *  <li>Receive specified number of words: <u>GET</u> /words?size=no -> RET: OK 200 + Word JSON / ERR 500</li>
    *  <li>Receive category-specific words: <u>GET</u> /words?cat=adj -> RET: OK 200 + Word JSON / ERR 500</li>
    *  <li>Receive words in random order: <u>GET</u> /words?random=bool -> RET: OK 200 + Word JSON / ERR 500</li>

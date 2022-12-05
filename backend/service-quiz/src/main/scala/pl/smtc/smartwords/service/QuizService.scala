@@ -106,7 +106,7 @@ class QuizService(quizDB: QuizDatabase) {
   private def generateRound(language: String, forbiddenWords: List[String] = List.empty): Round = {
     var word: Word = null
     do {
-      word = WordService.getRandomWord
+      word = WordService.getRandomWord(language)
     } while (forbiddenWords.contains(word.name))
     Round(word, generateOptions(word.description, word.category), None, None)
   }

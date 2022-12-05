@@ -38,10 +38,12 @@ class WordService {
 
   /**
    * Method used to communicate with word service and retrieve a random word
+   * @param language type of language for the word to be retrieved
    * @return random word object
    */
-  def getRandomWord: Word = {
-    sendGetWordsRequest(wordsEndpoint.withQueryParam("size", "1")
+  def getRandomWord(language: String): Word = {
+    sendGetWordsRequest(wordsEndpoint.withQueryParam("lang", language)
+                                     .withQueryParam("size", "1")
                                      .withQueryParam("random", "true")).head
   }
 

@@ -143,7 +143,8 @@ class WordDatabase {
    * @return a List of all stored word objects with specified category
    */
   def getWordsByCategory(language: Option[String], category: Category.Value): List[Word] = {
-    testWordDB.toList.filter(word => word.category.equals(category))
+    val words: List[Word] = getWords(language)
+    words.filter(word => word.category.equals(category))
   }
 
   /**

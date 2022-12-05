@@ -135,14 +135,14 @@ class WordDatabase {
    * Method used to receive all words stored in database
    * @return a List of all stored word objects
    */
-  def getWords: List[Word] = testWordDB.toList
+  def getWords(language: Option[String]): List[Word] = testWordDB.toList
 
   /**
    * Method used to receive all words objects from database with specified category
    * @param category a category of words to be found
    * @return a List of all stored word objects with specified category
    */
-  def getWordsByCategory(category: Category.Value): List[Word] = {
+  def getWordsByCategory(language: Option[String], category: Category.Value): List[Word] = {
     testWordDB.toList.filter(word => word.category.equals(category))
   }
 

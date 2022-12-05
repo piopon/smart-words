@@ -133,6 +133,7 @@ class WordDatabase {
 
   /**
    * Method used to receive all words stored in database
+   * @param language of the words to be received
    * @return a List of all stored word objects
    */
   def getWords(language: Option[String]): List[Word] = {
@@ -145,6 +146,7 @@ class WordDatabase {
 
   /**
    * Method used to receive all words objects from database with specified category
+   * @param language of the words to be received
    * @param category a category of words to be found
    * @return a List of all stored word objects with specified category
    */

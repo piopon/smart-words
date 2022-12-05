@@ -59,7 +59,7 @@ class WordService(wordDB: WordDatabase) {
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
   def updateWord(name: String, word: Word): IO[Response[IO]] = {
-    val nameIndex = wordDB.getWords.indexWhere((word: Word) => word.name.equals(name))
+    val nameIndex = wordDB.getWords(None).indexWhere((word: Word) => word.name.equals(name))
     if (wordDB.updateWord(nameIndex, word)) {
       Ok(s"updated word '$name'")
     } else {

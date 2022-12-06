@@ -40,7 +40,7 @@ class WordDatabase {
         decode[List[Word]](lines) match {
           case Right(words) =>
             words.foreach(word => {
-              word.dictionary = file.getName
+              word.dictionary = Dictionary(file.getName, "", "")
               testWordDB += word
             })
             dictionaryLoadStatus.addOne(true)
@@ -57,7 +57,7 @@ class WordDatabase {
    * Method used to save current words database into appropriate dictionary JSON files
    */
   def saveDatabase(): Unit = {
-    val usedDictionaryFiles: List[String] = testWordDB.map(word => word.dictionary).distinct.toList
+    val usedDictionaryFiles: List[String] = testWordDB.map(word => word.dictionary.file).distinct.toList
     usedDictionaryFiles.foreach(dictionaryFile => saveDictionary(dictionaryFile))
   }
 
@@ -161,7 +161,7 @@ class WordDatabase {
    * @return a List of all stored word objects with specified dictionary file
    */
   def getWordsByDictionary(dictionary: String): List[Word] = {
-    testWordDB.toList.filter(word => word.dictionary.equals(dictionary))
+    testWordDB.toList.filter(word => word.dictionary.file.equals(dictionary))
   }
 
   /**
@@ -172,9 +172,9 @@ class WordDatabase {
   def addWord(word: Word): Boolean = {
     val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
     if (nameIndex < 0) {
-      word.dictionary = generateDictionaryFileName()
+      word.dictionary.file = generateDictionaryFileName()
       testWordDB += word
-      saveDictionary(word.dictionary)
+      saveDictionary(word.dictionary.file)
       true
     } else {
       false
@@ -191,7 +191,7 @@ class WordDatabase {
     if (index >= 0 && index < testWordDB.length) {
       word.dictionary = getWord(index).get.dictionary
       testWordDB.update(index, word)
-      saveDictionary(word.dictionary)
+      saveDictionary(word.dictionary.file)
       true
     } else {
       false
@@ -207,7 +207,7 @@ class WordDatabase {
     val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
     if (nameIndex >= 0) {
       val removedWord: Word = testWordDB.remove(nameIndex)
-      saveDictionary(removedWord.dictionary)
+      saveDictionary(removedWord.dictionary.file)
       true
     } else {
       false

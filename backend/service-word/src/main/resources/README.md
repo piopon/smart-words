@@ -3,6 +3,12 @@ This directory contains dictionary JSON files with words
 names, categories, and definitions for all supported types
 of games with language and mode distinction.
 
+> ***IMPORTANT:***<br>
+> Current logic is implemented to handle only `game=quiz`
+> and different `language` values. This document describes
+> the desired state of "Smart Words" ecosystem, and it will
+> be updated accordingly.
+
 To work properly with the whole "Smart Words" ecosystem and
 the words service (this project) the JSON dictionary file
 names have to follow the specified convention:

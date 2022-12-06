@@ -40,7 +40,7 @@ class WordDatabase {
         decode[List[Word]](lines) match {
           case Right(words) =>
             words.foreach(word => {
-              word.dictionary = Dictionary(file.getName, "", "")
+              word.dictionary = Dictionary.fromFile(file.getName)
               testWordDB += word
             })
             dictionaryLoadStatus.addOne(true)

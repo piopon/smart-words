@@ -16,7 +16,7 @@ object WordDao {
       category <- input.downField("category").as[String]
       definition <- input.downField("description").as[List[String]]
     } yield {
-      Word(name, Category.fromString(category), definition, Dictionary("", "", ""))
+      Word(name, Category.fromString(category), definition, Dictionary.empty())
     }
   }
 

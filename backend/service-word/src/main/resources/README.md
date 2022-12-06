@@ -1,8 +1,11 @@
-This directory contains dictionary files with words for all
-possible word modes and supported languages.
+# Content
+This directory contains dictionary JSON files with words
+names, categories, and definitions for all supported types
+of games with language and mode distinction.
 
-Naming convention of JSON files which is supported by word
-service is displayed below:
+To work properly with the whole "Smart Words" ecosystem and
+the words service (this project) the JSON dictionary file
+names have to follow the specified convention:
 
 ###`words-[game]-[mode]-[language]-[description].json`
 
@@ -21,7 +24,7 @@ where:
   new user file without the risk of changing the built-in
   (provided) dictionary files.
 
-Examples
+# Examples
 * `words-quiz-pl-1.json` - this dictionary contains words for
   mode: `quiz`, sub-mode: `1`, and language: `pl`
 * `words-wordle-en.json` - this dictionary contains words for

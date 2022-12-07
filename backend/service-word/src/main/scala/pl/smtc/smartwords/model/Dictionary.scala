@@ -9,18 +9,18 @@ object Dictionary {
   def empty(): Dictionary = Dictionary("", "", "")
 
   def fromFile(file: String): Dictionary = {
-    Dictionary(file, "", "")
+    Dictionary(file, "quiz", "")
   }
 
   def generate(language: String): Dictionary = {
-    Dictionary(generateDictionaryFileName(), "", "")
+    Dictionary(generateDictionaryFileName(language), "quiz", language)
   }
 
   /**
    * Method used to generate new dictionary file name
    * @return generated dictionary file name containing current date with JSON extension
    */
-  private def generateDictionaryFileName(): String = {
-    DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now()) + ".json"
+  private def generateDictionaryFileName(language: String): String = {
+    "words-quiz-" + language + "-" + DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now()) + ".json"
   }
 }

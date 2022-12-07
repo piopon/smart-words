@@ -9,8 +9,6 @@ import pl.smtc.smartwords.dao._
 import java.io.{BufferedInputStream, File, FileInputStream}
 import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Path, Paths}
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.Using

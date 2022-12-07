@@ -3,15 +3,35 @@ package pl.smtc.smartwords.model
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+/**
+ * Model class representing a word dictionary object with source file, game type and language
+ * @param file word source file name (not full path, just the filename itself)
+ * @param game type of game for which this word should be used
+ * @param language language of the word
+ */
 case class Dictionary(var file: String, game: String, language: String)
 
 object Dictionary {
+  /**
+   * Method used to create an empty dictionary object (no file source, game and language)
+   * @return empty dictionary object
+   */
   def empty(): Dictionary = Dictionary("", "", "")
 
+  /**
+   * Method used to create a dictionary object based on the file name (the file name itself is stored in this object)
+   * @param file source file name from which the dictionary object will be generated
+   * @return dictionary object with data retrieved from input file name
+   */
   def fromFile(file: String): Dictionary = {
     Dictionary(file, "quiz", "")
   }
 
+  /**
+   * Method used to generate new dictionary object with file name based on language
+   * @param language of the word used to generate new dictionary file
+   * @return dictionary object with generated values
+   */
   def generate(language: String): Dictionary = {
     Dictionary(generateDictionaryFileName(language), "quiz", language)
   }

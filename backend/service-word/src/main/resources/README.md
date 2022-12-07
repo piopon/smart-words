@@ -13,7 +13,7 @@ To work properly with the whole "Smart Words" ecosystem and
 the words service (this project) the JSON dictionary file
 names have to follow the specified convention:
 
-###`words-[game]-[mode]-[language]-[description].json`
+###`words-[game]-[mode]-[language]@[description].json`
 
 where:
 * `mode` presence in the file name depends on the type

@@ -21,6 +21,6 @@ object Dictionary {
    * @return generated dictionary file name containing current date with JSON extension
    */
   private def generateDictionaryFileName(language: String): String = {
-    "words-quiz-" + language + "-" + DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now()) + ".json"
+    "words-quiz-" + language + "@" + DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now()) + ".json"
   }
 }

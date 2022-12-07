@@ -97,14 +97,6 @@ class WordDatabase {
   }
 
   /**
-   * Method used to generate new dictionary file name
-   * @return generated dictionary file name containing current date with JSON extension
-   */
-  def generateDictionaryFileName(): String = {
-    DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now()) + "." + dictionaryExtension.toLowerCase()
-  }
-
-  /**
    * Method used to receive a single word object from database with specified index
    * @param index a index of word to be received
    * @return non empty if word was present (index in bounds), None otherwise
@@ -172,7 +164,7 @@ class WordDatabase {
   def addWord(word: Word): Boolean = {
     val nameIndex = testWordDB.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
     if (nameIndex < 0) {
-      word.dictionary.file = generateDictionaryFileName()
+      word.dictionary = Dictionary.generate("pl")
       testWordDB += word
       saveDictionary(word.dictionary.file)
       true

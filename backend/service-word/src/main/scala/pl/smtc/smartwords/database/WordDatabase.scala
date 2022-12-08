@@ -125,7 +125,7 @@ class WordDatabase {
    * Method used to receive all words stored in database
    * @return a List of all stored word objects
    */
-  def getWords(): List[Word] = wordsDatabase.toList
+  def getWords: List[Word] = wordsDatabase.toList
 
   /**
    * Method used to receive words stored in database with specified language

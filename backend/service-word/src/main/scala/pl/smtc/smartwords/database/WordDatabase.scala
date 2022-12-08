@@ -122,9 +122,9 @@ class WordDatabase {
   }
 
   /**
-   * Method used to receive all words stored in database
-   * @param language of the words to be received
-   * @return a List of all stored word objects
+   * Method used to receive words stored in database with specified language
+   * @param language of the words to be received (if not specified then the default one will be used)
+   * @return a List of stored word objects with specified language
    */
   def getWordsByLanguage(language: Option[String]): List[Word] = {
     val usedLanguage: String = language match {
@@ -135,10 +135,10 @@ class WordDatabase {
   }
 
   /**
-   * Method used to receive all words objects from database with specified category
+   * Method used to receive all words objects from database with specified category and language
    * @param language of the words to be received
    * @param category a category of words to be found
-   * @return a List of all stored word objects with specified category
+   * @return a List of all stored word objects with specified category and language
    */
   def getWordsByCategory(language: Option[String], category: Category.Value): List[Word] = {
     val words: List[Word] = getWordsByLanguage(language)

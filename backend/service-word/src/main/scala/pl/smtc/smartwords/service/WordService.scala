@@ -27,7 +27,7 @@ class WordService(wordDB: WordDatabase) {
   def getWords(language: Option[String], category: Option[Category.Value],
                size: Option[Int], random: Option[Boolean]): IO[Response[IO]] = {
     val afterCategoryFilter: List[Word] = category match {
-      case None => wordDB.getWords(language)
+      case None => wordDB.getWordsByLanguage(language)
       case Some(categoryValue) => wordDB.getWordsByCategory(language, categoryValue)
     }
     val afterRandomFilter: List[Word] = random match {
@@ -61,7 +61,7 @@ class WordService(wordDB: WordDatabase) {
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
   def updateWord(name: String, word: Word): IO[Response[IO]] = {
-    val nameIndex = wordDB.getWords(None).indexWhere((word: Word) => word.name.equals(name))
+    val nameIndex = wordDB.getWordsByLanguage(None).indexWhere((word: Word) => word.name.equals(name))
     if (wordDB.updateWord(nameIndex, word)) {
       Ok(s"updated word '$name'")
     } else {

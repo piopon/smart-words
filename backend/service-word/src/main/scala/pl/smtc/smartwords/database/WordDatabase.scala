@@ -126,12 +126,12 @@ class WordDatabase {
    * @param language of the words to be received
    * @return a List of all stored word objects
    */
-  def getWords(language: Option[String]): List[Word] = {
-    val words: List[Word] = language match {
-      case None => wordsDatabase.toList
-      case Some(languageValue) => wordsDatabase.toList
+  def getWordsByLanguage(language: Option[String]): List[Word] = {
+    val usedLanguage: String = language match {
+      case None => Dictionary.defaultLanguage
+      case Some(languageValue) => languageValue
     }
-    words
+    wordsDatabase.toList.filter(word => word.dictionary.language.equals(usedLanguage))
   }
 
   /**
@@ -141,7 +141,7 @@ class WordDatabase {
    * @return a List of all stored word objects with specified category
    */
   def getWordsByCategory(language: Option[String], category: Category.Value): List[Word] = {
-    val words: List[Word] = getWords(language)
+    val words: List[Word] = getWordsByLanguage(language)
     words.filter(word => word.category.equals(category))
   }
 

@@ -12,6 +12,8 @@ import java.time.format.DateTimeFormatter
 case class Dictionary(var file: String, game: String, language: String)
 
 object Dictionary {
+  val defaultLanguage = "pl"
+
   /**
    * Method used to create an empty dictionary object (no file source, game and language)
    * @return empty dictionary object

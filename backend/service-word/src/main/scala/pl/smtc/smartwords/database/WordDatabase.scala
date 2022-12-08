@@ -22,7 +22,7 @@ class WordDatabase {
   implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 
   /**
-   * Method used to initialize words database by loading and reading dictionary.json file
+   * Method used to initialize words database by loading and reading all dictionary JSON files
    * @return true if at least one of existing dictionary files was read correctly or if no dictionary files are present,
    *         false if all files cannot be loaded
    */

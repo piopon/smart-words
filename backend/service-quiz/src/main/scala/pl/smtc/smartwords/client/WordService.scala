@@ -42,9 +42,14 @@ class WordService {
    * @return random word object
    */
   def getRandomWord(language: String): Word = {
-    sendGetWordsRequest(wordsEndpoint.withQueryParam("lang", language)
+    val endpoint: Uri = wordsEndpoint.withQueryParam("lang", language)
                                      .withQueryParam("size", "1")
-                                     .withQueryParam("random", "true")).head
+                                     .withQueryParam("random", "true")
+    val receivedWord: List[Word] = sendGetWordsRequest(endpoint)
+    if (receivedWord.isEmpty) {
+      throw new WordServiceException("Invalid input parameter(s).")
+    }
+    receivedWord.head
   }
 
   /**

@@ -6,7 +6,7 @@
       {
         "label": "select language:",
         "type": "languages",
-        "details": "pl en fr de"
+        "details": "pl en"
       },
       {
         "label": "how many questions:",

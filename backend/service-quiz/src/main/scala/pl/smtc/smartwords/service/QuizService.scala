@@ -104,11 +104,15 @@ class QuizService(quizDB: QuizDatabase) {
    * @return generated round object with random word and 4 answer options
    */
   private def generateRound(language: String, forbiddenWords: List[String] = List.empty): Round = {
-    var word: Word = null
-    do {
-      word = WordService.getRandomWord(language)
-    } while (forbiddenWords.contains(word.name))
-    Round(word, generateOptions(word.description, word.category), None, None)
+    try {
+      var word: Word = null
+      do {
+        word = WordService.getRandomWord(language)
+      } while (forbiddenWords.contains(word.name))
+      Round(word, generateOptions(word.description, word.category), None, None)
+    } catch {
+      case e: WordServiceException => print("Error: " + e.getMessage)
+    }
   }
 
   /**

@@ -38,7 +38,11 @@ class QuizService(quizDB: QuizDatabase) {
       case Some(language) => language
     }
     if (WordService.isAlive) {
-      Ok(quizDB.addQuiz(generateQuiz(size, language)).toString)
+      try {
+        Ok(quizDB.addQuiz(generateQuiz(size, language)).toString)
+      } catch {
+        case e: QuizServiceException => BadRequest("Cannot start quiz: " + e.getMessage)
+      }
     } else {
       ServiceUnavailable("Cannot start quiz. Service: WORD - not available.")
     }

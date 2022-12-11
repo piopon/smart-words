@@ -111,7 +111,7 @@ class QuizService(quizDB: QuizDatabase) {
       } while (forbiddenWords.contains(word.name))
       Round(word, generateOptions(word.description, word.category), None, None)
     } catch {
-      case e: WordServiceException => print("Error: " + e.getMessage)
+      case e: WordServiceException => throw new QuizServiceException(e.getMessage)
     }
   }
 

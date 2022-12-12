@@ -15,7 +15,7 @@ const postQuizStart = (questionsNo, language, callback) => {
     if (postRequest.status === 200) {
       callback(undefined, postRequest.responseText);
     } else {
-      callback("cannot start new quiz [" + postRequest.status + "]", undefined);
+      callback(createErrorObject(postRequest.responseText, postRequest.status), undefined);
     }
   });
   postRequest.open("POST", URL + "quiz/start?size=" + questionsNo + "&lang=" + language);
@@ -37,7 +37,7 @@ const getQuestionNo = (quizID, questionNo, callback) => {
     if (getRequest.status === 200) {
       callback(undefined, JSON.parse(getRequest.responseText));
     } else {
-      callback("cannot get question no " + questionNo + " [" + getRequest.status + "]", undefined);
+      callback(createErrorObject("cannot get question no " + questionNo, getRequest.status), undefined);
     }
   });
   getRequest.open("GET", URL + "quiz/" + quizID + "/question/" + questionNo);
@@ -60,7 +60,7 @@ const postQuestionAnswer = (quizID, questionNo, answerNo, callback) => {
     if (postRequest.status === 200) {
       callback(undefined, JSON.parse(postRequest.responseText));
     } else {
-      callback("cannot post answer for question no " + questionNo + " [" + postRequest.status + "]", undefined);
+      callback(createErrorObject("cannot post answer for question no " + questionNo, postRequest.status), undefined);
     }
   });
   postRequest.open("POST", URL + "quiz/" + quizID + "/question/" + questionNo + "/" + answerNo);
@@ -81,7 +81,7 @@ const getQuizStop = (quizID, callback) => {
     if (getRequest.status === 200) {
       callback(undefined, JSON.parse(getRequest.responseText));
     } else {
-      callback("cannot stop quiz [" + getRequest.status + "]", undefined);
+      callback(createErrorObject("cannot stop quiz", getRequest.status), undefined);
     }
   });
   getRequest.open("GET", URL + "quiz/" + quizID + "/stop");

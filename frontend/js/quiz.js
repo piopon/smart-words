@@ -32,7 +32,7 @@ function startQuiz() {
  */
 function requestNextQuestion() {
   if (!verifyQuestionNo(++currentQuestionNo)) {
-    questionViewUpdateUI(STATE_QUIZ_ERROR, 'next-question', `Invalid question number value [${number}]`);
+    questionViewUpdateUI(STATE_QUIZ_ERROR, 'next-question', createErrorObject(`Invalid question number value [${number}]`, 500));
   } else {
     requestQuestionNo(currentQuestionNo, 'next-question');
   }
@@ -43,7 +43,7 @@ function requestNextQuestion() {
  */
 function requestPrevQuestion() {
   if (!verifyQuestionNo(--currentQuestionNo)) {
-    questionViewUpdateUI(STATE_QUIZ_ERROR, 'prev-question', `Invalid question number value [${number}]`);
+    questionViewUpdateUI(STATE_QUIZ_ERROR, 'prev-question', createErrorObject(`Invalid question number value [${number}]`, 500));
   } else {
     requestQuestionNo(currentQuestionNo, 'prev-question');
   }

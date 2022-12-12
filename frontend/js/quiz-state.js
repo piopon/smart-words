@@ -76,12 +76,12 @@ function getQuizErrorMessage(sourceState) {
  *
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {String} pressedButtonId which button was pressed (and triggered update UI, undefined by default)
- * @param {String} displayMessage containing information about current state (undefined by default)
+ * @param {Object} detailedState containing information about current state (undefined by default)
  */
-function questionViewUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
-  questionControlUpdateUI(newUiState, pressedButtonId, displayMessage);
-  questionAnswersUpdateUI(newUiState, pressedButtonId, displayMessage);
-  questionStatusUpdateUI(newUiState, pressedButtonId, displayMessage);
+function questionViewUpdateUI(newUiState, pressedButtonId = undefined, detailedState = undefined) {
+  questionControlUpdateUI(newUiState, pressedButtonId, detailedState);
+  questionAnswersUpdateUI(newUiState, pressedButtonId, detailedState);
+  questionStatusUpdateUI(newUiState, pressedButtonId, detailedState);
   questionLabelsUpdateUI(newUiState);
 }
 

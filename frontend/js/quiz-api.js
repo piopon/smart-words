@@ -6,7 +6,7 @@ const URL = "http://localhost:2222/";
  * @param {String} questionsNo number of questions for new quiz instance
  * @param {String} language selection for new quiz instance
  * @param {Function} callback function to be invoked when request is completed.
- *                            It should contain 2 parameters: error string and data object.
+ *                            It should contain 2 parameters: error object and data object.
  */
 const postQuizStart = (questionsNo, language, callback) => {
   const postRequest = new XMLHttpRequest();
@@ -28,7 +28,7 @@ const postQuizStart = (questionsNo, language, callback) => {
  * @param {String} quizID the UUID of the quiz
  * @param {Integer} questionNo the number of question/word to receive
  * @param {Function} callback function to be invoked when request is completed.
- *                            It should contain 2 parameters: error string and data object.
+ *                            It should contain 2 parameters: error object and data object.
  */
 const getQuestionNo = (quizID, questionNo, callback) => {
   const getRequest = new XMLHttpRequest();
@@ -51,7 +51,7 @@ const getQuestionNo = (quizID, questionNo, callback) => {
  * @param {Integer} questionNo the number of question/word to be answered
  * @param {Integer} answerNo the number of answer for specified question number
  * @param {Function} callback function to be invoked when request is completed.
- *                            It should contain 2 parameters: error string and data object.
+ *                            It should contain 2 parameters: error object and data object.
  */
 const postQuestionAnswer = (quizID, questionNo, answerNo, callback) => {
   const postRequest = new XMLHttpRequest();
@@ -72,7 +72,7 @@ const postQuestionAnswer = (quizID, questionNo, answerNo, callback) => {
  *
  * @param {String} quizID the UUID of the quiz
  * @param {Function} callback function to be invoked when request is completed.
- *                            It should contain 2 parameters: error string and data object.
+ *                            It should contain 2 parameters: error object and data object.
  */
 const getQuizStop = (quizID, callback) => {
   const getRequest = new XMLHttpRequest();
@@ -92,7 +92,7 @@ const getQuizStop = (quizID, callback) => {
  * Method used to send a request to the quiz service to receive all quiz modes
  *
  * @param {Function} callback function to be invoked when request is completed.
- *                            It should contain 2 parameters: error string and data object.
+ *                            It should contain 2 parameters: error object and data object.
  */
  const getQuizModes = (callback) => {
   const getRequest = new XMLHttpRequest();

@@ -39,8 +39,10 @@ class WordService {
   /**
    * Method used to communicate with word service and retrieve a random word
    * @param language type of language for the word to be retrieved
+   * @throws WordServiceException when the response from word service is invalid
    * @return random word object
    */
+  @throws(classOf[WordServiceException])
   def getRandomWord(language: String): Word = {
     val endpoint: Uri = wordsEndpoint.withQueryParam("lang", language)
                                      .withQueryParam("size", "1")

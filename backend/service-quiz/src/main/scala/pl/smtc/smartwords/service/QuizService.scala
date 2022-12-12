@@ -105,8 +105,10 @@ class QuizService(quizDB: QuizDatabase) {
    * Method used to generate a new round object
    * @param language string containing the language selection for the generated round
    * @param forbiddenWords list of currently used quiz words which cannot overlap while generating this round
+   * @throws QuizServiceException when the round object cannot be generated
    * @return generated round object with random word and 4 answer options
    */
+  @throws(classOf[QuizServiceException])
   private def generateRound(language: String, forbiddenWords: List[String] = List.empty): Round = {
     try {
       var word: Word = null

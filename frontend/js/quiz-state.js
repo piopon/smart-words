@@ -8,9 +8,9 @@ var questionsStatus = undefined;
  * Method used to update GUI state while starting quiz from service
  *
  * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
- * @param {String} detailedMessage containing detailed information about current state (undefined by default)
+ * @param {Object} detailedState containing detailed information about current state (undefined by default)
  */
-function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
+function startQuizUpdateUI(newUiState, detailedState = undefined) {
   let startQuizBtn = document.getElementById("quiz-mode-controls-start");
   let startQuizInfo = document.getElementById("quiz-mode-controls-info");
   if (startQuizBtn === null || startQuizInfo === null) return;
@@ -36,7 +36,7 @@ function startQuizUpdateUI(newUiState, detailedMessage = undefined) {
     startQuizBtn.disabled = true;
     startQuizBtn.innerHTML = "service unavailable";
     startQuizInfo.className = "";
-    startQuizInfo.title = getQuizErrorMessage(detailedMessage);
+    startQuizInfo.title = getQuizErrorMessage(detailedState);
     questionsStatus = undefined;
     return;
   }
@@ -138,9 +138,9 @@ function questionLabelsUpdateUI(newUiState) {
  *
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {String} pressedButtonId which button was pressed (next or previous, undefined by default)
- * @param {String} displayMessage containing information about current state (undefined by default)
+ * @param {Object} detailedState containing information about current state (undefined by default)
  */
-function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
+function questionControlUpdateUI(newUiState, pressedButtonId = undefined, detailedState = undefined) {
   let stopBtn = document.getElementById("stop-quiz");
   let prevBtn = document.getElementById("prev-question");
   let nextBtn = document.getElementById("next-question") !== null
@@ -169,7 +169,7 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
       activeBtnInfo.classList.remove("service-ok");
       activeBtnInfo.classList.remove("service-wait");
       activeBtnInfo.classList.add("service-error");
-      activeBtnInfo.title = getQuizErrorMessage(displayMessage);
+      activeBtnInfo.title = getQuizErrorMessage(detailedState);
     }
     stopBtn.disabled = true;
     prevBtn.disabled = true;
@@ -183,9 +183,9 @@ function questionControlUpdateUI(newUiState, pressedButtonId = undefined, displa
  *
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {String} pressedButtonId which button was pressed (next or previous, undefined by default)
- * @param {String} displayMessage containing information about current state (undefined by default)
+ * @param {Object} detailedState containing information about current state (undefined by default)
  */
-function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displayMessage = undefined) {
+function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, detailedState = undefined) {
   let okGroupId = "question-option-";
   let pressedAnswerNo = pressedButtonId && pressedButtonId.startsWith(okGroupId)
       ? pressedButtonId.split(okGroupId)[1]
@@ -218,7 +218,7 @@ function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displa
       answerHeader.className = "answer-header-disabled";
       if (answerInfo) {
         answerInfo.className = "service-error";
-        answerInfo.title = getQuizErrorMessage(displayMessage);
+        answerInfo.title = getQuizErrorMessage(detailedState);
       }
       continue;
     }
@@ -230,9 +230,9 @@ function questionAnswersUpdateUI(newUiState, pressedButtonId = undefined, displa
  *
  * @param {Integer} newUiState current view state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {String} buttonId which button was pressed (next or previous, undefined by default)
- * @param {String} displayMessage containing information about current state (undefined by default)
+ * @param {Object} detailedState containing information about current state (undefined by default)
  */
-function questionStatusUpdateUI(newUiState, buttonId = undefined, displayMessage = undefined) {
+function questionStatusUpdateUI(newUiState, buttonId = undefined, detailedState = undefined) {
   let idPrefix = "nav-";
   let questionStatusHtml = `<span id="status-title-label" class="label-enabled">quiz questions:</span>`;
   for (let i = 0; i < questionsStatus.length; i++) {
@@ -241,7 +241,7 @@ function questionStatusUpdateUI(newUiState, buttonId = undefined, displayMessage
     let clickClass = STATE_QUIZ_ERROR === newUiState
         ? "nav-disabled"
         : STATE_QUIZ_LOAD === newUiState || STATE_QUIZ_OFF === newUiState ? "nav-off" : "nav-on"
-    let infoMessage = STATE_QUIZ_ERROR === newUiState ? getQuizErrorMessage(displayMessage) : "";
+    let infoMessage = STATE_QUIZ_ERROR === newUiState ? getQuizErrorMessage(detailedState) : "";
     let infoClass = buttonId && buttonId.startsWith(idPrefix) && i === parseInt(buttonId.substring(idPrefix.length))
         ? STATE_QUIZ_ERROR === newUiState ? "nav-error" : STATE_QUIZ_LOAD === newUiState ? "nav-wait" : "nav-ok"
         : "nav-ok";

@@ -101,9 +101,23 @@ const getQuizStop = (quizID, callback) => {
     if (getRequest.status === 200) {
       callback(undefined, JSON.parse(getRequest.responseText));
     } else {
-      callback("cannot get quiz modes " + " [" + getRequest.status + "]", undefined);
+      callback(createErrorObject("cannot get quiz modes", getRequest.status), undefined);
     }
   });
   getRequest.open("GET", URL + "modes");
   getRequest.send();
 };
+
+/**
+ * Method used to create error object from message and response status
+ *
+ * @param {String} message of the error to be stored in error object
+ * @param {Integer} status of the response to be stored in error object
+ * @returns error callback object
+ */
+ function createErrorObject(message, status) {
+  return {
+    message: message,
+    status: status,
+  };
+}

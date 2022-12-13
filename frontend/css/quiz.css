@@ -196,7 +196,7 @@ div[class^="question-status"].nav-on:hover {
   width: 24px;
   height: 24px;
   position: absolute;
-  bottom: 17px;
+  bottom: 9px;
   right: 18px;
   z-index: 10;
 }

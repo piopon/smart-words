@@ -24,10 +24,10 @@ class WordService(wordDB: WordDatabase) {
    * @param random optional flag to determine if output should be randomized
    * @return response with words from specified category, or all words if category is None
    */
-  def getWords(language: Option[String], category: Option[Category.Value],
+  def getWords(language: String, category: Option[Category.Value],
                size: Option[Int], random: Option[Boolean]): IO[Response[IO]] = {
     val afterCategoryFilter: List[Word] = category match {
-      case None => wordDB.getWordsByLanguage(language)
+      case None => wordDB.getWordsByLanguage(Some(language))
       case Some(categoryValue) => wordDB.getWordsByCategory(language, categoryValue)
     }
     val afterRandomFilter: List[Word] = random match {

@@ -40,11 +40,10 @@ class WordController(wordDB: WordDatabase) {
     val dsl = Http4sDsl[IO]; import dsl._
     implicit val wordDecoder: EntityDecoder[IO, Word] = jsonOf[IO, Word]
     HttpRoutes.of[IO] {
-      case GET -> Root :? OptionalQuizLanguageParamMatcher(maybeLanguage)
-                       +& OptionalCategoryParamMatcher(maybeCategory)
-                       +& OptionalSizeParamMatcher(maybeSize)
-                       +& OptionalRandomizeParamMatcher(maybeRandom) =>
-        service.getWords(maybeLanguage, maybeCategory, maybeSize, maybeRandom)
+      case GET -> Root / language :? OptionalCategoryParamMatcher(maybeCategory)
+                                  +& OptionalSizeParamMatcher(maybeSize)
+                                  +& OptionalRandomizeParamMatcher(maybeRandom) =>
+        service.getWords(language, maybeCategory, maybeSize, maybeRandom)
       case request@POST -> Root / language =>
         for {
           newWord <- request.as[Word]

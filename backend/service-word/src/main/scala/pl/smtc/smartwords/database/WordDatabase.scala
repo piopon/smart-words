@@ -195,10 +195,9 @@ class WordDatabase {
    * @param word word to be removed from database
    * @return true if word was removed correctly, false otherwise (word does not exist in DB)
    */
-  def removeWord(word: Word): Boolean = {
-    val nameIndex = wordsDatabase.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
-    if (nameIndex >= 0) {
-      val removedWord: Word = wordsDatabase.remove(nameIndex)
+  def removeWord(index: Integer): Boolean = {
+    if (index >= 0 && index < wordsDatabase.length) {
+      val removedWord: Word = wordsDatabase.remove(index)
       saveDictionary(removedWord.dictionary.file)
       true
     } else {

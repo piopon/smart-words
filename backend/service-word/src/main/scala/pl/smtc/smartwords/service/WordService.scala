@@ -75,11 +75,11 @@ class WordService(wordDB: WordDatabase) {
    * @return response with delete status (OK or NOT FOUND if word does not exist)
    */
   def deleteWord(name: String): IO[Response[IO]] = {
-    wordDB.getWordByName(name) match {
-      case None => NotFound(s"word '$name' not found in DB")
-      case Some(word) =>
-        wordDB.removeWord(word)
-        Ok(s"removed word '$name'")
+    val nameIndex = wordDB.getWords.indexWhere((word: Word) => word.name.equals(name))
+    if (wordDB.removeWord(nameIndex)) {
+      Ok(s"removed word '$name'")
+    } else {
+      NotFound(s"word '$name' not found in DB")
     }
   }
 }

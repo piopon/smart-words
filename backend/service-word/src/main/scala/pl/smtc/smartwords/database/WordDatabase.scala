@@ -129,7 +129,7 @@ class WordDatabase {
 
   /**
    * Method used to receive words stored in database with specified language
-   * @param language of the words to be received (if not specified then the default one will be used)
+   * @param language of the words to be received
    * @return a List of stored word objects with specified language
    */
   def getWordsByLanguage(language: String): List[Word] = {

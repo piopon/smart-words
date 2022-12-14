@@ -18,7 +18,7 @@ class WordService(wordDB: WordDatabase) {
 
   /**
    * Method used to receive words
-   * @param language optional language of words to be retrieved
+   * @param language language of words to be retrieved
    * @param category optional word category
    * @param size optional number of words to receive
    * @param random optional flag to determine if output should be randomized

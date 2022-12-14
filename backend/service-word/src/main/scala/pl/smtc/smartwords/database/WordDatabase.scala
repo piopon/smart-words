@@ -63,7 +63,7 @@ class WordDatabase {
    * Method used to save words assigned to a specific dictionary file
    * @param dictionaryFile which dictionary file words should be saved
    */
-  def saveDictionary(dictionaryFile: String): Unit = {
+  private def saveDictionary(dictionaryFile: String): Unit = {
     if (dictionaryFile.isEmpty) return
     val dictionaryWords: List[Word] = getWordsByDictionary(dictionaryFile)
     if (dictionaryWords.isEmpty) {
@@ -80,7 +80,7 @@ class WordDatabase {
    * @param extensionFilter optional extension filter
    * @return list of all files present in input directory
    */
-  def getDirectoryFiles(directory: Path, extensionFilter: Option[String] = None): List[File] = {
+  private def getDirectoryFiles(directory: Path, extensionFilter: Option[String] = None): List[File] = {
     val input = new File(directory.toString)
     if (input.exists && input.isDirectory) {
       val ifFile = (input: File) => input.isFile
@@ -99,7 +99,7 @@ class WordDatabase {
    * @param index a index of word to be received
    * @return non empty if word was present (index in bounds), None otherwise
    */
-  def getWord(index: Integer): Option[Word] = {
+  private def getWord(index: Integer): Option[Word] = {
     if (index >= 0 && index < wordsDatabase.length) {
       Some(wordsDatabase(index))
     } else {
@@ -152,7 +152,7 @@ class WordDatabase {
    * @param dictionary a source dictionary file of words to be found
    * @return a List of all stored word objects with specified dictionary file
    */
-  def getWordsByDictionary(dictionary: String): List[Word] = {
+  private def getWordsByDictionary(dictionary: String): List[Word] = {
     wordsDatabase.toList.filter(word => word.dictionary.file.equals(dictionary))
   }
 

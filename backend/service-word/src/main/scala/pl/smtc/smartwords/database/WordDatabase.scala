@@ -165,10 +165,10 @@ class WordDatabase {
    * @param word new word to be added in database
    * @return true if word was added correctly, false otherwise (word existed in DB)
    */
-  def addWord(word: Word): Boolean = {
+  def addWord(language: String, word: Word): Boolean = {
     val nameIndex = wordsDatabase.indexWhere((dbWord: Word) => dbWord.name.equals(word.name))
     if (nameIndex < 0) {
-      word.dictionary = Dictionary.generate("pl")
+      word.dictionary = Dictionary.generate(language)
       wordsDatabase += word
       saveDictionary(word.dictionary.file)
       true

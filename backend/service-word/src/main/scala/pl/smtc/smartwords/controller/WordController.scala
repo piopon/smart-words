@@ -45,10 +45,10 @@ class WordController(wordDB: WordDatabase) {
                        +& OptionalSizeParamMatcher(maybeSize)
                        +& OptionalRandomizeParamMatcher(maybeRandom) =>
         service.getWords(maybeLanguage, maybeCategory, maybeSize, maybeRandom)
-      case request@POST -> Root  =>
+      case request@POST -> Root / language =>
         for {
           newWord <- request.as[Word]
-          response <- service.addWord(newWord)
+          response <- service.addWord(language, newWord)
         } yield response
       case request@PUT -> Root / name =>
         for {

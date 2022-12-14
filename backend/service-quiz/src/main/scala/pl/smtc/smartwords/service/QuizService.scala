@@ -115,7 +115,7 @@ class QuizService(quizDB: QuizDatabase) {
       do {
         word = WordService.getRandomWord(language)
       } while (forbiddenWords.contains(word.name))
-      Round(word, generateOptions(word.description, word.category), None, None)
+      Round(word, generateOptions(word.description, language, word.category), None, None)
     } catch {
       case e: WordServiceException => throw new QuizServiceException(e.getMessage)
     }
@@ -142,8 +142,8 @@ class QuizService(quizDB: QuizDatabase) {
    * @param category word category from which to draw the remaining 3 answer options
    * @return list of possible 4 answer options
    */
-  private def generateOptions(correctDefinitions: List[String], category: String): List[String] = {
-    val incorrectDefinitions: List[String] = WordService.getWordsByCategory("pl", category)
+  private def generateOptions(correctDefinitions: List[String], language: String, category: String): List[String] = {
+    val incorrectDefinitions: List[String] = WordService.getWordsByCategory(language, category)
       .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))
       .distinct

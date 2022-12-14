@@ -143,7 +143,7 @@ class QuizService(quizDB: QuizDatabase) {
    * @return list of possible 4 answer options
    */
   private def generateOptions(correctDefinitions: List[String], category: String): List[String] = {
-    val incorrectDefinitions: List[String] = WordService.getWordsByCategory(category)
+    val incorrectDefinitions: List[String] = WordService.getWordsByCategory("pl", category)
       .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))
       .distinct

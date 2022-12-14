@@ -59,8 +59,9 @@ class WordService {
    * @param category type of words category to be retrieved
    * @return list of all words with specified category
    */
-  def getWordsByCategory(category: String): List[Word] = {
-    sendGetWordsRequest(wordsEndpoint.withQueryParam("cat", category))
+  def getWordsByCategory(language: String, category: String): List[Word] = {
+    sendGetWordsRequest(wordsEndpoint.addSegment(language)
+                                     .withQueryParam("cat", category))
   }
 
   /**

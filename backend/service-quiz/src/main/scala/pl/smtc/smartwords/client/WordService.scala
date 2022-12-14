@@ -44,7 +44,7 @@ class WordService {
    */
   @throws(classOf[WordServiceException])
   def getRandomWord(language: String): Word = {
-    val endpoint: Uri = wordsEndpoint.withQueryParam("lang", language)
+    val endpoint: Uri = wordsEndpoint.addSegment(language)
                                      .withQueryParam("size", "1")
                                      .withQueryParam("random", "true")
     val receivedWord: List[Word] = sendGetWordsRequest(endpoint)

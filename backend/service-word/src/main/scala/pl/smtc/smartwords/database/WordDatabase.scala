@@ -108,20 +108,6 @@ class WordDatabase {
   }
 
   /**
-   * Method used to receive a single word object from database with specified name
-   * @param name a name of a word to be received
-   * @return non empty if word was present (name existing), None otherwise
-   */
-  def getWordByName(name: String): Option[Word] = {
-    val nameIndex = wordsDatabase.indexWhere((dbWord: Word) => dbWord.name.equals(name))
-    if (nameIndex >= 0) {
-      Some(wordsDatabase(nameIndex))
-    } else {
-      None
-    }
-  }
-
-  /**
    * Method used to receive all words stored in database
    * @return a List of all stored word objects
    */

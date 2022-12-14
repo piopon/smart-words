@@ -132,12 +132,8 @@ class WordDatabase {
    * @param language of the words to be received (if not specified then the default one will be used)
    * @return a List of stored word objects with specified language
    */
-  def getWordsByLanguage(language: Option[String]): List[Word] = {
-    val usedLanguage: String = language match {
-      case None => Dictionary.defaultLanguage
-      case Some(languageValue) => languageValue
-    }
-    wordsDatabase.toList.filter(word => word.dictionary.language.equals(usedLanguage))
+  def getWordsByLanguage(language: String): List[Word] = {
+    wordsDatabase.toList.filter(word => word.dictionary.language.equals(language))
   }
 
   /**
@@ -146,7 +142,7 @@ class WordDatabase {
    * @param category a category of words to be found
    * @return a List of all stored word objects with specified category and language
    */
-  def getWordsByCategory(language: Option[String], category: Category.Value): List[Word] = {
+  def getWordsByCategory(language: String, category: Category.Value): List[Word] = {
     val words: List[Word] = getWordsByLanguage(language)
     words.filter(word => word.category.equals(category))
   }

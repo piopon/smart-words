@@ -47,13 +47,13 @@ class WordController(wordDB: WordDatabase) {
           newWord <- request.as[Word]
           response <- service.addWord(language, newWord)
         } yield response
-      case request@PUT -> Root / name =>
+      case request@PUT -> Root / language / name =>
         for {
           newWord <- request.as[Word]
-          response <- service.updateWord(name, newWord)
+          response <- service.updateWord(language, name, newWord)
         } yield response
-      case DELETE -> Root / name =>
-        service.deleteWord(name)
+      case DELETE -> Root / language / name =>
+        service.deleteWord(language, name)
     }
   }
 }

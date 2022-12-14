@@ -17,7 +17,6 @@ class WordController(wordDB: WordDatabase) {
 
   implicit val categoryParamDecoder: QueryParamDecoder[Category.Value] =
     QueryParamDecoder[String].map(categoryStr => Category.fromString(categoryStr))
-  object OptionalQuizLanguageParamMatcher extends OptionalQueryParamDecoderMatcher[String]("lang")
   object OptionalRandomizeParamMatcher extends OptionalQueryParamDecoderMatcher[Boolean]("random")
   object OptionalCategoryParamMatcher extends OptionalQueryParamDecoderMatcher[Category.Value]("cat")
   object OptionalSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")

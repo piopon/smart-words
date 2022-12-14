@@ -139,6 +139,7 @@ class QuizService(quizDB: QuizDatabase) {
   /**
    * Method used to generate 4 answer options
    * @param correctDefinitions correct word definitions (from which one will be added to answer options)
+   * @param language of the options to draw the remaining 3 answer options
    * @param category word category from which to draw the remaining 3 answer options
    * @return list of possible 4 answer options
    */

@@ -56,6 +56,7 @@ class WordService {
 
   /**
    * Method used to communicate with word service and retrieve all words with specified category
+   * @param language of the word which we want to retrieve
    * @param category type of words category to be retrieved
    * @return list of all words with specified category
    */

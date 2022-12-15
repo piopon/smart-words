@@ -60,54 +60,6 @@ class WordDatabase {
   }
 
   /**
-   * Method used to save words assigned to a specific dictionary file
-   * @param dictionaryFile which dictionary file words should be saved
-   */
-  private def saveDictionary(dictionaryFile: String): Unit = {
-    if (dictionaryFile.isEmpty) return
-    val dictionaryWords: List[Word] = getWordsByDictionary(dictionaryFile)
-    if (dictionaryWords.isEmpty) {
-      Files.delete(resourceDir.resolve(dictionaryFile))
-    } else {
-      val content: String = dictionaryWords.asJson.toString()
-      Files.write(resourceDir.resolve(dictionaryFile), content.getBytes(StandardCharsets.UTF_8))
-    }
-  }
-
-  /**
-   * Method used to receive the list of files with optional extension filter in input directory
-   * @param directory directory in which we want to search for files
-   * @param extensionFilter optional extension filter
-   * @return list of all files present in input directory
-   */
-  private def getDirectoryFiles(directory: Path, extensionFilter: Option[String] = None): List[File] = {
-    val input = new File(directory.toString)
-    if (input.exists && input.isDirectory) {
-      val ifFile = (input: File) => input.isFile
-      val ifExtension = (input: File) => extensionFilter match {
-        case None => true
-        case Some(filter) => input.getName.toLowerCase.endsWith(filter.toLowerCase)
-      }
-      input.listFiles.filter(file => ifFile.apply(file) && ifExtension.apply(file)).toList
-    } else {
-      List[File]()
-    }
-  }
-
-  /**
-   * Method used to receive a single word object from database with specified index
-   * @param index a index of word to be received
-   * @return non empty if word was present (index in bounds), None otherwise
-   */
-  private def getWord(index: Integer): Option[Word] = {
-    if (index >= 0 && index < wordsDatabase.length) {
-      Some(wordsDatabase(index))
-    } else {
-      None
-    }
-  }
-
-  /**
    * Method used to receive all words stored in database
    * @return a List of all stored word objects
    */
@@ -133,14 +85,6 @@ class WordDatabase {
     words.filter(word => word.category.equals(category))
   }
 
-  /**
-   * Method used to receive all words objects from database with specified source dictionary file
-   * @param dictionary a source dictionary file of words to be found
-   * @return a List of all stored word objects with specified dictionary file
-   */
-  private def getWordsByDictionary(dictionary: String): List[Word] = {
-    wordsDatabase.toList.filter(word => word.dictionary.file.equals(dictionary))
-  }
 
   /**
    * Method used to add new word to database
@@ -190,5 +134,62 @@ class WordDatabase {
     } else {
       false
     }
+  }
+
+  /**
+   * Method used to save words assigned to a specific dictionary file
+   * @param dictionaryFile which dictionary file words should be saved
+   */
+  private def saveDictionary(dictionaryFile: String): Unit = {
+    if (dictionaryFile.isEmpty) return
+    val dictionaryWords: List[Word] = getWordsByDictionary(dictionaryFile)
+    if (dictionaryWords.isEmpty) {
+      Files.delete(resourceDir.resolve(dictionaryFile))
+    } else {
+      val content: String = dictionaryWords.asJson.toString()
+      Files.write(resourceDir.resolve(dictionaryFile), content.getBytes(StandardCharsets.UTF_8))
+    }
+  }
+
+  /**
+   * Method used to receive the list of files with optional extension filter in input directory
+   * @param directory directory in which we want to search for files
+   * @param extensionFilter optional extension filter
+   * @return list of all files present in input directory
+   */
+  private def getDirectoryFiles(directory: Path, extensionFilter: Option[String] = None): List[File] = {
+    val input = new File(directory.toString)
+    if (input.exists && input.isDirectory) {
+      val ifFile = (input: File) => input.isFile
+      val ifExtension = (input: File) => extensionFilter match {
+        case None => true
+        case Some(filter) => input.getName.toLowerCase.endsWith(filter.toLowerCase)
+      }
+      input.listFiles.filter(file => ifFile.apply(file) && ifExtension.apply(file)).toList
+    } else {
+      List[File]()
+    }
+  }
+
+  /**
+   * Method used to receive a single word object from database with specified index
+   * @param index a index of word to be received
+   * @return non empty if word was present (index in bounds), None otherwise
+   */
+  private def getWord(index: Integer): Option[Word] = {
+    if (index >= 0 && index < wordsDatabase.length) {
+      Some(wordsDatabase(index))
+    } else {
+      None
+    }
+  }
+
+  /**
+   * Method used to receive all words objects from database with specified source dictionary file
+   * @param dictionary a source dictionary file of words to be found
+   * @return a List of all stored word objects with specified dictionary file
+   */
+  private def getWordsByDictionary(dictionary: String): List[Word] = {
+    wordsDatabase.toList.filter(word => word.dictionary.file.equals(dictionary))
   }
 }

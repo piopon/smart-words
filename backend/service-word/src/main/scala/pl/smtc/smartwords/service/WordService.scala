@@ -43,6 +43,7 @@ class WordService(wordDB: WordDatabase) {
 
   /**
    * Method used to add new word
+   * @param language language of the word to be added
    * @param word new word to be added
    * @return response with new word add status (always OK but with different message)
    */
@@ -56,6 +57,7 @@ class WordService(wordDB: WordDatabase) {
 
   /**
    * Method used to update specified word
+   * @param language of the word to be updated (many languages have words with the same spelling but different meaning)
    * @param name word name which should be updated
    * @param word new word definition
    * @return response with update status (OK or NOT FOUND if word does not exist)
@@ -71,6 +73,7 @@ class WordService(wordDB: WordDatabase) {
 
   /**
    * Method used to delete specified word
+   * @param language of the word to be removed (many languages have words with the same spelling but different meaning)
    * @param name word name to be deleted
    * @return response with delete status (OK or NOT FOUND if word does not exist)
    */

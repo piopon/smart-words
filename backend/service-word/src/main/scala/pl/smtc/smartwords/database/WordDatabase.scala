@@ -144,6 +144,7 @@ class WordDatabase {
 
   /**
    * Method used to add new word to database
+   * @param language of the word to be added
    * @param word new word to be added in database
    * @return true if word was added correctly, false otherwise (word existed in DB)
    */
@@ -178,7 +179,7 @@ class WordDatabase {
 
   /**
    * Method used to remove word from database
-   * @param word word to be removed from database
+   * @param index position in DB of a word that needs to be removed
    * @return true if word was removed correctly, false otherwise (word does not exist in DB)
    */
   def removeWord(index: Integer): Boolean = {

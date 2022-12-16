@@ -66,26 +66,6 @@ class WordDatabase {
   def getWords: List[Word] = wordsDatabase.toList
 
   /**
-   * Method used to receive words stored in database with specified language
-   * @param language of the words to be received
-   * @return a List of stored word objects with specified language
-   */
-  def getWordsByLanguage(language: String): List[Word] = {
-    wordsDatabase.toList.filter(word => word.dictionary.language.equals(language))
-  }
-
-  /**
-   * Method used to receive all words objects from database with specified category and language
-   * @param language of the words to be received
-   * @param category a category of words to be found
-   * @return a List of all stored word objects with specified category and language
-   */
-  def getWordsByCategory(language: String, category: Category.Value): List[Word] = {
-    val words: List[Word] = getWordsByLanguage(language)
-    words.filter(word => word.category.equals(category))
-  }
-
-  /**
    * Method used to add new word to database
    * @param word new word to be added in database
    * @return true if word was added correctly, false otherwise (word existed in DB)

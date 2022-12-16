@@ -66,6 +66,22 @@ class WordDatabase {
   def getWords: List[Word] = wordsDatabase.toList
 
   /**
+   * Method used to retrieve an index of the word with specified name and language<br>
+   * <b>NOTE:</b> it's required to match not only the name but the language also since in different languages there are words
+   * which are spelled the same but have different meaning, like:
+   * <ul>
+   *   <li>pupil = student in English</li>
+   *   <li>pupil = favorite / pet in Polish</li>
+   * </ul>
+   * @param name of the word to be found
+   * @param language of the word to be found
+   * @return database index of the word which name and language matches parameters, or -1 if no such word was found
+   */
+  def getWordIndex(name: String, language: String): Int = {
+    wordsDatabase.indexWhere((word: Word) => word.name.equals(name) && word.dictionary.language.equals(language))
+  }
+
+  /**
    * Method used to add new word to database
    * @param word new word to be added in database
    * @return true if word was added correctly, false otherwise (word existed in DB)

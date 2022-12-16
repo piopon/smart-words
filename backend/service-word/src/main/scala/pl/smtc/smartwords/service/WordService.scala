@@ -52,7 +52,8 @@ class WordService(wordDB: WordDatabase) {
    * @return response with new word add status (always OK but with different message)
    */
   def addWord(language: String, word: Word): IO[Response[IO]] = {
-    if (wordDB.addWord(language, word)) {
+    word.dictionary = Dictionary.generate(language)
+    if (wordDB.addWord(word)) {
       Ok(s"added word '${word.name}'")
     } else {
       Found(s"word '${word.name}' already defined")

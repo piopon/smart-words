@@ -15,8 +15,10 @@ import scala.util.Random
 class WordService(wordDB: WordDatabase) {
 
   implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
-
-  private val WordFilter = (language: String, name: String) => {
+  // functional object used to match exact word based on its name and language
+  // it's required to match not only the name but the language also since in different languages there are words which
+  // are spelled the same but have different meaning (for example: pupil = student in English, and a favorite or a pet in Polish)
+  private val WordMatcher = (language: String, name: String) => {
     (word: Word) => word.name.equals(name) && word.dictionary.language.equals(language)
   }
 
@@ -69,7 +71,7 @@ class WordService(wordDB: WordDatabase) {
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
   def updateWord(language: String, name: String, word: Word): IO[Response[IO]] = {
-    val nameIndex = wordDB.getWords.indexWhere(WordFilter(language, name))
+    val nameIndex = wordDB.getWords.indexWhere(WordMatcher(language, name))
     if (wordDB.updateWord(nameIndex, word)) {
       Ok(s"updated word '$name'")
     } else {
@@ -84,7 +86,7 @@ class WordService(wordDB: WordDatabase) {
    * @return response with delete status (OK or NOT FOUND if word does not exist)
    */
   def deleteWord(language: String, name: String): IO[Response[IO]] = {
-    val nameIndex = wordDB.getWords.indexWhere(WordFilter(language, name))
+    val nameIndex = wordDB.getWords.indexWhere(WordMatcher(language, name))
     if (wordDB.removeWord(nameIndex)) {
       Ok(s"removed word '$name'")
     } else {

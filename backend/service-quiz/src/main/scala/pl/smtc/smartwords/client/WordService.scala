@@ -61,8 +61,13 @@ class WordService {
    * @return list of all words with specified category
    */
   def getWordsByCategory(language: String, category: String): List[Word] = {
-    sendGetWordsRequest(wordsEndpoint.addSegment(language)
-                                     .withQueryParam("cat", category))
+    val endpoint: Uri = wordsEndpoint.addSegment(language)
+                                     .withQueryParam("cat", category)
+    val receivedWords: List[Word] = sendGetWordsRequest(endpoint)
+    if (receivedWords.isEmpty) {
+      throw new WordServiceException("Invalid input parameter(s).")
+    }
+    receivedWords
   }
 
   /**

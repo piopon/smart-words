@@ -12,7 +12,7 @@ import pl.smtc.smartwords.dao._
 
 import scala.util.Random
 
-class WordService(wordDB: WordDatabase) {
+class WordService(database: WordDatabase) {
 
   implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 
@@ -26,7 +26,7 @@ class WordService(wordDB: WordDatabase) {
    */
   def getWords(language: String, category: Option[Category.Value],
                size: Option[Int], random: Option[Boolean]): IO[Response[IO]] = {
-    val languageWords: List[Word] = wordDB.getWords.filter(word => word.dictionary.language.equals(language))
+    val languageWords: List[Word] = database.getWords.filter(word => word.dictionary.language.equals(language))
     val afterCategoryFilter: List[Word] = category match {
       case None => languageWords
       case Some(categoryValue) => languageWords.filter(word => word.category.equals(categoryValue))
@@ -50,7 +50,7 @@ class WordService(wordDB: WordDatabase) {
    */
   def addWord(language: String, word: Word): IO[Response[IO]] = {
     word.dictionary = Dictionary.generate(language)
-    if (wordDB.addWord(word)) {
+    if (database.addWord(word)) {
       Ok(s"added word '${word.name}'")
     } else {
       Found(s"word '${word.name}' already defined")
@@ -65,8 +65,8 @@ class WordService(wordDB: WordDatabase) {
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
   def updateWord(language: String, name: String, word: Word): IO[Response[IO]] = {
-    val wordIndex = wordDB.getWordIndex(name, language)
-    if (wordDB.updateWord(wordIndex, word)) {
+    val wordIndex = database.getWordIndex(name, language)
+    if (database.updateWord(wordIndex, word)) {
       Ok(s"updated word '$name'")
     } else {
       NotFound(s"word '$name' not found in DB")
@@ -80,8 +80,8 @@ class WordService(wordDB: WordDatabase) {
    * @return response with delete status (OK or NOT FOUND if word does not exist)
    */
   def deleteWord(language: String, name: String): IO[Response[IO]] = {
-    val wordIndex = wordDB.getWordIndex(name, language)
-    if (wordDB.removeWord(wordIndex)) {
+    val wordIndex = database.getWordIndex(name, language)
+    if (database.removeWord(wordIndex)) {
       Ok(s"removed word '$name'")
     } else {
       NotFound(s"word '$name' not found in DB")

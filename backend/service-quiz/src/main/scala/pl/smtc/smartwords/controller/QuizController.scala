@@ -11,12 +11,13 @@ class QuizController() {
 
   val quizDB: QuizDatabase = new QuizDatabase()
 
-  object OptionalQuizStartParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
+  object OptionalQuizSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
+  object OptionalQuizLanguageParamMatcher extends OptionalQueryParamDecoderMatcher[String]("lang")
 
   /**
    * Routes (request -> response) for quiz endpoints/resources
    * <ul>
-   *  <li>Start a new quiz: <u>POST</u> /quiz/start?size=10 -> RET: OK 200 + {id} / ERR 500</li>
+   *  <li>Start a new quiz: <u>POST</u> /quiz/start?size=10&lang=pl -> RET: OK 200 + {id} / ERR 500</li>
    *  <li>Receive specific question: <u>GET</u> /quiz/{id}/question/{no} -> RET: OK 200 + Round JSON / ERR 404</li>
    *  <li>Send question answer: <u>POST</u> /quiz/{id}/question/{no}/{answerNo} -> RET: OK 200 / ERR 404</li>
    *  <li>End quiz and get result: <u>GET</u> /quiz/{id}/stop -> RET: OK 200 / ERR 404</li>
@@ -26,8 +27,9 @@ class QuizController() {
     val service: QuizService = new QuizService(quizDB)
     val dsl = Http4sDsl[IO]; import dsl._
     HttpRoutes.of[IO] {
-      case POST -> Root / "start" :? OptionalQuizStartParamMatcher(maybeSize) =>
-        service.startQuiz(maybeSize)
+      case POST -> Root / "start" :? OptionalQuizSizeParamMatcher(maybeSize)
+                                  +& OptionalQuizLanguageParamMatcher(maybeLanguage)=>
+        service.startQuiz(maybeSize, maybeLanguage)
       case GET -> Root / UUIDVar(quizId) / "question" / questionNo =>
         service.getQuizQuestionNo(quizId, questionNo)
       case POST -> Root / UUIDVar(quizId) / "question" / questionNo / answerNo =>

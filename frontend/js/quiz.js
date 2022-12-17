@@ -14,10 +14,10 @@ var currentQuestionNo = undefined;
 function startQuiz() {
   totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
   startQuizUpdateUI(STATE_QUIZ_LOAD);
-  postQuizStart(totalQuestionsNo, (err, data) => {
+  postQuizStart(totalQuestionsNo, selectedLanguage, (err, data) => {
     if (err) {
       startQuizUpdateUI(STATE_QUIZ_ERROR, err);
-      console.log("ERROR: " + err);
+      console.log("ERROR " + err.status + ": " + err.message);
     } else {
       startQuizUpdateUI(STATE_QUIZ_OK);
       quizID = data;
@@ -32,7 +32,7 @@ function startQuiz() {
  */
 function requestNextQuestion() {
   if (!verifyQuestionNo(++currentQuestionNo)) {
-    questionViewUpdateUI(STATE_QUIZ_ERROR, 'next-question', `Invalid question number value [${number}]`);
+    questionViewUpdateUI(STATE_QUIZ_ERROR, 'next-question', createErrorObject(`Invalid question number value [${number}]`, 500));
   } else {
     requestQuestionNo(currentQuestionNo, 'next-question');
   }
@@ -43,7 +43,7 @@ function requestNextQuestion() {
  */
 function requestPrevQuestion() {
   if (!verifyQuestionNo(--currentQuestionNo)) {
-    questionViewUpdateUI(STATE_QUIZ_ERROR, 'prev-question', `Invalid question number value [${number}]`);
+    questionViewUpdateUI(STATE_QUIZ_ERROR, 'prev-question', createErrorObject(`Invalid question number value [${number}]`, 500));
   } else {
     requestQuestionNo(currentQuestionNo, 'prev-question');
   }
@@ -74,7 +74,7 @@ function requestQuestionNo(number, buttonId = undefined) {
   getQuestionNo(quizID, number, (err, data) => {
     if (err) {
       questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
-      console.log("ERROR: " + err);
+      console.log("ERROR " + err.status + ": " + err.message);
     } else {
       questionViewUpdateUI(STATE_QUIZ_OK, buttonId);
       currentQuestionNo = number;
@@ -209,7 +209,7 @@ function answerQuestionNo(number, answerNo, buttonId = undefined) {
   postQuestionAnswer(quizID, number, answerNo, (err, data) => {
     if (err) {
       questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
-      console.log("ERROR: " + err);
+      console.log("ERROR " + err.status + ": " + err.message);
     } else {
       questionsStatus[currentQuestionNo] = data === true ? STATUS_ANSWER_OK : STATUS_ANSWER_NOK;
       questionViewUpdateUI(STATE_QUIZ_OK, buttonId);
@@ -260,7 +260,7 @@ function stopQuiz() {
   getQuizStop(quizID, (err, data) => {
     if (err) {
       questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
-      console.log("ERROR: " + err);
+      console.log("ERROR " + err.status + ": " + err.message);
     } else {
       questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
       displaySummary(data);

@@ -135,7 +135,7 @@ div[class^="question-status"].nav-on:hover {
 #quiz-mode-tile {
   display: flex;
   flex-direction: column;
-  height: 210px;
+  min-height: 210px;
   margin: 0px 25px 25px 0px;
   border: 1px black solid;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
@@ -150,16 +150,45 @@ div[class^="question-status"].nav-on:hover {
   color: white;
 }
 
+#mode-description-text {
+  display: flex;
+  height: 21px;
+}
+
 #quiz-mode-tile-content {
   padding: 5px 10px;
   font-size: 15px;
 }
 
+.quiz-mode-setting-container {
+  height: 21px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.quiz-mode-setting-container label {
+  width: 130px;
+}
+
+.language-flag {
+  cursor: pointer;
+  filter: grayscale(0.85);
+  margin: 0px 5px 0px 0px;
+}
+
+.language-flag.language-selected {
+  cursor: default;
+  filter: grayscale(0);
+}
+
 #quiz-mode-tile-controls {
   display: flex;
+  align-items: flex-end;
   height: 100%;
   position: relative;
   padding: 0px 10px;
+  margin: 5px 0px 10px 0px;
 }
 
 #quiz-mode-controls-info {
@@ -167,7 +196,7 @@ div[class^="question-status"].nav-on:hover {
   width: 24px;
   height: 24px;
   position: absolute;
-  bottom: 17px;
+  bottom: 9px;
   right: 18px;
   z-index: 10;
 }

@@ -5,6 +5,6 @@ package pl.smtc.smartwords.model
  * @param name smart word title/name
  * @param category word category
  * @param definition word correct definition
- * @param dictionary word source dictionary file
+ * @param dictionary word source dictionary object
  */
-case class Word(name: String, category: Category.Value, definition: List[String], var dictionary: String)
+case class Word(name: String, category: Category.Value, definition: List[String], var dictionary: Dictionary)

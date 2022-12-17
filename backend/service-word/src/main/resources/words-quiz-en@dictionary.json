@@ -1,0 +1,312 @@
+[
+  {
+    "name": "accolade",
+    "category": "noun",
+    "description": [
+      "a tangible symbol signifying approval or distinction"
+    ]
+  },
+  {
+    "name": "acrimony",
+    "category": "noun",
+    "description": [
+      "rough manner",
+      "bitter manner"
+    ]
+  },
+  {
+    "name": "angst",
+    "category": "noun",
+    "description": [
+      "an acute but unspecific feeling of anxiety"
+    ]
+  },
+  {
+    "name": "elucidate",
+    "category": "verb",
+    "description": [
+      "explain",
+      "to make something clear"
+    ]
+  },
+  {
+    "name": "selcouth",
+    "category": "adjective",
+    "description": [
+      "unusual",
+      "strange"
+    ]
+  },
+  {
+    "name": "halcyon",
+    "category": "adjective",
+    "description": [
+      "characterized by happiness",
+      "great success, and prosperity"
+    ]
+  },
+  {
+    "name": "orphic",
+    "category": "adjective",
+    "description": [
+      "mystic",
+      "oracular",
+      "fascinating",
+      "entrancing"
+    ]
+  },
+  {
+    "name": "malaise",
+    "category": "noun",
+    "description": [
+      "physical discomfort",
+      "feeling of being under the weather"
+    ]
+  },
+  {
+    "name": "scintillating",
+    "category": "adjective",
+    "description": [
+      "fascinating",
+      "brilliantly clever"
+    ]
+  },
+  {
+    "name": "atelophobia",
+    "category": "latin",
+    "description": [
+      "fear of not doing something right",
+      "feat of not being good enough"
+    ]
+  },
+  {
+    "name": "orgulous",
+    "category": "adjective",
+    "description": [
+      "proud"
+    ]
+  },
+  {
+    "name": "pulchritudinous",
+    "category": "adjective",
+    "description": [
+      "attractive",
+      "beautiful"
+    ]
+  },
+  {
+    "name": "accoutrements",
+    "category": "noun",
+    "description": [
+      "accessories"
+    ]
+  },
+  {
+    "name": "osculator",
+    "category": "person",
+    "description": [
+      "someone who kisses"
+    ]
+  },
+  {
+    "name": "winebibber",
+    "category": "person",
+    "description": [
+      "a person who drinks too much wine"
+    ]
+  },
+  {
+    "name": "nidificate",
+    "category": "verb",
+    "description": [
+      "to nest"
+    ]
+  },
+  {
+    "name": "gasconading",
+    "category": "verb",
+    "description": [
+      "to brag",
+      "to gloat"
+    ]
+  },
+  {
+    "name": "ubiquitous",
+    "category": "adjective",
+    "description": [
+      "universal",
+      "everywhere"
+    ]
+  },
+  {
+    "name": "sycophant",
+    "category": "person",
+    "description": [
+      "a person who flatters someone important in order to take advantage of them"
+    ]
+  },
+  {
+    "name": "perfidiousness",
+    "category": "noun",
+    "description": [
+      "a betrayal of trust"
+    ]
+  },
+  {
+    "name": "brogue",
+    "category": "noun",
+    "description": [
+      "strong outdoor shoe, usually made of leather"
+    ]
+  },
+  {
+    "name": "glib",
+    "category": "adjective",
+    "description": [
+      "suave",
+      "smooth-talking"
+    ]
+  },
+  {
+    "name": "umbrage",
+    "category": "noun",
+    "description": [
+      "displeasure",
+      "resentment",
+      "anger"
+    ]
+  },
+  {
+    "name": "ennui",
+    "category": "noun",
+    "description": [
+      "feeling simultaneously bored and annoyed"
+    ]
+  },
+  {
+    "name" : "ebullience",
+    "category" : "noun",
+    "description" : [
+      "the quality of lively or enthusiastic expression of thoughts and feelings"
+    ]
+  },
+  {
+    "name" : "quiddity",
+    "category" : "noun",
+    "description" : [
+      "whatever makes something the type that it is",
+      "the essence"
+    ]
+  },
+  {
+    "name" : "aeonian",
+    "category" : "adjective",
+    "description" : [
+      "endless",
+      "eternal",
+      "everlasting",
+      "lasting for an indefinitely long period of time"
+    ]
+  },
+  {
+    "name" : "coruscate",
+    "category" : "verb",
+    "description" : [
+      "to give off light in bright beams or flashes",
+      "to sparkle"
+    ]
+  },
+  {
+    "name" : "cimmerian",
+    "category" : "adjective",
+    "description" : [
+      "very dark",
+      "gloomy"
+    ]
+  },
+  {
+    "name" : "gloomy",
+    "category" : "adjective",
+    "description" : [
+      "without hope",
+      "unhappy",
+      "not believing anything good in a situation"
+    ]
+  },
+  {
+    "name" : "adamant",
+    "category" : "adjective",
+    "description" : [
+      "impossible to persuade",
+      "unwilling to change an opinion or decision"
+    ]
+  },
+  {
+    "name" : "evenfall",
+    "category" : "noun",
+    "description" : [
+      "the beginning of evening",
+      "dusk"
+    ]
+  },
+  {
+    "name" : "parsimonious",
+    "category" : "adjective",
+    "description" : [
+      "frugal",
+      "economical",
+      "thrifty"
+    ]
+  },
+  {
+    "name" : "bellwether",
+    "category" : "person",
+    "description" : [
+      "leader",
+      "trendsetter",
+      "boss"
+    ]
+  },
+  {
+    "name" : "magnanimous",
+    "category" : "adjective",
+    "description" : [
+      "courageous",
+      "noble",
+      "unselfish",
+      "extremely generous"
+    ]
+  },
+  {
+    "name" : "unencumbered",
+    "category" : "adjective",
+    "description" : [
+      "free",
+      "unburdened with responsibilities"
+    ]
+  },
+  {
+    "name" : "acumen",
+    "category" : "noun",
+    "description" : [
+      "quickness to judge"
+    ]
+  },
+  {
+    "name" : "unparagoned",
+    "category" : "adjective",
+    "description" : [
+      "having no equal",
+      "matchless",
+      "incomparable"
+    ]
+  },
+  {
+    "name" : "auspicious",
+    "category" : "adjective",
+    "description" : [
+      "favorable",
+      "flourishing"
+    ]
+  }
+]

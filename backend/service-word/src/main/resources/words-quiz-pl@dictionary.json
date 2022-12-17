@@ -1,0 +1,2168 @@
+[
+  {
+    "name": "utyskiwać",
+    "category": "verb",
+    "description": [
+      "narzekać",
+      "uskarżać się na kogoś",
+      "mieć pretensje",
+      "wygłaszać złośliwe uwagi"
+    ]
+  },
+  {
+    "name": "lapidarny",
+    "category": "adjective",
+    "description": [
+      "zwięzły",
+      "krótki i wyrazisty"
+    ]
+  },
+  {
+    "name": "sadzić się",
+    "category": "verb",
+    "description": [
+      "czepiać się",
+      "starać się zaimponować"
+    ]
+  },
+  {
+    "name": "handryczyć się",
+    "category": "verb",
+    "description": [
+      "kłócić się",
+      "sprzeczać się"
+    ]
+  },
+  {
+    "name": "indyferencja",
+    "category": "noun",
+    "description": [
+      "obojętność",
+      "bierność",
+      "pasywność",
+      "neutralność",
+      "zobojętnienie"
+    ]
+  },
+  {
+    "name": "otaksować",
+    "category": "verb",
+    "description": [
+      "mierzyć wzrokiem",
+      "określić materialną wartość",
+      "uważnie przyjrzeć się czemuś"
+    ]
+  },
+  {
+    "name": "dyskrecjonalny",
+    "category": "adjective",
+    "description": [
+      "pozostawiony do decyzji",
+      "poufny",
+      "dyskretny"
+    ]
+  },
+  {
+    "name": "absztyfikant",
+    "category": "person",
+    "description": [
+      "adorator",
+      "zalotnik",
+      "lowelas",
+      "osoba starająca się o względy kobiety",
+      "wielbiciel"
+    ]
+  },
+  {
+    "name": "bawidamek",
+    "category": "person",
+    "description": [
+      "mężczyzna lubiący kobiety i nadskakujący kobietom"
+    ]
+  },
+  {
+    "name": "efemeryczny",
+    "category": "adjective",
+    "description": [
+      "krótkotrwały",
+      "szybki",
+      "szybko przemijający"
+    ]
+  },
+  {
+    "name": "rekapitulować",
+    "category": "verb",
+    "description": [
+      "streszczać",
+      "powtarzać coś w krótszej formie"
+    ]
+  },
+  {
+    "name": "tromtadracja",
+    "category": "noun",
+    "description": [
+      "krzykliwe wygłaszanie pustych haseł",
+      "efekciarskie przedstawienie mało znaczących poglądów"
+    ]
+  },
+  {
+    "name": "lampucera",
+    "category": "person",
+    "description": [
+      "starsza kobieta używająca ostrego makijażu w celu zatuszowania swojego wieku"
+    ]
+  },
+  {
+    "name": "utensylia",
+    "category": "noun",
+    "description": [
+      "narzędzia",
+      "akcesoria potrzebne do wykonywania prac",
+      "różne sprzęty domowe"
+    ]
+  },
+  {
+    "name": "cezura",
+    "category": "noun",
+    "description": [
+      "punkt zwrotny w życiu jednostki lub zbiorowości",
+      "moment przełomowy rozdzielający różne etapy"
+    ]
+  },
+  {
+    "name": "eufemizm",
+    "category": "noun",
+    "description": [
+      "wyrażenie zastępcze w celu złagodzenia wyrażeń drastycznych lub nieprzyzwoitych"
+    ]
+  },
+  {
+    "name": "eremita",
+    "category": "person",
+    "description": [
+      "pustelnik",
+      "osoba, która z pobudek religijnych decyduje się na życie w izolacji i celibacie"
+    ]
+  },
+  {
+    "name": "imponderabilia",
+    "category": "latin",
+    "description": [
+      "coś niemierzalnego ale mającego wpływ na przebieg wydarzeń"
+    ]
+  },
+  {
+    "name": "wiktuały",
+    "category": "noun",
+    "description": [
+      "żywność",
+      "prowiant",
+      "produkty spożywcze"
+    ]
+  },
+  {
+    "name": "wierutny",
+    "category": "adjective",
+    "description": [
+      "odznaczający się negatywna cechą rozwinięta w najwyższym stopniu"
+    ]
+  },
+  {
+    "name": "mizogin",
+    "category": "person",
+    "description": [
+      "osoba, która nienawidzi kobiet",
+      "osoba czująca pogardę do kobiet",
+      "osoba uprzedzona do kobiet"
+    ]
+  },
+  {
+    "name": "tajemnica poliszynela",
+    "category": "noun",
+    "description": [
+      "tajemnica, o której wszyscy wiedzą, lecz nikt o niej głośno nie mówi"
+    ]
+  },
+  {
+    "name": "flexować się",
+    "category": "verb",
+    "description": [
+      "chwalić się drogimi przedmiotami"
+    ]
+  },
+  {
+    "name": "taumaturg",
+    "category": "person",
+    "description": [
+      "osoba posiadająca dar czynienia cudów",
+      "cudotwórca"
+    ]
+  },
+  {
+    "name": "defetyzm",
+    "category": "noun",
+    "description": [
+      "brak wiary w zwycięstwo lub powodzenie jakiejś sprawy",
+      "ciągłe przewidywanie porażki"
+    ]
+  },
+  {
+    "name": "defenestracja",
+    "category": "noun",
+    "description": [
+      "akt wyrzucania kogoś przez okno"
+    ]
+  },
+  {
+    "name": "merkantylny",
+    "category": "adjective",
+    "description": [
+      "nastawiony na korzyści materialne"
+    ]
+  },
+  {
+    "name": "dyletant",
+    "category": "person",
+    "description": [
+      "człowiek wypowiadający się o jakiejś dziedzinie bez fachowej wiedzy"
+    ]
+  },
+  {
+    "name": "bombast",
+    "category": "noun",
+    "description": [
+      "napuszenie",
+      "pompatyczność",
+      "przesada",
+      "nadęcie"
+    ]
+  },
+  {
+    "name": "akuszerka",
+    "category": "person",
+    "description": [
+      "położna"
+    ]
+  },
+  {
+    "name": "zzuć",
+    "category": "verb",
+    "description": [
+      "zdjąć obuwie",
+      "zdjąć ubranie"
+    ]
+  },
+  {
+    "name": "wiarus",
+    "category": "person",
+    "description": [
+      "dobry, zasłużony, stary żołnierz"
+    ]
+  },
+  {
+    "name": "prozopagnozja",
+    "category": "noun",
+    "description": [
+      "utrata zdolności rozpoznawania twarzy",
+      "ślepota twarzy"
+    ]
+  },
+  {
+    "name": "zmitygować się",
+    "category": "verb",
+    "description": [
+      "powstrzymać się od nazbyt gwałtownej reakcji",
+      "powstrzymać się od pochopnego działania"
+    ]
+  },
+  {
+    "name": "konweniować",
+    "category": "verb",
+    "description": [
+      "być zgodnym z czymś",
+      "odpowiadać",
+      "przypadać do gustu"
+    ]
+  },
+  {
+    "name": "humbug",
+    "category": "person",
+    "description": [
+      "oszust",
+      "ściemniacz",
+      "hipokryta"
+    ]
+  },
+  {
+    "name": "delikt",
+    "category": "noun",
+    "description": [
+      "każdy czyn niedozwolony",
+      "przestępstwo"
+    ]
+  },
+  {
+    "name": "atrium",
+    "category": "noun",
+    "description": [
+      "wewnętrzny dziedziniec otoczony ze wszystkich stron ścianami budynku"
+    ]
+  },
+  {
+    "name": "harpagon",
+    "category": "person",
+    "description": [
+      "ktoś, kto robi wszystko dla zysku",
+      "osoba nadmiernie pragnąca pieniędzy"
+    ]
+  },
+  {
+    "name": "pareidolia",
+    "category": "latin",
+    "description": [
+      "zjawisko dopatrywania się znanych kształtów w przypadkowych detalach"
+    ]
+  },
+  {
+    "name": "labilny",
+    "category": "adjective",
+    "description": [
+      "zmienny",
+      "niestały",
+      "niestabilny",
+      "chwiejny"
+    ]
+  },
+  {
+    "name": "labiedzić",
+    "category": "verb",
+    "description": [
+      "narzekać",
+      "biadać"
+    ]
+  },
+  {
+    "name": "labelista",
+    "category": "person",
+    "description": [
+      "kolekcjoner nalepek turystycznych"
+    ]
+  },
+  {
+    "name": "abnegat",
+    "category": "person",
+    "description": [
+      "człowiek niedbający o swój wygląd, o swoje korzyści"
+    ]
+  },
+  {
+    "name": "megiera",
+    "category": "person",
+    "description": [
+      "kobieta despotyczna"
+    ]
+  },
+  {
+    "name": "urwipołeć",
+    "category": "person",
+    "description": [
+      "urwis",
+      "psotnik"
+    ]
+  },
+  {
+    "name": "antyszambrować",
+    "category": "verb",
+    "description": [
+      "długo czekać na spotkanie z osobą ważną i decyzyjną"
+    ]
+  },
+  {
+    "name": "spolegliwy",
+    "category": "adjective",
+    "description": [
+      "osoba, na której można polegać",
+      "godny zaufania"
+    ]
+  },
+  {
+    "name": "obstalunek",
+    "category": "noun",
+    "description": [
+      "zamówienie pod wymiar"
+    ]
+  },
+  {
+    "name": "wciórności",
+    "category": "noun",
+    "description": [
+      "przekleństwa"
+    ]
+  },
+  {
+    "name": "monidło",
+    "category": "noun",
+    "description": [
+      "rodzaj portretu namalowanego na podstawie zdjęcia ślubnego"
+    ]
+  },
+  {
+    "name": "przaśny",
+    "category": "adjective",
+    "description": [
+      "mdły",
+      "prosty",
+      "naturalny",
+      "radosny"
+    ]
+  },
+  {
+    "name": "ambaras",
+    "category": "adjective",
+    "description": [
+      "kłopot",
+      "trudna sytuacja"
+    ]
+  },
+  {
+    "name": "austeria",
+    "category": "noun",
+    "description": [
+      "karczma",
+      "zajazd",
+      "oberża",
+      "gospoda"
+    ]
+  },
+  {
+    "name": "sobkostwo",
+    "category": "noun",
+    "description": [
+      "myślenie tylko o sobie",
+      "dbanie wyłącznie o siebie",
+      "egoizm"
+    ]
+  },
+  {
+    "name": "oniryzm",
+    "category": "noun",
+    "description": [
+      "marzenie senne",
+      "zabieg literacki ukazujący rzeczywistość w formie snu"
+    ]
+  },
+  {
+    "name": "ancymon",
+    "category": "person",
+    "description": [
+      "urwis udający niewiniątko"
+    ]
+  },
+  {
+    "name": "achać",
+    "category": "verb",
+    "description": [
+      "zachwycać się czymś w sposób przesadny i sztuczny"
+    ]
+  },
+  {
+    "name": "fircyczka",
+    "category": "person",
+    "description": [
+      "kobieta niepoważna",
+      "trzpiotka"
+    ]
+  },
+  {
+    "name": "letnik",
+    "category": "person",
+    "description": [
+      "osoba spędzająca letnie wakacje na letnisku"
+    ]
+  },
+  {
+    "name": "fatalizm",
+    "category": "noun",
+    "description": [
+      "wiara w nieuchronność losu"
+    ]
+  },
+  {
+    "name": "refulacja",
+    "category": "noun",
+    "description": [
+      "prace mające na celu poszerzanie oraz ochronę terenów brzegowych"
+    ]
+  },
+  {
+    "name": "abuzywny",
+    "category": "noun",
+    "description": [
+      "niedozwolony"
+    ]
+  },
+  {
+    "name": "repasaż",
+    "category": "noun",
+    "description": [
+      "sposób przeprowadzania eliminacji do kolejnych faz zawodów sportowych"
+    ]
+  },
+  {
+    "name": "serwitut",
+    "category": "noun",
+    "description": [
+      "pozwolenie",
+      "zgoda"
+    ]
+  },
+  {
+    "name": "saute",
+    "category": "adjective",
+    "description": [
+      "smażony w niewielkiej ilości tłuszczu bez dodatków"
+    ]
+  },
+  {
+    "name": "sukurs",
+    "category": "noun",
+    "description": [
+      "odsiecz",
+      "pomoc",
+      "wsparcie"
+    ]
+  },
+  {
+    "name": "badylarz",
+    "category": "person",
+    "description": [
+      "prywatny przedsiebiorca-ogrodnik"
+    ]
+  },
+  {
+    "name": "pluwiofil",
+    "category": "person",
+    "description": [
+      "osoba uwielbiająca deszcze"
+    ]
+  },
+  {
+    "name": "pluwiał",
+    "category": "noun",
+    "description": [
+      "okres ze zwiększoną ilością opadów atmosferycznych"
+    ]
+  },
+  {
+    "name": "kazamaty",
+    "category": "noun",
+    "description": [
+      "schron w twierdzy bastionowej",
+      "schron w forcie"
+    ]
+  },
+  {
+    "name": "szmaterlok",
+    "category": "noun",
+    "description": [
+      "motyl"
+    ]
+  },
+  {
+    "name": "dementi",
+    "category": "noun",
+    "description": [
+      "formalne, urzędowe zaprzeczenie i/lub sprostowanie"
+    ]
+  },
+  {
+    "name": "parweniusz",
+    "category": "person",
+    "description": [
+      "dorobkiewicz, który wszedł do warstwy ludzi zamożnych i nieumiejętnie ich naśladuje"
+    ]
+  },
+  {
+    "name": "trybuszon",
+    "category": "noun",
+    "description": [
+      "korkociąg"
+    ]
+  },
+  {
+    "name": "odeon",
+    "category": "noun",
+    "description": [
+      "starożytna budowla przeznaczona na występy muzyczne i teatralne"
+    ]
+  },
+  {
+    "name": "wernakularny",
+    "category": "adjective",
+    "description": [
+      "rodzimy",
+      "domowy"
+    ]
+  },
+  {
+    "name": "eon",
+    "category": "noun",
+    "description": [
+      "największa formalna jednostka geochronologiczna"
+    ]
+  },
+  {
+    "name": "enologia",
+    "category": "noun",
+    "description": [
+      "nauka o produkcji wina",
+      "nauka o rodzajach wina"
+    ]
+  },
+  {
+    "name": "lepidopterolog",
+    "category": "person",
+    "description": [
+      "naukowiec zajmujący się badaniem motyli"
+    ]
+  },
+  {
+    "name": "obuch",
+    "category": "noun",
+    "description": [
+      "tępo zakończona część niektórych narzędzi"
+    ]
+  },
+  {
+    "name": "jebadełko",
+    "category": "noun",
+    "description": [
+      "urządzenie do wyjmowania metalowych elementów sprzętu wspinaczkowego ze szczelin"
+    ]
+  },
+  {
+    "name": "ciuk",
+    "category": "noun",
+    "description": [
+      "siano lub słoma sprasowane prasą rolniczą w kształcie bryły o podstawie prostokąta"
+    ]
+  },
+  {
+    "name": "blagować",
+    "category": "verb",
+    "description": [
+      "mówić rzeczy nieprawdziwe w celu wywarcia na kimś wrażenia"
+    ]
+  },
+  {
+    "name": "braggować",
+    "category": "verb",
+    "description": [
+      "przechwalać się"
+    ]
+  },
+  {
+    "name": "masztalerz",
+    "category": "person",
+    "description": [
+      "starszy stajenny mający nadzór nad personelem i powierzonymi końmi w stadninach"
+    ]
+  },
+  {
+    "name": "urępny",
+    "category": "adjective",
+    "description": [
+      "piękny",
+      "śliczny"
+    ]
+  },
+  {
+    "name": "lampartować",
+    "category": "verb",
+    "description": [
+      "prowadzić rozpustne życie",
+      "prowadzić próżniacze życie"
+    ]
+  },
+  {
+    "name": "tidsoptymista",
+    "category": "person",
+    "description": [
+      "osoba, która zawsze się spóźnia, bo wierzy, że ma wystarczająco dużo czasu, aby zdążyć"
+    ]
+  },
+  {
+    "name": "maszkaron",
+    "category": "noun",
+    "description": [
+      "rzeźbiarski motyw dekoracyjny w postaci stylizowanej głowy ludzkiej lub fantastycznej postaci"
+    ]
+  },
+  {
+    "name": "barłóg",
+    "category": "noun",
+    "description": [
+      "legowisko niedźwiedzi lub dzików",
+      "nieposłane łóżko"
+    ]
+  },
+  {
+    "name": "merytokracja",
+    "category": "noun",
+    "description": [
+      "system, w którym pozycje uzależnione są od kompetencji"
+    ]
+  },
+  {
+    "name": "idiolatria",
+    "category": "noun",
+    "description": [
+      "postawa polegająca na uwielbienia samego siebie"
+    ]
+  },
+  {
+    "name": "sowizdrzał",
+    "category": "person",
+    "description": [
+      "człowiek niepoważny",
+      "urwis"
+    ]
+  },
+  {
+    "name": "egalitaryzm",
+    "category": "noun",
+    "description": [
+      "przekonanie, że wszyscy ludzie są równi i powinni mieć jednakowe prawa"
+    ]
+  },
+  {
+    "name": "anomia",
+    "category": "noun",
+    "description": [
+      "załamanie się ładu społecznego"
+    ]
+  },
+  {
+    "name": "palamenter",
+    "category": "person",
+    "description": [
+      "człowiek zdolny, ale próżniak"
+    ]
+  },
+  {
+    "name": "pergola",
+    "category": "noun",
+    "description": [
+      "budowla ogrodowa jednego lub dwóch rzędów słupów podtrzymujących poziomą konstrukcję kratową"
+    ]
+  },
+  {
+    "name": "interlokutor",
+    "category": "person",
+    "description": [
+      "osoba prowadząca z kimś rozmowę",
+      "partner w rozmowie"
+    ]
+  },
+  {
+    "name": "wadium",
+    "category": "noun",
+    "description": [
+      "gwarancja składane w poczet zabezpieczenia dotrzymania warunków umowy"
+    ]
+  },
+  {
+    "name": "trejaż",
+    "category": "noun",
+    "description": [
+      "budowla ogrodowa, składająca się z szeregu słupków, połączonych u góry poziomą belką"
+    ]
+  },
+  {
+    "name": "drewutnia",
+    "category": "noun",
+    "description": [
+      "pomieszczenie, w którym rąbie się i składa drwa przeznaczone na potrzeby gospodarstwa domowego"
+    ]
+  },
+  {
+    "name": "uzurpować",
+    "category": "verb",
+    "description": [
+      "przywłaszczenie sobie praw do czegoś"
+    ]
+  },
+  {
+    "name": "cymelium",
+    "category": "noun",
+    "description": [
+      "bardzo cenny druk lub rękopis"
+    ]
+  },
+  {
+    "name": "żupa",
+    "category": "noun",
+    "description": [
+      "kopalnia soli"
+    ]
+  },
+  {
+    "name": "luminarz",
+    "category": "person",
+    "description": [
+      "człowiek wybitnie wykształcony, znany w kręgach naukowych lub kulturalnych"
+    ]
+  },
+  {
+    "name": "słota",
+    "category": "noun",
+    "description": [
+      "długo utrzymająca się niepogoda, charakteryzująca się uciążliwymi opadami"
+    ]
+  },
+  {
+    "name": "adonis",
+    "category": "person",
+    "description": [
+      "urodziwy mężczyzna",
+      "przesadnie dbający o urodę mężczyzna"
+    ]
+  },
+  {
+    "name": "butonierka",
+    "category": "noun",
+    "description": [
+      "niewielki otwór na guzik w lewej klapie marynarki"
+    ]
+  },
+  {
+    "name": "brustasza",
+    "category": "noun",
+    "description": [
+      "mała kieszonka zewnętrzna w marynarce"
+    ]
+  },
+  {
+    "name": "posztetka",
+    "category": "noun",
+    "description": [
+      "ozdobna chusteczka wkładana do górnej kieszonki w marynarce"
+    ]
+  },
+  {
+    "name": "fidrygałki",
+    "category": "noun",
+    "description": [
+      "przedmioty niezbyt ważne",
+      "przedmioty błahe"
+    ]
+  },
+  {
+    "name": "frymuśny",
+    "category": "adjective",
+    "description": [
+      "wymyślny",
+      "fantazyjny"
+    ]
+  },
+  {
+    "name": "solenny",
+    "category": "adjective",
+    "description": [
+      "podniosły",
+      "uroczysty",
+      "obowiązkowy",
+      "rzetelny"
+    ]
+  },
+  {
+    "name": "konotacja",
+    "category": "noun",
+    "description": [
+      "znaczenie, treść nazwy"
+    ]
+  },
+  {
+    "name": "jowialny",
+    "category": "adjective",
+    "description": [
+      "mający pogodne usposobienie i nieco rubaszne poczucie humoru"
+    ]
+  },
+  {
+    "name": "weredyk",
+    "category": "noun",
+    "description": [
+      "mówienie prawdy bez względu na konsekwencje"
+    ]
+  },
+  {
+    "name": "tapet",
+    "category": "noun",
+    "description": [
+      "stół pokryty najczęściej zielonym suknem, przy którym się obraduje"
+    ]
+  },
+  {
+    "name": "rachityczny",
+    "category": "adjective",
+    "description": [
+      "słabo rozwinięty",
+      "wątły",
+      "lichy"
+    ]
+  },
+  {
+    "name": "wardęga",
+    "category": "person",
+    "description": [
+      "włóczęga"
+    ]
+  },
+  {
+    "name": "triaż",
+    "category": "noun",
+    "description": [
+      "segregacja",
+      "sortowanie"
+    ]
+  },
+  {
+    "name": "opsomaniak",
+    "category": "person",
+    "description": [
+      "osoba mająca obsesję na punkcie jakiegoś konkretnego rodzaju jedzenia"
+    ]
+  },
+  {
+    "name": "frela",
+    "category": "person",
+    "description": [
+      "dziewczyna",
+      "dziołcha"
+    ]
+  },
+  {
+    "name": "dziad kalwaryjski",
+    "category": "person",
+    "description": [
+      "żebrak",
+      "człowiek ubogi żyjący z tego co dostanie od innych"
+    ]
+  },
+  {
+    "name": "galimatias",
+    "category": "noun",
+    "description": [
+      "nieład",
+      "harmider",
+      "zamęt"
+    ]
+  },
+  {
+    "name": "knajak",
+    "category": "person",
+    "description": [
+      "człowiek z marginesu społecznego"
+    ]
+  },
+  {
+    "name": "internalizować",
+    "category": "verb",
+    "description": [
+      "przyjmowac za swoje własne, narzucane z zewnątrz postawy"
+    ]
+  },
+  {
+    "name": "konsolacja",
+    "category": "noun",
+    "description": [
+      "pocieszenie",
+      "poczęstunek po pogrzebie"
+    ]
+  },
+  {
+    "name": "epitafium",
+    "category": "noun",
+    "description": [
+      "napis na nagrobku"
+    ]
+  },
+  {
+    "name": "dupny",
+    "category": "adjective",
+    "description": [
+      "wydrążony",
+      "próżny",
+      "pusty"
+    ]
+  },
+  {
+    "name": "degrengolada",
+    "category": "noun",
+    "description": [
+      "zupełny rozkład wartości moralnych w jakimś środowisku"
+    ]
+  },
+  {
+    "name": "kunktator",
+    "category": "person",
+    "description": [
+      "osoba umyślnie z czymś zwlekająca lub przeciągająca coś"
+    ]
+  },
+  {
+    "name": "perkal",
+    "category": "noun",
+    "description": [
+      "cienkie płótno bawełniane"
+    ]
+  },
+  {
+    "name": "mizopedia",
+    "category": "noun",
+    "description": [
+      "niechęć do dzieci"
+    ]
+  },
+  {
+    "name": "masny",
+    "category": "adjective",
+    "description": [
+      "gruby",
+      "tłusty"
+    ]
+  },
+  {
+    "name": "fatygant",
+    "category": "person",
+    "description": [
+      "adorator",
+      "mężczyzna starający się o względy kobiety"
+    ]
+  },
+  {
+    "name": "mezalians",
+    "category": "noun",
+    "description": [
+      "małżeństwo z osobą niższego stanu"
+    ]
+  },
+  {
+    "name": "letologika",
+    "category": "noun",
+    "description": [
+      "stan niemożności przywołania potrzebnego słowa"
+    ]
+  },
+  {
+    "name": "egzaltować",
+    "category": "verb",
+    "description": [
+      "wpadać w stan nadmiernego zachwytu"
+    ]
+  },
+  {
+    "name": "turbować",
+    "category": "verb",
+    "description": [
+      "sprawiać kłopot lub martwić kogoś"
+    ]
+  },
+  {
+    "name": "truizm",
+    "category": "noun",
+    "description": [
+      "stwierdzenie prawdziwe, ale banalne"
+    ]
+  },
+  {
+    "name": "altruizm",
+    "category": "noun",
+    "description": [
+      "zachowanie polegające na działaniu na korzyść innych"
+    ]
+  },
+  {
+    "name": "prokura",
+    "category": "noun",
+    "description": [
+      "pełnomocnictwo handlowe lub bankowe udzielane przez spółkę"
+    ]
+  },
+  {
+    "name": "estuarium",
+    "category": "noun",
+    "description": [
+      "poszerzone, lejkowate ujście rzeki"
+    ]
+  },
+  {
+    "name": "umościć się",
+    "category": "verb",
+    "description": [
+      "ułożyć się na czymś",
+      "usiąść gdzieś wygodnie"
+    ]
+  },
+  {
+    "name": "rozrzewnienie",
+    "category": "adjective",
+    "description": [
+      "uczucie tkliwości",
+      "uczucie czułości"
+    ]
+  },
+  {
+    "name": "inkaust",
+    "category": "noun",
+    "description": [
+      "atrament"
+    ]
+  },
+  {
+    "name": "indolencja",
+    "category": "noun",
+    "description": [
+      "bezradność",
+      "bezczynność",
+      "brak reakcji na sytuację",
+      "niezaradność"
+    ]
+  },
+  {
+    "name": "fantasmagoria",
+    "category": "noun",
+    "description": [
+      "urojenie",
+      "iluzja"
+    ]
+  },
+  {
+    "name": "gremialny",
+    "category": "adjective",
+    "description": [
+      "odnoszący się do wielkiej liczby ludzi",
+      "masowy"
+    ]
+  },
+  {
+    "name": "wysublimowany",
+    "category": "adjective",
+    "description": [
+      "będący wyrazem wysokiego poziomu artystycznego lub umysłowego"
+    ]
+  },
+  {
+    "name": "krokiet",
+    "category": "noun",
+    "description": [
+      "gra sportowa uprawiana głównie w Anglii i Stanach Zjednoczonych"
+    ]
+  },
+  {
+    "name": "rzucik",
+    "category": "noun",
+    "description": [
+      "drobny wzór na jakimś tle"
+    ]
+  },
+  {
+    "name": "dendrofil",
+    "category": "person",
+    "description": [
+      "osoba cierpiąca dewiację seksualną do drzew"
+    ]
+  },
+  {
+    "name": "brakarz",
+    "category": "person",
+    "description": [
+      "pracownik kontroli technicznej oceniający jakość gotowych wyrobów"
+    ]
+  },
+  {
+    "name": "abberacja",
+    "category": "noun",
+    "description": [
+      "odchylenie od normalnego stanu"
+    ]
+  },
+  {
+    "name": "spuneryzm",
+    "category": "noun",
+    "description": [
+      "mimowolne przestawienie głoski lub kilku głosek w wyrazach"
+    ]
+  },
+  {
+    "name": "dezynwoltura",
+    "category": "noun",
+    "description": [
+      "zachowanie wobec kogoś świadczące o lekceważeniu",
+      "lekceważące odnoszenie się do kogoś"
+    ]
+  },
+  {
+    "name": "antruaż",
+    "category": "noun",
+    "description": [
+      "otoczenie",
+      "środowisko"
+    ]
+  },
+  {
+    "name": "arywizm",
+    "category": "noun",
+    "description": [
+      "próba osiągnięcia celu z zaniechaniem wartości moralnych",
+      "po trupach do celu"
+    ]
+  },
+  {
+    "name": "konfabulacja",
+    "category": "noun",
+    "description": [
+      "ściemnianie",
+      "opowiadanie przeżyć zmyślonych objętych mgłą niepamięci"
+    ]
+  },
+  {
+    "name": "kaligynefobia",
+    "category": "latin",
+    "description": [
+      "lęk przed pięknymi kobietami"
+    ]
+  },
+  {
+    "name": "dysania",
+    "category": "noun",
+    "description": [
+      "niezdolność do porannego wstawania",
+      "powracające pragnienie, aby ponownie się położyć"
+    ]
+  },
+  {
+    "name": "satrapa",
+    "category": "person",
+    "description": [
+      "despotyczny władca",
+      "tyran"
+    ]
+  },
+  {
+    "name": "rejwach",
+    "category": "noun",
+    "description": [
+      "hałas wywoływany przez głośne rozmowy lub krzyki"
+    ]
+  },
+  {
+    "name": "panicz",
+    "category": "person",
+    "description": [
+      "mężczyzna elegancki, żyjący wygodnie"
+    ]
+  },
+  {
+    "name": "autoteliczny",
+    "category": "adjective",
+    "description": [
+      "będącym celem samym w sobie"
+    ]
+  },
+  {
+    "name": "perororwać",
+    "category": "verb",
+    "description": [
+      "długa i nudna mowa zawierająca napuszone pouczenie"
+    ]
+  },
+  {
+    "name": "mitrężyć",
+    "category": "verb",
+    "description": [
+      "guzdrać się",
+      "marnować czas na próżno"
+    ]
+  },
+  {
+    "name": "laudacja",
+    "category": "noun",
+    "description": [
+      "mowa pochwalna obrazująca zalety danej osoby"
+    ]
+  },
+  {
+    "name": "flegmatyk",
+    "category": "person",
+    "description": [
+      "człowiek o dużym spokoju i swoistą apatią"
+    ]
+  },
+  {
+    "name": "kosztorysant",
+    "category": "person",
+    "description": [
+      "osoba, która optymalizuje wydatki kapitałowe na inwestycje"
+    ]
+  },
+  {
+    "name": "koncertina",
+    "category": "noun",
+    "description": [
+      "luźne zwoje elastycznego drutu kolczastego żyletkowego"
+    ]
+  },
+  {
+    "name": "gerentokracja",
+    "category": "noun",
+    "description": [
+      "rządy starych ludzi"
+    ]
+  },
+  {
+    "name": "dekadencja",
+    "category": "noun",
+    "description": [
+      "końcowa faza czegoś",
+      "chylenie się ku upadkowi",
+      "zbliżanie się do końca"
+    ]
+  },
+  {
+    "name": "bilokacja",
+    "category": "noun",
+    "description": [
+      "bycie w dwóch miejscach na raz"
+    ]
+  },
+  {
+    "name": "potępiać w czambuł",
+    "category": "verb",
+    "description": [
+      "potępiać w całości, szybko i kategorycznie"
+    ]
+  },
+  {
+    "name": "knieja",
+    "category": "noun",
+    "description": [
+      "wielki gęsty las, w którym mieszka zwierzyna"
+    ]
+  },
+  {
+    "name": "machinacja",
+    "category": "noun",
+    "description": [
+      "podstępne działanie na czyjąś szkodę"
+    ]
+  },
+  {
+    "name": "galanteria",
+    "category": "noun",
+    "description": [
+      "niewielkie wyroby mające charakter zdobniczy"
+    ]
+  },
+  {
+    "name": "kontestacja",
+    "category": "noun",
+    "description": [
+      "sprzeciw wyrażany publicznie poprzez wypowiedzi i zachowanie"
+    ]
+  },
+  {
+    "name": "ceklacja",
+    "category": "noun",
+    "description": [
+      "tułanie się po nocy"
+    ]
+  },
+  {
+    "name": "eschatologia",
+    "category": "noun",
+    "description": [
+      "ogół poglądów dotyczących rzeczy ostatecznych"
+    ]
+  },
+  {
+    "name": "eosofobia",
+    "category": "latin",
+    "description": [
+      "strach przed świtem i światłem słonecznym"
+    ]
+  },
+  {
+    "name": "nomokracja",
+    "category": "noun",
+    "description": [
+      "rządy oparte na poszanowaniu prawa"
+    ]
+  },
+  {
+    "name": "eutymia",
+    "category": "noun",
+    "description": [
+      "stan prawidłowego stanu ducha"
+    ]
+  },
+  {
+    "name": "jutrać",
+    "category": "verb",
+    "description": [
+      "odkładać na później",
+      "zwlekać"
+    ]
+  },
+  {
+    "name": "abulia",
+    "category": "latin",
+    "description": [
+      "niemożność powzięcia decyzji lub realizacji postanowień"
+    ]
+  },
+  {
+    "name": "tanoreksja",
+    "category": "noun",
+    "description": [
+      "obsesyjna potrzeba posiadania opalonej skóry"
+    ]
+  },
+  {
+    "name": "bałuch",
+    "category": "noun",
+    "description": [
+      "wrzawa",
+      "zgiełk",
+      "hałas"
+    ]
+  },
+  {
+    "name": "klinomania",
+    "category": "noun",
+    "description": [
+      "chorobowa potrzeba przebywania w pozycji leżącej"
+    ]
+  },
+  {
+    "name": "smecz",
+    "category": "noun",
+    "description": [
+      "zagrywka sportowa - ścięcie"
+    ]
+  },
+  {
+    "name": "paciulok",
+    "category": "person",
+    "description": [
+      "oferma",
+      "fajtłapa"
+    ]
+  },
+  {
+    "name": "sześdziesiona",
+    "category": "person",
+    "description": [
+      "donosiciel"
+    ]
+  },
+  {
+    "name": "hiponim",
+    "category": "noun",
+    "description": [
+      "wyraz, którego znaczenie jest węższe w stosunku do znaczenia innego wyrazu"
+    ]
+  },
+  {
+    "name": "didaskalia",
+    "category": "noun",
+    "description": [
+      "informacje autora sztuki dotyczące pobocznych czynności"
+    ]
+  },
+  {
+    "name": "apoteoza",
+    "category": "noun",
+    "description": [
+      "wychwalanie idei bądź wartości"
+    ]
+  },
+  {
+    "name": "rzaz",
+    "category": "noun",
+    "description": [
+      "szczelina w miejscu piłowania drzewa"
+    ]
+  },
+  {
+    "name": "szynel",
+    "category": "noun",
+    "description": [
+      "męski płaszcz dopasowany do figury"
+    ]
+  },
+  {
+    "name": "flauta",
+    "category": "noun",
+    "description": [
+      "określenie żeglarskie oznaczające brak wiatru"
+    ]
+  },
+  {
+    "name": "inseminator",
+    "category": "person",
+    "description": [
+      "specjalista w dziedzinie sztucznego unasienienia zwierząt hodowlanych"
+    ]
+  },
+  {
+    "name": "fjut",
+    "category": "noun",
+    "description": [
+      "cyrop",
+      "syrop z buraków cukrowych"
+    ]
+  },
+  {
+    "name": "vis maior",
+    "category": "latin",
+    "description": [
+      "siła wyższa"
+    ]
+  },
+  {
+    "name": "metanoja",
+    "category": "noun",
+    "description": [
+      "duchowa bądź intelektualna przemiana"
+    ]
+  },
+  {
+    "name": "konterfekt",
+    "category": "noun",
+    "description": [
+      "portret",
+      "wizerunek",
+      "obraz"
+    ]
+  },
+  {
+    "name": "badlandy",
+    "category": "noun",
+    "description": [
+      "obszary wyżynne, głównie w strefie klimatu suchego i półsuchego, o ubogiej roślinności"
+    ]
+  },
+  {
+    "name": "oniryczny",
+    "category": "adjective",
+    "description": [
+      "związany ze snem, odnoszący się do niego",
+      "powstaly na kształt marzenia sennego"
+    ]
+  },
+  {
+    "name": "paszenog",
+    "category": "person",
+    "description": [
+      "mąż siostry żony"
+    ]
+  },
+  {
+    "name": "immanentny",
+    "category": "adjective",
+    "description": [
+      "taki, który nie wynika z działań zewnętrznych",
+      "tkwiący w naturze czegoś",
+      "zawarty w czymś"
+    ]
+  },
+  {
+    "name": "ekumena",
+    "category": "noun",
+    "description": [
+      "obszary kuli ziemskiej stale zamieszkane i wykorzystywane gospodarczo przez człowieka"
+    ]
+  },
+  {
+    "name": "gatofobia",
+    "category": "latin",
+    "description": [
+      "strach przed kotami"
+    ]
+  },
+  {
+    "name": "deliberować",
+    "category": "verb",
+    "description": [
+      "rozważać coś",
+      "naradzać się nad czymś"
+    ]
+  },
+  {
+    "name": "antycypować",
+    "category": "verb",
+    "description": [
+      "przewidywać",
+      "wyprzedzać to, co ma nastąpić"
+    ]
+  },
+  {
+    "name": "dubiel",
+    "category": "noun",
+    "description": [
+      "głupiec",
+      "bałwan",
+      "prostak"
+    ]
+  },
+  {
+    "name": "kołatka",
+    "category": "noun",
+    "description": [
+      "drewniany instrument muzyczny",
+      "ruchomy uchwyt na drzwiach służący do pukania"
+    ]
+  },
+  {
+    "name": "upupiać",
+    "category": "verb",
+    "description": [
+      "traktować czyjeś działanie jako niedojarzałe",
+      "traktować kogoś jak "
+    ]
+  },
+  {
+    "name": "szczeżuja",
+    "category": "noun",
+    "description": [
+      "gatunek małży słodkowodnych"
+    ]
+  },
+  {
+    "name": "postaw",
+    "category": "noun",
+    "description": [
+      "staropolska jednostka miary tkanin"
+    ]
+  },
+  {
+    "name": "ablutofobia",
+    "category": "latin",
+    "description": [
+      "lęk przed kąpielą",
+      "lęk przed czyszczeniem własnego ciała"
+    ]
+  },
+  {
+    "name": "gawra",
+    "category": "noun",
+    "description": [
+      "zimowe legowisko niedźwiedzi"
+    ]
+  },
+  {
+    "name": "fordanser",
+    "category": "person",
+    "description": [
+      "partner do tańca wynajmowany za pieniądze w lokalach rozrywkowych"
+    ]
+  },
+  {
+    "name": "otomana",
+    "category": "noun",
+    "description": [
+      "niska kanapa o miękkim siedzeniu"
+    ]
+  },
+  {
+    "name": "holistyczny",
+    "category": "adjective",
+    "description": [
+      "całościowy",
+      "dotyczący całości"
+    ]
+  },
+  {
+    "name": "transcendentny",
+    "category": "adjective",
+    "description": [
+      "istniejący na zewnątrz czegoś",
+      "znajdujący się poza zasięgiem doświadczenia"
+    ]
+  },
+  {
+    "name": "fintifluszka",
+    "category": "noun",
+    "description": [
+      "drobny przedmiot bez określonego przeznaczenia",
+      "drobiazg"
+    ]
+  },
+  {
+    "name": "świekra",
+    "category": "person",
+    "description": [
+      "matka męża"
+    ]
+  },
+  {
+    "name": "emfaza",
+    "category": "noun",
+    "description": [
+      "akcent emocjonalny na zdania, wyrazy, sylaby",
+      "nadmierna uczuciowość wypowiedzi"
+    ]
+  },
+  {
+    "name": "turpizm",
+    "category": "noun",
+    "description": [
+      "kult brzydoty"
+    ]
+  },
+  {
+    "name": "eudemonista",
+    "category": "person",
+    "description": [
+      "człowiek dążący do szczęścia osobistego",
+      "człowiek uuważający szczęście osobiste za życiowy cel"
+    ]
+  },
+  {
+    "name": "serwantka",
+    "category": "noun",
+    "description": [
+      "wolno stojąca oszklona szafka do przechowywania porcelany i zastawy stołowej"
+    ]
+  },
+  {
+    "name": "chabaź",
+    "category": "noun",
+    "description": [
+      "roślina przypominająca chwast",
+      "zielsko"
+    ]
+  },
+  {
+    "name": "lukarna",
+    "category": "noun",
+    "description": [
+      "okno wystające pionowo z płaszczyzny dachu"
+    ]
+  },
+  {
+    "name": "szaławiła",
+    "category": "person",
+    "description": [
+      "osoba lekkomyślna",
+      "osoba prowadząca beztroski tryb życia"
+    ]
+  },
+  {
+    "name": "gawiedź",
+    "category": "person",
+    "description": [
+      "natrętna grupa gapiów szukających sensacji"
+    ]
+  },
+  {
+    "name": "świszczypała",
+    "category": "person",
+    "description": [
+      "osoba nieodpowiedzialna",
+      "osoba lekkomyślna",
+      "osoba nietraktująca niczego poważnie"
+    ]
+  },
+  {
+    "name": "odpulić",
+    "category": "verb",
+    "description": [
+      "pozbywać się",
+      "zignorować",
+      "zostawiać w spokoju",
+      "odpuścić",
+      "opuszczać jakieś miejsce"
+    ]
+  },
+  {
+    "name": "jątrew",
+    "category": "person",
+    "description": [
+      "żona brata",
+      "bratowa"
+    ]
+  },
+  {
+    "name": "basałyk",
+    "category": "person",
+    "description": [
+      "małe, niesforne dziecko"
+    ]
+  },
+  {
+    "name": "lapidarium",
+    "category": "latin",
+    "description": [
+      "miejsce przechowywania i prezentowania okazów kamieni naturalnych"
+    ]
+  },
+  {
+    "name": "kartusz",
+    "category": "noun",
+    "description": [
+      "pojemnik",
+      "butla na gaz do zapalniczek",
+      "ozdobne zdobienie herbów"
+    ]
+  },
+  {
+    "name": "ramota",
+    "category": "noun",
+    "description": [
+      "utwór literacki o małej wartości artystycznej",
+      "niewielki utwór satyryczno-humorystyczny"
+    ]
+  },
+  {
+    "name": "flaszetka",
+    "category": "noun",
+    "description": [
+      "rzutki umieszczane w pociskach"
+    ]
+  },
+  {
+    "name": "liberia",
+    "category": "noun",
+    "description": [
+      "umundurowanie służby",
+      "strój pracujących w hotelu"
+    ]
+  },
+  {
+    "name": "antynatalizm",
+    "category": "latin",
+    "description": [
+      "postrzeganie życia jako krzywdę",
+      "postrzeganie życia jako karę"
+    ]
+  },
+  {
+    "name": "puryzm",
+    "category": "noun",
+    "description": [
+      "przesadna dbałość o poprawność językową"
+    ]
+  },
+  {
+    "name": "żyrant",
+    "category": "person",
+    "description": [
+      "poręczyciel przy kredycie"
+    ]
+  },
+  {
+    "name": "barbaryzm",
+    "category": "noun",
+    "description": [
+      "wyrażenie lub konstrukcja składniowa obce danemu językowi"
+    ]
+  },
+  {
+    "name": "egzegeza",
+    "category": "noun",
+    "description": [
+      "interpretacja tekstów biblijnych"
+    ]
+  },
+  {
+    "name": "powała",
+    "category": "noun",
+    "description": [
+      "drewniany strop",
+      "gęsta warstwa dymu unoszącego się w powietrzu"
+    ]
+  },
+  {
+    "name": "dysforia",
+    "category": "noun",
+    "description": [
+      "uczucie niezadowolenia i niepokoju"
+    ]
+  },
+  {
+    "name": "sylogizm",
+    "category": "noun",
+    "description": [
+      "schemat wnioskowania na podstawie dwóch przesłanek"
+    ]
+  },
+  {
+    "name": "amuzja",
+    "category": "latin",
+    "description": [
+      "zaburzenie percepcji muzyki",
+      "niezdolność wytwarzania muzyki"
+    ]
+  },
+  {
+    "name": "afazja",
+    "category": "latin",
+    "description": [
+      "zaburzenia percepcji mowy"
+    ]
+  },
+  {
+    "name": "ataraksja",
+    "category": "noun",
+    "description": [
+      "postawa niewzruszoności",
+      "równowaga i spokój ducha",
+      "zimna krew"
+    ]
+  },
+  {
+    "name": "wiwisekcja",
+    "category": "noun",
+    "description": [
+      "zabieg dokonywany na żywym zwierzęciu w celach naukowych",
+      "bardzo dokładna analiza czegoś"
+    ]
+  },
+  {
+    "name": "kafir",
+    "category": "noun",
+    "description": [
+      "liść limonki"
+    ]
+  },
+  {
+    "name": "suponować",
+    "category": "verb",
+    "description": [
+      "przypuszczać",
+      "wstępnie określić jako założenie"
+    ]
+  },
+  {
+    "name": "dandys",
+    "category": "person",
+    "description": [
+      "mężczyzna odznaczający się wyszukaną elegancją",
+      "mężczyzna ekstrawagancki"
+    ]
+  },
+  {
+    "name": "jaźwiec",
+    "category": "noun",
+    "description": [
+      "borsuk"
+    ]
+  },
+  {
+    "name": "hiperonim",
+    "category": "noun",
+    "description": [
+      "wyraz o znaczeniu szerszym w stosunku do innych"
+    ]
+  },
+  {
+    "name": "dylogia",
+    "category": "noun",
+    "description": [
+      "dzieło literackie składające się z dwóch łączących się utworów"
+    ]
+  },
+  {
+    "name": "kabotaż",
+    "category": "noun",
+    "description": [
+      "żegluga odbywająca się między portami danego państwa",
+      "żegluga przybrzeżna"
+    ]
+  },
+  {
+    "name": "antynomia",
+    "category": "noun",
+    "description": [
+      "sprzeczność między dwoma twierdzeniami, z których każde osobno wydaje się prawdziwe"
+    ]
+  },
+  {
+    "name": "inwariant",
+    "category": "noun",
+    "description": [
+      "cecha stała",
+      "czynnik niezmieniający się w czasie"
+    ]
+  },
+  {
+    "name": "gors",
+    "category": "noun",
+    "description": [
+      "górna część klatki piersiowej"
+    ]
+  },
+  {
+    "name": "arkany",
+    "category": "noun",
+    "description": [
+      "tajemnice",
+      "sekretna wiedza"
+    ]
+  },
+  {
+    "name": "ekslibris",
+    "category": "latin",
+    "description": [
+      "ozdobny, graficzny znak własnościowy danego egzemplarza książki"
+    ]
+  },
+  {
+    "name": "sonder",
+    "category": "noun",
+    "description": [
+      "świadomość, że inni ludzie mają podobnie złożone życie"
+    ]
+  },
+  {
+    "name": "amor fati",
+    "category": "latin",
+    "description": [
+      "akceptacja ludzkiego losu"
+    ]
+  },
+  {
+    "name": "częstokół",
+    "category": "noun",
+    "description": [
+      "obronne ogrodzenie z ostro zakończonych pali"
+    ]
+  },
+  {
+    "name": "eskulap",
+    "category": "person",
+    "description": [
+      "lekarz"
+    ]
+  },
+  {
+    "name": "glebogryzarka",
+    "category": "noun",
+    "description": [
+      "maszyna rolnicza spulchniająca glebę"
+    ]
+  },
+  {
+    "name": "korpulencja",
+    "category": "noun",
+    "description": [
+      "cecha osoby z nadwagą",
+      "tusza",
+      "pulchność"
+    ]
+  },
+  {
+    "name": "farys",
+    "category": "person",
+    "description": [
+      "rycerz arabski",
+      "zapaleniec",
+      "śmiałek"
+    ]
+  },
+  {
+    "name": "hurdycja",
+    "category": "noun",
+    "description": [
+      "drewniany ganek w średniowiecznym budownictwie obronnym"
+    ]
+  },
+  {
+    "name": "huncwot",
+    "category": "person",
+    "description": [
+      "hultaj",
+      "gagatek",
+      "łobuziak",
+      "urwis"
+    ]
+  },
+  {
+    "name": "garsoniera",
+    "category": "noun",
+    "description": [
+      "kawalerka"
+    ]
+  },
+  {
+    "name": "arborysta",
+    "category": "person",
+    "description": [
+      "chirurg drzew",
+      "osoba dokonująca zabiegów pielęgnacyjnych drzew"
+    ]
+  },
+  {
+    "name": "szkwał",
+    "category": "noun",
+    "description": [
+      "nagły wzrost prędkości wiatru o co najmniej 8m/s"
+    ]
+  },
+  {
+    "name": "trychotomia",
+    "category": "noun",
+    "description": [
+      "podział na trzy części"
+    ]
+  },
+  {
+    "name": "dychotomia",
+    "category": "noun",
+    "description": [
+      "podział na dwie części"
+    ]
+  },
+  {
+    "name": "safanduła",
+    "category": "person",
+    "description": [
+      "osoba powolna",
+      "osoba niezdarna",
+      "osoba nieumiejąca poradzić sobie w życiu"
+    ]
+  },
+  {
+    "name": "majuskuła",
+    "category": "noun",
+    "description": [
+      "duża litera alfabetu"
+    ]
+  },
+  {
+    "name": "minuskuła",
+    "category": "noun",
+    "description": [
+      "mała litera alfabetu"
+    ]
+  },
+  {
+    "name": "koherentny",
+    "category": "adjective",
+    "description": [
+      "spoisty",
+      "spójny",
+      "zwarty"
+    ]
+  },
+  {
+    "name": "atawizm",
+    "category": "noun",
+    "description": [
+      "regresja ewolucyjna danej cechy"
+    ]
+  }
+]

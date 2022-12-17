@@ -38,20 +38,38 @@ class WordService {
 
   /**
    * Method used to communicate with word service and retrieve a random word
+   * @param language type of language for the word to be retrieved
+   * @throws WordServiceException when the response from word service is invalid
    * @return random word object
    */
-  def getRandomWord: Word = {
-    sendGetWordsRequest(wordsEndpoint.withQueryParam("size", "1")
-                                     .withQueryParam("random", "true")).head
+  @throws(classOf[WordServiceException])
+  def getRandomWord(language: String): Word = {
+    val endpoint: Uri = wordsEndpoint.addSegment(language)
+                                     .withQueryParam("size", "1")
+                                     .withQueryParam("random", "true")
+    val receivedWord: List[Word] = sendGetWordsRequest(endpoint)
+    if (receivedWord.isEmpty) {
+      throw new WordServiceException("Invalid input parameter(s).")
+    }
+    receivedWord.head
   }
 
   /**
    * Method used to communicate with word service and retrieve all words with specified category
+   * @param language of the word which we want to retrieve
    * @param category type of words category to be retrieved
+   * @throws WordServiceException when the response from word service is invalid
    * @return list of all words with specified category
    */
-  def getWordsByCategory(category: String): List[Word] = {
-    sendGetWordsRequest(wordsEndpoint.withQueryParam("cat", category))
+  @throws(classOf[WordServiceException])
+  def getWordsByCategory(language: String, category: String): List[Word] = {
+    val endpoint: Uri = wordsEndpoint.addSegment(language)
+                                     .withQueryParam("cat", category)
+    val receivedWords: List[Word] = sendGetWordsRequest(endpoint)
+    if (receivedWords.isEmpty) {
+      throw new WordServiceException("Invalid input parameter(s).")
+    }
+    receivedWords
   }
 
   /**

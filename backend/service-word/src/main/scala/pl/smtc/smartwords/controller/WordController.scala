@@ -24,13 +24,13 @@ class WordController(wordDB: WordDatabase) {
   /**
    * Routes (request -> response) for words endpoints/resources
    * <ul>
-   *  <li>Receive all words: <u>GET</u> /words -> RET: OK 200 + ALL WORDS JSON / ERR 500</li>
-   *  <li>Receive specified number of words: <u>GET</u> /words?size=no -> RET: OK 200 + Word JSON / ERR 500</li>
-   *  <li>Receive category-specific words: <u>GET</u> /words?cat=adj -> RET: OK 200 + Word JSON / ERR 500</li>
-   *  <li>Receive words in random order: <u>GET</u> /words?random=bool -> RET: OK 200 + Word JSON / ERR 500</li>
-   *  <li>Add a new word: <u>POST</u> /words + Word JSON -> RET: OK 200 / ERR 500</li>
-   *  <li>Delete word: <u>DELETE</u> /words/{name} -> RET: OK 200 / ERR 404</li>
-   *  <li>Update word: <u>PUT</u> /words/{name} + Word JSON -> RET: OK 200 + Word JSON / ERR 404</li>
+   *  <li>Receive all language-specific words: <u>GET</u> /words/lang -> OK 200 + ALL WORDS JSON | ERR 500</li>
+   *  <li>Receive specified number of words: <u>GET</u> /words/lang?size=no -> OK 200 + Word JSON | ERR 500</li>
+   *  <li>Receive category-specific words: <u>GET</u> /words/lang?cat=adj -> OK 200 + Word JSON | ERR 500</li>
+   *  <li>Receive words in random order: <u>GET</u> /words/lang?random=bool -> OK 200 + Word JSON | ERR 500</li>
+   *  <li>Add a new word: <u>POST</u> /words/lang + Word JSON -> OK 200 | ERR 500</li>
+   *  <li>Update word: <u>PUT</u> /words/{name} + Word JSON -> OK 200 + Word JSON | ERR 404</li>
+   *  <li>Delete word: <u>DELETE</u> /words/{name} -> OK 200 | ERR 404</li>
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {
@@ -38,22 +38,22 @@ class WordController(wordDB: WordDatabase) {
     val dsl = Http4sDsl[IO]; import dsl._
     implicit val wordDecoder: EntityDecoder[IO, Word] = jsonOf[IO, Word]
     HttpRoutes.of[IO] {
-      case GET -> Root :? OptionalCategoryParamMatcher(maybeCategory)
-                       +& OptionalSizeParamMatcher(maybeSize)
-                       +& OptionalRandomizeParamMatcher(maybeRandom) =>
-        service.getWords(maybeCategory, maybeSize, maybeRandom)
-      case request@POST -> Root  =>
+      case GET -> Root / language :? OptionalCategoryParamMatcher(maybeCategory)
+                                  +& OptionalSizeParamMatcher(maybeSize)
+                                  +& OptionalRandomizeParamMatcher(maybeRandom) =>
+        service.getWords(language, maybeCategory, maybeSize, maybeRandom)
+      case request@POST -> Root / language =>
         for {
           newWord <- request.as[Word]
-          response <- service.addWord(newWord)
+          response <- service.addWord(language, newWord)
         } yield response
-      case request@PUT -> Root / name =>
+      case request@PUT -> Root / language / name =>
         for {
           newWord <- request.as[Word]
-          response <- service.updateWord(name, newWord)
+          response <- service.updateWord(language, name, newWord)
         } yield response
-      case DELETE -> Root / name =>
-        service.deleteWord(name)
+      case DELETE -> Root / language / name =>
+        service.deleteWord(language, name)
     }
   }
 }

@@ -1,4 +1,5 @@
 const URL = "http://localhost:1111/";
+const language = "pl";
 
 /**
  * Method used to receive all words from smart-words service
@@ -17,7 +18,7 @@ const getWords = (callback) => {
       callback(createErrorObject("cannot get words" + details, getRequest.status), undefined);
     }
   });
-  getRequest.open("GET", URL + "words");
+  getRequest.open("GET", URL + "words/" + language);
   getRequest.send();
 };
 
@@ -39,7 +40,7 @@ const postWord = (newWordObject, callback) => {
       callback(createErrorObject("cannot add word" + details, postRequest.status), undefined);
     }
   });
-  postRequest.open("POST", URL + "words");
+  postRequest.open("POST", URL + "words/" + language);
   postRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   postRequest.send(JSON.stringify(newWordObject));
 };
@@ -63,7 +64,7 @@ const putWord = (currWord, newWordObject, callback) => {
       callback(createErrorObject("cannot edit word" + details, putRequest.status), undefined);
     }
   });
-  putRequest.open("PUT", URL + "words/" + currWord);
+  putRequest.open("PUT", URL + "words/" + language + "/" + currWord);
   putRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   putRequest.send(JSON.stringify(newWordObject));
 };
@@ -86,7 +87,7 @@ const deleteWord = (wordName, callback) => {
       callback(createErrorObject("cannot delete word" + details, deleteRequest.status), undefined);
     }
   });
-  deleteRequest.open("DELETE", URL + "words/" + wordName);
+  deleteRequest.open("DELETE", URL + "words/" + language + "/" + wordName);
   deleteRequest.send();
 };
 

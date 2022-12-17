@@ -2,7 +2,6 @@
 /* quiz mode start button      */
 /*******************************/
 #quiz-mode-controls-start {
-  align-self: center;
   height: 40px;
   width: 100%;
   background-color: limegreen;

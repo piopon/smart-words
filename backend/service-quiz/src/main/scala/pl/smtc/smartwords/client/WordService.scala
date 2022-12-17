@@ -58,8 +58,10 @@ class WordService {
    * Method used to communicate with word service and retrieve all words with specified category
    * @param language of the word which we want to retrieve
    * @param category type of words category to be retrieved
+   * @throws WordServiceException when the response from word service is invalid
    * @return list of all words with specified category
    */
+  @throws(classOf[WordServiceException])
   def getWordsByCategory(language: String, category: String): List[Word] = {
     val endpoint: Uri = wordsEndpoint.addSegment(language)
                                      .withQueryParam("cat", category)

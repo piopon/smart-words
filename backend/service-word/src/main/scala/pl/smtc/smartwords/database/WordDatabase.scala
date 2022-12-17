@@ -147,7 +147,7 @@ class WordDatabase {
   /**
    * Method used to receive the list of files with optional extension filter in input directory
    * @param directory directory in which we want to search for files
-   * @param extensionFilter optional extension filter
+   * @param extensionFilter optional extension filter (if not used then no extension will be used)
    * @return list of all files present in input directory
    */
   private def getDirectoryFiles(directory: Path, extensionFilter: Option[String] = None): List[File] = {

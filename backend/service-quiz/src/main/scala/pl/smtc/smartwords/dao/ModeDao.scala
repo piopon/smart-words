@@ -15,11 +15,12 @@ object ModeDao {
    */
   def getModeDecoder: Decoder[Mode] = Decoder.instance {
     (input: HCursor) => for {
+      id <- input.downField("id").as[Int]
       name <- input.downField("name").as[String]
       description <- input.downField("description").as[String]
       settings <- input.downField("settings").as[List[Setting]]
     } yield {
-      Mode(name, description, settings)
+      Mode(id, name, description, settings)
     }
   }
 
@@ -28,7 +29,8 @@ object ModeDao {
    * @return quiz mode object encoder
    */
   def getModeEncoder: Encoder[Mode] = Encoder.instance {
-    (mode: Mode) => json"""{"name": ${mode.name},
+    (mode: Mode) => json"""{"id": ${mode.id},
+                            "name": ${mode.name},
                             "description": ${mode.description},
                             "settings": ${mode.settings}}"""
   }

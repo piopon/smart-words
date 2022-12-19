@@ -1,6 +1,6 @@
 [
   {
-    "id": "0",
+    "id": 0,
     "name": "guess definition",
     "description": "guess the word definition based on a provided word name",
     "settings": [
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "id": "1",
+    "id": 1,
     "name": "match the word",
     "description": "select the correct word name based on the provided definition",
     "settings": [

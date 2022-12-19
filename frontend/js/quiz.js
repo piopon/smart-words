@@ -355,9 +355,10 @@ function getSummaryImage(summaryValue) {
 }
 
 /**
- * Method used to clean quiz summary and display initial quiz selector
+ * Method used to clean quiz summary and display initial quiz modes selector
  */
 function cleanQuiz() {
+  showQuizModes();
   document.getElementById("quiz-question-container").className = "container-hidden";
   document.getElementById("quiz-modes-container").className = "container-visible";
   document.getElementById("quiz-title-container-status").innerHTML = "";

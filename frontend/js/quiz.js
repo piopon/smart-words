@@ -3,7 +3,7 @@ const STATUS_ANSWER_OK = 1;
 const STATUS_ANSWER_NOK = -1;
 const END_QUIZ_FINISH = 0;
 const END_QUIZ_STOP = 1;
-var quizID = undefined;
+var quizUuid = undefined;
 var endQuizReason = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
@@ -20,7 +20,7 @@ function startQuiz(modeId) {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       startQuizUpdateUI(STATE_QUIZ_OK);
-      quizID = data;
+      quizUuid = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);
     }
@@ -71,7 +71,7 @@ function verifyQuestionNo(number) {
  */
 function requestQuestionNo(number, buttonId = undefined) {
   questionViewUpdateUI(STATE_QUIZ_LOAD, buttonId);
-  getQuestionNo(quizID, number, (err, data) => {
+  getQuestionNo(quizUuid, number, (err, data) => {
     if (err) {
       questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
       console.log("ERROR " + err.status + ": " + err.message);
@@ -206,7 +206,7 @@ function getControlButtonHtml(id, text, action, borderType) {
  */
 function answerQuestionNo(number, answerNo, buttonId = undefined) {
   questionViewUpdateUI(STATE_QUIZ_LOAD, buttonId);
-  postQuestionAnswer(quizID, number, answerNo, (err, data) => {
+  postQuestionAnswer(quizUuid, number, answerNo, (err, data) => {
     if (err) {
       questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
       console.log("ERROR " + err.status + ": " + err.message);
@@ -257,7 +257,7 @@ function stopQuiz() {
   var endButtonId = getButtonIdFromEndReason(endQuizReason);
   hideQuizEndModalDialog();
   questionViewUpdateUI(STATE_QUIZ_LOAD, endButtonId);
-  getQuizStop(quizID, (err, data) => {
+  getQuizStop(quizUuid, (err, data) => {
     if (err) {
       questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
       console.log("ERROR " + err.status + ": " + err.message);

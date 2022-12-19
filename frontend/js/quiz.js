@@ -11,7 +11,7 @@ var currentQuestionNo = undefined;
 /**
  * Method used to receive number of question, start quiz and receive UUID
  */
-function startQuiz() {
+function startQuiz(modeId) {
   totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
   startQuizUpdateUI(STATE_QUIZ_LOAD);
   postQuizStart(totalQuestionsNo, selectedLanguage, (err, data) => {

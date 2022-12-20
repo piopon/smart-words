@@ -20,6 +20,7 @@ class QuizService(quizDB: QuizDatabase) {
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 
   private final val defaultQuizSize: Int = 10
+  private final val defaultQuizMode: Int = 0
   private final val defaultQuizLang: String = "pl"
 
   /**
@@ -32,6 +33,10 @@ class QuizService(quizDB: QuizDatabase) {
     val size: Int = maybeSize match {
       case None => defaultQuizSize
       case Some(size) => size
+    }
+    val mode: Int = maybeMode match {
+      case None => defaultQuizMode
+      case Some(mode) => mode
     }
     val language: String = maybeLanguage match {
       case None => defaultQuizLang

@@ -8,7 +8,7 @@ const URL = "http://localhost:2222/";
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */
-const postQuizStart = (questionsNo, language, callback) => {
+const postQuizStart = (questionsNo, modeId, language, callback) => {
   const postRequest = new XMLHttpRequest();
   postRequest.addEventListener("readystatechange", () => {
     if (postRequest.DONE !== postRequest.readyState) return;
@@ -18,7 +18,7 @@ const postQuizStart = (questionsNo, language, callback) => {
       callback(createErrorObject(postRequest.responseText, postRequest.status), undefined);
     }
   });
-  postRequest.open("POST", URL + "quiz/start?size=" + questionsNo + "&lang=" + language);
+  postRequest.open("POST", URL + "quiz/start?size=" + questionsNo + "&lang=" + language + "&mode=" + modeId);
   postRequest.send();
 };
 

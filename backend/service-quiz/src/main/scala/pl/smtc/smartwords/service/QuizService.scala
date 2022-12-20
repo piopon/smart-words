@@ -45,7 +45,7 @@ class QuizService(quizDB: QuizDatabase) {
     }
     if (WordService.isAlive) {
       try {
-        Ok(quizDB.addQuiz(generateQuiz(size, language)).toString)
+        Ok(quizDB.addQuiz(generateQuiz(size, mode, language)).toString)
       } catch {
         case e: QuizServiceException => BadRequest("Cannot start quiz: " + e.getMessage)
       }
@@ -133,7 +133,7 @@ class QuizService(quizDB: QuizDatabase) {
    * @param language string containing the language selection used in the generated rounds
    * @return list of specified number of rounds
    */
-  private def generateRounds(size: Int, language: String): List[Round] = {
+  private def generateRounds(size: Int, mode: Int, language: String): List[Round] = {
     var rounds: List[Round] = List.fill(size)(generateRound(language)).distinctBy(_.word.name)
     for (_ <- 0 until size-rounds.length) {
       val replacement: Round = generateRound(language, rounds.map(r => r.word.name))
@@ -166,7 +166,7 @@ class QuizService(quizDB: QuizDatabase) {
    * @param language string containing the language selection used in the new quiz object
    * @return generated quiz object
    */
-  private def generateQuiz(size: Int, language: String): Quiz = {
-    Quiz(generateRounds(size, language), 0)
+  private def generateQuiz(size: Int, mode: Int, language: String): Quiz = {
+    Quiz(generateRounds(size, mode, language), 0)
   }
 }

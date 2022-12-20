@@ -29,8 +29,8 @@ class WordController(wordDB: WordDatabase) {
    *  <li>Receive category-specific words: <u>GET</u> /words/lang?cat=adj -> OK 200 + Word JSON | ERR 500</li>
    *  <li>Receive words in random order: <u>GET</u> /words/lang?random=bool -> OK 200 + Word JSON | ERR 500</li>
    *  <li>Add a new word: <u>POST</u> /words/lang + Word JSON -> OK 200 | ERR 500</li>
-   *  <li>Update word: <u>PUT</u> /words/{name} + Word JSON -> OK 200 + Word JSON | ERR 404</li>
-   *  <li>Delete word: <u>DELETE</u> /words/{name} -> OK 200 | ERR 404</li>
+   *  <li>Update word: <u>PUT</u> /words/lang/{name} + JSON -> OK 200 + JSON | ERR 404</li>
+   *  <li>Delete word: <u>DELETE</u> /words/lang/{name} -> OK 200 | ERR 404</li>
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {

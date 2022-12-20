@@ -12,6 +12,7 @@ class QuizController() {
   val quizDB: QuizDatabase = new QuizDatabase()
 
   object OptionalQuizSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
+  object OptionalQuizModeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("mode")
   object OptionalQuizLanguageParamMatcher extends OptionalQueryParamDecoderMatcher[String]("lang")
 
   /**
@@ -28,8 +29,9 @@ class QuizController() {
     val dsl = Http4sDsl[IO]; import dsl._
     HttpRoutes.of[IO] {
       case POST -> Root / "start" :? OptionalQuizSizeParamMatcher(maybeSize)
-                                  +& OptionalQuizLanguageParamMatcher(maybeLanguage)=>
-        service.startQuiz(maybeSize, maybeLanguage)
+                                  +& OptionalQuizModeParamMatcher(maybeMode)
+                                  +& OptionalQuizLanguageParamMatcher(maybeLanguage) =>
+        service.startQuiz(maybeSize, maybeMode, maybeLanguage)
       case GET -> Root / UUIDVar(quizId) / "question" / questionNo =>
         service.getQuizQuestionNo(quizId, questionNo)
       case POST -> Root / UUIDVar(quizId) / "question" / questionNo / answerNo =>

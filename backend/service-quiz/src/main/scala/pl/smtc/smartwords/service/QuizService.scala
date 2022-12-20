@@ -28,7 +28,7 @@ class QuizService(quizDB: QuizDatabase) {
    * @param maybeLanguage an optional language value (if non then the default value will be applied)
    * @return response with appropriate status
    */
-  def startQuiz(maybeSize: Option[Int], maybeLanguage: Option[String]): IO[Response[IO]] = {
+  def startQuiz(maybeSize: Option[Int], maybeMode: Option[Int], maybeLanguage: Option[String]): IO[Response[IO]] = {
     val size: Int = maybeSize match {
       case None => defaultQuizSize
       case Some(size) => size

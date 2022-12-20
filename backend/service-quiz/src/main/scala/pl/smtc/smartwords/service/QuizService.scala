@@ -26,6 +26,7 @@ class QuizService(quizDB: QuizDatabase) {
   /**
    * Method used to start a new quiz
    * @param maybeSize an optional size value (if none then default value will be applied)
+   * @param maybeMode an optional mode value (if none then default value will be applied)
    * @param maybeLanguage an optional language value (if non then the default value will be applied)
    * @return response with appropriate status
    */

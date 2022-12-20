@@ -18,7 +18,7 @@ class QuizController() {
   /**
    * Routes (request -> response) for quiz endpoints/resources
    * <ul>
-   *  <li>Start a new quiz: <u>POST</u> /quiz/start?size=10&lang=pl -> RET: OK 200 + {id} / ERR 500</li>
+   *  <li>Start a new quiz: <u>POST</u> /quiz/{mode}/start?size=10&lang=pl -> RET: OK 200 + {id} / ERR 500</li>
    *  <li>Receive specific question: <u>GET</u> /quiz/{id}/question/{no} -> RET: OK 200 + Round JSON / ERR 404</li>
    *  <li>Send question answer: <u>POST</u> /quiz/{id}/question/{no}/{answerNo} -> RET: OK 200 / ERR 404</li>
    *  <li>End quiz and get result: <u>GET</u> /quiz/{id}/stop -> RET: OK 200 / ERR 404</li>

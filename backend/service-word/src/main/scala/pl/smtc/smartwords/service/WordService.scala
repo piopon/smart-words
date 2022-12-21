@@ -65,7 +65,7 @@ class WordService(database: WordDatabase) {
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
   def updateWord(mode: String, language: String, name: String, word: Word): IO[Response[IO]] = {
-    val wordIndex = database.getWordIndex(name, language)
+    val wordIndex = database.getWordIndex(name, mode, language)
     if (database.updateWord(wordIndex, word)) {
       Ok(s"updated word '$name'")
     } else {
@@ -80,7 +80,7 @@ class WordService(database: WordDatabase) {
    * @return response with delete status (OK or NOT FOUND if word does not exist)
    */
   def deleteWord(mode: String, language: String, name: String): IO[Response[IO]] = {
-    val wordIndex = database.getWordIndex(name, language)
+    val wordIndex = database.getWordIndex(name, mode, language)
     if (database.removeWord(wordIndex)) {
       Ok(s"removed word '$name'")
     } else {

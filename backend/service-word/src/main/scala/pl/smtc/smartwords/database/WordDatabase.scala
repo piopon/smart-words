@@ -77,8 +77,10 @@ class WordDatabase {
    * @param language of the word to be found
    * @return database index of the word which name and language matches parameters, or -1 if no such word was found
    */
-  def getWordIndex(name: String, language: String): Int = {
-    wordsDatabase.indexWhere((word: Word) => word.name.equals(name) && word.dictionary.language.equals(language))
+  def getWordIndex(name: String, mode: String, language: String): Int = {
+    wordsDatabase.indexWhere((word: Word) => word.name.equals(name) &&
+                                             word.dictionary.mode.equals(mode) &&
+                                             word.dictionary.language.equals(language))
   }
 
   /**

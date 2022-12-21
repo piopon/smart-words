@@ -24,7 +24,7 @@ class WordService(database: WordDatabase) {
    * @param random optional flag to determine if output should be randomized
    * @return response with words from specified category, or all words if category is None
    */
-  def getWords(language: String, category: Option[Category.Value],
+  def getWords(mode: String, language: String, category: Option[Category.Value],
                size: Option[Int], random: Option[Boolean]): IO[Response[IO]] = {
     val languageWords: List[Word] = database.getWords.filter(word => word.dictionary.language.equals(language))
     val afterCategoryFilter: List[Word] = category match {
@@ -48,7 +48,7 @@ class WordService(database: WordDatabase) {
    * @param word new word to be added
    * @return response with new word add status (always OK but with different message)
    */
-  def addWord(language: String, word: Word): IO[Response[IO]] = {
+  def addWord(mode: String, language: String, word: Word): IO[Response[IO]] = {
     word.dictionary = Dictionary.generate(language)
     if (database.addWord(word)) {
       Ok(s"added word '${word.name}'")
@@ -64,7 +64,7 @@ class WordService(database: WordDatabase) {
    * @param word new word definition
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
-  def updateWord(language: String, name: String, word: Word): IO[Response[IO]] = {
+  def updateWord(mode: String, language: String, name: String, word: Word): IO[Response[IO]] = {
     val wordIndex = database.getWordIndex(name, language)
     if (database.updateWord(wordIndex, word)) {
       Ok(s"updated word '$name'")
@@ -79,7 +79,7 @@ class WordService(database: WordDatabase) {
    * @param name word name to be deleted
    * @return response with delete status (OK or NOT FOUND if word does not exist)
    */
-  def deleteWord(language: String, name: String): IO[Response[IO]] = {
+  def deleteWord(mode: String, language: String, name: String): IO[Response[IO]] = {
     val wordIndex = database.getWordIndex(name, language)
     if (database.removeWord(wordIndex)) {
       Ok(s"removed word '$name'")

@@ -109,6 +109,7 @@ class QuizService(quizDB: QuizDatabase) {
 
   /**
    * Method used to generate a new round object
+   * @param mode unique identifier containing the concrete quiz mode for the generated round
    * @param language string containing the language selection for the generated round
    * @param forbiddenWords list of currently used quiz words which cannot overlap while generating this round
    * @throws QuizServiceException when the round object cannot be generated
@@ -130,6 +131,7 @@ class QuizService(quizDB: QuizDatabase) {
   /**
    * Method used to generate specified number of rounds
    * @param size desired number of rounds to be generated
+   * @param mode desired quiz mode (as an unique identifier) to be generated
    * @param language string containing the language selection used in the generated rounds
    * @return list of specified number of rounds
    */
@@ -164,6 +166,7 @@ class QuizService(quizDB: QuizDatabase) {
   /**
    * Method used to generate a new quiz object
    * @param size desired size of quiz (number of questions)
+   * @param mode identifier containing the quiz mode to generate
    * @param language string containing the language selection used in the new quiz object
    * @return generated quiz object
    */

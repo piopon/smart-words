@@ -38,6 +38,7 @@ class WordService {
 
   /**
    * Method used to communicate with word service and retrieve a random word
+   * @param mode unique quiz type ID for the word to be retrieved
    * @param language type of language for the word to be retrieved
    * @throws WordServiceException when the response from word service is invalid
    * @return random word object
@@ -56,6 +57,7 @@ class WordService {
 
   /**
    * Method used to communicate with word service and retrieve all words with specified category
+   * @param mode unique identifier of quiz type for the word to be retrieved
    * @param language of the word which we want to retrieve
    * @param category type of words category to be retrieved
    * @throws WordServiceException when the response from word service is invalid

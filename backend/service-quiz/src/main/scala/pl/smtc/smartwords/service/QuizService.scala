@@ -115,13 +115,13 @@ class QuizService(quizDB: QuizDatabase) {
    * @return generated round object with random word and 4 answer options
    */
   @throws(classOf[QuizServiceException])
-  private def generateRound(language: String, forbiddenWords: List[String] = List.empty): Round = {
+  private def generateRound(mode: Int, language: String, forbiddenWords: List[String] = List.empty): Round = {
     try {
       var word: Word = null
       do {
         word = WordService.getRandomWord(language)
       } while (forbiddenWords.contains(word.name))
-      Round(word, generateOptions(word.description, language, word.category), None, None)
+      Round(word, generateOptions(word.description, mode, language, word.category), None, None)
     } catch {
       case e: WordServiceException => throw new QuizServiceException(e.getMessage)
     }
@@ -134,9 +134,9 @@ class QuizService(quizDB: QuizDatabase) {
    * @return list of specified number of rounds
    */
   private def generateRounds(size: Int, mode: Int, language: String): List[Round] = {
-    var rounds: List[Round] = List.fill(size)(generateRound(language)).distinctBy(_.word.name)
+    var rounds: List[Round] = List.fill(size)(generateRound(mode, language)).distinctBy(_.word.name)
     for (_ <- 0 until size-rounds.length) {
-      val replacement: Round = generateRound(language, rounds.map(r => r.word.name))
+      val replacement: Round = generateRound(mode, language, rounds.map(r => r.word.name))
       rounds = rounds.appended(replacement)
     }
     rounds
@@ -149,7 +149,8 @@ class QuizService(quizDB: QuizDatabase) {
    * @param category word category from which to draw the remaining 3 answer options
    * @return list of possible 4 answer options
    */
-  private def generateOptions(correctDefinitions: List[String], language: String, category: String): List[String] = {
+  private def generateOptions(correctDefinitions: List[String],
+                              mode: Int, language: String, category: String): List[String] = {
     val incorrectDefinitions: List[String] = WordService.getWordsByCategory(language, category)
       .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))

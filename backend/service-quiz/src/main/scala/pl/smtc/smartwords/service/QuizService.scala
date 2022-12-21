@@ -119,7 +119,7 @@ class QuizService(quizDB: QuizDatabase) {
     try {
       var word: Word = null
       do {
-        word = WordService.getRandomWord(language)
+        word = WordService.getRandomWord(mode, language)
       } while (forbiddenWords.contains(word.name))
       Round(word, generateOptions(word.description, mode, language, word.category), None, None)
     } catch {
@@ -151,7 +151,7 @@ class QuizService(quizDB: QuizDatabase) {
    */
   private def generateOptions(correctDefinitions: List[String],
                               mode: Int, language: String, category: String): List[String] = {
-    val incorrectDefinitions: List[String] = WordService.getWordsByCategory(language, category)
+    val incorrectDefinitions: List[String] = WordService.getWordsByCategory(mode, language, category)
       .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))
       .distinct

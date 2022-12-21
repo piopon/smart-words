@@ -43,7 +43,7 @@ class WordService {
    * @return random word object
    */
   @throws(classOf[WordServiceException])
-  def getRandomWord(language: String): Word = {
+  def getRandomWord(mode: Int, language: String): Word = {
     val endpoint: Uri = wordsEndpoint.addSegment(language)
                                      .withQueryParam("size", "1")
                                      .withQueryParam("random", "true")
@@ -62,7 +62,7 @@ class WordService {
    * @return list of all words with specified category
    */
   @throws(classOf[WordServiceException])
-  def getWordsByCategory(language: String, category: String): List[Word] = {
+  def getWordsByCategory(mode: Int, language: String, category: String): List[Word] = {
     val endpoint: Uri = wordsEndpoint.addSegment(language)
                                      .withQueryParam("cat", category)
     val receivedWords: List[Word] = sendGetWordsRequest(endpoint)

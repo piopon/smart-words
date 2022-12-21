@@ -9,14 +9,14 @@ import java.time.format.DateTimeFormatter
  * @param game type of game for which this word should be used
  * @param language language of the word
  */
-case class Dictionary(var file: String, game: String, language: String)
+case class Dictionary(var file: String, game: String, mode: String, language: String)
 
 object Dictionary {
   /**
    * Method used to create an empty dictionary object (no file source, game and language)
    * @return empty dictionary object
    */
-  def empty(): Dictionary = Dictionary("", "", "")
+  def empty(): Dictionary = Dictionary("", "", "", "")
 
   /**
    * Method used to create a dictionary object based on the file name (the file name itself is stored in this object)
@@ -25,13 +25,14 @@ object Dictionary {
    */
   def fromFile(file: String): Dictionary = {
     var usedGameType = "quiz"
+    var usedGameMode = "0"
     var usedLanguage = "pl"
     val parts: Array[String] = file.substring(0, file.indexOf("@")).split("-")
     if (parts.length == 3 && parts.apply(0).equals("words")) {
       usedGameType = parts.apply(1)
       usedLanguage = parts.apply(2)
     }
-    Dictionary(file, usedGameType, usedLanguage)
+    Dictionary(file, usedGameType, usedGameMode, usedLanguage)
   }
 
   /**
@@ -39,15 +40,16 @@ object Dictionary {
    * @param language of the word used to generate new dictionary file
    * @return dictionary object with generated values
    */
-  def generate(language: String): Dictionary = {
-    Dictionary(generateDictionaryFileName(language), "quiz", language)
+  def generate(mode: String, language: String): Dictionary = {
+    Dictionary(generateDictionaryFileName(mode, language), "quiz", mode, language)
   }
 
   /**
    * Method used to generate new dictionary file name
    * @return generated dictionary file name containing current date with JSON extension
    */
-  private def generateDictionaryFileName(language: String): String = {
-    "words-quiz-" + language + "@" + DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now()) + ".json"
+  private def generateDictionaryFileName(mode: String, language: String): String = {
+    val generatedDescription: String = DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now())
+    "words-quiz-" + mode + "-" + language + "@" + generatedDescription + ".json"
   }
 }

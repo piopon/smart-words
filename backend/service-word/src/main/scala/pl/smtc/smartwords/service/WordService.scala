@@ -49,7 +49,7 @@ class WordService(database: WordDatabase) {
    * @return response with new word add status (always OK but with different message)
    */
   def addWord(mode: String, language: String, word: Word): IO[Response[IO]] = {
-    word.dictionary = Dictionary.generate(language)
+    word.dictionary = Dictionary.generate(mode, language)
     if (database.addWord(word)) {
       Ok(s"added word '${word.name}'")
     } else {

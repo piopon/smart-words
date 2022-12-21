@@ -24,13 +24,13 @@ class WordController(wordDB: WordDatabase) {
   /**
    * Routes (request -> response) for words endpoints/resources
    * <ul>
-   *  <li>Receive all language-specific words: <u>GET</u> /words/lang -> OK 200 + ALL WORDS JSON | ERR 500</li>
-   *  <li>Receive specified number of words: <u>GET</u> /words/lang?size=no -> OK 200 + Word JSON | ERR 500</li>
-   *  <li>Receive category-specific words: <u>GET</u> /words/lang?cat=adj -> OK 200 + Word JSON | ERR 500</li>
-   *  <li>Receive words in random order: <u>GET</u> /words/lang?random=bool -> OK 200 + Word JSON | ERR 500</li>
-   *  <li>Add a new word: <u>POST</u> /words/lang + Word JSON -> OK 200 | ERR 500</li>
-   *  <li>Update word: <u>PUT</u> /words/lang/{name} + JSON -> OK 200 + JSON | ERR 404</li>
-   *  <li>Delete word: <u>DELETE</u> /words/lang/{name} -> OK 200 | ERR 404</li>
+   *  <li>Receive all language-specific words: <u>GET</u> /words/{mode}/{lang} -> OK 200+JSON | ERR 500</li>
+   *  <li>Receive specified number of words: <u>GET</u> /words/{mode}/{lang}?size=no -> OK 200+JSON | ERR 500</li>
+   *  <li>Receive category-specific words: <u>GET</u> /words/{mode}/{lang}?cat=adj -> OK 200+JSON | ERR 500</li>
+   *  <li>Receive words in random order: <u>GET</u> /words/{mode}/{lang}?random=bool -> OK 200+JSON | ERR 500</li>
+   *  <li>Add a new word: <u>POST</u> /words/{mode}/{lang} + JSON -> OK 200 | ERR 500</li>
+   *  <li>Update word: <u>PUT</u> /words/{mode}/{lang}/{name} + JSON -> OK 200+JSON | ERR 404</li>
+   *  <li>Delete word: <u>DELETE</u> /words/{mode}/{lang}/{name} -> OK 200 | ERR 404</li>
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {

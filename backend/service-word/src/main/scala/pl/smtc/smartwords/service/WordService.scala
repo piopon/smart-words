@@ -26,7 +26,8 @@ class WordService(database: WordDatabase) {
    */
   def getWords(mode: String, language: String, category: Option[Category.Value],
                size: Option[Int], random: Option[Boolean]): IO[Response[IO]] = {
-    val languageWords: List[Word] = database.getWords.filter(word => word.dictionary.language.equals(language))
+    val modeWords: List[Word] = database.getWords.filter(word => word.dictionary.mode.equals(mode))
+    val languageWords: List[Word] = modeWords.filter(word => word.dictionary.language.equals(language))
     val afterCategoryFilter: List[Word] = category match {
       case None => languageWords
       case Some(categoryValue) => languageWords.filter(word => word.category.equals(categoryValue))

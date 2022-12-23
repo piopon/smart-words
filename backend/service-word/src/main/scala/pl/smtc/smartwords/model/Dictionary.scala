@@ -4,9 +4,10 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 /**
- * Model class representing a word dictionary object with source file, game type and language
+ * Model class representing a word dictionary object with source file, game type, mode and language
  * @param file word source file name (not full path, just the filename itself)
  * @param game type of game for which this word should be used
+ * @param mode identifier related to the game for which this word should be used
  * @param language language of the word
  */
 case class Dictionary(var file: String, game: String, mode: String, language: String)
@@ -38,6 +39,7 @@ object Dictionary {
 
   /**
    * Method used to generate new dictionary object with file name based on language
+   * @param mode identifier of the word used to generate new dictionary file
    * @param language of the word used to generate new dictionary file
    * @return dictionary object with generated values
    */
@@ -47,6 +49,8 @@ object Dictionary {
 
   /**
    * Method used to generate new dictionary file name
+   * @param mode identifier which should be used while generating file name
+   * @param language of the dictionary file name
    * @return generated dictionary file name containing current date with JSON extension
    */
   private def generateDictionaryFileName(mode: String, language: String): String = {

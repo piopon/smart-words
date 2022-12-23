@@ -17,7 +17,7 @@ object Dictionary {
    * Method used to create an empty dictionary object (no file source, game and language)
    * @return empty dictionary object
    */
-  def empty(): Dictionary = Dictionary("", "", "", "")
+  def empty(): Dictionary = Dictionary("", "", None, "")
 
   /**
    * Method used to create a dictionary object based on the file name (the file name itself is stored in this object)
@@ -25,13 +25,13 @@ object Dictionary {
    * @return dictionary object with data retrieved from input file name
    */
   def fromFile(file: String): Dictionary = {
-    var usedGameType = "quiz"
-    var usedGameMode = "0"
-    var usedLanguage = "pl"
+    var usedGameType: String = "quiz"
+    var usedLanguage: String = "pl"
+    var usedGameMode: Option[Int] = None
     val parts: Array[String] = file.substring(0, file.indexOf("@")).split("-")
     if (parts.length == 4 && parts.apply(0).equals("words")) {
       usedGameType = parts.apply(1)
-      usedGameMode = parts.apply(2)
+      usedGameMode = Some(parts.apply(2).toInt)
       usedLanguage = parts.apply(3)
     }
     Dictionary(file, usedGameType, usedGameMode, usedLanguage)
@@ -43,7 +43,7 @@ object Dictionary {
    * @param language of the word used to generate new dictionary file
    * @return dictionary object with generated values
    */
-  def generate(mode: String, language: String): Dictionary = {
+  def generate(mode: Option[Int], language: String): Dictionary = {
     Dictionary(generateDictionaryFileName(mode, language), "quiz", mode, language)
   }
 
@@ -53,8 +53,12 @@ object Dictionary {
    * @param language of the dictionary file name
    * @return generated dictionary file name containing current date with JSON extension
    */
-  private def generateDictionaryFileName(mode: String, language: String): String = {
+  private def generateDictionaryFileName(mode: Option[Int], language: String): String = {
+    val modeStr = mode match {
+      case None => ""
+      case Some(modeValue) => modeValue + "-"
+    }
     val generatedDescription: String = DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now())
-    "words-quiz-" + mode + "-" + language + "@" + generatedDescription + ".json"
+    "words-quiz-" + modeStr + language + "@" + generatedDescription + ".json"
   }
 }

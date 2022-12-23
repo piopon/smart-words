@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter
  * @param mode identifier related to the game for which this word should be used
  * @param language language of the word
  */
-case class Dictionary(var file: String, game: String, mode: String, language: String)
+case class Dictionary(var file: String, game: String, mode: Option[Int], language: String)
 
 object Dictionary {
   /**

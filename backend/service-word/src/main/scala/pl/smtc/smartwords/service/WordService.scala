@@ -92,4 +92,12 @@ class WordService(database: WordDatabase) {
       NotFound(s"word '$name' not found in DB")
     }
   }
+
+  private def parseQuizMode(mode: String): Option[Int] = {
+    try {
+      Some(mode.toInt)
+    } catch {
+      case _: NumberFormatException => None
+    }
+  }
 }

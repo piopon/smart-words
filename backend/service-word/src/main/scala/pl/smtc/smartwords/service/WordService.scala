@@ -18,6 +18,7 @@ class WordService(database: WordDatabase) {
 
   /**
    * Method used to receive words
+   * @param mode identifier of quiz mode word to be retrieved
    * @param language language of words to be retrieved
    * @param category optional word category
    * @param size optional number of words to receive
@@ -45,6 +46,7 @@ class WordService(database: WordDatabase) {
 
   /**
    * Method used to add new word
+   * @param mode identifier of the quiz mode word to be added
    * @param language language of the word to be added
    * @param word new word to be added
    * @return response with new word add status (always OK but with different message)
@@ -60,6 +62,7 @@ class WordService(database: WordDatabase) {
 
   /**
    * Method used to update specified word
+   * @param mode identifier of the quiz mode word to be updated
    * @param language of the word to be updated (many languages have words with the same spelling but different meaning)
    * @param name word name which should be updated
    * @param word new word definition
@@ -76,6 +79,7 @@ class WordService(database: WordDatabase) {
 
   /**
    * Method used to delete specified word
+   * @param mode identifier of the quiz mode word to be deleted
    * @param language of the word to be removed (many languages have words with the same spelling but different meaning)
    * @param name word name to be deleted
    * @return response with delete status (OK or NOT FOUND if word does not exist)

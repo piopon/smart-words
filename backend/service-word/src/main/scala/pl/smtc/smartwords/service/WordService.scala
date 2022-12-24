@@ -93,6 +93,11 @@ class WordService(database: WordDatabase) {
     }
   }
 
+  /**
+   * Method used to convert string quiz mode to an integer identifier
+   * @param mode of the quiz in the String format
+   * @return integer identifier representing quiz mode
+   */
   private def parseQuizMode(mode: String): Option[Int] = {
     try {
       Some(mode.toInt)

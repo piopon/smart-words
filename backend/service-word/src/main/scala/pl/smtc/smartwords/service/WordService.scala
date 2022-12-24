@@ -27,7 +27,7 @@ class WordService(database: WordDatabase) {
    */
   def getWords(mode: String, language: String, category: Option[Category.Value],
                size: Option[Int], random: Option[Boolean]): IO[Response[IO]] = {
-    val modeWords: List[Word] = database.getWords.filter(word => word.dictionary.mode.equals(parseQuizMode(mode)))
+    val modeWords: List[Word] = database.getWords.filter(word => word.dictionary.mode.equals(parseGameMode(mode)))
     val languageWords: List[Word] = modeWords.filter(word => word.dictionary.language.equals(language))
     val afterCategoryFilter: List[Word] = category match {
       case None => languageWords
@@ -52,7 +52,7 @@ class WordService(database: WordDatabase) {
    * @return response with new word add status (always OK but with different message)
    */
   def addWord(mode: String, language: String, word: Word): IO[Response[IO]] = {
-    word.dictionary = Dictionary.generate(parseQuizMode(mode), language)
+    word.dictionary = Dictionary.generate(parseGameMode(mode), language)
     if (database.addWord(word)) {
       Ok(s"added word '${word.name}'")
     } else {
@@ -69,7 +69,7 @@ class WordService(database: WordDatabase) {
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
   def updateWord(mode: String, language: String, name: String, word: Word): IO[Response[IO]] = {
-    val wordIndex = database.getWordIndex(name, parseQuizMode(mode), language)
+    val wordIndex = database.getWordIndex(name, parseGameMode(mode), language)
     if (database.updateWord(wordIndex, word)) {
       Ok(s"updated word '$name'")
     } else {
@@ -85,7 +85,7 @@ class WordService(database: WordDatabase) {
    * @return response with delete status (OK or NOT FOUND if word does not exist)
    */
   def deleteWord(mode: String, language: String, name: String): IO[Response[IO]] = {
-    val wordIndex = database.getWordIndex(name, parseQuizMode(mode), language)
+    val wordIndex = database.getWordIndex(name, parseGameMode(mode), language)
     if (database.removeWord(wordIndex)) {
       Ok(s"removed word '$name'")
     } else {
@@ -94,11 +94,11 @@ class WordService(database: WordDatabase) {
   }
 
   /**
-   * Method used to convert string quiz mode to an integer identifier
+   * Method used to convert string game mode to an integer identifier
    * @param mode of the quiz in the String format
    * @return integer identifier representing quiz mode
    */
-  private def parseQuizMode(mode: String): Option[Int] = {
+  private def parseGameMode(mode: String): Option[Int] = {
     try {
       Some(mode.toInt)
     } catch {

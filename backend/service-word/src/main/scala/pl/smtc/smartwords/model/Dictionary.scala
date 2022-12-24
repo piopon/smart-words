@@ -29,10 +29,14 @@ object Dictionary {
     var usedLanguage: String = "pl"
     var usedGameMode: Option[Int] = None
     val parts: Array[String] = file.substring(0, file.indexOf("@")).split("-")
-    if (parts.length == 4 && parts.apply(0).equals("words")) {
+    if (parts.apply(0).equals("words")) {
       usedGameType = parts.apply(1)
-      usedGameMode = Some(parts.apply(2).toInt)
-      usedLanguage = parts.apply(3)
+      if (parts.length == 3) {
+        usedLanguage = parts.apply(2)
+      } else if (parts.length == 4) {
+        usedGameMode = Some(parts.apply(2).toInt)
+        usedLanguage = parts.apply(3)
+      }
     }
     Dictionary(file, usedGameType, usedGameMode, usedLanguage)
   }

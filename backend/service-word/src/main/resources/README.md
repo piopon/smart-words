@@ -31,10 +31,13 @@ where:
   (provided) dictionary files.
 
 # Examples
-* `words-quiz-pl-1.json` - this dictionary contains words for
-  mode: `quiz`, sub-mode: `1`, and language: `pl`
-* `words-wordle-en.json` - this dictionary contains words for
-  mode: `wordle` and language: `en`
-* `words-hangman-fr.json` - this dictionary contains words for
-  mode: `hangman` and language: `fr`
+* `words-quiz-1-pl@test.json` - this dictionary contains
+  words for `quiz` game type, mode: `1`, and language: `pl`.
+  It has description: `test`.
+* `words-wordle-en@dictionary.json` - this dictionary
+  contains words for `wordle` game type and language: `en`.
+  It has description: `dictionary`.
+* `words-hangman-fr@words.json` - this dictionary contains
+  words for `hangman` game type and language: `fr`.
+  It has description: `words`.
 

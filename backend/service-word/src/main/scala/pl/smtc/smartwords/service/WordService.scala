@@ -9,11 +9,13 @@ import org.http4s.dsl.io._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.dao._
+import pl.smtc.smartwords.utilities._
 
 import scala.util.Random
 
 class WordService(database: WordDatabase) {
 
+  private val parser: DataParser = new DataParser()
   implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 
   /**
@@ -27,7 +29,7 @@ class WordService(database: WordDatabase) {
    */
   def getWords(mode: String, language: String, category: Option[Category.Value],
                size: Option[Int], random: Option[Boolean]): IO[Response[IO]] = {
-    val gameMode: Option[Int] = parseGameMode(mode)
+    val gameMode: Option[Int] = parser.parseGameMode(mode)
     if (gameMode.isEmpty) {
       return BadRequest(s"Invalid game mode value: $mode")
     }
@@ -56,7 +58,7 @@ class WordService(database: WordDatabase) {
    * @return response with new word add status (always OK but with different message)
    */
   def addWord(mode: String, language: String, word: Word): IO[Response[IO]] = {
-    val gameMode: Option[Int] = parseGameMode(mode)
+    val gameMode: Option[Int] = parser.parseGameMode(mode)
     if (gameMode.isEmpty) {
       return BadRequest(s"Invalid game mode value: $mode")
     }
@@ -77,7 +79,7 @@ class WordService(database: WordDatabase) {
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
   def updateWord(mode: String, language: String, name: String, word: Word): IO[Response[IO]] = {
-    val gameMode: Option[Int] = parseGameMode(mode)
+    val gameMode: Option[Int] = parser.parseGameMode(mode)
     if (gameMode.isEmpty) {
       return BadRequest(s"Invalid game mode value: $mode")
     }
@@ -97,7 +99,7 @@ class WordService(database: WordDatabase) {
    * @return response with delete status (OK or NOT FOUND if word does not exist)
    */
   def deleteWord(mode: String, language: String, name: String): IO[Response[IO]] = {
-    val gameMode: Option[Int] = parseGameMode(mode)
+    val gameMode: Option[Int] = parser.parseGameMode(mode)
     if (gameMode.isEmpty) {
       return BadRequest(s"Invalid game mode value: $mode")
     }
@@ -106,19 +108,6 @@ class WordService(database: WordDatabase) {
       Ok(s"removed word '$name'")
     } else {
       NotFound(s"word '$name' not found in DB")
-    }
-  }
-
-  /**
-   * Method used to convert string game mode to an integer identifier
-   * @param mode of the quiz in the String format
-   * @return integer identifier representing quiz mode
-   */
-  private def parseGameMode(mode: String): Option[Int] = {
-    try {
-      Some(mode.toInt)
-    } catch {
-      case _: NumberFormatException => None
     }
   }
 }

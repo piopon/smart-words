@@ -27,7 +27,11 @@ class WordService(database: WordDatabase) {
    */
   def getWords(mode: String, language: String, category: Option[Category.Value],
                size: Option[Int], random: Option[Boolean]): IO[Response[IO]] = {
-    val modeWords: List[Word] = database.getWords.filter(word => word.dictionary.mode.equals(parseGameMode(mode)))
+    val gameMode: Option[Int] = parseGameMode(mode)
+    if (gameMode.isEmpty) {
+      return BadRequest(s"Invalid game mode value: $mode")
+    }
+    val modeWords: List[Word] = database.getWords.filter(word => word.dictionary.mode.equals(gameMode))
     val languageWords: List[Word] = modeWords.filter(word => word.dictionary.language.equals(language))
     val afterCategoryFilter: List[Word] = category match {
       case None => languageWords
@@ -52,7 +56,11 @@ class WordService(database: WordDatabase) {
    * @return response with new word add status (always OK but with different message)
    */
   def addWord(mode: String, language: String, word: Word): IO[Response[IO]] = {
-    word.dictionary = Dictionary.generate(parseGameMode(mode), language)
+    val gameMode: Option[Int] = parseGameMode(mode)
+    if (gameMode.isEmpty) {
+      return BadRequest(s"Invalid game mode value: $mode")
+    }
+    word.dictionary = Dictionary.generate(gameMode, language)
     if (database.addWord(word)) {
       Ok(s"added word '${word.name}'")
     } else {
@@ -69,7 +77,11 @@ class WordService(database: WordDatabase) {
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
   def updateWord(mode: String, language: String, name: String, word: Word): IO[Response[IO]] = {
-    val wordIndex = database.getWordIndex(name, parseGameMode(mode), language)
+    val gameMode: Option[Int] = parseGameMode(mode)
+    if (gameMode.isEmpty) {
+      return BadRequest(s"Invalid game mode value: $mode")
+    }
+    val wordIndex = database.getWordIndex(name, gameMode, language)
     if (database.updateWord(wordIndex, word)) {
       Ok(s"updated word '$name'")
     } else {
@@ -85,7 +97,11 @@ class WordService(database: WordDatabase) {
    * @return response with delete status (OK or NOT FOUND if word does not exist)
    */
   def deleteWord(mode: String, language: String, name: String): IO[Response[IO]] = {
-    val wordIndex = database.getWordIndex(name, parseGameMode(mode), language)
+    val gameMode: Option[Int] = parseGameMode(mode)
+    if (gameMode.isEmpty) {
+      return BadRequest(s"Invalid game mode value: $mode")
+    }
+    val wordIndex = database.getWordIndex(name, gameMode, language)
     if (database.removeWord(wordIndex)) {
       Ok(s"removed word '$name'")
     } else {

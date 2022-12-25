@@ -62,7 +62,7 @@ class WordService(database: WordDatabase) {
     if (gameMode.isEmpty) {
       return BadRequest(s"Invalid game mode value: $mode")
     }
-    word.dictionary = Dictionary.generate(gameMode, language)
+    word.dictionary = Dictionary.create(gameMode, language)
     if (database.addWord(word)) {
       Ok(s"added word '${word.name}'")
     } else {

@@ -44,12 +44,12 @@ object Dictionary {
   }
 
   /**
-   * Method used to generate new dictionary object with file name based on language
+   * Method used to create new dictionary object with file name based on language
    * @param mode identifier of the game mode used to generate new dictionary file (or none if mode is not used by game)
    * @param language of the word used to generate new dictionary file
    * @return dictionary object with generated values
    */
-  def generate(mode: Option[Int], language: String): Dictionary = {
+  def create(mode: Option[Int], language: String): Dictionary = {
     Dictionary(generateDictionaryFileName(mode, language), "quiz", mode, language)
   }
 

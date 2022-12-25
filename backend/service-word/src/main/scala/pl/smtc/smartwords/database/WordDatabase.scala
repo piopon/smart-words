@@ -74,7 +74,7 @@ class WordDatabase {
    *   <li>pupil = favorite / pet in Polish</li>
    * </ul>
    * @param name of the word to be found
-   * @param mode identifier of the word to be found
+   * @param mode identifier of the word to be found (or empty if mode is not used for specific game type)
    * @param language of the word to be found
    * @return database index of the word which name and language matches parameters, or -1 if no such word was found
    */

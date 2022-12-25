@@ -43,7 +43,7 @@ object Dictionary {
 
   /**
    * Method used to generate new dictionary object with file name based on language
-   * @param mode identifier of the word used to generate new dictionary file
+   * @param mode identifier of the game mode used to generate new dictionary file (or none if mode is not used by game)
    * @param language of the word used to generate new dictionary file
    * @return dictionary object with generated values
    */
@@ -53,7 +53,7 @@ object Dictionary {
 
   /**
    * Method used to generate new dictionary file name
-   * @param mode identifier which should be used while generating file name
+   * @param mode identifier which should be used while generating file name (or none if mode is not used by game)
    * @param language of the dictionary file name
    * @return generated dictionary file name containing current date with JSON extension
    */

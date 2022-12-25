@@ -1,5 +1,7 @@
 package pl.smtc.smartwords.model
 
+import pl.smtc.smartwords.utilities.DataParser
+
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -34,7 +36,7 @@ object Dictionary {
       if (parts.length == 3) {
         usedLanguage = parts.apply(2)
       } else if (parts.length == 4) {
-        usedGameMode = Some(parts.apply(2).toInt)
+        usedGameMode = new DataParser().parseGameMode(parts.apply(2))
         usedLanguage = parts.apply(3)
       }
     }

@@ -1,4 +1,5 @@
 const URL = "http://localhost:1111/";
+const mode = "0";
 const language = "pl";
 
 /**
@@ -18,7 +19,7 @@ const getWords = (callback) => {
       callback(createErrorObject("cannot get words" + details, getRequest.status), undefined);
     }
   });
-  getRequest.open("GET", URL + "words/" + language);
+  getRequest.open("GET", URL + "words/" + mode + "/" + language);
   getRequest.send();
 };
 
@@ -40,7 +41,7 @@ const postWord = (newWordObject, callback) => {
       callback(createErrorObject("cannot add word" + details, postRequest.status), undefined);
     }
   });
-  postRequest.open("POST", URL + "words/" + language);
+  postRequest.open("POST", URL + "words/" + mode + "/" + language);
   postRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   postRequest.send(JSON.stringify(newWordObject));
 };
@@ -64,7 +65,7 @@ const putWord = (currWord, newWordObject, callback) => {
       callback(createErrorObject("cannot edit word" + details, putRequest.status), undefined);
     }
   });
-  putRequest.open("PUT", URL + "words/" + language + "/" + currWord);
+  putRequest.open("PUT", URL + "words/" + mode + "/" + language + "/" + currWord);
   putRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   putRequest.send(JSON.stringify(newWordObject));
 };
@@ -87,7 +88,7 @@ const deleteWord = (wordName, callback) => {
       callback(createErrorObject("cannot delete word" + details, deleteRequest.status), undefined);
     }
   });
-  deleteRequest.open("DELETE", URL + "words/" + language + "/" + wordName);
+  deleteRequest.open("DELETE", URL + "words/" + mode + "/" + language + "/" + wordName);
   deleteRequest.send();
 };
 

@@ -4,6 +4,7 @@ const STATUS_ANSWER_NOK = -1;
 const END_QUIZ_FINISH = 0;
 const END_QUIZ_STOP = 1;
 var quizUuid = undefined;
+var selectedMode = undefined;
 var endQuizReason = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
@@ -28,6 +29,7 @@ function startQuiz(modeId) {
 }
 
 function initializeQuizSettings(modeId) {
+  selectedMode = availableModes.find(mode => mode.id === modeId);
   totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
 }
 

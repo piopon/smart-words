@@ -35,7 +35,7 @@ function getModeHtml(mode) {
             <div id="quiz-mode-tile-content">
               ${getDescriptionHtml(mode.description)}
               <div id="quiz-mode-content-settings">
-                ${getSettingsHtml(mode.settings)}
+                ${getSettingsHtml(mode.id, mode.settings)}
               </div>
             </div>
             ${getControlsHtml(mode.id)}
@@ -71,9 +71,9 @@ function getDescriptionHtml(description) {
  * @param {Object} settings list of all settings related to current mode
  * @returns HTML content with all mode settings
  */
-function getSettingsHtml(settings) {
+function getSettingsHtml(modeId, settings) {
   let allSettingsHtml = Object.values(settings)
-    .map((item) => getSettingHtml(item))
+    .map((item) => getSettingHtml(modeId, item))
     .join("");
   return `<p class="mode-section-label">settings:</p>` + allSettingsHtml;
 }
@@ -84,7 +84,7 @@ function getSettingsHtml(settings) {
  * @param {Object} setting data with specified type, label and details
  * @returns HTML content with single mode setting
  */
-function getSettingHtml(setting) {
+function getSettingHtml(modeId, setting) {
   switch (setting.type) {
     case "languages":
       return getLanguagesHtml(setting.label, setting.details);

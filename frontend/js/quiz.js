@@ -11,6 +11,8 @@ var currentQuestionNo = undefined;
 
 /**
  * Method used to receive number of question, start quiz and receive UUID
+ *
+ * @param {Integer} modeId unique identifier of quiz mode to be started
  */
 function startQuiz(modeId) {
   initializeQuizSettings(modeId);
@@ -163,6 +165,7 @@ function getAnswerButtonAction(isNewQuestion, optionNo) {
 /**
  * Method used to receive answer button class for HTML code
  *
+ * @param {Boolean} isNewQuestion flag indicating if this question is a new (unanswered) question
  * @param {Boolean} isAnswerCorrect flag indicating the current status of answer correctness
  * @returns "regular" class if input boolean is null, "ok" class if input is true, "nok" when false
  */

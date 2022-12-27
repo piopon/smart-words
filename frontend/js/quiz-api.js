@@ -4,6 +4,7 @@ const URL = "http://localhost:2222/";
  * Method used to send a request to the quiz service to start a new quiz
  *
  * @param {String} questionsNo number of questions for new quiz instance
+ * @param {Integer} modeId unique identifier of quiz mode which we want to start
  * @param {String} language selection for new quiz instance
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.

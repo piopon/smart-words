@@ -1,10 +1,12 @@
 const DEFAULT_LANGUAGE_MARK = "!";
+var availableModes = undefined;
 var selectedLanguage = undefined;
 
 /**
  * Method used to show quiz modes
  */
 function showQuizModes() {
+  availableModes = [];
   getQuizModes((err, data) => {
     if (err) {
       console.log("ERROR: " + err);
@@ -12,7 +14,10 @@ function showQuizModes() {
       let quizModeContainer = document.getElementById("quiz-modes-container");
       if (quizModeContainer === null) return;
       quizModeContainer.innerHTML = Object.values(data)
-        .map((item) => getModeHtml(item))
+        .map((item) => {
+          availableModes.push(item);
+          return getModeHtml(item);
+        })
         .join("");
     }
   });

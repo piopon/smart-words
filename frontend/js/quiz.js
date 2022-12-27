@@ -96,7 +96,7 @@ function requestQuestionNo(number, buttonId = undefined) {
  */
 function displayQuestion(questionObject) {
   let questionStatus = `question ${currentQuestionNo + 1}/${totalQuestionsNo}`;
-  document.getElementById("quiz-title-container-label").innerHTML = `quiz - guess definition - ${questionStatus}:`;
+  document.getElementById("quiz-title-container-label").innerHTML = `quiz - ${selectedMode.name} - ${questionStatus}:`;
   document.getElementById("quiz-question-container").className = "container-visible";
   document.getElementById("quiz-modes-container").className = "container-hidden";
   questionHtml = getWordHtml(questionObject.word);

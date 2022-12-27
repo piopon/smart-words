@@ -87,9 +87,9 @@ function getSettingsHtml(modeId, settings) {
 function getSettingHtml(modeId, setting) {
   switch (setting.type) {
     case "languages":
-      return getLanguagesHtml(setting.label, setting.details);
+      return getLanguagesHtml(modeId, setting.label, setting.details);
     case "questions":
-      return getQuestionsHtml(setting.label, setting.details);
+      return getQuestionsHtml(modeId, setting.label, setting.details);
     default:
       return "";
   }
@@ -102,7 +102,7 @@ function getSettingHtml(modeId, setting) {
  * @param {String} details containing short names of supported languages
  * @returns HTML content with mode languages setting
  */
-function getLanguagesHtml(label, details) {
+function getLanguagesHtml(modeId, label, details) {
   let allLanguages = details.split(" ");
   let hasDefaultLanguage = details.indexOf(DEFAULT_LANGUAGE_MARK) > 0;
   let allLanguagesHtml = allLanguages
@@ -158,10 +158,10 @@ function changeLanguage(newLanguage) {
  * @param {String} details containing questions number value information
  * @returns HTML content with mode questions number setting
  */
-function getQuestionsHtml(label, details) {
+function getQuestionsHtml(modeId, label, details) {
   return `<div class="quiz-mode-setting-container">
-            <label for="quiz-mode-settings-question-no">${label}</label>
-            <input type="number" id="quiz-mode-settings-question-no" ${details} />
+            <label for="quiz-mode-${modeId}-settings-question-no">${label}</label>
+            <input type="number" id="quiz-mode-${modeId}-settings-question-no" ${details} />
           </div>`;
 }
 

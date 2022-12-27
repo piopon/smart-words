@@ -28,6 +28,11 @@ function startQuiz(modeId) {
   });
 }
 
+/**
+ * Method used to initialize all variables after successful quiz start and before updating UI
+ *
+ * @param {Integer} modeId unique identifier of quiz mode for which we want to initialize settings
+ */
 function initializeQuizSettings(modeId) {
   selectedMode = availableModes.find(mode => mode.id === modeId);
   totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;

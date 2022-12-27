@@ -37,7 +37,7 @@ function startQuiz(modeId) {
  */
 function initializeQuizSettings(modeId) {
   selectedMode = availableModes.find(mode => mode.id === modeId);
-  totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
+  totalQuestionsNo = document.getElementById(`quiz-mode-${modeId}-settings-question-no`).value;
 }
 
 /**

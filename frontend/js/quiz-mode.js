@@ -30,7 +30,7 @@ function showQuizModes() {
  * @returns HTML content with single quiz mode
  */
 function getModeHtml(mode) {
-  return `<div id="quiz-mode-tile" class="tile-size-big tile-color-primary">
+  return `<div id="quiz-mode-tile" class="${randomTileSize()} tile-color-primary">
             ${getTitleHtml(mode.name)}
             <div id="quiz-mode-tile-content">
               ${getDescriptionHtml(mode.description)}
@@ -40,6 +40,12 @@ function getModeHtml(mode) {
             </div>
             ${getControlsHtml(mode.id)}
           </div>`;
+}
+
+function randomTileSize() {
+  var availableTileSizes = ["big", "medium", "small"];
+  var randomIndex = Math.floor(Math.random() * availableTileSizes.length)
+  return "tile-size-" + availableTileSizes[randomIndex];
 }
 
 /**

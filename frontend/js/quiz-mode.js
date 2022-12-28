@@ -68,6 +68,7 @@ function getDescriptionHtml(description) {
 /**
  * Method used to receive all mode settings HTML code
  *
+ * @param {Integer} modeId parent quiz mode identifier of the settings to be displayed
  * @param {Object} settings list of all settings related to current mode
  * @returns HTML content with all mode settings
  */
@@ -81,6 +82,7 @@ function getSettingsHtml(modeId, settings) {
 /**
  * Method used to receive mode single setting HTML code
  *
+ * @param {Integer} modeId parent quiz mode identifier of the concrete setting to be displayed
  * @param {Object} setting data with specified type, label and details
  * @returns HTML content with single mode setting
  */
@@ -98,6 +100,7 @@ function getSettingHtml(modeId, setting) {
 /**
  * Method used to receive mode supported languages setting HTML code
  *
+ * @param {Integer} modeId parent quiz mode identifier of the languages to be displayed
  * @param {String} label ontaining information about languages setting
  * @param {String} details containing short names of supported languages
  * @returns HTML content with mode languages setting
@@ -154,6 +157,7 @@ function changeLanguage(newLanguage) {
 /**
  * Method used to receive mode total questions number setting HTML code
  *
+ * @param {Integer} modeId parent quiz mode identifier of the questions number to be displayed
  * @param {String} label containing information about questions number setting
  * @param {String} details containing questions number value information
  * @returns HTML content with mode questions number setting

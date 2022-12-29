@@ -27,6 +27,7 @@ function showQuizModes() {
  * Method used to receive complete single quiz mode HTML code
  *
  * @param {Object} mode containig all data needed to display quiz mode
+ * @param {Integer} index of the element which HTML code we want to receive
  * @returns HTML content with single quiz mode
  */
 function getModeHtml(mode, index) {
@@ -43,9 +44,10 @@ function getModeHtml(mode, index) {
 }
 
 /**
- * Method used to generate random tile size if form of a predefined style class
+ * Method used to get tile size if form of a predefined style class
  *
- * @returns CSS class name representing (random) tile size
+ * @param {Integer} index of the element which size we want to receive
+ * @returns CSS class name representing tile size ('medium' for index = 0, random for others)
  */
 function getTileSize(index) {
   var availableTileSizes = ["big", "medium", "small"];
@@ -54,9 +56,10 @@ function getTileSize(index) {
 }
 
 /**
- * Method used to generate random tile color if form of a predefined style class
+ * Method used to generate tile color if form of a predefined style class
  *
- * @returns CSS class name representing (random) tile color
+ * @param {Integer} index of the element which color we want to receive
+ * @returns CSS class name representing tile color ('primary' for index = 0, random for others)
  */
 function getTileColor(index) {
   var availableTileColors = ["red", "pink", "violet", "blue", "green", "yellow", "orange"];

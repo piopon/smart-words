@@ -30,7 +30,7 @@ function showQuizModes() {
  * @returns HTML content with single quiz mode
  */
 function getModeHtml(mode, index) {
-  return `<div id="quiz-mode-tile" class="${randomTileSize()} ${randomTileColor()}">
+  return `<div id="quiz-mode-tile" class="${randomTileSize(index)} ${randomTileColor(index)}">
             ${getTitleHtml(mode.name)}
             <div id="quiz-mode-tile-content">
               ${getDescriptionHtml(mode.description)}
@@ -47,10 +47,10 @@ function getModeHtml(mode, index) {
  *
  * @returns CSS class name representing (random) tile size
  */
-function randomTileSize() {
+function randomTileSize(index) {
   var availableTileSizes = ["big", "medium", "small"];
   var randomIndex = Math.floor(Math.random() * availableTileSizes.length)
-  return "tile-size-" + availableTileSizes[randomIndex];
+  return "tile-size-" + (index === 0 ? "medium" : availableTileSizes[randomIndex]);
 }
 
 /**
@@ -58,10 +58,10 @@ function randomTileSize() {
  *
  * @returns CSS class name representing (random) tile color
  */
-function randomTileColor() {
+function randomTileColor(index) {
   var availableTileColors = ["primary", "red", "pink", "violet", "blue", "green", "yellow", "orange"];
   var randomIndex = Math.floor(Math.random() * availableTileColors.length)
-  return "tile-color-" + availableTileColors[randomIndex];
+  return "tile-color-" + (index === 0 ? "primary" : availableTileColors[randomIndex]);
 }
 
 /**

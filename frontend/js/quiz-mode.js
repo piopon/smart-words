@@ -42,12 +42,22 @@ function getModeHtml(mode) {
           </div>`;
 }
 
+/**
+ * Method used to generate random tile size if form of a predefined style class
+ *
+ * @returns CSS class name representing (random) tile size
+ */
 function randomTileSize() {
   var availableTileSizes = ["big", "medium", "small"];
   var randomIndex = Math.floor(Math.random() * availableTileSizes.length)
   return "tile-size-" + availableTileSizes[randomIndex];
 }
 
+/**
+ * Method used to generate random tile color if form of a predefined style class
+ *
+ * @returns CSS class name representing (random) tile color
+ */
 function randomTileColor() {
   var availableTileColors = ["primary", "red", "pink", "violet", "blue", "green", "yellow", "orange"];
   var randomIndex = Math.floor(Math.random() * availableTileColors.length)

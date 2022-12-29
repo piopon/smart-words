@@ -59,7 +59,7 @@ function getTileSize(index) {
  * @returns CSS class name representing (random) tile color
  */
 function getTileColor(index) {
-  var availableTileColors = ["primary", "red", "pink", "violet", "blue", "green", "yellow", "orange"];
+  var availableTileColors = ["red", "pink", "violet", "blue", "green", "yellow", "orange"];
   var randomIndex = Math.floor(Math.random() * availableTileColors.length)
   return "tile-color-" + (index === 0 ? "primary" : availableTileColors[randomIndex]);
 }

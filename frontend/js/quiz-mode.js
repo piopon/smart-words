@@ -14,9 +14,9 @@ function showQuizModes() {
       let quizModeContainer = document.getElementById("quiz-modes-container");
       if (quizModeContainer === null) return;
       quizModeContainer.innerHTML = Object.values(data)
-        .map((item) => {
+        .map((item, index) => {
           availableModes.push(item);
-          return getModeHtml(item);
+          return getModeHtml(item, index);
         })
         .join("");
     }
@@ -29,7 +29,7 @@ function showQuizModes() {
  * @param {Object} mode containig all data needed to display quiz mode
  * @returns HTML content with single quiz mode
  */
-function getModeHtml(mode) {
+function getModeHtml(mode, index) {
   return `<div id="quiz-mode-tile" class="${randomTileSize()} ${randomTileColor()}">
             ${getTitleHtml(mode.name)}
             <div id="quiz-mode-tile-content">

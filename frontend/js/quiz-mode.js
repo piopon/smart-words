@@ -139,7 +139,7 @@ function getLanguagesHtml(modeId, label, details) {
       if (isSelected) {
         selectedLanguage = item;
       }
-      return getLanguageHtml(item, isSelected);
+      return getLanguageHtml(item, isSelected, modeId);
     })
     .join("");
   return `<div class="quiz-mode-setting-container">
@@ -155,7 +155,7 @@ function getLanguagesHtml(modeId, label, details) {
  * @param {Boolean} selected if current language HTML flag should have selected class added
  * @returns HTML content with specified language icon
  */
-function getLanguageHtml(language, selected) {
+function getLanguageHtml(language, selected, modeId) {
   let languageClass = `language-flag ${selected ? "language-selected" : ""}`;
   let languageName = selected ? language.substring(0, 2) : language;
   let languageFile = `images/languages/${languageName}-24.png`;

@@ -173,10 +173,12 @@ function changeLanguage(newLanguage, familyId) {
   const searchString = `/${newLanguage}-24.png`;
   const languageFlags = Array.from(document.getElementsByClassName("language-flag"));
   if (languageFlags === null) return;
-  languageFlags.map((flagElement) => {
-    let selectedClass = flagElement.getAttribute("src").indexOf(searchString) > 0 ? "language-selected" : "";
-    flagElement.className = `language-flag ${selectedClass}`;
-  });
+  languageFlags
+    .filter((flagElement) => flagElement.getAttribute("id") === `language-family-${familyId}`)
+    .map((flagElement) => {
+      let selectedClass = flagElement.getAttribute("src").indexOf(searchString) > 0 ? "language-selected" : "";
+      flagElement.className = `language-flag ${selectedClass}`;
+    });
   selectedLanguage = newLanguage;
 }
 

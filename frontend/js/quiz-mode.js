@@ -160,7 +160,7 @@ function getLanguageHtml(language, selected, modeId) {
   let languageClass = `language-flag ${selected ? "language-selected" : ""}`;
   let languageName = selected ? language.substring(0, 2) : language;
   let languageFile = `images/languages/${languageName}-24.png`;
-  let languageClick = `changeLanguage('${languageName}')`;
+  let languageClick = `changeLanguage('${languageName}', '${modeId}')`;
   return `<img id="${languageId}" class="${languageClass}" src="${languageFile}" onclick="${languageClick}"/>`;
 }
 
@@ -169,7 +169,7 @@ function getLanguageHtml(language, selected, modeId) {
  *
  * @param {String} newLanguage name of image flag which should be marked with 'language-selected' class
  */
-function changeLanguage(newLanguage) {
+function changeLanguage(newLanguage, familyId) {
   const searchString = `/${newLanguage}-24.png`;
   const languageFlags = Array.from(document.getElementsByClassName("language-flag"));
   if (languageFlags === null) return;

@@ -156,11 +156,12 @@ function getLanguagesHtml(modeId, label, details) {
  * @returns HTML content with specified language icon
  */
 function getLanguageHtml(language, selected, modeId) {
+  let languageId = `language-family-${modeId}`;
   let languageClass = `language-flag ${selected ? "language-selected" : ""}`;
   let languageName = selected ? language.substring(0, 2) : language;
   let languageFile = `images/languages/${languageName}-24.png`;
   let languageClick = `changeLanguage('${languageName}')`;
-  return `<img class="${languageClass}" src="${languageFile}" onclick="${languageClick}"/>`;
+  return `<img id="${languageId}" class="${languageClass}" src="${languageFile}" onclick="${languageClick}"/>`;
 }
 
 /**

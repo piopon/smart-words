@@ -7,6 +7,7 @@ var questionsStatus = undefined;
 /**
  * Method used to update GUI state while starting quiz from service
  *
+ * @param {Integer} quizModeId representing unique mode identifier of button which state should be update
  * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {Object} detailedState containing detailed information about current state (undefined by default)
  */

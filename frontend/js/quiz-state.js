@@ -13,7 +13,7 @@ var questionsStatus = undefined;
  */
 function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
   let startQuizBtn = document.getElementById(`quiz-mode-${quizModeId}-controls-start`);
-  let startQuizInfo = document.getElementById("quiz-mode-controls-info");
+  let startQuizInfo = document.getElementById(`quiz-mode-${quizModeId}-controls-info`);
   if (startQuizBtn === null || startQuizInfo === null) return;
   if (STATE_QUIZ_OK === newUiState) {
     startQuizBtn.addEventListener("click", startQuiz);

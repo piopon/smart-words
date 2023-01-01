@@ -153,6 +153,7 @@ function getLanguagesHtml(modeId, label, details) {
  *
  * @param {String} language flag name representing specific image in languages resources
  * @param {Boolean} selected if current language HTML flag should have selected class added
+ * @param {Integer} modeId quiz mode identifier as a language identifier (grouping per mode)
  * @returns HTML content with specified language icon
  */
 function getLanguageHtml(language, selected, modeId) {
@@ -168,6 +169,7 @@ function getLanguageHtml(language, selected, modeId) {
  * Method used to change active language by updating 'language-selected' class in flags elements
  *
  * @param {String} newLanguage name of image flag which should be marked with 'language-selected' class
+ * @param {Integer} familyId unique language/mode family identifier (to swap between languages in one mode)
  */
 function changeLanguage(newLanguage, familyId) {
   const searchString = `/${newLanguage}-24.png`;

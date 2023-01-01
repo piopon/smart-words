@@ -17,7 +17,7 @@ var currentQuestionNo = undefined;
 function startQuiz(modeId) {
   initializeQuizSettings(modeId);
   startQuizUpdateUI(selectedMode.id, STATE_QUIZ_LOAD);
-  postQuizStart(totalQuestionsNo, selectedMode.id, selectedLanguage, (err, data) => {
+  postQuizStart(totalQuestionsNo, selectedMode.id, selectedLanguage.get(selectedMode.id), (err, data) => {
     if (err) {
       startQuizUpdateUI(selectedMode.id, STATE_QUIZ_ERROR, err);
       console.log("ERROR " + err.status + ": " + err.message);

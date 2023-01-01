@@ -210,7 +210,7 @@ function getControlsHtml(modeId) {
             <button id="quiz-mode-${modeId}-controls-start" class="dynamic-border" onclick="${modeClick}">
               start
             </button>
-            <div id="quiz-mode-controls-info" class="hide" title="PUT EXTRA INFO HERE"></div>
+            <div id="quiz-mode-${modeId}-controls-info" class="hide" title="PUT EXTRA INFO HERE"></div>
           </div>`;
 }
 

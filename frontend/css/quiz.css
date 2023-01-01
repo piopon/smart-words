@@ -191,7 +191,7 @@ div[class^="question-status"].nav-on:hover {
   margin: 5px 0px 10px 0px;
 }
 
-#quiz-mode-controls-info {
+div[id^="quiz-mode-"][id$="-controls-info"] {
   background: url(../images/info.png) no-repeat;
   width: 24px;
   height: 24px;
@@ -201,7 +201,7 @@ div[class^="question-status"].nav-on:hover {
   z-index: 10;
 }
 
-#quiz-mode-controls-info.hide {
+div[id^="quiz-mode-"][id$="-controls-info"].hide {
   display: none;
 }
 

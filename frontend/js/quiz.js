@@ -17,7 +17,7 @@ var currentQuestionNo = undefined;
 function startQuiz(modeId) {
   initializeQuizSettings(modeId);
   startQuizUpdateUI(selectedMode.id, STATE_QUIZ_LOAD);
-  postQuizStart(totalQuestionsNo, selectedMode.id, selectedLanguage.get(selectedMode.id), (err, data) => {
+  postQuizStart(totalQuestionsNo, selectedMode.id, selectedMode.language, (err, data) => {
     if (err) {
       startQuizUpdateUI(selectedMode.id, STATE_QUIZ_ERROR, err);
       console.log("ERROR " + err.status + ": " + err.message);
@@ -37,6 +37,7 @@ function startQuiz(modeId) {
  */
 function initializeQuizSettings(modeId) {
   selectedMode = availableModes.find(mode => mode.id === modeId);
+  selectedMode.language = selectedLanguage.get(modeId);
   totalQuestionsNo = document.getElementById(`quiz-mode-${modeId}-settings-question-no`).value;
 }
 

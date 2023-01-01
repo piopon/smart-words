@@ -16,13 +16,13 @@ var currentQuestionNo = undefined;
  */
 function startQuiz(modeId) {
   initializeQuizSettings(modeId);
-  startQuizUpdateUI(STATE_QUIZ_LOAD);
+  startQuizUpdateUI(selectedMode.id, STATE_QUIZ_LOAD);
   postQuizStart(totalQuestionsNo, selectedMode.id, selectedLanguage, (err, data) => {
     if (err) {
-      startQuizUpdateUI(STATE_QUIZ_ERROR, err);
+      startQuizUpdateUI(selectedMode.id, STATE_QUIZ_ERROR, err);
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
-      startQuizUpdateUI(STATE_QUIZ_OK);
+      startQuizUpdateUI(selectedMode.id, STATE_QUIZ_OK);
       quizUuid = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);

@@ -10,8 +10,8 @@ var questionsStatus = undefined;
  * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  * @param {Object} detailedState containing detailed information about current state (undefined by default)
  */
-function startQuizUpdateUI(newUiState, detailedState = undefined) {
-  let startQuizBtn = document.getElementById("quiz-mode-controls-start");
+function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
+  let startQuizBtn = document.getElementById(`quiz-mode-${quizModeId}-controls-start`);
   let startQuizInfo = document.getElementById("quiz-mode-controls-info");
   if (startQuizBtn === null || startQuizInfo === null) return;
   if (STATE_QUIZ_OK === newUiState) {

@@ -37,7 +37,7 @@ function startQuiz(modeId) {
  */
 function initializeQuizSettings(modeId) {
   selectedMode = availableModes.find(mode => mode.id === modeId);
-  selectedMode.language = selectedLanguage.get(modeId);
+  selectedMode.language = modeLanguageMap.get(modeId);
   totalQuestionsNo = document.getElementById(`quiz-mode-${modeId}-settings-question-no`).value;
 }
 

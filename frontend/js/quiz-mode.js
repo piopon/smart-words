@@ -1,5 +1,5 @@
 const DEFAULT_LANGUAGE_MARK = "!";
-var selectedLanguage = new Map();
+var modeLanguageMap = new Map();
 var availableModes = undefined;
 
 /**
@@ -137,7 +137,7 @@ function getLanguagesHtml(modeId, label, details) {
     .map((item) => {
       let isSelected = hasDefaultLanguage ? item.indexOf(DEFAULT_LANGUAGE_MARK) > 0 : details.startsWith(item);
       if (isSelected) {
-        selectedLanguage.set(modeId, item);
+        modeLanguageMap.set(modeId, item);
       }
       return getLanguageHtml(item, isSelected, modeId);
     })
@@ -181,7 +181,7 @@ function changeLanguage(newLanguage, familyId) {
       let selectedClass = flagElement.getAttribute("src").indexOf(searchString) > 0 ? "language-selected" : "";
       flagElement.className = `language-flag ${selectedClass}`;
     });
-  selectedLanguage.set(familyId, newLanguage);
+  modeLanguageMap.set(familyId, newLanguage);
 }
 
 /**

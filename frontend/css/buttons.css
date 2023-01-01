@@ -1,7 +1,7 @@
 /*******************************/
 /* quiz mode start button      */
 /*******************************/
-#quiz-mode-controls-start {
+button[id^="quiz-mode-"][id$="-controls-start"] {
   height: 40px;
   width: 100%;
   background-color: limegreen;
@@ -10,12 +10,12 @@
   font-family: var(--styled-font), cursive;
 }
 
-#quiz-mode-controls-start:hover {
+button[id^="quiz-mode-"][id$="-controls-start"]:hover {
   background-color: lime;
   transition: background-color 0.75s;
 }
 
-#quiz-mode-controls-start.loading {
+button[id^="quiz-mode-"][id$="-controls-start"].loading {
   color: black;
   border-color: black;
   border-width: 3px;
@@ -23,7 +23,7 @@
   transition: background-color 0.75s;
 }
 
-#quiz-mode-controls-start:disabled {
+button[id^="quiz-mode-"][id$="-controls-start"]:disabled {
   color: darkred;
   border-color: darkred;
   border-width: 1px;

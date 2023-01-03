@@ -160,24 +160,24 @@ div.quiz-mode-tile-content {
   font-size: 15px;
 }
 
-.quiz-mode-setting-container {
+div.quiz-mode-setting-container {
   height: 21px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.quiz-mode-setting-container label {
+div.quiz-mode-setting-container label {
   width: 130px;
 }
 
-.language-flag {
+img.language-flag {
   cursor: pointer;
   filter: grayscale(0.85);
   margin: 0px 5px 0px 0px;
 }
 
-.language-flag.language-selected {
+img.language-flag.language-selected {
   cursor: default;
   filter: grayscale(0);
 }

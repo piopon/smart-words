@@ -74,7 +74,7 @@ function getTileColor(index) {
  * @returns HTML content with mode title
  */
 function getTitleHtml(title) {
-  return `<div id="quiz-mode-tile-title">${title}</div>`;
+  return `<div class="quiz-mode-tile-title">${title}</div>`;
 }
 
 /**
@@ -84,9 +84,9 @@ function getTitleHtml(title) {
  * @returns HTML content with mode description
  */
 function getDescriptionHtml(description) {
-  return `<div id="quiz-mode-content-description">
+  return `<div class="quiz-mode-content-description">
             <p class="mode-section-label">decription:</p>
-            <div id="mode-description-text">${description}</div>
+            <div class="mode-description-text">${description}</div>
           </div>`;
 }
 

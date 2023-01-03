@@ -141,7 +141,7 @@ div[class^="question-status"].nav-on:hover {
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
-#quiz-mode-tile-title {
+div.quiz-mode-tile-title {
   padding: 10 10px;
   font-size: 25px;
   letter-spacing: 0px;
@@ -150,7 +150,7 @@ div[class^="question-status"].nav-on:hover {
   color: white;
 }
 
-#mode-description-text {
+div.mode-description-text {
   display: flex;
   height: 21px;
 }

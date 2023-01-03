@@ -182,7 +182,7 @@ div[class^="question-status"].nav-on:hover {
   filter: grayscale(0);
 }
 
-#quiz-mode-tile-controls {
+div.quiz-mode-tile-controls {
   display: flex;
   align-items: flex-end;
   height: 100%;

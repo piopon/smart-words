@@ -206,7 +206,7 @@ function getQuestionsHtml(modeId, label, details) {
  */
 function getControlsHtml(modeId) {
   let modeClick = `startQuiz(${modeId})`;
-  return `<div id="quiz-mode-tile-controls">
+  return `<div class="quiz-mode-tile-controls">
             <button id="quiz-mode-${modeId}-controls-start" class="dynamic-border" onclick="${modeClick}">
               start
             </button>

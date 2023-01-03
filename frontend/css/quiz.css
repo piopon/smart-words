@@ -155,7 +155,7 @@ div.mode-description-text {
   height: 21px;
 }
 
-#quiz-mode-tile-content {
+div.quiz-mode-tile-content {
   padding: 5px 10px;
   font-size: 15px;
 }

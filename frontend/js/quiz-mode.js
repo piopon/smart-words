@@ -31,7 +31,7 @@ function showQuizModes() {
  * @returns HTML content with single quiz mode
  */
 function getModeHtml(mode, index) {
-  return `<div id="quiz-mode-tile" class="${getTileSize(index)} ${getTileColor(index)}">
+  return `<div class="quiz-mode-tile ${getTileSize(index)} ${getTileColor(index)}">
             ${getTitleHtml(mode.name)}
             <div class="quiz-mode-tile-content">
               ${getDescriptionHtml(mode.description)}

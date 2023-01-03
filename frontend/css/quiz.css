@@ -132,7 +132,7 @@ div[class^="question-status"].nav-on:hover {
   -ms-user-select: none;
 }
 
-#quiz-mode-tile {
+div.quiz-mode-tile {
   display: flex;
   flex-direction: column;
   min-height: 210px;

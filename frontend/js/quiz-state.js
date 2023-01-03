@@ -4,6 +4,18 @@ const STATE_QUIZ_LOAD = 2;
 const STATE_QUIZ_ERROR = 3;
 var questionsStatus = undefined;
 
+function quizModeViewUpdateUI(newUiState) {
+  if (STATE_QUIZ_OK === newUiState) {
+    return;
+  }
+  if (STATE_QUIZ_LOAD === newUiState) {
+    return;
+  }
+  if (STATE_QUIZ_ERROR === newUiState) {
+    return;
+  }
+}
+
 /**
  * Method used to update GUI state while starting quiz from service
  *

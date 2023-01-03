@@ -7,10 +7,13 @@ var availableModes = undefined;
  */
 function showQuizModes() {
   availableModes = [];
+  quizModeViewUpdateUI(STATE_QUIZ_LOAD);
   getQuizModes((err, data) => {
     if (err) {
-      console.log("ERROR: " + err);
+      quizModeViewUpdateUI(STATE_QUIZ_ERROR);
+      console.log("ERROR " + err.status + ": " + err.message);
     } else {
+      quizModeViewUpdateUI(STATE_QUIZ_OK);
       let quizModeContainer = document.getElementById("quiz-modes-container");
       if (quizModeContainer === null) return;
       quizModeContainer.innerHTML = Object.values(data)

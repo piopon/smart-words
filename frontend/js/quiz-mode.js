@@ -35,7 +35,7 @@ function getModeHtml(mode, index) {
             ${getTitleHtml(mode.name)}
             <div id="quiz-mode-tile-content">
               ${getDescriptionHtml(mode.description)}
-              <div id="quiz-mode-content-settings">
+              <div class="quiz-mode-content-settings">
                 ${getSettingsHtml(mode.id, mode.settings)}
               </div>
             </div>

@@ -4,6 +4,11 @@ const STATE_QUIZ_LOAD = 2;
 const STATE_QUIZ_ERROR = 3;
 var questionsStatus = undefined;
 
+/**
+ * Method used to update GUI state while showing all possible quiz modes from service
+ *
+ * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
+ */
 function quizModeViewUpdateUI(newUiState) {
   if (STATE_QUIZ_OK === newUiState) {
     return;

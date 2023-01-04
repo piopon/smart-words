@@ -30,58 +30,58 @@ function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
     let allStartQuizButtons = Array.from(document.querySelectorAll(`button.${btnStartClass}`));
     let allStartQuizInfos = Array.from(document.querySelectorAll(`div.${divInfoClass}`));
     if (allStartQuizButtons.length === 0 || allStartQuizInfos.length === 0) return;
-  if (STATE_QUIZ_OK === newUiState) {
-    allStartQuizButtons.forEach(startQuizBtn => {
-      startQuizBtn.className = `${btnStartClass} dynamic-border`;
-      startQuizBtn.disabled = false;
-      startQuizBtn.innerHTML = "start";
-    });
-    allStartQuizInfos.forEach(startQuizInfo => startQuizInfo.className = `${divInfoClass} hide`);
-    return;
-  }
-  if (STATE_QUIZ_LOAD === newUiState) {
-    allStartQuizButtons
-      .filter((startQuizBtn) => startQuizBtn.getAttribute("data-mode") === `${quizModeId}`)
-      .forEach((startQuizBtn) => {
-        startQuizBtn.onclick = null;
-        startQuizBtn.className = `${btnStartClass} loading`;
+    if (STATE_QUIZ_OK === newUiState) {
+      allStartQuizButtons.forEach((startQuizBtn) => {
+        startQuizBtn.className = `${btnStartClass} dynamic-border`;
         startQuizBtn.disabled = false;
-        startQuizBtn.innerHTML = "connecting...";
+        startQuizBtn.innerHTML = "start";
       });
-    allStartQuizInfos.forEach(startQuizInfo => startQuizInfo.className = `${divInfoClass} hide`);
-    questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
-    return;
-  }
-  if (STATE_QUIZ_ERROR === newUiState) {
-    allStartQuizButtons.forEach(startQuizBtn => {
-      startQuizBtn.onclick = null;
-      startQuizBtn.disabled = true;
-      startQuizBtn.innerHTML = "service unavailable";
-    });
-    allStartQuizInfos
-      .filter(startQuizInfo => startQuizInfo.getAttribute("data-mode") === `${quizModeId}`)
-      .forEach(startQuizInfo => {
-        startQuizInfo.className = `${divInfoClass}`;
-        startQuizInfo.title = getQuizErrorMessage(detailedState);
+      allStartQuizInfos.forEach((startQuizInfo) => (startQuizInfo.className = `${divInfoClass} hide`));
+      return;
+    }
+    if (STATE_QUIZ_LOAD === newUiState) {
+      allStartQuizButtons
+        .filter((startQuizBtn) => startQuizBtn.getAttribute("data-mode") === `${quizModeId}`)
+        .forEach((startQuizBtn) => {
+          startQuizBtn.onclick = null;
+          startQuizBtn.className = `${btnStartClass} loading`;
+          startQuizBtn.disabled = false;
+          startQuizBtn.innerHTML = "connecting...";
+        });
+      allStartQuizInfos.forEach((startQuizInfo) => (startQuizInfo.className = `${divInfoClass} hide`));
+      questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
+      return;
+    }
+    if (STATE_QUIZ_ERROR === newUiState) {
+      allStartQuizButtons.forEach((startQuizBtn) => {
+        startQuizBtn.onclick = null;
+        startQuizBtn.disabled = true;
+        startQuizBtn.innerHTML = "service unavailable";
       });
-    questionsStatus = undefined;
-    return;
-  }
-  if (STATE_QUIZ_OFF === newUiState) {
-    allStartQuizButtons.forEach(startQuizBtn => {
-      startQuizBtn.onclick = null;
-      startQuizBtn.disabled = true;
-      startQuizBtn.innerHTML = "service disabled";
-    });
-    allStartQuizInfos
-      .filter(startQuizInfo => startQuizInfo.getAttribute("data-mode") === `${quizModeId}`)
-      .forEach(startQuizInfo => {
-        startQuizInfo.className = `${divInfoClass}`;
-        startQuizInfo.title = "Logic entered quiz off state. Reload page and try again.";
+      allStartQuizInfos
+        .filter((startQuizInfo) => startQuizInfo.getAttribute("data-mode") === `${quizModeId}`)
+        .forEach((startQuizInfo) => {
+          startQuizInfo.className = `${divInfoClass}`;
+          startQuizInfo.title = getQuizErrorMessage(detailedState);
+        });
+      questionsStatus = undefined;
+      return;
+    }
+    if (STATE_QUIZ_OFF === newUiState) {
+      allStartQuizButtons.forEach((startQuizBtn) => {
+        startQuizBtn.onclick = null;
+        startQuizBtn.disabled = true;
+        startQuizBtn.innerHTML = "service disabled";
       });
-    questionsStatus = undefined;
-    return;
-  }
+      allStartQuizInfos
+        .filter((startQuizInfo) => startQuizInfo.getAttribute("data-mode") === `${quizModeId}`)
+        .forEach((startQuizInfo) => {
+          startQuizInfo.className = `${divInfoClass}`;
+          startQuizInfo.title = "Logic entered quiz off state. Reload page and try again.";
+        });
+      questionsStatus = undefined;
+      return;
+    }
   } catch (error) {
     console.log(error.name + ": " + error.message);
   }

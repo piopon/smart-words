@@ -31,10 +31,12 @@ function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
     let allStartQuizInfos = Array.from(document.querySelectorAll(`div.${divInfoClass}`));
     if (allStartQuizButtons.length === 0 || allStartQuizInfos.length === 0) return;
   if (STATE_QUIZ_OK === newUiState) {
-    startQuizBtn.className = `${btnStartClass} dynamic-border`;
-    startQuizBtn.disabled = false;
-    startQuizBtn.innerHTML = "start";
-    startQuizInfo.className = `${divInfoClass} hide`;
+    allStartQuizButtons.forEach(startQuizBtn => {
+      startQuizBtn.className = `${btnStartClass} dynamic-border`;
+      startQuizBtn.disabled = false;
+      startQuizBtn.innerHTML = "start";
+    });
+    allStartQuizInfos.forEach(startQuizInfo => startQuizInfo.className = `${divInfoClass} hide`);
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {

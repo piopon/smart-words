@@ -53,20 +53,32 @@ function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
     return;
   }
   if (STATE_QUIZ_ERROR === newUiState) {
-    startQuizBtn.onclick = null;
-    startQuizBtn.disabled = true;
-    startQuizBtn.innerHTML = "service unavailable";
-    startQuizInfo.className = `${divInfoClass}`;
-    startQuizInfo.title = getQuizErrorMessage(detailedState);
+    allStartQuizButtons.forEach(startQuizBtn => {
+      startQuizBtn.onclick = null;
+      startQuizBtn.disabled = true;
+      startQuizBtn.innerHTML = "service unavailable";
+    });
+    allStartQuizInfos
+      .filter(startQuizInfo => startQuizInfo.getAttribute("data-mode") === `${quizModeId}`)
+      .forEach(startQuizInfo => {
+        startQuizInfo.className = `${divInfoClass}`;
+        startQuizInfo.title = getQuizErrorMessage(detailedState);
+      });
     questionsStatus = undefined;
     return;
   }
   if (STATE_QUIZ_OFF === newUiState) {
-    startQuizBtn.onclick = null;
-    startQuizBtn.disabled = true;
-    startQuizBtn.innerHTML = "service disabled";
-    startQuizInfo.className = `${divInfoClass}`;
-    startQuizInfo.title = "Logic entered quiz off state. Reload page and try again.";
+    allStartQuizButtons.forEach(startQuizBtn => {
+      startQuizBtn.onclick = null;
+      startQuizBtn.disabled = true;
+      startQuizBtn.innerHTML = "service disabled";
+    });
+    allStartQuizInfos
+      .filter(startQuizInfo => startQuizInfo.getAttribute("data-mode") === `${quizModeId}`)
+      .forEach(startQuizInfo => {
+        startQuizInfo.className = `${divInfoClass}`;
+        startQuizInfo.title = "Logic entered quiz off state. Reload page and try again.";
+      });
     questionsStatus = undefined;
     return;
   }

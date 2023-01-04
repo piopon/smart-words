@@ -24,23 +24,23 @@ function quizModeViewUpdateUI(newUiState) {
  * @param {Object} detailedState containing detailed information about current state (undefined by default)
  */
 function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
-  let startQuizBtn = document.getElementById(`quiz-mode-${quizModeId}-controls-start`);
-  let startQuizInfo = document.getElementById(`quiz-mode-${quizModeId}-controls-info`);
+  let startQuizBtn = document.querySelector(`button.quiz-mode-controls-start[data-mode="${quizModeId}"]`);
+  let startQuizInfo = document.querySelector(`div.quiz-mode-controls-info[data-mode="${quizModeId}"]`);
   if (startQuizBtn === null || startQuizInfo === null) return;
   if (STATE_QUIZ_OK === newUiState) {
     startQuizBtn.addEventListener("click", startQuiz);
-    startQuizBtn.className = "dynamic-border";
+    startQuizBtn.className = "quiz-mode-controls-start dynamic-border";
     startQuizBtn.disabled = false;
     startQuizBtn.innerHTML = "start";
-    startQuizInfo.className = "hide";
+    startQuizInfo.className = "quiz-mode-controls-info hide";
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
     startQuizBtn.onclick = null;
-    startQuizBtn.className = "loading";
+    startQuizBtn.className = "quiz-mode-controls-start loading";
     startQuizBtn.disabled = false;
     startQuizBtn.innerHTML = "connecting...";
-    startQuizInfo.className = "hide";
+    startQuizInfo.className = "quiz-mode-controls-info hide";
     questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
     return;
   }
@@ -48,7 +48,7 @@ function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
     startQuizBtn.onclick = null;
     startQuizBtn.disabled = true;
     startQuizBtn.innerHTML = "service unavailable";
-    startQuizInfo.className = "";
+    startQuizInfo.className = "quiz-mode-controls-info";
     startQuizInfo.title = getQuizErrorMessage(detailedState);
     questionsStatus = undefined;
     return;
@@ -57,7 +57,7 @@ function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
     startQuizBtn.onclick = null;
     startQuizBtn.disabled = true;
     startQuizBtn.innerHTML = "service disabled";
-    startQuizInfo.className = "";
+    startQuizInfo.className = "quiz-mode-controls-info";
     startQuizInfo.title = "Logic entered quiz off state. Reload page and try again.";
     questionsStatus = undefined;
     return;

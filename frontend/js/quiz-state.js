@@ -26,9 +26,10 @@ function quizModeViewUpdateUI(newUiState) {
 function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
   const btnStartClass = "quiz-mode-controls-start";
   const divInfoClass = "quiz-mode-controls-info";
-  let allStartQuizButtons = Array.from(document.querySelectorAll(`button.${btnStartClass}`));
-  let allStartQuizInfos = Array.from(document.querySelectorAll(`div.${divInfoClass}`));
-  if (allStartQuizButtons === null || allStartQuizInfos === null) return;
+  try {
+    let allStartQuizButtons = Array.from(document.querySelectorAll(`button.${btnStartClass}`));
+    let allStartQuizInfos = Array.from(document.querySelectorAll(`div.${divInfoClass}`));
+    if (allStartQuizButtons.length === 0 || allStartQuizInfos.length === 0) return;
   if (STATE_QUIZ_OK === newUiState) {
     startQuizBtn.className = `${btnStartClass} dynamic-border`;
     startQuizBtn.disabled = false;
@@ -62,6 +63,9 @@ function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
     startQuizInfo.title = "Logic entered quiz off state. Reload page and try again.";
     questionsStatus = undefined;
     return;
+  }
+  } catch (error) {
+    console.log(error.name + ": " + error.message);
   }
 }
 

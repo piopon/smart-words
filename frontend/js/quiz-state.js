@@ -26,9 +26,9 @@ function quizModeViewUpdateUI(newUiState) {
 function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
   const btnStartClass = "quiz-mode-controls-start";
   const divInfoClass = "quiz-mode-controls-info";
-  let startQuizBtn = document.querySelector(`button.${btnStartClass}[data-mode="${quizModeId}"]`);
-  let startQuizInfo = document.querySelector(`div.${divInfoClass}[data-mode="${quizModeId}"]`);
-  if (startQuizBtn === null || startQuizInfo === null) return;
+  let allStartQuizButtons = Array.from(document.querySelectorAll(`button.${btnStartClass}`));
+  let allStartQuizInfos = Array.from(document.querySelectorAll(`div.${divInfoClass}`));
+  if (allStartQuizButtons === null || allStartQuizInfos === null) return;
   if (STATE_QUIZ_OK === newUiState) {
     startQuizBtn.className = `${btnStartClass} dynamic-border`;
     startQuizBtn.disabled = false;

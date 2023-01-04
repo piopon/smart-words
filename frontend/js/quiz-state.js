@@ -40,11 +40,15 @@ function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
-    startQuizBtn.onclick = null;
-    startQuizBtn.className = `${btnStartClass} loading`;
-    startQuizBtn.disabled = false;
-    startQuizBtn.innerHTML = "connecting...";
-    startQuizInfo.className = `${divInfoClass} hide`;
+    allStartQuizButtons
+      .filter((startQuizBtn) => startQuizBtn.getAttribute("data-mode") === `${quizModeId}`)
+      .forEach((startQuizBtn) => {
+        startQuizBtn.onclick = null;
+        startQuizBtn.className = `${btnStartClass} loading`;
+        startQuizBtn.disabled = false;
+        startQuizBtn.innerHTML = "connecting...";
+      });
+    allStartQuizInfos.forEach(startQuizInfo => startQuizInfo.className = `${divInfoClass} hide`);
     questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
     return;
   }

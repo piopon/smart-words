@@ -28,7 +28,6 @@ function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
   let startQuizInfo = document.querySelector(`div.quiz-mode-controls-info[data-mode="${quizModeId}"]`);
   if (startQuizBtn === null || startQuizInfo === null) return;
   if (STATE_QUIZ_OK === newUiState) {
-    startQuizBtn.addEventListener("click", startQuiz);
     startQuizBtn.className = "quiz-mode-controls-start dynamic-border";
     startQuizBtn.disabled = false;
     startQuizBtn.innerHTML = "start";

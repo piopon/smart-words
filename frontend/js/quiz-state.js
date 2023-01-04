@@ -24,22 +24,24 @@ function quizModeViewUpdateUI(newUiState) {
  * @param {Object} detailedState containing detailed information about current state (undefined by default)
  */
 function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
-  let startQuizBtn = document.querySelector(`button.quiz-mode-controls-start[data-mode="${quizModeId}"]`);
-  let startQuizInfo = document.querySelector(`div.quiz-mode-controls-info[data-mode="${quizModeId}"]`);
+  const btnStartClass = "quiz-mode-controls-start";
+  const divInfoClass = "quiz-mode-controls-info";
+  let startQuizBtn = document.querySelector(`button.${btnStartClass}[data-mode="${quizModeId}"]`);
+  let startQuizInfo = document.querySelector(`div.${divInfoClass}[data-mode="${quizModeId}"]`);
   if (startQuizBtn === null || startQuizInfo === null) return;
   if (STATE_QUIZ_OK === newUiState) {
-    startQuizBtn.className = "quiz-mode-controls-start dynamic-border";
+    startQuizBtn.className = `${btnStartClass} dynamic-border`;
     startQuizBtn.disabled = false;
     startQuizBtn.innerHTML = "start";
-    startQuizInfo.className = "quiz-mode-controls-info hide";
+    startQuizInfo.className = `${divInfoClass} hide`;
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
     startQuizBtn.onclick = null;
-    startQuizBtn.className = "quiz-mode-controls-start loading";
+    startQuizBtn.className = `${btnStartClass} loading`;
     startQuizBtn.disabled = false;
     startQuizBtn.innerHTML = "connecting...";
-    startQuizInfo.className = "quiz-mode-controls-info hide";
+    startQuizInfo.className = `${divInfoClass} hide`;
     questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
     return;
   }
@@ -47,7 +49,7 @@ function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
     startQuizBtn.onclick = null;
     startQuizBtn.disabled = true;
     startQuizBtn.innerHTML = "service unavailable";
-    startQuizInfo.className = "quiz-mode-controls-info";
+    startQuizInfo.className = `${divInfoClass}`;
     startQuizInfo.title = getQuizErrorMessage(detailedState);
     questionsStatus = undefined;
     return;
@@ -56,7 +58,7 @@ function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
     startQuizBtn.onclick = null;
     startQuizBtn.disabled = true;
     startQuizBtn.innerHTML = "service disabled";
-    startQuizInfo.className = "quiz-mode-controls-info";
+    startQuizInfo.className = `${divInfoClass}`;
     startQuizInfo.title = "Logic entered quiz off state. Reload page and try again.";
     questionsStatus = undefined;
     return;

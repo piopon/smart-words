@@ -191,7 +191,7 @@ div.quiz-mode-tile-controls {
   margin: 5px 0px 10px 0px;
 }
 
-div[id^="quiz-mode-"][id$="-controls-info"] {
+div.quiz-mode-controls-info {
   background: url(../images/info.png) no-repeat;
   width: 24px;
   height: 24px;
@@ -201,7 +201,7 @@ div[id^="quiz-mode-"][id$="-controls-info"] {
   z-index: 10;
 }
 
-div[id^="quiz-mode-"][id$="-controls-info"].hide {
+div.quiz-mode-controls-info.hide {
   display: none;
 }
 

@@ -10,13 +10,17 @@ var questionsStatus = undefined;
  * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
  */
 function quizModeViewUpdateUI(newUiState) {
+  let loaderContainer = document.getElementById("quiz-loader-container");
   if (STATE_QUIZ_OK === newUiState) {
+    loaderContainer.className = "container-hidden";
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
+    loaderContainer.className = "container-visible";
     return;
   }
   if (STATE_QUIZ_ERROR === newUiState) {
+    loaderContainer.className = "container-hidden";
     return;
   }
 }

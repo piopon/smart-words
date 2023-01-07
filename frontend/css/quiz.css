@@ -123,6 +123,16 @@ div[class^="question-status"].nav-on:hover {
   height: 100%;
 }
 
+#loader-description {
+  margin-top: 10px;
+  font-size: 20px;
+  font-family: var(--styled-font), cursive;
+}
+
+.description-loading {
+  color: black;
+}
+
 #quiz-modes-container {
   flex-wrap: wrap;
 }

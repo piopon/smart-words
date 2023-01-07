@@ -14,6 +14,12 @@
   background-color: black;
 }
 
+.big {
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+}
+
 .loader .line:nth-last-child(1) {
   animation: load 1s 0.2s linear infinite;
 }

@@ -115,6 +115,14 @@ div[class^="question-status"].nav-on:hover {
   opacity: 1;
 }
 
+#quiz-loader-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 #quiz-modes-container {
   flex-wrap: wrap;
 }

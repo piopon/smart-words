@@ -27,7 +27,10 @@ function quizModeViewUpdateUI(newUiState) {
     return;
   }
   if (STATE_QUIZ_ERROR === newUiState) {
-    loaderContainer.className = "container-hidden";
+    loaderContainer.className = "container-visible";
+    loaderProgress.className = "hidden";
+    loaderDescription.className = "description-error";
+    loaderDescription.innerHTML = "cannot receive modes...";
     return;
   }
 }

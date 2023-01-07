@@ -17,7 +17,7 @@ class WordController(wordDB: WordDatabase) {
 
   implicit val categoryParamDecoder: QueryParamDecoder[Category.Value] =
     QueryParamDecoder[String].map(categoryStr => Category.fromString(categoryStr))
-  object OptionalRandomizeParamMatcher extends OptionalQueryParamDecoderMatcher[Boolean]("random")
+  object OptionalRandomizeParamMatcher extends OptionalValidatingQueryParamDecoderMatcher[Boolean]("random")
   object OptionalCategoryParamMatcher extends OptionalQueryParamDecoderMatcher[Category.Value]("cat")
   object OptionalSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
 
@@ -41,7 +41,18 @@ class WordController(wordDB: WordDatabase) {
       case GET -> Root / mode / language :? OptionalCategoryParamMatcher(maybeCategory)
                                          +& OptionalSizeParamMatcher(maybeSize)
                                          +& OptionalRandomizeParamMatcher(maybeRandom) =>
-        service.getWords(mode, language, maybeCategory, maybeSize, maybeRandom)
+        try {
+          val validatedRandom: Option[Boolean] = maybeRandom match {
+            case None => None
+            case Some(random) => random.fold(
+              error => throw new IllegalArgumentException(error.head.sanitized + ": invalid 'random' parameter value."),
+              value => Some(value)
+            )
+          }
+          service.getWords(mode, language, maybeCategory, maybeSize, validatedRandom)
+        } catch {
+          case e: IllegalArgumentException => BadRequest(e.getMessage)
+        }
       case request@POST -> Root / mode / language =>
         for {
           newWord <- request.as[Word]

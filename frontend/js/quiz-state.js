@@ -11,12 +11,19 @@ var questionsStatus = undefined;
  */
 function quizModeViewUpdateUI(newUiState) {
   let loaderContainer = document.getElementById("quiz-loader-container");
+  let loaderProgress = document.getElementById("loader-wrapper");
+  let loaderDescription = document.getElementById("loader-description");
   if (STATE_QUIZ_OK === newUiState) {
     loaderContainer.className = "container-hidden";
+    loaderProgress.className = "off";
+    loaderDescription.innerHTML = "";
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
     loaderContainer.className = "container-visible";
+    loaderProgress.className = "visible";
+    loaderDescription.className = "description-loading";
+    loaderDescription.innerHTML = "loading modes...";
     return;
   }
   if (STATE_QUIZ_ERROR === newUiState) {

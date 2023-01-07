@@ -133,6 +133,10 @@ div[class^="question-status"].nav-on:hover {
   color: black;
 }
 
+.description-error {
+  color: red;
+}
+
 #quiz-modes-container {
   flex-wrap: wrap;
 }

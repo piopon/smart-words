@@ -6,6 +6,14 @@
   margin-top: 25px;
 }
 
+#loader-wrapper.hidden {
+  visibility: hidden;
+}
+
+#loader-wrapper.off {
+  display: none;
+}
+
 .line {
   display: inline-block;
   width: 10px;

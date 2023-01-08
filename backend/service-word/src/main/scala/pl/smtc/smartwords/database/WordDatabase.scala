@@ -59,6 +59,17 @@ class WordDatabase {
     usedDictionaryFiles.foreach(dictionaryFile => saveDictionary(dictionaryFile))
   }
 
+  def getAvailableModes: Option[List[Int]] = {
+    val usedModes: List[Int] = wordsDatabase.map(word => word.dictionary.mode)
+      .filter(mode => mode.nonEmpty)
+      .map(mode => mode.get)
+      .toList
+    if (usedModes.nonEmpty) {
+      return Some(usedModes.distinct)
+    }
+    None
+  }
+
   /**
    * Method used to receive all words stored in database
    * @return a List of all stored word objects

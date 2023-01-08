@@ -27,13 +27,9 @@ class WordService(database: WordDatabase) {
    * @param random optional flag to determine if output should be randomized
    * @return response with words from specified category, or all words if category is None
    */
-  def getWords(mode: String, language: String, category: Option[Category.Value],
+  def getWords(mode: Option[Int], language: String, category: Option[Category.Value],
                size: Option[Int], random: Option[Boolean]): IO[Response[IO]] = {
-    val gameMode: Option[Int] = parser.parseGameMode(mode)
-    if (gameMode.isEmpty) {
-      return BadRequest(s"Invalid game mode value: $mode")
-    }
-    val modeWords: List[Word] = database.getWords.filter(word => word.dictionary.mode.equals(gameMode))
+    val modeWords: List[Word] = database.getWords.filter(word => word.dictionary.mode.equals(mode))
     val languageWords: List[Word] = modeWords.filter(word => word.dictionary.language.equals(language))
     val afterCategoryFilter: List[Word] = category match {
       case None => languageWords

@@ -42,10 +42,11 @@ class WordController(wordDB: WordDatabase) {
                                          +& OptionalSizeParamMatcher(maybeSize)
                                          +& OptionalRandomizeParamMatcher(maybeRandom) =>
         try {
+          val validatedMode: Option[Int] = middleware.validateParameterMode(mode)
           val validatedRandom: Option[Boolean] = middleware.validateParameterRandom(maybeRandom)
           val validatedSize: Option[Int] = middleware.validateParameterSize(maybeSize)
           val validatedCategory: Option[Category.Value] = middleware.validateParameterCategory(maybeCategory)
-          service.getWords(mode, language, validatedCategory, validatedSize, validatedRandom)
+          service.getWords(validatedMode, language, validatedCategory, validatedSize, validatedRandom)
         } catch {
           case e: WordMiddlewareException => BadRequest(e.getMessage)
         }

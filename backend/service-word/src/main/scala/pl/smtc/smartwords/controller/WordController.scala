@@ -10,6 +10,7 @@ import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.service._
 import pl.smtc.smartwords.dao._
+import pl.smtc.smartwords.middleware._
 
 class WordController(wordDB: WordDatabase) {
 
@@ -34,6 +35,7 @@ class WordController(wordDB: WordDatabase) {
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {
+    val middleware: WordMiddleware = new WordMiddleware()
     val service: WordService = new WordService(wordDB)
     val dsl = Http4sDsl[IO]; import dsl._
     implicit val wordDecoder: EntityDecoder[IO, Word] = jsonOf[IO, Word]
@@ -42,16 +44,10 @@ class WordController(wordDB: WordDatabase) {
                                          +& OptionalSizeParamMatcher(maybeSize)
                                          +& OptionalRandomizeParamMatcher(maybeRandom) =>
         try {
-          val validatedRandom: Option[Boolean] = maybeRandom match {
-            case None => None
-            case Some(random) => random.fold(
-              error => throw new IllegalArgumentException(error.head.sanitized + ": invalid 'random' parameter value."),
-              value => Some(value)
-            )
-          }
+          val validatedRandom: Option[Boolean] = middleware.validateParameterRandom(maybeRandom)
           service.getWords(mode, language, maybeCategory, maybeSize, validatedRandom)
         } catch {
-          case e: IllegalArgumentException => BadRequest(e.getMessage)
+          case e: WordMiddlewareException => BadRequest(e.getMessage)
         }
       case request@POST -> Root / mode / language =>
         for {

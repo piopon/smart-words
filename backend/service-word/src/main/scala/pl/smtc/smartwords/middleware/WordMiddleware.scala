@@ -53,14 +53,13 @@ class WordMiddleware {
   def validateParameterCategory(input: Option[String]): Option[Category.Value] = {
     input match {
       case None => None
-      case Some(category) => {
+      case Some(category) =>
         val availableCategories: List[String] = Category.values.map(cat => cat.toString).toList
         if (availableCategories.contains(category)) {
           Some(Category.fromString(category))
         } else {
           throw new WordMiddlewareException("Invalid 'cat' parameter: value '" + category + "' is not supported.")
         }
-      }
     }
   }
 }

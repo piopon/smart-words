@@ -51,10 +51,15 @@ class WordController(wordDB: WordDatabase) {
           case e: WordMiddlewareException => BadRequest(e.getMessage)
         }
       case request@POST -> Root / mode / language =>
-        for {
-          newWord <- request.as[Word]
-          response <- service.addWord(mode, language, newWord)
-        } yield response
+        try {
+          val validatedMode: Option[Int] = middleware.validateParameterMode(mode)
+          for {
+            newWord <- request.as[Word]
+            response <- service.addWord(validatedMode, language, newWord)
+          } yield response
+        } catch {
+          case e: WordMiddlewareException => BadRequest(e.getMessage)
+        }
       case request@PUT -> Root / mode / language / name =>
         for {
           newWord <- request.as[Word]

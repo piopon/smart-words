@@ -53,12 +53,8 @@ class WordService(database: WordDatabase) {
    * @param word new word to be added
    * @return response with new word add status (always OK but with different message)
    */
-  def addWord(mode: String, language: String, word: Word): IO[Response[IO]] = {
-    val gameMode: Option[Int] = parser.parseGameMode(mode)
-    if (gameMode.isEmpty) {
-      return BadRequest(s"Invalid game mode value: $mode")
-    }
-    word.dictionary = Dictionary.create(gameMode, language)
+  def addWord(mode: Option[Int], language: String, word: Word): IO[Response[IO]] = {
+    word.dictionary = Dictionary.create(mode, language)
     if (database.addWord(word)) {
       Ok(s"added word '${word.name}'")
     } else {

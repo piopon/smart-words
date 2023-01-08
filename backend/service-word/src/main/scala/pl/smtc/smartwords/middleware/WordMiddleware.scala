@@ -9,6 +9,7 @@ class WordMiddleware {
 
   private val parser: DataParser = new DataParser()
 
+  @throws(classOf[WordMiddlewareException])
   def validateParameterMode(input: String, availableModes: Option[List[Int]]): Option[Int] = {
     parser.parseGameMode(input) match {
       case None => throw new WordMiddlewareException(s"Invalid 'mode' parameter: value '$input' cannot be parsed.")

@@ -9,13 +9,11 @@ import org.http4s.dsl.io._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.dao._
-import pl.smtc.smartwords.utilities._
 
 import scala.util.Random
 
 class WordService(database: WordDatabase) {
 
-  private val parser: DataParser = new DataParser()
   implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 
   /**

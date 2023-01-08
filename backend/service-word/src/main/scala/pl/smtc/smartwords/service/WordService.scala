@@ -70,12 +70,8 @@ class WordService(database: WordDatabase) {
    * @param word new word definition
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
-  def updateWord(mode: String, language: String, name: String, word: Word): IO[Response[IO]] = {
-    val gameMode: Option[Int] = parser.parseGameMode(mode)
-    if (gameMode.isEmpty) {
-      return BadRequest(s"Invalid game mode value: $mode")
-    }
-    val wordIndex = database.getWordIndex(name, gameMode, language)
+  def updateWord(mode: Option[Int], language: String, name: String, word: Word): IO[Response[IO]] = {
+    val wordIndex = database.getWordIndex(name, mode, language)
     if (database.updateWord(wordIndex, word)) {
       Ok(s"updated word '$name'")
     } else {

@@ -3,8 +3,19 @@ package pl.smtc.smartwords.middleware
 import cats.data.ValidatedNel
 import org.http4s.ParseFailure
 import pl.smtc.smartwords.model._
+import pl.smtc.smartwords.utilities._
 
 class WordMiddleware {
+
+  private val parser: DataParser = new DataParser()
+
+  def validateParameterMode(input: String): Option[Int] = {
+    val gameMode: Option[Int] = parser.parseGameMode(input)
+    if (gameMode.isEmpty) {
+      throw new WordMiddlewareException(s"Invalid game mode value: $input")
+    }
+    gameMode
+  }
 
   /**
    *

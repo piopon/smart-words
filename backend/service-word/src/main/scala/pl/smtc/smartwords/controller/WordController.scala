@@ -20,7 +20,7 @@ class WordController(wordDB: WordDatabase) {
     QueryParamDecoder[String].map(categoryStr => Category.fromString(categoryStr))
   object OptionalRandomizeParamMatcher extends OptionalValidatingQueryParamDecoderMatcher[Boolean]("random")
   object OptionalCategoryParamMatcher extends OptionalQueryParamDecoderMatcher[Category.Value]("cat")
-  object OptionalSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
+  object OptionalSizeParamMatcher extends OptionalValidatingQueryParamDecoderMatcher[Int]("size")
 
   /**
    * Routes (request -> response) for words endpoints/resources
@@ -45,7 +45,8 @@ class WordController(wordDB: WordDatabase) {
                                          +& OptionalRandomizeParamMatcher(maybeRandom) =>
         try {
           val validatedRandom: Option[Boolean] = middleware.validateParameterRandom(maybeRandom)
-          service.getWords(mode, language, maybeCategory, maybeSize, validatedRandom)
+          val validatedSize: Option[Int] = middleware.validateParameterSize(maybeSize)
+          service.getWords(mode, language, maybeCategory, validatedSize, validatedRandom)
         } catch {
           case e: WordMiddlewareException => BadRequest(e.getMessage)
         }

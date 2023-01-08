@@ -21,4 +21,19 @@ class WordMiddleware {
       )
     }
   }
+
+  @throws(classOf[WordMiddlewareException])
+  def validateParameterSize(input: Option[ValidatedNel[ParseFailure, Int]]): Option[Int] = {
+    input match {
+      case None => None
+      case Some(size) => size.fold(
+        error => throw new WordMiddlewareException(error.head.sanitized + ": invalid 'size' parameter value."),
+        value => if (value > 0) {
+          Some(value)
+        } else {
+          throw new WordMiddlewareException("Incorrect 'size' parameter value: must be greater then 0.")
+        }
+      )
+    }
+  }
 }

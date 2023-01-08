@@ -16,10 +16,8 @@ class WordController(wordDB: WordDatabase) {
 
   implicit val WordDecoder: Decoder[Word] = WordDao.getWordDecoder
 
-  implicit val categoryParamDecoder: QueryParamDecoder[Category.Value] =
-    QueryParamDecoder[String].map(categoryStr => Category.fromString(categoryStr))
   object OptionalRandomizeParamMatcher extends OptionalValidatingQueryParamDecoderMatcher[Boolean]("random")
-  object OptionalCategoryParamMatcher extends OptionalQueryParamDecoderMatcher[Category.Value]("cat")
+  object OptionalCategoryParamMatcher extends OptionalQueryParamDecoderMatcher[String]("cat")
   object OptionalSizeParamMatcher extends OptionalValidatingQueryParamDecoderMatcher[Int]("size")
 
   /**
@@ -46,7 +44,8 @@ class WordController(wordDB: WordDatabase) {
         try {
           val validatedRandom: Option[Boolean] = middleware.validateParameterRandom(maybeRandom)
           val validatedSize: Option[Int] = middleware.validateParameterSize(maybeSize)
-          service.getWords(mode, language, maybeCategory, validatedSize, validatedRandom)
+          val validatedCategory: Option[Category.Value] = middleware.validateParameterCategory(maybeCategory)
+          service.getWords(mode, language, validatedCategory, validatedSize, validatedRandom)
         } catch {
           case e: WordMiddlewareException => BadRequest(e.getMessage)
         }

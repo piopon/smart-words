@@ -59,6 +59,10 @@ class WordDatabase {
     usedDictionaryFiles.foreach(dictionaryFile => saveDictionary(dictionaryFile))
   }
 
+  /**
+   * Method used to retrieve the list of currently available modes list (supported currently only for Quiz game type)
+   * @return list of integers representing available modes, or None if stored words are for games not supporting modes
+   */
   def getAvailableModes: Option[List[Int]] = {
     val usedModes: List[Int] = wordsDatabase.map(word => word.dictionary.mode)
       .filter(mode => mode.nonEmpty)
@@ -78,8 +82,8 @@ class WordDatabase {
 
   /**
    * Method used to retrieve an index of the word with specified name and language<br>
-   * <b>NOTE:</b> it's required to match not only the name but the language also since in different languages there are words
-   * which are spelled the same but have different meaning, like:
+   * <b>NOTE:</b> it's required to match not only the name but also the language and mode since in different languages
+   * there are words which are spelled the same but have different meaning, like:
    * <ul>
    *   <li>pupil = student in English</li>
    *   <li>pupil = favorite / pet in Polish</li>

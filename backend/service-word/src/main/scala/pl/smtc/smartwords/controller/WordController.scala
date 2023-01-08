@@ -71,7 +71,12 @@ class WordController(wordDB: WordDatabase) {
           case e: WordMiddlewareException => BadRequest(e.getMessage)
         }
       case DELETE -> Root / mode / language / name =>
-        service.deleteWord(mode, language, name)
+        try {
+          val validatedMode: Option[Int] = middleware.validateParameterMode(mode)
+          service.deleteWord(validatedMode, language, name)
+        } catch {
+          case e: WordMiddlewareException => BadRequest(e.getMessage)
+        }
     }
   }
 }

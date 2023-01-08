@@ -2,6 +2,7 @@ package pl.smtc.smartwords.middleware
 
 import cats.data.ValidatedNel
 import org.http4s.ParseFailure
+import pl.smtc.smartwords.model._
 
 class WordMiddleware {
 
@@ -34,6 +35,21 @@ class WordMiddleware {
           throw new WordMiddlewareException("Incorrect 'size' parameter value: must be greater then 0.")
         }
       )
+    }
+  }
+
+  @throws(classOf[WordMiddlewareException])
+  def validateParameterCategory(input: Option[String]): Option[Category.Value] = {
+    input match {
+      case None => None
+      case Some(category) => {
+        val availableCategories: List[String] = Category.values.map(cat => cat.toString).toList
+        if (availableCategories.contains(category)) {
+          Some(Category.fromString(category))
+        } else {
+          throw new WordMiddlewareException("Invalid 'cat' parameter: value '" + category + "' is not supported.")
+        }
+      }
     }
   }
 }

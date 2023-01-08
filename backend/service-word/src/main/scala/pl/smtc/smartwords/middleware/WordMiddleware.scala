@@ -9,12 +9,16 @@ class WordMiddleware {
 
   private val parser: DataParser = new DataParser()
 
-  def validateParameterMode(input: String): Option[Int] = {
-    val gameMode: Option[Int] = parser.parseGameMode(input)
-    if (gameMode.isEmpty) {
-      throw new WordMiddlewareException(s"Invalid game mode value: $input")
+  def validateParameterMode(input: String, availableModes: Option[List[Int]]): Option[Int] = {
+    parser.parseGameMode(input) match {
+      case None => throw new WordMiddlewareException(s"Invalid 'mode' parameter: value '$input' cannot be parsed.")
+      case Some(mode) =>
+        if (availableModes.isEmpty || availableModes.get.contains(mode)) {
+          Some(mode)
+        } else {
+          throw new WordMiddlewareException(s"Invalid 'mode' parameter: value '$input' is not supported.")
+        }
     }
-    gameMode
   }
 
   /**

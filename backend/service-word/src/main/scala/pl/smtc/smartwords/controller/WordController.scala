@@ -42,7 +42,7 @@ class WordController(wordDB: WordDatabase) {
                                          +& OptionalSizeParamMatcher(maybeSize)
                                          +& OptionalRandomizeParamMatcher(maybeRandom) =>
         try {
-          val validatedMode: Option[Int] = middleware.validateParameterMode(mode)
+          val validatedMode: Option[Int] = middleware.validateParameterMode(mode, wordDB.getAvailableModes)
           val validatedRandom: Option[Boolean] = middleware.validateParameterRandom(maybeRandom)
           val validatedSize: Option[Int] = middleware.validateParameterSize(maybeSize)
           val validatedCategory: Option[Category.Value] = middleware.validateParameterCategory(maybeCategory)
@@ -52,7 +52,7 @@ class WordController(wordDB: WordDatabase) {
         }
       case request@POST -> Root / mode / language =>
         try {
-          val validatedMode: Option[Int] = middleware.validateParameterMode(mode)
+          val validatedMode: Option[Int] = middleware.validateParameterMode(mode, wordDB.getAvailableModes)
           for {
             newWord <- request.as[Word]
             response <- service.addWord(validatedMode, language, newWord)
@@ -62,7 +62,7 @@ class WordController(wordDB: WordDatabase) {
         }
       case request@PUT -> Root / mode / language / name =>
         try {
-          val validatedMode: Option[Int] = middleware.validateParameterMode(mode)
+          val validatedMode: Option[Int] = middleware.validateParameterMode(mode, wordDB.getAvailableModes)
           for {
             newWord <- request.as[Word]
             response <- service.updateWord(validatedMode, language, name, newWord)
@@ -72,7 +72,7 @@ class WordController(wordDB: WordDatabase) {
         }
       case DELETE -> Root / mode / language / name =>
         try {
-          val validatedMode: Option[Int] = middleware.validateParameterMode(mode)
+          val validatedMode: Option[Int] = middleware.validateParameterMode(mode, wordDB.getAvailableModes)
           service.deleteWord(validatedMode, language, name)
         } catch {
           case e: WordMiddlewareException => BadRequest(e.getMessage)

@@ -29,6 +29,14 @@ class WordMiddleware {
     }
   }
 
+  /**
+   * Method used to validate "language" parameter (if it's a part of used/available languages in database)
+   * @param input value containing language value which should be validated
+   * @param availableLanguages list of languages which are currently available in words from database
+   * @throws WordMiddlewareException when validation fails (input is not supported language value)
+   * @return string value representing the language setting
+   */
+  @throws(classOf[WordMiddlewareException])
   def validateParameterLanguage(input: String, availableLanguages: List[String]): String = {
     if (!availableLanguages.contains(input)) {
       throw new WordMiddlewareException(s"Invalid 'language' parameter: value '$input' is not supported.")

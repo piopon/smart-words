@@ -29,6 +29,13 @@ class WordMiddleware {
     }
   }
 
+  def validateParameterLanguage(input: String, availableLanguages: List[String]): String = {
+    if (!availableLanguages.contains(input)) {
+      throw new WordMiddlewareException(s"Invalid 'language' parameter: value '$input' is not supported.")
+    }
+    input
+  }
+
   /**
    * Method used to validate "random" parameter (if it's an boolean)
    * @param input value containing randomness value in form of "true" or "false" (or a parse failure information)

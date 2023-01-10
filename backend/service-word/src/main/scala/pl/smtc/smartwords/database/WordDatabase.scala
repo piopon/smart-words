@@ -74,6 +74,8 @@ class WordDatabase {
     None
   }
 
+  def getAvailableLanguages: List[String] = wordsDatabase.map(word => word.dictionary.language).distinct.toList
+
   /**
    * Method used to receive all words stored in database
    * @return a List of all stored word objects

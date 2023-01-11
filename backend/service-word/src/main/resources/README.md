@@ -5,9 +5,10 @@ of games with language and mode distinction.
 
 > ***IMPORTANT:***<br>
 > Current logic is implemented to handle only `game=quiz`
-> and different `language` values. This document describes
-> the desired state of "Smart Words" ecosystem, and it will
-> be updated accordingly.
+> with optional `mode` integer identifiers and different
+> `language` values. This document describes the desired
+> state of "Smart Words" ecosystem, and it will be updated
+> accordingly.
 
 To work properly with the whole "Smart Words" ecosystem and
 the words service (this project) the JSON dictionary file
@@ -17,8 +18,8 @@ names have to follow the specified convention:
 
 where:
 * `mode` presence in the file name depends on the type
-  of the `game` value. Currently, it is supported only
-  for `game = quiz`.
+  of the `game` value. It is an integer value, and it is
+  supported only for `game = quiz` for now.
 * supported `language` values are defined in a specific
   `game` and `mode` logic implemented in an appropriate
   service. Additionally, there are language flags images
@@ -31,10 +32,13 @@ where:
   (provided) dictionary files.
 
 # Examples
-* `words-quiz-pl-1.json` - this dictionary contains words for
-  mode: `quiz`, sub-mode: `1`, and language: `pl`
-* `words-wordle-en.json` - this dictionary contains words for
-  mode: `wordle` and language: `en`
-* `words-hangman-fr.json` - this dictionary contains words for
-  mode: `hangman` and language: `fr`
+* `words-quiz-1-pl@test.json` - this dictionary contains
+  words for `quiz` game type, mode: `1`, and language: `pl`.
+  It has description: `test`.
+* `words-wordle-en@dictionary.json` - this dictionary
+  contains words for `wordle` game type and language: `en`.
+  It has description: `dictionary`.
+* `words-hangman-fr@words.json` - this dictionary contains
+  words for `hangman` game type and language: `fr`.
+  It has description: `words`.
 

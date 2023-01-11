@@ -115,6 +115,28 @@ div[class^="question-status"].nav-on:hover {
   opacity: 1;
 }
 
+#quiz-loader-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#loader-description {
+  margin-top: 10px;
+  font-size: 20px;
+  font-family: var(--styled-font), cursive;
+}
+
+.description-loading {
+  color: black;
+}
+
+.description-error {
+  color: red;
+}
+
 #quiz-modes-container {
   flex-wrap: wrap;
 }
@@ -130,9 +152,10 @@ div[class^="question-status"].nav-on:hover {
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  animation: status-opacity 0.25s ease-in;
 }
 
-#quiz-mode-tile {
+div.quiz-mode-tile {
   display: flex;
   flex-direction: column;
   min-height: 210px;
@@ -141,7 +164,7 @@ div[class^="question-status"].nav-on:hover {
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
-#quiz-mode-tile-title {
+div.quiz-mode-tile-title {
   padding: 10 10px;
   font-size: 25px;
   letter-spacing: 0px;
@@ -150,39 +173,39 @@ div[class^="question-status"].nav-on:hover {
   color: white;
 }
 
-#mode-description-text {
+div.mode-description-text {
   display: flex;
   height: 21px;
 }
 
-#quiz-mode-tile-content {
+div.quiz-mode-tile-content {
   padding: 5px 10px;
   font-size: 15px;
 }
 
-.quiz-mode-setting-container {
+div.quiz-mode-setting-container {
   height: 21px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.quiz-mode-setting-container label {
+div.quiz-mode-setting-container label {
   width: 130px;
 }
 
-.language-flag {
+img.language-flag {
   cursor: pointer;
   filter: grayscale(0.85);
   margin: 0px 5px 0px 0px;
 }
 
-.language-flag.language-selected {
+img.language-flag.language-selected {
   cursor: default;
   filter: grayscale(0);
 }
 
-#quiz-mode-tile-controls {
+div.quiz-mode-tile-controls {
   display: flex;
   align-items: flex-end;
   height: 100%;
@@ -191,7 +214,7 @@ div[class^="question-status"].nav-on:hover {
   margin: 5px 0px 10px 0px;
 }
 
-#quiz-mode-controls-info {
+div.quiz-mode-controls-info {
   background: url(../images/info.png) no-repeat;
   width: 24px;
   height: 24px;
@@ -201,7 +224,7 @@ div[class^="question-status"].nav-on:hover {
   z-index: 10;
 }
 
-#quiz-mode-controls-info.hide {
+div.quiz-mode-controls-info.hide {
   display: none;
 }
 

@@ -60,6 +60,27 @@ class WordDatabase {
   }
 
   /**
+   * Method used to retrieve the list of currently available modes list (supported currently only for Quiz game type)
+   * @return list of integers representing available modes, or None if stored words are for games not supporting modes
+   */
+  def getAvailableModes: Option[List[Int]] = {
+    val usedModes: List[Int] = wordsDatabase.map(word => word.dictionary.mode)
+      .filter(mode => mode.nonEmpty)
+      .map(mode => mode.get)
+      .toList
+    if (usedModes.nonEmpty) {
+      return Some(usedModes.distinct)
+    }
+    None
+  }
+
+  /**
+   * Method used to receive the list of currently available languages
+   * @return a List of all stored languages
+   */
+  def getAvailableLanguages: List[String] = wordsDatabase.map(word => word.dictionary.language).distinct.toList
+
+  /**
    * Method used to receive all words stored in database
    * @return a List of all stored word objects
    */
@@ -67,18 +88,21 @@ class WordDatabase {
 
   /**
    * Method used to retrieve an index of the word with specified name and language<br>
-   * <b>NOTE:</b> it's required to match not only the name but the language also since in different languages there are words
-   * which are spelled the same but have different meaning, like:
+   * <b>NOTE:</b> it's required to match not only the name but also the language and mode since in different languages
+   * there are words which are spelled the same but have different meaning, like:
    * <ul>
    *   <li>pupil = student in English</li>
    *   <li>pupil = favorite / pet in Polish</li>
    * </ul>
    * @param name of the word to be found
+   * @param mode identifier of the word to be found (or empty if mode is not used for specific game type)
    * @param language of the word to be found
    * @return database index of the word which name and language matches parameters, or -1 if no such word was found
    */
-  def getWordIndex(name: String, language: String): Int = {
-    wordsDatabase.indexWhere((word: Word) => word.name.equals(name) && word.dictionary.language.equals(language))
+  def getWordIndex(name: String, mode: Option[Int], language: String): Int = {
+    wordsDatabase.indexWhere((word: Word) => word.name.equals(name) &&
+                                             word.dictionary.mode.equals(mode) &&
+                                             word.dictionary.language.equals(language))
   }
 
   /**
@@ -87,7 +111,7 @@ class WordDatabase {
    * @return true if word was added correctly, false otherwise (word existed in DB)
    */
   def addWord(word: Word): Boolean = {
-    val wordIndex = getWordIndex(word.name, word.dictionary.language)
+    val wordIndex = getWordIndex(word.name, word.dictionary.mode, word.dictionary.language)
     if (wordIndex < 0) {
       wordsDatabase += word
       saveDictionary(word.dictionary.file)

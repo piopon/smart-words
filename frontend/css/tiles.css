@@ -1,10 +1,15 @@
 .tile-size-big {
-  width: 500px;
+  width: 600px;
   flex-grow: 4;
 }
 
 .tile-size-medium {
-  width: 300px;
+  width: 500px;
+  flex-grow: 4;
+}
+
+.tile-size-small {
+  width: 400px;
   flex-grow: 2;
 }
 
@@ -13,5 +18,29 @@
 }
 
 .tile-color-red {
-  background-color: red;
+  background-color: lightcoral;
+}
+
+.tile-color-pink {
+  background-color: pink;
+}
+
+.tile-color-violet {
+  background-color: mediumpurple;
+}
+
+.tile-color-blue {
+  background-color: cornflowerblue;
+}
+
+.tile-color-green {
+  background-color: greenyellow;
+}
+
+.tile-color-yellow {
+  background-color: yellow;
+}
+
+.tile-color-orange {
+  background-color: orange;
 }

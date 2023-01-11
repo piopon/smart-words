@@ -20,18 +20,24 @@ class QuizService(quizDB: QuizDatabase) {
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 
   private final val defaultQuizSize: Int = 10
+  private final val defaultQuizMode: Int = 0
   private final val defaultQuizLang: String = "pl"
 
   /**
    * Method used to start a new quiz
    * @param maybeSize an optional size value (if none then default value will be applied)
+   * @param maybeMode an optional mode value (if none then default value will be applied)
    * @param maybeLanguage an optional language value (if non then the default value will be applied)
    * @return response with appropriate status
    */
-  def startQuiz(maybeSize: Option[Int], maybeLanguage: Option[String]): IO[Response[IO]] = {
+  def startQuiz(maybeSize: Option[Int], maybeMode: Option[Int], maybeLanguage: Option[String]): IO[Response[IO]] = {
     val size: Int = maybeSize match {
       case None => defaultQuizSize
       case Some(size) => size
+    }
+    val mode: Int = maybeMode match {
+      case None => defaultQuizMode
+      case Some(mode) => mode
     }
     val language: String = maybeLanguage match {
       case None => defaultQuizLang
@@ -39,7 +45,7 @@ class QuizService(quizDB: QuizDatabase) {
     }
     if (WordService.isAlive) {
       try {
-        Ok(quizDB.addQuiz(generateQuiz(size, language)).toString)
+        Ok(quizDB.addQuiz(generateQuiz(size, mode, language)).toString)
       } catch {
         case e: QuizServiceException => BadRequest("Cannot start quiz: " + e.getMessage)
       }
@@ -103,19 +109,20 @@ class QuizService(quizDB: QuizDatabase) {
 
   /**
    * Method used to generate a new round object
+   * @param mode unique identifier containing the concrete quiz mode for the generated round
    * @param language string containing the language selection for the generated round
    * @param forbiddenWords list of currently used quiz words which cannot overlap while generating this round
    * @throws QuizServiceException when the round object cannot be generated
    * @return generated round object with random word and 4 answer options
    */
   @throws(classOf[QuizServiceException])
-  private def generateRound(language: String, forbiddenWords: List[String] = List.empty): Round = {
+  private def generateRound(mode: Int, language: String, forbiddenWords: List[String] = List.empty): Round = {
     try {
       var word: Word = null
       do {
-        word = WordService.getRandomWord(language)
+        word = WordService.getRandomWord(mode, language)
       } while (forbiddenWords.contains(word.name))
-      Round(word, generateOptions(word.description, language, word.category), None, None)
+      Round(word, generateOptions(word.description, mode, language, word.category), None, None)
     } catch {
       case e: WordServiceException => throw new QuizServiceException(e.getMessage)
     }
@@ -124,13 +131,14 @@ class QuizService(quizDB: QuizDatabase) {
   /**
    * Method used to generate specified number of rounds
    * @param size desired number of rounds to be generated
+   * @param mode desired quiz mode (as an unique identifier) to be generated
    * @param language string containing the language selection used in the generated rounds
    * @return list of specified number of rounds
    */
-  private def generateRounds(size: Int, language: String): List[Round] = {
-    var rounds: List[Round] = List.fill(size)(generateRound(language)).distinctBy(_.word.name)
+  private def generateRounds(size: Int, mode: Int, language: String): List[Round] = {
+    var rounds: List[Round] = List.fill(size)(generateRound(mode, language)).distinctBy(_.word.name)
     for (_ <- 0 until size-rounds.length) {
-      val replacement: Round = generateRound(language, rounds.map(r => r.word.name))
+      val replacement: Round = generateRound(mode, language, rounds.map(r => r.word.name))
       rounds = rounds.appended(replacement)
     }
     rounds
@@ -143,8 +151,9 @@ class QuizService(quizDB: QuizDatabase) {
    * @param category word category from which to draw the remaining 3 answer options
    * @return list of possible 4 answer options
    */
-  private def generateOptions(correctDefinitions: List[String], language: String, category: String): List[String] = {
-    val incorrectDefinitions: List[String] = WordService.getWordsByCategory(language, category)
+  private def generateOptions(correctDefinitions: List[String],
+                              mode: Int, language: String, category: String): List[String] = {
+    val incorrectDefinitions: List[String] = WordService.getWordsByCategory(mode, language, category)
       .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))
       .distinct
@@ -157,10 +166,11 @@ class QuizService(quizDB: QuizDatabase) {
   /**
    * Method used to generate a new quiz object
    * @param size desired size of quiz (number of questions)
+   * @param mode identifier containing the quiz mode to generate
    * @param language string containing the language selection used in the new quiz object
    * @return generated quiz object
    */
-  private def generateQuiz(size: Int, language: String): Quiz = {
-    Quiz(generateRounds(size, language), 0)
+  private def generateQuiz(size: Int, mode: Int, language: String): Quiz = {
+    Quiz(generateRounds(size, mode, language), 0)
   }
 }

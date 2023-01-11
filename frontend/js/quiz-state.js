@@ -5,49 +5,104 @@ const STATE_QUIZ_ERROR = 3;
 var questionsStatus = undefined;
 
 /**
- * Method used to update GUI state while starting quiz from service
+ * Method used to update GUI state while showing all possible quiz modes from service
  *
  * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
- * @param {Object} detailedState containing detailed information about current state (undefined by default)
  */
-function startQuizUpdateUI(newUiState, detailedState = undefined) {
-  let startQuizBtn = document.getElementById("quiz-mode-controls-start");
-  let startQuizInfo = document.getElementById("quiz-mode-controls-info");
-  if (startQuizBtn === null || startQuizInfo === null) return;
+function quizModeViewUpdateUI(newUiState) {
+  let loaderContainer = document.getElementById("quiz-loader-container");
+  let loaderProgress = document.getElementById("loader-wrapper");
+  let loaderDescription = document.getElementById("loader-description");
   if (STATE_QUIZ_OK === newUiState) {
-    startQuizBtn.addEventListener("click", startQuiz);
-    startQuizBtn.className = "dynamic-border";
-    startQuizBtn.disabled = false;
-    startQuizBtn.innerHTML = "start";
-    startQuizInfo.className = "hide";
+    loaderContainer.className = "container-hidden";
+    loaderProgress.className = "off";
+    loaderDescription.innerHTML = "";
     return;
   }
   if (STATE_QUIZ_LOAD === newUiState) {
-    startQuizBtn.onclick = null;
-    startQuizBtn.className = "loading";
-    startQuizBtn.disabled = false;
-    startQuizBtn.innerHTML = "connecting...";
-    startQuizInfo.className = "hide";
-    questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
+    loaderContainer.className = "container-visible";
+    loaderProgress.className = "visible";
+    loaderDescription.className = "description-loading";
+    loaderDescription.innerHTML = "loading modes...";
     return;
   }
   if (STATE_QUIZ_ERROR === newUiState) {
-    startQuizBtn.onclick = null;
-    startQuizBtn.disabled = true;
-    startQuizBtn.innerHTML = "service unavailable";
-    startQuizInfo.className = "";
-    startQuizInfo.title = getQuizErrorMessage(detailedState);
-    questionsStatus = undefined;
+    loaderContainer.className = "container-visible";
+    loaderProgress.className = "hidden";
+    loaderDescription.className = "description-error";
+    loaderDescription.innerHTML = "cannot receive modes...";
     return;
   }
-  if (STATE_QUIZ_OFF === newUiState) {
-    startQuizBtn.onclick = null;
-    startQuizBtn.disabled = true;
-    startQuizBtn.innerHTML = "service disabled";
-    startQuizInfo.className = "";
-    startQuizInfo.title = "Logic entered quiz off state. Reload page and try again.";
-    questionsStatus = undefined;
-    return;
+}
+
+/**
+ * Method used to update GUI state while starting quiz from service
+ *
+ * @param {Integer} quizModeId representing unique mode identifier of button which state should be update
+ * @param {Integer} newUiState current loading state (from: STATE_QUIZ_OK, STATE_QUIZ_LOAD, STATE_QUIZ_ERROR)
+ * @param {Object} detailedState containing detailed information about current state (undefined by default)
+ */
+function startQuizUpdateUI(quizModeId, newUiState, detailedState = undefined) {
+  const btnStartClass = "quiz-mode-controls-start";
+  const divInfoClass = "quiz-mode-controls-info";
+  try {
+    let allStartQuizButtons = Array.from(document.querySelectorAll(`button.${btnStartClass}`));
+    let allStartQuizInfos = Array.from(document.querySelectorAll(`div.${divInfoClass}`));
+    if (allStartQuizButtons.length === 0 || allStartQuizInfos.length === 0) return;
+    if (STATE_QUIZ_OK === newUiState) {
+      allStartQuizButtons.forEach((startQuizBtn) => {
+        startQuizBtn.className = `${btnStartClass} dynamic-border`;
+        startQuizBtn.disabled = false;
+        startQuizBtn.innerHTML = "start";
+      });
+      allStartQuizInfos.forEach((startQuizInfo) => (startQuizInfo.className = `${divInfoClass} hide`));
+      return;
+    }
+    if (STATE_QUIZ_LOAD === newUiState) {
+      allStartQuizButtons
+        .filter((startQuizBtn) => startQuizBtn.getAttribute("data-mode") === `${quizModeId}`)
+        .forEach((startQuizBtn) => {
+          startQuizBtn.onclick = null;
+          startQuizBtn.className = `${btnStartClass} loading`;
+          startQuizBtn.disabled = false;
+          startQuizBtn.innerHTML = "connecting...";
+        });
+      allStartQuizInfos.forEach((startQuizInfo) => (startQuizInfo.className = `${divInfoClass} hide`));
+      questionsStatus = Array(parseInt(totalQuestionsNo)).fill(STATUS_NO_ANSWER);
+      return;
+    }
+    if (STATE_QUIZ_ERROR === newUiState) {
+      allStartQuizButtons.forEach((startQuizBtn) => {
+        startQuizBtn.onclick = null;
+        startQuizBtn.disabled = true;
+        startQuizBtn.innerHTML = "service unavailable";
+      });
+      allStartQuizInfos
+        .filter((startQuizInfo) => startQuizInfo.getAttribute("data-mode") === `${quizModeId}`)
+        .forEach((startQuizInfo) => {
+          startQuizInfo.className = `${divInfoClass}`;
+          startQuizInfo.title = getQuizErrorMessage(detailedState);
+        });
+      questionsStatus = undefined;
+      return;
+    }
+    if (STATE_QUIZ_OFF === newUiState) {
+      allStartQuizButtons.forEach((startQuizBtn) => {
+        startQuizBtn.onclick = null;
+        startQuizBtn.disabled = true;
+        startQuizBtn.innerHTML = "service disabled";
+      });
+      allStartQuizInfos
+        .filter((startQuizInfo) => startQuizInfo.getAttribute("data-mode") === `${quizModeId}`)
+        .forEach((startQuizInfo) => {
+          startQuizInfo.className = `${divInfoClass}`;
+          startQuizInfo.title = "Logic entered quiz off state. Reload page and try again.";
+        });
+      questionsStatus = undefined;
+      return;
+    }
+  } catch (error) {
+    console.log(error.name + ": " + error.message);
   }
 }
 

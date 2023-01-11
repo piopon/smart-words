@@ -6,12 +6,26 @@
   margin-top: 25px;
 }
 
+#loader-wrapper.hidden {
+  visibility: hidden;
+}
+
+#loader-wrapper.off {
+  display: none;
+}
+
 .line {
   display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 4px;
   background-color: black;
+}
+
+.big {
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
 }
 
 .loader .line:nth-last-child(1) {

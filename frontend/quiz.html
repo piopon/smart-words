@@ -3,13 +3,14 @@
     <title>smart-words</title>
     <link rel="stylesheet" href="css/buttons.css" />
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/loader.css" />
     <link rel="stylesheet" href="css/modal.css" />
     <link rel="stylesheet" href="css/tiles.css" />
     <link rel="stylesheet" href="css/quiz.css" />
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
     <script src="./js/quiz-api.js" defer></script>
-    <script src="./js/quiz-mode.js" defer></script>
     <script src="./js/quiz-state.js" defer></script>
+    <script src="./js/quiz-mode.js" defer></script>
     <script src="./js/quiz.js" defer></script>
   </head>
   <body>
@@ -39,6 +40,16 @@
       <div id="quiz-title-container" class="no-select">
         <p id="quiz-title-container-label" class="label-enabled">select mode:</p>
         <div id="quiz-title-container-status"></div>
+      </div>
+      <div id="quiz-loader-container" class="container-hidden">
+        <div id="loader-wrapper">
+          <div class="loader no-select">
+            <div class="line big"></div>
+            <div class="line big"></div>
+            <div class="line big"></div>
+          </div>
+        </div>
+        <div id="loader-description" class="description-loading">loading modes...</div>
       </div>
       <div id="quiz-modes-container" class="container-visible"></div>
       <div id="quiz-question-container" class="container-hidden"></div>

@@ -3,28 +3,42 @@ const STATUS_ANSWER_OK = 1;
 const STATUS_ANSWER_NOK = -1;
 const END_QUIZ_FINISH = 0;
 const END_QUIZ_STOP = 1;
-var quizID = undefined;
+var quizUuid = undefined;
+var selectedMode = undefined;
 var endQuizReason = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
 
 /**
  * Method used to receive number of question, start quiz and receive UUID
+ *
+ * @param {Integer} modeId unique identifier of quiz mode to be started
  */
-function startQuiz() {
-  totalQuestionsNo = document.getElementById("quiz-mode-settings-question-no").value;
-  startQuizUpdateUI(STATE_QUIZ_LOAD);
-  postQuizStart(totalQuestionsNo, selectedLanguage, (err, data) => {
+function startQuiz(modeId) {
+  initializeQuizSettings(modeId);
+  startQuizUpdateUI(selectedMode.id, STATE_QUIZ_LOAD);
+  postQuizStart(totalQuestionsNo, selectedMode.id, selectedMode.language, (err, data) => {
     if (err) {
-      startQuizUpdateUI(STATE_QUIZ_ERROR, err);
+      startQuizUpdateUI(selectedMode.id, STATE_QUIZ_ERROR, err);
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
-      startQuizUpdateUI(STATE_QUIZ_OK);
-      quizID = data;
+      startQuizUpdateUI(selectedMode.id, STATE_QUIZ_OK);
+      quizUuid = data;
       currentQuestionNo = 0;
       requestQuestionNo(currentQuestionNo);
     }
   });
+}
+
+/**
+ * Method used to initialize all variables after successful quiz start and before updating UI
+ *
+ * @param {Integer} modeId unique identifier of quiz mode for which we want to initialize settings
+ */
+function initializeQuizSettings(modeId) {
+  selectedMode = availableModes.find(mode => mode.id === modeId);
+  selectedMode.language = modeLanguageMap.get(modeId);
+  totalQuestionsNo = document.getElementById(`quiz-mode-${modeId}-settings-question-no`).value;
 }
 
 /**
@@ -71,7 +85,7 @@ function verifyQuestionNo(number) {
  */
 function requestQuestionNo(number, buttonId = undefined) {
   questionViewUpdateUI(STATE_QUIZ_LOAD, buttonId);
-  getQuestionNo(quizID, number, (err, data) => {
+  getQuestionNo(quizUuid, number, (err, data) => {
     if (err) {
       questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
       console.log("ERROR " + err.status + ": " + err.message);
@@ -90,7 +104,7 @@ function requestQuestionNo(number, buttonId = undefined) {
  */
 function displayQuestion(questionObject) {
   let questionStatus = `question ${currentQuestionNo + 1}/${totalQuestionsNo}`;
-  document.getElementById("quiz-title-container-label").innerHTML = `quiz - guess definition - ${questionStatus}:`;
+  document.getElementById("quiz-title-container-label").innerHTML = `quiz - ${selectedMode.name} - ${questionStatus}:`;
   document.getElementById("quiz-question-container").className = "container-visible";
   document.getElementById("quiz-modes-container").className = "container-hidden";
   questionHtml = getWordHtml(questionObject.word);
@@ -152,6 +166,7 @@ function getAnswerButtonAction(isNewQuestion, optionNo) {
 /**
  * Method used to receive answer button class for HTML code
  *
+ * @param {Boolean} isNewQuestion flag indicating if this question is a new (unanswered) question
  * @param {Boolean} isAnswerCorrect flag indicating the current status of answer correctness
  * @returns "regular" class if input boolean is null, "ok" class if input is true, "nok" when false
  */
@@ -206,7 +221,7 @@ function getControlButtonHtml(id, text, action, borderType) {
  */
 function answerQuestionNo(number, answerNo, buttonId = undefined) {
   questionViewUpdateUI(STATE_QUIZ_LOAD, buttonId);
-  postQuestionAnswer(quizID, number, answerNo, (err, data) => {
+  postQuestionAnswer(quizUuid, number, answerNo, (err, data) => {
     if (err) {
       questionViewUpdateUI(STATE_QUIZ_ERROR, buttonId);
       console.log("ERROR " + err.status + ": " + err.message);
@@ -257,7 +272,7 @@ function stopQuiz() {
   var endButtonId = getButtonIdFromEndReason(endQuizReason);
   hideQuizEndModalDialog();
   questionViewUpdateUI(STATE_QUIZ_LOAD, endButtonId);
-  getQuizStop(quizID, (err, data) => {
+  getQuizStop(quizUuid, (err, data) => {
     if (err) {
       questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
       console.log("ERROR " + err.status + ": " + err.message);
@@ -355,9 +370,10 @@ function getSummaryImage(summaryValue) {
 }
 
 /**
- * Method used to clean quiz summary and display initial quiz selector
+ * Method used to clean quiz summary and display initial quiz modes selector
  */
 function cleanQuiz() {
+  showQuizModes();
   document.getElementById("quiz-question-container").className = "container-hidden";
   document.getElementById("quiz-modes-container").className = "container-visible";
   document.getElementById("quiz-title-container-status").innerHTML = "";

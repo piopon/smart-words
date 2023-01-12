@@ -2,6 +2,10 @@
   --toast-bottom-dist-px: 50px;
 }
 
+#main-content {
+  flex-direction: column;
+}
+
 #btn-add-word {
   height: 80px;
   width: 80px;

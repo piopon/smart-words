@@ -79,6 +79,7 @@
 }
 
 #dictionary-selector span.dictionary-selector-header {
+  width: 200px;
   font-size: 18px;
   font-weight: 800;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
@@ -91,6 +92,10 @@
 #dictionary-selector label.dictionary-selector-label {
   font-size: 15px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#dictionary-selector select {
+  width: 125px;
 }
 
 #table-container {

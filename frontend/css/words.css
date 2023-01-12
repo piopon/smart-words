@@ -130,6 +130,7 @@
   border: 1px solid black;
   border-spacing: 0;
   border-collapse: collapse;
+  background-color: whitesmoke;
   min-height: 100%;
 }
 

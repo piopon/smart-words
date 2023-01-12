@@ -73,6 +73,13 @@
   width: 90%;
   height: 35px;
   margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#dictionary-selector div {
+  margin-left: 20px;
 }
 
 #table-container {

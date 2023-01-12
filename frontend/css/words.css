@@ -69,10 +69,17 @@
   animation: toast-fade 3s linear;
 }
 
+#dictionary-selector {
+  width: 90%;
+  height: 35px;
+  margin: 15px;
+}
+
 #table-container {
   position: relative;
   width: 90%;
-  margin: 50px 100px;
+  height: 100%;
+  margin: 10px 0px;
 }
 
 #table-overlay.overlay-hide {

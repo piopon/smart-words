@@ -80,6 +80,8 @@
 
 #dictionary-selector span.dictionary-selector-header {
   width: 200px;
+  text-align: end;
+  text-decoration: underline;
   font-size: 18px;
   font-weight: 800;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;

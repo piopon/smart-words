@@ -82,6 +82,11 @@
   margin-left: 20px;
 }
 
+#dictionary-selector label.dictionary-selector-label {
+  font-size: 15px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
 #table-container {
   position: relative;
   width: 90%;

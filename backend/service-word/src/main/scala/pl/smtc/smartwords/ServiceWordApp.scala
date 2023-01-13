@@ -16,6 +16,7 @@ object ServiceWordApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
     val wordDB: WordDatabase = new WordDatabase()
+    val dictionaryController: DictionaryController = new DictionaryController(wordDB)
     val healthController: HealthController = new HealthController()
     val wordController: WordController = new WordController(wordDB)
 
@@ -24,6 +25,7 @@ object ServiceWordApp extends IOApp {
     }
     val config = CORSConfig(anyOrigin = true, allowCredentials = true, 1.day.toSeconds, anyMethod = true)
     val api = Router(
+      "/dictionaries" -> CORS(dictionaryController.getRoutes, config),
       "/health" -> CORS(healthController.getRoutes, config),
       "/words" -> CORS(wordController.getRoutes, config)
     ).orNotFound

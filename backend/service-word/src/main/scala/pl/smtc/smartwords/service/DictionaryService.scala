@@ -12,7 +12,7 @@ import pl.smtc.smartwords.model._
 
 class DictionaryService(wordDB: WordDatabase) {
 
-  def getDictionariesInfo(): IO[Response[IO]] = {
+  def getDictionaries: IO[Response[IO]] = {
     val availableDictionaries: Set[Dictionary] = wordDB.getWords.groupBy((word: Word) => word.dictionary).keySet
     val rawJson: Set[Json] = availableDictionaries.map(d => toJson(d))
     Ok(rawJson.asJson)

@@ -13,7 +13,7 @@ class DictionaryController(wordDB: WordDatabase) {
     val service: DictionaryService = new DictionaryService(wordDB)
     val dsl = Http4sDsl[IO]; import dsl._
     HttpRoutes.of[IO] {
-      case GET -> Root => service.getDictionariesInfo()
+      case GET -> Root => service.getDictionaries
     }
   }
 }

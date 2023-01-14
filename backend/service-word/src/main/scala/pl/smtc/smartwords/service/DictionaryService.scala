@@ -18,7 +18,7 @@ class DictionaryService(wordDB: WordDatabase) {
     Ok(rawJson.asJson)
   }
 
-  def toJson(dictionary: Dictionary): Json = {
+  private def toJson(dictionary: Dictionary): Json = {
     json"""{
           "game": ${dictionary.game},
           "mode": ${dictionary.mode},

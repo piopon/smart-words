@@ -1,5 +1,7 @@
 package pl.smtc.smartwords.model
 
+import io.circe._
+import io.circe.literal._
 import pl.smtc.smartwords.utilities.DataParser
 
 import java.time.LocalDate
@@ -12,7 +14,16 @@ import java.time.format.DateTimeFormatter
  * @param mode identifier related to the game for which this word should be used
  * @param language language of the word
  */
-case class Dictionary(var file: String, game: String, mode: Option[Int], language: String)
+case class Dictionary(var file: String, game: String, mode: Option[Int], language: String) {
+
+  def toJson: Json = {
+    json"""{
+          "game": ${this.game},
+          "mode": ${this.mode},
+          "language": ${this.language}
+        }"""
+  }
+}
 
 object Dictionary {
   /**

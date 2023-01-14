@@ -4,7 +4,6 @@ import cats.effect.IO
 import org.http4s.HttpRoutes
 import org.http4s.dsl.Http4sDsl
 import pl.smtc.smartwords.database._
-import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.service._
 
 class DictionaryController(wordDB: WordDatabase) {

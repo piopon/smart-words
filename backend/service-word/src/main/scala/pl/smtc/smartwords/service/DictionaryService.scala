@@ -14,6 +14,10 @@ class DictionaryService(wordDB: WordDatabase) {
 
   implicit val DictionaryEncoder: Encoder[Dictionary] = DictionaryDao.getDictionaryEncoder
 
+  /**
+   * Method used to receive used dictionary data
+   * @return response with all used dictionaries
+   */
   def getDictionaries: IO[Response[IO]] = {
     Ok(wordDB.getWords.groupBy(_.dictionary).keySet.asJson)
   }

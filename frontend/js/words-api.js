@@ -1,6 +1,4 @@
 const URL = "http://localhost:1111/";
-const mode = "0";
-const language = "pl";
 
 /**
  * Method used to receive all words from smart-words service

@@ -90,6 +90,12 @@ const deleteWord = (wordName, mode, language, callback) => {
   deleteRequest.send();
 };
 
+/**
+ * Method used to receive used words dictionaries
+ *
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
 const getDictionaries = (callback) => {
   const getRequest = new XMLHttpRequest();
   getRequest.addEventListener("readystatechange", () => {

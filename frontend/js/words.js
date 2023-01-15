@@ -49,7 +49,7 @@ function acceptWord() {
       return;
     }
     changeWordUpdateUI(STATE_WORDS_LOAD);
-    postWord(acceptedWord, refreshWordsCallback);
+    postWord(acceptedWord, selectedMode, selectedLanguage, refreshWordsCallback);
   } else if (FORM_MODE_EDIT === wordFormMode) {
     if (undefined === wordUnderEdition) {
       wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: word under edition cannot be undefined");
@@ -63,7 +63,7 @@ function acceptWord() {
       return;
     }
     changeWordUpdateUI(STATE_WORDS_LOAD);
-    putWord(wordUnderEdition.name, acceptedWord, refreshWordsCallback);
+    putWord(wordUnderEdition.name, acceptedWord, selectedMode, selectedLanguage, refreshWordsCallback);
   } else {
     wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: Unknown form mode: " + wordFormMode);
   }
@@ -89,7 +89,7 @@ function getWordFromUi() {
  */
 function removeWord(name) {
   changeWordUpdateUI(STATE_WORDS_LOAD);
-  deleteWord(name, refreshWordsCallback);
+  deleteWord(name, selectedMode, selectedLanguage, refreshWordsCallback);
 }
 
 /**
@@ -135,7 +135,7 @@ function getWordTableRow(item) {
  */
 function loadWords() {
   loadWordsUpdateUI(STATE_WORDS_LOAD);
-  getWords((err, data) => {
+  getWords(selectedMode, selectedLanguage, (err, data) => {
     if (err) {
       loadWordsUpdateUI(STATE_WORDS_ERROR);
     } else {

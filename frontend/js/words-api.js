@@ -6,7 +6,7 @@ const URL = "http://localhost:1111/";
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */
-const getWords = (callback) => {
+const getWords = (mode, language, callback) => {
   const getRequest = new XMLHttpRequest();
   getRequest.addEventListener("readystatechange", () => {
     if (getRequest.DONE !== getRequest.readyState) return;
@@ -28,7 +28,7 @@ const getWords = (callback) => {
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */
-const postWord = (newWordObject, callback) => {
+const postWord = (newWordObject, mode, language, callback) => {
   const postRequest = new XMLHttpRequest();
   postRequest.addEventListener("readystatechange", () => {
     if (postRequest.DONE !== postRequest.readyState) return;
@@ -52,7 +52,7 @@ const postWord = (newWordObject, callback) => {
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */
-const putWord = (currWord, newWordObject, callback) => {
+const putWord = (currWord, newWordObject, mode, language, callback) => {
   const putRequest = new XMLHttpRequest();
   putRequest.addEventListener("readystatechange", () => {
     if (putRequest.DONE !== putRequest.readyState) return;
@@ -75,7 +75,7 @@ const putWord = (currWord, newWordObject, callback) => {
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */
-const deleteWord = (wordName, callback) => {
+const deleteWord = (wordName, mode, language, callback) => {
   const deleteRequest = new XMLHttpRequest();
   deleteRequest.addEventListener("readystatechange", () => {
     if (deleteRequest.DONE !== deleteRequest.readyState) return;

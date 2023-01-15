@@ -92,6 +92,21 @@ const deleteWord = (wordName, callback) => {
   deleteRequest.send();
 };
 
+const getDictionaries = (callback) => {
+  const getRequest = new XMLHttpRequest();
+  getRequest.addEventListener("readystatechange", () => {
+    if (getRequest.DONE !== getRequest.readyState) return;
+    if (getRequest.status === 200) {
+      callback(undefined, JSON.parse(getRequest.responseText));
+    } else {
+      details = 0 === getRequest.status ? " - service unavailable" : " - " + getRequest.responseText;
+      callback(createErrorObject("cannot get dictionaries " + details, getRequest.status), undefined);
+    }
+  });
+  getRequest.open("GET", URL + "dictionaries");
+  getRequest.send();
+};
+
 /**
  * Method used to create error object from message and response status
  *

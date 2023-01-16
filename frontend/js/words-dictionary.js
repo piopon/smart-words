@@ -12,13 +12,13 @@ function fillDictionarySelectors() {
 }
 
 function gameChanged() {
-    console.log("Game changed");
+  console.log("Game changed");
 }
 
 function modeChanged() {
-    console.log("Mode changed");
+  console.log("Mode changed");
 }
 
 function languageChanged() {
-    console.log("Language changed");
+  console.log("Language changed");
 }

@@ -3,6 +3,8 @@ const URL = "http://localhost:1111/";
 /**
  * Method used to receive all words from smart-words service
  *
+ * @param {Integer} mode of the specific game for which we want to receive words
+ * @param {String} language name for which we want to receive words
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */
@@ -25,6 +27,8 @@ const getWords = (mode, language, callback) => {
  * Method used to add new word to smart-words service
  *
  * @param {Object} newWordObject new word to be added to service
+ * @param {Integer} mode of the specific game for which we want to add new word
+ * @param {String} language name for which we want to add the new word
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */
@@ -49,6 +53,8 @@ const postWord = (newWordObject, mode, language, callback) => {
  *
  * @param {String} currWord object name to be updated
  * @param {Object} newWordObject new word object values to be used and updated in service
+ * @param {Integer} mode of the specific game for which we want to update selected word
+ * @param {String} language name for which we want to update selected word
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */
@@ -72,6 +78,8 @@ const putWord = (currWord, newWordObject, mode, language, callback) => {
  * Method used to remove specified word in smart-words service
  *
  * @param {String} wordName object name to be removed
+ * @param {Integer} mode of the specific game for which we want to delete selected word
+ * @param {String} language name for which we want to delete selected word
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */

@@ -22,3 +22,5 @@ function modeChanged() {
 function languageChanged() {
   console.log("Language changed");
 }
+
+fillDictionarySelectors();

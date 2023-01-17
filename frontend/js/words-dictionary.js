@@ -1,3 +1,4 @@
+var selectedGame = "quiz";
 var selectedMode = "0";
 var selectedLanguage = "pl";
 
@@ -33,9 +34,10 @@ function fillSelector(type, values) {
 
 function gameChanged() {
   let gameSelector = document.getElementById(`dictionary-selector-game`);
-  fillSelector("mode", Object.keys(availableDictionaries[gameSelector.value]));
+  selectedGame = gameSelector.value;
+  fillSelector("mode", Object.keys(availableDictionaries[selectedGame]));
   let modeSelector = document.getElementById(`dictionary-selector-mode`);
-  modeSelector.disabled = gameSelector.value === "";
+  modeSelector.disabled = selectedGame === "";
 }
 
 function modeChanged() {

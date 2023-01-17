@@ -9,17 +9,21 @@ function fillDictionarySelectors() {
     if (err) {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
-      Object.values(data).forEach((dictionary) => {
-        if (!availableDictionaries[dictionary.game]) {
-          availableDictionaries[dictionary.game] = {};
-        }
-        if (!availableDictionaries[dictionary.game][dictionary.mode]) {
-          availableDictionaries[dictionary.game][dictionary.mode] = [];
-        }
-        availableDictionaries[dictionary.game][dictionary.mode].push(dictionary.language);
-      });
+      initAvailableDictionaries(Object.values(data));
       fillSelector("game", Object.keys(availableDictionaries));
     }
+  });
+}
+
+function initAvailableDictionaries(data) {
+  data.forEach((dict) => {
+    if (!availableDictionaries[dict.game]) {
+      availableDictionaries[dict.game] = {};
+    }
+    if (!availableDictionaries[dict.game][dict.mode]) {
+      availableDictionaries[dict.game][dict.mode] = [];
+    }
+    availableDictionaries[dict.game][dict.mode].push(dict.language);
   });
 }
 

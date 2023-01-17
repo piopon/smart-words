@@ -43,7 +43,7 @@ function modeChanged() {
 }
 
 function languageChanged() {
-  console.log("Language changed");
+  loadWords();
 }
 
 fillDictionarySelectors();

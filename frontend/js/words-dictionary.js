@@ -1,8 +1,7 @@
 var selectedMode = "0";
 var selectedLanguage = "pl";
-var availableGames = new Set();
-var availableModes = new Set();
-var availableLangs = new Set();
+
+var availableDictionaries = {};
 
 function fillDictionarySelectors() {
   getDictionaries((err, data) => {
@@ -10,9 +9,13 @@ function fillDictionarySelectors() {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       Object.values(data).forEach((dictionary) => {
-        availableGames.add(dictionary.game);
-        availableModes.add(dictionary.mode);
-        availableLangs.add(dictionary.language);
+        if (!availableDictionaries[dictionary.game]) {
+          availableDictionaries[dictionary.game] = {};
+        }
+        if (!availableDictionaries[dictionary.game][dictionary.mode]) {
+          availableDictionaries[dictionary.game][dictionary.mode] = [];
+        }
+        availableDictionaries[dictionary.game][dictionary.mode].push(dictionary.language);
       });
       fillSelector("game", Array.from(availableGames.values()));
       fillSelector("mode", Array.from(availableModes.values()));

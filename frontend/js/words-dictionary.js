@@ -29,10 +29,13 @@ function initAvailableDictionaries(data) {
 
 function fillSelector(type, values) {
   let selector = document.getElementById(`dictionary-selector-${type}`);
-  let optionsHtml = `<option value="" default selected hidden>select ${type}</option>`;
-  values.forEach((value) => {
-    optionsHtml += `<option value="${value}">${value}</option>`;
-  });
+  if (selector === null) {
+    console.log(`Cannot find a dictionary selector element for ${type}...`);
+    return;
+  }
+  const defaultSelectorOption = `<option value="" default selected hidden>select ${type}</option>`;
+  let optionsHtml = defaultSelectorOption
+  values.forEach((value) => optionsHtml += `<option value="${value}">${value}</option>`);
   selector.innerHTML = optionsHtml;
 }
 

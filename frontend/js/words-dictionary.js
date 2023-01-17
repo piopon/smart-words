@@ -41,22 +41,31 @@ function fillSelector(type, values) {
 
 function gameChanged() {
   let gameSelector = document.getElementById(`dictionary-selector-game`);
+  let modeSelector = document.getElementById(`dictionary-selector-mode`);
+  if (gameSelector === null || modeSelector === null) {
+    return;
+  }
   selectedGame = gameSelector.value;
   fillSelector("mode", Object.keys(availableDictionaries[selectedGame]));
-  let modeSelector = document.getElementById(`dictionary-selector-mode`);
   modeSelector.disabled = selectedGame === "";
 }
 
 function modeChanged() {
   let modeSelector = document.getElementById(`dictionary-selector-mode`);
+  let langSelector = document.getElementById(`dictionary-selector-language`);
+  if (modeSelector === null || langSelector === null) {
+    return;
+  }
   selectedMode = modeSelector.value;
   fillSelector("language", availableDictionaries[selectedGame][selectedMode]);
-  let langSelector = document.getElementById(`dictionary-selector-language`);
   langSelector.disabled = selectedMode === "";
 }
 
 function languageChanged() {
   let langSelector = document.getElementById(`dictionary-selector-language`);
+  if (langSelector === null) {
+    return;
+  }
   selectedLanguage = langSelector.value;
   loadWords();
 }

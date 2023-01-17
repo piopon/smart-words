@@ -22,12 +22,12 @@ function fillDictionarySelectors() {
 }
 
 function fillSelector(type, values) {
-    let selector = document.getElementById(`dictionary-selector-${type}`);
-    let optionsHtml = `<option value="" default selected hidden>select ${type}</option>`;
-    values.forEach(value => {
-        optionsHtml += `<option value="${value}">${value}</option>`;
-    })
-    selector.innerHTML = optionsHtml;
+  let selector = document.getElementById(`dictionary-selector-${type}`);
+  let optionsHtml = `<option value="" default selected hidden>select ${type}</option>`;
+  values.forEach((value) => {
+    optionsHtml += `<option value="${value}">${value}</option>`;
+  });
+  selector.innerHTML = optionsHtml;
 }
 
 function gameChanged() {

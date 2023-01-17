@@ -17,9 +17,7 @@ function fillDictionarySelectors() {
         }
         availableDictionaries[dictionary.game][dictionary.mode].push(dictionary.language);
       });
-      fillSelector("game", Array.from(availableGames.values()));
-      fillSelector("mode", Array.from(availableModes.values()));
-      fillSelector("language", Array.from(availableLangs.values()));
+      fillSelector("game", Object.keys(availableDictionaries));
     }
   });
 }

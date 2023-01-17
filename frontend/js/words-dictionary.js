@@ -49,6 +49,8 @@ function modeChanged() {
 }
 
 function languageChanged() {
+  let langSelector = document.getElementById(`dictionary-selector-language`);
+  selectedLanguage = langSelector.value;
   loadWords();
 }
 

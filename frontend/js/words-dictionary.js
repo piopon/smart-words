@@ -31,7 +31,9 @@ function fillSelector(type, values) {
 }
 
 function gameChanged() {
-  console.log("Game changed");
+  let gameSelector = document.getElementById(`dictionary-selector-game`);
+  let modeSelector = document.getElementById(`dictionary-selector-mode`);
+  modeSelector.disabled = gameSelector.value === "";
 }
 
 function modeChanged() {

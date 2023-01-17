@@ -9,7 +9,7 @@ function fillDictionarySelectors() {
     if (err) {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
-      Object.values(data).forEach(dictionary => {
+      Object.values(data).forEach((dictionary) => {
         availableGames.add(dictionary.game);
         availableModes.add(dictionary.mode);
         availableLangs.add(dictionary.language);

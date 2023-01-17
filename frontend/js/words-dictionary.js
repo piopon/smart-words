@@ -39,7 +39,9 @@ function gameChanged() {
 }
 
 function modeChanged() {
+  let gameSelector = document.getElementById(`dictionary-selector-game`);
   let modeSelector = document.getElementById(`dictionary-selector-mode`);
+  fillSelector("language", availableDictionaries[gameSelector.value][modeSelector.value]);
   let langSelector = document.getElementById(`dictionary-selector-language`);
   langSelector.disabled = modeSelector.value === "";
 }

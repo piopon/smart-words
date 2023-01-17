@@ -37,7 +37,9 @@ function gameChanged() {
 }
 
 function modeChanged() {
-  console.log("Mode changed");
+  let modeSelector = document.getElementById(`dictionary-selector-mode`);
+  let langSelector = document.getElementById(`dictionary-selector-language`);
+  langSelector.disabled = modeSelector.value === "";
 }
 
 function languageChanged() {

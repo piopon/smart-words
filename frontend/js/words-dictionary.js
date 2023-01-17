@@ -1,7 +1,6 @@
 var selectedGame = "quiz";
 var selectedMode = "0";
 var selectedLanguage = "pl";
-
 var availableDictionaries = {};
 
 function fillDictionarySelectors() {

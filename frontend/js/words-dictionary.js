@@ -1,7 +1,10 @@
+var availableDictionaries = {};
+
+// variables holding the currently selected dictionary game, mode, and language
+// also they serve a purpose to initialize selector values with starting values
 var selectedGame = "quiz";
 var selectedMode = "0";
 var selectedLanguage = "pl";
-var availableDictionaries = {};
 
 function fillDictionarySelectors() {
   getDictionaries((err, data) => {

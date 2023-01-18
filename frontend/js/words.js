@@ -132,10 +132,14 @@ function getWordTableRow(item) {
 
 /**
  * Method used to load all words and add them to HTML table DOM
+ *
+ * @param {String} game type of the game for which we want to (re)load words view
+ * @param {String} mode specific game mode for which we want to (re)load words view
+ * @param {String} language type of language for which we want to (re)load words view
  */
-function loadWords() {
+function loadWords(game, mode, language) {
   loadWordsUpdateUI(STATE_WORDS_LOAD);
-  getWords(selectedMode, selectedLanguage, (err, data) => {
+  getWords(game, mode, language, (err, data) => {
     if (err) {
       loadWordsUpdateUI(STATE_WORDS_ERROR);
     } else {

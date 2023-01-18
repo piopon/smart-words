@@ -13,6 +13,7 @@ function fillDictionarySelectors() {
     } else {
       initAvailableDictionaries(Object.values(data));
       fillSelector("game", Object.keys(availableDictionaries));
+      initSelectorsValues();
     }
   });
 }

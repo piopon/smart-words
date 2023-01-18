@@ -6,6 +6,9 @@ var selectedGame = "quiz";
 var selectedMode = "0";
 var selectedLanguage = "pl";
 
+/**
+ * Method used to fill dictionary selectors (especially the starting one: game selector)
+ */
 function fillDictionarySelectors() {
   getDictionaries((err, data) => {
     if (err) {
@@ -18,6 +21,9 @@ function fillDictionarySelectors() {
   });
 }
 
+/**
+ * Method used to initialize all selectors with starting values
+ */
 function initSelectorsValues() {
   let gameSelector = document.getElementById(`dictionary-selector-game`);
   gameSelector.value = selectedGame;
@@ -30,6 +36,11 @@ function initSelectorsValues() {
   langSelector.dispatchEvent(new Event('change'))
 }
 
+/**
+ * Method used to initialize available dictionaries container with received data
+ *
+ * @param {Object} data received from word service with needed dictionaries information
+ */
 function initAvailableDictionaries(data) {
   data.forEach((dict) => {
     if (!availableDictionaries[dict.game]) {
@@ -42,6 +53,12 @@ function initAvailableDictionaries(data) {
   });
 }
 
+/**
+ * Method used to fill specified selector with input data values
+ *
+ * @param {String} type of specificied select element (supported values are: 'game', 'mode', and 'language')
+ * @param {Array} values to be displayed as options is specified select element
+ */
 function fillSelector(type, values) {
   let selector = document.getElementById(`dictionary-selector-${type}`);
   if (selector === null) {
@@ -54,6 +71,9 @@ function fillSelector(type, values) {
   selector.innerHTML = optionsHtml;
 }
 
+/**
+ * Method triggered when user changes the value of game select element
+ */
 function gameChanged() {
   let gameSelector = document.getElementById(`dictionary-selector-game`);
   let modeSelector = document.getElementById(`dictionary-selector-mode`);
@@ -65,6 +85,9 @@ function gameChanged() {
   modeSelector.disabled = selectedGame === "";
 }
 
+/**
+ * Method triggered when user changes the value of mode select element
+ */
 function modeChanged() {
   let modeSelector = document.getElementById(`dictionary-selector-mode`);
   let langSelector = document.getElementById(`dictionary-selector-language`);
@@ -76,6 +99,9 @@ function modeChanged() {
   langSelector.disabled = selectedMode === "";
 }
 
+/**
+ * Method triggered when user changes the value of language select element
+ */
 function languageChanged() {
   let langSelector = document.getElementById(`dictionary-selector-language`);
   if (langSelector === null) {

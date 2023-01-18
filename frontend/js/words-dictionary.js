@@ -108,7 +108,7 @@ function languageChanged() {
     return;
   }
   selectedLanguage = langSelector.value;
-  loadWords();
+  loadWords(selectedGame, selectedMode, selectedLanguage);
 }
 
 // called on words.html site load

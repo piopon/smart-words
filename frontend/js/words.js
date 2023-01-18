@@ -104,7 +104,7 @@ function refreshWordsCallback(err, data) {
     changeWordUpdateUI(0 === err.status ? STATE_WORDS_ERROR : STATE_WORDS_OK);
   } else {
     wordChangeShowToast(WORD_TOAST_INFO, data);
-    loadWords();
+    loadWords(selectedGame, selectedMode, selectedLanguage);
     changeWordUpdateUI(STATE_WORDS_OK);
   }
 }

@@ -14,6 +14,18 @@ function fillDictionarySelectors() {
   });
 }
 
+function initSelectorsValues() {
+  let gameSelector = document.getElementById(`dictionary-selector-game`);
+  gameSelector.value = selectedGame;
+  gameSelector.dispatchEvent(new Event('change'))
+  let modeSelector = document.getElementById(`dictionary-selector-mode`);
+  modeSelector.value = selectedMode;
+  modeSelector.dispatchEvent(new Event('change'))
+  let langSelector = document.getElementById(`dictionary-selector-language`);
+  langSelector.value = selectedLanguage;
+  langSelector.dispatchEvent(new Event('change'))
+}
+
 function initAvailableDictionaries(data) {
   data.forEach((dict) => {
     if (!availableDictionaries[dict.game]) {

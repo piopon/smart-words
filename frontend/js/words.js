@@ -191,6 +191,3 @@ function validateWord(word) {
   }
   return true;
 }
-
-// called on words.html site load
-loadWords();

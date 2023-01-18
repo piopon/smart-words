@@ -85,4 +85,5 @@ function languageChanged() {
   loadWords();
 }
 
+// called on words.html site load
 fillDictionarySelectors();

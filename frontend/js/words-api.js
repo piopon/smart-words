@@ -3,12 +3,13 @@ const URL = "http://localhost:1111/";
 /**
  * Method used to receive all words from smart-words service
  *
- * @param {Integer} mode of the specific game for which we want to receive words
- * @param {String} language name for which we want to receive words
+ * @param {String} game type of the game for which we want to receive words
+ * @param {String} mode specific game mode for which we want to receive words
+ * @param {String} language type of language for which we want to receive words
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */
-const getWords = (mode, language, callback) => {
+const getWords = (game, mode, language, callback) => {
   const getRequest = new XMLHttpRequest();
   getRequest.addEventListener("readystatechange", () => {
     if (getRequest.DONE !== getRequest.readyState) return;

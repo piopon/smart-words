@@ -18,7 +18,7 @@ function fillDictionarySelectors() {
     } else {
       loadDictionariesUpdateUI(STATE_WORDS_OK);
       initAvailableDictionaries(Object.values(data));
-      fillSelector("game", Object.keys(availableDictionaries));
+      fillSelector("game", Object.keys(availableDictionaries), false);
       initSelectorsValues();
     }
   });
@@ -85,8 +85,7 @@ function gameChanged() {
     return;
   }
   selectedGame = gameSelector.value;
-  fillSelector("mode", Object.keys(availableDictionaries[selectedGame]));
-  modeSelector.disabled = selectedGame === "";
+  fillSelector("mode", Object.keys(availableDictionaries[selectedGame]), selectedGame === "");
 }
 
 /**
@@ -99,8 +98,7 @@ function modeChanged() {
     return;
   }
   selectedMode = modeSelector.value;
-  fillSelector("language", availableDictionaries[selectedGame][selectedMode]);
-  langSelector.disabled = selectedMode === "";
+  fillSelector("language", availableDictionaries[selectedGame][selectedMode], selectedMode === "");
 }
 
 /**

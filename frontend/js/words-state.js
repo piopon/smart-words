@@ -2,6 +2,28 @@ const STATE_WORDS_OK = 0;
 const STATE_WORDS_LOAD = 1;
 const STATE_WORDS_ERROR = 2;
 
+function loadDictionariesUpdateUI(state) {
+  let rowElement = document.getElementById("no-words-row");
+  let textElement = document.getElementById("no-words-text");
+  if (rowElement === null || textElement === null) return;
+  addWordUpdateUI(state);
+  if (STATE_WORDS_OK === state) {
+    rowElement.className = "row-hidden no-select";
+    textElement.innerHTML = "";
+    return;
+  }
+  if (STATE_WORDS_LOAD === state) {
+    rowElement.className = "row-loading no-select";
+    textElement.innerHTML = addLoadingWidget() + "<br>loading dictionaries...";
+    return;
+  }
+  if (STATE_WORDS_ERROR === state) {
+    rowElement.className = "row-visible no-select";
+    textElement.innerHTML = addErrorWidget() + "<br>cannot receive dictionaries...";
+    return;
+  }
+}
+
 /**
  * Method used to update GUI state while loading words from service
  *

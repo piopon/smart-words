@@ -62,7 +62,7 @@ function initAvailableDictionaries(data) {
  * @param {String} type of specificied select element (supported values are: 'game', 'mode', and 'language')
  * @param {Array} values to be displayed as options is specified select element
  */
-function fillSelector(type, values) {
+function fillSelector(type, values, disabled) {
   let selector = document.getElementById(`dictionary-selector-${type}`);
   if (selector === null) {
     console.log(`Cannot find a dictionary selector element for ${type}...`);
@@ -72,6 +72,7 @@ function fillSelector(type, values) {
   let optionsHtml = defaultSelectorOption
   values.forEach((value) => optionsHtml += `<option value="${value}">${value}</option>`);
   selector.innerHTML = optionsHtml;
+  selector.disabled = disabled;
 }
 
 /**

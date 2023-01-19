@@ -10,10 +10,13 @@ var selectedLanguage = "pl";
  * Method used to fill dictionary selectors (especially the starting one: game selector)
  */
 function fillDictionarySelectors() {
+  loadDictionariesUpdateUI(STATE_WORDS_LOAD);
   getDictionaries((err, data) => {
     if (err) {
+      loadDictionariesUpdateUI(STATE_WORDS_ERROR);
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
+      loadDictionariesUpdateUI(STATE_WORDS_OK);
       initAvailableDictionaries(Object.values(data));
       fillSelector("game", Object.keys(availableDictionaries));
       initSelectorsValues();

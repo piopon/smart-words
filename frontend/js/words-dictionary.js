@@ -61,6 +61,7 @@ function initAvailableDictionaries(data) {
  *
  * @param {String} type of specificied select element (supported values are: 'game', 'mode', and 'language')
  * @param {Array} values to be displayed as options is specified select element
+ * @param {Boolean} disabled if the filled select element should be grayed out (true), or not (false)
  */
 function fillSelector(type, values, disabled) {
   let selector = document.getElementById(`dictionary-selector-${type}`);

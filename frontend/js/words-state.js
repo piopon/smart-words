@@ -2,6 +2,11 @@ const STATE_WORDS_OK = 0;
 const STATE_WORDS_LOAD = 1;
 const STATE_WORDS_ERROR = 2;
 
+/**
+ * Method used to update GUI state while loading words dictionary from service
+ *
+ * @param {Integer} state current loading state (from: STATE_WORDS_OK, STATE_WORDS_LOAD, STATE_WORDS_ERROR)
+ */
 function loadDictionariesUpdateUI(state) {
   let rowElement = document.getElementById("no-words-row");
   let textElement = document.getElementById("no-words-text");

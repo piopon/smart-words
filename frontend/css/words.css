@@ -219,6 +219,7 @@
   background-color: whitesmoke;
   height: 30vh;
   text-align: center;
+  animation: overlay-text-opacity 0.65s ease-in;
 }
 
 #table-words tbody tr#no-words-row.row-visible {

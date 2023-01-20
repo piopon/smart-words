@@ -9,22 +9,22 @@ const STATE_WORDS_ERROR = 2;
  */
 function loadDictionariesUpdateUI(state) {
   let rowElement = document.getElementById("no-words-row");
-  let textElement = document.getElementById("no-words-text");
-  if (rowElement === null || textElement === null) return;
+  let contentElement = document.getElementById("no-words-content");
+  if (rowElement === null || contentElement === null) return;
   addWordUpdateUI(state);
   if (STATE_WORDS_OK === state) {
     rowElement.className = "row-hidden no-select";
-    textElement.innerHTML = "";
+    contentElement.innerHTML = "";
     return;
   }
   if (STATE_WORDS_LOAD === state) {
     rowElement.className = "row-loading no-select";
-    textElement.innerHTML = addLoadingWidget() + "<br>loading dictionaries...";
+    contentElement.innerHTML = addLoadingWidget() + "<p>loading dictionaries...</p>";
     return;
   }
   if (STATE_WORDS_ERROR === state) {
     rowElement.className = "row-visible no-select";
-    textElement.innerHTML = addErrorWidget() + "<br>cannot receive dictionaries...";
+    contentElement.innerHTML = addErrorWidget() + "<p>cannot receive dictionaries...";
     return;
   }
 }
@@ -36,22 +36,22 @@ function loadDictionariesUpdateUI(state) {
  */
 function loadWordsUpdateUI(state) {
   let rowElement = document.getElementById("no-words-row");
-  let textElement = document.getElementById("no-words-text");
-  if (rowElement === null || textElement === null) return;
+  let contentElement = document.getElementById("no-words-content");
+  if (rowElement === null || contentElement === null) return;
   addWordUpdateUI(state);
   if (STATE_WORDS_OK === state) {
     rowElement.className = "row-hidden no-select";
-    textElement.innerHTML = "";
+    contentElement.innerHTML = "";
     return;
   }
   if (STATE_WORDS_LOAD === state) {
     rowElement.className = "row-loading no-select";
-    textElement.innerHTML = addLoadingWidget() + "<br>loading words...";
+    contentElement.innerHTML = addLoadingWidget() + "<p>loading words...</p>";
     return;
   }
   if (STATE_WORDS_ERROR === state) {
     rowElement.className = "row-visible no-select";
-    textElement.innerHTML = addErrorWidget() + "<br>cannot receive words...";
+    contentElement.innerHTML = addErrorWidget() + "<p>cannot receive words...</p>";
     return;
   }
 }

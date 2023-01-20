@@ -138,13 +138,17 @@ function getWordTableRow(item) {
  * @param {String} language type of language for which we want to (re)load words view
  */
 function loadWords(game, mode, language) {
+  var wordsTableBody = document.querySelector("table#table-words tbody");
+  wordsTableBody.innerHTML = `<tr id="no-words-row">
+                                <td id="no-words-content" rowspan="4"></td>
+                              </tr>`;
   loadWordsUpdateUI(STATE_WORDS_LOAD);
   getWords(game, mode, language, (err, data) => {
     if (err) {
       loadWordsUpdateUI(STATE_WORDS_ERROR);
     } else {
       loadWordsUpdateUI(STATE_WORDS_OK);
-      document.querySelector("tbody").innerHTML = Object.values(data)
+      wordsTableBody.innerHTML += Object.values(data)
         .map((item) => getWordTableRow(item))
         .join("");
     }

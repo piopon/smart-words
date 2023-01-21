@@ -98,6 +98,15 @@
 
 #dictionary-selector select {
   width: 125px;
+  height: 25px;
+  border-color: black;
+  border-radius: 0;
+  font-size: 14px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#dictionary-selector select:disabled {
+  border-color: gray;
 }
 
 #table-container {

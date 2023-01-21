@@ -315,7 +315,7 @@ tr a.btn-delete:hover {
 
 @keyframes add-word-background {
   from {
-    background: url(../images/add.png) no-repeat
+    background: url(../images/add.png) no-repeat;
   }
   to {
     background: url(../images/add-disabled.png) no-repeat;
@@ -324,7 +324,7 @@ tr a.btn-delete:hover {
 
 @-webkit-keyframes add-word-background {
   from {
-    background: url(../images/add.png) no-repeat
+    background: url(../images/add.png) no-repeat;
   }
   to {
     background: url(../images/add-disabled.png) no-repeat;

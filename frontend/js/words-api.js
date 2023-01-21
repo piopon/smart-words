@@ -1,4 +1,5 @@
 const URL = "http://localhost:1111/";
+const REQUEST_TIMEOUT = 15_000;
 
 /**
  * Method used to receive all words from smart-words service
@@ -21,6 +22,7 @@ const getWords = (game, mode, language, callback) => {
     }
   });
   getRequest.open("GET", URL + "words/" + mode + "/" + language);
+  getRequest.timeout = REQUEST_TIMEOUT;
   getRequest.send();
 };
 
@@ -45,6 +47,7 @@ const postWord = (newWordObject, mode, language, callback) => {
     }
   });
   postRequest.open("POST", URL + "words/" + mode + "/" + language);
+  postRequest.timeout = REQUEST_TIMEOUT;
   postRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   postRequest.send(JSON.stringify(newWordObject));
 };
@@ -71,6 +74,7 @@ const putWord = (currWord, newWordObject, mode, language, callback) => {
     }
   });
   putRequest.open("PUT", URL + "words/" + mode + "/" + language + "/" + currWord);
+  putRequest.timeout = REQUEST_TIMEOUT;
   putRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   putRequest.send(JSON.stringify(newWordObject));
 };
@@ -96,6 +100,7 @@ const deleteWord = (wordName, mode, language, callback) => {
     }
   });
   deleteRequest.open("DELETE", URL + "words/" + mode + "/" + language + "/" + wordName);
+  deleteRequest.timeout = REQUEST_TIMEOUT;
   deleteRequest.send();
 };
 
@@ -117,6 +122,7 @@ const getDictionaries = (callback) => {
     }
   });
   getRequest.open("GET", URL + "dictionaries");
+  getRequest.timeout = REQUEST_TIMEOUT;
   getRequest.send();
 };
 

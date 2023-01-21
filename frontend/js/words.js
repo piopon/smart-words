@@ -49,7 +49,7 @@ function acceptWord() {
       return;
     }
     changeWordUpdateUI(STATE_WORDS_LOAD);
-    postWord(acceptedWord, refreshWordsCallback);
+    postWord(acceptedWord, selectedMode, selectedLanguage, refreshWordsCallback);
   } else if (FORM_MODE_EDIT === wordFormMode) {
     if (undefined === wordUnderEdition) {
       wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: word under edition cannot be undefined");
@@ -63,7 +63,7 @@ function acceptWord() {
       return;
     }
     changeWordUpdateUI(STATE_WORDS_LOAD);
-    putWord(wordUnderEdition.name, acceptedWord, refreshWordsCallback);
+    putWord(wordUnderEdition.name, acceptedWord, selectedMode, selectedLanguage, refreshWordsCallback);
   } else {
     wordChangeShowToast(WORD_TOAST_ERROR, "ERROR: Unknown form mode: " + wordFormMode);
   }
@@ -89,7 +89,7 @@ function getWordFromUi() {
  */
 function removeWord(name) {
   changeWordUpdateUI(STATE_WORDS_LOAD);
-  deleteWord(name, refreshWordsCallback);
+  deleteWord(name, selectedMode, selectedLanguage, refreshWordsCallback);
 }
 
 /**
@@ -104,7 +104,7 @@ function refreshWordsCallback(err, data) {
     changeWordUpdateUI(0 === err.status ? STATE_WORDS_ERROR : STATE_WORDS_OK);
   } else {
     wordChangeShowToast(WORD_TOAST_INFO, data);
-    loadWords();
+    loadWords(selectedGame, selectedMode, selectedLanguage);
     changeWordUpdateUI(STATE_WORDS_OK);
   }
 }
@@ -132,15 +132,23 @@ function getWordTableRow(item) {
 
 /**
  * Method used to load all words and add them to HTML table DOM
+ *
+ * @param {String} game type of the game for which we want to (re)load words view
+ * @param {String} mode specific game mode for which we want to (re)load words view
+ * @param {String} language type of language for which we want to (re)load words view
  */
-function loadWords() {
+function loadWords(game, mode, language) {
+  var wordsTableBody = document.querySelector("table#table-words tbody");
+  wordsTableBody.innerHTML = `<tr id="no-words-row">
+                                <td id="no-words-content" rowspan="4"></td>
+                              </tr>`;
   loadWordsUpdateUI(STATE_WORDS_LOAD);
-  getWords((err, data) => {
+  getWords(game, mode, language, (err, data) => {
     if (err) {
       loadWordsUpdateUI(STATE_WORDS_ERROR);
     } else {
       loadWordsUpdateUI(STATE_WORDS_OK);
-      document.querySelector("tbody").innerHTML = Object.values(data)
+      wordsTableBody.innerHTML += Object.values(data)
         .map((item) => getWordTableRow(item))
         .join("");
     }
@@ -191,6 +199,3 @@ function validateWord(word) {
   }
   return true;
 }
-
-// called on words.html site load
-loadWords();

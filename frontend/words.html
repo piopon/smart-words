@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
     <script src="./js/words-api.js" defer></script>
     <script src="./js/words-state.js" defer></script>
+    <script src="./js/words-dictionary.js" defer></script>
     <script src="./js/words.js" defer></script>
   </head>
   <body>
@@ -55,6 +56,27 @@
           </div>
         </div>
       </div>
+      <div id="dictionary-selector">
+        <span class="dictionary-selector-header">dictionary selector</span>
+        <div>
+          <label for="dictionary-selector-game" class="dictionary-selector-label">game:</label>
+          <select name="games" id="dictionary-selector-game" onchange="gameChanged()" disabled>
+            <option value="" default selected hidden>select game</option>
+          </select>
+        </div>
+        <div>
+          <label for="dictionary-selector-mode" class="dictionary-selector-label">mode:</label>
+          <select name="modes" id="dictionary-selector-mode" onchange="modeChanged()" disabled>
+            <option value="" default selected hidden>select mode</option>
+          </select>
+        </div>
+        <div>
+          <label for="dictionary-selector-language" class="dictionary-selector-label">language:</label>
+          <select name="languages" id="dictionary-selector-language" onchange="languageChanged()" disabled>
+            <option value="" default selected hidden>select language</option>
+          </select>
+        </div>
+      </div>
       <!-- table with all words -->
       <div id="table-container">
         <div id="table-overlay" class="overlay-hide"></div>
@@ -72,7 +94,9 @@
           </thead>
           <tbody>
             <tr id="no-words-row" class="row-loading">
-              <td id="no-words-text" rowspan="4">loading...</td>
+              <td id="no-words-content" rowspan="4">
+                <p>loading...</p>
+              </td>
             </tr>
           </tbody>
         </table>

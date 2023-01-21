@@ -2,6 +2,11 @@
   --toast-bottom-dist-px: 50px;
 }
 
+#main-content {
+  flex-direction: column;
+  justify-content: start;
+}
+
 #btn-add-word {
   height: 80px;
   width: 80px;
@@ -64,10 +69,51 @@
   animation: toast-fade 3s linear;
 }
 
+#dictionary-selector {
+  width: 90%;
+  height: 35px;
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#dictionary-selector span.dictionary-selector-header {
+  width: 200px;
+  text-align: end;
+  text-decoration: underline;
+  font-size: 18px;
+  font-weight: 800;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#dictionary-selector div {
+  margin-left: 20px;
+}
+
+#dictionary-selector label.dictionary-selector-label {
+  font-size: 15px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#dictionary-selector select {
+  width: 125px;
+  height: 25px;
+  border-color: black;
+  border-radius: 0;
+  font-size: 14px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#dictionary-selector select:disabled {
+  border-color: gray;
+}
+
 #table-container {
   position: relative;
-  width: 100%;
-  margin: 50px 100px;
+  width: 90%;
+  height: 100%;
+  margin: 0px 0px 40px 0px;
 }
 
 #table-overlay.overlay-hide {
@@ -125,6 +171,8 @@
   border: 1px solid black;
   border-spacing: 0;
   border-collapse: collapse;
+  background-color: whitesmoke;
+  min-height: 100%;
 }
 
 #table-words thead {
@@ -151,13 +199,18 @@
 
 #table-words tbody {
   display: block;
-  max-height: 70vh;
+  max-height: 71vh;
   overflow-y: auto;
   font-size: 14px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
 
 #table-words td {
+  display: flex;
+  align-items: center;
+}
+
+#table-words td#no-words-content {
   height: 100%;
   line-height: 45px;
   display: inline-block;
@@ -180,6 +233,7 @@
   background-color: whitesmoke;
   height: 30vh;
   text-align: center;
+  animation: overlay-text-opacity 0.65s ease-in;
 }
 
 #table-words tbody tr#no-words-row.row-visible {
@@ -190,7 +244,7 @@
   text-align: center;
 }
 
-#table-words tbody td#no-words-text {
+#table-words tbody td#no-words-content {
   font-family: var(--styled-font), cursive;
   font-size: 20px;
   line-height: 30px;
@@ -206,7 +260,7 @@
 #table-words th:nth-child(2) {
   flex-basis: 20%;
   flex-grow: 1;
-  text-align: center;
+  justify-content: center;
 }
 
 #table-words td:nth-child(3),
@@ -237,6 +291,7 @@ tr a.btn-edit {
   color: transparent;
   padding: 10px 15px;
   cursor: pointer;
+  margin: 0px 2px;
 }
 
 tr a.btn-edit:hover {
@@ -251,6 +306,7 @@ tr a.btn-delete {
   color: transparent;
   padding: 10px 5px;
   cursor: pointer;
+  margin: 0px 2px;
 }
 
 tr a.btn-delete:hover {
@@ -259,7 +315,7 @@ tr a.btn-delete:hover {
 
 @keyframes add-word-background {
   from {
-    background: url(../images/add.png) no-repeat
+    background: url(../images/add.png) no-repeat;
   }
   to {
     background: url(../images/add-disabled.png) no-repeat;
@@ -268,7 +324,7 @@ tr a.btn-delete:hover {
 
 @-webkit-keyframes add-word-background {
   from {
-    background: url(../images/add.png) no-repeat
+    background: url(../images/add.png) no-repeat;
   }
   to {
     background: url(../images/add-disabled.png) no-repeat;

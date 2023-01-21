@@ -1,4 +1,5 @@
 const URL = "http://localhost:2222/";
+const REQUEST_TIMEOUT = 15_000;
 
 /**
  * Method used to send a request to the quiz service to start a new quiz
@@ -20,6 +21,7 @@ const postQuizStart = (questionsNo, modeId, language, callback) => {
     }
   });
   postRequest.open("POST", URL + "quiz/start?size=" + questionsNo + "&lang=" + language + "&mode=" + modeId);
+  postRequest.timeout = REQUEST_TIMEOUT;
   postRequest.send();
 };
 
@@ -42,6 +44,7 @@ const getQuestionNo = (quizID, questionNo, callback) => {
     }
   });
   getRequest.open("GET", URL + "quiz/" + quizID + "/question/" + questionNo);
+  getRequest.timeout = REQUEST_TIMEOUT;
   getRequest.send();
 };
 
@@ -65,6 +68,7 @@ const postQuestionAnswer = (quizID, questionNo, answerNo, callback) => {
     }
   });
   postRequest.open("POST", URL + "quiz/" + quizID + "/question/" + questionNo + "/" + answerNo);
+  postRequest.timeout = REQUEST_TIMEOUT;
   postRequest.send();
 };
 
@@ -86,6 +90,7 @@ const getQuizStop = (quizID, callback) => {
     }
   });
   getRequest.open("GET", URL + "quiz/" + quizID + "/stop");
+  getRequest.timeout = REQUEST_TIMEOUT;
   getRequest.send();
 };
 
@@ -106,6 +111,7 @@ const getQuizStop = (quizID, callback) => {
     }
   });
   getRequest.open("GET", URL + "modes");
+  getRequest.timeout = REQUEST_TIMEOUT;
   getRequest.send();
 };
 

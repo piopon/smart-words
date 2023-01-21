@@ -210,6 +210,14 @@
   align-items: center;
 }
 
+#table-words td#no-words-content {
+  height: 100%;
+  line-height: 45px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+}
+
 #table-words tbody tr {
   display: flex;
   padding: 3px 10px;

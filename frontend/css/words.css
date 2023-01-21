@@ -197,11 +197,8 @@
 }
 
 #table-words td {
-  height: 100%;
-  line-height: 45px;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: left;
+  display: flex;
+  align-items: center;
 }
 
 #table-words tbody tr {
@@ -246,7 +243,7 @@
 #table-words th:nth-child(2) {
   flex-basis: 20%;
   flex-grow: 1;
-  text-align: center;
+  justify-content: center;
 }
 
 #table-words td:nth-child(3),

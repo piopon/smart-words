@@ -274,6 +274,7 @@ tr a.btn-edit {
   color: transparent;
   padding: 10px 15px;
   cursor: pointer;
+  margin: 0px 2px;
 }
 
 tr a.btn-edit:hover {
@@ -288,6 +289,7 @@ tr a.btn-delete {
   color: transparent;
   padding: 10px 5px;
   cursor: pointer;
+  margin: 0px 2px;
 }
 
 tr a.btn-delete:hover {

@@ -22,6 +22,10 @@
   background: url(../images/settings.png) no-repeat;
 }
 
+#btn-show-settings:hover {
+  background: url(../images/settings-hover.png) no-repeat;
+}
+
 #quiz-start-frame {
   background: white;
   padding: 25px;

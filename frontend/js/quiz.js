@@ -92,7 +92,7 @@ function requestQuestionNo(number, buttonId = undefined) {
     } else {
       questionViewUpdateUI(STATE_QUIZ_OK, buttonId);
       currentQuestionNo = number;
-      displayQuestion(data);
+      displayQuizQuestion(data);
     }
   });
 }
@@ -102,7 +102,7 @@ function requestQuestionNo(number, buttonId = undefined) {
  *
  * @param {Object} questionObject to be displayed (word + four options)
  */
-function displayQuestion(questionObject) {
+function displayQuizQuestion(questionObject) {
   let questionStatus = `question ${currentQuestionNo + 1}/${totalQuestionsNo}`;
   document.getElementById("quiz-title-container-label").innerHTML = `quiz - ${selectedMode.name} - ${questionStatus}:`;
   document.getElementById("quiz-question-container").className = "container-visible";
@@ -278,7 +278,7 @@ function stopQuiz() {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
-      displaySummary(data);
+      displayQuizSummary(data);
     }
   });
 }
@@ -304,7 +304,7 @@ function getButtonIdFromEndReason(endQuizReason) {
  *
  * @param {Float} summaryValue correct answers percentage
  */
-function displaySummary(summaryValue) {
+function displayQuizSummary(summaryValue) {
   questionViewUpdateUI(STATE_QUIZ_OFF);
   document.getElementById("quiz-question-container").className = "container-visible";
   document.getElementById("quiz-modes-container").className = "container-hidden";

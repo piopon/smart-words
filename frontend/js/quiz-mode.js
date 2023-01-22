@@ -5,7 +5,7 @@ var availableModes = undefined;
 /**
  * Method used to show quiz modes
  */
-function showQuizModes() {
+function displayQuizModes() {
   availableModes = [];
   quizModeViewUpdateUI(STATE_QUIZ_LOAD);
   getQuizModes((err, data) => {
@@ -217,4 +217,4 @@ function getControlsHtml(modeId) {
           </div>`;
 }
 
-showQuizModes();
+displayQuizModes();

@@ -1,4 +1,4 @@
 # smart-words
 This repository is a simple quiz application with Scala backend and HTML/CSS/JS (VanillaJS 😉) frontend.
 
-Created by PNK with 💚 @ 2022
+Created by PNK with 💚 @ 2022-2023

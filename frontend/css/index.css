@@ -11,6 +11,16 @@
   background: url(../images/dictionary-hover.png) no-repeat;
 }
 
+#btn-show-settings {
+  height: 80px;
+  width: 80px;
+  padding: 0;
+  margin: 0px 20px 0px 0px;
+  color: transparent !important;
+  border: 0px solid black;
+  background: url(../images/settings.png) no-repeat;
+}
+
 #quiz-start-frame {
   background: white;
   padding: 25px;

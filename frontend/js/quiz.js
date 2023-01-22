@@ -98,7 +98,7 @@ function requestQuestionNo(number, buttonId = undefined) {
 }
 
 /**
- * Method used to display a specified question number with its all four options
+ * Method used to display a specified quiz question data view (name, all four options, and control buttons)
  *
  * @param {Object} questionObject to be displayed (word + four options)
  */
@@ -300,7 +300,7 @@ function getButtonIdFromEndReason(endQuizReason) {
 }
 
 /**
- * Method used to display summary (hide question and show percentage correctness)
+ * Method used to display quiz summary view (hide question and show percentage correctness)
  *
  * @param {Float} summaryValue correct answers percentage
  */

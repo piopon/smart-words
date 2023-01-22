@@ -3,7 +3,7 @@ var modeLanguageMap = new Map();
 var availableModes = undefined;
 
 /**
- * Method used to show quiz modes
+ * Method used to show quiz modes view (as a list of selectable tiles)
  */
 function displayQuizModes() {
   availableModes = [];
@@ -217,4 +217,5 @@ function getControlsHtml(modeId) {
           </div>`;
 }
 
+// called on quiz.html site load
 displayQuizModes();

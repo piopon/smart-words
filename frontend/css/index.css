@@ -1,7 +1,8 @@
 #btn-show-words {
   height: 80px;
   width: 80px;
-  margin: 0 20px;
+  padding: 0;
+  margin: 0px 0px 0px 20px;
   color: transparent !important;
   border: 0px solid black;
   background: url(../images/dictionary.png) no-repeat;

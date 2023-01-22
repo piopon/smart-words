@@ -216,6 +216,3 @@ function getControlsHtml(modeId) {
             <div data-mode="${modeId}" class="quiz-mode-controls-info hide" title="PUT EXTRA INFO HERE"></div>
           </div>`;
 }
-
-// called on quiz.html site load
-displayQuizModes();

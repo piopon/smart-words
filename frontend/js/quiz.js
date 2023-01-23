@@ -358,13 +358,13 @@ function getSummaryTitle(summaryValue) {
  * @returns summary image path
  */
 function getSummaryImage(summaryValue) {
-  let summaryImage = "images/summary-medium.png";
+  let summaryImage = "images/quiz-summary/050-medium.png";
   if (summaryValue === 1.0) {
-    summaryImage = "images/summary-100.png";
+    summaryImage = "images/quiz-summary/100-perfect.png";
   } else if (summaryValue >= 0.75) {
-    summaryImage = "images/summary-good.png";
+    summaryImage = "images/quiz-summary/075-good.png";
   } else if (summaryValue <= 0.25) {
-    summaryImage = "images/summary-bad.png";
+    summaryImage = "images/quiz-summary/025-bad.png";
   }
   return summaryImage;
 }

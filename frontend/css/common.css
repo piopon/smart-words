@@ -35,7 +35,7 @@ header #site-logo {
   height: 64px;
   width: 64px;
   margin: 0 0 8 10px;
-  background: url(../images/sw-logo.png) no-repeat;
+  background: url(../images/essentials/logo.png) no-repeat;
 }
 
 header #site-title {
@@ -62,7 +62,7 @@ header #btn-page-back:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url(../images/background/background.png);
+  background: url(../images/essentials/background.png);
   background-position: 15px 15px;
 }
 

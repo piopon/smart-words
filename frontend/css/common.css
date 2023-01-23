@@ -50,11 +50,11 @@ header #btn-page-back {
   margin: 0 20 0 0px;
   color: transparent !important;
   border: 0px solid black;
-  background: url(../images/back.png) no-repeat;
+  background: url(../images/menu-items/back.png) no-repeat;
 }
 
 header #btn-page-back:hover {
-  background: url(../images/back-hover.png) no-repeat;
+  background: url(../images/menu-items/back-hover.png) no-repeat;
 }
 
 #main-content {

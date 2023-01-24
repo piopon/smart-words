@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <script src="./js/settings.js" defer></script>
   </head>
   <body>
     <!-- title bar with site title and simple navbar -->
@@ -20,6 +21,22 @@
     </header>
     <!-- main site content -->
     <div id="main-content">
+      <div id="tab-folder">
+        <div class="tab-navigation">
+          <button class="tab-item" onclick="selectTab(event, 'Item1')">Item 1</button>
+          <button class="tab-item" onclick="selectTab(event, 'Item2')">Item 2</button>
+          <button class="tab-item" onclick="selectTab(event, 'Item3')">Item 3</button>
+        </div>
+        <div id="Item1" class="tab-content">
+          <h3>Item 1</h3>
+        </div>
+        <div id="Item2" class="tab-content">
+          <h3>Item 2</h3>
+        </div>
+        <div id="Item3" class="tab-content">
+          <h3>Item 3</h3>
+        </div>
+      </div>
     </div>
     <!-- footer with author information and copyrights -->
     <footer class="no-select">developed with 💗 pnk @ 2022-2023 🖖</footer>

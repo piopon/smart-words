@@ -25,6 +25,7 @@
   padding: 15px;
   width: 150px;
   font-size: 17px;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
 }
 
 .tab-navigation button:hover {

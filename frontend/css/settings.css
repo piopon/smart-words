@@ -21,8 +21,9 @@
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
   transition: 0.3s;
+  padding: 15px;
+  width: 150px;
   font-size: 17px;
 }
 

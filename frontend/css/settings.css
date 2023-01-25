@@ -43,3 +43,11 @@
   border-top: none;
   background-color: white;
 }
+
+.tab-content.visible {
+  display: flex;
+}
+
+.tab-content.hidden {
+  display: none;
+}

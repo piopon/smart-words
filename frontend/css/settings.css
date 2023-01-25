@@ -11,7 +11,8 @@
 .tab-navigation {
   overflow: hidden;
   border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  border-bottom: none;
+  background-color: whitesmoke;
 }
 
 .tab-navigation button {
@@ -30,7 +31,8 @@
 }
 
 .tab-navigation button.active {
-  background-color: #ccc;
+  cursor: unset;
+  background-color: white;
 }
 
 .tab-content {

@@ -1,5 +1,5 @@
 :root {
-  --navigation-bar-height: 50px;
+  --nav-bar-height: 50px;
 }
 
 #main-content {
@@ -22,7 +22,7 @@
 }
 
 .tab-navigation button {
-  height: var(--navigation-bar-height);
+  height: var(--nav-bar-height);
   background-color: inherit;
   float: left;
   border: none;
@@ -47,7 +47,7 @@
 .tab-content {
   display: none;
   padding: 6px 12px;
-  height: calc(100% - var(--navigation-bar-height));
+  height: calc(100% - var(--nav-bar-height));
   border: 1px solid var(--primary-color);
   border-top: none;
   background-color: white;

@@ -1,3 +1,7 @@
+:root {
+  --navigation-bar-height: 50px;
+}
+
 #main-content {
   align-items: normal;
   justify-content: start;
@@ -16,6 +20,7 @@
 }
 
 .tab-navigation button {
+  height: var(--navigation-bar-height);
   background-color: inherit;
   float: left;
   border: none;

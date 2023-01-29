@@ -46,7 +46,7 @@
 
 .tab-content {
   display: none;
-  padding: 6px 12px;
+  padding: 30px 30px;
   height: calc(100% - var(--nav-bar-height));
   border: 1px solid var(--primary-color);
   border-top: none;

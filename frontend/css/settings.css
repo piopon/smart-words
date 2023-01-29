@@ -105,6 +105,20 @@ table#quiz-modes-available {
   border-spacing: 0px;
 }
 
+table#quiz-modes-available th {
+  height: 40px;
+  font-size: 19px;
+  font-family: var(--styled-font), cursive;
+  background-color: var(--primary-color);
+  border-bottom: 1px solid black;
+}
+
+table#quiz-modes-available td {
+  height: 35px;
+  font-size: 15px;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
+}
+
 button#quiz-modes-add {
   height: 40px;
   width: 100%;

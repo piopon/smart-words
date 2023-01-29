@@ -60,3 +60,14 @@
 .tab-content.hidden {
   display: none;
 }
+
+/*******************************/
+/* quiz modes tab elements     */
+/*******************************/
+
+div.quiz-modes-section {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% / 3 - 20px);
+  padding: 5px 15px;
+}

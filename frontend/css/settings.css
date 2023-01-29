@@ -66,7 +66,7 @@
 /* quiz modes tab - common          */
 /************************************/
 
-div.vertical-separator{
+div.vertical-separator {
   width: 10px;
   border-left: 1.5px dashed gainsboro;
   margin-left: 10px;
@@ -77,7 +77,10 @@ div.vertical-separator{
 div.quiz-modes-section {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   width: calc(100% / 3 - 20px);
+  height: 100%;
   padding: 5px 15px;
 }
 
@@ -87,8 +90,7 @@ p.section-title {
   font-family: var(--clear-font-primary), Verdana, sans-serif;
   font-style: italic;
   text-decoration: underline;
-  align-self: flex-start;
-  padding-left: 25px;
+  padding-left: 10px;
   margin-bottom: 30px;
 }
 

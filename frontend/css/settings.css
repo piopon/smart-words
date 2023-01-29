@@ -118,6 +118,15 @@ table#quiz-modes-available th {
   border-bottom: 1px solid black;
 }
 
+table#quiz-modes-available th:first-child {
+  width: 70px;
+  border-radius: var(--table-border-radius) 0px 0px 0px;
+}
+
+table#quiz-modes-available th:last-child {
+  border-radius: 0px var(--table-border-radius) 0px 0px;
+}
+
 table#quiz-modes-available td {
   height: 35px;
   font-size: 15px;

@@ -90,3 +90,14 @@ p.section-title {
   padding-left: 25px;
   margin-bottom: 30px;
 }
+
+button#quiz-modes-add {
+  height: 40px;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: 10px;
+  background-color: limegreen;
+  border: 1px black solid;
+  font-size: 19px;
+  font-family: var(--styled-font), cursive;
+}

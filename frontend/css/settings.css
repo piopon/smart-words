@@ -110,6 +110,14 @@ table#quiz-modes-available tbody tr:hover {
   cursor: pointer;
 }
 
+table#quiz-modes-available tbody tr:hover:last-child td:first-child {
+  border-bottom-left-radius: var(--table-border-radius);
+}
+
+table#quiz-modes-available tbody tr:hover:last-child td:last-child {
+  border-bottom-right-radius: var(--table-border-radius);
+}
+
 table#quiz-modes-available th {
   height: 40px;
   font-size: 19px;

@@ -105,6 +105,11 @@ table#quiz-modes-available {
   border-spacing: 0px;
 }
 
+table#quiz-modes-available tbody tr:hover {
+  background-color: lightgreen;
+  cursor: pointer;
+}
+
 table#quiz-modes-available th {
   height: 40px;
   font-size: 19px;

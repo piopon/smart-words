@@ -1,5 +1,6 @@
 :root {
   --nav-bar-height: 50px;
+  --table-border-radius: 10px;
 }
 
 #main-content {
@@ -61,9 +62,9 @@
   display: none;
 }
 
-/*******************************/
-/* quiz modes tab elements     */
-/*******************************/
+/************************************/
+/* quiz modes tab - common          */
+/************************************/
 
 div.vertical-separator{
   width: 10px;
@@ -89,6 +90,17 @@ p.section-title {
   align-self: flex-start;
   padding-left: 25px;
   margin-bottom: 30px;
+}
+
+/************************************/
+/* quiz modes tab - available modes */
+/************************************/
+
+table#quiz-modes-available {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: var(--table-border-radius);
+  border-spacing: 0px;
 }
 
 button#quiz-modes-add {

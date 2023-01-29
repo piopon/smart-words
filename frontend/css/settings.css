@@ -133,6 +133,14 @@ table#quiz-modes-available td {
   font-family: var(--clear-font-primary), Verdana, sans-serif;
 }
 
+table#quiz-modes-available td:first-child {
+  text-align: center;
+}
+
+table#quiz-modes-available td:last-child {
+  padding-left: 15px;
+}
+
 button#quiz-modes-add {
   height: 40px;
   width: 100%;

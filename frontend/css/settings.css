@@ -71,3 +71,14 @@ div.quiz-modes-section {
   width: calc(100% / 3 - 20px);
   padding: 5px 15px;
 }
+
+p.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
+  font-style: italic;
+  text-decoration: underline;
+  align-self: flex-start;
+  padding-left: 25px;
+  margin-bottom: 30px;
+}

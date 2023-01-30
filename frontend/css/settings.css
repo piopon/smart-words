@@ -170,7 +170,7 @@ div#mode-placeholder {
   border: 1px dashed gray;
   border-radius: 20px;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 
 div.visible {

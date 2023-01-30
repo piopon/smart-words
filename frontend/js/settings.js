@@ -10,3 +10,11 @@ function selectTab(event, tabId) {
     tabContent[i].className = "tab-content" + (tabContent[i].id === tabId ? " visible" : "");
   }
 }
+
+function selectMode(modeId) {
+  document.querySelectorAll(`table#quiz-modes-available tbody tr`).forEach(tableRow => {
+    tableRow.className = tableRow.id === `mode-${modeId}` ? "selected" : "not-selected";
+  });
+  let modePlaceholder = document.getElementById("mode-placeholder");
+  modePlaceholder.className = "hidden";
+}

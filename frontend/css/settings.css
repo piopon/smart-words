@@ -172,3 +172,11 @@ div#mode-placeholder {
   justify-content: center;
   align-content: center;
 }
+
+div.visible {
+  display: flex;
+}
+
+div.hidden {
+  display: none;
+}

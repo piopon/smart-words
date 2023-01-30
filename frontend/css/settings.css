@@ -167,10 +167,13 @@ button#quiz-modes-add {
 div#mode-placeholder {
   width: 100%;
   height: 100%;
-  border: 1px dashed gray;
+  border: 1px dashed darkgrey;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
+  color: darkgrey;
+  font-size: 12px;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
 }
 
 div.visible {

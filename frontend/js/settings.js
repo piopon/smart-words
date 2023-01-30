@@ -16,5 +16,6 @@ function selectMode(modeId) {
     tableRow.className = tableRow.id === `mode-${modeId}` ? "selected" : "not-selected";
   });
   let modePlaceholder = document.getElementById("mode-placeholder");
-  modePlaceholder.className = "hidden";
+  modePlaceholder.className = "mode-selected";
+  modePlaceholder.innerHTML = "";
 }

@@ -105,6 +105,14 @@ table#quiz-modes-available {
   border-spacing: 0px;
 }
 
+table#quiz-modes-available tbody tr.selected {
+  background-color: chartreuse;
+}
+
+table#quiz-modes-available tbody tr.not-selected {
+  background-color: transparent;
+}
+
 table#quiz-modes-available tbody tr:hover {
   background-color: lightgreen;
   cursor: pointer;

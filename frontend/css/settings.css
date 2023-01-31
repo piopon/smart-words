@@ -206,3 +206,10 @@ div#mode-placeholder div.setting-box {
   border-radius: 20px;
 }
 
+div.setting-box[draggable="true"] {
+  background-color: cornflowerblue;
+}
+
+div.setting-box[draggable="false"] {
+  background-color: gray;
+}

@@ -42,5 +42,14 @@ function selectMode(modeId) {
   });
   let modePlaceholder = document.getElementById("mode-placeholder");
   modePlaceholder.className = "mode-selected";
-  modePlaceholder.innerHTML = "";
+  modePlaceholder.innerHTML = addGeneralSettingBox(mode.name, mode.description)
+                            + mode.settings.map(setting => addModeSettingBox(setting)).join("");
+}
+
+function addGeneralSettingBox(modeName, modeDescription) {
+  return `<div draggable="false" class="setting-box">general settings</div>`;
+}
+
+function addModeSettingBox(modeSetting) {
+  return `<div draggable="true" class="setting-box">${modeSetting.type}</div>`;
 }

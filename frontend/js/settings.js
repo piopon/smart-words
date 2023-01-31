@@ -1,5 +1,9 @@
 var settingsQuizModes = undefined;
 
+function initializeSettings() {
+  initializeTabQuizModes();
+}
+
 function selectTab(event, tabId) {
   let tabItems = document.getElementsByClassName("tab-item");
   for (i = 0; i < tabItems.length; i++) {

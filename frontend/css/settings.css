@@ -197,3 +197,12 @@ div#mode-placeholder.mode-selected {
   border-color: gray;
   color: gray;
 }
+
+div#mode-placeholder div.setting-box {
+  margin: 5px;
+  width: calc(100% - 12px);
+  height: 70px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+

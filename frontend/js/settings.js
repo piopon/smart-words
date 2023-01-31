@@ -1,3 +1,5 @@
+var settingsQuizModes = undefined;
+
 function selectTab(event, tabId) {
   let tabItems = document.getElementsByClassName("tab-item");
   for (i = 0; i < tabItems.length; i++) {
@@ -9,6 +11,19 @@ function selectTab(event, tabId) {
   for (i = 0; i < tabContent.length; i++) {
     tabContent[i].className = "tab-content" + (tabContent[i].id === tabId ? " visible" : "");
   }
+}
+
+function initializeTabQuizModes() {
+  settingsQuizModes = [];
+  getQuizModes((err, data) => {
+    if (err) {
+      console.log("ERROR " + err.status + ": " + err.message);
+    } else {
+      let quizModesTableBody = document.querySelector("table#quiz-modes-available tbody");
+      if (quizModesTableBody === null) return;
+      quizModesTableBody.innerHTML = Object.values(data).map((item) => "<tr><td>0</td><td>name</td></tr>").join("");
+    }
+  });
 }
 
 function selectMode(modeId) {

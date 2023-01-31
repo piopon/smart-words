@@ -199,11 +199,18 @@ div#mode-placeholder.mode-selected {
 }
 
 div#mode-placeholder div.setting-box {
-  margin: 5px;
-  width: calc(100% - 12px);
+  display: flex;
   height: 70px;
+  width: calc(100% - 12px);
+  align-items: flex-start;
+  justify-content: center;
+  margin: 5px;
+  padding-top: 5px;
   border: 1px solid black;
   border-radius: 20px;
+  color: black;
+  font-size: 15px;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
 }
 
 div.setting-box[draggable="true"] {

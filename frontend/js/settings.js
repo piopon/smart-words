@@ -37,10 +37,21 @@ function initializeTabQuizModes() {
 }
 
 function selectMode(modeId) {
+  let modeSelected = settingsQuizModes.find(mode => mode.id === modeId);
+  if (modeSelected === undefined) return;
+  updateQuizModesTable(modeId);
+  updateQuizModesPlaceholder(modeSelected);
+}
+
+function updateQuizModesTable(modeId) {
   document.querySelectorAll(`table#quiz-modes-available tbody tr`).forEach(tableRow => {
     tableRow.className = tableRow.id === `mode-${modeId}` ? "selected" : "not-selected";
   });
+}
+
+function updateQuizModesPlaceholder(mode) {
   let modePlaceholder = document.getElementById("mode-placeholder");
+  if (modePlaceholder === null) return;
   modePlaceholder.className = "mode-selected";
   modePlaceholder.innerHTML = addGeneralSettingBox(mode.name, mode.description)
                             + mode.settings.map(setting => addModeSettingBox(setting)).join("");

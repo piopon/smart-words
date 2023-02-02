@@ -99,29 +99,21 @@ p.section-title {
 /************************************/
 
 div.setting-box {
-  display: flex;
-  height: 70px;
   width: calc(100% - 12px);
-  align-items: flex-start;
-  justify-content: center;
   margin: 5px;
   padding-top: 5px;
-  border: 1px solid black;
-  border-radius: 20px;
-  color: black;
-  font-size: 15px;
-  font-family: var(--clear-font-primary), Verdana, sans-serif;
 }
 
 .collapsible-button {
-  color: #444;
   cursor: pointer;
-  padding: 18px;
+  padding: 12px;
   width: 100%;
-  border: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 15px;
   text-align: left;
-  outline: none;
   font-size: 15px;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
 }
 
 div.setting-box[draggable="true"] .collapsible-button {

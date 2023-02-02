@@ -120,12 +120,16 @@ div.setting-box[draggable="true"] .collapsible-button {
   background-color: cornflowerblue;
 }
 
-div.setting-box[draggable="false"] .collapsible-button {
-  background-color: gray;
+div.setting-box[draggable="true"] .collapsible-button.active {
+  background-color: royalblue;
 }
 
-.active, .collapsible:hover {
-  background-color: #ccc;
+div.setting-box[draggable="false"] .collapsible-button {
+  background-color: darkgray;
+}
+
+div.setting-box[draggable="false"] .collapsible-button.active {
+  background-color: gray;
 }
 
 .collapsible-content {

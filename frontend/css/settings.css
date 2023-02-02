@@ -94,6 +94,33 @@ p.section-title {
   margin-bottom: 30px;
 }
 
+/************************************/
+/* quiz modes tab - setting boxes   */
+/************************************/
+
+div.setting-box {
+  display: flex;
+  height: 70px;
+  width: calc(100% - 12px);
+  align-items: flex-start;
+  justify-content: center;
+  margin: 5px;
+  padding-top: 5px;
+  border: 1px solid black;
+  border-radius: 20px;
+  color: black;
+  font-size: 15px;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
+}
+
+div.setting-box[draggable="true"] {
+  background-color: cornflowerblue;
+}
+
+div.setting-box[draggable="false"] {
+  background-color: gray;
+}
+
 .collapsible-button {
   background-color: #eee;
   color: #444;
@@ -219,27 +246,4 @@ div#mode-placeholder.mode-selected {
   justify-content: flex-start;
   border-color: gray;
   color: gray;
-}
-
-div#mode-placeholder div.setting-box {
-  display: flex;
-  height: 70px;
-  width: calc(100% - 12px);
-  align-items: flex-start;
-  justify-content: center;
-  margin: 5px;
-  padding-top: 5px;
-  border: 1px solid black;
-  border-radius: 20px;
-  color: black;
-  font-size: 15px;
-  font-family: var(--clear-font-primary), Verdana, sans-serif;
-}
-
-div.setting-box[draggable="true"] {
-  background-color: cornflowerblue;
-}
-
-div.setting-box[draggable="false"] {
-  background-color: gray;
 }

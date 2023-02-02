@@ -64,7 +64,7 @@ function addGeneralSettingBox(modeName, modeDescription) {
 }
 
 function addModeSettingBox(modeSetting) {
-  return addCollapsibleBox(false, modeSetting.type, `<p>${modeSetting.details}</p>`);
+  return addCollapsibleBox(true, modeSetting.type, `<p>${modeSetting.details}</p>`);
 }
 
 function addCollapsibleBox(draggable, title, content) {

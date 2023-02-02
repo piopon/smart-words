@@ -25,26 +25,28 @@ function initializeTabQuizModes() {
     } else {
       let quizModesTableBody = document.querySelector("table#quiz-modes-available tbody");
       if (quizModesTableBody === null) return;
-      quizModesTableBody.innerHTML = Object.values(data).map((item) => {
-        settingsQuizModes.push(item);
-        return `<tr id="mode-${item.id}" class="not-selected" onclick="selectMode(${item.id})">
+      quizModesTableBody.innerHTML = Object.values(data)
+        .map((item) => {
+          settingsQuizModes.push(item);
+          return `<tr id="mode-${item.id}" class="not-selected" onclick="selectMode(${item.id})">
                   <td>${item.id}</td>
                   <td>${item.name}</td>
                 </tr>`;
-      }).join("");
+        })
+        .join("");
     }
   });
 }
 
 function selectMode(modeId) {
-  let modeSelected = settingsQuizModes.find(mode => mode.id === modeId);
+  let modeSelected = settingsQuizModes.find((mode) => mode.id === modeId);
   if (modeSelected === undefined) return;
   updateQuizModesTable(modeId);
   updateQuizModesPlaceholder(modeSelected);
 }
 
 function updateQuizModesTable(modeId) {
-  document.querySelectorAll(`table#quiz-modes-available tbody tr`).forEach(tableRow => {
+  document.querySelectorAll(`table#quiz-modes-available tbody tr`).forEach((tableRow) => {
     tableRow.className = tableRow.id === `mode-${modeId}` ? "selected" : "not-selected";
   });
 }

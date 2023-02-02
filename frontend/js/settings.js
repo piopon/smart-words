@@ -64,3 +64,12 @@ function addGeneralSettingBox(modeName, modeDescription) {
 function addModeSettingBox(modeSetting) {
   return `<div draggable="true" class="setting-box">${modeSetting.type}</div>`;
 }
+
+function addCollapsibleBox(draggable, title, content) {
+  return `<div draggable="${draggable}" class="setting-box">
+            <button type="button" class="collapsible-button">${title}</button>
+            <div class="collapsible-content">
+              ${content}
+            </div>
+          </div>`;
+}

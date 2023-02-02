@@ -58,11 +58,11 @@ function updateQuizModesPlaceholder(mode) {
 }
 
 function addGeneralSettingBox(modeName, modeDescription) {
-  return `<div draggable="false" class="setting-box">general settings</div>`;
+  return addCollapsibleBox(false, "general settings", "<p>general settings content</p>");
 }
 
 function addModeSettingBox(modeSetting) {
-  return `<div draggable="true" class="setting-box">${modeSetting.type}</div>`;
+  return addCollapsibleBox(false, modeSetting, "<p>mode settings content</p>");
 }
 
 function addCollapsibleBox(draggable, title, content) {

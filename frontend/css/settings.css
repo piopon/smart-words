@@ -114,6 +114,9 @@ div.setting-box {
   text-align: left;
   font-size: 15px;
   font-family: var(--clear-font-primary), Verdana, sans-serif;
+  transition-property: border-radius, border-bottom;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
 }
 
 div.setting-box[draggable="true"] .collapsible-button {

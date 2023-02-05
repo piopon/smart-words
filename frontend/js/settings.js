@@ -70,7 +70,7 @@ function addModeSettingBox(modeSetting) {
 function addCollapsibleBox(draggable, title, content) {
   return `<div draggable="${draggable}" class="setting-box">
             <button type="button" class="collapsible-button" onclick="toggleCollapse(event)">${title}</button>
-            <div class="collapsible-content">
+            <div class="collapsible-content collapsed">
               ${content}
             </div>
           </div>`;

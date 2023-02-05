@@ -79,5 +79,6 @@ function addCollapsibleBox(draggable, title, content) {
 function toggleCollapse(event) {
   event.currentTarget.classList.toggle("active");
   var content = event.currentTarget.nextElementSibling;
-  content.style.maxHeight = (content.style.maxHeight) ? null : content.scrollHeight + "px";
+  content.classList.toggle("collapsed");
+  content.classList.toggle("expanded");
 }

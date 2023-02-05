@@ -138,12 +138,13 @@ div.setting-box[draggable="false"] .collapsible-button.active {
 
 .collapsible-content {
   padding: 0 18px;
-  display: none;
   overflow: hidden;
   background-color: whitesmoke;
   border: 1px solid black;
   border-radius: 0px 0px 15px 15px;
   border-top: none;
+  max-height: 0px;
+  transition: max-height 0.2s ease-out;
 }
 
 /************************************/

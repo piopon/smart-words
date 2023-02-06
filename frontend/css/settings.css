@@ -146,6 +146,7 @@ div.setting-box[draggable="false"] .collapsible-button.active {
   transition-property: max-height, border;
   transition-duration: 2.3s;
   transition-timing-function: ease-out;
+  transition-delay: 0.3s;
 }
 
 .collapsible-content.collapsed {

@@ -151,12 +151,12 @@ div.setting-box[draggable="false"] .collapsible-button.active {
   transition-property: max-height, border;
   transition-duration: 2.3s;
   transition-timing-function: ease-out;
-  transition-delay: 0.3s;
 }
 
 .collapsible-content.collapsed {
   border: 0px solid black;
   max-height: 0px;
+  transition-delay: 0.0s;
 }
 
 .collapsible-content.expanded {
@@ -164,6 +164,7 @@ div.setting-box[draggable="false"] .collapsible-button.active {
   border-radius: 0px 0px 15px 15px;
   border-top: none;
   max-height: 100px;
+  transition-delay: 0.3s;
 }
 
 /************************************/

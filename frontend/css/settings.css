@@ -146,6 +146,8 @@ div.setting-box[draggable="false"] .collapsible-button.active {
 
 .collapsible-content {
   padding: 0 18px;
+  border: 1px solid black;
+  border-radius: 0px 0px 15px 15px;
   overflow: hidden;
   background-color: whitesmoke;
   transition-property: max-height, border;
@@ -154,14 +156,13 @@ div.setting-box[draggable="false"] .collapsible-button.active {
 }
 
 .collapsible-content.collapsed {
-  border: 0px solid black;
+  border-width: 0px;
   max-height: 0px;
   transition-delay: 0.0s;
 }
 
 .collapsible-content.expanded {
-  border: 1px solid black;
-  border-radius: 0px 0px 15px 15px;
+  border-width: 1px;
   border-top: none;
   max-height: 100px;
   transition-delay: 0.3s;

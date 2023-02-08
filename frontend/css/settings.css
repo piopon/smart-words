@@ -122,7 +122,7 @@ div.setting-box {
   transition-delay: var(--collapse-content-time);
 }
 
-.collapsible-button:after {
+div.setting-box .collapsible-button:before {
   content: '\2795';
   font-size: 15px;
   color: white;
@@ -140,7 +140,7 @@ div.setting-box[draggable="true"] .collapsible-button:after {
   transition-delay: 0s;
 }
 
-.collapsible-button.active:after {
+div.setting-box .collapsible-button.active:before {
   content: "\2796";
 }
 

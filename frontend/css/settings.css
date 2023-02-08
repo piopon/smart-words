@@ -130,6 +130,12 @@ div.setting-box {
   margin-left: 5px;
 }
 
+div.setting-box[draggable="true"] .collapsible-button:after {
+  content: '\2261';
+  font-size: 13px;
+  float: right;
+}
+
 .collapsible-button.active {
   transition-delay: 0s;
 }

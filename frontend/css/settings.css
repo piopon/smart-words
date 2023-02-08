@@ -106,6 +106,13 @@ div.setting-box {
   padding-top: 5px;
 }
 
+.collapsible-button:before {
+  content: '\2795';
+  font-size: 13px;
+  float: left;
+  margin-right: 10px;
+}
+
 .collapsible-button {
   cursor: pointer;
   padding: 12px;
@@ -122,25 +129,18 @@ div.setting-box {
   transition-delay: var(--collapse-content-time);
 }
 
-div.setting-box .collapsible-button:before {
-  content: '\2795';
-  font-size: 13px;
-  float: left;
-  margin-right: 10px;
-}
-
-div.setting-box[draggable="true"] .collapsible-button:after {
+[draggable="true"] .collapsible-button:after {
   content: '\2261';
   font-size: 13px;
   float: right;
 }
 
-.collapsible-button.active {
-  transition-delay: 0s;
+.collapsible-button.active:before {
+  content: "\2796";
 }
 
-div.setting-box .collapsible-button.active:before {
-  content: "\2796";
+.collapsible-button.active {
+  transition-delay: 0s;
 }
 
 div.setting-box[draggable="true"] .collapsible-button {

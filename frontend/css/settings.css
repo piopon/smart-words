@@ -124,10 +124,9 @@ div.setting-box {
 
 div.setting-box .collapsible-button:before {
   content: '\2795';
-  font-size: 15px;
-  color: white;
-  float: right;
-  margin-left: 5px;
+  font-size: 13px;
+  float: left;
+  margin-right: 10px;
 }
 
 div.setting-box[draggable="true"] .collapsible-button:after {

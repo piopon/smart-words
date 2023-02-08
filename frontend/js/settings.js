@@ -82,3 +82,11 @@ function toggleCollapse(event) {
   content.classList.toggle("collapsed");
   content.classList.toggle("expanded");
 }
+
+function handleBoxDragStart(e) {
+  this.style.opacity = '0.4';
+}
+
+function handleBoxDragEnd(e) {
+  this.style.opacity = '1';
+}

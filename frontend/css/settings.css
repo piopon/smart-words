@@ -131,7 +131,7 @@ div.setting-box[draggable="true"] .collapsible-button {
 }
 
 div.setting-box[draggable="true"] .collapsible-button.active {
-  background-color: royalblue;
+  background-color: cornflowerblue;
   border-radius: 15px 15px 0px 0px;
   border-bottom: none;
 }
@@ -141,7 +141,7 @@ div.setting-box[draggable="false"] .collapsible-button {
 }
 
 div.setting-box[draggable="false"] .collapsible-button.active {
-  background-color: gray;
+  background-color: darkgray;
   border-radius: 15px 15px 0px 0px;
   border-bottom: none;
 }

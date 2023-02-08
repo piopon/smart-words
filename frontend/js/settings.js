@@ -57,6 +57,7 @@ function updateQuizModesPlaceholder(mode) {
   modePlaceholder.className = "mode-selected";
   modePlaceholder.innerHTML = addGeneralSettingBox(mode.name, mode.description)
                             + mode.settings.map(setting => addModeSettingBox(setting)).join("");
+  initializeDragAndDropEvents();
 }
 
 function addGeneralSettingBox(modeName, modeDescription) {
@@ -81,6 +82,14 @@ function toggleCollapse(event) {
   var content = event.currentTarget.nextElementSibling;
   content.classList.toggle("collapsed");
   content.classList.toggle("expanded");
+}
+
+function initializeDragAndDropEvents() {
+  let modeSettingBoxes = document.querySelectorAll('.setting-box');
+  modeSettingBoxes.forEach(box => {
+    box.addEventListener('dragstart', handleBoxDragStart);
+    box.addEventListener('dragend', handleBoxDragEnd);
+  });
 }
 
 function handleBoxDragStart(e) {

@@ -1,8 +1,8 @@
 :root {
   --nav-bar-height: 50px;
   --table-border-radius: 10px;
-  --collapse-button-time: 0.2s;
-  --collapse-content-time: 0.3s;
+  --collapse-button-time: 0.1s;
+  --collapse-content-time: 0.2s;
 }
 
 #main-content {

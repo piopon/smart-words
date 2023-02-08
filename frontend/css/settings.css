@@ -135,12 +135,20 @@ div.setting-box {
   float: right;
 }
 
+div.setting-box .collapsible-button:hover {
+  box-shadow: inset 0 0 5px black;
+}
+
 .collapsible-button.active:before {
   content: "\2796";
 }
 
 .collapsible-button.active {
   transition-delay: 0s;
+}
+
+div.setting-box .collapsible-button.active:hover {
+  box-shadow: inset 0 0 5px black;
 }
 
 div.setting-box[draggable="true"] .collapsible-button {

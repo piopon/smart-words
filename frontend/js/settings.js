@@ -107,10 +107,20 @@ function handleBoxDragEnd(e) {
   changeDropTargetsVisibility(false);
 }
 
+function handleDragEnter(e) {
+  this.classList.add('over');
+}
+
+function handleDragLeave(e) {
+  this.classList.remove('over');
+}
+
 function changeDropTargetsVisibility(visible) {
   let dropTargets = document.querySelectorAll('.drop-target');
   dropTargets.forEach(target => {
     target.classList.remove(visible ? "hide" : "show");
     target.classList.add(visible ? "show" : "hide");
+    target.addEventListener('dragenter', handleDragEnter);
+    target.addEventListener('dragleave', handleDragLeave);
   });
 }

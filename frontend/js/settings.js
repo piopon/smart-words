@@ -56,7 +56,8 @@ function updateQuizModesPlaceholder(mode) {
   if (modePlaceholder === null) return;
   modePlaceholder.className = "mode-selected";
   modePlaceholder.innerHTML = addGeneralSettingBox(mode.name, mode.description)
-                            + mode.settings.map(setting => addModeSettingBox(setting)).join("");
+                            + addDropTarget()
+                            + mode.settings.map(setting => addModeSettingBox(setting) + addDropTarget()).join("");
   initializeDragAndDropEvents();
 }
 
@@ -66,6 +67,10 @@ function addGeneralSettingBox(modeName, modeDescription) {
 
 function addModeSettingBox(modeSetting) {
   return addCollapsibleBox(true, modeSetting.type, `<p>${modeSetting.details}</p>`);
+}
+
+function addDropTarget() {
+  return `<div class="drop-target hide"></div>`
 }
 
 function addCollapsibleBox(draggable, title, content) {

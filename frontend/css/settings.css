@@ -195,6 +195,31 @@ div.setting-box[draggable="false"] .collapsible-button.active {
 }
 
 /************************************/
+/* quiz modes tab - drop targets    */
+/************************************/
+
+.drop-target {
+  display: flex;
+  height: 2px;
+  width: 100%;
+  background-color: red;
+  transition: height 0.3s linear;
+}
+
+.drop-target.hide {
+  visibility: hidden;
+}
+
+.drop-target.show {
+  height: 10px;
+  visibility: visible;
+}
+
+.drop-target.show.over {
+  height: 35px;
+}
+
+/************************************/
 /* quiz modes tab - available modes */
 /************************************/
 

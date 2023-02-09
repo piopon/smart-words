@@ -120,7 +120,12 @@ function changeDropTargetsVisibility(visible) {
   dropTargets.forEach(target => {
     target.classList.remove(visible ? "hide" : "show");
     target.classList.add(visible ? "show" : "hide");
-    target.addEventListener('dragenter', handleDragEnter);
-    target.addEventListener('dragleave', handleDragLeave);
+    if (visible) {
+      target.addEventListener('dragenter', handleDragEnter);
+      target.addEventListener('dragleave', handleDragLeave);
+    } else {
+      target.removeEventListener('dragenter', handleDragEnter);
+      target.removeEventListener('dragleave', handleDragLeave);
+    }
   });
 }

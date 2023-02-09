@@ -99,8 +99,18 @@ function initializeDragAndDropEvents() {
 
 function handleBoxDragStart(e) {
   this.style.opacity = '0.4';
+  changeDropTargetsVisibility(true);
 }
 
 function handleBoxDragEnd(e) {
   this.style.opacity = '1';
+  changeDropTargetsVisibility(false);
+}
+
+function changeDropTargetsVisibility(visible) {
+  let dropTargets = document.querySelectorAll('.drop-target');
+  dropTargets.forEach(target => {
+    target.classList.remove(visible ? "hide" : "show");
+    target.classList.add(visible ? "show" : "hide");
+  });
 }

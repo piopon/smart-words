@@ -102,8 +102,7 @@ p.section-title {
 
 div.setting-box {
   width: calc(100% - 12px);
-  margin: 5px;
-  padding-top: 5px;
+  margin: 3px 5px;
 }
 
 .collapsible-button:before {
@@ -293,6 +292,7 @@ div#mode-placeholder.mode-deselected {
 }
 
 div#mode-placeholder.mode-selected {
+  padding: 8px 0px;
   align-items: flex-start;
   justify-content: flex-start;
   border-color: gray;

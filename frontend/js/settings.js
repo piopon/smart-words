@@ -98,7 +98,7 @@ function initializeDragAndDropEvents() {
 }
 
 function handleBoxDragStart(e) {
-  this.style.opacity = '0.4';
+  this.style.opacity = '0.5';
   updateDropTargetsState(true, this);
 }
 

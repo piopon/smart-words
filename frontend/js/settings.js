@@ -107,15 +107,15 @@ function handleBoxDragEnd(e) {
   updateDropTargetsState(false, this);
 }
 
-function handleDragEnter(e) {
+function handleBoxDragEnter(e) {
   this.classList.add('over');
 }
 
-function handleDragLeave(e) {
+function handleBoxDragLeave(e) {
   this.classList.remove('over');
 }
 
-function handleDragOver(e) {
+function handleBoxDragOver(e) {
   e.preventDefault();
   return false;
 }
@@ -127,13 +127,13 @@ function updateDropTargetsState(visible, draggedElement) {
     target.classList.remove(showTarget ? "hide" : "show");
     target.classList.add(showTarget ? "show" : "hide");
     if (showTarget) {
-      target.addEventListener('dragover', handleDragOver);
-      target.addEventListener("dragenter", handleDragEnter);
-      target.addEventListener("dragleave", handleDragLeave);
+      target.addEventListener('dragover', handleBoxDragOver);
+      target.addEventListener("dragenter", handleBoxDragEnter);
+      target.addEventListener("dragleave", handleBoxDragLeave);
     } else {
-      target.removeEventListener('dragover', handleDragOver);
-      target.removeEventListener("dragenter", handleDragEnter);
-      target.removeEventListener("dragleave", handleDragLeave);
+      target.removeEventListener('dragover', handleBoxDragOver);
+      target.removeEventListener("dragenter", handleBoxDragEnter);
+      target.removeEventListener("dragleave", handleBoxDragLeave);
     }
   });
 }

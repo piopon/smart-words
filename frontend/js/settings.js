@@ -115,6 +115,11 @@ function handleDragLeave(e) {
   this.classList.remove('over');
 }
 
+function handleDragOver(e) {
+  e.preventDefault();
+  return false;
+}
+
 function updateDropTargetsState(visible, draggedElement) {
   let dropTargets = document.querySelectorAll(".drop-target");
   dropTargets.forEach((target) => {
@@ -122,9 +127,11 @@ function updateDropTargetsState(visible, draggedElement) {
     target.classList.remove(showTarget ? "hide" : "show");
     target.classList.add(showTarget ? "show" : "hide");
     if (showTarget) {
+      target.addEventListener('dragover', handleDragOver);
       target.addEventListener("dragenter", handleDragEnter);
       target.addEventListener("dragleave", handleDragLeave);
     } else {
+      target.removeEventListener('dragover', handleDragOver);
       target.removeEventListener("dragenter", handleDragEnter);
       target.removeEventListener("dragleave", handleDragLeave);
     }

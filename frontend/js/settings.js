@@ -118,9 +118,10 @@ function handleDragLeave(e) {
 function updateDropTargetsState(visible, draggedElement) {
   let dropTargets = document.querySelectorAll(".drop-target");
   dropTargets.forEach((target) => {
-    target.classList.remove(visible ? "hide" : "show");
-    target.classList.add(visible ? "show" : "hide");
-    if (visible) {
+    let showTarget = target.nextSibling === draggedElement || target.previousSibling === draggedElement ? false : visible;
+    target.classList.remove(showTarget ? "hide" : "show");
+    target.classList.add(showTarget ? "show" : "hide");
+    if (showTarget) {
       target.addEventListener("dragenter", handleDragEnter);
       target.addEventListener("dragleave", handleDragLeave);
     } else {

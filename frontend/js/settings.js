@@ -99,12 +99,12 @@ function initializeDragAndDropEvents() {
 
 function handleBoxDragStart(e) {
   this.style.opacity = '0.4';
-  changeDropTargetsVisibility(true);
+  updateDropTargetsState(true, this);
 }
 
 function handleBoxDragEnd(e) {
   this.style.opacity = '1';
-  changeDropTargetsVisibility(false);
+  updateDropTargetsState(false, this);
 }
 
 function handleDragEnter(e) {
@@ -115,17 +115,17 @@ function handleDragLeave(e) {
   this.classList.remove('over');
 }
 
-function changeDropTargetsVisibility(visible) {
-  let dropTargets = document.querySelectorAll('.drop-target');
-  dropTargets.forEach(target => {
+function updateDropTargetsState(visible, draggedElement) {
+  let dropTargets = document.querySelectorAll(".drop-target");
+  dropTargets.forEach((target) => {
     target.classList.remove(visible ? "hide" : "show");
     target.classList.add(visible ? "show" : "hide");
     if (visible) {
-      target.addEventListener('dragenter', handleDragEnter);
-      target.addEventListener('dragleave', handleDragLeave);
+      target.addEventListener("dragenter", handleDragEnter);
+      target.addEventListener("dragleave", handleDragLeave);
     } else {
-      target.removeEventListener('dragenter', handleDragEnter);
-      target.removeEventListener('dragleave', handleDragLeave);
+      target.removeEventListener("dragenter", handleDragEnter);
+      target.removeEventListener("dragleave", handleDragLeave);
     }
   });
 }

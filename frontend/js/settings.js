@@ -70,7 +70,7 @@ function addModeSettingBox(modeSetting) {
 }
 
 function addDropTarget() {
-  return `<div class="drop-target hide"></div>`
+  return `<div class="drop-target hide">setting can be dropped here</div>`
 }
 
 function addCollapsibleBox(draggable, title, content) {

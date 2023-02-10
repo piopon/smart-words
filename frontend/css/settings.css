@@ -211,12 +211,12 @@ div.setting-box[draggable="false"] .collapsible-button.active {
 }
 
 .drop-target.show {
-  height: 10px;
+  height: 15px;
   visibility: visible;
 }
 
 .drop-target.show.over {
-  height: 35px;
+  height: 40px;
 }
 
 /************************************/

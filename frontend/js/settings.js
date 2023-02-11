@@ -30,9 +30,9 @@ function initializeTabQuizModes() {
         .map((item) => {
           settingsQuizModes.push(item);
           return `<tr id="mode-${item.id}" class="not-selected" onclick="selectMode(${item.id})">
-                  <td>${item.id}</td>
-                  <td>${item.name}</td>
-                </tr>`;
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                  </tr>`;
         })
         .join("");
     }

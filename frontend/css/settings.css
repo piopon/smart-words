@@ -200,9 +200,11 @@ div.setting-box[draggable="false"] .collapsible-button.active {
 
 .drop-target {
   display: flex;
+  align-items: center;
+  justify-content: center;
   height: 2px;
   width: 100%;
-  background-color: red;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
   transition: height 0.3s linear;
 }
 

@@ -101,7 +101,7 @@ p.section-title {
 /************************************/
 
 div.setting-box {
-  width: calc(100% - 12px);
+  width: calc(100% - 10px);
   margin: 3px 5px;
 }
 
@@ -203,7 +203,7 @@ div.setting-box[draggable="false"] .collapsible-button.active {
   align-items: center;
   justify-content: center;
   height: 2px;
-  width: 100%;
+  width: calc(100% - 12px);
   border: 1px dotted;
   border-radius: 6px;
   font-family: var(--clear-font-primary), Verdana, sans-serif;

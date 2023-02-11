@@ -120,6 +120,11 @@ function handleBoxDragOver(e) {
   return false;
 }
 
+function handleBoxDrop(e) {
+  e.stopPropagation();
+  return false;
+}
+
 function updateDropTargetsState(visible, draggedElement) {
   let dropTargets = document.querySelectorAll(".drop-target");
   dropTargets.forEach((target) => {
@@ -130,10 +135,12 @@ function updateDropTargetsState(visible, draggedElement) {
       target.addEventListener('dragover', handleBoxDragOver);
       target.addEventListener("dragenter", handleBoxDragEnter);
       target.addEventListener("dragleave", handleBoxDragLeave);
+      target.addEventListener("drop", handleBoxDrop);
     } else {
       target.removeEventListener('dragover', handleBoxDragOver);
       target.removeEventListener("dragenter", handleBoxDragEnter);
       target.removeEventListener("dragleave", handleBoxDragLeave);
+      target.removeEventListener("drop", handleBoxDrop);
     }
   });
 }

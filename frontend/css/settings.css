@@ -219,6 +219,7 @@ div.setting-box[draggable="false"] .collapsible-button.active {
   visibility: visible;
   border-color: orange;
   color: orange;
+  margin: 3px 5px;
 }
 
 .drop-target.show.over {

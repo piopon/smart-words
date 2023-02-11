@@ -1,4 +1,5 @@
 var settingsQuizModes = undefined;
+var currentlyDraggedElement = undefined;
 
 function initializeSettings() {
   initializeTabQuizModes();
@@ -99,6 +100,7 @@ function initializeDragAndDropEvents() {
 
 function handleBoxDragStart(e) {
   this.style.opacity = '0.5';
+  currentlyDraggedElement = this;
   updateDropTargetsState(true, this);
   e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/html', this.innerHTML);
@@ -106,6 +108,7 @@ function handleBoxDragStart(e) {
 
 function handleBoxDragEnd(e) {
   this.style.opacity = '1';
+  currentlyDraggedElement = undefined;
   updateDropTargetsState(false, this);
 }
 
@@ -126,6 +129,7 @@ function handleBoxDrop(e) {
   e.stopPropagation();
   this.insertAdjacentHTML('beforebegin', `<div draggable="true" class="setting-box">${e.dataTransfer.getData('text/html')}</div>`);
   this.remove();
+  currentlyDraggedElement.remove();
   return false;
 }
 

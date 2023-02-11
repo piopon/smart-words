@@ -204,6 +204,8 @@ div.setting-box[draggable="false"] .collapsible-button.active {
   justify-content: center;
   height: 2px;
   width: 100%;
+  border: 1px dotted;
+  border-radius: 6px;
   font-family: var(--clear-font-primary), Verdana, sans-serif;
   transition: height 0.3s linear;
 }
@@ -215,10 +217,14 @@ div.setting-box[draggable="false"] .collapsible-button.active {
 .drop-target.show {
   height: 15px;
   visibility: visible;
+  border-color: orange;
+  color: orange;
 }
 
 .drop-target.show.over {
   height: 40px;
+  border-color: green;
+  color: green;
 }
 
 /************************************/

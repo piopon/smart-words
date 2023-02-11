@@ -100,6 +100,8 @@ function initializeDragAndDropEvents() {
 function handleBoxDragStart(e) {
   this.style.opacity = '0.5';
   updateDropTargetsState(true, this);
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', this.innerHTML);
 }
 
 function handleBoxDragEnd(e) {
@@ -122,6 +124,7 @@ function handleBoxDragOver(e) {
 
 function handleBoxDrop(e) {
   e.stopPropagation();
+  this.insertAdjacentHTML('beforebegin', `<div draggable="true" class="setting-box">${e.dataTransfer.getData('text/html')}</div>`);
   return false;
 }
 

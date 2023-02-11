@@ -125,6 +125,7 @@ function handleBoxDragOver(e) {
 function handleBoxDrop(e) {
   e.stopPropagation();
   this.insertAdjacentHTML('beforebegin', `<div draggable="true" class="setting-box">${e.dataTransfer.getData('text/html')}</div>`);
+  this.remove();
   return false;
 }
 

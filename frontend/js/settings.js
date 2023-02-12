@@ -63,11 +63,11 @@ function updateQuizModesPlaceholder(mode) {
 }
 
 function addGeneralSettingBox(modeName, modeDescription) {
-  return addCollapsibleBox(false, "general settings", `<p>${modeName} - ${modeDescription}</p>`);
+  return addSettingBox(false, addCollapsibleContent("general settings", `<p>${modeName} - ${modeDescription}</p>`));
 }
 
 function addModeSettingBox(modeSetting) {
-  return addCollapsibleBox(true, modeSetting.type, `<p>${modeSetting.details}</p>`);
+  return addSettingBox(true, addCollapsibleContent(modeSetting.type, `<p>${modeSetting.details}</p>`));
 }
 
 function addDropTarget() {

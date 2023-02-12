@@ -1,4 +1,5 @@
 var settingsQuizModes = undefined;
+var currentlyEditedModeId = undefined;
 var currentlyDraggedElement = undefined;
 
 function initializeSettings() {
@@ -40,10 +41,10 @@ function initializeTabQuizModes() {
 }
 
 function selectMode(modeId) {
-  let modeSelected = settingsQuizModes.find((mode) => mode.id === modeId);
-  if (modeSelected === undefined) return;
+  currentlyEditedModeId = settingsQuizModes.find((mode) => mode.id === modeId);
+  if (currentlyEditedModeId === undefined) return;
   updateQuizModesTable(modeId);
-  updateQuizModesPlaceholder(modeSelected);
+  updateQuizModesPlaceholder(currentlyEditedModeId);
 }
 
 function updateQuizModesTable(modeId) {

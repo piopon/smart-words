@@ -56,37 +56,39 @@ function updateQuizModesPlaceholder(mode) {
   let modePlaceholder = document.getElementById("mode-placeholder");
   if (modePlaceholder === null) return;
   modePlaceholder.className = "mode-selected";
-  modePlaceholder.innerHTML = addGeneralSettingBox(mode.name, mode.description)
-                            + addDropTarget()
-                            + mode.settings.map(setting => addModeSettingBox(setting) + addDropTarget()).join("");
+  modePlaceholder.innerHTML = createGeneralSettingBox(mode.name, mode.description)
+                            + createDropTarget()
+                            + mode.settings.map(setting => createModeSettingBox(setting) + createDropTarget()).join("");
   initializeDragAndDropEvents();
 }
 
-function addGeneralSettingBox(modeName, modeDescription) {
-  return addSettingBox(false, addCollapsibleContent("general settings", `<p>${modeName} - ${modeDescription}</p>`));
+function createGeneralSettingBox(modeName, modeDescription) {
+  return createSettingBox(false, createCollapsibleContent("general settings", `<p>${modeName} - ${modeDescription}</p>`));
 }
 
-function addModeSettingBox(modeSetting) {
-  return addSettingBox(true, addCollapsibleContent(modeSetting.type, `<p>${modeSetting.details}</p>`));
+function createModeSettingBox(modeSetting) {
+  return createSettingBox(true, createCollapsibleContent(modeSetting.type, `<p>${modeSetting.details}</p>`));
 }
 
-function addDropTarget() {
-  return `<div class="drop-target hide">setting can be dropped here</div>`
-}
-
-function addSettingBox(draggable, boxContent) {
+function createSettingBox(draggable, boxContent) {
   return `<div draggable="${draggable}" class="setting-box">
             ${boxContent}
           </div>`;
 }
 
-function addCollapsibleContent(buttonTitle, collapsibleContent) {
+function createCollapsibleContent(buttonTitle, collapsibleContent) {
   return `<button type="button" class="collapsible-button" onclick="toggleCollapse(event)">
             ${buttonTitle}
           </button>
           <div class="collapsible-content collapsed">
             ${collapsibleContent}
           </div>`;
+}
+
+function createDropTarget() {
+  return `<div class="drop-target hide">
+            setting can be dropped here
+          </div>`
 }
 
 function toggleCollapse(event) {

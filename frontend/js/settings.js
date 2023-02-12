@@ -74,12 +74,18 @@ function addDropTarget() {
   return `<div class="drop-target hide">setting can be dropped here</div>`
 }
 
-function addCollapsibleBox(draggable, title, content) {
+function addSettingBox(draggable, boxContent) {
   return `<div draggable="${draggable}" class="setting-box">
-            <button type="button" class="collapsible-button" onclick="toggleCollapse(event)">${title}</button>
-            <div class="collapsible-content collapsed">
-              ${content}
-            </div>
+            ${boxContent}
+          </div>`;
+}
+
+function addCollapsibleContent(buttonTitle, collapsibleContent) {
+  return `<button type="button" class="collapsible-button" onclick="toggleCollapse(event)">
+            ${buttonTitle}
+          </button>
+          <div class="collapsible-content collapsed">
+            ${collapsibleContent}
           </div>`;
 }
 

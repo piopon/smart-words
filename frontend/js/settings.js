@@ -56,10 +56,14 @@ function updateQuizModesPlaceholder(mode) {
   let modePlaceholder = document.getElementById("mode-placeholder");
   if (modePlaceholder === null) return;
   modePlaceholder.className = "mode-selected";
-  modePlaceholder.innerHTML = createGeneralSettingBox(mode.name, mode.description)
-                            + createDropTarget()
-                            + mode.settings.map(setting => createModeSettingBox(setting) + createDropTarget()).join("");
+  modePlaceholder.innerHTML = createModePlaceholderContent(mode);
   initializeDragAndDropEvents();
+}
+
+function createModePlaceholderContent(mode) {
+  return createGeneralSettingBox(mode.name, mode.description)
+         + addDropTarget()
+         + mode.settings.map(setting => createModeSettingBox(setting) + createDropTarget()).join("");
 }
 
 function createGeneralSettingBox(modeName, modeDescription) {

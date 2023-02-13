@@ -142,9 +142,10 @@ function handleBoxDragOver(e) {
 
 function handleBoxDrop(e) {
   e.stopPropagation();
-  this.insertAdjacentHTML('beforebegin', createSettingBox(true, e.dataTransfer.getData('text/html')));
-  this.remove();
-  currentlyDraggedElement.remove();
+  let dropPosition = parseInt(this.id.substring(this.id.indexOf("-") + 1));
+  if (!isNaN(dropPosition)) {
+    let newIndex = dropPosition >= currentlyEditedMode.settings.length ? dropPosition - 1 : dropPosition;
+  }
   return false;
 }
 

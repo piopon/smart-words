@@ -70,11 +70,19 @@ function createModePlaceholderContent(mode) {
 }
 
 function createGeneralSettingBox(modeName, modeDescription) {
-  return createSettingBox(false, createCollapsibleContent("general settings", `<p>${modeName} - ${modeDescription}</p>`, true));
+  const boxTitle = "general settings";
+  if (!currentlyExpandedState.has(boxTitle.trim())) {
+    currentlyExpandedState.set(boxTitle.trim(), true);
+  }
+  return createSettingBox(false, createCollapsibleContent(boxTitle, `<p>${modeName} - ${modeDescription}</p>`, currentlyExpandedState.get(boxTitle.trim())));
 }
 
 function createModeSettingBox(modeSetting) {
-  return createSettingBox(true, createCollapsibleContent(modeSetting.type, `<p>${modeSetting.details}</p>`, false));
+  const boxTitle = modeSetting.type;
+  if (!currentlyExpandedState.has(boxTitle.trim())) {
+    currentlyExpandedState.set(boxTitle.trim(), false);
+  }
+  return createSettingBox(true, createCollapsibleContent(boxTitle, `<p>${modeSetting.details}</p>`, currentlyExpandedState.get(boxTitle.trim())));
 }
 
 function createSettingBox(draggable, boxContent) {

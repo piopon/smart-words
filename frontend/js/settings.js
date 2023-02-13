@@ -140,6 +140,11 @@ function handleBoxDragOver(e) {
   return false;
 }
 
+Array.prototype.swapItems = function(a, b){
+  this[a] = this.splice(b, 1, this[a])[0];
+  return this;
+}
+
 function handleBoxDrop(e) {
   e.stopPropagation();
   let dropPosition = parseInt(this.id.substring(this.id.indexOf("-") + 1));
@@ -150,7 +155,9 @@ function handleBoxDrop(e) {
       )
     );
     let newIndex = dropPosition >= currentlyEditedMode.settings.length ? dropPosition - 1 : dropPosition;
+    currentlyEditedMode.settings.swapItems(oldIndex, newIndex);
   }
+  updateQuizModesPlaceholder(currentlyEditedMode);
   return false;
 }
 

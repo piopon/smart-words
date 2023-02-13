@@ -68,11 +68,11 @@ function createModePlaceholderContent(mode) {
 }
 
 function createGeneralSettingBox(modeName, modeDescription) {
-  return createSettingBox(false, createCollapsibleContent("general settings", `<p>${modeName} - ${modeDescription}</p>`));
+  return createSettingBox(false, createCollapsibleContent("general settings", `<p>${modeName} - ${modeDescription}</p>`, true));
 }
 
 function createModeSettingBox(modeSetting) {
-  return createSettingBox(true, createCollapsibleContent(modeSetting.type, `<p>${modeSetting.details}</p>`));
+  return createSettingBox(true, createCollapsibleContent(modeSetting.type, `<p>${modeSetting.details}</p>`, false));
 }
 
 function createSettingBox(draggable, boxContent) {
@@ -81,11 +81,13 @@ function createSettingBox(draggable, boxContent) {
           </div>`;
 }
 
-function createCollapsibleContent(buttonTitle, collapsibleContent) {
-  return `<button type="button" class="collapsible-button" onclick="toggleCollapse(event)">
+function createCollapsibleContent(buttonTitle, collapsibleContent, expanded) {
+  const btnExpandedClass = expanded ? "active" : "";
+  const divExpandedClass = expanded ? "expanded" : "collapsed";
+  return `<button type="button" class="collapsible-button ${btnExpandedClass}" onclick="toggleCollapse(event)">
             ${buttonTitle}
           </button>
-          <div class="collapsible-content collapsed">
+          <div class="collapsible-content ${divExpandedClass}">
             ${collapsibleContent}
           </div>`;
 }

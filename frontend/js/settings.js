@@ -63,7 +63,7 @@ function updateQuizModesPlaceholder(mode) {
 
 function createModePlaceholderContent(mode) {
   return createGeneralSettingBox(mode.name, mode.description)
-         + addDropTarget()
+         + createDropTarget()
          + mode.settings.map(setting => createModeSettingBox(setting) + createDropTarget()).join("");
 }
 
@@ -140,7 +140,7 @@ function handleBoxDragOver(e) {
 
 function handleBoxDrop(e) {
   e.stopPropagation();
-  this.insertAdjacentHTML('beforebegin', addSettingBox(true, e.dataTransfer.getData('text/html')));
+  this.insertAdjacentHTML('beforebegin', createSettingBox(true, e.dataTransfer.getData('text/html')));
   this.remove();
   currentlyDraggedElement.remove();
   return false;

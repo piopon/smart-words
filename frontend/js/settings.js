@@ -1,5 +1,6 @@
 var settingsQuizModes = undefined;
 var currentlyEditedMode = undefined;
+var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
 
 function initializeSettings() {
@@ -43,6 +44,7 @@ function initializeTabQuizModes() {
 function selectMode(modeId) {
   currentlyEditedMode = settingsQuizModes.find((mode) => mode.id === modeId);
   if (currentlyEditedMode === undefined) return;
+  currentlyExpandedState.clear();
   updateQuizModesTable(modeId);
   updateQuizModesPlaceholder(currentlyEditedMode);
 }

@@ -63,8 +63,8 @@ function updateQuizModesPlaceholder(mode) {
 
 function createModePlaceholderContent(mode) {
   return createGeneralSettingBox(mode.name, mode.description)
-         + createDropTarget()
-         + mode.settings.map(setting => createModeSettingBox(setting) + createDropTarget()).join("");
+         + createDropTarget(0)
+         + mode.settings.map((setting, index) => createModeSettingBox(setting) + createDropTarget(index+1)).join("");
 }
 
 function createGeneralSettingBox(modeName, modeDescription) {
@@ -90,8 +90,8 @@ function createCollapsibleContent(buttonTitle, collapsibleContent) {
           </div>`;
 }
 
-function createDropTarget() {
-  return `<div class="drop-target hide">
+function createDropTarget(dropNo) {
+  return `<div id="drop-${dropNo}" class="drop-target hide">
             setting can be dropped here
           </div>`
 }

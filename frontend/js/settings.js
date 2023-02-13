@@ -109,8 +109,11 @@ function createDropTarget(dropNo) {
 }
 
 function toggleCollapse(event) {
-  event.currentTarget.classList.toggle("active");
-  var content = event.currentTarget.nextElementSibling;
+  var pressedButton = event.currentTarget;
+  var buttonClasses = pressedButton.classList;
+  buttonClasses.toggle("active");
+  currentlyExpandedState.set(pressedButton.innerHTML.trim(), buttonClasses.contains("active"));
+  var content = pressedButton.nextElementSibling;
   content.classList.toggle("collapsed");
   content.classList.toggle("expanded");
 }

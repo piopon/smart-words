@@ -144,6 +144,11 @@ function handleBoxDrop(e) {
   e.stopPropagation();
   let dropPosition = parseInt(this.id.substring(this.id.indexOf("-") + 1));
   if (!isNaN(dropPosition)) {
+    let oldIndex = currentlyEditedMode.settings.indexOf(
+      currentlyEditedMode.settings.find(
+        (setting) => setting.type === currentlyDraggedElement.firstElementChild.innerHTML.trim()
+      )
+    );
     let newIndex = dropPosition >= currentlyEditedMode.settings.length ? dropPosition - 1 : dropPosition;
   }
   return false;

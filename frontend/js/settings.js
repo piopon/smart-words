@@ -64,9 +64,9 @@ function updateQuizModesPlaceholder(mode) {
 }
 
 function createModePlaceholderContent(mode) {
-  return createGeneralSettingBox(mode.name, mode.description)
-         + createDropTarget(0)
-         + mode.settings.map((setting, index) => createModeSettingBox(setting) + createDropTarget(index+1)).join("");
+  return createGeneralSettingBox(mode.name, mode.description) +
+         createDropTarget(0) +
+         mode.settings.map((setting, index) => createModeSettingBox(setting) + createDropTarget(index+1)).join("");
 }
 
 function createGeneralSettingBox(modeName, modeDescription) {

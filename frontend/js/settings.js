@@ -70,19 +70,25 @@ function createModePlaceholderContent(mode) {
 }
 
 function createGeneralSettingBox(modeName, modeDescription) {
-  const boxTitle = "general settings";
-  if (!currentlyExpandedState.has(boxTitle.trim())) {
-    currentlyExpandedState.set(boxTitle.trim(), true);
+  const draggable = false;
+  const contentTitle = "general settings";
+  const contentValue = `<p>${modeName} - ${modeDescription}</p>`;
+  if (!currentlyExpandedState.has(contentTitle.trim())) {
+    currentlyExpandedState.set(contentTitle.trim(), true);
   }
-  return createSettingBox(false, createCollapsibleContent(boxTitle, `<p>${modeName} - ${modeDescription}</p>`, currentlyExpandedState.get(boxTitle.trim())));
+  const expandedState = currentlyExpandedState.get(contentTitle.trim());
+  return createSettingBox(draggable, createCollapsibleContent(contentTitle, contentValue, expandedState));
 }
 
 function createModeSettingBox(modeSetting) {
-  const boxTitle = modeSetting.type;
-  if (!currentlyExpandedState.has(boxTitle.trim())) {
-    currentlyExpandedState.set(boxTitle.trim(), false);
+  const draggable = true;
+  const contentTitle = modeSetting.type;
+  const contentValue = `<p>${modeSetting.details}</p>`;
+  if (!currentlyExpandedState.has(contentTitle.trim())) {
+    currentlyExpandedState.set(contentTitle.trim(), false);
   }
-  return createSettingBox(true, createCollapsibleContent(boxTitle, `<p>${modeSetting.details}</p>`, currentlyExpandedState.get(boxTitle.trim())));
+  const expandedState = currentlyExpandedState.get(contentTitle.trim());
+  return createSettingBox(draggable, createCollapsibleContent(contentTitle, contentValue, expandedState));
 }
 
 function createSettingBox(draggable, boxContent) {

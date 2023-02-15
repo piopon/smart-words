@@ -77,7 +77,7 @@ function createGeneralSettingBox(modeName, modeDescription) {
     currentlyExpandedState.set(contentTitle.trim(), true);
   }
   const expandedState = currentlyExpandedState.get(contentTitle.trim());
-  return createSettingBox(draggable, createCollapsibleContent(contentTitle, contentValue, expandedState));
+  return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState));
 }
 
 function createModeSettingBox(modeSetting) {
@@ -88,7 +88,7 @@ function createModeSettingBox(modeSetting) {
     currentlyExpandedState.set(contentTitle.trim(), false);
   }
   const expandedState = currentlyExpandedState.get(contentTitle.trim());
-  return createSettingBox(draggable, createCollapsibleContent(contentTitle, contentValue, expandedState));
+  return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState));
 }
 
 function createSettingBox(draggable, boxContent) {
@@ -97,7 +97,7 @@ function createSettingBox(draggable, boxContent) {
           </div>`;
 }
 
-function createCollapsibleContent(buttonTitle, collapsibleContent, expanded) {
+function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded) {
   const btnExpandedClass = expanded ? "active" : "";
   const divExpandedClass = expanded ? "expanded" : "collapsed";
   return `<button type="button" class="collapsible-button ${btnExpandedClass}" onclick="toggleCollapse(event)">

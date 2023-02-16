@@ -3,6 +3,9 @@ var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
 
+/**
+ * Method used to read all defined quiz modes from backend service and display them in the UI tab
+ */
 function initializeTabQuizModes() {
   settingsQuizModes = [];
   getQuizModes((err, data) => {
@@ -24,6 +27,11 @@ function initializeTabQuizModes() {
   });
 }
 
+/**
+ * Method used to display details of the selected mode ID in the settings view
+ *
+ * @param {Integer} modeId identifier of the mode which details we want to display in settings view
+ */
 function selectMode(modeId) {
   currentlyEditedMode = settingsQuizModes.find((mode) => mode.id === modeId);
   if (currentlyEditedMode === undefined) return;
@@ -32,12 +40,22 @@ function selectMode(modeId) {
   updateQuizModesPlaceholder(currentlyEditedMode);
 }
 
+/**
+ * Method used to update the select table state of the mode with specified ID
+ *
+ * @param {Integer} modeId identifier of the mode which should be marked as selected in the modes table
+ */
 function updateQuizModesTable(modeId) {
   document.querySelectorAll(`table#quiz-modes-available tbody tr`).forEach((tableRow) => {
     tableRow.className = tableRow.id === `mode-${modeId}` ? "selected" : "not-selected";
   });
 }
 
+/**
+ * Method used to update the quiz modes placeholder divider content and style using the selected mode data
+ *
+ * @param {Object} mode which data will to be displayed in a placeholder
+ */
 function updateQuizModesPlaceholder(mode) {
   let modePlaceholder = document.getElementById("mode-placeholder");
   if (modePlaceholder === null) return;
@@ -46,12 +64,25 @@ function updateQuizModesPlaceholder(mode) {
   initializeDragAndDropEvents();
 }
 
+/**
+ * Method used to create the quiz modes placeholder divider HTML content
+ *
+ * @param {Object} mode which data will be used in a placeholder
+ * @returns HTML code of the mode placeholder with input mode data values
+ */
 function createModePlaceholderContent(mode) {
   return createGeneralSettingBox(mode.name, mode.description) +
          createDropTarget(0) +
          mode.settings.map((setting, index) => createModeSettingBox(setting) + createDropTarget(index+1)).join("");
 }
 
+/**
+ * Method used to create HTML code for setting box of type "general"
+ *
+ * @param {String} modeName the name of mode to be displayed in general setting box
+ * @param {String} modeDescription the description of mode to be displayed in general setting box
+ * @returns HTML code of the general setting box with specified name and description
+ */
 function createGeneralSettingBox(modeName, modeDescription) {
   const draggable = false;
   const contentTitle = "general settings";
@@ -63,6 +94,12 @@ function createGeneralSettingBox(modeName, modeDescription) {
   return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState));
 }
 
+/**
+ * Method used to create HTML code for setting box used to display specified mode setting
+ *
+ * @param {Object} modeSetting to be displayed in the setting box
+ * @returns HTML code of the mode setting box
+ */
 function createModeSettingBox(modeSetting) {
   const draggable = true;
   const contentTitle = modeSetting.type;
@@ -74,12 +111,27 @@ function createModeSettingBox(modeSetting) {
   return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState));
 }
 
+/**
+ * Method used to create a container for setting box
+ *
+ * @param {Boolean} draggable specifies if the container should be draggable (true), or not (false)
+ * @param {String} boxContent setting box content
+ * @returns HTML code of the setting box container with specified content and draggable flag
+ */
 function createSettingBox(draggable, boxContent) {
   return `<div draggable="${draggable}" class="setting-box">
             ${boxContent}
           </div>`;
 }
 
+/**
+ * Method used to create collapsible component with the button responsible for collapsing/expanding and the content
+ *
+ * @param {String} buttonTitle collapsible component label (as a text of a button for collapsing/expanding)
+ * @param {String} collapsibleContent the content which should be displayed when component is expanded
+ * @param {Boolean} expanded flag defining if the initial state of component should be expanded (true), or collapsed (false)
+ * @returns HTML code for collapsible component (button + content)
+ */
 function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded) {
   const btnExpandedClass = expanded ? "active" : "";
   const divExpandedClass = expanded ? "expanded" : "collapsed";
@@ -91,12 +143,23 @@ function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded) {
           </div>`;
 }
 
+/**
+ * Method used to create drop target placeholder
+ *
+ * @param {Integer} dropNo number of drop target (for unique identifying)
+ * @returns HTML code for drop target divider
+ */
 function createDropTarget(dropNo) {
   return `<div id="drop-${dropNo}" class="drop-target hide">
             setting can be dropped here
           </div>`
 }
 
+/**
+ * Method used to toggle collapse/expand state of a collapsible component (passed via event)
+ *
+ * @param {Object} event containing data defining the source target which should be collapsed/expanded
+ */
 function toggleCollapse(event) {
   var pressedButton = event.currentTarget;
   var buttonClasses = pressedButton.classList;

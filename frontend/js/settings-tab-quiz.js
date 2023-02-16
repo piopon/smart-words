@@ -170,6 +170,9 @@ function toggleCollapse(event) {
   content.classList.toggle("expanded");
 }
 
+/**
+ * Method used to initialize drag and drop event listeners for all applicable setting boxes
+ */
 function initializeDragAndDropEvents() {
   let modeSettingBoxes = document.querySelectorAll('.setting-box');
   modeSettingBoxes.forEach(box => {
@@ -178,6 +181,11 @@ function initializeDragAndDropEvents() {
   });
 }
 
+/**
+ * Method used to handle the drag start event of a setting box
+ *
+ * @param {Object} e drag start event data
+ */
 function handleBoxDragStart(e) {
   this.style.opacity = '0.5';
   currentlyDraggedElement = this;
@@ -186,20 +194,41 @@ function handleBoxDragStart(e) {
   e.dataTransfer.setData('text/html', this.innerHTML);
 }
 
+/**
+ * Method used to handle the drag end event of a setting box
+ *
+ * @param {Object} e drag end event data
+ */
 function handleBoxDragEnd(e) {
   this.style.opacity = '1';
   currentlyDraggedElement = undefined;
   updateDropTargetsState(false, this);
 }
 
+/**
+ * Method used to handle the drag enter event of a setting box
+ *
+ * @param {Object} e drag enter event data
+ */
 function handleBoxDragEnter(e) {
   this.classList.add('over');
 }
 
+/**
+ * Method used to handle the drag leave event of a setting box
+ *
+ * @param {Object} e drag leave event data
+ */
 function handleBoxDragLeave(e) {
   this.classList.remove('over');
 }
 
+/**
+ * Method used to handle the drag over event of a setting box
+ * This method prevents the default behavior and returns false (good coding practice)
+ *
+ * @param {Object} e drag over event data
+ */
 function handleBoxDragOver(e) {
   e.preventDefault();
   return false;
@@ -210,6 +239,12 @@ Array.prototype.swapItems = function(a, b){
   return this;
 }
 
+/**
+ * Method used to handle the drop event of a setting box
+ * It stops events propagation, handles drop logic and returns false (good coding practice)
+ *
+ * @param {Object} e drop event data
+ */
 function handleBoxDrop(e) {
   e.stopPropagation();
   let dropPosition = parseInt(this.id.substring(this.id.indexOf("-") + 1));
@@ -226,6 +261,12 @@ function handleBoxDrop(e) {
   return false;
 }
 
+/**
+ * Method used to update the drop target state and event listeners
+ *
+ * @param {Boolean} visible if the drop target should be visible and contain appropriate listeners
+ * @param {Object} draggedElement candidate for drop (used to correctly display non-sibling targets)
+ */
 function updateDropTargetsState(visible, draggedElement) {
   let dropTargets = document.querySelectorAll(".drop-target");
   dropTargets.forEach((target) => {

@@ -234,11 +234,6 @@ function handleBoxDragOver(e) {
   return false;
 }
 
-Array.prototype.swapItems = function(a, b){
-  this[a] = this.splice(b, 1, this[a])[0];
-  return this;
-}
-
 /**
  * Method used to handle the drop event of a setting box
  * It stops events propagation, handles drop logic and returns false (good coding practice)

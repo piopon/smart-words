@@ -86,7 +86,7 @@ function createModePlaceholderContent(mode) {
 function createGeneralSettingBox(modeName, modeDescription) {
   const draggable = false;
   const contentTitle = "general settings";
-  const contentValue = `<p>${modeName} - ${modeDescription}</p>`;
+  const contentValue = createCollapsibleContent("general", { name: modeName, description: modeDescription });
   if (!currentlyExpandedState.has(contentTitle.trim())) {
     currentlyExpandedState.set(contentTitle.trim(), true);
   }

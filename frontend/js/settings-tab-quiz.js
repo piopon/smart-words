@@ -161,6 +161,11 @@ function createCollapsibleContent(settingType, settingValue) {
   }
 }
 
+function createContentGeneral(setting) {
+  return createSettingInputText("mode name", setting.name) +
+         createSettingInputText("mode description", setting.description)
+}
+
 /**
  * Method used to create HTML code for questions setting collapsible content
  *

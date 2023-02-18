@@ -167,6 +167,13 @@ function createContentQuestions(setting) {
           <input type="text" class="mode-setting-value" placeholder="questions max" value="${questionValues.groups.max}" />`;
 }
 
+function createSettingInputText(labelText, inputValue) {
+  return `<div class="mode-setting-text-edit">
+            <label class="mode-setting-label">${labelText}</label>
+            <input type="text" class="mode-setting-value" placeholder="specify value" value="${inputValue}" />
+          </div>`;
+}
+
 /**
  * Method used to create drop target placeholder
  *

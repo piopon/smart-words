@@ -161,6 +161,12 @@ function createCollapsibleContent(settingType, settingValue) {
   }
 }
 
+/**
+ * Method used to create HTML code for general settings collapsible content
+ *
+ * @param {String} setting details of general settings
+ * @returns HTML code for collapsible general content
+ */
 function createContentGeneral(setting) {
   return createSettingInputText("mode name", setting.name) +
          createSettingInputText("mode description", setting.description)

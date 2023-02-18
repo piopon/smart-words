@@ -190,7 +190,7 @@ div.setting-box[draggable="false"] .collapsible-button.active {
 .collapsible-content.expanded {
   border-width: 1px;
   border-top: none;
-  max-height: 100px;
+  max-height: 150px;
   transition-delay: var(--collapse-button-time);
 }
 

@@ -195,6 +195,14 @@ function createSettingInputText(labelText, inputValue) {
           </div>`;
 }
 
+function createSettingInputNumber(labelText, initValue, minValue, maxValue) {
+  return `<div class="mode-setting-text-edit">
+            <label class="mode-setting-label">${labelText}</label>
+            <input type="number" class="mode-setting-value" placeholder="specify value" value="${initValue}"
+                                                            min="${minValue}" max="${maxValue}" />
+          </div>`;
+}
+
 /**
  * Method used to create drop target placeholder
  *

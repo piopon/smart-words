@@ -146,11 +146,11 @@ function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded) {
 function createCollapsibleContent(settingType, settingValue) {
   switch (settingType) {
     case "general":
-      return `<p>${settingValue.name} - ${settingValue.description}</p>`;
+      return `${settingValue.name} - ${settingValue.description}`;
     case "questions":
       return createContentQuestions(settingValue);
     default:
-      return `<p>${settingValue.details}</p>`
+      return `unknown setting type: ${settingType}`;
   }
 }
 

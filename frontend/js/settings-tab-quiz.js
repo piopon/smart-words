@@ -103,7 +103,7 @@ function createGeneralSettingBox(modeName, modeDescription) {
 function createModeSettingBox(modeSetting) {
   const draggable = true;
   const contentTitle = modeSetting.type;
-  const contentValue = `<p>${modeSetting.details}</p>`;
+  const contentValue = createCollapsibleContent(modeSetting.type, modeSetting);
   if (!currentlyExpandedState.has(contentTitle.trim())) {
     currentlyExpandedState.set(contentTitle.trim(), false);
   }

@@ -157,14 +157,10 @@ function createCollapsibleContent(settingType, settingValue) {
 function createContentQuestions(setting) {
   const questionRegex = /value='(?<default>\d+)' min='(?<min>\d+)' max='(?<max>\d+)'/;
   const questionValues = setting.details.match(questionRegex);
-  return `<label class="mode-setting-label">specify setting label:</label>
-          <input type="text" class="mode-setting-value" placeholder="setting label" value="${setting.label}" />
-          <label class="mode-setting-label">minimum questions number:</label>
-          <input type="text" class="mode-setting-value" placeholder="questions min" value="${questionValues.groups.min}" />
-          <label class="mode-setting-label">default questions number:</label>
-          <input type="text" class="mode-setting-value" placeholder="questions default" value="${questionValues.groups.default}" />
-          <label class="mode-setting-label">maximum questions number:</label>
-          <input type="text" class="mode-setting-value" placeholder="questions max" value="${questionValues.groups.max}" />`;
+  return createSettingInputText("specify setting label", setting.label) +
+         createSettingInputText("minimum questions number", questionValues.groups.min) +
+         createSettingInputText("default questions number", questionValues.groups.default) +
+         createSettingInputText("maximum questions number", questionValues.groups.max);
 }
 
 function createSettingInputText(labelText, inputValue) {

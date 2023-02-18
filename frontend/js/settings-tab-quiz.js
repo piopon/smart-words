@@ -147,9 +147,17 @@ function createCollapsibleContent(settingType, settingValue) {
   switch (settingType) {
     case "general":
       return `<p>${settingValue.name} - ${settingValue.description}</p>`;
+    case "questions":
+      return createContentQuestions(settingValue);
     default:
       return `<p>${settingValue.details}</p>`
   }
+}
+
+function createContentQuestions(setting) {
+  const questionRegex = /value='(?<default>\d+)' min='(?<min>\d+)' max='(?<max>\d+)'/;
+  const questionValues = setting.details.match(questionRegex);
+  console.log(questionValues.groups);
 }
 
 /**

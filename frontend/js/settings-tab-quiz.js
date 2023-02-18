@@ -143,6 +143,13 @@ function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded) {
           </div>`;
 }
 
+/**
+ * Method used to create HTML code for collapsible content of specified type
+ *
+ * @param {String} settingType the type of content which we want to create
+ * @param {Object} settingValue data which we want to display as a content
+ * @returns HTML code for collapsible content of specified type
+ */
 function createCollapsibleContent(settingType, settingValue) {
   switch (settingType) {
     case "general":
@@ -154,6 +161,12 @@ function createCollapsibleContent(settingType, settingValue) {
   }
 }
 
+/**
+ * Method used to create HTML code for questions setting collapsible content
+ *
+ * @param {String} setting details of question setting
+ * @returns HTML code for collapsible quiz questions content
+ */
 function createContentQuestions(setting) {
   const questionRegex = /value='(?<default>\d+)' min='(?<min>\d+)' max='(?<max>\d+)'/;
   const questionValues = setting.details.match(questionRegex);
@@ -163,6 +176,13 @@ function createContentQuestions(setting) {
          createSettingInputText("maximum questions number", questionValues.groups.max);
 }
 
+/**
+ * Method used to create a single setting input of type text with an appropriate label
+ *
+ * @param {String} labelText the text displayed in a label
+ * @param {String} inputValue the initial value of a text
+ * @returns HTML code for input text with a label contained in a divider element
+ */
 function createSettingInputText(labelText, inputValue) {
   return `<div class="mode-setting-text-edit">
             <label class="mode-setting-label">${labelText}</label>

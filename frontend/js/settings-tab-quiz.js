@@ -153,7 +153,7 @@ function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded) {
 function createCollapsibleContent(settingType, settingValue) {
   switch (settingType) {
     case "general":
-      return `${settingValue.name} - ${settingValue.description}`;
+      return createContentGeneral(settingValue);
     case "questions":
       return createContentQuestions(settingValue);
     default:
@@ -176,9 +176,9 @@ function createContentQuestions(setting) {
   const questionRegex = /value='(?<default>\d+)' min='(?<min>\d+)' max='(?<max>\d+)'/;
   const questionValues = setting.details.match(questionRegex);
   return createSettingInputText("specify setting label", setting.label) +
-         createSettingInputText("minimum questions number", questionValues.groups.min) +
-         createSettingInputText("default questions number", questionValues.groups.default) +
-         createSettingInputText("maximum questions number", questionValues.groups.max);
+         createSettingInputNumber("minimum questions number", questionValues.groups.min, 1, 5) +
+         createSettingInputNumber("default questions number", questionValues.groups.default, 1, 50) +
+         createSettingInputNumber("maximum questions number", questionValues.groups.max, 25, 50);
 }
 
 /**

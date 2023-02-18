@@ -9,3 +9,15 @@ Array.prototype.swapItems = function (a, b) {
   this[a] = this.splice(b, 1, this[a])[0];
   return this;
 };
+
+function forceMinMaxConstraints(inputElement) {
+  if (inputElement.type != "number" || inputElement.value == "") {
+    return;
+  }
+  if (parseInt(inputElement.value) < parseInt(inputElement.min)) {
+    inputElement.value = inputElement.min;
+  }
+  if (parseInt(inputElement.value) > parseInt(inputElement.max)) {
+    inputElement.value = inputElement.max;
+  }
+}

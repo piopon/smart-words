@@ -143,6 +143,15 @@ function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded) {
           </div>`;
 }
 
+function createCollapsibleContent(settingType, settingValue) {
+  switch (settingType) {
+    case "general":
+      return `<p>${settingValue.name} - ${settingValue.description}</p>`;
+    default:
+      return `<p>${settingValue.details}</p>`
+  }
+}
+
 /**
  * Method used to create drop target placeholder
  *

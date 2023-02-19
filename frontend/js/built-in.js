@@ -10,6 +10,12 @@ Array.prototype.swapItems = function (a, b) {
   return this;
 };
 
+/**
+ * Method used to force min and max values constraints in input of type number
+ * Currently user is able to bypass these settings by simply typing value outside the range
+ *
+ * @param {Object} inputElement the input element of type number
+ */
 function forceMinMaxConstraints(inputElement) {
   if (inputElement.type != "number" || inputElement.value == "") {
     return;

@@ -159,6 +159,8 @@ function createCollapsibleContent(settingType, settingValue) {
       return createContentGeneral(settingValue);
     case "questions":
       return createContentQuestions(settingValue);
+    case "languages":
+      return createContentLanguages(settingValue);
     default:
       return `unknown setting type: ${settingType}`;
   }
@@ -188,6 +190,15 @@ function createContentQuestions(setting) {
          createSettingInputNumber("minimum questions number", questionValues.groups.min, 1, 5) +
          createSettingInputNumber("default questions number", questionValues.groups.default, 1, 50) +
          createSettingInputNumber("maximum questions number", questionValues.groups.max, 25, 50);
+}
+
+function createContentLanguages(setting) {
+  return Object.values(SUPPORTED_LANGUAGES)
+    .map((language) => {
+      var selected = false;
+      return createSettingInputFlag(`${language}-32.png`, selected);
+    })
+    .join("");
 }
 
 /**

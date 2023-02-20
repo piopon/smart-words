@@ -195,7 +195,7 @@ function createContentQuestions(setting) {
 function createContentLanguages(setting) {
   return Object.values(SUPPORTED_LANGUAGES)
     .map((language) => {
-      var selected = false;
+      var selected = setting.details.includes(language);
       return createSettingInputFlag(`${language}-32.png`, selected);
     })
     .join("");

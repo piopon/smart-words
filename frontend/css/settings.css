@@ -198,6 +198,19 @@ div.mode-setting-text-edit, div.mode-setting-number-edit {
   margin: 5px 10px;
 }
 
+input.mode-setting-value {
+  width: 100%;
+  font-size: 15px;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
+}
+
+label.mode-setting-label {
+  display: block;
+  width: 100%;
+  font-size: 12px;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
+}
+
 /************************************/
 /* quiz modes tab - drop targets    */
 /************************************/

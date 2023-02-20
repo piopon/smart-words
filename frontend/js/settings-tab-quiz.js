@@ -213,6 +213,13 @@ function createSettingInputNumber(labelText, initValue, minValue, maxValue) {
           </div>`;
 }
 
+function createSettingInputFlag(flag, checked) {
+  return `<div class="mode-setting-flag-checkbox">
+            <label class="mode-setting-label"><img src="images/language-flags/${flag}"/></label>
+            <input type="checkbox" ${checked ? "checked" : ""}/>
+          </div>`;
+}
+
 /**
  * Method used to create drop target placeholder
  *

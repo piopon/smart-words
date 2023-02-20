@@ -1,3 +1,6 @@
+// the list of currently supported languages
+const SUPPORTED_LANGUAGES = ["de", "en", "es", "fr", "pl", "pt"];
+// variables used by quiz modes tab in settings page
 var settingsQuizModes = undefined;
 var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();

@@ -215,6 +215,15 @@ function createSettingInputText(labelText, inputValue) {
           </div>`;
 }
 
+/**
+ * Method used to create a single setting input of type number with an appropriate label
+ *
+ * @param {String} labelText the text displayed in a label
+ * @param {Integer} inputValue the initial value of a number input
+ * @param {Integer} minValue the minimal value of a number input
+ * @param {Integer} maxValue the maximym value of a number input
+ * @returns HTML code for input number with a label contained in a divider element
+ */
 function createSettingInputNumber(labelText, initValue, minValue, maxValue) {
   return `<div class="mode-setting-number-edit">
             <label class="mode-setting-label">${labelText}</label>
@@ -224,6 +233,13 @@ function createSettingInputNumber(labelText, initValue, minValue, maxValue) {
           </div>`;
 }
 
+/**
+ * Method used to create a single setting input of type language with an appropriate flag image (as label)
+ *
+ * @param {String} flag file name which should be displayed as label
+ * @param {Boolean} checked if the checkbox should be intially selected (true), or not (false)
+ * @returns HTML code for input flag with a image label contained in a divider element
+ */
 function createSettingInputFlag(flag, checked) {
   return `<div class="mode-setting-flag-checkbox">
             <label class="mode-setting-label"><img src="images/language-flags/${flag}"/></label>

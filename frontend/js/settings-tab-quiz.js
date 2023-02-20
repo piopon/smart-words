@@ -192,6 +192,12 @@ function createContentQuestions(setting) {
          createSettingInputNumber("maximum value", questionValues.groups.max, 25, 50);
 }
 
+/**
+ * Method used to create HTML code for languages setting collapsible content
+ *
+ * @param {String} setting details of languages setting
+ * @returns HTML code for collapsible quiz languages content
+ */
 function createContentLanguages(setting) {
   return Object.values(SUPPORTED_LANGUAGES)
     .map((language) => {

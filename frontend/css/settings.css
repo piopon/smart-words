@@ -101,8 +101,8 @@ p.section-title {
 /************************************/
 
 div.setting-box {
-  width: calc(100% - 10px);
-  margin: 3px 5px;
+  width: calc(100% - 20px);
+  margin: 3px 10px;
 }
 
 .collapsible-button:before {

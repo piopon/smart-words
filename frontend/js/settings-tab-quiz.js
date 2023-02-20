@@ -242,7 +242,7 @@ function createSettingInputNumber(labelText, initValue, minValue, maxValue) {
  */
 function createSettingInputFlag(flag, checked) {
   return `<div class="mode-setting-flag-checkbox">
-            <label class="mode-setting-label"><img src="images/language-flags/${flag}"/></label>
+            <label class="mode-setting-flag-img"><img src="images/language-flags/${flag}"/></label>
             <input type="checkbox" ${checked ? "checked" : ""}/>
           </div>`;
 }

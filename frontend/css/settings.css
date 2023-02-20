@@ -194,6 +194,10 @@ div.setting-box[draggable="false"] .collapsible-button.active {
   transition-delay: var(--collapse-button-time);
 }
 
+div.mode-setting-text-edit, div.mode-setting-number-edit {
+  margin: 5px 10px;
+}
+
 /************************************/
 /* quiz modes tab - drop targets    */
 /************************************/

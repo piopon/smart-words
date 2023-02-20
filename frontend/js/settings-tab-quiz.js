@@ -205,7 +205,7 @@ function createSettingInputText(labelText, inputValue) {
 }
 
 function createSettingInputNumber(labelText, initValue, minValue, maxValue) {
-  return `<div class="mode-setting-text-edit">
+  return `<div class="mode-setting-number-edit">
             <label class="mode-setting-label">${labelText}</label>
             <input type="number" class="mode-setting-value" placeholder="specify value" value="${initValue}"
                                                             min="${minValue}" max="${maxValue}"

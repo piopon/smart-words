@@ -177,7 +177,7 @@ div.setting-box[draggable="false"] .collapsible-button.active {
   border-radius: 0px 0px 15px 15px;
   overflow: hidden;
   background-color: whitesmoke;
-  transition-property: max-height, border;
+  transition-property: max-height, border, padding-bottom;
   transition-duration: var(--collapse-content-time);
   transition-timing-function: ease-out;
 }

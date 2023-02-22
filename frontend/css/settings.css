@@ -99,6 +99,19 @@ label.mode-setting-flag-img img {
   transform-origin: 50% 50%;
 }
 
+input[type="checkbox"]:checked + label.mode-setting-flag-img:before {
+  content: "✓";
+  background-color: blue;
+  box-shadow: 0 0 5px gray;
+  z-index: 10;
+  transform: scale(1);
+}
+
+input[type="checkbox"]:checked + label.mode-setting-flag-img img {
+  transform: scale(1);
+  z-index: -1;
+}
+
 /************************************/
 /* quiz modes tab - common          */
 /************************************/

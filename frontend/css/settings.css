@@ -64,6 +64,10 @@
   display: none;
 }
 
+div.mode-setting-flag-checkbox input[type="checkbox"] {
+  display: none;
+}
+
 /************************************/
 /* quiz modes tab - common          */
 /************************************/

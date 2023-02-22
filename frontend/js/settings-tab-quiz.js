@@ -199,12 +199,13 @@ function createContentQuestions(setting) {
  * @returns HTML code for collapsible quiz languages content
  */
 function createContentLanguages(setting) {
-  return Object.values(SUPPORTED_LANGUAGES)
+  var allFlagsCheckboxes = Object.values(SUPPORTED_LANGUAGES)
     .map((language) => {
       var selected = setting.details.includes(language);
       return createSettingInputFlag(`${language}-32.png`, selected);
     })
     .join("");
+  return `<div class="mode-setting-flag-container">${allFlagsCheckboxes}</div>`;
 }
 
 /**

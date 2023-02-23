@@ -75,7 +75,7 @@ div.mode-setting-flag-container {
 }
 
 label.mode-setting-flag-img {
-  width: 32px;
+  width: 34px;
   padding: 10px;
   display: inline-block;
   position: relative;
@@ -89,8 +89,8 @@ label.mode-setting-flag-img:before {
   border: 1px solid white;
   border-radius: 50%;
   position: absolute;
-  top: 30px;
-  left: 15px;
+  top: 32px;
+  left: 16px;
   width: 20px;
   height: 20px;
   text-align: center;

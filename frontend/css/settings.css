@@ -107,7 +107,7 @@ label.mode-setting-flag-img img {
 
 input[type="checkbox"]:checked + label.mode-setting-flag-img:before {
   content: "✓";
-  background-color: blue;
+  background-color: cornflowerblue;
   box-shadow: 0 0 5px gray;
   z-index: 10;
   transform: scale(1);

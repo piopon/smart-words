@@ -90,8 +90,8 @@ label.mode-setting-flag-img:before {
   border: 1px solid white;
   border-radius: 50%;
   position: absolute;
-  top: -4px;
-  left: -4px;
+  top: 30px;
+  left: 15px;
   width: 20px;
   height: 20px;
   text-align: center;

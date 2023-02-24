@@ -332,6 +332,14 @@ table#quiz-modes-available tbody tr.selected {
   background-color: chartreuse;
 }
 
+table#quiz-modes-available tbody tr.selected:last-child td:first-child {
+  border-bottom-left-radius: var(--table-border-radius);
+}
+
+table#quiz-modes-available tbody tr.selected:last-child td:last-child {
+  border-bottom-right-radius: var(--table-border-radius);
+}
+
 table#quiz-modes-available tbody tr.not-selected {
   background-color: transparent;
 }

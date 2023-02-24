@@ -394,6 +394,7 @@ div#mode-placeholder {
   border-radius: 20px;
   font-size: 12px;
   font-family: var(--clear-font-primary), Verdana, sans-serif;
+  overflow: auto;
 }
 
 div#mode-placeholder.mode-deselected {

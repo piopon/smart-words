@@ -5,6 +5,17 @@
   --collapse-content-time: 0.2s;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 6px;
+  background-color: darkgray;
+}
+
 #main-content {
   align-items: normal;
   justify-content: start;

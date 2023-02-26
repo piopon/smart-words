@@ -269,13 +269,13 @@ function createSettingInputLanguage(labelText, languages) {
 }
 
 /**
- * Method used to create a single setting input of type language with an appropriate flag image (as label)
+ * Method used to create a single setting input of type checkbox with an appropriate flag image (as label)
  *
  * @param {String} flag file name which should be displayed as label
  * @param {Boolean} checked if the checkbox should be intially selected (true), or not (false)
- * @returns HTML code for input flag with a image label contained in a divider element
+ * @returns HTML code for input checkbox with a flag image label contained in a divider element
  */
-function createSettingInputFlag(flag, checked) {
+function createSettingFlagCheckbox(flag, checked) {
   return `<div class="mode-setting-flag-checkbox">
             <input type="checkbox" id="check-flag-${flag}" ${checked ? "checked" : ""}/>
             <label class="mode-setting-flag-img" for="check-flag-${flag}">

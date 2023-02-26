@@ -2,14 +2,14 @@
 const SUPPORTED_LANGUAGES = ["de", "en", "es", "fr", "pl", "pt"];
 const SUPPORTED_SETTINGS = [
   {
-    "label": "select language:",
     "type": "languages",
-    "details": "en"
+    "label": "",
+    "details": ""
   },
   {
-    "label": "how many questions:",
     "type": "questions",
-    "details": "value='10' min='5' max='25'"
+    "label": "",
+    "details": ""
   }
 ];
 // variables used by quiz modes tab in settings page

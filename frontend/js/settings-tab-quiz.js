@@ -225,7 +225,8 @@ function createContentLanguages(setting) {
       return createSettingInputFlag(`${language}-32-box.png`, selected);
     })
     .join("");
-  return `<div class="mode-setting-flag-container">${allFlagsCheckboxes}</div>`;
+  return createSettingInputText("specify setting label", setting.label) +
+         `<div class="mode-setting-flag-container">${allFlagsCheckboxes}</div>`;
 }
 
 /**

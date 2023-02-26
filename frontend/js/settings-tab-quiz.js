@@ -1,5 +1,17 @@
 // the list of currently supported languages
 const SUPPORTED_LANGUAGES = ["de", "en", "es", "fr", "pl", "pt"];
+const SUPPORTED_SETTINGS = [
+  {
+    "label": "select language:",
+    "type": "languages",
+    "details": "en"
+  },
+  {
+    "label": "how many questions:",
+    "type": "questions",
+    "details": "value='10' min='5' max='25'"
+  }
+];
 // variables used by quiz modes tab in settings page
 var settingsQuizModes = undefined;
 var currentlyEditedMode = undefined;

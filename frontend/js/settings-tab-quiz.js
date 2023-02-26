@@ -219,15 +219,8 @@ function createContentQuestions(setting) {
  * @returns HTML code for collapsible quiz languages content
  */
 function createContentLanguages(setting) {
-  var allFlagsCheckboxes = Object.values(SUPPORTED_LANGUAGES)
-    .map((language) => {
-      var selected = setting.details.includes(language);
-      return createSettingInputFlag(`${language}-32-box.png`, selected);
-    })
-    .join("");
-  return createSettingInputText("specify setting label", setting.label) +
-         `<label class="mode-setting-label">select supported languages</label>` +
-         `<div class="mode-setting-flag-container">${allFlagsCheckboxes}</div>`;
+  return createSettingInputText("specify setting label", setting.label) + 
+         createSettingInputLanguage("select supported languages", setting.details);
 }
 
 /**
@@ -259,6 +252,19 @@ function createSettingInputNumber(labelText, initValue, minValue, maxValue) {
             <input type="number" class="mode-setting-value" placeholder="specify value" value="${initValue}"
                                                             min="${minValue}" max="${maxValue}"
                                                             onfocusout=forceMinMaxConstraints(this) />
+          </div>`;
+}
+
+function createSettingInputLanguage(labelText, languages) {
+  var allFlagsCheckboxes = Object.values(SUPPORTED_LANGUAGES)
+    .map((language) => {
+      var selected = languages.includes(language);
+      return createSettingInputFlag(`${language}-32-box.png`, selected);
+    })
+    .join("");
+  return `<div class="mode-setting-languages-edit">
+            <label class="mode-setting-label">${labelText}</label>
+            <div class="mode-setting-flag-container">${allFlagsCheckboxes}</div>
           </div>`;
 }
 

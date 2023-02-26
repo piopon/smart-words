@@ -42,6 +42,14 @@ function initializeTabQuizModes() {
   });
 }
 
+function initializeSettingsContent() {
+  let settingsPlaceholder = document.getElementById("settings-placeholder");
+  if (settingsPlaceholder === null) return;
+  settingsPlaceholder.innerHTML = Object.values(SUPPORTED_SETTINGS)
+    .map((setting) => createModeSettingBox(setting))
+    .join("");
+}
+
 /**
  * Method used to display details of the selected mode ID in the settings view
  *
@@ -89,14 +97,6 @@ function createModePlaceholderContent(mode) {
   return createGeneralSettingBox(mode.name, mode.description) +
          createDropTarget(0) +
          mode.settings.map((setting, index) => createModeSettingBox(setting) + createDropTarget(index+1)).join("");
-}
-
-function initializeSettingsContent() {
-  let settingsPlaceholder = document.getElementById("settings-placeholder");
-  if (settingsPlaceholder === null) return;
-  settingsPlaceholder.innerHTML = Object.values(SUPPORTED_SETTINGS)
-    .map((setting) => createModeSettingBox(setting))
-    .join("");
 }
 
 /**

@@ -3,6 +3,7 @@
  */
 function initializeSettings() {
   initializeTabQuizModes();
+  initializeSettingsContent();
 }
 
 /**

@@ -91,6 +91,14 @@ function createModePlaceholderContent(mode) {
          mode.settings.map((setting, index) => createModeSettingBox(setting) + createDropTarget(index+1)).join("");
 }
 
+function initializeSettingsContent() {
+  let settingsPlaceholder = document.getElementById("settings-placeholder");
+  if (settingsPlaceholder === null) return;
+  settingsPlaceholder.innerHTML = Object.values(SUPPORTED_SETTINGS)
+    .map((setting) => createModeSettingBox(setting))
+    .join("");
+}
+
 /**
  * Method used to create HTML code for setting box of type "general"
  *

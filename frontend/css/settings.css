@@ -266,7 +266,9 @@ div.setting-box[draggable="false"] .collapsible-button.active {
   transition-delay: var(--collapse-button-time);
 }
 
-div.mode-setting-text-edit, div.mode-setting-number-edit {
+div.mode-setting-text-edit,
+div.mode-setting-number-edit,
+div.mode-setting-languages-edit {
   margin: 5px 10px;
 }
 

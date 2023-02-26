@@ -257,10 +257,7 @@ function createSettingInputNumber(labelText, initValue, minValue, maxValue) {
 
 function createSettingInputLanguage(labelText, languages) {
   var allFlagsCheckboxes = Object.values(SUPPORTED_LANGUAGES)
-    .map((language) => {
-      var selected = languages.includes(language);
-      return createSettingInputFlag(`${language}-32-box.png`, selected);
-    })
+    .map((lang) => createSettingFlagCheckbox(`${lang}-32-box.png`, languages.includes(lang)))
     .join("");
   return `<div class="mode-setting-languages-edit">
             <label class="mode-setting-label">${labelText}</label>

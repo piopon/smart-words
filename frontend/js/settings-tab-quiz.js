@@ -226,6 +226,7 @@ function createContentLanguages(setting) {
     })
     .join("");
   return createSettingInputText("specify setting label", setting.label) +
+         `<label class="mode-setting-label">select supported languages</label>` +
          `<div class="mode-setting-flag-container">${allFlagsCheckboxes}</div>`;
 }
 

@@ -219,7 +219,7 @@ function createContentQuestions(setting) {
  * @returns HTML code for collapsible quiz languages content
  */
 function createContentLanguages(setting) {
-  return createSettingInputText("specify setting label", setting.label) + 
+  return createSettingInputText("specify setting label", setting.label) +
          createSettingInputLanguage("select supported languages", setting.details);
 }
 

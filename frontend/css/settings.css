@@ -274,6 +274,10 @@ label.mode-setting-flag-img img {
   border-bottom: 1px transparent solid;
 }
 
+label.mode-setting-flag-img:hover img {
+  border-bottom: 1px black double;
+}
+
 input[type="checkbox"]:checked + label.mode-setting-flag-img:before {
   content: "✓";
   background-color: cornflowerblue;
@@ -285,10 +289,6 @@ input[type="checkbox"]:checked + label.mode-setting-flag-img:before {
 input[type="checkbox"]:checked + label.mode-setting-flag-img img {
   transform: scale(1);
   z-index: -1;
-}
-
-input[type="checkbox"]:hover + label.mode-setting-flag-img img {
-  border-bottom: 1px black double;
 }
 
 /************************************/

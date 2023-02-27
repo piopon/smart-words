@@ -42,6 +42,11 @@ function initializeTabQuizModes() {
   });
 }
 
+/**
+ * Method used to initialize supported settings content (right-most column in quiz modes tab)
+ *
+ * @returns HTML code for supported settings content column
+ */
 function initializeSettingsContent() {
   let settingsPlaceholder = document.getElementById("settings-placeholder");
   if (settingsPlaceholder === null) return;
@@ -255,6 +260,13 @@ function createSettingInputNumber(labelText, initValue, minValue, maxValue) {
           </div>`;
 }
 
+/**
+ * Method used to create a single setting input of type language (flag checkboxes) with an appropriate label
+ *
+ * @param {String} labelText the text displayed in a label
+ * @param {String} languages short codes of used languages
+ * @returns HTML code for input language with a label contained in a divider element
+ */
 function createSettingInputLanguage(labelText, languages) {
   var allFlagsCheckboxes = Object.values(SUPPORTED_LANGUAGES)
     .map((lang) => createSettingFlagCheckbox(`${lang}-32-box.png`, languages.includes(lang)))

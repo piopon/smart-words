@@ -75,64 +75,6 @@
   display: none;
 }
 
-div.mode-setting-flag-checkbox input[type="checkbox"] {
-  display: none;
-}
-
-div.mode-setting-flag-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-label.mode-setting-flag-img {
-  width: 34px;
-  padding: 10px;
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-}
-
-label.mode-setting-flag-img:before {
-  color: white;
-  content: " ";
-  display: block;
-  border: 1px solid white;
-  border-radius: 50%;
-  position: absolute;
-  top: 32px;
-  left: 16px;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 23px;
-  transition-duration: 0.4s;
-  transform: scale(0);
-}
-
-label.mode-setting-flag-img img {
-  transition-duration: 0.2s;
-  transform-origin: 50% 50%;
-  border-bottom: 1px transparent solid;
-}
-
-input[type="checkbox"]:checked + label.mode-setting-flag-img:before {
-  content: "✓";
-  background-color: cornflowerblue;
-  box-shadow: 0 0 5px gray;
-  z-index: 10;
-  transform: scale(1);
-}
-
-input[type="checkbox"]:checked + label.mode-setting-flag-img img {
-  transform: scale(1);
-  z-index: -1;
-}
-
-input[type="checkbox"]:hover + label.mode-setting-flag-img img {
-  border-bottom: 1px black double;
-}
-
 /************************************/
 /* quiz modes tab - common          */
 /************************************/
@@ -283,6 +225,68 @@ label.mode-setting-label {
   width: 100%;
   font-size: 12px;
   font-family: var(--clear-font-primary), Verdana, sans-serif;
+}
+
+/************************************/
+/* quiz modes tab - flag checkboxes */
+/************************************/
+
+div.mode-setting-flag-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+div.mode-setting-flag-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+label.mode-setting-flag-img {
+  width: 34px;
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+label.mode-setting-flag-img:before {
+  color: white;
+  content: " ";
+  display: block;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: absolute;
+  top: 32px;
+  left: 16px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 23px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label.mode-setting-flag-img img {
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+  border-bottom: 1px transparent solid;
+}
+
+input[type="checkbox"]:checked + label.mode-setting-flag-img:before {
+  content: "✓";
+  background-color: cornflowerblue;
+  box-shadow: 0 0 5px gray;
+  z-index: 10;
+  transform: scale(1);
+}
+
+input[type="checkbox"]:checked + label.mode-setting-flag-img img {
+  transform: scale(1);
+  z-index: -1;
+}
+
+input[type="checkbox"]:hover + label.mode-setting-flag-img img {
+  border-bottom: 1px black double;
 }
 
 /************************************/

@@ -286,11 +286,6 @@ input[type="checkbox"]:checked + label.mode-setting-flag-img:before {
   transform: scale(1);
 }
 
-input[type="checkbox"]:checked + label.mode-setting-flag-img img {
-  transform: scale(1);
-  z-index: -1;
-}
-
 /************************************/
 /* quiz modes tab - drop targets    */
 /************************************/

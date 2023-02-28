@@ -278,7 +278,7 @@ label.mode-setting-flag-img:hover img {
   border-bottom: 1px black double;
 }
 
-input[type="checkbox"]:checked + label.mode-setting-flag-img:before {
+label.mode-setting-flag-img.flag-checked:before {
   content: "✓";
   background-color: cornflowerblue;
   box-shadow: 0 0 5px gray;

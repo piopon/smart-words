@@ -285,10 +285,12 @@ function createSettingInputLanguage(labelText, languages) {
  * @returns HTML code for input checkbox with a flag image label contained in a divider element
  */
 function createSettingFlagCheckbox(flag, checked) {
+  const imageSrc = `images/language-flags/${flag}`;
+  const labelClass = `mode-setting-flag-img ${checked ? "flag-checked" : ""}`;
   return `<div class="mode-setting-flag-checkbox">
             <input type="checkbox" id="check-flag-${flag}" ${checked ? "checked" : ""}/>
-            <label class="mode-setting-flag-img" for="check-flag-${flag}">
-              <img src="images/language-flags/${flag}"/>
+            <label class="${labelClass}" onclick="toggleFlagCheckbox(event.target)">
+              <img src="${imageSrc}" onclick="toggleFlagCheckbox(event.target.parentNode)"/>
             </label>
           </div>`;
 }

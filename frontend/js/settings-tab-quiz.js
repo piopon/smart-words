@@ -444,6 +444,9 @@ function compareSettingBoxes(firstBox, secondBox) {
   if (firstBox === secondBox) {
     return true;
   }
+  if (secondBox === null) {
+    return false;
+  }
   const firstBoxName = firstBox.children[0].innerText;
   const secondBoxName = secondBox.children[0].innerText;
   return firstBoxName === secondBoxName;

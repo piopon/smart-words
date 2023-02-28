@@ -421,7 +421,9 @@ function handleBoxDrop(e) {
 function updateDropTargetsState(visible, draggedElement) {
   let dropTargets = document.querySelectorAll(".drop-target");
   dropTargets.forEach((target) => {
-    let showTarget = target.nextSibling === draggedElement || target.previousSibling === draggedElement ? false : visible;
+    const checkPrev = compareSettingBoxes(draggedElement, target.previousSibling);
+    const checkNext = compareSettingBoxes(draggedElement, target.nextSibling);
+    let showTarget = checkPrev || checkNext ? false : visible;
     target.classList.remove(showTarget ? "hide" : "show");
     target.classList.add(showTarget ? "show" : "hide");
     if (showTarget) {

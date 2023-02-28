@@ -456,3 +456,7 @@ div#settings-placeholder {
   flex-direction: column;
   width: calc(100% - 10px);
 }
+
+div#settings-placeholder > div.setting-box {
+  margin-bottom: 5px;
+}

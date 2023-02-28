@@ -293,6 +293,10 @@ function createSettingFlagCheckbox(flag, checked) {
           </div>`;
 }
 
+function toggleFlagCheckbox(flagItem) {
+  flagItem.classList.toggle("flag-checked");
+}
+
 /**
  * Method used to create drop target placeholder
  *

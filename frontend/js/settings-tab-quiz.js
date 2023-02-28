@@ -437,3 +437,7 @@ function updateDropTargetsState(visible, draggedElement) {
     }
   });
 }
+
+function compareSettingBoxes(firstBox, secondBox) {
+  return firstBox === secondBox
+}

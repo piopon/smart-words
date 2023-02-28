@@ -455,6 +455,9 @@ div#settings-placeholder {
   display: flex;
   flex-direction: column;
   width: calc(100% - 10px);
+  margin: 0px 5px;
+  max-height: 550px;
+  overflow: auto;
 }
 
 div#settings-placeholder > div.setting-box {

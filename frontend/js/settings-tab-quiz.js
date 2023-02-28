@@ -441,5 +441,10 @@ function updateDropTargetsState(visible, draggedElement) {
 }
 
 function compareSettingBoxes(firstBox, secondBox) {
-  return firstBox === secondBox
+  if (firstBox === secondBox) {
+    return true;
+  }
+  const firstBoxName = firstBox.children[0].innerText;
+  const secondBoxName = secondBox.children[0].innerText;
+  return firstBoxName === secondBoxName;
 }

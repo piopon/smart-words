@@ -446,3 +446,13 @@ button#quiz-modes-save {
   font-size: 19px;
   font-family: var(--styled-font), cursive;
 }
+
+/************************************/
+/* quiz modes tab - settings        */
+/************************************/
+
+div#settings-placeholder {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 10px);
+}

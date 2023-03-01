@@ -486,6 +486,11 @@ function compareSettingBoxes(firstBox, secondBox) {
   return firstBoxName === secondBoxName;
 }
 
+function isSettingUsedInCurrentMode(settingBox) {
+  const modePlaceholder = document.getElementById("mode-placeholder");
+  return settingBox.parentNode === modePlaceholder;
+}
+
 function getSettingBoxName(settingBox) {
   return settingBox.children[0].innerText;
 }

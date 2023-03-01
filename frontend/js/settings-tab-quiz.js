@@ -457,7 +457,7 @@ function verifySourcePlaceholder(draggedElement) {
     return true;
   } else {
     // we can accept dragged element if mode placeholder does not have the same setting type
-    let draggedBoxName = draggedElement.children[0].innerText;
+    let draggedBoxName = getSettingBoxName(draggedElement);
     let settingTypeSelector = "div#mode-placeholder button.collapsible-button";
     let currentModeSettings = document.querySelectorAll(settingTypeSelector);
     return !Array.from(currentModeSettings)
@@ -480,7 +480,11 @@ function compareSettingBoxes(firstBox, secondBox) {
   if (secondBox === null) {
     return false;
   }
-  const firstBoxName = firstBox.children[0].innerText;
-  const secondBoxName = secondBox.children[0].innerText;
+  const firstBoxName = getSettingBoxName(firstBox);
+  const secondBoxName = getSettingBoxName(secondBox);
   return firstBoxName === secondBoxName;
+}
+
+function getSettingBoxName(settingBox) {
+  return settingBox.children[0].innerText;
 }

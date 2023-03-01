@@ -440,6 +440,12 @@ function updateDropTargetsState(visible, draggedElement) {
   });
 }
 
+/**
+ * Method used to verify the source placeholder of the dragged element
+ *
+ * @param {Object} draggedElement for which we want to determine the source placeholder
+ * @returns true if the source placeholder can accept dragged element, false otherwise
+ */
 function verifySourcePlaceholder(draggedElement) {
   const modePlaceholder = document.getElementById("mode-placeholder");
   if (draggedElement.parentNode === modePlaceholder) {
@@ -454,6 +460,13 @@ function verifySourcePlaceholder(draggedElement) {
   }
 }
 
+/**
+ * Method used to compare setting boxes objects
+ *
+ * @param {Object} firstBox first setting box to compare
+ * @param {Object} secondBox second setting box to compare
+ * @returns true if the setting boxes are the same object or the same type, false otherwise
+ */
 function compareSettingBoxes(firstBox, secondBox) {
   if (firstBox === secondBox) {
     return true;

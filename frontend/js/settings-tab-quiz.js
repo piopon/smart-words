@@ -400,16 +400,19 @@ function handleBoxDrop(e) {
   e.stopPropagation();
   let dropPosition = parseInt(this.id.substring(this.id.indexOf("-") + 1));
   if (!isNaN(dropPosition)) {
-    let oldIndex = currentlyEditedMode.settings.indexOf(
-      currentlyEditedMode.settings.find(
-        (setting) => setting.type === currentlyDraggedElement.firstElementChild.innerHTML.trim()
-      )
-    );
-    if (oldIndex >= 0) {
+    const modePlaceholder = document.getElementById("mode-placeholder");
+    if (currentlyDraggedElement.parentNode === modePlaceholder) {
+      // dragged element is from currently edited mode (exists in mode placeholder)
+      let oldIndex = currentlyEditedMode.settings.indexOf(
+        currentlyEditedMode.settings.find((setting) => setting.type === getSettingBoxName(currentlyDraggedElement))
+      );
       let newIndex = dropPosition >= currentlyEditedMode.settings.length ? dropPosition - 1 : dropPosition;
       currentlyEditedMode.settings.swapItems(oldIndex, newIndex);
     } else {
-      let newSetting = SUPPORTED_SETTINGS.find(setting => setting.type === getSettingBoxName(currentlyDraggedElement));
+      // dragged element is new for currently edited mode (dragged to mode placeholder)
+      let newSetting = SUPPORTED_SETTINGS.find(
+        (setting) => setting.type === getSettingBoxName(currentlyDraggedElement)
+      );
       currentlyEditedMode.settings.splice(dropPosition, 0, newSetting);
     }
   }

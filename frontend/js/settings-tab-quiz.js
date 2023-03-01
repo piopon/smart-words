@@ -405,8 +405,12 @@ function handleBoxDrop(e) {
         (setting) => setting.type === currentlyDraggedElement.firstElementChild.innerHTML.trim()
       )
     );
-    let newIndex = dropPosition >= currentlyEditedMode.settings.length ? dropPosition - 1 : dropPosition;
-    currentlyEditedMode.settings.swapItems(oldIndex, newIndex);
+    if (oldIndex >= 0) {
+      let newIndex = dropPosition >= currentlyEditedMode.settings.length ? dropPosition - 1 : dropPosition;
+      currentlyEditedMode.settings.swapItems(oldIndex, newIndex);
+    } else {
+      console.log("dragging element outside mode placeholder...");
+    }
   }
   updateQuizModesPlaceholder(currentlyEditedMode);
   return false;

@@ -423,7 +423,7 @@ function updateDropTargetsState(visible, draggedElement) {
   dropTargets.forEach((target) => {
     const checkPrev = compareSettingBoxes(draggedElement, target.previousSibling);
     const checkNext = compareSettingBoxes(draggedElement, target.nextSibling);
-    let showTarget = checkPrev || checkNext ? false : visible;
+    let showTarget = verifySourcePlaceholder(draggedElement) && (checkPrev || checkNext ? false : visible);
     target.classList.remove(showTarget ? "hide" : "show");
     target.classList.add(showTarget ? "show" : "hide");
     if (showTarget) {

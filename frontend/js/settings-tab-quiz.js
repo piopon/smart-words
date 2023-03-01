@@ -440,6 +440,20 @@ function updateDropTargetsState(visible, draggedElement) {
   });
 }
 
+function verifySourcePlaceholder(draggedElement) {
+  const modePlaceholder = document.getElementById("mode-placeholder");
+  if (draggedElement.parentNode === modePlaceholder) {
+    return true;
+  } else {
+    let draggedBoxName = draggedElement.children[0].innerText;
+    let settingTypeSelector = "div#mode-placeholder button.collapsible-button";
+    let currentModeSettings = document.querySelectorAll(settingTypeSelector);
+    return !Array.from(currentModeSettings)
+      .map((element) => element.innerText)
+      .includes(draggedBoxName);
+  }
+}
+
 function compareSettingBoxes(firstBox, secondBox) {
   if (firstBox === secondBox) {
     return true;

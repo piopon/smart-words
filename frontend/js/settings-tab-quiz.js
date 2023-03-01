@@ -449,8 +449,10 @@ function updateDropTargetsState(visible, draggedElement) {
 function verifySourcePlaceholder(draggedElement) {
   const modePlaceholder = document.getElementById("mode-placeholder");
   if (draggedElement.parentNode === modePlaceholder) {
+    // we can always accept dragged element from mode placeholder (position update)
     return true;
   } else {
+    // we can accept dragged element if mode placeholder does not have the same setting type
     let draggedBoxName = draggedElement.children[0].innerText;
     let settingTypeSelector = "div#mode-placeholder button.collapsible-button";
     let currentModeSettings = document.querySelectorAll(settingTypeSelector);

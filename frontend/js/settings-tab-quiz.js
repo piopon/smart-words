@@ -400,8 +400,7 @@ function handleBoxDrop(e) {
   e.stopPropagation();
   let dropPosition = parseInt(this.id.substring(this.id.indexOf("-") + 1));
   if (!isNaN(dropPosition)) {
-    const modePlaceholder = document.getElementById("mode-placeholder");
-    if (currentlyDraggedElement.parentNode === modePlaceholder) {
+    if (isSettingUsedInCurrentMode(currentlyDraggedElement)) {
       // dragged element is from currently edited mode (exists in mode placeholder)
       let oldIndex = currentlyEditedMode.settings.indexOf(
         currentlyEditedMode.settings.find((setting) => setting.type === getSettingBoxName(currentlyDraggedElement))
@@ -455,8 +454,7 @@ function updateDropTargetsState(visible, draggedElement) {
  * @returns true if the source placeholder can accept dragged element, false otherwise
  */
 function verifySourcePlaceholder(draggedElement) {
-  const modePlaceholder = document.getElementById("mode-placeholder");
-  if (draggedElement.parentNode === modePlaceholder) {
+  if (isSettingUsedInCurrentMode(draggedElement)) {
     // we can always accept dragged element from mode placeholder (position update)
     return true;
   } else {

@@ -10,6 +10,11 @@ const SUPPORTED_SETTINGS = [
     "type": "questions",
     "label": "",
     "details": ""
+  },
+  {
+    "type": "timer",
+    "label": "",
+    "details": ""
   }
 ];
 // variables used by quiz modes tab in settings page

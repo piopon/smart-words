@@ -406,14 +406,17 @@ function handleBoxDrop(e) {
         (setting) => setting.type === getSettingBoxName(currentlyDraggedElement)
       );
       let oldIndex = currentlyEditedMode.settings.indexOf(draggedModeSetting);
+      // add the dragged setting to the new position
       if (dropPosition >= currentlyEditedMode.settings.length) {
         currentlyEditedMode.settings.push(draggedModeSetting);
       } else {
         currentlyEditedMode.settings.splice(dropPosition, 0, draggedModeSetting);
+        // we've added new element inside array = check if oldIndex should be updated
         if (dropPosition <= oldIndex) {
           oldIndex++;
         }
       }
+      // remove the dragged setting from the previous position
       currentlyEditedMode.settings.splice(oldIndex, 1);
     } else {
       // dragged element is new for currently edited mode (dragged to mode placeholder)

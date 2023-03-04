@@ -120,6 +120,7 @@ function createModePlaceholderContent(mode) {
  * @returns HTML code of the general setting box with specified name and description
  */
 function createGeneralSettingBox(modeName, modeDescription) {
+  // cannot drag and delete general setting box since it's a const element of all quiz modes
   const draggable = false;
   const deleteable = false;
   const contentTitle = "general";
@@ -135,6 +136,7 @@ function createGeneralSettingBox(modeName, modeDescription) {
  * Method used to create HTML code for setting box used to display specified mode setting
  *
  * @param {Object} modeSetting to be displayed in the setting box
+ * @param {Boolean} deleteable flag indicating if setting box should have a delete button (true), or not (false)
  * @returns HTML code of the mode setting box
  */
 function createModeSettingBox(modeSetting, deleteable) {
@@ -167,6 +169,7 @@ function createSettingBox(draggable, boxContent) {
  * @param {String} buttonTitle collapsible component label (as a text of a button for collapsing/expanding)
  * @param {String} collapsibleContent the content which should be displayed when component is expanded
  * @param {Boolean} expanded flag defining if the initial state of component should be expanded (true), or collapsed (false)
+ * @param {Boolean} deleteable flag defining if component should have a delete button (true), or not (false)
  * @returns HTML code for collapsible component (button + content)
  */
 function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded, deleteable) {

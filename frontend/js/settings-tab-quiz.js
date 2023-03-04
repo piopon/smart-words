@@ -353,6 +353,7 @@ function deleteSettingBox(settingBox) {
   );
   let oldIndex = currentlyEditedMode.settings.indexOf(toDeleteModeSetting);
   currentlyEditedMode.settings.splice(oldIndex, 1);
+  currentlyExpandedState.delete(getSettingBoxName(settingBox));
   updateQuizModesPlaceholder(currentlyEditedMode);
 }
 

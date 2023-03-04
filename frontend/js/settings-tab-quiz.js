@@ -410,6 +410,9 @@ function handleBoxDrop(e) {
         currentlyEditedMode.settings.push(draggedModeSetting);
       } else {
         currentlyEditedMode.settings.splice(dropPosition, 0, draggedModeSetting);
+        if (dropPosition <= oldIndex) {
+          oldIndex++;
+        }
       }
       currentlyEditedMode.settings.splice(oldIndex, 1);
     } else {

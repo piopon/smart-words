@@ -498,11 +498,23 @@ function compareSettingBoxes(firstBox, secondBox) {
   return firstBoxName === secondBoxName;
 }
 
+/**
+ * Method used to check if specified setting box is currently used in edited quiz mode
+ *
+ * @param {Element} settingBox to check if its in the currently edited quiz mode
+ * @returns true if setting box is in the mode placeholder (currently edited quiz mode)
+ */
 function isSettingUsedInCurrentMode(settingBox) {
   const modePlaceholder = document.getElementById("mode-placeholder");
   return settingBox.parentNode === modePlaceholder;
 }
 
+/**
+ * Method used to retrieve setting box name based on collapsible button text
+ *
+ * @param {Element} settingBox which name (type) we want to receive
+ * @returns setting box name in a form of a String
+ */
 function getSettingBoxName(settingBox) {
   return settingBox.children[0].innerText;
 }

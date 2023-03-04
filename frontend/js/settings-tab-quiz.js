@@ -165,7 +165,7 @@ function createSettingBox(draggable, boxContent) {
  * @param {Boolean} expanded flag defining if the initial state of component should be expanded (true), or collapsed (false)
  * @returns HTML code for collapsible component (button + content)
  */
-function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded) {
+function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded, deleteable) {
   const btnExpandedClass = expanded ? "active" : "";
   const divExpandedClass = expanded ? "expanded" : "collapsed";
   return `<button type="button" class="collapsible-button ${btnExpandedClass}" onclick="toggleCollapse(event)">
@@ -173,7 +173,16 @@ function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded) {
           </button>
           <div class="collapsible-content ${divExpandedClass}">
             ${collapsibleContent}
+            ${deleteable ? createDeleteBoxButton() : ""}
           </div>`;
+}
+
+function createDeleteBoxButton() {
+  const parentContent = "event.target.parentNode";
+  const parentSettingBox = `${parentContent}.parentNode`;
+  return `<button class="collapsible-delete">
+            ❌
+          </button>`;
 }
 
 /**

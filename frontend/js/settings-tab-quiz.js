@@ -118,13 +118,14 @@ function createModePlaceholderContent(mode) {
  */
 function createGeneralSettingBox(modeName, modeDescription) {
   const draggable = false;
+  const deleteable = false;
   const contentTitle = "general";
   const contentValue = createCollapsibleContent("general", { name: modeName, description: modeDescription });
   if (!currentlyExpandedState.has(contentTitle.trim())) {
     currentlyExpandedState.set(contentTitle.trim(), true);
   }
   const expandedState = currentlyExpandedState.get(contentTitle.trim());
-  return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState));
+  return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState, deleteable));
 }
 
 /**
@@ -135,13 +136,14 @@ function createGeneralSettingBox(modeName, modeDescription) {
  */
 function createModeSettingBox(modeSetting) {
   const draggable = true;
+  const deleteable = true;
   const contentTitle = modeSetting.type;
   const contentValue = createCollapsibleContent(modeSetting.type, modeSetting);
   if (!currentlyExpandedState.has(contentTitle.trim())) {
     currentlyExpandedState.set(contentTitle.trim(), false);
   }
   const expandedState = currentlyExpandedState.get(contentTitle.trim());
-  return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState));
+  return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState, deleteable));
 }
 
 /**

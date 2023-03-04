@@ -53,10 +53,11 @@ function initializeTabQuizModes() {
  * @returns HTML code for supported settings content column
  */
 function initializeSettingsContent() {
+  const deletableModeSettings = false;
   let settingsPlaceholder = document.getElementById("settings-placeholder");
   if (settingsPlaceholder === null) return;
   settingsPlaceholder.innerHTML = Object.values(SUPPORTED_SETTINGS)
-    .map((setting) => createModeSettingBox(setting))
+    .map((setting) => createModeSettingBox(setting, deletableModeSettings))
     .join("");
 }
 
@@ -104,9 +105,11 @@ function updateQuizModesPlaceholder(mode) {
  * @returns HTML code of the mode placeholder with input mode data values
  */
 function createModePlaceholderContent(mode) {
+  const deletableModeSettings = true;
   return createGeneralSettingBox(mode.name, mode.description) +
          createDropTarget(0) +
-         mode.settings.map((setting, index) => createModeSettingBox(setting) + createDropTarget(index+1)).join("");
+         mode.settings.map((setting, index) => createModeSettingBox(setting, deletableModeSettings) +
+                                               createDropTarget(index + 1)).join("");
 }
 
 /**
@@ -134,9 +137,8 @@ function createGeneralSettingBox(modeName, modeDescription) {
  * @param {Object} modeSetting to be displayed in the setting box
  * @returns HTML code of the mode setting box
  */
-function createModeSettingBox(modeSetting) {
+function createModeSettingBox(modeSetting, deleteable) {
   const draggable = true;
-  const deleteable = true;
   const contentTitle = modeSetting.type;
   const contentValue = createCollapsibleContent(modeSetting.type, modeSetting);
   if (!currentlyExpandedState.has(contentTitle.trim())) {

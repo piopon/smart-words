@@ -184,7 +184,7 @@ function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded, d
 function createDeleteBoxButton() {
   const parentContent = "event.target.parentNode";
   const parentSettingBox = `${parentContent}.parentNode`;
-  return `<button class="collapsible-delete">
+  return `<button class="collapsible-delete" onclick="deleteSettingBox(${parentSettingBox})">
             ❌
           </button>`;
 }
@@ -342,6 +342,15 @@ function toggleCollapse(event) {
   var content = pressedButton.nextElementSibling;
   content.classList.toggle("collapsed");
   content.classList.toggle("expanded");
+}
+
+function deleteSettingBox(settingBox) {
+  let toDeleteModeSetting = currentlyEditedMode.settings.find(
+    (setting) => setting.type === getSettingBoxName(settingBox)
+  );
+  let oldIndex = currentlyEditedMode.settings.indexOf(toDeleteModeSetting);
+  currentlyEditedMode.settings.splice(oldIndex, 1);
+  updateQuizModesPlaceholder(currentlyEditedMode);
 }
 
 /**

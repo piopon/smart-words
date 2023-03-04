@@ -402,11 +402,16 @@ function handleBoxDrop(e) {
   if (!isNaN(dropPosition)) {
     if (isSettingUsedInCurrentMode(currentlyDraggedElement)) {
       // dragged element is from currently edited mode (exists in mode placeholder)
-      let oldIndex = currentlyEditedMode.settings.indexOf(
-        currentlyEditedMode.settings.find((setting) => setting.type === getSettingBoxName(currentlyDraggedElement))
+      let draggedModeSetting = currentlyEditedMode.settings.find(
+        (setting) => setting.type === getSettingBoxName(currentlyDraggedElement)
       );
-      let newIndex = dropPosition >= currentlyEditedMode.settings.length ? dropPosition - 1 : dropPosition;
-      currentlyEditedMode.settings.swapItems(oldIndex, newIndex);
+      let oldIndex = currentlyEditedMode.settings.indexOf(draggedModeSetting);
+      if (dropPosition >= currentlyEditedMode.settings.length) {
+        currentlyEditedMode.settings.push(draggedModeSetting);
+      } else {
+        currentlyEditedMode.settings.splice(dropPosition, 0, draggedModeSetting);
+      }
+      currentlyEditedMode.settings.splice(oldIndex, 1);
     } else {
       // dragged element is new for currently edited mode (dragged to mode placeholder)
       let newSetting = SUPPORTED_SETTINGS.find(

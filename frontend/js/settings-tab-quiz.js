@@ -348,6 +348,9 @@ function toggleCollapse(event) {
 }
 
 function deleteSettingBox(settingBox) {
+  if (!isSettingUsedInCurrentMode(settingBox)) {
+    return;
+  }
   let toDeleteModeSetting = currentlyEditedMode.settings.find(
     (setting) => setting.type === getSettingBoxName(settingBox)
   );

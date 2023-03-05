@@ -98,6 +98,17 @@ function updateQuizModesPlaceholder(mode) {
   initializeDragAndDropEvents();
 }
 
+function updateSupportedSettingsBoxes() {
+  let supportedBoxes = document.querySelectorAll("div#settings-placeholder .collapsible-button");
+  supportedBoxes.forEach(box => {
+    if (currentlyEditedMode === undefined) {
+      box.disabled = true;
+      return;
+    }
+    box.disabled = undefined !== currentlyEditedMode.settings.find((s) => s.type === box.innerText);
+  });
+}
+
 /**
  * Method used to create the quiz modes placeholder divider HTML content
  *

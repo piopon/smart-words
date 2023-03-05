@@ -184,6 +184,11 @@ function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded, d
           </div>`;
 }
 
+/**
+ * Method used to create collapsible setting box delete button responsible for removing setting from mode
+ *
+ * @returns HTML code for setting box delete button
+ */
 function createDeleteBoxButton() {
   const parentContent = "event.target.parentNode";
   const parentSettingBox = `${parentContent}.parentNode`;
@@ -316,6 +321,11 @@ function createSettingFlagCheckbox(flag, checked) {
           </div>`;
 }
 
+/**
+ * Method used to toggle flag checkbox
+ *
+ * @param {Element} flagItem for which we want to update the check state
+ */
 function toggleFlagCheckbox(flagItem) {
   flagItem.classList.toggle("flag-checked");
 }
@@ -347,6 +357,11 @@ function toggleCollapse(event) {
   content.classList.toggle("expanded");
 }
 
+/**
+ * Method used to delete the specified setting box from the UI
+ *
+ * @param {Element} settingBox which should be deleted
+ */
 function deleteSettingBox(settingBox) {
   if (!isSettingUsedInCurrentMode(settingBox)) {
     return;

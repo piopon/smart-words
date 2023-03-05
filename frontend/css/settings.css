@@ -117,10 +117,15 @@ div.setting-box {
 }
 
 .collapsible-button:before {
+  opacity: 1;
   content: '\2795';
   font-size: 13px;
   float: left;
   margin-right: 10px;
+}
+
+.collapsible-button:disabled::before {
+  opacity: 0.5;
 }
 
 .collapsible-button {

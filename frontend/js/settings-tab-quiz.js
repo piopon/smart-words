@@ -59,6 +59,7 @@ function initializeSettingsContent() {
   settingsPlaceholder.innerHTML = Object.values(SUPPORTED_SETTINGS)
     .map((setting) => createModeSettingBox(setting, deletableModeSettings))
     .join("");
+  updateSupportedSettingsBoxes();
 }
 
 /**
@@ -72,6 +73,7 @@ function selectMode(modeId) {
   currentlyExpandedState.clear();
   updateQuizModesTable(modeId);
   updateQuizModesPlaceholder(currentlyEditedMode);
+  updateSupportedSettingsBoxes();
 }
 
 /**
@@ -384,6 +386,7 @@ function deleteSettingBox(settingBox) {
   currentlyEditedMode.settings.splice(oldIndex, 1);
   currentlyExpandedState.delete(getSettingBoxName(settingBox));
   updateQuizModesPlaceholder(currentlyEditedMode);
+  updateSupportedSettingsBoxes();
 }
 
 /**
@@ -487,6 +490,7 @@ function handleBoxDrop(e) {
     }
   }
   updateQuizModesPlaceholder(currentlyEditedMode);
+  updateSupportedSettingsBoxes();
   return false;
 }
 

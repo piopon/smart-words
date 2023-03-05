@@ -145,7 +145,7 @@ div.setting-box {
   float: right;
 }
 
-div.setting-box .collapsible-button:hover {
+div.setting-box .collapsible-button:hover:not([disabled]) {
   box-shadow: inset 0 0 5px black;
 }
 
@@ -157,7 +157,7 @@ div.setting-box .collapsible-button:hover {
   transition-delay: 0s;
 }
 
-div.setting-box .collapsible-button.active:hover {
+div.setting-box .collapsible-button.active:hover:not([disabled]) {
   box-shadow: inset 0 0 5px black;
 }
 

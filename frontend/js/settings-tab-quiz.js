@@ -363,7 +363,7 @@ function toggleCollapse(event) {
  * @param {Element} settingBox which should be deleted
  */
 function deleteSettingBox(settingBox) {
-  if (!isSettingUsedInCurrentMode(settingBox)) {
+  if (!isCurrentModeSetting(settingBox)) {
     return;
   }
   let toDeleteModeSetting = currentlyEditedMode.settings.find(
@@ -449,7 +449,7 @@ function handleBoxDrop(e) {
   e.stopPropagation();
   let dropPosition = parseInt(this.id.substring(this.id.indexOf("-") + 1));
   if (!isNaN(dropPosition)) {
-    if (isSettingUsedInCurrentMode(currentlyDraggedElement)) {
+    if (isCurrentModeSetting(currentlyDraggedElement)) {
       // dragged element is from currently edited mode (exists in mode placeholder)
       let draggedModeSetting = currentlyEditedMode.settings.find(
         (setting) => setting.type === getSettingBoxName(currentlyDraggedElement)
@@ -514,7 +514,7 @@ function updateDropTargetsState(visible, draggedElement) {
  * @returns true if the source placeholder can accept dragged element, false otherwise
  */
 function verifySourcePlaceholder(draggedElement) {
-  if (isSettingUsedInCurrentMode(draggedElement)) {
+  if (isCurrentModeSetting(draggedElement)) {
     // we can always accept dragged element from mode placeholder (position update)
     return true;
   } else {
@@ -553,7 +553,7 @@ function compareSettingBoxes(firstBox, secondBox) {
  * @param {Element} settingBox to check if its in the currently edited quiz mode
  * @returns true if setting box is in the mode placeholder (currently edited quiz mode)
  */
-function isSettingUsedInCurrentMode(settingBox) {
+function isCurrentModeSetting(settingBox) {
   const modePlaceholder = document.getElementById("mode-placeholder");
   return settingBox.parentNode === modePlaceholder;
 }

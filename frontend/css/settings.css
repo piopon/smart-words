@@ -181,6 +181,13 @@ div.setting-box[draggable="false"] .collapsible-button.active {
   border-bottom: none;
 }
 
+div.setting-box .collapsible-button:disabled {
+  cursor: default;
+  background-color: lightgray;
+  border-color: gray;
+  color: gray;
+}
+
 .collapsible-content {
   padding: 0 18px;
   padding-bottom: 0px;

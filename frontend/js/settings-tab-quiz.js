@@ -101,13 +101,14 @@ function updateQuizModesPlaceholder(mode) {
 }
 
 function updateSupportedSettingsBoxes() {
-  let supportedBoxes = document.querySelectorAll("div#settings-placeholder .collapsible-button");
+  let supportedBoxes = document.querySelectorAll("div#settings-placeholder .setting-box");
   supportedBoxes.forEach(box => {
+    var boxButton = box.children[0];
     if (currentlyEditedMode === undefined) {
-      box.disabled = true;
+      boxButton.disabled = true;
       return;
     }
-    box.disabled = undefined !== currentlyEditedMode.settings.find((s) => s.type === box.innerText);
+    boxButton.disabled = undefined !== currentlyEditedMode.settings.find((s) => s.type === boxButton.innerText);
   });
 }
 

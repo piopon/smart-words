@@ -230,7 +230,7 @@ div.setting-box .collapsible-button:disabled {
   border: 0px solid black;
   border-top-width: 1px;
   border-radius: 0px 0px 14px 14px;
-  background-color: tomato;
+  background-color: lightpink;
   color: white;
   font-size: 15px;
 }

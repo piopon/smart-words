@@ -505,10 +505,12 @@ function handleBoxDrop(e) {
  * @param {Object} draggedElement candidate for drop (used to correctly display non-sibling targets)
  */
 function updateDropTargetsState(visible, draggedElement) {
+  const dropDeleteId = "drop-delete";
   let dropTargets = document.querySelectorAll(".drop-target");
   dropTargets.forEach((target) => {
     let showTarget = visible && isCurrentModeSetting(draggedElement);
-    if ("drop-delete" !== target.id) {
+    if (dropDeleteId !== target.id) {
+      // in current mode we must display only those drop targets which are not adjacent to dragged element
       const checkPrev = compareSettingBoxes(draggedElement, target.previousSibling);
       const checkNext = compareSettingBoxes(draggedElement, target.nextSibling);
       showTarget = verifySourcePlaceholder(draggedElement) && (checkPrev || checkNext ? false : visible);

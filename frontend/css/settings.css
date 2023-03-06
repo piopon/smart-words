@@ -329,6 +329,7 @@ label.mode-setting-flag-img.flag-checked:before {
   width: calc(100% - 12px);
   border: 1px dotted;
   border-radius: 6px;
+  font-size: 12px;
   font-family: var(--clear-font-primary), Verdana, sans-serif;
   transition: height 0.3s linear;
 }

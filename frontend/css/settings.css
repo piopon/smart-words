@@ -351,6 +351,15 @@ label.mode-setting-flag-img.flag-checked:before {
   color: green;
 }
 
+.drop-target.show#drop-delete {
+  height: 40px;
+  visibility: visible;
+  border-color: red;
+  color: red;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
 /************************************/
 /* quiz modes tab - available modes */
 /************************************/

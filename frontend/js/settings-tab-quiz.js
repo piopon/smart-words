@@ -104,6 +104,7 @@ function updateSupportedSettingsBoxes() {
   let supportedBoxes = document.querySelectorAll("div#settings-placeholder .setting-box");
   supportedBoxes.forEach(box => {
     var boxButton = box.children[0];
+    var boxContent = box.children[1];
     if (currentlyEditedMode === undefined) {
       box.draggable = false;
       boxButton.disabled = true;
@@ -111,6 +112,11 @@ function updateSupportedSettingsBoxes() {
     }
     boxButton.disabled = undefined !== currentlyEditedMode.settings.find((s) => s.type === boxButton.innerText);
     box.draggable = !boxButton.disabled;
+    if (boxButton.disabled) {
+      boxButton.classList.remove("active");
+      boxContent.classList.add("collapsed");
+      boxContent.classList.remove("expanded");
+    }
   });
 }
 

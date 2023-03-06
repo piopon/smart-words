@@ -491,6 +491,7 @@ function handleBoxDrop(e) {
   } else {
     // we are dropping setting box to delete drop target
     deleteSettingBox(currentlyDraggedElement);
+    this.classList.remove('over');
   }
   updateQuizModesPlaceholder(currentlyEditedMode);
   updateSupportedSettingsBoxes();

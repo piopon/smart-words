@@ -488,6 +488,9 @@ function handleBoxDrop(e) {
       );
       currentlyEditedMode.settings.splice(dropPosition, 0, newSetting);
     }
+  } else {
+    // we are dropping setting box to delete drop target
+    deleteSettingBox(currentlyDraggedElement);
   }
   updateQuizModesPlaceholder(currentlyEditedMode);
   updateSupportedSettingsBoxes();

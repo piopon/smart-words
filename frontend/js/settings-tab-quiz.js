@@ -105,10 +105,12 @@ function updateSupportedSettingsBoxes() {
   supportedBoxes.forEach(box => {
     var boxButton = box.children[0];
     if (currentlyEditedMode === undefined) {
+      box.draggable = false;
       boxButton.disabled = true;
       return;
     }
     boxButton.disabled = undefined !== currentlyEditedMode.settings.find((s) => s.type === boxButton.innerText);
+    box.draggable = !boxButton.disabled;
   });
 }
 

@@ -361,6 +361,11 @@ label.mode-setting-flag-img.flag-checked:before {
   margin-bottom: 10px;
 }
 
+.drop-target.show.over#drop-delete {
+  height: 40px;
+  background-color: lightpink;
+}
+
 /************************************/
 /* quiz modes tab - available modes */
 /************************************/

@@ -100,6 +100,9 @@ function updateQuizModesPlaceholder(mode) {
   initializeDragAndDropEvents();
 }
 
+/**
+ * Method used to update supported setting boxes user interface
+ */
 function updateSupportedSettingsBoxes() {
   let supportedBoxes = document.querySelectorAll("div#settings-placeholder .setting-box");
   supportedBoxes.forEach(box => {

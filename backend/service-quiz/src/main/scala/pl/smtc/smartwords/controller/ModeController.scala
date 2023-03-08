@@ -30,6 +30,11 @@ class ModeController {
         for {
           response <- service.createQuizMode
         } yield response
+      case request@PUT -> Root / IntVar(id) =>
+        for {
+          newMode <- request.as[Mode]
+          response <- service.updateQuizMode(id, newMode)
+        } yield response
     }
   }
 }

@@ -26,6 +26,8 @@ class ModeController {
     HttpRoutes.of[IO] {
       case GET -> Root =>
         service.getQuizModes
+      case GET -> Root / "settings" =>
+        service.getSupportedSettings
       case POST -> Root =>
         for {
           response <- service.createQuizMode

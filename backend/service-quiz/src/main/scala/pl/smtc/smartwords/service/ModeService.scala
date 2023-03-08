@@ -20,6 +20,7 @@ class ModeService {
 
   implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
+  implicit val SettingEncoder: Encoder[Setting] = SettingDao.getSettingEncoder
 
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
   private val quizModesFile = "modes.json"
@@ -31,6 +32,13 @@ class ModeService {
    */
   def getQuizModes: IO[Response[IO]] = {
     Ok(quizModes.toList.asJson)
+  }
+
+  def getSupportedSettings: IO[Response[IO]] = {
+    val supportedSettings: List[Setting] = Kind.values.toList
+      .filter(kind => kind != Kind.unknown)
+      .map(kind => Setting("", kind, ""))
+    Ok(supportedSettings.asJson)
   }
 
   /**

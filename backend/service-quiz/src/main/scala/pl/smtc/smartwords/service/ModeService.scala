@@ -29,6 +29,11 @@ class ModeService {
     Ok(quizModes.toList.asJson)
   }
 
+  def createQuizMode: IO[Response[IO]] = {
+    quizModes += Mode(100, "", "", List())
+    Ok("Added new quiz mode")
+  }
+
   private def initializeModes(): ListBuffer[Mode] = {
     val foundModes: ListBuffer[Mode] = new ListBuffer()
     val modesFile = new File(resourceDir.resolve(quizModesFile).toString)

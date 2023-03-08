@@ -19,6 +19,10 @@ class ModeController {
     HttpRoutes.of[IO] {
       case GET -> Root =>
         service.getQuizModes
+      case POST -> Root =>
+        for {
+          response <- service.createQuizMode
+        } yield response
     }
   }
 }

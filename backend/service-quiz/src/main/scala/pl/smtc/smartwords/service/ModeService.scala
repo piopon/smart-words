@@ -36,10 +36,11 @@ class ModeService {
   }
 
   def updateQuizMode(id: Int, mode: Mode): IO[Response[IO]] = {
-    if (quizModes.filter(mode => mode.id.equals(id)).isEmpty) {
-      return BadRequest("Cannot find mode with ID: " + id)
+    val idPosition: Int = quizModes.indexWhere(mode => mode.id.equals(id))
+    if (-1 == idPosition) {
+      return NotFound("Cannot find mode with ID: " + id)
     }
-    quizModes.update(0, mode)
+    quizModes.update(idPosition, mode)
     Ok(s"Updated quiz mode ID: $id")
   }
 

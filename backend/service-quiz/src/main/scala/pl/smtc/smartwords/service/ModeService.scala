@@ -25,16 +25,30 @@ class ModeService {
   private val quizModesFile = "modes.json"
   private val quizModes: ListBuffer[Mode] = initializeModes()
 
+  /**
+   * Method used to receive the list of current quiz modes
+   * @return response with list of quiz modes
+   */
   def getQuizModes: IO[Response[IO]] = {
     Ok(quizModes.toList.asJson)
   }
 
+  /**
+   * Method used to create new empty quiz mode
+   * @return confirmation response with ID of newly created quiz mode
+   */
   def createQuizMode: IO[Response[IO]] = {
     val freeId: Int = quizModes.map(mode => mode.id).max
     quizModes += Mode(freeId, "", "", List())
     Ok(s"Added new quiz mode ID: $freeId")
   }
 
+  /**
+   * Method used to update quiz mode with specified ID
+   * @param id identifier of the quiz mode
+   * @param mode new quiz mode value
+   * @return response with update status (OK or NOT FOUND if word does not exist)
+   */
   def updateQuizMode(id: Int, mode: Mode): IO[Response[IO]] = {
     val idPosition: Int = quizModes.indexWhere(mode => mode.id.equals(id))
     if (-1 == idPosition) {
@@ -44,6 +58,10 @@ class ModeService {
     Ok(s"Updated quiz mode ID: $id")
   }
 
+  /**
+   * Method used to initialize quiz modes list with data from internal JSON file
+   * @return ListBuffer with supported quiz modes
+   */
   private def initializeModes(): ListBuffer[Mode] = {
     val foundModes: ListBuffer[Mode] = new ListBuffer()
     val modesFile = new File(resourceDir.resolve(quizModesFile).toString)

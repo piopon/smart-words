@@ -30,8 +30,9 @@ class ModeService {
   }
 
   def createQuizMode: IO[Response[IO]] = {
-    quizModes += Mode(100, "", "", List())
-    Ok("Added new quiz mode")
+    val freeId = quizModes.map(mode => mode.id).sorted.last
+    quizModes += Mode(freeId, "", "", List())
+    Ok(s"Added new quiz mode ID: $freeId")
   }
 
   private def initializeModes(): ListBuffer[Mode] = {

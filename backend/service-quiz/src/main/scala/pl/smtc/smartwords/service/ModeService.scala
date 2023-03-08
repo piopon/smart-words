@@ -30,7 +30,7 @@ class ModeService {
   }
 
   def createQuizMode: IO[Response[IO]] = {
-    val freeId = quizModes.map(mode => mode.id).sorted.last
+    val freeId: Int = quizModes.map(mode => mode.id).max
     quizModes += Mode(freeId, "", "", List())
     Ok(s"Added new quiz mode ID: $freeId")
   }

@@ -35,6 +35,14 @@ class ModeService {
     Ok(s"Added new quiz mode ID: $freeId")
   }
 
+  def updateQuizMode(id: Int, mode: Mode): IO[Response[IO]] = {
+    if (quizModes.filter(mode => mode.id.equals(id)).isEmpty) {
+      return BadRequest("Cannot find mode with ID: " + id)
+    }
+    quizModes.update(0, mode)
+    Ok(s"Updated quiz mode ID: $id")
+  }
+
   private def initializeModes(): ListBuffer[Mode] = {
     val foundModes: ListBuffer[Mode] = new ListBuffer()
     val modesFile = new File(resourceDir.resolve(quizModesFile).toString)

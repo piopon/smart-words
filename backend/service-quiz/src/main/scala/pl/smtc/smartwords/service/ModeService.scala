@@ -23,13 +23,13 @@ class ModeService {
 
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
   private val quizModesFile = "modes.json"
-  private val quizModes: List[Mode] = initializeModes()
+  private val quizModes: ListBuffer[Mode] = initializeModes()
 
   def getQuizModes: IO[Response[IO]] = {
-    Ok(quizModes.asJson)
+    Ok(quizModes.toList.asJson)
   }
 
-  private def initializeModes(): List[Mode] = {
+  private def initializeModes(): ListBuffer[Mode] = {
     val foundModes: ListBuffer[Mode] = new ListBuffer()
     val modesFile = new File(resourceDir.resolve(quizModesFile).toString)
     Using(new BufferedInputStream(new FileInputStream(modesFile))) { fileStream =>
@@ -39,6 +39,6 @@ class ModeService {
         case Left(fail) => println(s"Invalid modes file ${modesFile.getName}: ${fail.getMessage}")
       }
     }
-    foundModes.toList
+    foundModes
   }
 }

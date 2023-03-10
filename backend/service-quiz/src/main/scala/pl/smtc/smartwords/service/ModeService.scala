@@ -37,7 +37,7 @@ class ModeService {
   def getSupportedSettings: IO[Response[IO]] = {
     val supportedSettings: List[Setting] = Kind.values.toList
       .filter(kind => kind != Kind.unknown)
-      .map(kind => Setting("", kind, ""))
+      .map(kind => Setting(kind, "", ""))
     Ok(supportedSettings.asJson)
   }
 

@@ -50,7 +50,7 @@ class ModeService {
    * @return confirmation response with ID of newly created quiz mode
    */
   def createQuizMode: IO[Response[IO]] = {
-    val freeId: Int = quizModes.map(mode => mode.id).max
+    val freeId: Int = quizModes.map(mode => mode.id).max + 1
     quizModes += Mode(freeId, "", "", List())
     Ok(s"Added new quiz mode ID: $freeId")
   }

@@ -12,12 +12,12 @@ import pl.smtc.smartwords.model._
 
 import scala.collection.mutable.ListBuffer
 
-class ModeService {
+class ModeService(database: ModeDatabase) {
 
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
   implicit val SettingEncoder: Encoder[Setting] = SettingDao.getSettingEncoder
 
-  private val quizModes: ListBuffer[Mode] = new ModeDatabase().initializeModes()
+  private val quizModes: ListBuffer[Mode] = database.initializeModes()
 
   /**
    * Method used to receive the list of current quiz modes

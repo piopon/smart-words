@@ -24,7 +24,7 @@ class ModeController(database: ModeDatabase) {
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {
-    val service: ModeService = new ModeService()
+    val service: ModeService = new ModeService(database)
     val dsl = Http4sDsl[IO]; import dsl._
     implicit val modeDecoder: EntityDecoder[IO, Mode] = jsonOf[IO, Mode]
     HttpRoutes.of[IO] {

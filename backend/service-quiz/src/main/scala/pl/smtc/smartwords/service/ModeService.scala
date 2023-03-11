@@ -66,6 +66,7 @@ class ModeService {
     if (-1 == idPosition) {
       return NotFound("Cannot find mode with ID: " + id)
     }
+    mode.id = id
     quizModes.update(idPosition, mode)
     Ok(s"Updated quiz mode ID: $id")
   }

@@ -7,4 +7,4 @@ package pl.smtc.smartwords.model
  * @param description mode detailed description (also visible in UI)
  * @param settings the list of setting of a particular quiz mode
  */
-case class Mode(id: Int, name: String, description: String, settings: List[Setting])
+case class Mode(var id: Int, name: String, description: String, settings: List[Setting])

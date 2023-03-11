@@ -15,14 +15,14 @@ class ModeDatabase {
 
   implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
 
+  private val quizModesFile: String = "modes.json"
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
-  private val quizModesFile = "modes.json"
 
   /**
-   * Method used to initialize quiz modes list with data from internal JSON file
+   * Method used to load and populate quiz modes list with data from internal JSON file
    * @return ListBuffer with supported quiz modes
    */
-  def initializeModes(): ListBuffer[Mode] = {
+  def loadDatabase(): ListBuffer[Mode] = {
     val foundModes: ListBuffer[Mode] = new ListBuffer()
     val modesFile = new File(resourceDir.resolve(quizModesFile).toString)
     Using(new BufferedInputStream(new FileInputStream(modesFile))) { fileStream =>

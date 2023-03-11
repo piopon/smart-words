@@ -34,6 +34,10 @@ class ModeService {
     Ok(quizModes.toList.asJson)
   }
 
+  /**
+   * Method used to receive the list of all supported settings
+   * @return response with a list of supported settings
+   */
   def getSupportedSettings: IO[Response[IO]] = {
     val supportedSettings: List[Setting] = Kind.values.toList
       .filter(kind => kind != Kind.unknown)

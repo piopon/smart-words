@@ -8,6 +8,7 @@ import org.http4s.server._
 import org.http4s.server.middleware._
 import org.http4s.ember.server._
 import pl.smtc.smartwords.controller._
+import pl.smtc.smartwords.database._
 
 import scala.concurrent.duration.DurationInt
 
@@ -15,7 +16,7 @@ object ServiceQuizApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
     val healthController: HealthController = new HealthController()
-    val modeController: ModeController = new ModeController()
+    val modeController: ModeController = new ModeController(new ModeDatabase())
     val quizController: QuizController = new QuizController()
 
     val config = CORSConfig(anyOrigin = true, allowCredentials = true, 1.day.toSeconds, anyMethod = true)

@@ -6,10 +6,11 @@ import io.circe._
 import org.http4s._
 import org.http4s.dsl._
 import pl.smtc.smartwords.dao._
+import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 import pl.smtc.smartwords.service._
 
-class ModeController {
+class ModeController(database: ModeDatabase) {
 
   implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
 

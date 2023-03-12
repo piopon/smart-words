@@ -24,7 +24,7 @@ class ModeService(database: ModeDatabase) {
    * @return response with list of quiz modes
    */
   def getQuizModes: IO[Response[IO]] = {
-    Ok(quizModes.toList.asJson)
+    Ok(database.getModes.asJson)
   }
 
   /**
@@ -43,9 +43,8 @@ class ModeService(database: ModeDatabase) {
    * @return confirmation response with ID of newly created quiz mode
    */
   def createQuizMode: IO[Response[IO]] = {
-    val freeId: Int = quizModes.map(mode => mode.id).max + 1
-    quizModes += Mode(freeId, "", "", List())
-    Ok(s"Added new quiz mode ID: $freeId")
+    val newId: Int = database.addMode()
+    Ok(s"Added new quiz mode ID: $newId")
   }
 
   /**

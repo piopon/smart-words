@@ -15,6 +15,7 @@ class ModeDatabase {
 
   implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
 
+  private val quizModes: ListBuffer[Mode] = ListBuffer()
   private val quizModesFile: String = "modes.json"
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
 
@@ -22,17 +23,21 @@ class ModeDatabase {
    * Method used to load and populate quiz modes list with data from internal JSON file
    * @return ListBuffer with supported quiz modes
    */
-  def loadDatabase(): ListBuffer[Mode] = {
-    val foundModes: ListBuffer[Mode] = new ListBuffer()
+  def loadDatabase(): Boolean = {
+    var result: Boolean = false
     val modesFile = new File(resourceDir.resolve(quizModesFile).toString)
     Using(new BufferedInputStream(new FileInputStream(modesFile))) { fileStream =>
       val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
       decode[List[Mode]](lines) match {
-        case Right(modes) => modes.foreach(mode => foundModes += mode)
-        case Left(fail) => println(s"Invalid modes file ${modesFile.getName}: ${fail.getMessage}")
+        case Right(modes) =>
+          modes.foreach(mode => quizModes += mode)
+          result = true
+        case Left(fail) =>
+          println(s"Invalid modes file ${modesFile.getName}: ${fail.getMessage}")
+          result = false
       }
     }
-    foundModes
+    result
   }
 
   def getModes: List[Mode] = quizModes.toList

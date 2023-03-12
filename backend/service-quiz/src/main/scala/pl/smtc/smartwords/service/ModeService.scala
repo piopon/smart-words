@@ -52,12 +52,10 @@ class ModeService(database: ModeDatabase) {
    * @return response with update status (OK or NOT FOUND if word does not exist)
    */
   def updateQuizMode(id: Int, mode: Mode): IO[Response[IO]] = {
-    val idPosition: Int = quizModes.indexWhere(mode => mode.id.equals(id))
-    if (-1 == idPosition) {
+    val updated: Boolean = database.updateMode(id, mode)
+    if (!updated) {
       return NotFound("Cannot find mode with ID: " + id)
     }
-    mode.id = id
-    quizModes.update(idPosition, mode)
     Ok(s"Updated quiz mode ID: $id")
   }
 }

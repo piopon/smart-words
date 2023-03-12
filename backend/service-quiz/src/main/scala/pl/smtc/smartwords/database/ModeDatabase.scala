@@ -47,4 +47,14 @@ class ModeDatabase {
     quizModes += Mode(freeId, "", "", List())
     freeId
   }
+
+  def updateMode(id: Int, newMode: Mode): Boolean = {
+    val idIndex: Int = quizModes.indexWhere(mode => mode.id.equals(id))
+    if (-1 == idIndex) {
+      return false
+    }
+    newMode.id = id
+    quizModes.update(idIndex, newMode)
+    true
+  }
 }

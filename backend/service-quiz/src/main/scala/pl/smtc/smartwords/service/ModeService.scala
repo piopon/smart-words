@@ -58,4 +58,12 @@ class ModeService(database: ModeDatabase) {
     }
     Ok(s"Updated quiz mode ID: $id")
   }
+
+  def deleteQuizMode(id: Int): IO[Response[IO]] = {
+    val deleted: Boolean = database.deleteMode(id)
+    if (!deleted) {
+      return NotFound("Cannot find mode with ID: " + id)
+    }
+    Ok(s"Deleted quiz mode ID: $id")
+  }
 }

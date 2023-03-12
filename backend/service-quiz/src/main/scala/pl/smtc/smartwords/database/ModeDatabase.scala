@@ -57,4 +57,13 @@ class ModeDatabase {
     quizModes.update(idIndex, newMode)
     true
   }
+
+  def deleteMode(id: Int): Boolean = {
+    val idIndex: Int = quizModes.indexWhere(mode => mode.id.equals(id))
+    if (-1 == idIndex) {
+      return false
+    }
+    quizModes.remove(idIndex)
+    true
+  }
 }

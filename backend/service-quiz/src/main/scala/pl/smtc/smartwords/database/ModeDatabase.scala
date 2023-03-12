@@ -34,4 +34,12 @@ class ModeDatabase {
     }
     foundModes
   }
+
+  def getModes: List[Mode] = quizModes.toList
+
+  def addMode(): Int = {
+    val freeId: Int = quizModes.map(mode => mode.id).max + 1
+    quizModes += Mode(freeId, "", "", List())
+    freeId
+  }
 }

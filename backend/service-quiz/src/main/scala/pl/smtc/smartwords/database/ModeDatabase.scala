@@ -25,7 +25,7 @@ class ModeDatabase {
    */
   def loadDatabase(): Boolean = {
     var result: Boolean = false
-    val modesFile = new File(resourceDir.resolve(quizModesFile).toString)
+    val modesFile: File = new File(resourceDir.resolve(quizModesFile).toString)
     Using(new BufferedInputStream(new FileInputStream(modesFile))) { fileStream =>
       val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
       decode[List[Mode]](lines) match {

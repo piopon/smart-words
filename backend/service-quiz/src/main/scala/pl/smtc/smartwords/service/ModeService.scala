@@ -17,8 +17,6 @@ class ModeService(database: ModeDatabase) {
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
   implicit val SettingEncoder: Encoder[Setting] = SettingDao.getSettingEncoder
 
-  private val quizModes: ListBuffer[Mode] = database.loadDatabase()
-
   /**
    * Method used to receive the list of current quiz modes
    * @return response with list of quiz modes

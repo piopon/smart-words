@@ -21,7 +21,7 @@ class ModeDatabase {
 
   /**
    * Method used to load and populate quiz modes list with data from internal JSON file
-   * @return ListBuffer with supported quiz modes
+   * @return true if at existing mode file was read correctly or if no dictionary files are present, false otherwise
    */
   def loadDatabase(): Boolean = {
     var result: Boolean = false

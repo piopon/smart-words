@@ -56,10 +56,16 @@ function initializeSettingsContent() {
   const deletableModeSettings = false;
   let settingsPlaceholder = document.getElementById("settings-placeholder");
   if (settingsPlaceholder === null) return;
-  settingsPlaceholder.innerHTML = Object.values(SUPPORTED_SETTINGS)
-    .map((setting) => createModeSettingBox(setting, deletableModeSettings))
-    .join("");
-  updateSupportedSettingsBoxes();
+  getModeSettings((err, data) => {
+    if (err) {
+      console.log("ERROR " + err.status + ": " + err.message);
+    } else {
+      settingsPlaceholder.innerHTML = Object.values(data)
+        .map((setting) => createModeSettingBox(setting, deletableModeSettings))
+        .join("");
+      updateSupportedSettingsBoxes();
+    }
+  });
 }
 
 /**

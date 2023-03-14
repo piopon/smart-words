@@ -1,22 +1,5 @@
 // the list of currently supported languages
 const SUPPORTED_LANGUAGES = ["de", "en", "es", "fr", "pl", "pt"];
-const SUPPORTED_SETTINGS = [
-  {
-    "type": "languages",
-    "label": "",
-    "details": ""
-  },
-  {
-    "type": "questions",
-    "label": "",
-    "details": ""
-  },
-  {
-    "type": "timer",
-    "label": "",
-    "details": ""
-  }
-];
 // variables used by quiz modes tab in settings page
 var availableQuizModes = undefined;
 var availableModeSettings = undefined;
@@ -505,7 +488,7 @@ function handleBoxDrop(e) {
       currentlyEditedMode.settings.splice(oldIndex, 1);
     } else {
       // dragged element is new for currently edited mode (dragged to mode placeholder)
-      let newSetting = SUPPORTED_SETTINGS.find(
+      let newSetting = availableModeSettings.find(
         (setting) => setting.type === getSettingBoxName(currentlyDraggedElement)
       );
       currentlyEditedMode.settings.splice(dropPosition, 0, newSetting);

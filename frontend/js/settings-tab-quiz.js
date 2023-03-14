@@ -19,6 +19,7 @@ const SUPPORTED_SETTINGS = [
 ];
 // variables used by quiz modes tab in settings page
 var availableQuizModes = undefined;
+var availableModeSettings = undefined;
 var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
@@ -61,7 +62,10 @@ function initializeSettingsContent() {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       settingsPlaceholder.innerHTML = Object.values(data)
-        .map((setting) => createModeSettingBox(setting, deletableModeSettings))
+        .map((setting) => {
+          availableModeSettings.push(setting);
+          return createModeSettingBox(setting, deletableModeSettings);
+        })
         .join("");
       updateSupportedSettingsBoxes();
     }

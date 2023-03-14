@@ -115,6 +115,21 @@ const getQuizStop = (quizID, callback) => {
   getRequest.send();
 };
 
+const getModeSettings = (callback) => {
+  const getRequest = new XMLHttpRequest();
+  getRequest.addEventListener("readystatechange", () => {
+    if (getRequest.DONE !== getRequest.readyState) return;
+    if (getRequest.status === 200) {
+      callback(undefined, JSON.parse(getRequest.responseText));
+    } else {
+      callback(createErrorObject("cannot get quiz mode settings", getRequest.status), undefined);
+    }
+  });
+  getRequest.open("GET", URL + "modes/settings");
+  getRequest.timeout = REQUEST_TIMEOUT;
+  getRequest.send();
+};
+
 /**
  * Method used to create error object from message and response status
  *

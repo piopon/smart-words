@@ -18,7 +18,7 @@ const SUPPORTED_SETTINGS = [
   }
 ];
 // variables used by quiz modes tab in settings page
-var settingsQuizModes = undefined;
+var availableQuizModes = undefined;
 var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
@@ -27,7 +27,7 @@ var currentlyDraggedElement = undefined;
  * Method used to read all defined quiz modes from backend service and display them in the UI tab
  */
 function initializeTabQuizModes() {
-  settingsQuizModes = [];
+  availableQuizModes = [];
   getQuizModes((err, data) => {
     if (err) {
       console.log("ERROR " + err.status + ": " + err.message);
@@ -36,7 +36,7 @@ function initializeTabQuizModes() {
       if (quizModesTableBody === null) return;
       quizModesTableBody.innerHTML = Object.values(data)
         .map((item) => {
-          settingsQuizModes.push(item);
+          availableQuizModes.push(item);
           return `<tr id="mode-${item.id}" class="not-selected" onclick="selectMode(${item.id})">
                     <td>${item.id}</td>
                     <td>${item.name}</td>
@@ -68,7 +68,7 @@ function initializeSettingsContent() {
  * @param {Integer} modeId identifier of the mode which details we want to display in settings view
  */
 function selectMode(modeId) {
-  currentlyEditedMode = settingsQuizModes.find((mode) => mode.id === modeId);
+  currentlyEditedMode = availableQuizModes.find((mode) => mode.id === modeId);
   if (currentlyEditedMode === undefined) return;
   currentlyExpandedState.clear();
   updateQuizModesTable(modeId);

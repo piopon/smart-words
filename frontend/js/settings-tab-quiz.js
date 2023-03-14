@@ -37,6 +37,7 @@ function initializeTabQuizModes() {
  * @returns HTML code for supported settings content column
  */
 function initializeSettingsContent() {
+  availableModeSettings = [];
   const deletableModeSettings = false;
   let settingsPlaceholder = document.getElementById("settings-placeholder");
   if (settingsPlaceholder === null) return;

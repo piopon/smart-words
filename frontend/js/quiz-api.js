@@ -95,6 +95,27 @@ const getQuizStop = (quizID, callback) => {
 };
 
 /**
+ * Method used to send a request to the quiz service to create a new empty quiz mode
+ *
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
+const postNewQuizMode = (callback) => {
+  const postRequest = new XMLHttpRequest();
+  postRequest.addEventListener("readystatechange", () => {
+    if (postRequest.DONE !== postRequest.readyState) return;
+    if (postRequest.status === 200) {
+      callback(undefined, JSON.parse(postRequest.responseText));
+    } else {
+      callback(createErrorObject("cannot create new quiz mode", postRequest.status), undefined);
+    }
+  });
+  postRequest.open("POST", URL + "modes");
+  postRequest.timeout = REQUEST_TIMEOUT;
+  postRequest.send();
+};
+
+/**
  * Method used to send a request to the quiz service to receive all quiz modes
  *
  * @param {Function} callback function to be invoked when request is completed.

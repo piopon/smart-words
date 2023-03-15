@@ -115,6 +115,12 @@ const getQuizStop = (quizID, callback) => {
   getRequest.send();
 };
 
+/**
+ * Method used to send a request to the quiz service to receive all quiz modes settings
+ *
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
 const getModeSettings = (callback) => {
   const getRequest = new XMLHttpRequest();
   getRequest.addEventListener("readystatechange", () => {

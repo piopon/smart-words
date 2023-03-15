@@ -41,8 +41,8 @@ class ModeService(database: ModeDatabase) {
    * @return confirmation response with ID of newly created quiz mode
    */
   def createQuizMode: IO[Response[IO]] = {
-    val newId: Int = database.addMode()
-    Ok(s"Added new quiz mode ID: $newId")
+    val newMode: Mode = database.addMode()
+    Ok(newMode.asJson)
   }
 
   /**

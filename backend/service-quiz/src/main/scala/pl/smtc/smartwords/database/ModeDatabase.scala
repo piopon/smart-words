@@ -42,10 +42,11 @@ class ModeDatabase {
 
   def getModes: List[Mode] = quizModes.toList
 
-  def addMode(): Int = {
+  def addMode(): Mode = {
     val freeId: Int = quizModes.map(mode => mode.id).max + 1
-    quizModes += Mode(freeId, "", "", List())
-    freeId
+    val newMode: Mode = Mode(freeId, "", "", List())
+    quizModes += newMode
+    newMode
   }
 
   def updateMode(id: Int, newMode: Mode): Boolean = {

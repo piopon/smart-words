@@ -56,6 +56,17 @@ function initializeSettingsContent() {
   });
 }
 
+function createNewMode() {
+  postNewQuizMode((err, data) => {
+    if (err) {
+      console.log("ERROR " + err.status + ": " + err.message);
+    } else {
+      availableQuizModes.push(data);
+      console.log(availableQuizModes);
+    }
+  });
+}
+
 /**
  * Method used to display details of the selected mode ID in the settings view
  *

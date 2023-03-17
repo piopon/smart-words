@@ -57,6 +57,17 @@ function createQuizMode() {
   });
 }
 
+function updateQuizMode() {
+  putQuizMode(currentlyEditedMode.id, currentlyEditedMode, (err, data) => {
+    if (err) {
+      console.log("ERROR " + err.status + ": " + err.message);
+    } else {
+      console.log(data);
+      updateQuizModesTable();
+    }
+  });
+}
+
 /**
  * Method used to display details of the selected mode ID in the settings view
  *

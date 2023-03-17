@@ -18,15 +18,7 @@ function initializeTabQuizModes() {
     } else {
       let quizModesTableBody = document.querySelector("table#quiz-modes-available tbody");
       if (quizModesTableBody === null) return;
-      quizModesTableBody.innerHTML = Object.values(data)
-        .map((item) => {
-          availableQuizModes.push(item);
-          return `<tr id="mode-${item.id}" class="not-selected" onclick="selectMode(${item.id})">
-                    <td>${item.id}</td>
-                    <td>${item.name}</td>
-                  </tr>`;
-        })
-        .join("");
+      quizModesTableBody.innerHTML = createModesTableContent(availableQuizModes);
     }
   });
 }
@@ -62,7 +54,9 @@ function createNewMode() {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       availableQuizModes.push(data);
-      console.log(availableQuizModes);
+      let quizModesTableBody = document.querySelector("table#quiz-modes-available tbody");
+      if (quizModesTableBody === null) return;
+      quizModesTableBody.innerHTML = createModesTableContent(availableQuizModes);
     }
   });
 }

@@ -70,17 +70,17 @@ function selectMode(modeId) {
   currentlyEditedMode = availableQuizModes.find((mode) => mode.id === modeId);
   if (currentlyEditedMode === undefined) return;
   currentlyExpandedState.clear();
-  updateQuizModesTable(modeId);
+  updateQuizModesTableSelection(modeId);
   updateQuizModesPlaceholder(currentlyEditedMode);
   updateSupportedSettingsBoxes();
 }
 
 /**
- * Method used to update the select table state of the mode with specified ID
+ * Method used to update the table select state of the mode with specified ID
  *
  * @param {Integer} modeId identifier of the mode which should be marked as selected in the modes table
  */
-function updateQuizModesTable(modeId) {
+function updateQuizModesTableSelection(modeId) {
   document.querySelectorAll(`table#quiz-modes-available tbody tr`).forEach((tableRow) => {
     tableRow.className = tableRow.id === `mode-${modeId}` ? "selected" : "not-selected";
   });

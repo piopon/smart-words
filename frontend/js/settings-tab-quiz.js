@@ -128,6 +128,17 @@ function updateSupportedSettingsBoxes() {
   });
 }
 
+function createModesTableContent(modes) {
+  return Object.values(modes)
+    .map((mode) => {
+      return `<tr id="mode-${mode.id}" class="not-selected" onclick="selectMode(${mode.id})">
+                    <td>${mode.id}</td>
+                    <td>${mode.name}</td>
+                  </tr>`;
+    })
+    .join("");
+}
+
 /**
  * Method used to create the quiz modes placeholder divider HTML content
  *

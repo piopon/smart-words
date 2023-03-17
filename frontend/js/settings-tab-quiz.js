@@ -46,6 +46,9 @@ function initializeSettingsContent() {
   });
 }
 
+/**
+ * Method used to create new quiz mode and handle UI update
+ */
 function createQuizMode() {
   postQuizMode((err, data) => {
     if (err) {
@@ -57,6 +60,9 @@ function createQuizMode() {
   });
 }
 
+/**
+ * Method used to save quiz mode changes and handle UI update
+ */
 function updateQuizMode() {
   putQuizMode(currentlyEditedMode.id, currentlyEditedMode, (err, data) => {
     if (err) {
@@ -82,6 +88,9 @@ function selectMode(modeId) {
   updateSupportedSettingsBoxes();
 }
 
+/**
+ * Method used to update the quiz modes table content
+ */
 function updateQuizModesTable() {
   let quizModesTableBody = document.querySelector("table#quiz-modes-available tbody");
   if (quizModesTableBody === null) return;
@@ -135,6 +144,12 @@ function updateSupportedSettingsBoxes() {
   });
 }
 
+/**
+ * Method used to create the quiz modes table HTML content
+ *
+ * @param {Array} modes list of quiz modes which we want to put in a table row/cell
+ * @returns HTML code of the quiz modes table data (rows/cells)
+ */
 function createModesTableContent(modes) {
   return Object.values(modes)
     .map((mode) => {

@@ -115,6 +115,14 @@ const postQuizMode = (callback) => {
   postRequest.send();
 };
 
+/**
+ * Method used to send a request to the quiz service to update quiz mode with specified ID
+ *
+ * @param {Integer} id identifier of the mode which should be changed
+ * @param {Object} newMode updated/refreshed data of the mode which we want to save
+ * @param {Function} callback callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
 const putQuizMode = (id, newMode, callback) => {
   const putRequest = new XMLHttpRequest();
   putRequest.addEventListener("readystatechange", () => {

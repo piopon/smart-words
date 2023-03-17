@@ -1,7 +1,7 @@
 // the list of currently supported languages
 const SUPPORTED_LANGUAGES = ["de", "en", "es", "fr", "pl", "pt"];
 // variables used by quiz modes tab in settings page
-var availableQuizModes = undefined;
+var availableQuizModes = [];
 var availableModeSettings = undefined;
 var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
@@ -11,7 +11,6 @@ var currentlyDraggedElement = undefined;
  * Method used to read all defined quiz modes from backend service and display them in the UI tab
  */
 function initializeTabQuizModes() {
-  availableQuizModes = [];
   getQuizModes((err, data) => {
     if (err) {
       console.log("ERROR " + err.status + ": " + err.message);

@@ -16,9 +16,7 @@ function initializeTabQuizModes() {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       availableQuizModes = data;
-      let quizModesTableBody = document.querySelector("table#quiz-modes-available tbody");
-      if (quizModesTableBody === null) return;
-      quizModesTableBody.innerHTML = createModesTableContent(availableQuizModes);
+      updateQuizModesTable();
     }
   });
 }
@@ -54,9 +52,7 @@ function createQuizMode() {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       availableQuizModes.push(data);
-      let quizModesTableBody = document.querySelector("table#quiz-modes-available tbody");
-      if (quizModesTableBody === null) return;
-      quizModesTableBody.innerHTML = createModesTableContent(availableQuizModes);
+      updateQuizModesTable();
     }
   });
 }
@@ -73,6 +69,12 @@ function selectMode(modeId) {
   updateQuizModesTableSelection(modeId);
   updateQuizModesPlaceholder(currentlyEditedMode);
   updateSupportedSettingsBoxes();
+}
+
+function updateQuizModesTable() {
+  let quizModesTableBody = document.querySelector("table#quiz-modes-available tbody");
+  if (quizModesTableBody === null) return;
+  quizModesTableBody.innerHTML = createModesTableContent(availableQuizModes);
 }
 
 /**

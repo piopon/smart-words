@@ -16,6 +16,7 @@ function initializeTabQuizModes() {
     if (err) {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
+      availableQuizModes = data;
       let quizModesTableBody = document.querySelector("table#quiz-modes-available tbody");
       if (quizModesTableBody === null) return;
       quizModesTableBody.innerHTML = createModesTableContent(availableQuizModes);

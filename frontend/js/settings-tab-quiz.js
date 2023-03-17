@@ -48,8 +48,8 @@ function initializeSettingsContent() {
   });
 }
 
-function createNewMode() {
-  postNewQuizMode((err, data) => {
+function createQuizMode() {
+  postQuizMode((err, data) => {
     if (err) {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {

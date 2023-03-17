@@ -100,7 +100,7 @@ const getQuizStop = (quizID, callback) => {
  * @param {Function} callback function to be invoked when request is completed.
  *                            It should contain 2 parameters: error object and data object.
  */
-const postNewQuizMode = (callback) => {
+const postQuizMode = (callback) => {
   const postRequest = new XMLHttpRequest();
   postRequest.addEventListener("readystatechange", () => {
     if (postRequest.DONE !== postRequest.readyState) return;

@@ -115,6 +115,22 @@ const postQuizMode = (callback) => {
   postRequest.send();
 };
 
+const putQuizMode = (id, newMode, callback) => {
+  const putRequest = new XMLHttpRequest();
+  putRequest.addEventListener("readystatechange", () => {
+    if (putRequest.DONE !== putRequest.readyState) return;
+    if (putRequest.status === 200) {
+      callback(undefined, putRequest.responseText);
+    } else {
+      callback(createErrorObject("cannot create new quiz mode", putRequest.status), undefined);
+    }
+  });
+  putRequest.open("PUT", URL + "modes/" + id);
+  putRequest.timeout = REQUEST_TIMEOUT;
+  putRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  putRequest.send(JSON.stringify(newMode));
+};
+
 /**
  * Method used to send a request to the quiz service to receive all quiz modes
  *

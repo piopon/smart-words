@@ -324,10 +324,11 @@ function createContentLanguages(setting) {
  * @param {String} inputValue the initial value of a text
  * @returns HTML code for input text with a label contained in a divider element
  */
-function createSettingInputText(labelText, inputValue) {
+function createSettingInputText(id, labelText, inputValue) {
   return `<div class="mode-setting-text-edit">
-            <label class="mode-setting-label">${labelText}</label>
-            <input type="text" class="mode-setting-value" placeholder="specify value" value="${inputValue}" />
+            <label class="mode-setting-label" for="${id}">${labelText}</label>
+            <input type="text" id="${id}" class="mode-setting-value"
+                                          placeholder="specify value" value="${inputValue}" />
           </div>`;
 }
 

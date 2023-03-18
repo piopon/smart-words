@@ -10,8 +10,6 @@ import pl.smtc.smartwords.dao._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 
-import scala.collection.mutable.ListBuffer
-
 class ModeService(database: ModeDatabase) {
 
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder

@@ -64,6 +64,7 @@ function createQuizMode() {
  * Method used to save quiz mode changes and handle UI update
  */
 function updateQuizMode() {
+  updateEditedMode();
   putQuizMode(currentlyEditedMode.id, currentlyEditedMode, (err, data) => {
     if (err) {
       console.log("ERROR " + err.status + ": " + err.message);
@@ -72,6 +73,11 @@ function updateQuizMode() {
       updateQuizModesTable();
     }
   });
+}
+
+function updateEditedMode() {
+  currentlyEditedMode.name = document.querySelector(`input#general-name`).value;
+  currentlyEditedMode.description = document.querySelector(`input#general-desc`).value;
 }
 
 /**

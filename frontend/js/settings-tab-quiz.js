@@ -364,13 +364,13 @@ function createSettingInputNumber(id, labelText, initValue, minValue, maxValue) 
  * @param {String} languages short codes of used languages
  * @returns HTML code for input language with a label contained in a divider element
  */
-function createSettingInputLanguage(labelText, languages) {
+function createSettingInputLanguage(id, labelText, languages) {
   var allFlagsCheckboxes = Object.values(SUPPORTED_LANGUAGES)
     .map((lang) => createSettingFlagCheckbox(`${lang}-32-box.png`, languages.includes(lang)))
     .join("");
   return `<div class="mode-setting-languages-edit">
-            <label class="mode-setting-label">${labelText}</label>
-            <div class="mode-setting-flag-container">${allFlagsCheckboxes}</div>
+            <label class="mode-setting-label" for="${id}">${labelText}</label>
+            <div id="${id}" class="mode-setting-flag-container">${allFlagsCheckboxes}</div>
           </div>`;
 }
 

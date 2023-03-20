@@ -307,9 +307,9 @@ function createContentQuestions(setting) {
   const questionRegex = /value='(?<default>\d+)' min='(?<min>\d+)' max='(?<max>\d+)'/;
   const questionValues = setting.details.match(questionRegex);
   return createSettingInputText("questions-label", "specify setting label", setting.label) +
-         createSettingInputNumber("minimum value", questionValues === null ? "": questionValues.groups.min, 1, 5) +
-         createSettingInputNumber("default value", questionValues === null ? "": questionValues.groups.default, 1, 50) +
-         createSettingInputNumber("maximum value", questionValues === null ? "" :questionValues.groups.max, 25, 50);
+         createSettingInputNumber("questions-min", "minimum value", questionValues === null ? "": questionValues.groups.min, 1, 5) +
+         createSettingInputNumber("questions-def", "default value", questionValues === null ? "": questionValues.groups.default, 1, 50) +
+         createSettingInputNumber("questions-max", "maximum value", questionValues === null ? "" :questionValues.groups.max, 25, 50);
 }
 
 /**
@@ -320,7 +320,7 @@ function createContentQuestions(setting) {
  */
 function createContentLanguages(setting) {
   return createSettingInputText("languages-label", "specify setting label", setting.label) +
-         createSettingInputLanguage("select supported languages", setting.details);
+         createSettingInputLanguage("languages-used", "select supported languages", setting.details);
 }
 
 /**

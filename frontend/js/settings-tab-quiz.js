@@ -347,12 +347,13 @@ function createSettingInputText(id, labelText, inputValue) {
  * @param {Integer} maxValue the maximym value of a number input
  * @returns HTML code for input number with a label contained in a divider element
  */
-function createSettingInputNumber(labelText, initValue, minValue, maxValue) {
+function createSettingInputNumber(id, labelText, initValue, minValue, maxValue) {
   return `<div class="mode-setting-number-edit">
-            <label class="mode-setting-label">${labelText}</label>
-            <input type="number" class="mode-setting-value" placeholder="specify value" value="${initValue}"
-                                                            min="${minValue}" max="${maxValue}"
-                                                            onfocusout=forceMinMaxConstraints(this) />
+            <label class="mode-setting-label" for="${id}">${labelText}</label>
+            <input type="number" id="${id}" class="mode-setting-value"
+                                            placeholder="specify value" value="${initValue}"
+                                            min="${minValue}" max="${maxValue}"
+                                            onfocusout=forceMinMaxConstraints(this) />
           </div>`;
 }
 

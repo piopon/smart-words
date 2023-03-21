@@ -76,19 +76,19 @@ function updateQuizMode() {
 }
 
 function updateEditedMode() {
-  currentlyEditedMode.name = document.querySelector(`div#mode-placeholder input#general-name`).value;
-  currentlyEditedMode.description = document.querySelector(`div#mode-placeholder input#general-desc`).value;
+  currentlyEditedMode.name = getEditedModeValueById("general-name");
+  currentlyEditedMode.description = getEditedModeValueById("general-desc");
   currentlyEditedMode.settings.forEach(setting => {
     switch (setting.type) {
       case "questions":
-        setting.label = document.querySelector(`div#mode-placeholder input#questions-label`).value;
-        const initVal = document.querySelector(`div#mode-placeholder input#questions-def`).value;
-        const minVal = document.querySelector(`div#mode-placeholder input#questions-min`).value;
-        const maxVal = document.querySelector(`div#mode-placeholder input#questions-max`).value;
+        setting.label = getEditedModeValueById("questions-label");
+        const initVal = getEditedModeValueById("questions-def");
+        const minVal = getEditedModeValueById("questions-min");
+        const maxVal = getEditedModeValueById("questions-max");
         setting.details = `value='${initVal}' min='${minVal}' max='${maxVal}'`;
         break;
       case "languages":
-        setting.label = document.querySelector(`div#mode-placeholder input#languages-label`).value;
+        setting.label = getEditedModeValueById("languages-label");
         setting.details = Object.values(SUPPORTED_LANGUAGES)
           .map((lang) => document.querySelector(`div#mode-placeholder input#check-flag-${lang}`).checked ? lang + " " : "")
           .join("").trim();

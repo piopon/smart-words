@@ -100,6 +100,10 @@ function updateEditedMode() {
   });
 }
 
+function getEditedModeValueById(inputId) {
+  return document.querySelector(`div#mode-placeholder input#${inputId}`).value
+}
+
 /**
  * Method used to display details of the selected mode ID in the settings view
  *

@@ -306,10 +306,13 @@ function createContentGeneral(setting) {
 function createContentQuestions(setting) {
   const questionRegex = /value='(?<default>\d+)' min='(?<min>\d+)' max='(?<max>\d+)'/;
   const questionValues = setting.details.match(questionRegex);
+  const initMinimumValue = questionValues === null ? "": questionValues.groups.min;
+  const initDefaultValue = questionValues === null ? "": questionValues.groups.default;
+  const initMaximumValue = questionValues === null ? "" :questionValues.groups.max;
   return createSettingInputText("questions-label", "specify setting label", setting.label) +
-         createSettingInputNumber("questions-min", "minimum value", questionValues === null ? "": questionValues.groups.min, 1, 5) +
-         createSettingInputNumber("questions-def", "default value", questionValues === null ? "": questionValues.groups.default, 1, 50) +
-         createSettingInputNumber("questions-max", "maximum value", questionValues === null ? "" :questionValues.groups.max, 25, 50);
+         createSettingInputNumber("questions-min", "minimum value", initMinimumValue, 1, 5) +
+         createSettingInputNumber("questions-def", "default value", initDefaultValue, 1, 50) +
+         createSettingInputNumber("questions-max", "maximum value", initMaximumValue, 25, 50);
 }
 
 /**

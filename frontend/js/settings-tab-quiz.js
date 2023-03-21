@@ -76,8 +76,8 @@ function updateQuizMode() {
 }
 
 function updateEditedMode() {
-  currentlyEditedMode.name = document.querySelector(`input#general-name`).value;
-  currentlyEditedMode.description = document.querySelector(`input#general-desc`).value;
+  currentlyEditedMode.name = document.querySelector(`div#mode-placeholder input#general-name`).value;
+  currentlyEditedMode.description = document.querySelector(`div#mode-placeholder input#general-desc`).value;
 }
 
 /**

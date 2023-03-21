@@ -89,17 +89,9 @@ function updateEditedMode() {
         break;
       case "languages":
         setting.label = document.querySelector(`div#mode-placeholder input#languages-label`).value;
-        var checkedLanguages = Object.values(SUPPORTED_LANGUAGES)
-          .map((lang) => {
-            const el = document.querySelector(`div#mode-placeholder input#check-flag-${lang}`);
-            if(el.checked) {
-              return lang + " ";
-            } else {
-              return "";
-            }
-          })
+        setting.details = Object.values(SUPPORTED_LANGUAGES)
+          .map((lang) => document.querySelector(`div#mode-placeholder input#check-flag-${lang}`).checked ? lang + " " : "")
           .join("").trim();
-        setting.details = checkedLanguages;
         break;
       default:
         console.log(`Cannot update mode - unknown type: ${setting.type}`);

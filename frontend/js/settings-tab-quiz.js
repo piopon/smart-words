@@ -87,6 +87,20 @@ function updateEditedMode() {
         const maxVal = document.querySelector(`div#mode-placeholder input#questions-max`).value;
         setting.details = `value='${initVal}' min='${minVal}' max='${maxVal}'`;
         break;
+      case "languages":
+        setting.label = document.querySelector(`div#mode-placeholder input#languages-label`).value;
+        var checkedLanguages = Object.values(SUPPORTED_LANGUAGES)
+          .map((lang) => {
+            const el = document.querySelector(`div#mode-placeholder input#check-flag-${lang}`);
+            if(el.checked) {
+              return lang + " ";
+            } else {
+              return "";
+            }
+          })
+          .join("").trim();
+        setting.details = checkedLanguages;
+        break;
       default:
         console.log(`Cannot update mode - unknown type: ${setting.type}`);
         break;

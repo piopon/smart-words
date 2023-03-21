@@ -89,6 +89,7 @@ function updateEditedMode() {
         break;
       default:
         console.log(`Cannot update mode - unknown type: ${setting.type}`);
+        break;
     }
   });
 }

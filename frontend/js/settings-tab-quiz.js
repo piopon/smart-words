@@ -90,7 +90,7 @@ function updateEditedMode() {
       case "languages":
         setting.label = getEditedModeValueById("languages-label");
         setting.details = Object.values(SUPPORTED_LANGUAGES)
-          .map((lang) => document.querySelector(`div#mode-placeholder input#check-flag-${lang}`).checked ? lang + " " : "")
+          .map((lang) => getEditedModeCheckedById(`check-flag-${lang}`) ? lang + " " : "")
           .join("").trim();
         break;
       default:
@@ -102,6 +102,10 @@ function updateEditedMode() {
 
 function getEditedModeValueById(inputId) {
   return document.querySelector(`div#mode-placeholder input#${inputId}`).value;
+}
+
+function getEditedModeCheckedById(inputId) {
+  return document.querySelector(`div#mode-placeholder input#${inputId}`).checked;
 }
 
 /**

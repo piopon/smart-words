@@ -78,6 +78,19 @@ function updateQuizMode() {
 function updateEditedMode() {
   currentlyEditedMode.name = document.querySelector(`div#mode-placeholder input#general-name`).value;
   currentlyEditedMode.description = document.querySelector(`div#mode-placeholder input#general-desc`).value;
+  currentlyEditedMode.settings.forEach(setting => {
+    switch (setting.type) {
+      case "questions":
+        setting.label = document.querySelector(`div#mode-placeholder input#questions-label`).value;
+        const initVal = document.querySelector(`div#mode-placeholder input#questions-def`).value;
+        const minVal = document.querySelector(`div#mode-placeholder input#questions-min`).value;
+        const maxVal = document.querySelector(`div#mode-placeholder input#questions-max`).value;
+        setting.details = `value='${initVal}' min='${minVal}' max='${maxVal}'`;
+        break;
+      default:
+        console.log(`Cannot update mode - unknown type: ${setting.type}`);
+    }
+  });
 }
 
 /**

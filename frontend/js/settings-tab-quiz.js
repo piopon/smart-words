@@ -101,7 +101,7 @@ function updateEditedMode() {
 }
 
 function getEditedModeValueById(inputId) {
-  return document.querySelector(`div#mode-placeholder input#${inputId}`).value
+  return document.querySelector(`div#mode-placeholder input#${inputId}`).value;
 }
 
 /**

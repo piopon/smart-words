@@ -383,7 +383,7 @@ function createSettingInputNumber(id, labelText, initValue, minValue, maxValue) 
  */
 function createSettingInputLanguage(id, labelText, languages) {
   var allFlagsCheckboxes = Object.values(SUPPORTED_LANGUAGES)
-    .map((lang) => createSettingFlagCheckbox(`${lang}-32-box.png`, languages.includes(lang)))
+    .map((lang) => createSettingFlagCheckbox(lang, languages.includes(lang)))
     .join("");
   return `<div class="mode-setting-languages-edit">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
@@ -399,7 +399,7 @@ function createSettingInputLanguage(id, labelText, languages) {
  * @returns HTML code for input checkbox with a flag image label contained in a divider element
  */
 function createSettingFlagCheckbox(flag, checked) {
-  const imageSrc = `images/language-flags/${flag}`;
+  const imageSrc = `images/language-flags/${flag}-32-box.png`;
   const labelClass = `mode-setting-flag-img ${checked ? "flag-checked" : ""}`;
   return `<div class="mode-setting-flag-checkbox">
             <input type="checkbox" id="check-flag-${flag}" ${checked ? "checked" : ""}/>

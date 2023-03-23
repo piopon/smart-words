@@ -64,7 +64,9 @@ function createQuizMode() {
  * Method used to save quiz mode changes and handle UI update
  */
 function updateQuizMode() {
-  updateEditedMode();
+  if (!updateEditedMode()) {
+    return;
+  }
   putQuizMode(currentlyEditedMode.id, currentlyEditedMode, (err, data) => {
     if (err) {
       console.log("ERROR " + err.status + ": " + err.message);

@@ -149,27 +149,32 @@ function updateSupportedSettingsBoxes() {
  * Method used to update currently edited mode from values in the UI
  */
 function updateEditedMode() {
-  currentlyEditedMode.name = getEditedModeInputValue("general-name");
-  currentlyEditedMode.description = getEditedModeInputValue("general-desc");
-  currentlyEditedMode.settings.forEach(setting => {
-    switch (setting.type) {
-      case "questions":
-        setting.label = getEditedModeInputValue("questions-label");
-        setting.details = `value='${getEditedModeInputValue("questions-def")}' `
-                        + `min='${getEditedModeInputValue("questions-min")}' `
-                        + `max='${getEditedModeInputValue("questions-max")}'`;
-        break;
-      case "languages":
-        setting.label = getEditedModeInputValue("languages-label");
-        setting.details = Object.values(SUPPORTED_LANGUAGES)
-          .map((lang) => getEditedModeInputCheckState(`check-flag-${lang}`) ? lang + " " : "")
-          .join("").trim();
-        break;
-      default:
-        console.log(`Cannot update mode - unknown type: ${setting.type}`);
-        break;
-    }
-  });
+  try {
+    currentlyEditedMode.name = getEditedModeInputValue("general-name");
+    currentlyEditedMode.description = getEditedModeInputValue("general-desc");
+    currentlyEditedMode.settings.forEach(setting => {
+      switch (setting.type) {
+        case "questions":
+          setting.label = getEditedModeInputValue("questions-label");
+          setting.details = `value='${getEditedModeInputValue("questions-def")}' `
+                          + `min='${getEditedModeInputValue("questions-min")}' `
+                          + `max='${getEditedModeInputValue("questions-max")}'`;
+          break;
+        case "languages":
+          setting.label = getEditedModeInputValue("languages-label");
+          setting.details = Object.values(SUPPORTED_LANGUAGES)
+            .map((lang) => getEditedModeInputCheckState(`check-flag-${lang}`) ? lang + " " : "")
+            .join("").trim();
+          break;
+        default:
+          throw `Cannot update mode - unknown type: ${setting.type}`;
+      }
+    });
+    return true;
+  } catch (e) {
+    console.error(`${e}`);
+    return false;
+  }
 }
 
 /**
@@ -466,12 +471,10 @@ function toggleCollapse(event) {
 function getEditedModeInputValue(inputId) {
   const inputElement = document.querySelector(`div#mode-placeholder input#${inputId}`);
   if (inputElement === null) {
-    console.log("Element with specified ID could not be found");
-    return "";
+    throw `Element with ID "${inputId}" could not be found.`;
   }
   if (inputElement.type != "text" && inputElement.type != "number") {
-    console.log("Element with specified ID is not of type 'text' nor 'number'");
-    return "";
+    throw `Element with ID "${inputId}" is not of type "text" nor "number".`;
   }
   return inputElement.value;
 }

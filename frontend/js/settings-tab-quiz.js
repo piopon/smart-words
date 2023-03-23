@@ -82,10 +82,9 @@ function updateEditedMode() {
     switch (setting.type) {
       case "questions":
         setting.label = getEditedModeValueById("questions-label");
-        const initVal = getEditedModeValueById("questions-def");
-        const minVal = getEditedModeValueById("questions-min");
-        const maxVal = getEditedModeValueById("questions-max");
-        setting.details = `value='${initVal}' min='${minVal}' max='${maxVal}'`;
+        setting.details = `value='${getEditedModeValueById("questions-def")}' `
+                        + `min='${getEditedModeValueById("questions-min")}' `
+                        + `max='${getEditedModeValueById("questions-max")}'`;
         break;
       case "languages":
         setting.label = getEditedModeValueById("languages-label");

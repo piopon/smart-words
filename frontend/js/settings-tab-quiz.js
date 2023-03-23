@@ -464,7 +464,16 @@ function toggleCollapse(event) {
  * @returns a String value from the input element
  */
 function getEditedModeInputValue(inputId) {
-  return document.querySelector(`div#mode-placeholder input#${inputId}`).value;
+  const inputElement = document.querySelector(`div#mode-placeholder input#${inputId}`);
+  if (inputElement === null) {
+    console.log("Element with specified ID could not be found");
+    return "";
+  }
+  if (inputElement.type != "text" && inputElement.type != "number") {
+    console.log("Element with specified ID is not of type 'text' nor 'number'");
+    return "";
+  }
+  return inputElement.value;
 }
 
 /**

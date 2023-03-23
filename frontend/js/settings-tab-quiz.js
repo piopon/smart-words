@@ -76,53 +76,6 @@ function updateQuizMode() {
 }
 
 /**
- * Method used to update currently edited mode from values in the UI
- */
-function updateEditedMode() {
-  currentlyEditedMode.name = getEditedModeValueById("general-name");
-  currentlyEditedMode.description = getEditedModeValueById("general-desc");
-  currentlyEditedMode.settings.forEach(setting => {
-    switch (setting.type) {
-      case "questions":
-        setting.label = getEditedModeValueById("questions-label");
-        setting.details = `value='${getEditedModeValueById("questions-def")}' `
-                        + `min='${getEditedModeValueById("questions-min")}' `
-                        + `max='${getEditedModeValueById("questions-max")}'`;
-        break;
-      case "languages":
-        setting.label = getEditedModeValueById("languages-label");
-        setting.details = Object.values(SUPPORTED_LANGUAGES)
-          .map((lang) => getEditedModeCheckedById(`check-flag-${lang}`) ? lang + " " : "")
-          .join("").trim();
-        break;
-      default:
-        console.log(`Cannot update mode - unknown type: ${setting.type}`);
-        break;
-    }
-  });
-}
-
-/**
- * Method used to receive edited mode input value from an element determined by ID
- *
- * @param {String} inputId unique identifier of the input element which value to receive
- * @returns a String value from the input element
- */
-function getEditedModeValueById(inputId) {
-  return document.querySelector(`div#mode-placeholder input#${inputId}`).value;
-}
-
-/**
- * Method used to receive edited mode checked state from an element determined by ID
- *
- * @param {String} inputId unique identifier of the input element which value to receive
- * @returns a Boolean value representing the checked state of input element
- */
-function getEditedModeCheckedById(inputId) {
-  return document.querySelector(`div#mode-placeholder input#${inputId}`).checked;
-}
-
-/**
  * Method used to display details of the selected mode ID in the settings view
  *
  * @param {Integer} modeId identifier of the mode which details we want to display in settings view
@@ -188,6 +141,33 @@ function updateSupportedSettingsBoxes() {
       boxButton.classList.remove("active");
       boxContent.classList.add("collapsed");
       boxContent.classList.remove("expanded");
+    }
+  });
+}
+
+/**
+ * Method used to update currently edited mode from values in the UI
+ */
+function updateEditedMode() {
+  currentlyEditedMode.name = getEditedModeInputValue("general-name");
+  currentlyEditedMode.description = getEditedModeInputValue("general-desc");
+  currentlyEditedMode.settings.forEach(setting => {
+    switch (setting.type) {
+      case "questions":
+        setting.label = getEditedModeInputValue("questions-label");
+        setting.details = `value='${getEditedModeInputValue("questions-def")}' `
+                        + `min='${getEditedModeInputValue("questions-min")}' `
+                        + `max='${getEditedModeInputValue("questions-max")}'`;
+        break;
+      case "languages":
+        setting.label = getEditedModeInputValue("languages-label");
+        setting.details = Object.values(SUPPORTED_LANGUAGES)
+          .map((lang) => getEditedModeInputCheckState(`check-flag-${lang}`) ? lang + " " : "")
+          .join("").trim();
+        break;
+      default:
+        console.log(`Cannot update mode - unknown type: ${setting.type}`);
+        break;
     }
   });
 }
@@ -475,6 +455,26 @@ function toggleCollapse(event) {
   var content = pressedButton.nextElementSibling;
   content.classList.toggle("collapsed");
   content.classList.toggle("expanded");
+}
+
+/**
+ * Method used to receive edited mode input value from an element determined by ID
+ *
+ * @param {String} inputId unique identifier of the input element which value to receive
+ * @returns a String value from the input element
+ */
+function getEditedModeInputValue(inputId) {
+  return document.querySelector(`div#mode-placeholder input#${inputId}`).value;
+}
+
+/**
+ * Method used to receive edited mode checked state from an element determined by ID
+ *
+ * @param {String} inputId unique identifier of the input element which value to receive
+ * @returns a Boolean value representing the checked state of input element
+ */
+function getEditedModeInputCheckState(inputId) {
+  return document.querySelector(`div#mode-placeholder input#${inputId}`).checked;
 }
 
 /**

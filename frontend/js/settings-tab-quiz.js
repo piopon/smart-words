@@ -169,12 +169,12 @@ function updateEditedMode() {
             .join("").trim();
           break;
         default:
-          throw `Cannot update mode - unknown type: ${setting.type}`;
+          throw `Unknown type: ${setting.type}`;
       }
     });
     return true;
   } catch (e) {
-    console.error(`${e}`);
+    console.error(`Cannot update mode. ${e}`);
     return false;
   }
 }

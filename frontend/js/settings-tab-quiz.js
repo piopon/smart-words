@@ -488,7 +488,14 @@ function getEditedModeInputValue(inputId) {
  * @returns a Boolean value representing the checked state of input element
  */
 function getEditedModeInputCheckState(inputId) {
-  return document.querySelector(`div#mode-placeholder input#${inputId}`).checked;
+  const inputElement = document.querySelector(`div#mode-placeholder input#${inputId}`);
+  if (inputElement === null) {
+    throw `Element with ID "${inputId}" could not be found.`;
+  }
+  if (inputElement.type != "checkbox") {
+    throw `Element with ID "${inputId}" is not of type "checkbox".`;
+  }
+  return inputElement.checked;
 }
 
 /**

@@ -75,6 +75,9 @@ function updateQuizMode() {
   });
 }
 
+/**
+ * Method used to update currently edited mode from values in the UI
+ */
 function updateEditedMode() {
   currentlyEditedMode.name = getEditedModeValueById("general-name");
   currentlyEditedMode.description = getEditedModeValueById("general-desc");
@@ -99,10 +102,22 @@ function updateEditedMode() {
   });
 }
 
+/**
+ * Method used to receive edited mode input value from an element determined by ID
+ *
+ * @param {String} inputId unique identifier of the input element which value to receive
+ * @returns a String value from the input element
+ */
 function getEditedModeValueById(inputId) {
   return document.querySelector(`div#mode-placeholder input#${inputId}`).value;
 }
 
+/**
+ * Method used to receive edited mode checked state from an element determined by ID
+ *
+ * @param {String} inputId unique identifier of the input element which value to receive
+ * @returns a Boolean value representing the checked state of input element
+ */
 function getEditedModeCheckedById(inputId) {
   return document.querySelector(`div#mode-placeholder input#${inputId}`).checked;
 }

@@ -190,7 +190,12 @@ function createModesTableContent(modes) {
     .map((mode) => {
       return `<tr id="mode-${mode.id}" class="not-selected" onclick="selectMode(${mode.id})">
                     <td>${mode.id}</td>
-                    <td>${mode.name}</td>
+                    <td>
+                      ${mode.name}
+                      <button class="delete-mode">
+                        ❌
+                      </button>
+                    </td>
                   </tr>`;
     })
     .join("");

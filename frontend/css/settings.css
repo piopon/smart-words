@@ -432,9 +432,19 @@ table#quiz-modes-available th:last-child {
 }
 
 table#quiz-modes-available td {
+  position: relative;
   height: 35px;
   font-size: 15px;
   font-family: var(--clear-font-primary), Verdana, sans-serif;
+}
+
+table#quiz-modes-available td button.delete-mode {
+  position: absolute;
+  top: 6px;
+  right: 15px;
+  width: 60px;
+  background-color: gainsboro;
+  border: 1px solid gray;
 }
 
 table#quiz-modes-available td:first-child {

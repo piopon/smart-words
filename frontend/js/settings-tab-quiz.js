@@ -77,6 +77,10 @@ function updateQuizMode() {
   });
 }
 
+function removeQuizMode(id) {
+  console.log(`removing mode: ${id}`);
+}
+
 /**
  * Method used to display details of the selected mode ID in the settings view
  *
@@ -194,7 +198,7 @@ function createModesTableContent(modes) {
                     <td>${mode.id}</td>
                     <td>
                       ${mode.name}
-                      <button class="delete-mode">
+                      <button class="delete-mode" onclick="removeQuizMode(${mode.id})">
                         ❌
                       </button>
                     </td>

@@ -406,6 +406,14 @@ table#quiz-modes-available tbody tr:hover:last-child td:last-child {
   border-bottom-right-radius: var(--table-border-radius);
 }
 
+table#quiz-modes-available tbody tr button.delete-mode {
+  visibility: hidden;
+}
+
+table#quiz-modes-available tbody tr:hover button.delete-mode {
+  visibility: visible;
+}
+
 table#quiz-modes-available th {
   height: 40px;
   font-size: 19px;

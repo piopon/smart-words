@@ -149,6 +149,8 @@ function updateSupportedSettingsBoxes() {
 
 /**
  * Method used to update currently edited mode from values in the UI
+ *
+ * @returns true if mode was updated successfully, false otherwise
  */
 function updateEditedMode() {
   try {

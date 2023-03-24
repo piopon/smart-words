@@ -447,6 +447,11 @@ table#quiz-modes-available td button.delete-mode {
   border: 1px solid gray;
 }
 
+table#quiz-modes-available td button.delete-mode:hover {
+  background-color: pink;
+  box-shadow: inset 0 0 2px black;
+}
+
 table#quiz-modes-available td:first-child {
   text-align: center;
 }

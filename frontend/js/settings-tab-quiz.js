@@ -77,6 +77,11 @@ function updateQuizMode() {
   });
 }
 
+/**
+ * Method used to delete specified quiz mode and update table (if success)
+ *
+ * @param {Integer} id identifier of the mode which should be deleted
+ */
 function removeQuizMode(id) {
   deleteQuizMode(id, (err, data) => {
     if (err) {

@@ -83,6 +83,7 @@ function removeQuizMode(id) {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       console.log(data);
+      availableQuizModes = availableQuizModes.filter(mode => mode.id != id);
       updateQuizModesTable();
     }
   });

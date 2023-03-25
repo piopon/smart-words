@@ -87,6 +87,7 @@ function removeQuizMode(id) {
       currentlyEditedMode = undefined;
       updateQuizModesTable();
       updateQuizModesPlaceholder(currentlyEditedMode);
+      updateSupportedSettingsBoxes();
     }
   });
   window.event.stopPropagation();

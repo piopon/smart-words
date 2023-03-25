@@ -47,7 +47,7 @@ class ModeService(database: ModeDatabase) {
    * Method used to update quiz mode with specified ID
    * @param id identifier of the quiz mode
    * @param mode new quiz mode value
-   * @return response with update status (OK or NOT FOUND if word does not exist)
+   * @return response with update status (OK or NOT FOUND if mode does not exist)
    */
   def updateQuizMode(id: Int, mode: Mode): IO[Response[IO]] = {
     val updated: Boolean = database.updateMode(id, mode)
@@ -57,6 +57,11 @@ class ModeService(database: ModeDatabase) {
     Ok(s"Updated quiz mode ID: $id")
   }
 
+  /**
+   * Method used to delete quiz mode with specified ID
+   * @param id identifier of the quiz mode
+   * @return response with update status (OK or NOT FOUND if mode does not exist)
+   */
   def deleteQuizMode(id: Int): IO[Response[IO]] = {
     val deleted: Boolean = database.deleteMode(id)
     if (!deleted) {

@@ -87,6 +87,7 @@ function removeQuizMode(id) {
       updateQuizModesTable();
     }
   });
+  window.event.stopPropagation();
 }
 
 /**

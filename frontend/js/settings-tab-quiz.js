@@ -78,7 +78,14 @@ function updateQuizMode() {
 }
 
 function removeQuizMode(id) {
-  console.log(`removing mode: ${id}`);
+  deleteQuizMode(id, (err, data) => {
+    if (err) {
+      console.log("ERROR " + err.status + ": " + err.message);
+    } else {
+      console.log(data);
+      updateQuizModesTable();
+    }
+  });
 }
 
 /**

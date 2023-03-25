@@ -395,7 +395,6 @@ table#quiz-modes-available tbody tr.not-selected {
 
 table#quiz-modes-available tbody tr:hover {
   background-color: lightgreen;
-  cursor: pointer;
 }
 
 table#quiz-modes-available tbody tr:hover:last-child td:first-child {
@@ -440,6 +439,7 @@ table#quiz-modes-available td {
 
 table#quiz-modes-available td button.delete-mode {
   position: absolute;
+  cursor: pointer;
   top: 6px;
   right: 15px;
   width: 60px;

@@ -139,6 +139,21 @@ const putQuizMode = (id, newMode, callback) => {
   putRequest.send(JSON.stringify(newMode));
 };
 
+const deleteQuizMode = (id, callback) => {
+  const deleteRequest = new XMLHttpRequest();
+  deleteRequest.addEventListener("readystatechange", () => {
+    if (deleteRequest.DONE !== deleteRequest.readyState) return;
+    if (deleteRequest.status === 200) {
+      callback(undefined, deleteRequest.responseText);
+    } else {
+      callback(createErrorObject("cannot create new quiz mode", deleteRequest.status), undefined);
+    }
+  });
+  deleteRequest.open("DELETE", URL + "modes/" + id);
+  deleteRequest.timeout = REQUEST_TIMEOUT;
+  deleteRequest.send();
+};
+
 /**
  * Method used to send a request to the quiz service to receive all quiz modes
  *

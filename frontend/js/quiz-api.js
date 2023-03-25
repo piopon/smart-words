@@ -139,6 +139,13 @@ const putQuizMode = (id, newMode, callback) => {
   putRequest.send(JSON.stringify(newMode));
 };
 
+/**
+ * Method used to send a request to the quiz service to delete quiz mode with specified ID
+ *
+ * @param {Integer} id identifier of the mode which should be deleted
+ * @param {Function} callback callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
 const deleteQuizMode = (id, callback) => {
   const deleteRequest = new XMLHttpRequest();
   deleteRequest.addEventListener("readystatechange", () => {

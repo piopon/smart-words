@@ -134,9 +134,14 @@ function updateQuizModesTableSelection(modeId) {
 function updateQuizModesPlaceholder(mode) {
   let modePlaceholder = document.getElementById("mode-placeholder");
   if (modePlaceholder === null) return;
-  modePlaceholder.className = "mode-selected";
-  modePlaceholder.innerHTML = createModePlaceholderContent(mode);
-  initializeDragAndDropEvents();
+  if (mode == undefined) {
+    modePlaceholder.className = "mode-deselected";
+    modePlaceholder.innerHTML = "select mode from available quiz modes table";
+  } else {
+    modePlaceholder.className = "mode-selected";
+    modePlaceholder.innerHTML = createModePlaceholderContent(mode);
+    initializeDragAndDropEvents();
+  }
 }
 
 /**

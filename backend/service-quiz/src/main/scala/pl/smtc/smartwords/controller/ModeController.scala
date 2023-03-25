@@ -41,6 +41,10 @@ class ModeController(database: ModeDatabase) {
           newMode <- request.as[Mode]
           response <- service.updateQuizMode(id, newMode)
         } yield response
+      case DELETE -> Root / IntVar(id) =>
+        for {
+          response <- service.deleteQuizMode(id)
+        } yield response
     }
   }
 }

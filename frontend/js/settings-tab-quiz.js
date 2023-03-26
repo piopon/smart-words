@@ -251,24 +251,24 @@ function createModePlaceholderContent(mode) {
 function createGeneralSettingBox(modeName, modeDescription) {
   // cannot drag and delete general setting box since it's a const element of all quiz modes
   const draggable = false;
-  const deleteable = false;
+  const deletable = false;
   const contentTitle = "general";
   const contentValue = createCollapsibleContent("general", { name: modeName, description: modeDescription });
   if (!currentlyExpandedState.has(contentTitle.trim())) {
     currentlyExpandedState.set(contentTitle.trim(), true);
   }
   const expandedState = currentlyExpandedState.get(contentTitle.trim());
-  return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState, deleteable));
+  return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState, deletable));
 }
 
 /**
  * Method used to create HTML code for setting box used to display specified mode setting
  *
  * @param {Object} modeSetting to be displayed in the setting box
- * @param {Boolean} deleteable flag indicating if setting box should have a delete button (true), or not (false)
+ * @param {Boolean} deletable flag indicating if setting box should have a delete button (true), or not (false)
  * @returns HTML code of the mode setting box
  */
-function createModeSettingBox(modeSetting, deleteable) {
+function createModeSettingBox(modeSetting, deletable) {
   const draggable = true;
   const contentTitle = modeSetting.type;
   const contentValue = createCollapsibleContent(modeSetting.type, modeSetting);
@@ -276,7 +276,7 @@ function createModeSettingBox(modeSetting, deleteable) {
     currentlyExpandedState.set(contentTitle.trim(), false);
   }
   const expandedState = currentlyExpandedState.get(contentTitle.trim());
-  return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState, deleteable));
+  return createSettingBox(draggable, createCollapsibleComponent(contentTitle, contentValue, expandedState, deletable));
 }
 
 /**
@@ -298,10 +298,10 @@ function createSettingBox(draggable, boxContent) {
  * @param {String} buttonTitle collapsible component label (as a text of a button for collapsing/expanding)
  * @param {String} collapsibleContent the content which should be displayed when component is expanded
  * @param {Boolean} expanded flag defining if the initial state of component should be expanded (true), or collapsed (false)
- * @param {Boolean} deleteable flag defining if component should have a delete button (true), or not (false)
+ * @param {Boolean} deletable flag defining if component should have a delete button (true), or not (false)
  * @returns HTML code for collapsible component (button + content)
  */
-function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded, deleteable) {
+function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded, deletable) {
   const btnExpandedClass = expanded ? "active" : "";
   const divExpandedClass = expanded ? "expanded" : "collapsed";
   return `<button type="button" class="collapsible-button ${btnExpandedClass}" onclick="toggleCollapse(event)">
@@ -309,7 +309,7 @@ function createCollapsibleComponent(buttonTitle, collapsibleContent, expanded, d
           </button>
           <div class="collapsible-content ${divExpandedClass}">
             ${collapsibleContent}
-            ${deleteable ? createDeleteBoxButton() : ""}
+            ${deletable ? createDeleteBoxButton() : ""}
           </div>`;
 }
 

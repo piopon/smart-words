@@ -40,8 +40,16 @@ class ModeDatabase {
     result
   }
 
+  /**
+   * Method used to retrieve all quiz modes
+   * @return a list of currently available quiz modes
+   */
   def getModes: List[Mode] = quizModes.toList
 
+  /**
+   * Method used to add a new empty quiz mode
+   * @return a quiz mode object with predefined ID and an empty value
+   */
   def addMode(): Mode = {
     val freeId: Int = quizModes.map(mode => mode.id).max + 1
     val newMode: Mode = Mode(freeId, "", "", List())
@@ -49,6 +57,12 @@ class ModeDatabase {
     newMode
   }
 
+  /**
+   * Method used to update the mode from specified ID with new values
+   * @param id identifier of the mode which should be updated
+   * @param newMode new values for the mode
+   * @return true if mode was updated successfully, false otherwise
+   */
   def updateMode(id: Int, newMode: Mode): Boolean = {
     val idIndex: Int = quizModes.indexWhere(mode => mode.id.equals(id))
     if (-1 == idIndex) {
@@ -59,6 +73,11 @@ class ModeDatabase {
     true
   }
 
+  /**
+   * Method used to remove a mode with specified ID
+   * @param id identifier of the mode which should be deleted
+   * @return true if mode was deleted successfully, false otherwise
+   */
   def deleteMode(id: Int): Boolean = {
     val idIndex: Int = quizModes.indexWhere(mode => mode.id.equals(id))
     if (-1 == idIndex) {

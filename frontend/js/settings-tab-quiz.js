@@ -234,7 +234,7 @@ function createModesTableContent(modes) {
  * @returns HTML code of the mode placeholder with input mode data values
  */
 function createModePlaceholderContent(mode) {
-  const deletableModeSettings = true;
+  const deletableModeSettings = mode.deletable;
   return createGeneralSettingBox(mode.name, mode.description) +
          createDropTarget(0) +
          mode.settings.map((setting, index) => createModeSettingBox(setting, deletableModeSettings) +
@@ -674,7 +674,10 @@ function updateDropTargetsState(visible, draggedElement) {
   let dropTargets = document.querySelectorAll(".drop-target");
   dropTargets.forEach((target) => {
     let showTarget = visible && isCurrentModeSetting(draggedElement);
-    if (dropDeleteId !== target.id) {
+    if (dropDeleteId === target.id) {
+      // for delete drop target we must check if currently edited mode is deletable
+      showTarget = showTarget && currentlyEditedMode.deletable == true;
+    } else {
       // in current mode we must display only those drop targets which are not adjacent to dragged element
       const checkPrev = compareSettingBoxes(draggedElement, target.previousSibling);
       const checkNext = compareSettingBoxes(draggedElement, target.nextSibling);

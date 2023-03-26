@@ -19,8 +19,9 @@ object ModeDao {
       name <- input.downField("name").as[String]
       description <- input.downField("description").as[String]
       settings <- input.downField("settings").as[List[Setting]]
+      deletable <- input.downField("deletable").as[Boolean]
     } yield {
-      Mode(id, name, description, settings)
+      Mode(id, name, description, settings, deletable)
     }
   }
 
@@ -32,6 +33,7 @@ object ModeDao {
     (mode: Mode) => json"""{"id": ${mode.id},
                             "name": ${mode.name},
                             "description": ${mode.description},
+                            "deletable": ${mode.deletable},
                             "settings": ${mode.settings}}"""
   }
 }

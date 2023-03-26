@@ -6,5 +6,6 @@ package pl.smtc.smartwords.model
  * @param name the mode name which will be displayed in UI
  * @param description mode detailed description (also visible in UI)
  * @param settings the list of setting of a particular quiz mode
+ * @param deletable flag indicating if the mode can be deleted from database
  */
-case class Mode(var id: Int, name: String, description: String, settings: List[Setting])
+case class Mode(var id: Int, name: String, description: String, settings: List[Setting], var deletable: Boolean)

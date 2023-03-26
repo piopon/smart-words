@@ -326,6 +326,12 @@ function createDeleteBoxButton() {
           </button>`;
 }
 
+/**
+ * Method used to create quiz mode delete button responsible for removing specified mode
+ *
+ * @param {Integer} id identified of the mode to be deleted
+ * @returns HTML code for quiz mode delete button
+ */
 function createDeleteModeButton(id) {
   return `<button class="delete-mode" onclick="removeQuizMode(${id})">
             ❌

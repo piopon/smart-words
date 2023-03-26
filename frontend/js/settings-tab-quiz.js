@@ -220,9 +220,7 @@ function createModesTableContent(modes) {
                     <td>${mode.id}</td>
                     <td>
                       ${mode.name}
-                      <button class="delete-mode" onclick="removeQuizMode(${mode.id})">
-                        ❌
-                      </button>
+                      ${mode.deletable ? createDeleteModeButton(mode.id) : ""}
                     </td>
                   </tr>`;
     })
@@ -324,6 +322,12 @@ function createDeleteBoxButton() {
   const parentContent = "event.target.parentNode";
   const parentSettingBox = `${parentContent}.parentNode`;
   return `<button class="collapsible-delete" onclick="deleteSettingBox(${parentSettingBox})">
+            ❌
+          </button>`;
+}
+
+function createDeleteModeButton(id) {
+  return `<button class="delete-mode" onclick="removeQuizMode(${id})">
             ❌
           </button>`;
 }

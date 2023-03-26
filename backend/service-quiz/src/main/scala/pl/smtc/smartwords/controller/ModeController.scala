@@ -20,7 +20,8 @@ class ModeController(database: ModeDatabase) {
    *  <li>Get all supported quiz modes: <u>GET</u> /modes -> RET: OK 200 + Mode JSON</li>
    *  <li>Get all supported modes settings: <u>GET</u> /modes/settings -> RET: OK 200 + Setting JSON</li>
    *  <li>Create new quiz mode: <u>POST</u> /modes -> RET: OK 200 + ID | ERR 500</li>
-   *  <li>Update new quiz mode: <u>PUT</u> /modes/{id} + JSON -> RET: OK 200 + JSON | ERR 500</li>
+   *  <li>Update selected quiz mode: <u>PUT</u> /modes/{id} + JSON -> RET: OK 200 | ERR 500</li>
+   *  <li>Delete selected quiz mode: <u>DELETE</u> /modes/{id} -> RET: OK 200 | ERR 500</li>
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {

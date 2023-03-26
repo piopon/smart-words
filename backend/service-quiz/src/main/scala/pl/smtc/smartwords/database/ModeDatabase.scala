@@ -52,7 +52,7 @@ class ModeDatabase {
    */
   def addMode(): Mode = {
     val freeId: Int = quizModes.map(mode => mode.id).max + 1
-    val newMode: Mode = Mode(freeId, "", "", List())
+    val newMode: Mode = Mode(freeId, "", "", List(), deletable = true)
     quizModes += newMode
     newMode
   }

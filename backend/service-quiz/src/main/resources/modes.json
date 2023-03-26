@@ -3,6 +3,7 @@
     "id": 0,
     "name": "guess definition",
     "description": "guess the word definition based on a provided word name",
+    "deletable": false,
     "settings": [
       {
         "type": "languages",
@@ -20,6 +21,7 @@
     "id": 1,
     "name": "match the word",
     "description": "select the correct word name based on the provided definition",
+    "deletable": false,
     "settings": [
       {
         "type": "languages",

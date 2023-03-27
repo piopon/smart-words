@@ -60,7 +60,7 @@ class ModeService(database: ModeDatabase) {
   /**
    * Method used to delete quiz mode with specified ID
    * @param id identifier of the quiz mode
-   * @return response with update status (OK or NOT FOUND if mode does not exist)
+   * @return response with update status (OK or NOT FOUND if mode does not exist/is not deletable)
    */
   def deleteQuizMode(id: Int): IO[Response[IO]] = {
     val deleted: Boolean = database.deleteMode(id)

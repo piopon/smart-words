@@ -94,6 +94,12 @@ class ModeDatabase {
     true
   }
 
+  /**
+   * Method used to check if two modes have the same setting types (setting order does not matter)
+   * @param mode1 first mode which settings should be checked
+   * @param mode2 second mode which settings should be checked
+   * @return true if modes have the same settings types (order and label/values insensitive), false otherwise
+   */
   private def modesHaveTheSameSettings(mode1: Mode, mode2: Mode): Boolean = {
     if (mode1.settings.size != mode2.settings.size) {
       return false

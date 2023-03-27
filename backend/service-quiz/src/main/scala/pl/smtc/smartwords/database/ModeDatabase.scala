@@ -68,6 +68,10 @@ class ModeDatabase {
     if (-1 == idIndex) {
       return false
     }
+    val oldMode: Mode = quizModes.apply(idIndex)
+    if (!oldMode.deletable && !modesHaveTheSameSettings(oldMode, newMode)) {
+      return false
+    }
     newMode.id = id
     quizModes.update(idIndex, newMode)
     true
@@ -83,7 +87,23 @@ class ModeDatabase {
     if (-1 == idIndex) {
       return false
     }
+    if (!quizModes.apply(idIndex).deletable) {
+      return false
+    }
     quizModes.remove(idIndex)
+    true
+  }
+
+  private def modesHaveTheSameSettings(mode1: Mode, mode2: Mode): Boolean = {
+    if (mode1.settings.size != mode2.settings.size) {
+      return false
+    }
+    mode1.settings.foreach(setting1 => {
+      val tempList: List[Kind.Value] = mode2.settings.map(setting2 => setting2.kind)
+      if (!tempList.contains(setting1.kind)) {
+        return false
+      }
+    })
     true
   }
 }

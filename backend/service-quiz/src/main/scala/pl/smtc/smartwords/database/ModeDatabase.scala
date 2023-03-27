@@ -98,9 +98,8 @@ class ModeDatabase {
     if (mode1.settings.size != mode2.settings.size) {
       return false
     }
-    mode1.settings.foreach(setting1 => {
-      val tempList: List[Kind.Value] = mode2.settings.map(setting2 => setting2.kind)
-      if (!tempList.contains(setting1.kind)) {
+    mode1.settings.foreach(setting => {
+      if (!mode2.settings.map(_.kind).contains(setting.kind)) {
         return false
       }
     })

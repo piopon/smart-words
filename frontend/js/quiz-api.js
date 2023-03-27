@@ -130,7 +130,7 @@ const putQuizMode = (id, newMode, callback) => {
     if (putRequest.status === 200) {
       callback(undefined, putRequest.responseText);
     } else {
-      callback(createErrorObject("cannot create new quiz mode", putRequest.status), undefined);
+      callback(createErrorObject("cannot update quiz mode", putRequest.status), undefined);
     }
   });
   putRequest.open("PUT", URL + "modes/" + id);
@@ -153,7 +153,7 @@ const deleteQuizMode = (id, callback) => {
     if (deleteRequest.status === 200) {
       callback(undefined, deleteRequest.responseText);
     } else {
-      callback(createErrorObject("cannot create new quiz mode", deleteRequest.status), undefined);
+      callback(createErrorObject("cannot delete quiz mode", deleteRequest.status), undefined);
     }
   });
   deleteRequest.open("DELETE", URL + "modes/" + id);

@@ -385,7 +385,7 @@ function createContentGeneral(setting) {
  * @returns HTML code for collapsible quiz questions content
  */
 function createContentQuestions(setting) {
-  const questionRegex = /value='(?<default>\d+)' min='(?<min>\d+)' max='(?<max>\d+)'/;
+  const questionRegex = /value='(?<default>\d*)' min='(?<min>\d*)' max='(?<max>\d*)'/;
   const questionValues = setting.details.match(questionRegex);
   const initMinimumValue = questionValues === null ? "": questionValues.groups.min;
   const initDefaultValue = questionValues === null ? "": questionValues.groups.default;

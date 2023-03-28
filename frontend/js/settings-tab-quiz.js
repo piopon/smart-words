@@ -2,7 +2,7 @@
 const SUPPORTED_LANGUAGES = ["de", "en", "es", "fr", "pl", "pt"];
 // variables used by quiz modes tab in settings page
 var availableQuizModes = [];
-var availableModeSettings = undefined;
+var availableModeSettings = [];
 var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
@@ -27,7 +27,6 @@ function initializeTabQuizModes() {
  * @returns HTML code for supported settings content column
  */
 function initializeSettingsContent() {
-  availableModeSettings = [];
   const deletableModeSettings = false;
   let settingsPlaceholder = document.getElementById("settings-placeholder");
   if (settingsPlaceholder === null) return;

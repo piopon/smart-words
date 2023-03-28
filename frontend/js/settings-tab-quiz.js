@@ -417,7 +417,8 @@ function createSettingInputText(id, labelText, inputValue) {
   return `<div class="mode-setting-text-edit">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
             <input type="text" id="${id}" class="mode-setting-value"
-                                          placeholder="specify value" value="${inputValue}" />
+                                          placeholder="specify value" value="${inputValue}"
+                                          oninput="updateCurrentlyEditedMode()"/>
           </div>`;
 }
 
@@ -436,7 +437,8 @@ function createSettingInputNumber(id, labelText, initValue, minValue, maxValue) 
             <input type="number" id="${id}" class="mode-setting-value"
                                             placeholder="specify value" value="${initValue}"
                                             min="${minValue}" max="${maxValue}"
-                                            onfocusout=forceMinMaxConstraints(this) />
+                                            oninput="updateCurrentlyEditedMode()"
+                                            onfocusout="forceMinMaxConstraints(this)"/>
           </div>`;
 }
 
@@ -484,6 +486,7 @@ function toggleFlagCheckbox(flagItem) {
   const linkedCheckbox = flagItem.previousElementSibling;
   if (linkedCheckbox !== null) {
     linkedCheckbox.checked = !linkedCheckbox.checked;
+    updateCurrentlyEditedMode();
   }
   flagItem.classList.toggle("flag-checked");
 }

@@ -103,7 +103,7 @@ function removeQuizMode(id) {
  * @param {Integer} modeId identifier of the mode which details we want to display in settings view
  */
 function selectMode(modeId) {
-  // check if we had an opened mode before changing (if yes then save temp changes)
+  // we need to check if a mode was opened and update model changes due to possible focus lost changes (from number inputs)
   if (currentlyEditedMode !== undefined) {
     updateCurrentlyEditedMode();
   }
@@ -208,6 +208,7 @@ function updateCurrentlyEditedMode() {
           throw `Unknown type: ${setting.type}`;
       }
     });
+    console.log("marking as changed...");
     return true;
   } catch (e) {
     console.error(`Cannot update mode. ${e}`);

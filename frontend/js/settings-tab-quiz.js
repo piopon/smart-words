@@ -552,8 +552,8 @@ function deleteSettingBox(settingBox) {
   let toDeleteModeSetting = currentlyEditedMode.settings.find(
     (setting) => setting.type === getSettingBoxName(settingBox)
   );
-  let oldIndex = currentlyEditedMode.settings.indexOf(toDeleteModeSetting);
-  currentlyEditedMode.settings.splice(oldIndex, 1);
+  let deleteIndex = currentlyEditedMode.settings.indexOf(toDeleteModeSetting);
+  currentlyEditedMode.settings.splice(deleteIndex, 1);
   // update model after deleting setting box to correctly update quiz modes placeholder in UI
   updateCurrentlyEditedMode();
   currentlyExpandedState.delete(getSettingBoxName(settingBox));

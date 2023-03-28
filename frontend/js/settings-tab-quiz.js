@@ -103,6 +103,10 @@ function removeQuizMode(id) {
  * @param {Integer} modeId identifier of the mode which details we want to display in settings view
  */
 function selectMode(modeId) {
+  // check if we had an opened mode before changing (if yes then save temp changes)
+  if (currentlyEditedMode !== undefined) {
+    updateCurrentlyEditedMode();
+  }
   currentlyEditedMode = availableQuizModes.find((mode) => mode.id === modeId);
   if (currentlyEditedMode === undefined) return;
   currentlyExpandedState.clear();

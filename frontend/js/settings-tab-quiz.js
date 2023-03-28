@@ -594,8 +594,6 @@ function initializeDragAndDropEvents() {
  * @param {Object} e drag start event data
  */
 function handleBoxDragStart(e) {
-  // update model before possible mode change to correctly update quiz modes placeholder in UI
-  updateCurrentlyEditedMode();
   this.style.opacity = '0.5';
   currentlyDraggedElement = this;
   updateDropTargetsState(true, this);
@@ -653,6 +651,8 @@ function handleBoxDrop(e) {
   e.stopPropagation();
   let dropPosition = parseInt(this.id.substring(this.id.indexOf("-") + 1));
   if (!isNaN(dropPosition)) {
+    // update model before possible mode change to correctly update quiz modes placeholder in UI
+    updateCurrentlyEditedMode();
     if (isCurrentModeSetting(currentlyDraggedElement)) {
       // dragged element is from currently edited mode (exists in mode placeholder)
       let draggedModeSetting = currentlyEditedMode.settings.find(

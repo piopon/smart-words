@@ -64,7 +64,7 @@ function createQuizMode() {
  * Method used to save quiz mode changes and handle UI update
  */
 function updateQuizMode() {
-  if (!updateEditedMode()) {
+  if (!updateCurrentlyEditedMode()) {
     return;
   }
   putQuizMode(currentlyEditedMode.id, currentlyEditedMode, (err, data) => {
@@ -178,7 +178,7 @@ function updateSupportedSettingsBoxes() {
  *
  * @returns true if mode was updated successfully, false otherwise
  */
-function updateEditedMode() {
+function updateCurrentlyEditedMode() {
   try {
     currentlyEditedMode.name = getEditedModeInputValue("general-name");
     currentlyEditedMode.description = getEditedModeInputValue("general-desc");

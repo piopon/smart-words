@@ -50,11 +50,10 @@ class ModeService(database: ModeDatabase) {
    * @return response with update status (OK or NOT FOUND if mode does not exist)
    */
   def updateQuizMode(id: Int, mode: Mode): IO[Response[IO]] = {
-    val updated: Boolean = database.updateMode(id, mode)
-    if (!updated) {
-      return NotFound(s"Cannot find mode with ID: $id, or mode cannot have removed initial settings")
+    if (database.updateMode(id, mode)) {
+      return Ok(s"Updated quiz mode ID: $id")
     }
-    Ok(s"Updated quiz mode ID: $id")
+    NotFound(s"Cannot find mode with ID: $id, or mode cannot be updated with initial settings removal")
   }
 
   /**
@@ -63,10 +62,9 @@ class ModeService(database: ModeDatabase) {
    * @return response with update status (OK or NOT FOUND if mode does not exist/is not deletable)
    */
   def deleteQuizMode(id: Int): IO[Response[IO]] = {
-    val deleted: Boolean = database.deleteMode(id)
-    if (!deleted) {
-      return NotFound(s"Cannot find mode with ID: $id, or mode is not deletable")
+    if (database.deleteMode(id)) {
+      return Ok(s"Deleted quiz mode ID: $id")
     }
-    Ok(s"Deleted quiz mode ID: $id")
+    NotFound(s"Cannot find mode with ID: $id, or mode is not deletable")
   }
 }

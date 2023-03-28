@@ -555,6 +555,8 @@ function deleteSettingBox(settingBox) {
   );
   let oldIndex = currentlyEditedMode.settings.indexOf(toDeleteModeSetting);
   currentlyEditedMode.settings.splice(oldIndex, 1);
+  // update model after deleting setting box to correctly update quiz modes placeholder in UI
+  updateCurrentlyEditedMode();
   currentlyExpandedState.delete(getSettingBoxName(settingBox));
   updateQuizModesPlaceholder(currentlyEditedMode);
   updateSupportedSettingsBoxes();
@@ -577,6 +579,8 @@ function initializeDragAndDropEvents() {
  * @param {Object} e drag start event data
  */
 function handleBoxDragStart(e) {
+  // update model before possible mode change to correctly update quiz modes placeholder in UI
+  updateCurrentlyEditedMode();
   this.style.opacity = '0.5';
   currentlyDraggedElement = this;
   updateDropTargetsState(true, this);

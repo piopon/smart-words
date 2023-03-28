@@ -183,7 +183,12 @@ function updateSupportedSettingsBoxes() {
  */
 function updateCurrentlyEditedMode() {
   try {
-    currentlyEditedMode.name = getEditedModeInputValue("general-name");
+    const newModeName = getEditedModeInputValue("general-name");
+    const updateTable = newModeName !== currentlyEditedMode.name;
+    currentlyEditedMode.name = newModeName;
+    if (updateTable) {
+      updateQuizModesTable();
+    }
     currentlyEditedMode.description = getEditedModeInputValue("general-desc");
     currentlyEditedMode.settings.forEach(setting => {
       switch (setting.type) {

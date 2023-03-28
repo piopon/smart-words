@@ -370,7 +370,7 @@ function createCollapsibleContent(settingType, settingValue) {
 /**
  * Method used to create HTML code for general settings collapsible content
  *
- * @param {String} setting details of general settings
+ * @param {Object} setting data to be displayed in general settings
  * @returns HTML code for collapsible general content
  */
 function createContentGeneral(setting) {
@@ -381,7 +381,7 @@ function createContentGeneral(setting) {
 /**
  * Method used to create HTML code for questions setting collapsible content
  *
- * @param {String} setting details of question setting
+ * @param {Object} setting data to be displayed in question setting
  * @returns HTML code for collapsible quiz questions content
  */
 function createContentQuestions(setting) {
@@ -399,7 +399,7 @@ function createContentQuestions(setting) {
 /**
  * Method used to create HTML code for languages setting collapsible content
  *
- * @param {String} setting details of languages setting
+ * @param {Object} setting data to be displayed in languages setting
  * @returns HTML code for collapsible quiz languages content
  */
 function createContentLanguages(setting) {

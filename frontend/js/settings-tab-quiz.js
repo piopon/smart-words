@@ -414,12 +414,12 @@ function createContentLanguages(setting) {
  * @param {String} inputValue the initial value of a text
  * @returns HTML code for input text with a label contained in a divider element
  */
-function createSettingInputText(id, labelText, inputValue) {
+function createSettingInputText(id, watch, labelText, inputValue) {
   return `<div class="mode-setting-text-edit">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
             <input type="text" id="${id}" class="mode-setting-value"
                                           placeholder="specify value" value="${inputValue}"
-                                          oninput="updateCurrentlyEditedMode()"/>
+                                          ${watch ? `oninput="updateCurrentlyEditedMode()"` : ``}/>
           </div>`;
 }
 
@@ -432,13 +432,13 @@ function createSettingInputText(id, labelText, inputValue) {
  * @param {Integer} maxValue the maximym value of a number input
  * @returns HTML code for input number with a label contained in a divider element
  */
-function createSettingInputNumber(id, labelText, initValue, minValue, maxValue) {
+function createSettingInputNumber(id, watch, labelText, initValue, minValue, maxValue) {
   return `<div class="mode-setting-number-edit">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
             <input type="number" id="${id}" class="mode-setting-value"
                                             placeholder="specify value" value="${initValue}"
                                             min="${minValue}" max="${maxValue}"
-                                            oninput="updateCurrentlyEditedMode()"
+                                            ${watch ? `oninput="updateCurrentlyEditedMode()"` : ``}
                                             onfocusout="forceMinMaxConstraints(this)"/>
           </div>`;
 }

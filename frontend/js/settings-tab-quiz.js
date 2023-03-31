@@ -450,9 +450,9 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
  * @param {String} languages short codes of used languages
  * @returns HTML code for input language with a label contained in a divider element
  */
-function createSettingInputLanguage(id, labelText, languages) {
+function createSettingInputLanguage(id, watch, labelText, languages) {
   var allFlagsCheckboxes = Object.values(SUPPORTED_LANGUAGES)
-    .map((lang) => createSettingFlagCheckbox(lang, languages.includes(lang)))
+    .map((lang) => createSettingFlagCheckbox(watch, lang, languages.includes(lang)))
     .join("");
   return `<div class="mode-setting-languages-edit">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
@@ -467,13 +467,13 @@ function createSettingInputLanguage(id, labelText, languages) {
  * @param {Boolean} checked if the checkbox should be intially selected (true), or not (false)
  * @returns HTML code for input checkbox with a flag image label contained in a divider element
  */
-function createSettingFlagCheckbox(flag, checked) {
+function createSettingFlagCheckbox(watch, flag, checked) {
   const imageSrc = `images/language-flags/${flag}-32-box.png`;
   const labelClass = `mode-setting-flag-img ${checked ? "flag-checked" : ""}`;
   return `<div class="mode-setting-flag-checkbox">
             <input type="checkbox" id="check-flag-${flag}" ${checked ? "checked" : ""}/>
-            <label class="${labelClass}" onclick="toggleFlagCheckbox(event.target)">
-              <img src="${imageSrc}" onclick="toggleFlagCheckbox(event.target.parentNode)"/>
+            <label class="${labelClass}" onclick="toggleFlagCheckbox(event.target, ${watch})">
+              <img src="${imageSrc}" onclick="toggleFlagCheckbox(event.target.parentNode, ${watch})"/>
             </label>
           </div>`;
 }

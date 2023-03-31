@@ -259,10 +259,11 @@ function createModePlaceholderContent(mode) {
  */
 function createGeneralSettingBox(modeName, modeDescription) {
   // cannot drag and delete general setting box since it's a const element of all quiz modes
+  const watch = true;
   const draggable = false;
   const deletable = false;
   const contentTitle = "general";
-  const contentValue = createCollapsibleContent("general", { name: modeName, description: modeDescription });
+  const contentValue = createCollapsibleContent("general", { name: modeName, description: modeDescription }, watch);
   if (!currentlyExpandedState.has(contentTitle.trim())) {
     currentlyExpandedState.set(contentTitle.trim(), true);
   }
@@ -277,10 +278,10 @@ function createGeneralSettingBox(modeName, modeDescription) {
  * @param {Boolean} deletable flag indicating if setting box should have a delete button (true), or not (false)
  * @returns HTML code of the mode setting box
  */
-function createModeSettingBox(modeSetting, deletable) {
+function createModeSettingBox(modeSetting, deletable, watch) {
   const draggable = true;
   const contentTitle = modeSetting.type;
-  const contentValue = createCollapsibleContent(modeSetting.type, modeSetting);
+  const contentValue = createCollapsibleContent(modeSetting.type, modeSetting, watch);
   if (!currentlyExpandedState.has(contentTitle.trim())) {
     currentlyExpandedState.set(contentTitle.trim(), false);
   }

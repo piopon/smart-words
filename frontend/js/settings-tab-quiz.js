@@ -354,14 +354,14 @@ function createDeleteModeButton(id) {
  * @param {Object} settingValue data which we want to display as a content
  * @returns HTML code for collapsible content of specified type
  */
-function createCollapsibleContent(settingType, settingValue) {
+function createCollapsibleContent(settingType, settingValue, watch) {
   switch (settingType) {
     case "general":
-      return createContentGeneral(settingValue);
+      return createContentGeneral(settingValue, watch);
     case "questions":
-      return createContentQuestions(settingValue);
+      return createContentQuestions(settingValue, watch);
     case "languages":
-      return createContentLanguages(settingValue);
+      return createContentLanguages(settingValue, watch);
     default:
       return `unknown setting type: ${settingType}`;
   }

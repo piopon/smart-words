@@ -373,9 +373,9 @@ function createCollapsibleContent(settingType, settingValue) {
  * @param {Object} setting data to be displayed in general settings
  * @returns HTML code for collapsible general content
  */
-function createContentGeneral(setting) {
-  return createSettingInputText("general-name", "mode name", setting.name) +
-         createSettingInputText("general-desc", "mode description", setting.description)
+function createContentGeneral(setting, watch) {
+  return createSettingInputText("general-name", watch, "mode name", setting.name) +
+         createSettingInputText("general-desc", watch, "mode description", setting.description)
 }
 
 /**
@@ -384,16 +384,16 @@ function createContentGeneral(setting) {
  * @param {Object} setting data to be displayed in question setting
  * @returns HTML code for collapsible quiz questions content
  */
-function createContentQuestions(setting) {
+function createContentQuestions(setting, watch) {
   const questionRegex = /value='(?<default>\d*)' min='(?<min>\d*)' max='(?<max>\d*)'/;
   const questionValues = setting.details.match(questionRegex);
   const initMinimumValue = questionValues === null ? "": questionValues.groups.min;
   const initDefaultValue = questionValues === null ? "": questionValues.groups.default;
   const initMaximumValue = questionValues === null ? "" :questionValues.groups.max;
-  return createSettingInputText("questions-label", "specify setting label", setting.label) +
-         createSettingInputNumber("questions-min", "minimum value", initMinimumValue, 1, 5) +
-         createSettingInputNumber("questions-def", "default value", initDefaultValue, 1, 50) +
-         createSettingInputNumber("questions-max", "maximum value", initMaximumValue, 25, 50);
+  return createSettingInputText("questions-label", watch, "specify setting label", setting.label) +
+         createSettingInputNumber("questions-min", watch, "minimum value", initMinimumValue, 1, 5) +
+         createSettingInputNumber("questions-def", watch, "default value", initDefaultValue, 1, 50) +
+         createSettingInputNumber("questions-max", watch, "maximum value", initMaximumValue, 25, 50);
 }
 
 /**
@@ -402,9 +402,9 @@ function createContentQuestions(setting) {
  * @param {Object} setting data to be displayed in languages setting
  * @returns HTML code for collapsible quiz languages content
  */
-function createContentLanguages(setting) {
-  return createSettingInputText("languages-label", "specify setting label", setting.label) +
-         createSettingInputLanguage("languages-used", "select supported languages", setting.details);
+function createContentLanguages(setting, watch) {
+  return createSettingInputText("languages-label", watch, "specify setting label", setting.label) +
+         createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details);
 }
 
 /**

@@ -483,11 +483,13 @@ function createSettingFlagCheckbox(flag, checked) {
  *
  * @param {Element} flagItem for which we want to update the check state
  */
-function toggleFlagCheckbox(flagItem) {
+function toggleFlagCheckbox(flagItem, watch) {
   const linkedCheckbox = flagItem.previousElementSibling;
   if (linkedCheckbox !== null) {
     linkedCheckbox.checked = !linkedCheckbox.checked;
-    updateCurrentlyEditedMode();
+    if (watch) {
+      updateCurrentlyEditedMode();
+    }
   }
   flagItem.classList.toggle("flag-checked");
 }

@@ -3,6 +3,7 @@ const SUPPORTED_LANGUAGES = ["de", "en", "es", "fr", "pl", "pt"];
 // variables used by quiz modes tab in settings page
 var availableQuizModes = [];
 var availableModeSettings = [];
+var dirtyQuizModes = new Set();
 var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
@@ -72,6 +73,7 @@ function updateQuizMode() {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       console.log(data);
+      dirtyQuizModes.delete(currentlyEditedMode.id);
       updateQuizModesTable();
     }
   });
@@ -209,7 +211,10 @@ function updateCurrentlyEditedMode() {
           throw `Unknown type: ${setting.type}`;
       }
     });
-    console.log("marking as changed...");
+    if (!dirtyQuizModes.has(currentlyEditedMode.id)) {
+      dirtyQuizModes.add(currentlyEditedMode.id);
+      updateQuizModesTable();
+    }
     return true;
   } catch (e) {
     console.error(`Cannot update mode. ${e}`);

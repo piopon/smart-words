@@ -184,16 +184,16 @@ function updateSupportedSettingsBoxes() {
  *
  * @returns true if mode was updated successfully, false otherwise
  */
-function updateCurrentlyEditedMode() {
+function storeCurrentValuesInQuizMode(mode) {
   try {
     const newModeName = getEditedModeInputValue("general-name");
-    const updateTable = newModeName !== currentlyEditedMode.name;
-    currentlyEditedMode.name = newModeName;
+    const updateTable = newModeName !== mode.name;
+    mode.name = newModeName;
     if (updateTable) {
       updateQuizModesTable();
     }
-    currentlyEditedMode.description = getEditedModeInputValue("general-desc");
-    currentlyEditedMode.settings.forEach(setting => {
+    mode.description = getEditedModeInputValue("general-desc");
+    mode.settings.forEach(setting => {
       switch (setting.type) {
         case "questions":
           setting.label = getEditedModeInputValue("questions-label");

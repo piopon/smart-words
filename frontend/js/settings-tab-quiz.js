@@ -179,6 +179,11 @@ function updateSupportedSettingsBoxes() {
   });
 }
 
+/**
+ * Method used to update currently edited mode including: storing current values and marking mode as dirty
+ *
+ * @returns true if currently edited mode was updated successfully, false otherwise
+ */
 function updateCurrentlyEditedMode() {
   if (storeCurrentValuesInQuizMode(currentlyEditedMode)) {
     markCurrentlyEditedModeAsDirty();
@@ -188,9 +193,10 @@ function updateCurrentlyEditedMode() {
 }
 
 /**
- * Method used to update currently edited mode from values in the UI
+ * Method used to store current UI values in the specified quiz modeo object
  *
- * @returns true if mode was updated successfully, false otherwise
+ * @param {Object} mode in which we want to store current values from UI
+ * @returns true if values were stored successfully, false otherwise
  */
 function storeCurrentValuesInQuizMode(mode) {
   try {
@@ -226,6 +232,9 @@ function storeCurrentValuesInQuizMode(mode) {
   }
 }
 
+/**
+ * Method used to mark currently edited mode as dirty: add it to set and update quiz modes table
+ */
 function markCurrentlyEditedModeAsDirty() {
   if (!dirtyQuizModes.has(currentlyEditedMode.id)) {
     dirtyQuizModes.add(currentlyEditedMode.id);
@@ -294,6 +303,7 @@ function createGeneralSettingBox(modeName, modeDescription) {
  *
  * @param {Object} modeSetting to be displayed in the setting box
  * @param {Boolean} deletable flag indicating if setting box should have a delete button (true), or not (false)
+ * @param {Boolean} watch flag used to indetify if we should watch this mode setting box to update mode dirty state
  * @returns HTML code of the mode setting box
  */
 function createModeSettingBox(modeSetting, deletable, watch) {
@@ -371,6 +381,7 @@ function createDeleteModeButton(id) {
  *
  * @param {String} settingType the type of content which we want to create
  * @param {Object} settingValue data which we want to display as a content
+ * @param {Boolean} watch flag used to indetify if we should watch this content to update mode dirty state
  * @returns HTML code for collapsible content of specified type
  */
 function createCollapsibleContent(settingType, settingValue, watch) {
@@ -390,6 +401,7 @@ function createCollapsibleContent(settingType, settingValue, watch) {
  * Method used to create HTML code for general settings collapsible content
  *
  * @param {Object} setting data to be displayed in general settings
+ * @param {Boolean} watch flag used to indetify if we should watch this content to update mode dirty state
  * @returns HTML code for collapsible general content
  */
 function createContentGeneral(setting, watch) {
@@ -401,6 +413,7 @@ function createContentGeneral(setting, watch) {
  * Method used to create HTML code for questions setting collapsible content
  *
  * @param {Object} setting data to be displayed in question setting
+ * @param {Boolean} watch flag used to indetify if we should watch this content to update mode dirty state
  * @returns HTML code for collapsible quiz questions content
  */
 function createContentQuestions(setting, watch) {
@@ -419,6 +432,7 @@ function createContentQuestions(setting, watch) {
  * Method used to create HTML code for languages setting collapsible content
  *
  * @param {Object} setting data to be displayed in languages setting
+ * @param {Boolean} watch flag used to indetify if we should watch this content to update mode dirty state
  * @returns HTML code for collapsible quiz languages content
  */
 function createContentLanguages(setting, watch) {
@@ -429,6 +443,8 @@ function createContentLanguages(setting, watch) {
 /**
  * Method used to create a single setting input of type text with an appropriate label
  *
+ * @param {Integer} id unique identifier of the created input
+ * @param {Boolean} watch flag used to indetify if we should watch input change and update mode dirty state
  * @param {String} labelText the text displayed in a label
  * @param {String} inputValue the initial value of a text
  * @returns HTML code for input text with a label contained in a divider element
@@ -445,6 +461,8 @@ function createSettingInputText(id, watch, labelText, inputValue) {
 /**
  * Method used to create a single setting input of type number with an appropriate label
  *
+ * @param {Integer} id unique identifier of the created input
+ * @param {Boolean} watch flag used to indetify if we should watch input change and update mode dirty state
  * @param {String} labelText the text displayed in a label
  * @param {Integer} inputValue the initial value of a number input
  * @param {Integer} minValue the minimal value of a number input
@@ -465,6 +483,8 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
 /**
  * Method used to create a single setting input of type language (flag checkboxes) with an appropriate label
  *
+ * @param {Integer} id unique identifier of the created input
+ * @param {Boolean} watch flag used to indetify if we should watch input change and update mode dirty state
  * @param {String} labelText the text displayed in a label
  * @param {String} languages short codes of used languages
  * @returns HTML code for input language with a label contained in a divider element
@@ -482,6 +502,7 @@ function createSettingInputLanguage(id, watch, labelText, languages) {
 /**
  * Method used to create a single setting input of type checkbox with an appropriate flag image (as label)
  *
+ * @param {Boolean} watch flag used to indetify if we should watch checkbox and update mode dirty state
  * @param {String} flag file name which should be displayed as label
  * @param {Boolean} checked if the checkbox should be intially selected (true), or not (false)
  * @returns HTML code for input checkbox with a flag image label contained in a divider element
@@ -501,6 +522,7 @@ function createSettingFlagCheckbox(watch, flag, checked) {
  * Method used to toggle flag checkbox
  *
  * @param {Element} flagItem for which we want to update the check state
+ * @param {Boolean} watch flag used to indetify if we should update mode dirty state
  */
 function toggleFlagCheckbox(flagItem, watch) {
   const linkedCheckbox = flagItem.previousElementSibling;

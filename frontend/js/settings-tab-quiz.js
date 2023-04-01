@@ -27,6 +27,7 @@ function initializeTabQuizModes() {
  * @returns HTML code for supported settings content column
  */
 function initializeSettingsContent() {
+  const watch = false;
   const deletableModeSettings = false;
   let settingsPlaceholder = document.getElementById("settings-placeholder");
   if (settingsPlaceholder === null) return;
@@ -37,7 +38,7 @@ function initializeSettingsContent() {
       settingsPlaceholder.innerHTML = Object.values(data)
         .map((setting) => {
           availableModeSettings.push(setting);
-          return createModeSettingBox(setting, deletableModeSettings);
+          return createModeSettingBox(setting, deletableModeSettings, watch);
         })
         .join("");
       updateSupportedSettingsBoxes();
@@ -246,7 +247,7 @@ function createModePlaceholderContent(mode) {
   const deletableModeSettings = mode.deletable;
   return createGeneralSettingBox(mode.name, mode.description) +
          createDropTarget(0) +
-         mode.settings.map((setting, index) => createModeSettingBox(setting, deletableModeSettings) +
+         mode.settings.map((setting, index) => createModeSettingBox(setting, deletableModeSettings, true) +
                                                createDropTarget(index + 1)).join("");
 }
 

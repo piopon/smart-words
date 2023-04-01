@@ -179,6 +179,14 @@ function updateSupportedSettingsBoxes() {
   });
 }
 
+function updateCurrentlyEditedMode() {
+  if (storeCurrentValuesInQuizMode(currentlyEditedMode)) {
+    markCurrentlyEditedModeAsDirty();
+    return true;
+  }
+  return false;
+}
+
 /**
  * Method used to update currently edited mode from values in the UI
  *

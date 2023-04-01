@@ -235,6 +235,7 @@ function createModesTableContent(modes) {
                 <td>${mode.id}</td>
                 <td>
                   ${mode.name}
+                  ${dirtyQuizModes.has(mode.id) ? "*" : ""}
                   ${mode.deletable ? createDeleteModeButton(mode.id) : ""}
                 </td>
               </tr>`;

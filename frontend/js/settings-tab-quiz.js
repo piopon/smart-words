@@ -108,7 +108,7 @@ function removeQuizMode(id) {
 function selectMode(modeId) {
   // we need to check if a mode was opened and update model changes due to possible focus lost changes (from number inputs)
   if (currentlyEditedMode !== undefined) {
-    updateCurrentlyEditedMode();
+    storeCurrentValuesInQuizMode(currentlyEditedMode);
   }
   currentlyEditedMode = availableQuizModes.find((mode) => mode.id === modeId);
   if (currentlyEditedMode === undefined) return;

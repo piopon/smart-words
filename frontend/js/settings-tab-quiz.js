@@ -82,15 +82,15 @@ function updateQuizMode() {
 /**
  * Method used to delete specified quiz mode and update table (if success)
  *
- * @param {Integer} id identifier of the mode which should be deleted
+ * @param {Integer} modeId identifier of the mode which should be deleted
  */
-function removeQuizMode(id) {
-  deleteQuizMode(id, (err, data) => {
+function removeQuizMode(modeId) {
+  deleteQuizMode(modeId, (err, data) => {
     if (err) {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       console.log(data);
-      availableQuizModes = availableQuizModes.filter(mode => mode.id != id);
+      availableQuizModes = availableQuizModes.filter(mode => mode.id !== modeId);
       currentlyEditedMode = undefined;
       updateQuizModesTable();
       updateQuizModesPlaceholder(currentlyEditedMode);

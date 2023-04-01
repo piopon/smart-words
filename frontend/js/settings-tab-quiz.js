@@ -211,14 +211,17 @@ function updateCurrentlyEditedMode() {
           throw `Unknown type: ${setting.type}`;
       }
     });
-    if (!dirtyQuizModes.has(currentlyEditedMode.id)) {
-      dirtyQuizModes.add(currentlyEditedMode.id);
-      updateQuizModesTable();
-    }
     return true;
   } catch (e) {
     console.error(`Cannot update mode. ${e}`);
     return false;
+  }
+}
+
+function markCurrentlyEditedModeAsDirty() {
+  if (!dirtyQuizModes.has(currentlyEditedMode.id)) {
+    dirtyQuizModes.add(currentlyEditedMode.id);
+    updateQuizModesTable();
   }
 }
 

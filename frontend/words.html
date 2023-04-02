@@ -5,16 +5,16 @@
     <link rel="stylesheet" href="css/loader.css" />
     <link rel="stylesheet" href="css/modal.css" />
     <link rel="stylesheet" href="css/words.css" />
-    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="./images/essentials/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto+Condensed&display=swap" rel="stylesheet" />
     <script src="./js/words-api.js" defer></script>
     <script src="./js/words-state.js" defer></script>
     <script src="./js/words-dictionary.js" defer></script>
     <script src="./js/words.js" defer></script>
   </head>
-  <body>
+  <body onload="fillDictionarySelectors()">
     <!-- title bar with site title and simple navbar -->
     <header>
       <a href="index.html" id="site-logo"></a>

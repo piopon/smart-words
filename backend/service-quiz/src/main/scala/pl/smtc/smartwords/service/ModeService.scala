@@ -3,42 +3,68 @@ package pl.smtc.smartwords.service
 import cats.effect._
 import io.circe._
 import io.circe.syntax._
-import io.circe.parser._
 import org.http4s._
 import org.http4s.circe._
 import org.http4s.dsl.io._
 import pl.smtc.smartwords.dao._
+import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 
-import java.io.{BufferedInputStream, File, FileInputStream}
-import java.nio.file.{Path, Paths}
-import scala.collection.mutable.ListBuffer
-import scala.io.Source
-import scala.util.Using
+class ModeService(database: ModeDatabase) {
 
-class ModeService {
-
-  implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
+  implicit val SettingEncoder: Encoder[Setting] = SettingDao.getSettingEncoder
 
-  private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
-  private val quizModesFile = "modes.json"
-  private val quizModes: List[Mode] = initializeModes()
-
+  /**
+   * Method used to receive the list of current quiz modes
+   * @return response with list of quiz modes
+   */
   def getQuizModes: IO[Response[IO]] = {
-    Ok(quizModes.asJson)
+    Ok(database.getModes.asJson)
   }
 
-  private def initializeModes(): List[Mode] = {
-    val foundModes: ListBuffer[Mode] = new ListBuffer()
-    val modesFile = new File(resourceDir.resolve(quizModesFile).toString)
-    Using(new BufferedInputStream(new FileInputStream(modesFile))) { fileStream =>
-      val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
-      decode[List[Mode]](lines) match {
-        case Right(modes) => modes.foreach(mode => foundModes += mode)
-        case Left(fail) => println(s"Invalid modes file ${modesFile.getName}: ${fail.getMessage}")
-      }
+  /**
+   * Method used to receive the list of all supported settings
+   * @return response with a list of supported settings
+   */
+  def getSupportedSettings: IO[Response[IO]] = {
+    val supportedSettings: List[Setting] = Kind.values.toList
+      .filter(kind => kind != Kind.unknown)
+      .map(kind => Setting(kind, "", ""))
+    Ok(supportedSettings.asJson)
+  }
+
+  /**
+   * Method used to create new empty quiz mode
+   * @return confirmation response with ID of newly created quiz mode
+   */
+  def createQuizMode: IO[Response[IO]] = {
+    val newMode: Mode = database.addMode()
+    Ok(newMode.asJson)
+  }
+
+  /**
+   * Method used to update quiz mode with specified ID
+   * @param id identifier of the quiz mode
+   * @param mode new quiz mode value
+   * @return response with update status (OK or NOT FOUND if mode does not exist)
+   */
+  def updateQuizMode(id: Int, mode: Mode): IO[Response[IO]] = {
+    if (database.updateMode(id, mode)) {
+      return Ok(s"Updated quiz mode ID: $id")
     }
-    foundModes.toList
+    NotFound(s"Cannot find mode with ID: $id, or mode cannot be updated with initial settings removal")
+  }
+
+  /**
+   * Method used to delete quiz mode with specified ID
+   * @param id identifier of the quiz mode
+   * @return response with update status (OK or NOT FOUND if mode does not exist/is not deletable)
+   */
+  def deleteQuizMode(id: Int): IO[Response[IO]] = {
+    if (database.deleteMode(id)) {
+      return Ok(s"Deleted quiz mode ID: $id")
+    }
+    NotFound(s"Cannot find mode with ID: $id, or mode is not deletable")
   }
 }

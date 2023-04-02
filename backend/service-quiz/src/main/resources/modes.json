@@ -3,15 +3,16 @@
     "id": 0,
     "name": "guess definition",
     "description": "guess the word definition based on a provided word name",
+    "deletable": false,
     "settings": [
       {
-        "label": "select language:",
         "type": "languages",
+        "label": "select language:",
         "details": "pl en"
       },
       {
-        "label": "how many questions:",
         "type": "questions",
+        "label": "how many questions:",
         "details": "value='10' min='5' max='25'"
       }
     ]
@@ -20,15 +21,16 @@
     "id": 1,
     "name": "match the word",
     "description": "select the correct word name based on the provided definition",
+    "deletable": false,
     "settings": [
       {
-        "label": "select language:",
         "type": "languages",
+        "label": "select language:",
         "details": "pl"
       },
       {
-        "label": "how many questions:",
         "type": "questions",
+        "label": "how many questions:",
         "details": "value='10' min='5' max='25'"
       }
     ]

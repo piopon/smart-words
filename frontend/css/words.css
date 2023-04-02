@@ -16,18 +16,18 @@
 }
 
 #btn-add-word.disabled {
-  background: url(../images/add-disabled.png) no-repeat;
+  background: url(../images/menu-items/add-disabled.png) no-repeat;
   cursor: not-allowed;
   animation: add-word-background 0.75s ease-in;
 }
 
 #btn-add-word.enabled {
-  background: url(../images/add.png) no-repeat;
+  background: url(../images/menu-items/add.png) no-repeat;
   cursor: pointer;
 }
 
 #btn-add-word.enabled:hover {
-  background: url(../images/add-hover.png) no-repeat;
+  background: url(../images/menu-items/add-hover.png) no-repeat;
 }
 
 #word-change-toast {
@@ -284,7 +284,7 @@
 }
 
 tr a.btn-edit {
-  background: url(../images/edit.png) no-repeat center;
+  background: url(../images/words-table/edit.png) no-repeat center;
   background-color: dodgerblue;
   border: black solid 2px;
   border-radius: 12px;
@@ -299,7 +299,7 @@ tr a.btn-edit:hover {
 }
 
 tr a.btn-delete {
-  background: url(../images/delete.png) no-repeat center;
+  background: url(../images/words-table/delete.png) no-repeat center;
   background-color: firebrick;
   border: black solid 2px;
   border-radius: 12px;
@@ -315,19 +315,19 @@ tr a.btn-delete:hover {
 
 @keyframes add-word-background {
   from {
-    background: url(../images/add.png) no-repeat;
+    background: url(../images/menu-items/add.png) no-repeat;
   }
   to {
-    background: url(../images/add-disabled.png) no-repeat;
+    background: url(../images/menu-items/add-disabled.png) no-repeat;
   }
 }
 
 @-webkit-keyframes add-word-background {
   from {
-    background: url(../images/add.png) no-repeat;
+    background: url(../images/menu-items/add.png) no-repeat;
   }
   to {
-    background: url(../images/add-disabled.png) no-repeat;
+    background: url(../images/menu-items/add-disabled.png) no-repeat;
   }
 }
 

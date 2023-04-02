@@ -113,6 +113,3 @@ function languageChanged() {
   selectedLanguage = langSelector.value;
   loadWords(selectedGame, selectedMode, selectedLanguage);
 }
-
-// called on words.html site load
-fillDictionarySelectors();

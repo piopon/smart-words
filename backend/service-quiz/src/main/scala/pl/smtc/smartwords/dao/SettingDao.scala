@@ -12,11 +12,11 @@ object SettingDao {
    */
   def getSettingDecoder: Decoder[Setting] = Decoder.instance {
     (input: HCursor) => for {
-      label <- input.downField("label").as[String]
       kind <- input.downField("type").as[String]
+      label <- input.downField("label").as[String]
       details <- input.downField("details").as[String]
     } yield {
-      Setting(label, Kind.fromString(kind), details)
+      Setting(Kind.fromString(kind), label, details)
     }
   }
 
@@ -25,8 +25,8 @@ object SettingDao {
    * @return setting object encoder
    */
   def getSettingEncoder: Encoder[Setting] = Encoder.instance {
-    (setting: Setting) => json"""{"label": ${setting.label},
-                                  "type": ${setting.kind.toString},
+    (setting: Setting) => json"""{"type": ${setting.kind.toString},
+                                  "label": ${setting.label},
                                   "details": ${setting.details}}"""
   }
 }

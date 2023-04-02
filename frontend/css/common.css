@@ -35,7 +35,7 @@ header #site-logo {
   height: 64px;
   width: 64px;
   margin: 0 0 8 10px;
-  background: url(../images/sw-logo.png) no-repeat;
+  background: url(../images/essentials/logo.png) no-repeat;
 }
 
 header #site-title {
@@ -50,11 +50,11 @@ header #btn-page-back {
   margin: 0 20 0 0px;
   color: transparent !important;
   border: 0px solid black;
-  background: url(../images/back.png) no-repeat;
+  background: url(../images/menu-items/back.png) no-repeat;
 }
 
 header #btn-page-back:hover {
-  background: url(../images/back-hover.png) no-repeat;
+  background: url(../images/menu-items/back-hover.png) no-repeat;
 }
 
 #main-content {
@@ -62,7 +62,7 @@ header #btn-page-back:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url(../images/background/background.png);
+  background: url(../images/essentials/background.png);
   background-position: 15px 15px;
 }
 

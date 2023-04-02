@@ -1,14 +1,29 @@
 #btn-show-words {
   height: 80px;
   width: 80px;
-  margin: 0 20px;
+  padding: 0;
+  margin: 0px 0px 0px 20px;
   color: transparent !important;
   border: 0px solid black;
-  background: url(../images/dictionary.png) no-repeat;
+  background: url(../images/menu-items/dictionary.png) no-repeat;
 }
 
 #btn-show-words:hover {
-  background: url(../images/dictionary-hover.png) no-repeat;
+  background: url(../images/menu-items/dictionary-hover.png) no-repeat;
+}
+
+#btn-show-settings {
+  height: 80px;
+  width: 80px;
+  padding: 0;
+  margin: 0px 20px 0px 0px;
+  color: transparent !important;
+  border: 0px solid black;
+  background: url(../images/menu-items/settings.png) no-repeat;
+}
+
+#btn-show-settings:hover {
+  background: url(../images/menu-items/settings-hover.png) no-repeat;
 }
 
 #quiz-start-frame {

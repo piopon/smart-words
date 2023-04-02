@@ -104,13 +104,13 @@ div[class^="question-status"].nav-on:hover {
 }
 
 #nav-info.nav-wait {
-  background-image: url(../images/wait.png);
+  background-image: url(../images/ui-state/wait.png);
   background-repeat: no-repeat;
   animation: status-opacity 0.75s ease-in;
 }
 
 #nav-info.nav-error {
-  background-image: url(../images/info.png);
+  background-image: url(../images/ui-state/info.png);
   background-repeat: no-repeat;
   opacity: 1;
 }
@@ -215,7 +215,7 @@ div.quiz-mode-tile-controls {
 }
 
 div.quiz-mode-controls-info {
-  background: url(../images/info.png) no-repeat;
+  background: url(../images/ui-state/info.png) no-repeat;
   width: 24px;
   height: 24px;
   position: absolute;
@@ -321,14 +321,14 @@ div[id^="question-info-"].service-ok {
 
 div[id^="question-info-"].service-wait {
   background-color: black;
-  background-image: url(../images/wait.png);
+  background-image: url(../images/ui-state/wait.png);
   background-repeat: no-repeat;
   animation: status-opacity 0.75s ease-in;
 }
 
 div[id^="question-info-"].service-error {
   background-color: lightgray;
-  background-image: url(../images/info.png);
+  background-image: url(../images/ui-state/info.png);
   background-repeat: no-repeat;
   opacity: 1;
 }

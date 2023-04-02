@@ -218,13 +218,13 @@ div[id$="-wrapper"] div[id$="-info"].service-ok {
 }
 
 div[id$="-wrapper"] div[id$="-info"].service-wait {
-  background-image: url(../images/wait.png);
+  background-image: url(../images/ui-state/wait.png);
   background-repeat: no-repeat;
   animation: smooth-opacity 0.75s ease-in;
 }
 
 div[id$="-wrapper"] div[id$="-info"].service-error {
-  background-image: url(../images/info.png);
+  background-image: url(../images/ui-state/info.png);
   background-repeat: no-repeat;
   opacity: 0.8;
 }

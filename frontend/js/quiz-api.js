@@ -95,6 +95,73 @@ const getQuizStop = (quizID, callback) => {
 };
 
 /**
+ * Method used to send a request to the quiz service to create a new empty quiz mode
+ *
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
+const postQuizMode = (callback) => {
+  const postRequest = new XMLHttpRequest();
+  postRequest.addEventListener("readystatechange", () => {
+    if (postRequest.DONE !== postRequest.readyState) return;
+    if (postRequest.status === 200) {
+      callback(undefined, JSON.parse(postRequest.responseText));
+    } else {
+      callback(createErrorObject("cannot create new quiz mode", postRequest.status), undefined);
+    }
+  });
+  postRequest.open("POST", URL + "modes");
+  postRequest.timeout = REQUEST_TIMEOUT;
+  postRequest.send();
+};
+
+/**
+ * Method used to send a request to the quiz service to update quiz mode with specified ID
+ *
+ * @param {Integer} id identifier of the mode which should be changed
+ * @param {Object} newMode updated/refreshed data of the mode which we want to save
+ * @param {Function} callback callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
+const putQuizMode = (id, newMode, callback) => {
+  const putRequest = new XMLHttpRequest();
+  putRequest.addEventListener("readystatechange", () => {
+    if (putRequest.DONE !== putRequest.readyState) return;
+    if (putRequest.status === 200) {
+      callback(undefined, putRequest.responseText);
+    } else {
+      callback(createErrorObject("cannot update quiz mode", putRequest.status), undefined);
+    }
+  });
+  putRequest.open("PUT", URL + "modes/" + id);
+  putRequest.timeout = REQUEST_TIMEOUT;
+  putRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  putRequest.send(JSON.stringify(newMode));
+};
+
+/**
+ * Method used to send a request to the quiz service to delete quiz mode with specified ID
+ *
+ * @param {Integer} id identifier of the mode which should be deleted
+ * @param {Function} callback callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
+const deleteQuizMode = (id, callback) => {
+  const deleteRequest = new XMLHttpRequest();
+  deleteRequest.addEventListener("readystatechange", () => {
+    if (deleteRequest.DONE !== deleteRequest.readyState) return;
+    if (deleteRequest.status === 200) {
+      callback(undefined, deleteRequest.responseText);
+    } else {
+      callback(createErrorObject("cannot delete quiz mode", deleteRequest.status), undefined);
+    }
+  });
+  deleteRequest.open("DELETE", URL + "modes/" + id);
+  deleteRequest.timeout = REQUEST_TIMEOUT;
+  deleteRequest.send();
+};
+
+/**
  * Method used to send a request to the quiz service to receive all quiz modes
  *
  * @param {Function} callback function to be invoked when request is completed.
@@ -111,6 +178,27 @@ const getQuizStop = (quizID, callback) => {
     }
   });
   getRequest.open("GET", URL + "modes");
+  getRequest.timeout = REQUEST_TIMEOUT;
+  getRequest.send();
+};
+
+/**
+ * Method used to send a request to the quiz service to receive all quiz modes settings
+ *
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
+const getModeSettings = (callback) => {
+  const getRequest = new XMLHttpRequest();
+  getRequest.addEventListener("readystatechange", () => {
+    if (getRequest.DONE !== getRequest.readyState) return;
+    if (getRequest.status === 200) {
+      callback(undefined, JSON.parse(getRequest.responseText));
+    } else {
+      callback(createErrorObject("cannot get quiz mode settings", getRequest.status), undefined);
+    }
+  });
+  getRequest.open("GET", URL + "modes/settings");
   getRequest.timeout = REQUEST_TIMEOUT;
   getRequest.send();
 };

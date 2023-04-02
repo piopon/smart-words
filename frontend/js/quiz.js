@@ -92,17 +92,17 @@ function requestQuestionNo(number, buttonId = undefined) {
     } else {
       questionViewUpdateUI(STATE_QUIZ_OK, buttonId);
       currentQuestionNo = number;
-      displayQuestion(data);
+      displayQuizQuestion(data);
     }
   });
 }
 
 /**
- * Method used to display a specified question number with its all four options
+ * Method used to display a specified quiz question data view (name, all four options, and control buttons)
  *
  * @param {Object} questionObject to be displayed (word + four options)
  */
-function displayQuestion(questionObject) {
+function displayQuizQuestion(questionObject) {
   let questionStatus = `question ${currentQuestionNo + 1}/${totalQuestionsNo}`;
   document.getElementById("quiz-title-container-label").innerHTML = `quiz - ${selectedMode.name} - ${questionStatus}:`;
   document.getElementById("quiz-question-container").className = "container-visible";
@@ -278,7 +278,7 @@ function stopQuiz() {
       console.log("ERROR " + err.status + ": " + err.message);
     } else {
       questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
-      displaySummary(data);
+      displayQuizSummary(data);
     }
   });
 }
@@ -300,11 +300,11 @@ function getButtonIdFromEndReason(endQuizReason) {
 }
 
 /**
- * Method used to display summary (hide question and show percentage correctness)
+ * Method used to display quiz summary view (hide question and show percentage correctness)
  *
  * @param {Float} summaryValue correct answers percentage
  */
-function displaySummary(summaryValue) {
+function displayQuizSummary(summaryValue) {
   questionViewUpdateUI(STATE_QUIZ_OFF);
   document.getElementById("quiz-question-container").className = "container-visible";
   document.getElementById("quiz-modes-container").className = "container-hidden";
@@ -358,13 +358,13 @@ function getSummaryTitle(summaryValue) {
  * @returns summary image path
  */
 function getSummaryImage(summaryValue) {
-  let summaryImage = "images/summary-medium.png";
+  let summaryImage = "images/quiz-summary/050-medium.png";
   if (summaryValue === 1.0) {
-    summaryImage = "images/summary-100.png";
+    summaryImage = "images/quiz-summary/100-perfect.png";
   } else if (summaryValue >= 0.75) {
-    summaryImage = "images/summary-good.png";
+    summaryImage = "images/quiz-summary/075-good.png";
   } else if (summaryValue <= 0.25) {
-    summaryImage = "images/summary-bad.png";
+    summaryImage = "images/quiz-summary/025-bad.png";
   }
   return summaryImage;
 }
@@ -373,7 +373,7 @@ function getSummaryImage(summaryValue) {
  * Method used to clean quiz summary and display initial quiz modes selector
  */
 function cleanQuiz() {
-  showQuizModes();
+  displayQuizModes();
   document.getElementById("quiz-question-container").className = "container-hidden";
   document.getElementById("quiz-modes-container").className = "container-visible";
   document.getElementById("quiz-title-container-status").innerHTML = "";

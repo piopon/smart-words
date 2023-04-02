@@ -3,9 +3,9 @@ var modeLanguageMap = new Map();
 var availableModes = undefined;
 
 /**
- * Method used to show quiz modes
+ * Method used to show quiz modes view (as a list of selectable tiles)
  */
-function showQuizModes() {
+function displayQuizModes() {
   availableModes = [];
   quizModeViewUpdateUI(STATE_QUIZ_LOAD);
   getQuizModes((err, data) => {
@@ -163,7 +163,7 @@ function getLanguageHtml(language, selected, modeId) {
   let languageId = `language-family-${modeId}`;
   let languageClass = `language-flag ${selected ? "language-selected" : ""}`;
   let languageName = selected ? language.substring(0, 2) : language;
-  let languageFile = `images/languages/${languageName}-24.png`;
+  let languageFile = `images/language-flags/${languageName}-24.png`;
   let languageClick = `changeLanguage('${languageName}', ${modeId})`;
   return `<img id="${languageId}" class="${languageClass}" src="${languageFile}" onclick="${languageClick}"/>`;
 }
@@ -216,5 +216,3 @@ function getControlsHtml(modeId) {
             <div data-mode="${modeId}" class="quiz-mode-controls-info hide" title="PUT EXTRA INFO HERE"></div>
           </div>`;
 }
-
-showQuizModes();

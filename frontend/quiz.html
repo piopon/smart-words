@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="css/modal.css" />
     <link rel="stylesheet" href="css/tiles.css" />
     <link rel="stylesheet" href="css/quiz.css" />
-    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="./images/essentials/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto+Condensed&display=swap" rel="stylesheet" />
     <script src="./js/quiz-api.js" defer></script>
     <script src="./js/quiz-state.js" defer></script>
     <script src="./js/quiz-mode.js" defer></script>
     <script src="./js/quiz.js" defer></script>
   </head>
-  <body>
+  <body onload="displayQuizModes()">
     <!-- title bar with site title and simple navbar -->
     <header>
       <a href="index.html" id="site-logo"></a>

@@ -65,6 +65,7 @@ class ModeDatabase {
     val freeId: Int = quizModes.map(mode => mode.id).max + 1
     val newMode: Mode = Mode(freeId, "", "", List(), deletable = true)
     quizModes += newMode
+    saveDatabase()
     newMode
   }
 
@@ -85,6 +86,7 @@ class ModeDatabase {
     }
     newMode.id = id
     quizModes.update(idIndex, newMode)
+    saveDatabase()
     true
   }
 
@@ -102,6 +104,7 @@ class ModeDatabase {
       return false
     }
     quizModes.remove(idIndex)
+    saveDatabase()
     true
   }
 

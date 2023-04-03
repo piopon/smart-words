@@ -5,8 +5,9 @@ import io.circe.parser._
 import pl.smtc.smartwords.dao._
 import pl.smtc.smartwords.model._
 
-import java.io.{BufferedInputStream, File, FileInputStream}
-import java.nio.file.{Path, Paths}
+import java.io._
+import java.nio.charset.StandardCharsets
+import java.nio.file._
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.Using
@@ -38,6 +39,14 @@ class ModeDatabase {
       }
     }
     result
+  }
+
+  /**
+   * Method used to save current quiz mode database into JSON file
+   */
+  def saveDatabase(): Unit = {
+    val content: String = quizModes.asJson.toString()
+    Files.write(resourceDir.resolve(quizModesFile), content.getBytes(StandardCharsets.UTF_8))
   }
 
   /**

@@ -376,6 +376,10 @@ function createDeleteModeButton(id) {
           </button>`;
 }
 
+function createDirtyModeMarker() {
+  return `<div class="dirty-mode-marker">💾❗</div>`;
+}
+
 /**
  * Method used to create HTML code for collapsible content of specified type
  *

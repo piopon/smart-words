@@ -2,6 +2,7 @@ package pl.smtc.smartwords.database
 
 import io.circe._
 import io.circe.parser._
+import io.circe.syntax._
 import pl.smtc.smartwords.dao._
 import pl.smtc.smartwords.model._
 
@@ -15,6 +16,7 @@ import scala.util.Using
 class ModeDatabase {
 
   implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
+  implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
 
   private val quizModes: ListBuffer[Mode] = ListBuffer()
   private val quizModesFile: String = "modes.json"

@@ -2,11 +2,13 @@ package pl.smtc.smartwords.database
 
 import io.circe._
 import io.circe.parser._
+import io.circe.syntax._
 import pl.smtc.smartwords.dao._
 import pl.smtc.smartwords.model._
 
-import java.io.{BufferedInputStream, File, FileInputStream}
-import java.nio.file.{Path, Paths}
+import java.io._
+import java.nio.charset.StandardCharsets
+import java.nio.file._
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.Using
@@ -14,6 +16,7 @@ import scala.util.Using
 class ModeDatabase {
 
   implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
+  implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
 
   private val quizModes: ListBuffer[Mode] = ListBuffer()
   private val quizModesFile: String = "modes.json"
@@ -41,6 +44,14 @@ class ModeDatabase {
   }
 
   /**
+   * Method used to save current quiz mode database into JSON file
+   */
+  def saveDatabase(): Unit = {
+    val content: String = quizModes.asJson.toString()
+    Files.write(resourceDir.resolve(quizModesFile), content.getBytes(StandardCharsets.UTF_8))
+  }
+
+  /**
    * Method used to retrieve all quiz modes
    * @return a list of currently available quiz modes
    */
@@ -54,6 +65,7 @@ class ModeDatabase {
     val freeId: Int = quizModes.map(mode => mode.id).max + 1
     val newMode: Mode = Mode(freeId, "", "", List(), deletable = true)
     quizModes += newMode
+    saveDatabase()
     newMode
   }
 
@@ -74,6 +86,7 @@ class ModeDatabase {
     }
     newMode.id = id
     quizModes.update(idIndex, newMode)
+    saveDatabase()
     true
   }
 
@@ -91,6 +104,7 @@ class ModeDatabase {
       return false
     }
     quizModes.remove(idIndex)
+    saveDatabase()
     true
   }
 

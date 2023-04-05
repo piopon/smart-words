@@ -74,6 +74,8 @@ function updateQuizMode() {
     } else {
       console.log(data);
       dirtyQuizModes.delete(currentlyEditedMode.id);
+      // disable save button so the user cannot save changes
+      document.getElementById("quiz-modes-save").disabled = true;
       updateQuizModesTable();
     }
   });
@@ -239,6 +241,8 @@ function markCurrentlyEditedModeAsDirty() {
   if (!dirtyQuizModes.has(currentlyEditedMode.id)) {
     dirtyQuizModes.add(currentlyEditedMode.id);
     updateQuizModesTable();
+    // enable save button so the user can save changes
+    document.getElementById("quiz-modes-save").disabled = false;
   }
 }
 

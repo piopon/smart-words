@@ -523,6 +523,12 @@ button#quiz-modes-save {
   font-family: var(--styled-font), cursive;
 }
 
+button#quiz-modes-save:disabled {
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
+}
+
 /************************************/
 /* quiz modes tab - settings        */
 /************************************/

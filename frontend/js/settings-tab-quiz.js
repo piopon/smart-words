@@ -65,6 +65,9 @@ function createQuizMode() {
  * Method used to save quiz mode changes and handle UI update
  */
 function updateQuizMode() {
+  if (currentlyEditedMode === undefined) {
+    return;
+  }
   if (!updateCurrentlyEditedMode()) {
     return;
   }

@@ -195,6 +195,11 @@ function updateCurrentlyEditedMode() {
   return false;
 }
 
+/**
+ * Method used to update the enabled state of save quiz mode button
+ *
+ * @param {Boolean} enabled flag indicating if button should be enabled (true), or disabled (false)
+ */
 function updateSaveModeButtonEnableState(enabled) {
   document.getElementById("quiz-modes-save").disabled = !enabled;
 }
@@ -385,6 +390,11 @@ function createDeleteModeButton(id) {
           </button>`;
 }
 
+/**
+ * Method used to create a divider element with dirty/changed/to save marker
+ *
+ * @returns HTML code with divider containig dirty marker icon
+ */
 function createDirtyModeMarker() {
   return `<div class="dirty-mode-marker">💾❗</div>`;
 }

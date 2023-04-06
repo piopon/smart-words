@@ -57,6 +57,7 @@ function createQuizMode() {
     } else {
       availableQuizModes.push(data);
       updateQuizModesTable();
+      selectMode(data.id);
     }
   });
 }

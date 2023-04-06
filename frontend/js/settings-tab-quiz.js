@@ -75,7 +75,7 @@ function updateQuizMode() {
       console.log(data);
       dirtyQuizModes.delete(currentlyEditedMode.id);
       // disable save button so the user cannot save changes
-      document.getElementById("quiz-modes-save").disabled = true;
+      updateSaveModeButtonEnableState(false);
       updateQuizModesTable();
     }
   });
@@ -118,7 +118,7 @@ function selectMode(modeId) {
   updateQuizModesTableSelection(modeId);
   updateQuizModesPlaceholder(currentlyEditedMode);
   updateSupportedSettingsBoxes();
-  document.getElementById("quiz-modes-save").disabled = !dirtyQuizModes.has(modeId);
+  updateSaveModeButtonEnableState(dirtyQuizModes.has(modeId));
 }
 
 /**
@@ -247,7 +247,7 @@ function markCurrentlyEditedModeAsDirty() {
     dirtyQuizModes.add(currentlyEditedMode.id);
     updateQuizModesTable();
     // enable save button so the user can save changes
-    document.getElementById("quiz-modes-save").disabled = false;
+    updateSaveModeButtonEnableState(true);
   }
 }
 

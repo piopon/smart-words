@@ -195,6 +195,10 @@ function updateCurrentlyEditedMode() {
   return false;
 }
 
+function updateSaveModeButtonEnableState(enabled) {
+  document.getElementById("quiz-modes-save").disabled = !enabled;
+}
+
 /**
  * Method used to store current UI values in the specified quiz modeo object
  *

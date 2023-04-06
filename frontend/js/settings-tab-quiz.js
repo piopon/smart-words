@@ -77,6 +77,7 @@ function updateQuizMode() {
       // disable save button so the user cannot save changes
       updateSaveModeButtonEnableState(false);
       updateQuizModesTable();
+      updateQuizModesTableSelection(currentlyEditedMode.id);
     }
   });
 }
@@ -217,6 +218,7 @@ function storeCurrentValuesInQuizMode(mode) {
     mode.name = newModeName;
     if (updateTable) {
       updateQuizModesTable();
+      updateQuizModesTableSelection(mode.id);
     }
     mode.description = getEditedModeInputValue("general-desc");
     mode.settings.forEach(setting => {
@@ -253,6 +255,7 @@ function markCurrentlyEditedModeAsDirty() {
     updateQuizModesTable();
     // enable save button so the user can save changes
     updateSaveModeButtonEnableState(true);
+    updateQuizModesTableSelection(currentlyEditedMode.id);
   }
 }
 

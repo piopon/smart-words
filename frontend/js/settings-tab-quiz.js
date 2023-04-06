@@ -118,6 +118,7 @@ function selectMode(modeId) {
   updateQuizModesTableSelection(modeId);
   updateQuizModesPlaceholder(currentlyEditedMode);
   updateSupportedSettingsBoxes();
+  document.getElementById("quiz-modes-save").disabled = !dirtyQuizModes.has(modeId);
 }
 
 /**

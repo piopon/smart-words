@@ -749,7 +749,7 @@ function handleBoxDrop(e) {
       let newSetting = availableModeSettings.find(
         (setting) => setting.type === getSettingBoxName(currentlyDraggedElement)
       );
-      currentlyEditedMode.settings.splice(dropPosition, 0, newSetting);
+      currentlyEditedMode.settings.splice(dropPosition, 0, structuredClone(newSetting));
     }
   } else {
     // we are dropping setting box to delete drop target

@@ -57,6 +57,7 @@ function createQuizMode() {
     } else {
       availableQuizModes.push(data);
       updateQuizModesTable();
+      selectMode(data.id);
     }
   });
 }
@@ -65,6 +66,9 @@ function createQuizMode() {
  * Method used to save quiz mode changes and handle UI update
  */
 function updateQuizMode() {
+  if (currentlyEditedMode === undefined) {
+    return;
+  }
   if (!updateCurrentlyEditedMode()) {
     return;
   }
@@ -74,7 +78,10 @@ function updateQuizMode() {
     } else {
       console.log(data);
       dirtyQuizModes.delete(currentlyEditedMode.id);
+      // disable save button so the user cannot save changes
+      updateSaveModeButtonEnableState(false);
       updateQuizModesTable();
+      updateQuizModesTableSelection(currentlyEditedMode.id);
     }
   });
 }
@@ -116,6 +123,7 @@ function selectMode(modeId) {
   updateQuizModesTableSelection(modeId);
   updateQuizModesPlaceholder(currentlyEditedMode);
   updateSupportedSettingsBoxes();
+  updateSaveModeButtonEnableState(dirtyQuizModes.has(modeId));
 }
 
 /**
@@ -193,6 +201,15 @@ function updateCurrentlyEditedMode() {
 }
 
 /**
+ * Method used to update the enabled state of save quiz mode button
+ *
+ * @param {Boolean} enabled flag indicating if button should be enabled (true), or disabled (false)
+ */
+function updateSaveModeButtonEnableState(enabled) {
+  document.getElementById("quiz-modes-save").disabled = !enabled;
+}
+
+/**
  * Method used to store current UI values in the specified quiz modeo object
  *
  * @param {Object} mode in which we want to store current values from UI
@@ -205,6 +222,7 @@ function storeCurrentValuesInQuizMode(mode) {
     mode.name = newModeName;
     if (updateTable) {
       updateQuizModesTable();
+      updateQuizModesTableSelection(mode.id);
     }
     mode.description = getEditedModeInputValue("general-desc");
     mode.settings.forEach(setting => {
@@ -239,6 +257,9 @@ function markCurrentlyEditedModeAsDirty() {
   if (!dirtyQuizModes.has(currentlyEditedMode.id)) {
     dirtyQuizModes.add(currentlyEditedMode.id);
     updateQuizModesTable();
+    // enable save button so the user can save changes
+    updateSaveModeButtonEnableState(true);
+    updateQuizModesTableSelection(currentlyEditedMode.id);
   }
 }
 
@@ -255,7 +276,7 @@ function createModesTableContent(modes) {
                 <td>${mode.id}</td>
                 <td>
                   ${mode.name}
-                  ${dirtyQuizModes.has(mode.id) ? "*" : ""}
+                  ${dirtyQuizModes.has(mode.id) ? createDirtyModeMarker() : ""}
                   ${mode.deletable ? createDeleteModeButton(mode.id) : ""}
                 </td>
               </tr>`;
@@ -374,6 +395,15 @@ function createDeleteModeButton(id) {
   return `<button class="delete-mode" onclick="removeQuizMode(${id})">
             ❌
           </button>`;
+}
+
+/**
+ * Method used to create a divider element with dirty/changed/to save marker
+ *
+ * @returns HTML code with divider containig dirty marker icon
+ */
+function createDirtyModeMarker() {
+  return `<div class="dirty-mode-marker">💾❗</div>`;
 }
 
 /**
@@ -719,7 +749,7 @@ function handleBoxDrop(e) {
       let newSetting = availableModeSettings.find(
         (setting) => setting.type === getSettingBoxName(currentlyDraggedElement)
       );
-      currentlyEditedMode.settings.splice(dropPosition, 0, newSetting);
+      currentlyEditedMode.settings.splice(dropPosition, 0, structuredClone(newSetting));
     }
   } else {
     // we are dropping setting box to delete drop target

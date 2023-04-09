@@ -452,12 +452,19 @@ table#quiz-modes-available td button.delete-mode:hover {
   box-shadow: inset 0 0 2px black;
 }
 
+table#quiz-modes-available td div.dirty-mode-marker {
+  position: absolute;
+  top: 6px;
+  left: -10px;
+  width: 60px;
+}
+
 table#quiz-modes-available td:first-child {
   text-align: center;
 }
 
 table#quiz-modes-available td:last-child {
-  padding-left: 15px;
+  padding-left: 30px;
 }
 
 button#quiz-modes-add {
@@ -514,6 +521,12 @@ button#quiz-modes-save {
   border: 1px black solid;
   font-size: 19px;
   font-family: var(--styled-font), cursive;
+}
+
+button#quiz-modes-save:disabled {
+  background-color: gainsboro;
+  border-color: lightgray;
+  color: gray;
 }
 
 /************************************/

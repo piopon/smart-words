@@ -98,10 +98,12 @@ function removeQuizMode(modeId) {
     } else {
       console.log(data);
       availableQuizModes = availableQuizModes.filter(mode => mode.id !== modeId);
+      // clean currently edited mode variable if user removes it
       if (currentlyEditedMode.id === modeId) {
         currentlyEditedMode = undefined;
       }
       updateQuizModesTable();
+      // leave quiz modes table selection if user removed different mode
       if (currentlyEditedMode !== undefined) {
         updateQuizModesTableSelection(currentlyEditedMode.id);
       }

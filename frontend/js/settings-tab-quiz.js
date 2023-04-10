@@ -100,9 +100,9 @@ function removeQuizMode(modeId) {
       availableQuizModes = availableQuizModes.filter(mode => mode.id !== modeId);
       if (currentlyEditedMode.id === modeId) {
         currentlyEditedMode = undefined;
-        updateQuizModesTable();
-      } else {
-        updateQuizModesTable();
+      }
+      updateQuizModesTable();
+      if (currentlyEditedMode !== undefined) {
         updateQuizModesTableSelection(currentlyEditedMode.id);
       }
       updateQuizModesPlaceholder(currentlyEditedMode);

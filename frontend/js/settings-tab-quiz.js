@@ -241,10 +241,13 @@ function storeCurrentValuesInQuizMode(mode) {
                           + `max='${getEditedModeInputValue("questions-max")}'`;
           break;
         case "languages":
+          const defaultLanguage = "pl";
           setting.label = getEditedModeInputValue("languages-label");
           setting.details = Object.values(SUPPORTED_LANGUAGES)
-            .map((lang) => getEditedModeInputCheckState(`check-flag-${lang}`) ? lang + " " : "")
-            .join("").trim();
+            .map((lang) => {
+              const usedSeparator = defaultLanguage === lang ? "! " : " ";
+              return getEditedModeInputCheckState(`check-flag-${lang}`) ? lang + usedSeparator : "";
+            }).join("").trim();
           break;
         default:
           throw `Unknown type: ${setting.type}`;

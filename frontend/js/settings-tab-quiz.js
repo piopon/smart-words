@@ -478,7 +478,8 @@ function createContentQuestions(setting, watch) {
  */
 function createContentLanguages(setting, watch) {
   return createSettingInputText("languages-label", watch, "specify setting label", setting.label) +
-         createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details);
+         createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details) +
+         createSettingInputText("languages-default", watch, "specify default language", "pl");
 }
 
 /**

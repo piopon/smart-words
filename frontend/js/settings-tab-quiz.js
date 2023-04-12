@@ -1,5 +1,6 @@
 // the list of currently supported languages
 const SUPPORTED_LANGUAGES = ["de", "en", "es", "fr", "pl", "pt"];
+const DEFAULT_LANGUAGE_MARK = "!";
 // variables used by quiz modes tab in settings page
 var availableQuizModes = [];
 var availableModeSettings = [];
@@ -245,8 +246,8 @@ function storeCurrentValuesInQuizMode(mode) {
           setting.label = getEditedModeInputValue("languages-label");
           setting.details = Object.values(SUPPORTED_LANGUAGES)
             .map((lang) => {
-              const usedSeparator = defaultLanguage === lang ? "! " : " ";
-              return getEditedModeInputCheckState(`check-flag-${lang}`) ? lang + usedSeparator : "";
+              const languageMarker = defaultLanguage === lang ? DEFAULT_LANGUAGE_MARK : "";
+              return getEditedModeInputCheckState(`check-flag-${lang}`) ? lang + languageMarker + " " : "";
             }).join("").trim();
           break;
         default:

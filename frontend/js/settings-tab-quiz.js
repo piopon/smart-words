@@ -477,9 +477,12 @@ function createContentQuestions(setting, watch) {
  * @returns HTML code for collapsible quiz languages content
  */
 function createContentLanguages(setting, watch) {
+  const languageWithMark = setting.details.split(" ").find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
+  const defaultLanguage = (languageWithMark !== undefined ? languageWithMark : setting.details).substring(0, 2);
+  console.log(setting.details);
   return createSettingInputText("languages-label", watch, "specify setting label", setting.label) +
          createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details) +
-         createSettingInputText("languages-default", watch, "specify default language", "pl");
+         createSettingInputText("languages-default", watch, "specify default language", defaultLanguage);
 }
 
 /**

@@ -242,7 +242,7 @@ function storeCurrentValuesInQuizMode(mode) {
                           + `max='${getEditedModeInputValue("questions-max")}'`;
           break;
         case "languages":
-          const defaultLanguage = "pl";
+          const defaultLanguage = getEditedModeInputValue("languages-default");
           setting.label = getEditedModeInputValue("languages-label");
           setting.details = Object.values(SUPPORTED_LANGUAGES)
             .map((lang) => {

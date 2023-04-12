@@ -478,7 +478,7 @@ function createContentQuestions(setting, watch) {
  */
 function createContentLanguages(setting, watch) {
   const languageWithMark = setting.details.split(" ").find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
-  const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, 2) : "";
+  const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
   console.log(setting.details);
   return createSettingInputText("languages-label", watch, "specify setting label", setting.label) +
          createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details) +

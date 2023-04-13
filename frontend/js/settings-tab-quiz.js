@@ -524,6 +524,16 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
           </div>`;
 }
 
+function createSettingInputCombo(id, watch, labelText, allValues, comboValue) {
+  return `<div class="mode-setting-combo-box">
+            <label class="mode-setting-label" for="${id}">${labelText}</label>
+            <select id="${id}" class="mode-setting-combo" name="${id}">
+              <option value="en">en</option>
+              <option value="pl" selected>pl</option>
+            </select>
+          </div>`;
+}
+
 /**
  * Method used to create a single setting input of type language (flag checkboxes) with an appropriate label
  *

@@ -524,7 +524,17 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
           </div>`;
 }
 
-function createSettingInputCombo(id, watch, labelText, allValues, comboValue) {
+/**
+ * Method used to create a single setting combo box of type select with an appropriate label
+ *
+ * @param {Integer} id unique identifier of the created select
+ * @param {Boolean} watch flag used to indetify if we should watch select option change and update mode dirty state
+ * @param {String} labelText the text displayed in a label
+ * @param {Integer} allValues all combo box options to be displayed in select element
+ * @param {Integer} selectedValue initial combo box selected option
+ * @returns HTML code for select element with a label contained in a divider element
+ */
+function createSettingInputCombo(id, watch, labelText, allValues, selectedValue) {
   return `<div class="mode-setting-combo-box">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
             <select id="${id}" class="mode-setting-combo" name="${id}" ${watch ? `onchange="updateCurrentlyEditedMode()"` : ``}>
@@ -633,6 +643,12 @@ function getEditedModeInputValue(inputId) {
   return inputElement.value;
 }
 
+/**
+ * Method used to receive edited mode selected value from an combo box determined by ID
+ *
+ * @param {String} inputId unique identifier of the combo box element which value to receive
+ * @returns a String value from the combo box element representing currently selected option
+ */
 function getEditedModeComboSelection(inputId) {
   const comboElement = document.querySelector(`div#mode-placeholder select#${inputId}`);
   if (comboElement === null) {

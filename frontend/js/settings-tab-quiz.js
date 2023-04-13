@@ -527,7 +527,7 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
 function createSettingInputCombo(id, watch, labelText, allValues, comboValue) {
   return `<div class="mode-setting-combo-box">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
-            <select id="${id}" class="mode-setting-combo" name="${id}">
+            <select id="${id}" class="mode-setting-combo" name="${id}" ${watch ? `onchange="updateCurrentlyEditedMode()"` : ``}>
               <option value="en">en</option>
               <option value="pl" selected>pl</option>
             </select>

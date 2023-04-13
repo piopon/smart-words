@@ -242,7 +242,7 @@ function storeCurrentValuesInQuizMode(mode) {
                           + `max='${getEditedModeInputValue("questions-max")}'`;
           break;
         case "languages":
-          const defaultLanguage = getEditedModeInputValue("languages-default");
+          const defaultLanguage = getEditedModeComboSelection("languages-default");
           setting.label = getEditedModeInputValue("languages-label");
           setting.details = Object.values(SUPPORTED_LANGUAGES)
             .map((lang) => {
@@ -631,6 +631,14 @@ function getEditedModeInputValue(inputId) {
     throw `Element with ID "${inputId}" is not of type "text" nor "number".`;
   }
   return inputElement.value;
+}
+
+function getEditedModeComboSelection(inputId) {
+  const comboElement = document.querySelector(`div#mode-placeholder select#${inputId}`);
+  if (comboElement === null) {
+    throw `Element with ID "${inputId}" could not be found.`;
+  }
+  return comboElement.options[comboElement.selectedIndex].value;
 }
 
 /**

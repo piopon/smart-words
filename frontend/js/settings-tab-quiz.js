@@ -481,7 +481,7 @@ function createContentLanguages(setting, watch) {
   const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
   return createSettingInputText("languages-label", watch, "specify setting label", setting.label) +
          createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details) +
-         createSettingInputText("languages-default", watch, "specify default language", defaultLanguage);
+         createSettingInputCombo("languages-default", watch, "specify default language", defaultLanguage);
 }
 
 /**

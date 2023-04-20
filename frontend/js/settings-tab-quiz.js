@@ -544,7 +544,9 @@ function createSettingInputCombo(id, watch, labelText, allValues, selectedValue)
     }).join("");
   return `<div class="mode-setting-combo-box">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
-            <select id="${id}" class="mode-setting-combo" name="${id}" ${watch ? `onchange="updateCurrentlyEditedMode()"` : ``}>
+            <select id="${id}" class="mode-setting-combo" name="${id}"
+                               ${watch ? `onchange="updateCurrentlyEditedMode()"` : ``}
+                               ${options.length === 0 ? "disabled" : ""}>
               ${options.length > 0 ? options : emptyOption}
             </select>
           </div>`;

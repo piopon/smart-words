@@ -536,6 +536,11 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
  * @returns HTML code for select element with a label contained in a divider element
  */
 function createSettingInputCombo(id, watch, labelText, allValues, selectedValue) {
+  const options = Object.values(allValues)
+    .map(option => {
+      const selected = option === selectedValue ? "selected" : "";
+      return `<option value="${option}" ${selected}>${option}</option>`;
+    }).join("");
   return `<div class="mode-setting-combo-box">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
             <select id="${id}" class="mode-setting-combo" name="${id}" ${watch ? `onchange="updateCurrentlyEditedMode()"` : ``}>

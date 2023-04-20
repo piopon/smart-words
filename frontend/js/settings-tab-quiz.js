@@ -477,7 +477,7 @@ function createContentQuestions(setting, watch) {
  * @returns HTML code for collapsible quiz languages content
  */
 function createContentLanguages(setting, watch) {
-  const selectedLanguages = setting.details.split(" ");
+  const selectedLanguages = setting.details.length > 0 ? setting.details.split(" ") : [];
   const languageWithMark = selectedLanguages.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
   const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
   return createSettingInputText("languages-label", watch, "specify setting label", setting.label) +

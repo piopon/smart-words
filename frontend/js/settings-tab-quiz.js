@@ -536,7 +536,7 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
  * @returns HTML code for select element with a label contained in a divider element
  */
 function createSettingInputCombo(id, watch, labelText, allValues, selectedValue) {
-  const emptyOption = `<option value="" disabled selected>select a supported language...</option>`;
+  const emptyOption = `<option value="" disabled selected hidden>select a supported language...</option>`;
   const options = Object.values(allValues)
     .map(option => {
       const selected = option === selectedValue ? "selected" : "";

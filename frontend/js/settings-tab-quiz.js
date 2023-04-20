@@ -477,11 +477,12 @@ function createContentQuestions(setting, watch) {
  * @returns HTML code for collapsible quiz languages content
  */
 function createContentLanguages(setting, watch) {
-  const languageWithMark = setting.details.split(" ").find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
+  const selectedLanguages = setting.details.split(" ");
+  const languageWithMark = selectedLanguages.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
   const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
   return createSettingInputText("languages-label", watch, "specify setting label", setting.label) +
          createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details) +
-         createSettingInputCombo("languages-default", watch, "specify default language", defaultLanguage);
+         createSettingInputCombo("languages-default", watch, "specify default language", selectedLanguages, defaultLanguage);
 }
 
 /**

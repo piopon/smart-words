@@ -531,8 +531,8 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
  * @param {Integer} id unique identifier of the created select
  * @param {Boolean} watch flag used to indetify if we should watch select option change and update mode dirty state
  * @param {String} labelText the text displayed in a label
- * @param {Integer} allValues all combo box options to be displayed in select element
- * @param {Integer} selectedValue initial combo box selected option
+ * @param {String} allValues all combo box options to be displayed in select element
+ * @param {String} selectedValue initial combo box selected option
  * @returns HTML code for select element with a label contained in a divider element
  */
 function createSettingInputCombo(id, watch, labelText, allValues, selectedValue) {

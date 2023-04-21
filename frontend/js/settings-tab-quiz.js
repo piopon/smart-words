@@ -552,6 +552,16 @@ function createSettingInputCombo(id, watch, labelText, allValues, selectedValue)
           </div>`;
 }
 
+function createSettingComboOptions(allValues, selectedValue) {
+  const emptyOption = `<option value="" disabled selected hidden>select a supported language...</option>`;
+  const options = Object.values(allValues)
+    .map(option => {
+      const selected = option === selectedValue ? "selected" : "";
+      return `<option value="${option}" ${selected}>${option}</option>`;
+    }).join("");
+  return options.length > 0 ? options : emptyOption;
+}
+
 /**
  * Method used to create a single setting input of type language (flag checkboxes) with an appropriate label
  *

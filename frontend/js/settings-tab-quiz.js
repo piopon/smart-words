@@ -482,7 +482,8 @@ function createContentLanguages(setting, watch) {
   const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
   return createSettingInputText("languages-label", watch, "specify setting label", setting.label) +
          createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details) +
-         createSettingInputCombo("languages-default", watch, "specify default language", selectedLanguages, defaultLanguage);
+         createSettingInputCombo("languages-default", watch, "specify default language", selectedLanguages,
+                                                      defaultLanguage, "select a supported language...");
 }
 
 /**
@@ -535,7 +536,7 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
  * @param {String} selectedValue initial combo box selected option
  * @returns HTML code for select element with a label contained in a divider element
  */
-function createSettingInputCombo(id, watch, labelText, allValues, selectedValue) {
+function createSettingInputCombo(id, watch, labelText, allValues, selectedValue, noValuesText) {
   return `<div class="mode-setting-combo-box">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
             <select id="${id}" class="mode-setting-combo" name="${id}"
@@ -546,8 +547,8 @@ function createSettingInputCombo(id, watch, labelText, allValues, selectedValue)
           </div>`;
 }
 
-function createSettingComboOptions(allValues, selectedValue) {
-  const emptyOption = `<option value="" disabled selected hidden>select a supported language...</option>`;
+function createSettingComboOptions(allValues, selectedValue, noValuesText) {
+  const emptyOption = `<option value="" disabled selected hidden>${noValuesText}</option>`;
   const options = Object.values(allValues)
     .map(option => {
       const selected = option === selectedValue ? "selected" : "";
@@ -614,7 +615,7 @@ function toggleFlagCheckbox(flagItem, watch) {
         const languageWithMark = selectedLanguages.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
         const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
         defaultLanguageCombo.disabled = currentLangageSetting.details.length === 0;
-        defaultLanguageCombo.innerHTML = createSettingComboOptions(selectedLanguages, defaultLanguage);
+        defaultLanguageCombo.innerHTML = createSettingComboOptions(selectedLanguages, defaultLanguage, "select a supported language...");
       }
     }
   }

@@ -536,18 +536,12 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
  * @returns HTML code for select element with a label contained in a divider element
  */
 function createSettingInputCombo(id, watch, labelText, allValues, selectedValue) {
-  const emptyOption = `<option value="" disabled selected hidden>select a supported language...</option>`;
-  const options = Object.values(allValues)
-    .map(option => {
-      const selected = option === selectedValue ? "selected" : "";
-      return `<option value="${option}" ${selected}>${option}</option>`;
-    }).join("");
   return `<div class="mode-setting-combo-box">
             <label class="mode-setting-label" for="${id}">${labelText}</label>
             <select id="${id}" class="mode-setting-combo" name="${id}"
                                ${watch ? `onchange="updateCurrentlyEditedMode()"` : ``}
                                ${options.length === 0 ? "disabled" : ""}>
-              ${options.length > 0 ? options : emptyOption}
+              ${createSettingComboOptions(allValues, selectedValue, noValuesText)}
             </select>
           </div>`;
 }
@@ -612,6 +606,16 @@ function toggleFlagCheckbox(flagItem, watch) {
     linkedCheckbox.checked = !linkedCheckbox.checked;
     if (watch) {
       updateCurrentlyEditedMode();
+      // refresh the default language combo
+      const defaultLanguageCombo = document.querySelector("select#languages-default");
+      const currentLangageSetting = currentlyEditedMode.settings.find(setting => setting.type === "languages");
+      if (currentLangageSetting !== undefined && defaultLanguageCombo !== undefined) {
+        const selectedLanguages = currentLangageSetting.details.length > 0 ? currentLangageSetting.details.split(" ") : [];
+        const languageWithMark = selectedLanguages.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
+        const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
+        defaultLanguageCombo.disabled = currentLangageSetting.details.length === 0;
+        defaultLanguageCombo.innerHTML = createSettingComboOptions(selectedLanguages, defaultLanguage);
+      }
     }
   }
   flagItem.classList.toggle("flag-checked");

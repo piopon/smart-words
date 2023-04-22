@@ -534,6 +534,7 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
  * @param {String} labelText the text displayed in a label
  * @param {String} allValues all combo box options to be displayed in select element
  * @param {String} selectedValue initial combo box selected option
+ * @param {String} noValuesText string displayed in a combo box when no options are available
  * @returns HTML code for select element with a label contained in a divider element
  */
 function createSettingInputCombo(id, watch, labelText, allValues, selectedValue, noValuesText) {
@@ -547,6 +548,14 @@ function createSettingInputCombo(id, watch, labelText, allValues, selectedValue,
           </div>`;
 }
 
+/**
+ * Method used to create select combo options content based on the all supported values and selected value
+ *
+ * @param {String} allValues all combo box options to be displayed in select element
+ * @param {String} selectedValue initial combo box selected option
+ * @param {String} noValuesText string displayed in a combo box when no options are available
+ * @returns HTML code for combo select options
+ */
 function createSettingComboOptions(allValues, selectedValue, noValuesText) {
   const emptyOption = `<option value="" disabled selected hidden>${noValuesText}</option>`;
   const options = Object.values(allValues)

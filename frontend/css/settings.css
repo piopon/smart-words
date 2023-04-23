@@ -252,6 +252,12 @@ input.mode-setting-value {
   font-family: var(--clear-font-primary), Verdana, sans-serif;
 }
 
+select.mode-setting-combo {
+  width: 100%;
+  font-size: 15px;
+  font-family: var(--clear-font-primary), Verdana, sans-serif;
+}
+
 label.mode-setting-label {
   display: block;
   width: 100%;

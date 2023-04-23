@@ -630,7 +630,10 @@ function toggleFlagCheckbox(flagItem, watch) {
 function parseLanguageDetails(details) {
   const selectedLanguages = details.length > 0 ? details.split(" ") : [];
   const languageWithMark = selectedLanguages.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
-  const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
+  const firstLanguage = selectedLanguages.length > 0 ? selectedLanguages[0] : "";
+  const defaultLanguage = languageWithMark !== undefined
+    ? languageWithMark.substring(0, languageWithMark.length - 1)
+    : firstLanguage;
   return { selected: selectedLanguages, default: defaultLanguage };
 }
 

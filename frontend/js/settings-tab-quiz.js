@@ -477,13 +477,11 @@ function createContentQuestions(setting, watch) {
  * @returns HTML code for collapsible quiz languages content
  */
 function createContentLanguages(setting, watch) {
-  const selectedLanguages = setting.details.length > 0 ? setting.details.split(" ") : [];
-  const languageWithMark = selectedLanguages.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
-  const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
+  const languages = parseLanguageDetails(setting.details);
   return createSettingInputText("languages-label", watch, "specify setting label", setting.label) +
          createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details) +
-         createSettingInputCombo("languages-default", watch, "specify default language", selectedLanguages,
-                                                      defaultLanguage, "select a supported language...");
+         createSettingInputCombo("languages-default", watch, "specify default language", languages.selected,
+                                                      languages.default, "select a supported language...");
 }
 
 /**
@@ -620,11 +618,9 @@ function toggleFlagCheckbox(flagItem, watch) {
       const defaultLanguageCombo = document.querySelector("select#languages-default");
       const currentLangageSetting = currentlyEditedMode.settings.find(setting => setting.type === "languages");
       if (currentLangageSetting !== undefined && defaultLanguageCombo !== undefined) {
-        const selectedLanguages = currentLangageSetting.details.length > 0 ? currentLangageSetting.details.split(" ") : [];
-        const languageWithMark = selectedLanguages.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
-        const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
+        const languages = parseLanguageDetails(currentLangageSetting.details);
+        defaultLanguageCombo.innerHTML = createSettingComboOptions(languages.selected, languages.default, "select a supported language...");
         defaultLanguageCombo.disabled = currentLangageSetting.details.length === 0;
-        defaultLanguageCombo.innerHTML = createSettingComboOptions(selectedLanguages, defaultLanguage, "select a supported language...");
       }
     }
   }

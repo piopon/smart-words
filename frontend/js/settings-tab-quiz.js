@@ -627,6 +627,12 @@ function toggleFlagCheckbox(flagItem, watch) {
   flagItem.classList.toggle("flag-checked");
 }
 
+/**
+ * Method used to parse language details
+ *
+ * @param {String} details of language settings stored in a backend service
+ * @returns object with selected languages and the default language
+ */
 function parseLanguageDetails(details) {
   const languageArray = details.length > 0 ? details.split(" ") : [];
   const languageMarked = languageArray.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);

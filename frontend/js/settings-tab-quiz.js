@@ -631,6 +631,13 @@ function toggleFlagCheckbox(flagItem, watch) {
   flagItem.classList.toggle("flag-checked");
 }
 
+function parseLanguageDetails(details) {
+  const selectedLanguages = details.length > 0 ? details.split(" ") : [];
+  const languageWithMark = selectedLanguages.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
+  const defaultLanguage = languageWithMark !== undefined ? languageWithMark.substring(0, languageWithMark.length - 1) : "";
+  return { selected: selectedLanguages, default: defaultLanguage };
+}
+
 /**
  * Method used to create drop target placeholder
  *

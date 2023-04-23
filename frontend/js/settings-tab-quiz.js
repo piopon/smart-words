@@ -633,12 +633,9 @@ function parseLanguageDetails(details) {
   const languageDefault = languageMarked !== undefined
     ? languageMarked.substring(0, languageMarked.length - 1)
     : languageArray.length > 0 ? languageArray[0] : "";
-  const selectedLanguages = languageArray.map(lang => {
-    if (lang.indexOf(DEFAULT_LANGUAGE_MARK) > 0) {
-      return lang.substring(0, lang.length - 1);
-    }
-    return lang;
-  });
+  const selectedLanguages = languageArray.map((lang) =>
+    lang.indexOf(DEFAULT_LANGUAGE_MARK) > 0 ? lang.substring(0, lang.length - 1) : lang
+  );
   return { selected: selectedLanguages, default: languageDefault };
 }
 

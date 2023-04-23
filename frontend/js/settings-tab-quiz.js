@@ -628,12 +628,18 @@ function toggleFlagCheckbox(flagItem, watch) {
 }
 
 function parseLanguageDetails(details) {
-  const selectedLanguages = details.length > 0 ? details.split(" ") : [];
-  const languageWithMark = selectedLanguages.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
-  const firstLanguage = selectedLanguages.length > 0 ? selectedLanguages[0] : "";
+  const languagesArray = details.length > 0 ? details.split(" ") : [];
+  const languageWithMark = languagesArray.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
+  const firstLanguage = languagesArray.length > 0 ? languagesArray[0] : "";
   const defaultLanguage = languageWithMark !== undefined
     ? languageWithMark.substring(0, languageWithMark.length - 1)
     : firstLanguage;
+  const selectedLanguages = languagesArray.map(lang => {
+    if (lang.indexOf(DEFAULT_LANGUAGE_MARK) > 0) {
+      return lang.substring(0, lang.length - 1);
+    }
+    return lang;
+  });
   return { selected: selectedLanguages, default: defaultLanguage };
 }
 

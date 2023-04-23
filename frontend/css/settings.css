@@ -241,6 +241,7 @@ div.setting-box .collapsible-button:disabled {
 
 div.mode-setting-text-edit,
 div.mode-setting-number-edit,
+div.mode-setting-combo-box,
 div.mode-setting-languages-edit {
   margin: 5px 10px;
 }

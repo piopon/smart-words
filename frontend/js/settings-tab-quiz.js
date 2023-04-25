@@ -559,7 +559,7 @@ function createSettingComboOptions(allValues, selectedValue, noValuesText) {
   const options = Object.values(allValues)
     .map(option => {
       const selected = option === selectedValue ? "selected" : "";
-      return `<option value="${option}" ${selected}>${option}</option>`;
+      return `<option value="${option}" ${selected}>${option.toUpperCase()}</option>`;
     }).join("");
   return options.length > 0 ? options : emptyOption;
 }

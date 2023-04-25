@@ -1,5 +1,6 @@
 // the list of currently supported languages
 const SUPPORTED_LANGUAGES = ["de", "en", "es", "fr", "pl", "pt"];
+const DEFAULT_LANGUAGE_MARK = "!";
 // variables used by quiz modes tab in settings page
 var availableQuizModes = [];
 var availableModeSettings = [];
@@ -241,10 +242,13 @@ function storeCurrentValuesInQuizMode(mode) {
                           + `max='${getEditedModeInputValue("questions-max")}'`;
           break;
         case "languages":
+          const defaultLanguage = getEditedModeComboSelection("languages-default");
           setting.label = getEditedModeInputValue("languages-label");
           setting.details = Object.values(SUPPORTED_LANGUAGES)
-            .map((lang) => getEditedModeInputCheckState(`check-flag-${lang}`) ? lang + " " : "")
-            .join("").trim();
+            .map((lang) => {
+              const languageMarker = defaultLanguage === lang ? DEFAULT_LANGUAGE_MARK : "";
+              return getEditedModeInputCheckState(`check-flag-${lang}`) ? lang + languageMarker + " " : "";
+            }).join("").trim();
           break;
         default:
           throw `Unknown type: ${setting.type}`;
@@ -473,8 +477,11 @@ function createContentQuestions(setting, watch) {
  * @returns HTML code for collapsible quiz languages content
  */
 function createContentLanguages(setting, watch) {
+  const languages = parseLanguageDetails(setting.details);
   return createSettingInputText("languages-label", watch, "specify setting label", setting.label) +
-         createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details);
+         createSettingInputLanguage("languages-used", watch, "select supported languages", setting.details) +
+         createSettingInputCombo("languages-default", watch, "specify default language", languages.selected,
+                                                      languages.default, "select a supported language...");
 }
 
 /**
@@ -515,6 +522,46 @@ function createSettingInputNumber(id, watch, labelText, initValue, minValue, max
                                             ${watch ? `oninput="updateCurrentlyEditedMode()"` : ``}
                                             onfocusout="forceMinMaxConstraints(this)"/>
           </div>`;
+}
+
+/**
+ * Method used to create a single setting combo box of type select with an appropriate label
+ *
+ * @param {Integer} id unique identifier of the created select
+ * @param {Boolean} watch flag used to indetify if we should watch select option change and update mode dirty state
+ * @param {String} labelText the text displayed in a label
+ * @param {String} allValues all combo box options to be displayed in select element
+ * @param {String} selectedValue initial combo box selected option
+ * @param {String} noValuesText string displayed in a combo box when no options are available
+ * @returns HTML code for select element with a label contained in a divider element
+ */
+function createSettingInputCombo(id, watch, labelText, allValues, selectedValue, noValuesText) {
+  return `<div class="mode-setting-combo-box">
+            <label class="mode-setting-label" for="${id}">${labelText}</label>
+            <select id="${id}" class="mode-setting-combo" name="${id}"
+                               ${watch ? `onchange="updateCurrentlyEditedMode()"` : ``}
+                               ${allValues.length === 0 ? "disabled" : ""}>
+              ${createSettingComboOptions(allValues, selectedValue, noValuesText)}
+            </select>
+          </div>`;
+}
+
+/**
+ * Method used to create select combo options content based on the all supported values and selected value
+ *
+ * @param {String} allValues all combo box options to be displayed in select element
+ * @param {String} selectedValue initial combo box selected option
+ * @param {String} noValuesText string displayed in a combo box when no options are available
+ * @returns HTML code for combo select options
+ */
+function createSettingComboOptions(allValues, selectedValue, noValuesText) {
+  const emptyOption = `<option value="" disabled selected hidden>${noValuesText}</option>`;
+  const options = Object.values(allValues)
+    .map(option => {
+      const selected = option === selectedValue ? "selected" : "";
+      return `<option value="${option}" ${selected}>${option.toUpperCase()}</option>`;
+    }).join("");
+  return options.length > 0 ? options : emptyOption;
 }
 
 /**
@@ -567,9 +614,35 @@ function toggleFlagCheckbox(flagItem, watch) {
     linkedCheckbox.checked = !linkedCheckbox.checked;
     if (watch) {
       updateCurrentlyEditedMode();
+      // refresh the default language combo
+      const defaultLanguageCombo = document.querySelector("select#languages-default");
+      const currentLangageSetting = currentlyEditedMode.settings.find(setting => setting.type === "languages");
+      if (currentLangageSetting !== undefined && defaultLanguageCombo !== undefined) {
+        const languages = parseLanguageDetails(currentLangageSetting.details);
+        defaultLanguageCombo.innerHTML = createSettingComboOptions(languages.selected, languages.default, "select a supported language...");
+        defaultLanguageCombo.disabled = currentLangageSetting.details.length === 0;
+      }
     }
   }
   flagItem.classList.toggle("flag-checked");
+}
+
+/**
+ * Method used to parse language details
+ *
+ * @param {String} details of language settings stored in a backend service
+ * @returns object with selected languages and the default language
+ */
+function parseLanguageDetails(details) {
+  const languageArray = details.length > 0 ? details.split(" ") : [];
+  const languageMarked = languageArray.find(el => el.indexOf(DEFAULT_LANGUAGE_MARK) > 0);
+  const languageDefault = languageMarked !== undefined
+    ? languageMarked.substring(0, languageMarked.length - 1)
+    : languageArray.length > 0 ? languageArray[0] : "";
+  const selectedLanguages = languageArray.map((lang) =>
+    lang.indexOf(DEFAULT_LANGUAGE_MARK) > 0 ? lang.substring(0, lang.length - 1) : lang
+  );
+  return { selected: selectedLanguages, default: languageDefault };
 }
 
 /**
@@ -614,6 +687,20 @@ function getEditedModeInputValue(inputId) {
     throw `Element with ID "${inputId}" is not of type "text" nor "number".`;
   }
   return inputElement.value;
+}
+
+/**
+ * Method used to receive edited mode selected value from an combo box determined by ID
+ *
+ * @param {String} inputId unique identifier of the combo box element which value to receive
+ * @returns a String value from the combo box element representing currently selected option
+ */
+function getEditedModeComboSelection(inputId) {
+  const comboElement = document.querySelector(`div#mode-placeholder select#${inputId}`);
+  if (comboElement === null) {
+    throw `Element with ID "${inputId}" could not be found.`;
+  }
+  return comboElement.options[comboElement.selectedIndex].value;
 }
 
 /**

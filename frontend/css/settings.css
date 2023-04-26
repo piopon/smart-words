@@ -552,3 +552,18 @@ div#settings-placeholder {
 div#settings-placeholder > div.setting-box {
   margin-bottom: 5px;
 }
+
+#settings-changed-toast {
+  opacity: 0;
+  z-index: 100;
+  padding: 15px;
+  position: fixed;
+  left: 50%;
+  bottom: 50px;
+  min-width: 500px;
+  margin-left: -250px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 17px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}

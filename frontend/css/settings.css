@@ -587,3 +587,33 @@ div#settings-placeholder > div.setting-box {
   background-color: black;
   color: white;
 }
+
+#settings-changed-toast.show {
+  animation: toast-fade 3s linear;
+}
+
+@keyframes toast-fade {
+  0%,
+  100% {
+    bottom: 0;
+    opacity: 0;
+  }
+  10%,
+  90% {
+    bottom: 50px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes toast-fade {
+  0%,
+  100% {
+    bottom: 0;
+    opacity: 0;
+  }
+  10%,
+  90% {
+    bottom: 50px;
+    opacity: 1;
+  }
+}

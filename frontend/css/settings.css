@@ -567,3 +567,23 @@ div#settings-placeholder > div.setting-box {
   font-size: 17px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
+
+#settings-changed-toast.information {
+  background-color: limegreen;
+  color: black;
+}
+
+#settings-changed-toast.warning {
+  background-color: darkorange;
+  color: black;
+}
+
+#settings-changed-toast.error {
+  background-color: red;
+  color: white;
+}
+
+#settings-changed-toast.fatal {
+  background-color: black;
+  color: white;
+}

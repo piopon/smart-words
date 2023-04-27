@@ -3,6 +3,7 @@
   --table-border-radius: 10px;
   --collapse-button-time: 0.1s;
   --collapse-content-time: 0.2s;
+  --toast-bottom-dist-px: 50px;
 }
 
 ::-webkit-scrollbar {
@@ -559,7 +560,7 @@ div#settings-placeholder > div.setting-box {
   padding: 15px;
   position: fixed;
   left: 50%;
-  bottom: 50px;
+  bottom: var(--toast-bottom-dist-px);
   min-width: 500px;
   margin-left: -250px;
   border-radius: 10px;
@@ -600,7 +601,7 @@ div#settings-placeholder > div.setting-box {
   }
   10%,
   90% {
-    bottom: 50px;
+    bottom: var(--toast-bottom-dist-px);
     opacity: 1;
   }
 }
@@ -613,7 +614,7 @@ div#settings-placeholder > div.setting-box {
   }
   10%,
   90% {
-    bottom: 50px;
+    bottom: var(--toast-bottom-dist-px);
     opacity: 1;
   }
 }

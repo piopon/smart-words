@@ -3,6 +3,7 @@
   --table-border-radius: 10px;
   --collapse-button-time: 0.1s;
   --collapse-content-time: 0.2s;
+  --toast-bottom-dist-px: 50px;
 }
 
 ::-webkit-scrollbar {
@@ -73,6 +74,71 @@
 
 .tab-content.hidden {
   display: none;
+}
+
+#settings-changed-toast {
+  opacity: 0;
+  z-index: 100;
+  padding: 15px;
+  position: fixed;
+  left: 50%;
+  bottom: var(--toast-bottom-dist-px);
+  min-width: 500px;
+  margin-left: -250px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 17px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#settings-changed-toast.information {
+  background-color: limegreen;
+  color: black;
+}
+
+#settings-changed-toast.warning {
+  background-color: darkorange;
+  color: black;
+}
+
+#settings-changed-toast.error {
+  background-color: red;
+  color: white;
+}
+
+#settings-changed-toast.fatal {
+  background-color: black;
+  color: white;
+}
+
+#settings-changed-toast.show {
+  animation: toast-fade 3s linear;
+}
+
+@keyframes toast-fade {
+  0%,
+  100% {
+    bottom: 0;
+    opacity: 0;
+  }
+  10%,
+  90% {
+    bottom: var(--toast-bottom-dist-px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes toast-fade {
+  0%,
+  100% {
+    bottom: 0;
+    opacity: 0;
+  }
+  10%,
+  90% {
+    bottom: var(--toast-bottom-dist-px);
+    opacity: 1;
+  }
 }
 
 /************************************/

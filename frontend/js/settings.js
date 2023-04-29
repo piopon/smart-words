@@ -1,3 +1,9 @@
+const SETTINGS_TOAST_INFO = 0;
+const SETTINGS_TOAST_WARNING = 1;
+const SETTINGS_TOAST_ERROR = 2;
+// variables used in settings page
+var toastTimeout = 3000;
+
 /**
  * Method used to initialize settings page (main entry point after loading settings.html)
  */
@@ -23,4 +29,27 @@ function selectTab(event, tabId) {
   for (i = 0; i < tabContent.length; i++) {
     tabContent[i].className = "tab-content" + (tabContent[i].id === tabId ? " visible" : "");
   }
+}
+
+/**
+ * Method used to show toast when user changed settings
+ *
+ * @param {Integer} type of toast to be displayed
+ * @param {String} message which should be displayed in toast
+ */
+function settingsChangeShowToast(type, message) {
+  console.log(message);
+  var wordToast = document.getElementById("settings-changed-toast");
+  if (wordToast === null) return;
+  if (SETTINGS_TOAST_INFO === type) {
+    wordToast.className = "information show";
+  } else if (SETTINGS_TOAST_WARNING === type) {
+    wordToast.className = "warning show";
+  } else if (SETTINGS_TOAST_ERROR === type) {
+    wordToast.className = "error show";
+  } else {
+    wordToast.className = "fatal show";
+  }
+  wordToast.innerHTML = message;
+  setTimeout(() => (wordToast.className = wordToast.className.replace("show", "")), toastTimeout);
 }

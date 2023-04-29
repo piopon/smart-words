@@ -31,7 +31,25 @@
     <orderEntry type="library" name="sbt: org.http4s:http4s-jawn_2.13:1.0.0-M21:jar" level="project" />
     <orderEntry type="library" name="sbt: org.http4s:http4s-server_2.13:1.0.0-M21:jar" level="project" />
     <orderEntry type="library" name="sbt: org.log4s:log4s_2.13:1.10.0-M6:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-xml_2.13:2.0.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.13.6:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang:scala-reflect:2.13.6:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalactic:scalactic_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-compatible:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-core_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-diagrams_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-featurespec_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-flatspec_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-freespec_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-funspec_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-funsuite_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-matchers-core_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-mustmatchers_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-propspec_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-refspec_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-shouldmatchers_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest-wordspec_2.13:3.2.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalatest:scalatest_2.13:3.2.11:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scodec:scodec-bits_2.13:1.1.25:jar" level="project" />
     <orderEntry type="library" name="sbt: org.slf4j:slf4j-api:2.0.5:jar" level="project" />
     <orderEntry type="library" name="sbt: org.slf4j:slf4j-nop:2.0.5:jar" level="project" />

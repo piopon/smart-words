@@ -1,3 +1,9 @@
+const SETTINGS_TOAST_INFO = 0;
+const SETTINGS_TOAST_WARNING = 1;
+const SETTINGS_TOAST_ERROR = 2;
+// variables used in settings page
+var toastTimeout = 3000;
+
 /**
  * Method used to initialize settings page (main entry point after loading settings.html)
  */

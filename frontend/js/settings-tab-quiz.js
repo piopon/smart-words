@@ -1,11 +1,7 @@
 // the list of currently supported languages
 const SUPPORTED_LANGUAGES = ["de", "en", "es", "fr", "pl", "pt"];
 const DEFAULT_LANGUAGE_MARK = "!";
-const SETTINGS_TOAST_INFO = 0;
-const SETTINGS_TOAST_WARNING = 1;
-const SETTINGS_TOAST_ERROR = 2;
 // variables used by quiz modes tab in settings page
-var toastTimeout = 3000;
 var availableQuizModes = [];
 var availableModeSettings = [];
 var dirtyQuizModes = new Set();

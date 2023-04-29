@@ -30,3 +30,20 @@ function selectTab(event, tabId) {
     tabContent[i].className = "tab-content" + (tabContent[i].id === tabId ? " visible" : "");
   }
 }
+
+function settingsChangeShowToast(type, message) {
+  console.log(message);
+  var wordToast = document.getElementById("settings-changed-toast");
+  if (wordToast === null) return;
+  if (SETTINGS_TOAST_INFO === type) {
+    wordToast.className = "information show";
+  } else if (SETTINGS_TOAST_WARNING === type) {
+    wordToast.className = "warning show";
+  } else if (SETTINGS_TOAST_ERROR === type) {
+    wordToast.className = "error show";
+  } else {
+    wordToast.className = "fatal show";
+  }
+  wordToast.innerHTML = message;
+  setTimeout(() => (wordToast.className = wordToast.className.replace("show", "")), toastTimeout);
+}

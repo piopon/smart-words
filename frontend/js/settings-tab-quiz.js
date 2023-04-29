@@ -9,23 +9,6 @@ var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
 
-function settingsChangeShowToast(type, message) {
-  console.log(message);
-  var wordToast = document.getElementById("settings-changed-toast");
-  if (wordToast === null) return;
-  if (SETTINGS_TOAST_INFO === type) {
-    wordToast.className = "information show";
-  } else if (SETTINGS_TOAST_WARNING === type) {
-    wordToast.className = "warning show";
-  } else if (SETTINGS_TOAST_ERROR === type) {
-    wordToast.className = "error show";
-  } else {
-    wordToast.className = "fatal show";
-  }
-  wordToast.innerHTML = message;
-  setTimeout(() => (wordToast.className = wordToast.className.replace("show", "")), toastTimeout);
-}
-
 /**
  * Method used to read all defined quiz modes from backend service and display them in the UI tab
  */

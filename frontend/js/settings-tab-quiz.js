@@ -36,7 +36,7 @@ function settingsChangeShowToast(type, message) {
 function initializeTabQuizModes() {
   getQuizModes((err, data) => {
     if (err) {
-      console.log("ERROR " + err.status + ": " + err.message);
+      settingsChangeShowToast(SETTINGS_TOAST_ERROR, "ERROR " + err.status + ": " + err.message);
     } else {
       availableQuizModes = data;
       updateQuizModesTable();
@@ -56,7 +56,7 @@ function initializeSettingsContent() {
   if (settingsPlaceholder === null) return;
   getModeSettings((err, data) => {
     if (err) {
-      console.log("ERROR " + err.status + ": " + err.message);
+      settingsChangeShowToast(SETTINGS_TOAST_ERROR, "ERROR " + err.status + ": " + err.message);
     } else {
       settingsPlaceholder.innerHTML = Object.values(data)
         .map((setting) => {
@@ -75,8 +75,9 @@ function initializeSettingsContent() {
 function createQuizMode() {
   postQuizMode((err, data) => {
     if (err) {
-      console.log("ERROR " + err.status + ": " + err.message);
+      settingsChangeShowToast(SETTINGS_TOAST_ERROR, "ERROR " + err.status + ": " + err.message);
     } else {
+      settingsChangeShowToast(SETTINGS_TOAST_INFO, "quiz mode added");
       availableQuizModes.push(data);
       updateQuizModesTable();
       selectMode(data.id);
@@ -96,9 +97,9 @@ function updateQuizMode() {
   }
   putQuizMode(currentlyEditedMode.id, currentlyEditedMode, (err, data) => {
     if (err) {
-      console.log("ERROR " + err.status + ": " + err.message);
+      settingsChangeShowToast(SETTINGS_TOAST_ERROR, "ERROR " + err.status + ": " + err.message);
     } else {
-      console.log(data);
+      settingsChangeShowToast(SETTINGS_TOAST_INFO, data);
       dirtyQuizModes.delete(currentlyEditedMode.id);
       // disable save button so the user cannot save changes
       updateSaveModeButtonEnableState(false);
@@ -116,9 +117,9 @@ function updateQuizMode() {
 function removeQuizMode(modeId) {
   deleteQuizMode(modeId, (err, data) => {
     if (err) {
-      console.log("ERROR " + err.status + ": " + err.message);
+      settingsChangeShowToast(SETTINGS_TOAST_ERROR, "ERROR " + err.status + ": " + err.message);
     } else {
-      console.log(data);
+      settingsChangeShowToast(SETTINGS_TOAST_INFO, data);
       availableQuizModes = availableQuizModes.filter(mode => mode.id !== modeId);
       // clean currently edited mode variable if user removes it
       if (currentlyEditedMode.id === modeId) {

@@ -31,6 +31,12 @@ function selectTab(event, tabId) {
   }
 }
 
+/**
+ * Method used to show toast when user changed settings
+ *
+ * @param {Integer} type of toast to be displayed
+ * @param {String} message which should be displayed in toast
+ */
 function settingsChangeShowToast(type, message) {
   console.log(message);
   var wordToast = document.getElementById("settings-changed-toast");

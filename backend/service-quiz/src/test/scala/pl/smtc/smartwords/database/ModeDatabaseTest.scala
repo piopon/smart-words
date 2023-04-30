@@ -7,7 +7,7 @@ class ModeDatabaseTest extends AnyFunSuite {
 
   test("testLoadDatabase") {
     val databaseUnderTest: ModeDatabase = new ModeDatabase()
-    databaseUnderTest.loadDatabase()
+    databaseUnderTest.loadDatabase("test-modes.json")
     assert(databaseUnderTest.getModes.size === 1)
     val checkedMode: Mode = databaseUnderTest.getModes.head
     assert(checkedMode.id === 99)

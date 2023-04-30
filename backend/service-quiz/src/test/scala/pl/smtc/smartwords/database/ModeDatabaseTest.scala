@@ -5,6 +5,17 @@ import pl.smtc.smartwords.model.Mode
 
 class ModeDatabaseTest extends AnyFunSuite {
 
+  test("testLoadDatabase") {
+    val databaseUnderTest: ModeDatabase = new ModeDatabase()
+    databaseUnderTest.loadDatabase()
+    assert(databaseUnderTest.getModes.size === 1)
+    val checkedMode: Mode = databaseUnderTest.getModes.head
+    assert(checkedMode.id === 99)
+    assert(checkedMode.name === "UNIT test QUIZ mode 1")
+    assert(checkedMode.description === "this is a JSON for unit test and checking quiz mode logic")
+    assert(checkedMode.deletable === true)
+  }
+
   test("testDeleteMode") {
     val databaseUnderTest: ModeDatabase = new ModeDatabase()
     assert(databaseUnderTest.getModes.size === 0)

@@ -44,14 +44,6 @@ class ModeDatabase {
   }
 
   /**
-   * Method used to save current quiz mode database into JSON file
-   */
-  def saveDatabase(): Unit = {
-    val content: String = quizModes.asJson.toString()
-    Files.write(resourceDir.resolve(quizModesFile), content.getBytes(StandardCharsets.UTF_8))
-  }
-
-  /**
    * Method used to retrieve all quiz modes
    * @return a list of currently available quiz modes
    */
@@ -106,6 +98,14 @@ class ModeDatabase {
     quizModes.remove(idIndex)
     saveDatabase()
     true
+  }
+
+  /**
+   * Method used to save current quiz mode database into JSON file
+   */
+  private def saveDatabase(): Unit = {
+    val content: String = quizModes.asJson.toString()
+    Files.write(resourceDir.resolve(quizModesFile), content.getBytes(StandardCharsets.UTF_8))
   }
 
   /**

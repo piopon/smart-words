@@ -1,0 +1,15 @@
+[
+  {
+    "id": 99,
+    "name": "UNIT test QUIZ mode 1",
+    "description": "this is a JSON for unit test and checking quiz mode logic",
+    "deletable": true,
+    "settings": [
+      {
+        "type": "questions",
+        "label": "UT questions:",
+        "details": "value='1' min='1' max='1'"
+      }
+    ]
+  }
+]

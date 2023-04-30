@@ -62,7 +62,7 @@ class ModeDatabase {
    * @return a quiz mode object with predefined ID and an empty value
    */
   def addMode(): Mode = {
-    val freeId: Int = quizModes.map(mode => mode.id).max + 1
+    val freeId: Int = if(quizModes.isEmpty) 0 else quizModes.map(mode => mode.id).max + 1
     val newMode: Mode = Mode(freeId, "", "", List(), deletable = true)
     quizModes += newMode
     saveDatabase()

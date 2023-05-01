@@ -13,24 +13,21 @@ import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.Using
 
-class ModeDatabase {
+class ModeDatabase(databaseFile: String = "modes.json") {
 
   implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
 
-  private var quizModesFile: String = "modes.json"
   private val quizModes: ListBuffer[Mode] = ListBuffer()
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
 
   /**
    * Method used to load and populate quiz modes list with data from internal JSON file
-   * @param file from which to load database values (if not present then default 'modes.json' will be used)
    * @return true if at existing mode file was read correctly or if no dictionary files are present, false otherwise
    */
-  def loadDatabase(file: String = "modes.json"): Boolean = {
+  def loadDatabase(): Boolean = {
     var result: Boolean = false
-    quizModesFile = file
-    val modesFile: File = new File(resourceDir.resolve(quizModesFile).toString)
+    val modesFile: File = new File(resourceDir.resolve(databaseFile).toString)
     Using(new BufferedInputStream(new FileInputStream(modesFile))) { fileStream =>
       val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
       decode[List[Mode]](lines) match {
@@ -107,7 +104,7 @@ class ModeDatabase {
    */
   private def saveDatabase(): Unit = {
     val content: String = quizModes.asJson.toString()
-    Files.write(resourceDir.resolve(quizModesFile), content.getBytes(StandardCharsets.UTF_8))
+    Files.write(resourceDir.resolve(databaseFile), content.getBytes(StandardCharsets.UTF_8))
   }
 
   /**

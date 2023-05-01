@@ -6,8 +6,8 @@ import pl.smtc.smartwords.model.Mode
 class ModeDatabaseTest extends AnyFunSuite {
 
   test("testLoadDatabase") {
-    val databaseUnderTest: ModeDatabase = new ModeDatabase()
-    databaseUnderTest.loadDatabase("test-modes.json")
+    val databaseUnderTest: ModeDatabase = new ModeDatabase("test-modes.json")
+    databaseUnderTest.loadDatabase()
     assert(databaseUnderTest.getModes.size === 1)
     val checkedMode: Mode = databaseUnderTest.getModes.head
     assert(checkedMode.id === 99)

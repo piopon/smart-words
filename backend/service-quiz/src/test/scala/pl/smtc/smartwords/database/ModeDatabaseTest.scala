@@ -17,7 +17,7 @@ class ModeDatabaseTest extends AnyFunSuite {
   }
 
   test("testDeleteMode") {
-    val databaseUnderTest: ModeDatabase = new ModeDatabase()
+    val databaseUnderTest: ModeDatabase = new ModeDatabase("test-delete.json")
     assert(databaseUnderTest.getModes.size === 0)
     databaseUnderTest.addMode()
     assert(databaseUnderTest.getModes.size === 1)
@@ -26,7 +26,7 @@ class ModeDatabaseTest extends AnyFunSuite {
   }
 
   test("testAddMode") {
-    val databaseUnderTest: ModeDatabase = new ModeDatabase()
+    val databaseUnderTest: ModeDatabase = new ModeDatabase("test-add.json")
     assert(databaseUnderTest.getModes.size === 0)
     databaseUnderTest.addMode()
     assert(databaseUnderTest.getModes.size === 1)
@@ -38,7 +38,7 @@ class ModeDatabaseTest extends AnyFunSuite {
   }
 
   test("testGetModes") {
-    val databaseUnderTest: ModeDatabase = new ModeDatabase()
+    val databaseUnderTest: ModeDatabase = new ModeDatabase("test-get.json")
     assert(databaseUnderTest.getModes.size === 0)
     databaseUnderTest.addMode()
     assert(databaseUnderTest.getModes.size === 1)
@@ -49,7 +49,7 @@ class ModeDatabaseTest extends AnyFunSuite {
   }
 
   test("testUpdateMode") {
-    val databaseUnderTest: ModeDatabase = new ModeDatabase()
+    val databaseUnderTest: ModeDatabase = new ModeDatabase("test-update.json")
     assert(databaseUnderTest.getModes.size === 0)
     databaseUnderTest.addMode()
     assert(databaseUnderTest.getModes.size === 1)

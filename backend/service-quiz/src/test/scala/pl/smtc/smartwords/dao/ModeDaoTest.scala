@@ -18,6 +18,16 @@ class ModeDaoTest extends AnyFunSuite {
     assert(decodedMode.description === "test-mode-description")
   }
 
+  test("testGetModeDecoderFails") {
+    val decoderUnderTest: Decoder[Mode] = ModeDao.getModeDecoder
+    val sourceJson = createModeJson(id = "aaa", name = "test-mode", description = "test-mode-description")
+    val decodedValue = decoderUnderTest.decodeJson(sourceJson)
+    assert(decodedValue.left.toOption !== None)
+    val decodeErr = decodedValue.left.toOption.get
+    assert(decodeErr.toString() === "DecodingFailure at .id: Int")
+    assert(decodedValue.toOption === None)
+  }
+
   private def createModeJson(id: String, name: String, description: String): Json = {
     Json.obj(
       ("id", Json.fromString(id)),

@@ -49,7 +49,7 @@ class ModeDaoTest extends AnyFunSuite {
 
   private def createSettingJson(): Json = {
     Json.obj(
-      ("type", Json.fromString("test-setting")),
+      ("type", Json.fromString("languages")),
       ("label", Json.fromString("test-setting-label")),
       ("details", Json.fromString("test-setting-details"))
     )

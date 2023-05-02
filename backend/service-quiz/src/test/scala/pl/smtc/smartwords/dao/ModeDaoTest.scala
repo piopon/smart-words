@@ -8,7 +8,7 @@ class ModeDaoTest extends AnyFunSuite {
 
   test("testGetModeDecoder") {
     val decoderUnderTest: Decoder[Mode] = ModeDao.getModeDecoder
-    val sourceJson = createModeJson(id = 0, name = "test-mode", description = "test-mode-description")
+    val sourceJson = createModeJson(id = "0", name = "test-mode", description = "test-mode-description")
     val decodedValue = decoderUnderTest.decodeJson(sourceJson)
     assert(decodedValue.left.toOption === None)
     assert(decodedValue.toOption !== None)
@@ -18,9 +18,9 @@ class ModeDaoTest extends AnyFunSuite {
     assert(decodedMode.description === "test-mode-description")
   }
 
-  private def createModeJson(id: Int, name: String, description: String): Json = {
+  private def createModeJson(id: String, name: String, description: String): Json = {
     Json.obj(
-      ("id", Json.fromInt(id)),
+      ("id", Json.fromString(id)),
       ("name",  Json.fromString(name)),
       ("description",  Json.fromString(description)),
       ("deletable",  Json.fromBoolean(true)),

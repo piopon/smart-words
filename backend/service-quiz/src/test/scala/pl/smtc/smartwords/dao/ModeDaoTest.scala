@@ -8,7 +8,7 @@ class ModeDaoTest extends AnyFunSuite {
 
   test("testGetModeDecoder") {
     val decoderUnderTest: Decoder[Mode] = ModeDao.getModeDecoder
-    val sourceJson: Json = createModeJson(id = "0", name = "test-mode", description = "test-mode-description")
+    val sourceJson: Json = createModeJson(Right(0), name = "test-mode", description = "test-mode-description")
     val decodedValue: Decoder.Result[Mode] = decoderUnderTest.decodeJson(sourceJson)
     assert(decodedValue.left.toOption === None)
     assert(decodedValue.toOption !== None)
@@ -20,7 +20,7 @@ class ModeDaoTest extends AnyFunSuite {
 
   test("testGetModeDecoderFails") {
     val decoderUnderTest: Decoder[Mode] = ModeDao.getModeDecoder
-    val sourceJson: Json = createModeJson(id = "aaa", "test-mode", "test-mode-description")
+    val sourceJson: Json = createModeJson(Left("aaa"), "test-mode", "test-mode-description")
     val decodedValue: Decoder.Result[Mode] = decoderUnderTest.decodeJson(sourceJson)
     assert(decodedValue.left.toOption !== None)
     val decodeErr: DecodingFailure = decodedValue.left.toOption.get
@@ -33,13 +33,16 @@ class ModeDaoTest extends AnyFunSuite {
     val sourceSetting: Setting = Setting(Kind.languages, "test-setting-label", "test-setting-details")
     val sourceMode: Mode = Mode(73, "diff-mode", "mode-desc", List(sourceSetting), deletable = true)
     val encodedValue: Json = encoderUnderTest.apply(sourceMode)
-    val expectedValue: Json = createModeJson("73", "diff-mode", "mode-desc")
+    val expectedValue: Json = createModeJson(Right(73), "diff-mode", "mode-desc")
     assert(encodedValue === expectedValue)
   }
 
-  private def createModeJson(id: String, name: String, description: String): Json = {
+  private def createModeJson(id: Either[String, Int], name: String, description: String): Json = {
     Json.obj(
-      ("id", Json.fromString(id)),
+      ("id", id match {
+        case Left(s) => Json.fromString(s)
+        case Right(i) => Json.fromInt(i)
+      }),
       ("name",  Json.fromString(name)),
       ("description",  Json.fromString(description)),
       ("deletable",  Json.fromBoolean(true)),

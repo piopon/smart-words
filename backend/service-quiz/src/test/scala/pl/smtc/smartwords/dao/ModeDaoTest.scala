@@ -1,8 +1,8 @@
 package pl.smtc.smartwords.dao
 
-import io.circe.{Decoder, DecodingFailure, Encoder, Json}
+import io.circe._
 import org.scalatest.funsuite.AnyFunSuite
-import pl.smtc.smartwords.model.{Kind, Mode, Setting}
+import pl.smtc.smartwords.model._
 
 class ModeDaoTest extends AnyFunSuite {
 
@@ -69,5 +69,4 @@ class ModeDaoTest extends AnyFunSuite {
       ("details", Json.fromString("test-setting-details"))
     )
   }
-
 }

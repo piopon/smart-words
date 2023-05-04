@@ -37,6 +37,14 @@ class ModeDaoTest extends AnyFunSuite {
     assert(encodedValue === expectedValue)
   }
 
+  /**
+   * Method used to create quiz mode JSON object with hardcoded settings and deletable flag, and customizable name,
+   * description, and ID which could be either String (to match content of client request) or Int (to match inner logic)
+   * @param id identifier of the mode which could be one of: String (as client requests) or Int (as internal logic)
+   * @param name mode name used for easier modes distinguish
+   * @param description mode description for providing more context about the mode
+   * @return JSON object representing quiz mode
+   */
   private def createModeJson(id: Either[String, Int], name: String, description: String): Json = {
     Json.obj(
       ("id", id match {
@@ -50,6 +58,10 @@ class ModeDaoTest extends AnyFunSuite {
     )
   }
 
+  /**
+   * Method used to create mode settings JSON object with hardcoded type, label, and details
+   * @return JSON object representing mode setting
+   */
   private def createSettingJson(): Json = {
     Json.obj(
       ("type", Json.fromString("languages")),

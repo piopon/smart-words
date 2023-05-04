@@ -1,8 +1,8 @@
 package pl.smtc.smartwords.dao
 
-import io.circe.{Decoder, Encoder, Json}
+import io.circe._
 import org.scalatest.funsuite.AnyFunSuite
-import pl.smtc.smartwords.model.{Kind, Setting}
+import pl.smtc.smartwords.model._
 
 class SettingDaoTest extends AnyFunSuite {
 

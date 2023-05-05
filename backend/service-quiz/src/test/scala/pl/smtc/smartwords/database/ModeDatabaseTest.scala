@@ -9,6 +9,7 @@ import java.nio.file.{Path, Paths}
 class ModeDatabaseTest extends AnyFunSuite {
 
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
+  private val databaseTestFile: String = "test-mode-database-crud.json"
 
   test("testLoadDatabase") {
     val databaseUnderTest: ModeDatabase = new ModeDatabase("test-modes.json")
@@ -27,19 +28,17 @@ class ModeDatabaseTest extends AnyFunSuite {
   }
 
   test("testDeleteMode") {
-    val databaseFile: String = "test-delete.json"
-    val databaseUnderTest: ModeDatabase = new ModeDatabase(databaseFile)
+    val databaseUnderTest: ModeDatabase = new ModeDatabase(databaseTestFile)
     assert(databaseUnderTest.getModes.size === 0)
     databaseUnderTest.addMode()
     assert(databaseUnderTest.getModes.size === 1)
     databaseUnderTest.deleteMode(0)
     assert(databaseUnderTest.getModes.size === 0)
-    assert(new File(resourceDir.resolve(databaseFile).toString).exists())
+    assert(new File(resourceDir.resolve(databaseTestFile).toString).exists())
   }
 
   test("testAddMode") {
-    val databaseFile: String = "test-add.json"
-    val databaseUnderTest: ModeDatabase = new ModeDatabase(databaseFile)
+    val databaseUnderTest: ModeDatabase = new ModeDatabase(databaseTestFile)
     assert(databaseUnderTest.getModes.size === 0)
     databaseUnderTest.addMode()
     assert(databaseUnderTest.getModes.size === 1)
@@ -48,12 +47,11 @@ class ModeDatabaseTest extends AnyFunSuite {
     assert(addedMode.name.isEmpty)
     assert(addedMode.description.isEmpty)
     assert(addedMode.deletable === true)
-    assert(new File(resourceDir.resolve(databaseFile).toString).exists())
+    assert(new File(resourceDir.resolve(databaseTestFile).toString).exists())
   }
 
   test("testGetModes") {
-    val databaseFile: String = "test-get.json"
-    val databaseUnderTest: ModeDatabase = new ModeDatabase(databaseFile)
+    val databaseUnderTest: ModeDatabase = new ModeDatabase(databaseTestFile)
     assert(databaseUnderTest.getModes.size === 0)
     databaseUnderTest.addMode()
     assert(databaseUnderTest.getModes.size === 1)
@@ -61,12 +59,11 @@ class ModeDatabaseTest extends AnyFunSuite {
     assert(databaseUnderTest.getModes.size === 2)
     databaseUnderTest.addMode()
     assert(databaseUnderTest.getModes.size === 3)
-    assert(new File(resourceDir.resolve(databaseFile).toString).exists())
+    assert(new File(resourceDir.resolve(databaseTestFile).toString).exists())
   }
 
   test("testUpdateMode") {
-    val databaseFile: String = "test-update.json"
-    val databaseUnderTest: ModeDatabase = new ModeDatabase(databaseFile)
+    val databaseUnderTest: ModeDatabase = new ModeDatabase(databaseTestFile)
     assert(databaseUnderTest.getModes.size === 0)
     databaseUnderTest.addMode()
     assert(databaseUnderTest.getModes.size === 1)
@@ -77,6 +74,6 @@ class ModeDatabaseTest extends AnyFunSuite {
     assert(checkedMode.name === "test_name")
     assert(checkedMode.description === "test_description")
     assert(checkedMode.deletable === false)
-    assert(new File(resourceDir.resolve(databaseFile).toString).exists())
+    assert(new File(resourceDir.resolve(databaseTestFile).toString).exists())
   }
 }

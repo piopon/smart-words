@@ -24,6 +24,18 @@ class ModeServiceTest extends AnyFunSuite {
     assert(res === "Deleted quiz mode ID: 0")
   }
 
+  test("testDeleteQuizModeNok") {
+    val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
+    val res: String = serviceUnderTest.deleteQuizMode(1).flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "Cannot find mode with ID: 1, or mode is not deletable")
+  }
+
+  test("testDeleteQuizModeNotDeletable") {
+    val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
+    val res: String = serviceUnderTest.deleteQuizMode(15).flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "Cannot find mode with ID: 15, or mode is not deletable")
+  }
+
   private def createTestDatabase(): ModeDatabase = {
     val database: ModeDatabase = new ModeDatabase(databaseFile = "test-mode-service-crud.json")
     val settings: List[Setting] = List(Setting(Kind.languages, "languages label:", "en es!"),

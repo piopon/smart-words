@@ -6,7 +6,7 @@ import io.circe.literal.JsonStringContext
 import org.http4s.circe.jsonDecoder
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.database.ModeDatabase
-import pl.smtc.smartwords.model.{Kind, Mode, Setting}
+import pl.smtc.smartwords.model._
 
 class ModeServiceTest extends AnyFunSuite {
 

@@ -13,12 +13,17 @@ class ModeDatabaseTest extends AnyFunSuite {
   test("testLoadDatabase") {
     val databaseUnderTest: ModeDatabase = new ModeDatabase("test-modes.json")
     databaseUnderTest.loadDatabase()
-    assert(databaseUnderTest.getModes.size === 1)
-    val checkedMode: Mode = databaseUnderTest.getModes.head
-    assert(checkedMode.id === 99)
-    assert(checkedMode.name === "UNIT test QUIZ mode 1")
-    assert(checkedMode.description === "this is a JSON for unit test and checking quiz mode logic")
-    assert(checkedMode.deletable === true)
+    assert(databaseUnderTest.getModes.size === 2)
+    val firstMode: Mode = databaseUnderTest.getModes.head
+    assert(firstMode.id === 99)
+    assert(firstMode.name === "UNIT test QUIZ mode 1")
+    assert(firstMode.description === "this is a JSON for unit test and checking quiz mode logic")
+    assert(firstMode.deletable === true)
+    val lastMode: Mode = databaseUnderTest.getModes.last
+    assert(lastMode.id === 17)
+    assert(lastMode.name === "second MODE for UNIT tests")
+    assert(lastMode.description === "another unit test mode")
+    assert(lastMode.deletable === false)
   }
 
   test("testDeleteMode") {

@@ -36,7 +36,7 @@ class ModeServiceTest extends AnyFunSuite {
     assert(res === "Cannot find mode with ID: 15, or mode is not deletable")
   }
 
-  test("testUpdateQuizModeOk") {
+  test("testUpdateQuizModeOkWhenDeletable") {
     val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
     val updatedMode: Mode = Mode(0, "UPDATED MODE", "Hello from unit test: UPDATE MODE", List(), deletable = true)
     val res: String = serviceUnderTest.updateQuizMode(0, updatedMode).flatMap(_.as[String]).unsafeRunSync()
@@ -59,7 +59,7 @@ class ModeServiceTest extends AnyFunSuite {
     assert(res === "Cannot find mode with ID: 1, or mode cannot be updated with initial settings removal")
   }
 
-  test("testUpdateQuizModeNotDeletable") {
+  test("testUpdateQuizModeNokWhenNotExisting") {
     val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
     val updatedMode: Mode = Mode(15, "UPDATED MODE", "Hello from unit test: UPDATE MODE", List(), deletable = true)
     val res: String = serviceUnderTest.updateQuizMode(15, updatedMode).flatMap(_.as[String]).unsafeRunSync()

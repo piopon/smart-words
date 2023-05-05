@@ -64,7 +64,7 @@ class ModeServiceTest extends AnyFunSuite {
     val firstModeId: Int = database.addMode().id
     database.updateMode(firstModeId, Mode(0, "first-mode-name", "Description for mode 1", settings, deletable = true))
     val secondModeId: Int = database.addMode().id
-    database.updateMode(secondModeId, Mode(0, "first-mode-name", "Description for mode 1", settings, deletable = false))
+    database.updateMode(secondModeId, Mode(0, "second-mode-name", "Description for mode 2", settings, deletable = false))
     database
   }
 }

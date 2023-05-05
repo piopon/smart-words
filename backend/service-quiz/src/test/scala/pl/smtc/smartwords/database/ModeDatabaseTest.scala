@@ -12,7 +12,7 @@ class ModeDatabaseTest extends AnyFunSuite {
   private val databaseTestFile: String = "test-mode-database-crud.json"
 
   test("testLoadDatabase") {
-    val databaseUnderTest: ModeDatabase = new ModeDatabase("test-modes.json")
+    val databaseUnderTest: ModeDatabase = new ModeDatabase("test-mode-database-load.json")
     databaseUnderTest.loadDatabase()
     assert(databaseUnderTest.getModes.size === 2)
     val firstMode: Mode = databaseUnderTest.getModes.head

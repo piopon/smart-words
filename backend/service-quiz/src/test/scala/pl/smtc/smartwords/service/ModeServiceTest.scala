@@ -66,10 +66,25 @@ class ModeServiceTest extends AnyFunSuite {
     assert(res === "Cannot find mode with ID: 15, or mode cannot be updated with initial settings removal")
   }
 
+  test("testGetQuizModes") {
+    val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
+    val res: Json = serviceUnderTest.getQuizModes.flatMap(_.as[Json]).unsafeRunSync()
+    val expected: Json =
+      json"""[ { "id" : 0, "name" : "first-mode-name", "description" : "Description for mode 1", "deletable" : true,
+                 "settings" : [ { "type" : "languages", "label" : "lbl:", "details" : "en es!" },
+                                { "type" : "questions", "label" : "lbl:", "details" : "value='5' min='1' max='10'" } ]
+               },
+               { "id" : 1, "name" : "second-mode-name", "description" : "Description for mode 2", "deletable" : false,
+                 "settings" : [ { "type" : "languages", "label" : "lbl:", "details" : "en es!" },
+                                { "type" : "questions", "label" : "lbl:", "details" : "value='5' min='1' max='10'" } ]
+               } ]"""
+    assert(res === expected)
+  }
+
   private def createTestDatabase(): ModeDatabase = {
     val database: ModeDatabase = new ModeDatabase(databaseFile = "test-mode-service-crud.json")
-    val settings: List[Setting] = List(Setting(Kind.languages, "languages label:", "en es!"),
-                                       Setting(Kind.questions, "questions label:", "value='5' min='1' max='10'"))
+    val settings: List[Setting] = List(Setting(Kind.languages, "lbl:", "en es!"),
+                                       Setting(Kind.questions, "lbl:", "value='5' min='1' max='10'"))
     val firstModeId: Int = database.addMode().id
     database.updateMode(firstModeId, Mode(0, "first-mode-name", "Description for mode 1", settings, deletable = true))
     val secondModeId: Int = database.addMode().id

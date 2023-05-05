@@ -36,6 +36,27 @@ class ModeServiceTest extends AnyFunSuite {
     assert(res === "Cannot find mode with ID: 15, or mode is not deletable")
   }
 
+  test("testUpdateQuizModeOk") {
+    val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
+    val updatedMode: Mode = Mode(0, "UPDATED MODE", "Hello from unit test: UPDATE MODE", List(), deletable = true)
+    val res: String = serviceUnderTest.updateQuizMode(0, updatedMode).flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "Updated quiz mode ID: 0")
+  }
+
+  test("testUpdateQuizModeNok") {
+    val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
+    val updatedMode: Mode = Mode(1, "UPDATED MODE", "Hello from unit test: UPDATE MODE", List(), deletable = true)
+    val res: String = serviceUnderTest.updateQuizMode(1, updatedMode).flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "Cannot find mode with ID: 1, or mode cannot be updated with initial settings removal")
+  }
+
+  test("testUpdateQuizModeNotDeletable") {
+    val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
+    val updatedMode: Mode = Mode(15, "UPDATED MODE", "Hello from unit test: UPDATE MODE", List(), deletable = true)
+    val res: String = serviceUnderTest.updateQuizMode(15, updatedMode).flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "Cannot find mode with ID: 15, or mode cannot be updated with initial settings removal")
+  }
+
   private def createTestDatabase(): ModeDatabase = {
     val database: ModeDatabase = new ModeDatabase(databaseFile = "test-mode-service-crud.json")
     val settings: List[Setting] = List(Setting(Kind.languages, "languages label:", "en es!"),

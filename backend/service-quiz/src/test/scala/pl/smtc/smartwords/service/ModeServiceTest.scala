@@ -18,6 +18,12 @@ class ModeServiceTest extends AnyFunSuite {
     assert(res === expected)
   }
 
+  test("testDeleteQuizModeOk") {
+    val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
+    val res: String = serviceUnderTest.deleteQuizMode(0).flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "Deleted quiz mode ID: 0")
+  }
+
   private def createTestDatabase(): ModeDatabase = {
     val database: ModeDatabase = new ModeDatabase(databaseFile = "test-mode-service-crud.json")
     val settings: List[Setting] = List(Setting(Kind.languages, "languages label:", "en es!"),

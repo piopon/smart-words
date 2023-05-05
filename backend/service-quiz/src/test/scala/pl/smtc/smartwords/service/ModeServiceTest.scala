@@ -43,7 +43,16 @@ class ModeServiceTest extends AnyFunSuite {
     assert(res === "Updated quiz mode ID: 0")
   }
 
-  test("testUpdateQuizModeNok") {
+  test("testUpdateQuizModeOkWhenSettingsOk") {
+    val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
+    val settings: List[Setting] = List(Setting(Kind.questions, "updated label:", "min='10' value='15' max='20'"),
+                                       Setting(Kind.languages, "languages label:", "pl"))
+    val updatedMode: Mode = Mode(1, "UPDATED MODE", "Hello from unit test: UPDATE MODE", settings, deletable = true)
+    val res: String = serviceUnderTest.updateQuizMode(1, updatedMode).flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "Updated quiz mode ID: 1")
+  }
+
+  test("testUpdateQuizModeNokWhenSettingsNok") {
     val serviceUnderTest: ModeService = new ModeService(createTestDatabase())
     val updatedMode: Mode = Mode(1, "UPDATED MODE", "Hello from unit test: UPDATE MODE", List(), deletable = true)
     val res: String = serviceUnderTest.updateQuizMode(1, updatedMode).flatMap(_.as[String]).unsafeRunSync()

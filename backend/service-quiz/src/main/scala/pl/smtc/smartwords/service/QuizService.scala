@@ -14,7 +14,7 @@ import pl.smtc.smartwords.dao._
 import java.util.UUID
 import scala.util.Random
 
-class QuizService(quizDB: QuizDatabase, wordService: WordService) {
+class QuizService(quizDB: QuizDatabase, wordService: ClientService) {
 
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 

@@ -4,6 +4,7 @@ import cats.effect._
 import org.http4s._
 import org.http4s.dsl._
 import org.http4s.dsl.io._
+import pl.smtc.smartwords.client._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.service._
 
@@ -25,7 +26,7 @@ class QuizController() {
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {
-    val service: QuizService = new QuizService(quizDB)
+    val service: QuizService = new QuizService(quizDB, new WordService())
     val dsl = Http4sDsl[IO]; import dsl._
     HttpRoutes.of[IO] {
       case POST -> Root / "start" :? OptionalQuizSizeParamMatcher(maybeSize)

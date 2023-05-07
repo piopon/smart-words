@@ -14,7 +14,7 @@ import pl.smtc.smartwords.model._
 
 import scala.concurrent.duration.DurationDouble
 
-class WordService extends ClientService {
+class WordService extends IWordService {
 
   val address: Uri = uri"http://localhost:1111"
   val wordsEndpoint: Uri = address.withPath(path"words")

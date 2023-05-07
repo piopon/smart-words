@@ -14,9 +14,8 @@ import pl.smtc.smartwords.dao._
 import java.util.UUID
 import scala.util.Random
 
-class QuizService(quizDB: QuizDatabase) {
+class QuizService(quizDB: QuizDatabase, wordService: WordService) {
 
-  implicit val WordService: WordService = new WordService()
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 
   private final val defaultQuizSize: Int = 10
@@ -43,7 +42,7 @@ class QuizService(quizDB: QuizDatabase) {
       case None => defaultQuizLang
       case Some(language) => language
     }
-    if (WordService.isAlive) {
+    if (wordService.isAlive) {
       try {
         Ok(quizDB.addQuiz(generateQuiz(size, mode, language)).toString)
       } catch {
@@ -120,7 +119,7 @@ class QuizService(quizDB: QuizDatabase) {
     try {
       var word: Word = null
       do {
-        word = WordService.getRandomWord(mode, language)
+        word = wordService.getRandomWord(mode, language)
       } while (forbiddenWords.contains(word.name))
       Round(word, generateOptions(word.description, mode, language, word.category), None, None)
     } catch {
@@ -153,7 +152,7 @@ class QuizService(quizDB: QuizDatabase) {
    */
   private def generateOptions(correctDefinitions: List[String],
                               mode: Int, language: String, category: String): List[String] = {
-    val incorrectDefinitions: List[String] = WordService.getWordsByCategory(mode, language, category)
+    val incorrectDefinitions: List[String] = wordService.getWordsByCategory(mode, language, category)
       .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))
       .distinct

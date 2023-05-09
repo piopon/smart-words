@@ -58,4 +58,16 @@ class QuizServiceTest extends AnyFunSuite {
     assert(res.toDouble === 0.0)
   }
 
+  test("testPostQuizQuestionNo") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(5), Some(72), Some("es"))
+                                                     .flatMap(_.as[String])
+                                                     .unsafeRunSync())
+    val res: String = serviceUnderTest.postQuizQuestionNo(uuid, "0", "2")
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
+    assert(res === "true" || res === "false")
+  }
 }

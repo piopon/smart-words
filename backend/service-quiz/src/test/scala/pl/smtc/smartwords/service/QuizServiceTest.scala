@@ -23,6 +23,16 @@ class QuizServiceTest extends AnyFunSuite {
     assert(res.matches(uuidRegex))
   }
 
+  test("testStartQuizFailsWhenWordServiceIsNotAlive") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest(false)
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val res: String = serviceUnderTest.startQuiz(None, None, None)
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
+    assert(res === "Cannot start quiz. Service: WORD - not available.")
+  }
+
   test("testGetQuizQuestionNo") {
     val quizDatabase: QuizDatabase = new QuizDatabase
     val wordService: WordServiceTest = new WordServiceTest

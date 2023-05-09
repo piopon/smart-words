@@ -38,4 +38,15 @@ class QuizServiceTest extends AnyFunSuite {
       case Left(_) => false
     })
   }
+
+  test("testStopQuiz") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val start: String = serviceUnderTest.startQuiz(Some(5), Some(72), Some("es")).flatMap(_.as[String]).unsafeRunSync()
+    val uuid: UUID = UUID.fromString(start)
+    val res: String = serviceUnderTest.stopQuiz(uuid).flatMap(_.as[String]).unsafeRunSync()
+    assert(res.nonEmpty)
+    assert(res.toDouble === 0.0)
+  }
 }

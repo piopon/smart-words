@@ -12,13 +12,15 @@ import java.util.UUID
 
 class QuizServiceTest extends AnyFunSuite {
 
-  private val uuidRegex: String ="^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+  private val uuidRegex: String = "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
 
   test("testStartQuiz") {
     val quizDatabase: QuizDatabase = new QuizDatabase
     val wordService: WordServiceTest = new WordServiceTest
     val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
-    val res: String = serviceUnderTest.startQuiz(Some(5), Some(1), Some("pl")).flatMap(_.as[String]).unsafeRunSync()
+    val res: String = serviceUnderTest.startQuiz(Some(5), Some(1), Some("pl"))
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
     assert(res.matches(uuidRegex))
   }
 
@@ -26,9 +28,12 @@ class QuizServiceTest extends AnyFunSuite {
     val quizDatabase: QuizDatabase = new QuizDatabase
     val wordService: WordServiceTest = new WordServiceTest
     val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
-    val start: String = serviceUnderTest.startQuiz(Some(5), Some(72), Some("es")).flatMap(_.as[String]).unsafeRunSync()
-    val uuid: UUID = UUID.fromString(start)
-    val res: Json = serviceUnderTest.getQuizQuestionNo(uuid, "1").flatMap(_.as[Json]).unsafeRunSync()
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(5), Some(72), Some("es"))
+                                                     .flatMap(_.as[String])
+                                                     .unsafeRunSync())
+    val res: Json = serviceUnderTest.getQuizQuestionNo(uuid, "1")
+                                    .flatMap(_.as[Json])
+                                    .unsafeRunSync()
     assert(res.hcursor.downField("word").as[String] match {
       case Right(s) => s.startsWith("word-es-72")
       case Left(_) => false
@@ -43,10 +48,14 @@ class QuizServiceTest extends AnyFunSuite {
     val quizDatabase: QuizDatabase = new QuizDatabase
     val wordService: WordServiceTest = new WordServiceTest
     val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
-    val start: String = serviceUnderTest.startQuiz(Some(5), Some(72), Some("es")).flatMap(_.as[String]).unsafeRunSync()
-    val uuid: UUID = UUID.fromString(start)
-    val res: String = serviceUnderTest.stopQuiz(uuid).flatMap(_.as[String]).unsafeRunSync()
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(5), Some(72), Some("es"))
+                                                     .flatMap(_.as[String])
+                                                     .unsafeRunSync())
+    val res: String = serviceUnderTest.stopQuiz(uuid)
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
     assert(res.nonEmpty)
     assert(res.toDouble === 0.0)
   }
+
 }

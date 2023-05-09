@@ -7,9 +7,9 @@ import scala.util.Random
 /**
  * <b>IMPORTANT:</b> This class is a test implementation of a word client service, not a class with unit tests
  */
-class WordServiceTest extends IWordService {
+class WordServiceTest(alive: Boolean = true) extends IWordService {
 
-  override def isAlive: Boolean = true
+  override def isAlive: Boolean = alive
 
   override def getRandomWord(mode: Int, language: String): Word = {
     val randomIdString: String = new Random().nextInt.toString

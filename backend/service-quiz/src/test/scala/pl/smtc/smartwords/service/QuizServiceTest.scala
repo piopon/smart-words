@@ -4,9 +4,8 @@ import cats.effect.unsafe.implicits.global
 import io.circe.Json
 import org.http4s.circe.jsonDecoder
 import org.scalatest.funsuite.AnyFunSuite
-import pl.smtc.smartwords.client.WordServiceTest
-import pl.smtc.smartwords.database.QuizDatabase
-import pl.smtc.smartwords.model.Round
+import pl.smtc.smartwords.client._
+import pl.smtc.smartwords.database._
 
 import java.util.UUID
 

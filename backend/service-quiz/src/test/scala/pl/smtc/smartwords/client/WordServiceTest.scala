@@ -7,7 +7,7 @@ import scala.util.Random
 /**
  * <b>IMPORTANT:</b> This class is a test implementation of a word client service, not a class with unit tests
  */
-class WordServiceTest(alive: Boolean = true, wordFail: Boolean = false) extends IWordService {
+class WordServiceTest(alive: Boolean = true, wordFail: Boolean = false, categoryFail: Boolean = false) extends IWordService {
 
   override def isAlive: Boolean = alive
 
@@ -21,6 +21,9 @@ class WordServiceTest(alive: Boolean = true, wordFail: Boolean = false) extends 
   }
 
   override def getWordsByCategory(mode: Int, language: String, category: String): List[Word] = {
+    if (categoryFail) {
+      throw new WordServiceException("Invalid input parameter(s) - getWordsByCategory error!")
+    }
     List(
       Word("word-" + language + "-" + mode.toString + "-00", category, List("def-0", "alt-00")),
       Word("word-" + language + "-" + mode.toString + "-01", category, List("def-1", "alt-11")),

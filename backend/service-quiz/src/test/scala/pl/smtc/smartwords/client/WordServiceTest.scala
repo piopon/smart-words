@@ -7,11 +7,14 @@ import scala.util.Random
 /**
  * <b>IMPORTANT:</b> This class is a test implementation of a word client service, not a class with unit tests
  */
-class WordServiceTest(alive: Boolean = true) extends IWordService {
+class WordServiceTest(alive: Boolean = true, wordFail: Boolean = false) extends IWordService {
 
   override def isAlive: Boolean = alive
 
   override def getRandomWord(mode: Int, language: String): Word = {
+    if (wordFail) {
+      throw new WordServiceException("Invalid input parameter(s) - getRandomWord error!")
+    }
     val randomIdString: String = new Random().nextInt.toString
     val randomWordName: String = "word-" + language + "-" + mode.toString + randomIdString
     Word(randomWordName, "verb", List("definition-main-" + randomIdString, "alternate-definition-" + randomIdString))

@@ -119,4 +119,14 @@ class QuizServiceTest extends AnyFunSuite {
                                       .unsafeRunSync()
     assert(res === "true" || res === "false")
   }
+
+  test("testPostQuizQuestionNoFailsWhenUnsupportedUuidIsProvided") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val res: String = serviceUnderTest.postQuizQuestionNo(UUID.randomUUID(), "1", "0")
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
+    assert(res === "Specified quiz does not exist")
+  }
 }

@@ -97,6 +97,16 @@ class QuizServiceTest extends AnyFunSuite {
     assert(res.toDouble === 0.0)
   }
 
+  test("testStopQuizFailsWhenUnsupportedUuidIsProvided") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val res: String = serviceUnderTest.stopQuiz(UUID.randomUUID())
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
+    assert(res === "Specified quiz does not exist")
+  }
+
   test("testPostQuizQuestionNo") {
     val quizDatabase: QuizDatabase = new QuizDatabase
     val wordService: WordServiceTest = new WordServiceTest

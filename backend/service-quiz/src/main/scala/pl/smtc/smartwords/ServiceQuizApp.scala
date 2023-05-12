@@ -15,13 +15,14 @@ import scala.concurrent.duration.DurationInt
 object ServiceQuizApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
     val modeDatabase: ModeDatabase = new ModeDatabase()
     if (!modeDatabase.loadDatabase()) {
       return IO.canceled.as(ExitCode.Error)
     }
     val modeController: ModeController = new ModeController(modeDatabase)
     val healthController: HealthController = new HealthController()
-    val quizController: QuizController = new QuizController()
+    val quizController: QuizController = new QuizController(quizDatabase)
 
     val config = CORSConfig(anyOrigin = true, allowCredentials = true, 1.day.toSeconds, anyMethod = true)
     val apis = Router(

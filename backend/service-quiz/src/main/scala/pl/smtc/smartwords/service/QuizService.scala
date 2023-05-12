@@ -80,12 +80,16 @@ class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
       case None =>
         NotFound("Specified quiz does not exist")
       case Some(quiz) =>
-        val correctDefinitions: List[String] = quiz.rounds(questionNo.toInt).word.description
-        val selectedDefinition: String = quiz.rounds(questionNo.toInt).options(answerNo.toInt)
-        quiz.rounds(questionNo.toInt).answer = Option(answerNo.toInt)
-        val isCorrect = correctDefinitions.contains(selectedDefinition)
-        quiz.rounds(questionNo.toInt).correct = Option(isCorrect)
-        Ok(isCorrect.toString)
+        try {
+          val correctDefinitions: List[String] = quiz.rounds(questionNo.toInt).word.description
+          val selectedDefinition: String = quiz.rounds(questionNo.toInt).options(answerNo.toInt)
+          quiz.rounds(questionNo.toInt).answer = Option(answerNo.toInt)
+          val isCorrect = correctDefinitions.contains(selectedDefinition)
+          quiz.rounds(questionNo.toInt).correct = Option(isCorrect)
+          Ok(isCorrect.toString)
+        } catch {
+          case e: NumberFormatException => BadRequest("Question and answer numbers must be of integer type.")
+        }
     }
   }
 

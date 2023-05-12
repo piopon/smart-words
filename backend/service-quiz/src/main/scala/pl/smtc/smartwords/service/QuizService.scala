@@ -64,11 +64,15 @@ class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
       case None =>
         NotFound("Specified quiz does not exist")
       case Some(quiz) =>
-        val questionInt: Int = questionNo.toInt
-        if (questionInt < 0 || questionInt > quiz.rounds.size - 1) {
-          return BadRequest(s"Question number must have value between 0-${quiz.rounds.size - 1}")
+        try {
+          val questionInt: Int = questionNo.toInt
+          if (questionInt < 0 || questionInt > quiz.rounds.size - 1) {
+            return BadRequest(s"Question number must have value between 0-${quiz.rounds.size - 1}")
+          }
+          Ok(quiz.rounds(questionInt).asJson)
+        } catch {
+          case _: NumberFormatException => BadRequest("Question number must be of integer type.")
         }
-        Ok(quiz.rounds(questionInt).asJson)
     }
   }
 

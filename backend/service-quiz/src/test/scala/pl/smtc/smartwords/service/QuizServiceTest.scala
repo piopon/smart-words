@@ -83,6 +83,19 @@ class QuizServiceTest extends AnyFunSuite {
     assert(res === "Specified quiz does not exist")
   }
 
+  test("testGetQuizQuestionNoFailsWhenQuestionNumberIsOutsideRange") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(5), Some(72), Some("es"))
+                                                     .flatMap(_.as[String])
+                                                     .unsafeRunSync())
+    val res: String = serviceUnderTest.getQuizQuestionNo(uuid, "7")
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
+    assert(res === "Question number must have value between 0-4")
+  }
+
   test("testStopQuiz") {
     val quizDatabase: QuizDatabase = new QuizDatabase
     val wordService: WordServiceTest = new WordServiceTest

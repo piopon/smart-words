@@ -129,4 +129,30 @@ class QuizServiceTest extends AnyFunSuite {
                                       .unsafeRunSync()
     assert(res === "Specified quiz does not exist")
   }
+
+  test("testPostQuizQuestionNoFailsWhenQuestionNumberIsNotAnInteger") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(5), Some(72), Some("es"))
+                                                     .flatMap(_.as[String])
+                                                     .unsafeRunSync())
+    val res: String = serviceUnderTest.postQuizQuestionNo(uuid, "non-integer", "0")
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
+    assert(res === "Question and answer number must be of integer type.")
+  }
+
+  test("testPostQuizQuestionNoFailsWhenAnswerNumberIsNotAnInteger") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(5), Some(72), Some("es"))
+                                                     .flatMap(_.as[String])
+                                                     .unsafeRunSync())
+    val res: String = serviceUnderTest.postQuizQuestionNo(uuid, "0", "non-integer")
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
+    assert(res === "Question and answer number must be of integer type.")
+  }
 }

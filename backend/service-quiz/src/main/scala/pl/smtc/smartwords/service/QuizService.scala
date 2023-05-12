@@ -88,7 +88,7 @@ class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
           quiz.rounds(questionNo.toInt).correct = Option(isCorrect)
           Ok(isCorrect.toString)
         } catch {
-          case e: NumberFormatException => BadRequest("Question and answer numbers must be of integer type.")
+          case e: NumberFormatException => BadRequest("Question and answer number must be of integer type.")
         }
     }
   }

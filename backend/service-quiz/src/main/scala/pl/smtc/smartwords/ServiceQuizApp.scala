@@ -7,6 +7,7 @@ import org.http4s.implicits._
 import org.http4s.server._
 import org.http4s.server.middleware._
 import org.http4s.ember.server._
+import pl.smtc.smartwords.client.WordService
 import pl.smtc.smartwords.controller._
 import pl.smtc.smartwords.database._
 
@@ -20,9 +21,10 @@ object ServiceQuizApp extends IOApp {
     if (!modeDatabase.loadDatabase()) {
       return IO.canceled.as(ExitCode.Error)
     }
+    val wordClient: WordService = new WordService()
     val modeController: ModeController = new ModeController(modeDatabase)
     val healthController: HealthController = new HealthController()
-    val quizController: QuizController = new QuizController(quizDatabase)
+    val quizController: QuizController = new QuizController(quizDatabase, wordClient)
 
     val config = CORSConfig(anyOrigin = true, allowCredentials = true, 1.day.toSeconds, anyMethod = true)
     val apis = Router(

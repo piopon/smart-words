@@ -87,7 +87,7 @@ class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
           }
           val questionInt: Int = questionNo.toInt
           if (questionInt < 0 || questionInt > quiz.rounds.size - 1) {
-            return BadRequest(s"Answer number must have value between 0-${quiz.rounds.size - 1}")
+            return BadRequest(s"Question number must have value between 0-${quiz.rounds.size - 1}")
           }
           val correctDefinitions: List[String] = quiz.rounds(questionInt).word.description
           val selectedDefinition: String = quiz.rounds(questionInt).options(answerInt)

@@ -143,6 +143,19 @@ class QuizServiceTest extends AnyFunSuite {
     assert(res === "Question and answer number must be of integer type.")
   }
 
+  test("testPostQuizQuestionNoFailsWhenQuestionNumberIsNotAValidInteger") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(5), Some(72), Some("es"))
+                                                     .flatMap(_.as[String])
+                                                     .unsafeRunSync())
+    val res: String = serviceUnderTest.postQuizQuestionNo(uuid, "5", "3")
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
+    assert(res === "Question number must have value between 0-4")
+  }
+
   test("testPostQuizQuestionNoFailsWhenAnswerNumberIsNotAnInteger") {
     val quizDatabase: QuizDatabase = new QuizDatabase
     val wordService: WordServiceTest = new WordServiceTest

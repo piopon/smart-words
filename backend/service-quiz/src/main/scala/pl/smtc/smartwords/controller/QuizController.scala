@@ -8,7 +8,7 @@ import pl.smtc.smartwords.client._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.service._
 
-class QuizController(quizDatabase: QuizDatabase, wordService: WordService) {
+class QuizController(quizDatabase: QuizDatabase, wordService: IWordService) {
 
   object OptionalQuizSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
   object OptionalQuizModeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("mode")

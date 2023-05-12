@@ -64,7 +64,11 @@ class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
       case None =>
         NotFound("Specified quiz does not exist")
       case Some(quiz) =>
-        Ok(quiz.rounds(questionNo.toInt).asJson)
+        val questionInt: Int = questionNo.toInt
+        if (questionInt < 0 || questionInt > quiz.rounds.size - 1) {
+          return BadRequest(s"Question number must have value between 0-${quiz.rounds.size - 1}")
+        }
+        Ok(quiz.rounds(questionInt).asJson)
     }
   }
 

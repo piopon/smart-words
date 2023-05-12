@@ -2,10 +2,10 @@ package pl.smtc.smartwords.controller
 
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
-import org.http4s.{Method, Request, Response, Uri}
+import org.http4s._
 import org.scalatest.funsuite.AnyFunSuite
-import pl.smtc.smartwords.client.WordServiceTest
-import pl.smtc.smartwords.database.QuizDatabase
+import pl.smtc.smartwords.client._
+import pl.smtc.smartwords.database._
 
 class QuizControllerTest extends AnyFunSuite {
 

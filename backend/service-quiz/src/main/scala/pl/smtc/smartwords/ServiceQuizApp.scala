@@ -16,22 +16,26 @@ import scala.concurrent.duration.DurationInt
 object ServiceQuizApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
+    // initialize databases
     val quizDatabase: QuizDatabase = new QuizDatabase()
     val modeDatabase: ModeDatabase = new ModeDatabase()
     if (!modeDatabase.loadDatabase()) {
       return IO.canceled.as(ExitCode.Error)
     }
-    val wordClient: WordService = new WordService()
-    val modeController: ModeController = new ModeController(modeDatabase)
+    // initialize other services clients
+    val wordServiceClient: WordService = new WordService()
+    // initialize controllers
     val healthController: HealthController = new HealthController()
-    val quizController: QuizController = new QuizController(quizDatabase, wordClient)
-
+    val modeController: ModeController = new ModeController(modeDatabase)
+    val quizController: QuizController = new QuizController(quizDatabase, wordServiceClient)
+    // setup router
     val config = CORSConfig(anyOrigin = true, allowCredentials = true, 1.day.toSeconds, anyMethod = true)
     val apis = Router(
       "/health" -> CORS(healthController.getRoutes, config),
       "/modes" -> CORS(modeController.getRoutes, config),
       "/quiz" -> CORS(quizController.getRoutes, config)
     ).orNotFound
+    // start server
     for {
       server <- EmberServerBuilder.default[IO]
         .withHost(ipv4"0.0.0.0")

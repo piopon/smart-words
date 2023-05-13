@@ -30,4 +30,15 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.get.status === Status.Ok)
     assert(response.get.as[String].unsafeRunSync.matches(uuidRegex))
   }
+
+  test("testGetRoutesReturnsCorrectResponseOnEndpointStartWithParams") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start?size=13&mode=3&lang=pl"))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    assert(response.get.status === Status.Ok)
+    assert(response.get.as[String].unsafeRunSync.matches(uuidRegex))
+  }
 }

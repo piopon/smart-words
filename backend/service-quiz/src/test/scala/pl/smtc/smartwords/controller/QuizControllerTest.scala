@@ -17,16 +17,18 @@ class QuizControllerTest extends AnyFunSuite {
     val quizDatabase: QuizDatabase = new QuizDatabase()
     val wordService: WordServiceTest = new WordServiceTest
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
-    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/non-existing"))
+    val endpoint: String = s"/non-existing"
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.isEmpty)
   }
 
-  test("testGetRoutesReturnsCorrectResponseOnEndpointStartWithoutParams") {
+  test("testGetRoutesReturnsOkResponseWhenStartQuizWithoutParams") {
     val quizDatabase: QuizDatabase = new QuizDatabase()
     val wordService: WordServiceTest = new WordServiceTest
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
-    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start"))
+    val endpoint: String = s"/start"
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
@@ -35,11 +37,12 @@ class QuizControllerTest extends AnyFunSuite {
     assert(actualBody.matches(uuidRegex))
   }
 
-  test("testGetRoutesReturnsCorrectResponseOnEndpointStartWithParams") {
+  test("testGetRoutesReturnsOkResponseWhenStartQuizWithParams") {
     val quizDatabase: QuizDatabase = new QuizDatabase()
     val wordService: WordServiceTest = new WordServiceTest
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
-    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start?size=13&mode=3&lang=pl"))
+    val endpoint: String = s"/start?size=13&mode=3&lang=pl"
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
@@ -52,7 +55,8 @@ class QuizControllerTest extends AnyFunSuite {
     val quizDatabase: QuizDatabase = new QuizDatabase()
     val wordService: WordServiceTest = new WordServiceTest(alive = false)
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
-    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start?size=13&mode=3&lang=pl"))
+    val endpoint: String = s"/start?size=13&mode=3&lang=pl"
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
@@ -65,7 +69,8 @@ class QuizControllerTest extends AnyFunSuite {
     val quizDatabase: QuizDatabase = new QuizDatabase()
     val wordService: WordServiceTest = new WordServiceTest(wordFail = true)
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
-    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start?size=13&mode=3&lang=pl"))
+    val endpoint: String = s"/start?size=13&mode=3&lang=pl"
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
@@ -78,7 +83,8 @@ class QuizControllerTest extends AnyFunSuite {
     val quizDatabase: QuizDatabase = new QuizDatabase()
     val wordService: WordServiceTest = new WordServiceTest(categoryFail = true)
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
-    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start?size=13&mode=3&lang=pl"))
+    val endpoint: String = s"/start?size=13&mode=3&lang=pl"
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status

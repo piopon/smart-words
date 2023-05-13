@@ -20,7 +20,7 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.isEmpty)
   }
 
-  test("testGetRoutesReturnsCorrectResponseOnEndpointStart") {
+  test("testGetRoutesReturnsCorrectResponseOnEndpointStartWithoutParams") {
     val quizDatabase: QuizDatabase = new QuizDatabase()
     val wordService: WordServiceTest = new WordServiceTest
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)

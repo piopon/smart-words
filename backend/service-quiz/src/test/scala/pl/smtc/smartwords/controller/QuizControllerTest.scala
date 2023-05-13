@@ -27,8 +27,10 @@ class QuizControllerTest extends AnyFunSuite {
     val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start"))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
-    assert(response.get.status === Status.Ok)
-    assert(response.get.as[String].unsafeRunSync.matches(uuidRegex))
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody.matches(uuidRegex))
   }
 
   test("testGetRoutesReturnsCorrectResponseOnEndpointStartWithParams") {
@@ -38,8 +40,10 @@ class QuizControllerTest extends AnyFunSuite {
     val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start?size=13&mode=3&lang=pl"))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
-    assert(response.get.status === Status.Ok)
-    assert(response.get.as[String].unsafeRunSync.matches(uuidRegex))
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody.matches(uuidRegex))
   }
 
   test("testGetRoutesReturnsServiceUnavailableWhenWordServiceIsNotAlive") {
@@ -49,8 +53,10 @@ class QuizControllerTest extends AnyFunSuite {
     val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start?size=13&mode=3&lang=pl"))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
-    assert(response.get.status === Status.ServiceUnavailable)
-    assert(response.get.as[String].unsafeRunSync === "Cannot start quiz. Service: WORD - not available.")
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.ServiceUnavailable)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody === "Cannot start quiz. Service: WORD - not available.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenWordServiceCannotGiveRandomWord") {

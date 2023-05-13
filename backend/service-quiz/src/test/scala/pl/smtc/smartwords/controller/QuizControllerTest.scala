@@ -2,7 +2,9 @@ package pl.smtc.smartwords.controller
 
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
+import io.circe.Json
 import org.http4s._
+import org.http4s.circe.jsonDecoder
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.client._
 import pl.smtc.smartwords.database._
@@ -91,6 +93,26 @@ class QuizControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.BadRequest)
     val actualBody: String = response.get.as[String].unsafeRunSync
     assert(actualBody === "Cannot start quiz: Invalid input parameter(s) - getWordsByCategory error!")
+  }
+
+  test("testGetRoutesReturnsStatusOkWhenGettingCorrectQuestionNo") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
+                                                        .value.unsafeRunSync()
+                                                        .get.as[String].unsafeRunSync
+    val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/1"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    val actualBody: Json = response.get.as[Json].unsafeRunSync
+    assert(actualBody.hcursor.downField("word").as[String] match {
+      case Right(s) => s.startsWith("word-pl")
+      case Left(_) => false
+    })
   }
 
   test("testGetRoutesReturnsBadRequestWhenGettingQuestionForNotExistingQuiz") {

@@ -7,6 +7,8 @@ import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.client._
 import pl.smtc.smartwords.database._
 
+import java.util.UUID
+
 class QuizControllerTest extends AnyFunSuite {
 
   private val uuidRegex: String = "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
@@ -83,5 +85,19 @@ class QuizControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.BadRequest)
     val actualBody: String = response.get.as[String].unsafeRunSync
     assert(actualBody === "Cannot start quiz: Invalid input parameter(s) - getWordsByCategory error!")
+  }
+
+  test("testGetRoutesReturnsBadRequestWhenGettingQuestionForNotExistingQuiz") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val endpoint: String = s"/${UUID.randomUUID().toString}/question/1"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.NotFound)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody === "Specified quiz does not exist")
   }
 }

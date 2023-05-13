@@ -52,4 +52,30 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.get.status === Status.ServiceUnavailable)
     assert(response.get.as[String].unsafeRunSync === "Cannot start quiz. Service: WORD - not available.")
   }
+
+  test("testGetRoutesReturnsBadRequestWhenWordServiceCannotGiveRandomWord") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest(wordFail = true)
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start?size=13&mode=3&lang=pl"))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.BadRequest)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody === "Cannot start quiz: Invalid input parameter(s) - getRandomWord error!")
+  }
+
+  test("testGetRoutesReturnsBadRequestWhenWordServiceCannotGiveCategoryWords") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest(categoryFail = true)
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start?size=13&mode=3&lang=pl"))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.BadRequest)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody === "Cannot start quiz: Invalid input parameter(s) - getWordsByCategory error!")
+  }
 }

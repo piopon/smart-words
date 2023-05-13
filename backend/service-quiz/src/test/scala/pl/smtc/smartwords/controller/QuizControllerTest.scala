@@ -41,4 +41,15 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.get.status === Status.Ok)
     assert(response.get.as[String].unsafeRunSync.matches(uuidRegex))
   }
+
+  test("testGetRoutesReturnsServiceUnavailableWhenWordServiceIsNotAlive") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest(alive = false)
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString("/start?size=13&mode=3&lang=pl"))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    assert(response.get.status === Status.ServiceUnavailable)
+    assert(response.get.as[String].unsafeRunSync === "Cannot start quiz. Service: WORD - not available.")
+  }
 }

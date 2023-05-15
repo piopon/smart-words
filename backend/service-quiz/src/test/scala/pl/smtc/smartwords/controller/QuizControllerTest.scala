@@ -261,4 +261,21 @@ class QuizControllerTest extends AnyFunSuite {
     val actualBody: String = response.get.as[String].unsafeRunSync
     assert(actualBody === "Answer number must have value between 0-3")
   }
+
+  test("testGetRoutesReturnsOkStatusWhenStopQuizWithCorrectUuid") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
+                                                        .value.unsafeRunSync()
+                                                        .get.as[String].unsafeRunSync
+    val endpoint: String = s"/${UUID.fromString(quizUuid)}/stop"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody === "0.0")
+  }
 }

@@ -193,4 +193,38 @@ class QuizControllerTest extends AnyFunSuite {
     val actualBody: String = response.get.as[String].unsafeRunSync
     assert(actualBody === "Specified quiz does not exist")
   }
+
+  test("testGetRoutesReturnsBadRequestWhenPostingQuestionAnswerWithNonIntegerQuestion") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
+                                                        .value.unsafeRunSync()
+                                                        .get.as[String].unsafeRunSync
+    val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/abc/0"
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.BadRequest)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody === "Question and answer number must be of integer type.")
+  }
+
+  test("testGetRoutesReturnsBadRequestWhenPostingQuestionAnswerWithNonIntegerAnswer") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
+                                                        .value.unsafeRunSync()
+                                                        .get.as[String].unsafeRunSync
+    val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/0/abc"
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.BadRequest)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody === "Question and answer number must be of integer type.")
+  }
 }

@@ -179,4 +179,18 @@ class QuizControllerTest extends AnyFunSuite {
     val actualBody: String = response.get.as[String].unsafeRunSync
     assert(actualBody === "false" || actualBody === "true")
   }
+
+  test("testGetRoutesReturnsBadRequestWhenPostingQuestionAnswerForNotExistingQuiz") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val endpoint: String = s"/${UUID.randomUUID().toString}/question/0/1"
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.NotFound)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody === "Specified quiz does not exist")
+  }
 }

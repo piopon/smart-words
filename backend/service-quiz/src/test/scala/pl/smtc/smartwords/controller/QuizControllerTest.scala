@@ -115,6 +115,20 @@ class QuizControllerTest extends AnyFunSuite {
     })
   }
 
+  test("testGetRoutesReturnsBadRequestWhenGettingQuestionForNotExistingQuiz") {
+    val quizDatabase: QuizDatabase = new QuizDatabase()
+    val wordService: WordServiceTest = new WordServiceTest
+    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
+    val endpoint: String = s"/${UUID.randomUUID().toString}/question/1"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.NotFound)
+    val actualBody: String = response.get.as[String].unsafeRunSync
+    assert(actualBody === "Specified quiz does not exist")
+  }
+
   test("testGetRoutesReturnsBadRequestWhenGettingQuestionAsNonInteger") {
     val quizDatabase: QuizDatabase = new QuizDatabase()
     val wordService: WordServiceTest = new WordServiceTest
@@ -130,19 +144,5 @@ class QuizControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.BadRequest)
     val actualBody: String = response.get.as[String].unsafeRunSync
     assert(actualBody === "Question number must be of integer type.")
-  }
-
-  test("testGetRoutesReturnsBadRequestWhenGettingQuestionForNotExistingQuiz") {
-    val quizDatabase: QuizDatabase = new QuizDatabase()
-    val wordService: WordServiceTest = new WordServiceTest
-    val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
-    val endpoint: String = s"/${UUID.randomUUID().toString}/question/1"
-    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
-    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
-    assert(response.nonEmpty)
-    val actualStatus: Status = response.get.status
-    assert(actualStatus === Status.NotFound)
-    val actualBody: String = response.get.as[String].unsafeRunSync
-    assert(actualBody === "Specified quiz does not exist")
   }
 }

@@ -38,8 +38,8 @@ class QuizServiceTest extends AnyFunSuite {
     val wordService: WordServiceTest = new WordServiceTest(wordFail = true)
     val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
     val res: String = serviceUnderTest.startQuiz(None, None, None)
-      .flatMap(_.as[String])
-      .unsafeRunSync()
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
     assert(res === "Cannot start quiz: Invalid input parameter(s) - getRandomWord error!")
   }
 
@@ -48,8 +48,8 @@ class QuizServiceTest extends AnyFunSuite {
     val wordService: WordServiceTest = new WordServiceTest(categoryFail = true)
     val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
     val res: String = serviceUnderTest.startQuiz(None, None, None)
-      .flatMap(_.as[String])
-      .unsafeRunSync()
+                                      .flatMap(_.as[String])
+                                      .unsafeRunSync()
     assert(res === "Cannot start quiz: Invalid input parameter(s) - getWordsByCategory error!")
   }
 

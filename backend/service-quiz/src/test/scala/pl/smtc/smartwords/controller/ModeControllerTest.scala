@@ -59,4 +59,20 @@ class ModeControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.Ok)
     assert(response.get.as[Json].unsafeRunSync === json"""[]""")
   }
+
+  test("testGetRoutesReturnsOkResponseWhenGetSupportedSettingsRequest") {
+    val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-database-load.json")
+    assert(modeDatabase.loadDatabase())
+    val controllerUnderTest: ModeController = new ModeController(modeDatabase)
+    val endpoint: String = s"/settings"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    val expected: Json =
+      json"""[ { "type" : "questions", "label" : "", "details" : "" },
+               { "type" : "languages", "label" : "", "details" : "" } ]"""
+    assert(response.get.as[Json].unsafeRunSync === expected)
+  }
 }

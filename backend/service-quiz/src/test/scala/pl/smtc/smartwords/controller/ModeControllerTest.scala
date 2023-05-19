@@ -47,4 +47,16 @@ class ModeControllerTest extends AnyFunSuite {
              ]"""
     assert(response.get.as[Json].unsafeRunSync === expected)
   }
+
+  test("testGetRoutesReturnsOkStatusAndEmptyBodyWhenGetModesRequestAndNoDatabaseInit") {
+    val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-database-load.json")
+    val controllerUnderTest: ModeController = new ModeController(modeDatabase)
+    val endpoint: String = s"/"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    assert(response.get.as[Json].unsafeRunSync === json"""[]""")
+  }
 }

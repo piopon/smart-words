@@ -20,7 +20,7 @@ class ModeControllerTest extends AnyFunSuite {
     assert(response.isEmpty)
   }
 
-  test("testGetRoutesReturnsOkResponseWhenStartQuizWithoutParams") {
+  test("testGetRoutesReturnsOkResponseWhenGetModesRequest") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-database-load.json")
     assert(modeDatabase.loadDatabase())
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)

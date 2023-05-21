@@ -90,4 +90,17 @@ class ModeControllerTest extends AnyFunSuite {
                { "type" : "languages", "label" : "", "details" : "" } ]"""
     assert(response.get.as[Json].unsafeRunSync === expected)
   }
+
+  test("testGetRoutesReturnsOkStatusWhenAddingNewModesRequest") {
+    val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
+    val controllerUnderTest: ModeController = new ModeController(modeDatabase)
+    val endpoint: String = s"/"
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    val expected: Json =json"""{ "id" : 0, "name" : "", "description" : "", "deletable" : true, "settings" : [] }"""
+    assert(response.get.as[Json].unsafeRunSync === expected)
+  }
 }

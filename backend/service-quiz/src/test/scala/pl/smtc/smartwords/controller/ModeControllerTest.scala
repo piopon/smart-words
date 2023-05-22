@@ -42,7 +42,7 @@ class ModeControllerTest extends AnyFunSuite {
                  "description" : "another unit test mode", "deletable" : false,
                  "settings" : [
                    { "type" : "questions", "label" : "specify number of questions:", "details" : "value='5' min='1' max='10'" },
-                   { "type" : "languages", "label" : "supported langs:", "details" : "en es!" }
+                   { "type" : "languages", "label" : "supported lang:", "details" : "en es!" }
                  ]
                }
              ]"""

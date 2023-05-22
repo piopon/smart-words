@@ -25,7 +25,7 @@
       },
       {
         "type": "languages",
-        "label": "supported langs:",
+        "label": "supported lang:",
         "details": "en es!"
       }
     ]

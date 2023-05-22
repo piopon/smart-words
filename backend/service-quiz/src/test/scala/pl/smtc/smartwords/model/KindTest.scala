@@ -19,7 +19,7 @@ class KindTest extends AnyFunSuite {
   test("testUnknownFromString") {
     assert(Kind.fromString("random") === Kind.unknown)
     assert(Kind.fromString("not-recognized") === Kind.unknown)
-    assert(Kind.fromString("langs") === Kind.unknown)
+    assert(Kind.fromString("longs") === Kind.unknown)
     assert(Kind.fromString("quest-ions") === Kind.unknown)
   }
 }

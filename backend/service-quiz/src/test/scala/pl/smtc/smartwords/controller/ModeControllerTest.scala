@@ -149,19 +149,23 @@ class ModeControllerTest extends AnyFunSuite {
   test("testGetRoutesReturnsNotFoundWhenUpdatingNotDeletableModeRequest") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
     assert(modeDatabase.loadDatabase())
+    val mode: Mode = modeDatabase.addMode()
+    mode.deletable = false
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
-    val endpoint: String = s"/0"
+    val endpoint: String = s"/${mode.id}"
     val requestBody: Json =
-      json"""{ "id" : 0, "name" : "UNIT test QUIZ mode 1",
-                 "description" : "this is a JSON for unit test and checking quiz mode logic", "deletable" : true,
-                 "settings" : []
+      json"""{ "id" : 22, "name" : "UNIT test QUIZ mode 1",
+                 "description" : "this is a JSON for unit test and checking quiz mode logic", "deletable" : false,
+                 "settings" : [
+                   { "type" : "questions", "label" : "UT questions:", "details" : "value='1' min='1' max='1'" }
+                 ]
              }"""
     val request: Request[IO] = Request(Method.PUT, Uri.unsafeFromString(endpoint)).withEntity(requestBody)
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    val expected: String = "Cannot find mode with ID: 0, or mode cannot be updated with initial settings removal"
+    val expected: String = s"Cannot find mode with ID: ${mode.id}, or mode cannot be updated with initial settings removal"
     assert(response.get.as[String].unsafeRunSync === expected)
   }
 

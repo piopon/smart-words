@@ -169,7 +169,7 @@ class ModeControllerTest extends AnyFunSuite {
     assert(response.get.as[String].unsafeRunSync === expected)
   }
 
-  test("testGetRoutesReturnsNotFoundWhenUpdatingModeWithInvalidId") {
+  test("testGetRoutesReturnsNothingWhenUpdatingModeWithInvalidId") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
     assert(modeDatabase.loadDatabase())
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)

@@ -178,4 +178,17 @@ class ModeControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.isEmpty)
   }
+
+  test("testGetRoutesReturnsOkStatusWhenDeletingExistingModeRequest") {
+    val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
+    assert(modeDatabase.loadDatabase())
+    val controllerUnderTest: ModeController = new ModeController(modeDatabase)
+    val endpoint: String = s"/0"
+    val request: Request[IO] = Request(Method.DELETE, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    assert(response.get.as[String].unsafeRunSync === s"Deleted quiz mode ID: 0")
+  }
 }

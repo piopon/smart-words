@@ -111,7 +111,7 @@ class ModeControllerTest extends AnyFunSuite {
     val endpoint: String = s"/0"
     val requestBody: Json =
       json"""{ "id" : 99, "name" : "UNIT test QUIZ mode 1",
-                 "description" : "this is a JSON for unit test and checking quiz mode logic", "deletable" : true,
+                 "description" : "this is a JSON for unit test and checking quiz mode logic", "deletable" : false,
                  "settings" : [
                    { "type" : "questions", "label" : "UT questions:", "details" : "value='1' min='1' max='1'" }
                  ]
@@ -142,6 +142,25 @@ class ModeControllerTest extends AnyFunSuite {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
     val expected: String = "Cannot find mode with ID: 100, or mode cannot be updated with initial settings removal"
+    assert(response.get.as[String].unsafeRunSync === expected)
+  }
+
+  test("testGetRoutesReturnsNotFoundWhenUpdatingNotDeletableModeRequest") {
+    val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
+    assert(modeDatabase.loadDatabase())
+    val controllerUnderTest: ModeController = new ModeController(modeDatabase)
+    val endpoint: String = s"/0"
+    val requestBody: Json =
+      json"""{ "id" : 0, "name" : "UNIT test QUIZ mode 1",
+                 "description" : "this is a JSON for unit test and checking quiz mode logic", "deletable" : true,
+                 "settings" : []
+             }"""
+    val request: Request[IO] = Request(Method.PUT, Uri.unsafeFromString(endpoint)).withEntity(requestBody)
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.NotFound)
+    val expected: String = "Cannot find mode with ID: 0, or mode cannot be updated with initial settings removal"
     assert(response.get.as[String].unsafeRunSync === expected)
   }
 }

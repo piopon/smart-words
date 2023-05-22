@@ -5,7 +5,7 @@ import cats.effect.unsafe.implicits.global
 import io.circe.Json
 import io.circe.literal.JsonStringContext
 import org.http4s._
-import org.http4s.circe.jsonDecoder
+import org.http4s.circe._
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.database._
 

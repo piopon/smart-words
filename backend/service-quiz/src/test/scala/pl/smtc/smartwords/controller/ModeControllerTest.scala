@@ -163,4 +163,19 @@ class ModeControllerTest extends AnyFunSuite {
     val expected: String = "Cannot find mode with ID: 0, or mode cannot be updated with initial settings removal"
     assert(response.get.as[String].unsafeRunSync === expected)
   }
+
+  test("testGetRoutesReturnsNotFoundWhenUpdatingModeWithInvalidId") {
+    val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
+    assert(modeDatabase.loadDatabase())
+    val controllerUnderTest: ModeController = new ModeController(modeDatabase)
+    val endpoint: String = s"/abc"
+    val requestBody: Json =
+      json"""{ "id" : 0, "name" : "UNIT test QUIZ mode 1",
+                 "description" : "this is a JSON for unit test and checking quiz mode logic", "deletable" : true,
+                 "settings" : []
+             }"""
+    val request: Request[IO] = Request(Method.PUT, Uri.unsafeFromString(endpoint)).withEntity(requestBody)
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.isEmpty)
+  }
 }

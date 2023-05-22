@@ -8,6 +8,7 @@ import org.http4s._
 import org.http4s.circe._
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.database._
+import pl.smtc.smartwords.model._
 
 class ModeControllerTest extends AnyFunSuite {
 
@@ -182,14 +183,15 @@ class ModeControllerTest extends AnyFunSuite {
   test("testGetRoutesReturnsOkStatusWhenDeletingExistingModeRequest") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
     assert(modeDatabase.loadDatabase())
+    val mode: Mode = modeDatabase.addMode()
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
-    val endpoint: String = s"/0"
+    val endpoint: String = s"/${mode.id}"
     val request: Request[IO] = Request(Method.DELETE, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    assert(response.get.as[String].unsafeRunSync === s"Deleted quiz mode ID: 0")
+    assert(response.get.as[String].unsafeRunSync === s"Deleted quiz mode ID: ${mode.id}")
   }
 
   test("testGetRoutesReturnsNotFoundWhenDeletingNotExistingModeRequest") {

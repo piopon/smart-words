@@ -16,6 +16,12 @@ class KindTest extends AnyFunSuite {
     assert(Kind.fromString("UNKNOWN") === Kind.unknown)
   }
 
+  test("testMixedCaseFromString") {
+    assert(Kind.fromString("LANGUAGES") === Kind.languages)
+    assert(Kind.fromString("QUESTioNS") === Kind.questions)
+    assert(Kind.fromString("unKnown") === Kind.unknown)
+  }
+
   test("testUnknownFromString") {
     assert(Kind.fromString("random") === Kind.unknown)
     assert(Kind.fromString("not-recognized") === Kind.unknown)

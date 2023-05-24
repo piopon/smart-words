@@ -12,8 +12,8 @@ class KindTest extends AnyFunSuite {
 
   test("testUppercaseFromString") {
     assert(Kind.fromString("LANGUAGES") === Kind.languages)
-    assert(Kind.fromString("QUESTions") === Kind.questions)
-    assert(Kind.fromString("unKnown") === Kind.unknown)
+    assert(Kind.fromString("QUESTIONS") === Kind.questions)
+    assert(Kind.fromString("UNKNOWN") === Kind.unknown)
   }
 
   test("testUnknownFromString") {

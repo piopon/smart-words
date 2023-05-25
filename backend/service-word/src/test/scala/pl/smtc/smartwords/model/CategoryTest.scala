@@ -13,4 +13,13 @@ class CategoryTest extends AnyFunSuite {
     assert(Category.fromString("unknown") === Category.unknown)
   }
 
+  test("testUppercaseFromString") {
+    assert(Category.fromString("VERB") === Category.verb)
+    assert(Category.fromString("NOUN") === Category.noun)
+    assert(Category.fromString("ADJECTIVE") === Category.adjective)
+    assert(Category.fromString("LATIN") === Category.latin)
+    assert(Category.fromString("PERSON") === Category.person)
+    assert(Category.fromString("UNKNOWN") === Category.unknown)
+  }
+
 }

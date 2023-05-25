@@ -22,4 +22,10 @@ class CategoryTest extends AnyFunSuite {
     assert(Category.fromString("UNKNOWN") === Category.unknown)
   }
 
+  test("testUnknownFromString") {
+    assert(Category.fromString("VER") === Category.unknown)
+    assert(Category.fromString("NO-u-N") === Category.unknown)
+    assert(Category.fromString("DETECT-i/ve") === Category.unknown)
+    assert(Category.fromString("persian") === Category.unknown)
+  }
 }

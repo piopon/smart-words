@@ -22,6 +22,15 @@ class CategoryTest extends AnyFunSuite {
     assert(Category.fromString("UNKNOWN") === Category.unknown)
   }
 
+  test("testMixedCaseFromString") {
+    assert(Category.fromString("VERb") === Category.verb)
+    assert(Category.fromString("NOuN") === Category.noun)
+    assert(Category.fromString("ADJECtiVE") === Category.adjective)
+    assert(Category.fromString("Latin") === Category.latin)
+    assert(Category.fromString("PERSon") === Category.person)
+    assert(Category.fromString("unKNOWN") === Category.unknown)
+  }
+
   test("testUnknownFromString") {
     assert(Category.fromString("VER") === Category.unknown)
     assert(Category.fromString("NO-u-N") === Category.unknown)

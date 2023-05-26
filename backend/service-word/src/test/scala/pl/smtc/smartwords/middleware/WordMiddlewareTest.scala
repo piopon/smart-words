@@ -40,4 +40,9 @@ class WordMiddlewareTest extends AnyFunSuite {
     assert(result.get === Category.verb)
   }
 
+  test("testValidateParameterCategoryReturnsNoneWhenInputIsNone") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    val result: Option[Category.Value] = middleware.validateParameterCategory(None)
+    assert(result.isEmpty)
+  }
 }

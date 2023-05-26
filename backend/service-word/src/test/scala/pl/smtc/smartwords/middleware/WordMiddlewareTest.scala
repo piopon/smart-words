@@ -45,4 +45,10 @@ class WordMiddlewareTest extends AnyFunSuite {
     val result: Option[Category.Value] = middleware.validateParameterCategory(None)
     assert(result.isEmpty)
   }
+
+  test("testValidateParameterCategoryThrowsWhenInputIsNok") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    assertThrows[WordMiddlewareException](middleware.validateParameterCategory(Some("not-valid")))
+  }
+
 }

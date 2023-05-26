@@ -1,6 +1,7 @@
 package pl.smtc.smartwords.middleware
 
 import org.scalatest.funsuite.AnyFunSuite
+import pl.smtc.smartwords.model._
 
 class WordMiddlewareTest extends AnyFunSuite {
 
@@ -30,6 +31,13 @@ class WordMiddlewareTest extends AnyFunSuite {
   test("testValidateParameterModeThrowsWhenInputIsInvalid") {
     val middleware: WordMiddleware = new WordMiddleware()
     assertThrows[WordMiddlewareException](middleware.validateParameterMode("abc", Some(List(1, 2))))
+  }
+
+  test("testValidateParameterCategoryReturnsOkWhenInputIsOk") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    val result: Option[Category.Value] = middleware.validateParameterCategory(Some("verb"))
+    assert(result.nonEmpty)
+    assert(result.get === Category.verb)
   }
 
 }

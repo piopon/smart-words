@@ -15,4 +15,16 @@ class WordMiddlewareTest extends AnyFunSuite {
     assertThrows[WordMiddlewareException](middleware.validateParameterLanguage("pl", List("en", "de")))
   }
 
+  test("testValidateParameterModeReturnsOkWhenInputIsOk") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    val result: Option[Int] = middleware.validateParameterMode("1", Some(List(1, 2)))
+    assert(result.nonEmpty)
+    assert(result.get === 1)
+  }
+
+  test("testValidateParameterModeThrowsWhenInputIsNok") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    assertThrows[WordMiddlewareException](middleware.validateParameterMode("5", Some(List(1, 2))))
+  }
+
 }

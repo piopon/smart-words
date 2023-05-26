@@ -11,4 +11,14 @@ class DictionaryTest extends AnyFunSuite {
     assert(result.mode === None)
     assert(result.language.isEmpty)
   }
+
+  test("testCreate") {
+    val result: Dictionary = Dictionary.create(Some(99), "pl")
+    assert(result.file === "words-quiz-99-pl@2023-05-26.json")
+    assert(result.game === "quiz")
+    assert(result.mode.nonEmpty)
+    assert(result.mode.get === 99)
+    assert(result.language === "pl")
+  }
+
 }

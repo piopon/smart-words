@@ -72,6 +72,24 @@ class WordMiddlewareTest extends AnyFunSuite {
     assert(result.isEmpty)
   }
 
+  test("testValidateParameterRandomReturnsOkWhenInputIsOk") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    val result: Option[Boolean] = middleware.validateParameterRandom(Some(testBoolValidation(true)))
+    assert(result.nonEmpty)
+    assert(result.get === true)
+  }
+
+  test("testValidateParameterRandomThrowsWhenInputIsNok") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    assertThrows[WordMiddlewareException](middleware.validateParameterRandom(Some(testBoolValidation(false))))
+  }
+
+  test("testValidateParameterRandomReturnsNoneWhenInputIsNone") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    val result: Option[Boolean] = middleware.validateParameterRandom(None)
+    assert(result.isEmpty)
+  }
+
   private def testIntValidation(value: Int): ValidatedNel[ParseFailure, Int] =
     if (value >= 0) value.valid else ParseFailure("Input is smaller than zero", "Value must be >= 0").invalidNel
 

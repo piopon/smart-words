@@ -1,0 +1,23 @@
+[
+  {
+    "name": "narzekać",
+    "category": "verb",
+    "description": [
+      "utyskiwać"
+    ]
+  },
+  {
+    "name": "zwięzły",
+    "category": "adjective",
+    "description": [
+      "lapidarny"
+    ]
+  },
+  {
+    "name": "kłócić się",
+    "category": "verb",
+    "description": [
+      "handryczyć"
+    ]
+  }
+]

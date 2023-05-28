@@ -54,6 +54,13 @@ class WordMiddlewareTest extends AnyFunSuite {
     assertThrows[WordMiddlewareException](middleware.validateParameterCategory(Some("not-valid")))
   }
 
+  test("testValidateParameterSizeReturnsOkWhenInputIsOk") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    val result: Option[Int] = middleware.validateParameterSize(Some(testIntValidation(100)))
+    assert(result.nonEmpty)
+    assert(result.get === 100)
+  }
+
   private def testIntValidation(value: Int): ValidatedNel[ParseFailure, Int] =
     if (value >= 0) value.valid else ParseFailure("Input is smaller than zero", "Value must be >= 0").invalidNel
 }

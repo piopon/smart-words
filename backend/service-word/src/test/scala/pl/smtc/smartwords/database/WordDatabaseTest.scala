@@ -10,7 +10,7 @@ class WordDatabaseTest extends AnyFunSuite {
 
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
 
-  test("testLoadDatabase") {
+  test("testLoadDatabaseWorksCorrectlyWhenDictionaryFilesAreCorrect") {
     val databaseUnderTest: WordDatabase = new WordDatabase()
     assert(databaseUnderTest.loadDatabase())
   }

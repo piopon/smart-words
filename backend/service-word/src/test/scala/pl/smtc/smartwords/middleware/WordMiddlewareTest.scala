@@ -1,5 +1,8 @@
 package pl.smtc.smartwords.middleware
 
+import cats.data.ValidatedNel
+import cats.implicits.catsSyntaxValidatedId
+import org.http4s.ParseFailure
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.model._
 
@@ -51,4 +54,6 @@ class WordMiddlewareTest extends AnyFunSuite {
     assertThrows[WordMiddlewareException](middleware.validateParameterCategory(Some("not-valid")))
   }
 
+  private def testIntValidation(value: Int): ValidatedNel[ParseFailure, Int] =
+    if (value >= 0) value.valid else ParseFailure("Input is smaller than zero", "Value must be >= 0").invalidNel
 }

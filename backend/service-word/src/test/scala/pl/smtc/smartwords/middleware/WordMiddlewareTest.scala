@@ -74,4 +74,7 @@ class WordMiddlewareTest extends AnyFunSuite {
 
   private def testIntValidation(value: Int): ValidatedNel[ParseFailure, Int] =
     if (value >= 0) value.valid else ParseFailure("Input is smaller than zero", "Value must be >= 0").invalidNel
+
+  private def testBoolValidation(value: Boolean): ValidatedNel[ParseFailure, Boolean] =
+    if (value) value.valid else ParseFailure("Input must be true", "").invalidNel
 }

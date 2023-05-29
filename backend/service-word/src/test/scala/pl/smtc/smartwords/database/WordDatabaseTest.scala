@@ -26,4 +26,13 @@ class WordDatabaseTest extends AnyFunSuite {
     // cleanup after checking test result
     databaseTestFile.delete()
   }
+
+  test("testSaveDatabaseDoesNotCreateNewFileWhenDatabaseIsEmpty") {
+    val databaseTestFile: File = new File(resourceDir.resolve("test-db.json").toString)
+    val databaseUnderTest: WordDatabase = new WordDatabase()
+    databaseUnderTest.saveDatabase()
+    assert(!databaseTestFile.exists())
+    // cleanup after checking test result (if somehow the test file will be created...)
+    databaseTestFile.delete()
+  }
 }

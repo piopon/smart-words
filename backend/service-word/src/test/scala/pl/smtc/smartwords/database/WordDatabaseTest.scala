@@ -1,10 +1,10 @@
 package pl.smtc.smartwords.database
 
 import org.scalatest.funsuite.AnyFunSuite
-import pl.smtc.smartwords.model.{Category, Dictionary, Word}
+import pl.smtc.smartwords.model._
 
 import java.io.File
-import java.nio.file.{Path, Paths}
+import java.nio.file._
 
 class WordDatabaseTest extends AnyFunSuite {
 

@@ -19,8 +19,7 @@ class WordDatabaseTest extends AnyFunSuite {
     val databaseTestFile: File = new File(resourceDir.resolve("test-db.json").toString)
     val databaseUnderTest: WordDatabase = new WordDatabase()
     val testDict: Dictionary = Dictionary(databaseTestFile.getName, "quiz", Some(1), "pl")
-    val testWord: Word = Word("test", Category.verb, List("description"), testDict)
-    databaseUnderTest.addWord(testWord)
+    databaseUnderTest.addWord(Word("test", Category.verb, List("description"), testDict))
     databaseUnderTest.saveDatabase()
     assert(databaseTestFile.exists())
     // cleanup after checking test result

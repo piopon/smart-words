@@ -48,4 +48,21 @@ class WordDatabaseTest extends AnyFunSuite {
     // cleanup after checking test result
     databaseTestFile.delete()
   }
+
+  test("testGetAvailableModes") {
+    val databaseTestFile: File = new File(resourceDir.resolve("test-db.json").toString)
+    val databaseUnderTest: WordDatabase = new WordDatabase()
+    val dictionaryMode99: Dictionary = Dictionary(databaseTestFile.getName, "quiz", Some(99), "pl")
+    val dictionaryMode11: Dictionary = Dictionary(databaseTestFile.getName, "quiz", Some(11), "pl")
+    val dictionaryMode29: Dictionary = Dictionary(databaseTestFile.getName, "quiz", Some(29), "fr")
+    databaseUnderTest.addWord(Word("word_1", Category.verb, List("description-1"), dictionaryMode11))
+    databaseUnderTest.addWord(Word("word_2", Category.person, List("description-2"), dictionaryMode29))
+    databaseUnderTest.addWord(Word("word_3", Category.latin, List("description-3"), dictionaryMode29))
+    databaseUnderTest.addWord(Word("word_4", Category.verb, List("description-4"), dictionaryMode99))
+    databaseUnderTest.addWord(Word("word_5", Category.verb, List("description-4"), dictionaryMode11))
+    assert(databaseUnderTest.getAvailableModes.nonEmpty)
+    assert(databaseUnderTest.getAvailableModes.get === List(11, 29, 99))
+    // cleanup after checking test result
+    databaseTestFile.delete()
+  }
 }

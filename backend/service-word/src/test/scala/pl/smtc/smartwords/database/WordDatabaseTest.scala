@@ -49,7 +49,7 @@ class WordDatabaseTest extends AnyFunSuite {
     databaseTestFile.delete()
   }
 
-  test("testGetAvailableModes") {
+  test("testGetAvailableModesReturnsCorrectResultWhenDatabaseIsNotEmpty") {
     val databaseTestFile: File = new File(resourceDir.resolve("test-db.json").toString)
     val databaseUnderTest: WordDatabase = new WordDatabase()
     val dictionaryMode99: Dictionary = Dictionary(databaseTestFile.getName, "quiz", Some(99), "pl")

@@ -117,7 +117,7 @@ class WordDatabaseTest extends AnyFunSuite {
     databaseTestFile.delete()
   }
 
-  test("testAddWord") {
+  test("testAddWordReturnsTrueWhenAddingWordsWithDifferentNames") {
     val databaseTestFile: File = new File(resourceDir.resolve("test-db.json").toString)
     val databaseUnderTest: WordDatabase = new WordDatabase()
     assert(databaseUnderTest.getWords.isEmpty)

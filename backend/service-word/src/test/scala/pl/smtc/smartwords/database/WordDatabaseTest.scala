@@ -162,4 +162,17 @@ class WordDatabaseTest extends AnyFunSuite {
     // cleanup after checking test result
     databaseTestFile.delete()
   }
+
+  test("testRemoveWordReturnsFalseWhenInvalidIndexIsUsed") {
+    val databaseTestFile: File = new File(resourceDir.resolve("test-db.json").toString)
+    val databaseUnderTest: WordDatabase = new WordDatabase()
+    assert(databaseUnderTest.getWords.isEmpty)
+    val dictionary: Dictionary = Dictionary(databaseTestFile.getName, "quiz", Some(99), "pl")
+    assert(databaseUnderTest.addWord(Word("word_1", Category.verb, List("description-1"), dictionary)))
+    assert(databaseUnderTest.getWords.size === 1)
+    assert(databaseUnderTest.removeWord(1) === false)
+    assert(databaseUnderTest.getWords.size === 1)
+    // cleanup after checking test result
+    databaseTestFile.delete()
+  }
 }

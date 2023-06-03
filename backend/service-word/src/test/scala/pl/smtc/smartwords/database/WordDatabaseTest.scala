@@ -134,4 +134,19 @@ class WordDatabaseTest extends AnyFunSuite {
     // cleanup after checking test result
     databaseTestFile.delete()
   }
+
+  test("testAddWordReturnsFalseWhenAddingWordsWithTheSameName") {
+    val databaseTestFile: File = new File(resourceDir.resolve("test-db.json").toString)
+    val databaseUnderTest: WordDatabase = new WordDatabase()
+    assert(databaseUnderTest.getWords.isEmpty)
+    val dictionary: Dictionary = Dictionary(databaseTestFile.getName, "quiz", Some(99), "pl")
+    val word1: Word = Word("word_1", Category.verb, List("description-1"), dictionary)
+    assert(databaseUnderTest.addWord(word1))
+    assert(databaseUnderTest.getWords.size === 1)
+    val word2: Word = Word("word_1", Category.verb, List("description-2"), dictionary)
+    assert(databaseUnderTest.addWord(word2) === false)
+    assert(databaseUnderTest.getWords.size === 1)
+    // cleanup after checking test result
+    databaseTestFile.delete()
+  }
 }

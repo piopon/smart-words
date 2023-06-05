@@ -15,6 +15,19 @@ class WordDaoTest extends AnyFunSuite {
     assert(encodedValue === expectedValue)
   }
 
+  test("testGetWordDecoder") {
+    val decoderUnderTest: Decoder[Word] = WordDao.getWordDecoder
+    val sourceJson: Json = createWordJson(name = "test-word", category = "verb", definitions = List("test-def"))
+    val decodedValue: Decoder.Result[Word] = decoderUnderTest.decodeJson(sourceJson)
+    assert(decodedValue.left.toOption === None)
+    assert(decodedValue.toOption !== None)
+    val decodedWord: Word = decodedValue.toOption.get
+    assert(decodedWord.name === "test-word")
+    assert(decodedWord.category === Category.verb)
+    assert(decodedWord.definition.size === 1)
+    assert(decodedWord.definition.head === "test-def")
+  }
+
   /**
    * Method used to create word JSON object with hardcoded name, category, and definition
    * @param name word name

@@ -10,4 +10,16 @@ class DataParserTest extends AnyFunSuite {
     assert(result.nonEmpty)
     assert(result.get === 11)
   }
+
+  test("testParseGameModeReturnsNoneWhenDataIsEmpty") {
+    val parserUnderTest: DataParser = new DataParser()
+    val result: Option[Int] = parserUnderTest.parseGameMode("")
+    assert(result.isEmpty)
+  }
+
+  test("testParseGameModeReturnsNoneWhenDataIsIncorrect") {
+    val parserUnderTest: DataParser = new DataParser()
+    val result: Option[Int] = parserUnderTest.parseGameMode("non-integer")
+    assert(result.isEmpty)
+  }
 }

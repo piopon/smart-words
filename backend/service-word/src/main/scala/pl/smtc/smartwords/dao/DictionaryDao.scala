@@ -10,7 +10,7 @@ object DictionaryDao {
    * Method used to receive dictionary decoder (from JSON)
    * @return dictionary object decoder
    */
-  def getWordDecoder: Decoder[Dictionary] = Decoder.instance {
+  def getDictionaryDecoder: Decoder[Dictionary] = Decoder.instance {
     (input: HCursor) => for {
       game <- input.downField("game").as[String]
       mode <- input.downField("mode").as[Int]

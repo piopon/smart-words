@@ -6,7 +6,7 @@ import pl.smtc.smartwords.model._
 
 class DictionaryDaoTest extends AnyFunSuite {
 
-  test("testGetDictionaryEncoder") {
+  test("testGetDictionaryEncoderReturnsCorrectResultWhenModeIsCorrect") {
     val encoderUnderTest: Encoder[Dictionary] = DictionaryDao.getDictionaryEncoder
     val sourceDictionary: Dictionary = Dictionary("file", "game", Some(1), "lang")
     val encodedValue: Json = encoderUnderTest.apply(sourceDictionary)
@@ -22,7 +22,7 @@ class DictionaryDaoTest extends AnyFunSuite {
     assert(encodedValue === expectedValue)
   }
 
-  test("testGetDictionaryDecoder") {
+  test("testGetDictionaryDecoderReturnsCorrectResultWhenModeIsCorrect") {
     val decoderUnderTest: Decoder[Dictionary] = DictionaryDao.getDictionaryDecoder
     val sourceJson: Json = createDictionaryJson("puzzle", Some(111), "it")
     val decodedValue: Decoder.Result[Dictionary] = decoderUnderTest.decodeJson(sourceJson)

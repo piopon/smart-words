@@ -1,6 +1,6 @@
 package pl.smtc.smartwords.dao
 
-import io.circe.{Encoder, Json}
+import io.circe.{Decoder, Encoder, Json}
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.model._
 
@@ -12,6 +12,20 @@ class DictionaryDaoTest extends AnyFunSuite {
     val encodedValue: Json = encoderUnderTest.apply(sourceDictionary)
     val expectedValue: Json = createDictionaryJson("game", Some(1), "lang")
     assert(encodedValue === expectedValue)
+  }
+
+  test("testGetDictionaryDecoder") {
+    val decoderUnderTest: Decoder[Dictionary] = DictionaryDao.getDictionaryDecoder
+    val sourceJson: Json = createDictionaryJson("puzzle", Some(111), "it")
+    val decodedValue: Decoder.Result[Dictionary] = decoderUnderTest.decodeJson(sourceJson)
+    assert(decodedValue.left.toOption === None)
+    assert(decodedValue.toOption !== None)
+    val decodedDictionary: Dictionary = decodedValue.toOption.get
+    assert(decodedDictionary.file.startsWith("words-quiz-111-it@"))
+    assert(decodedDictionary.game === "quiz") // currently "quiz" is hardcoded as the only supported game type
+    assert(decodedDictionary.mode.nonEmpty)
+    assert(decodedDictionary.mode.get === 111)
+    assert(decodedDictionary.language === "it")
   }
 
   /**

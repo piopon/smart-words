@@ -36,6 +36,16 @@ class DictionaryDaoTest extends AnyFunSuite {
     assert(decodedDictionary.language === "it")
   }
 
+  test("testGetDictionaryDecoderReturnsCorrectResultWhenModeIsNone") {
+    val decoderUnderTest: Decoder[Dictionary] = DictionaryDao.getDictionaryDecoder
+    val sourceJson: Json = createDictionaryJson("puzzle", None, "it")
+    val decodedValue: Decoder.Result[Dictionary] = decoderUnderTest.decodeJson(sourceJson)
+    assert(decodedValue.left.toOption !== None)
+    val decodeErr: DecodingFailure = decodedValue.left.toOption.get
+    assert(decodeErr.toString() === "DecodingFailure at .mode: Int")
+    assert(decodedValue.toOption === None)
+  }
+
   /**
    * Method used to create dictionary JSON object with hardcoded file, game type, optional ID, and language
    * @param game name of the game for which the dictionary is created

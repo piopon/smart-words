@@ -12,7 +12,7 @@ object DictionaryDao {
    */
   def getDictionaryDecoder: Decoder[Dictionary] = Decoder.instance {
     (input: HCursor) => for {
-      game <- input.downField("game").as[String]
+      _ <- input.downField("game").as[String]
       mode <- input.downField("mode").as[Int]
       language <- input.downField("language").as[String]
     } yield {

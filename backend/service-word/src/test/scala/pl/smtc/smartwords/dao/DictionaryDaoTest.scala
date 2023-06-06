@@ -1,6 +1,6 @@
 package pl.smtc.smartwords.dao
 
-import io.circe.{Decoder, Encoder, Json}
+import io.circe._
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.model._
 

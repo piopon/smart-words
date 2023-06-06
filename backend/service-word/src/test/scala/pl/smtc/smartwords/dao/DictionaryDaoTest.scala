@@ -14,6 +14,14 @@ class DictionaryDaoTest extends AnyFunSuite {
     assert(encodedValue === expectedValue)
   }
 
+  test("testGetDictionaryEncoderReturnsCorrectResultWhenModeIsNone") {
+    val encoderUnderTest: Encoder[Dictionary] = DictionaryDao.getDictionaryEncoder
+    val sourceDictionary: Dictionary = Dictionary("file", "game", None, "lang")
+    val encodedValue: Json = encoderUnderTest.apply(sourceDictionary)
+    val expectedValue: Json = createDictionaryJson("game", None, "lang")
+    assert(encodedValue === expectedValue)
+  }
+
   test("testGetDictionaryDecoder") {
     val decoderUnderTest: Decoder[Dictionary] = DictionaryDao.getDictionaryDecoder
     val sourceJson: Json = createDictionaryJson("puzzle", Some(111), "it")

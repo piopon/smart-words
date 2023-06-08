@@ -12,9 +12,10 @@ class WordServiceTest extends AnyFunSuite {
 
   private val serviceTestFile: String = "word-service-test.json"
 
-  test("testGetWordsReturnsEmptyResultWhenNotExistingModeIsSelected") {
+  test("testGetWordsReturnsEmptyResultWhenNoneModeIsSelected") {
     val serviceUnderTest: WordService = new WordService(createTestDatabase())
-    val res: Json = serviceUnderTest.getWords(None, "pl", None, None, None).flatMap(_.as[Json]).unsafeRunSync()
+    val res: Json = serviceUnderTest.getWords(None, "pl", Some(Category.verb), Some(10), Some(false))
+                                    .flatMap(_.as[Json]).unsafeRunSync()
     val expected: Json = json"""[]"""
     assert(res === expected)
   }

@@ -36,6 +36,14 @@ class WordServiceTest extends AnyFunSuite {
     assert(res === expected)
   }
 
+  test("testGetWordsReturnsEmptyResultWhenEmptyLanguageIsSelected") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val res: Json = serviceUnderTest.getWords(Some(999), "", Some(Category.verb), Some(10), Some(false))
+                                    .flatMap(_.as[Json]).unsafeRunSync()
+    val expected: Json = json"""[]"""
+    assert(res === expected)
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

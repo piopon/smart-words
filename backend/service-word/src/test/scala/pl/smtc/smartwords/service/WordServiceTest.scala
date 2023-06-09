@@ -78,6 +78,14 @@ class WordServiceTest extends AnyFunSuite {
     assert(res === expected)
   }
 
+  test("testGetWordsReturnsCorrectResultWhenSizeFilterIsApplied") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val res: Json = serviceUnderTest.getWords(Some(998), "en", None, Some(1), None)
+                                    .flatMap(_.as[Json]).unsafeRunSync()
+    val expected: Json = json"""[{ "name" : "word-1-en", "category" : "adjective", "description" : [ "" ] }]"""
+    assert(res === expected)
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

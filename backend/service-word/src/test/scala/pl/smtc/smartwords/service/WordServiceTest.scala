@@ -34,11 +34,11 @@ class WordServiceTest extends AnyFunSuite {
     val dictionaryEn: Dictionary = Dictionary(serviceTestFile, "quiz", Some(998), "en")
     val dictionaryDe: Dictionary = Dictionary(serviceTestFile, "quiz", Some(997), "de")
     database.addWord(Word("word-1-pl", Category.verb, List(""), dictionaryPl))
-    database.addWord(Word("word-2-pl", Category.verb, List(""), dictionaryPl))
-    database.addWord(Word("word-1-en", Category.verb, List(""), dictionaryEn))
-    database.addWord(Word("word-3-pl", Category.verb, List(""), dictionaryPl))
-    database.addWord(Word("word-2-en", Category.verb, List(""), dictionaryEn))
-    database.addWord(Word("word-1-de", Category.verb, List(""), dictionaryDe))
+    database.addWord(Word("word-2-pl", Category.latin, List(""), dictionaryPl))
+    database.addWord(Word("word-1-en", Category.adjective, List(""), dictionaryEn))
+    database.addWord(Word("word-3-pl", Category.latin, List(""), dictionaryPl))
+    database.addWord(Word("word-2-en", Category.person, List(""), dictionaryEn))
+    database.addWord(Word("word-1-de", Category.noun, List(""), dictionaryDe))
     database
   }
 }

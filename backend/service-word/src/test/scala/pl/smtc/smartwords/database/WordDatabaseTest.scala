@@ -1,14 +1,22 @@
 package pl.smtc.smartwords.database
 
+import org.scalatest.BeforeAndAfterAll
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.model._
 
 import java.io.File
 import java.nio.file._
 
-class WordDatabaseTest extends AnyFunSuite {
+class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
 
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
+
+  override def afterAll() {
+    for {
+      files <- Option(new File(resourceDir.toString).listFiles)
+      file <- files if file.getName.endsWith(".json")
+    } file.delete()
+  }
 
   test("testLoadDatabaseWorksCorrectlyWhenDictionaryFilesAreCorrect") {
     val databaseUnderTest: WordDatabase = new WordDatabase()

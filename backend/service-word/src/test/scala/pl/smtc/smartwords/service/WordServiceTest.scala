@@ -142,6 +142,30 @@ class WordServiceTest extends AnyFunSuite {
     assert(res === "word 'word-1-fr' not found in DB")
   }
 
+  test("testUpdateWordReturnsErrorWhenUpdatingWordWithCorrectModeLangButBadName") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val newWord: Word = Word("updated-1-pl", Category.verb, List("def-1"), Dictionary.empty())
+    val res: String = serviceUnderTest.updateWord(Some(999), "pl", "word-100-pl", newWord)
+                                      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "word 'word-100-pl' not found in DB")
+  }
+
+  test("testUpdateWordReturnsErrorWhenUpdatingWordWithCorrectModeNameButBadLang") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val newWord: Word = Word("updated-1-pl", Category.verb, List("def-1"), Dictionary.empty())
+    val res: String = serviceUnderTest.updateWord(Some(999), "fr", "word-1-pl", newWord)
+                                      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "word 'word-1-pl' not found in DB")
+  }
+
+  test("testUpdateWordReturnsErrorWhenUpdatingWordWithCorrectNameLangButBadMode") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val newWord: Word = Word("updated-1-pl", Category.verb, List("def-1"), Dictionary.empty())
+    val res: String = serviceUnderTest.updateWord(Some(666), "pl", "word-1-pl", newWord)
+                                      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "word 'word-1-pl' not found in DB")
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

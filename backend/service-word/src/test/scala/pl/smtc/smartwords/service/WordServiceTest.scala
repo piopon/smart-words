@@ -86,6 +86,15 @@ class WordServiceTest extends AnyFunSuite {
     assert(res === expected)
   }
 
+  test("testAddWordReturnsCorrectResultWhenAddingNewWord") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val dictionary: Dictionary = Dictionary(serviceTestFile, "quiz", Some(1), "fr")
+    val word: Word = Word("word-1-fr", Category.noun, List("def-1"), dictionary)
+    val res: String = serviceUnderTest.addWord(Some(1), "fr", word)
+                                      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "added word 'word-1-fr'")
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

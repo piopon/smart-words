@@ -104,6 +104,33 @@ class WordServiceTest extends AnyFunSuite {
     assert(res === "word 'word-1-pl' already defined")
   }
 
+  test("testAddWordReturnsCorrectResultWhenAddedWordHasTheSameNameModeButDifferentLang") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val dictionary: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")
+    val word: Word = Word("word-1-pl", Category.verb, List("def-1"), dictionary)
+    val res: String = serviceUnderTest.addWord(Some(999), "it", word)
+      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "added word 'word-1-pl'")
+  }
+
+  test("testAddWordReturnsCorrectResultWhenAddedWordHasTheSameNameLangButDifferentMode") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val dictionary: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")
+    val word: Word = Word("word-1-pl", Category.verb, List("def-1"), dictionary)
+    val res: String = serviceUnderTest.addWord(Some(1), "pl", word)
+      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "added word 'word-1-pl'")
+  }
+
+  test("testAddWordReturnsCorrectResultWhenAddedWordHasTheSameModeLangButDifferentName") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val dictionary: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")
+    val word: Word = Word("word-10-pl", Category.verb, List("def-1"), dictionary)
+    val res: String = serviceUnderTest.addWord(Some(999), "pl", word)
+      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "added word 'word-10-pl'")
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

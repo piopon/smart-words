@@ -4,13 +4,24 @@ import cats.effect.unsafe.implicits.global
 import io.circe.Json
 import io.circe.literal.JsonStringContext
 import org.http4s.circe.jsonDecoder
+import org.scalatest.BeforeAndAfterAll
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 
-class WordServiceTest extends AnyFunSuite {
+import java.io.File
+import java.nio.file.Paths
+
+class WordServiceTest extends AnyFunSuite with BeforeAndAfterAll {
 
   private val serviceTestFile: String = "word-service-test.json"
+
+  override def afterAll() {
+    for {
+      files <- Option(new File(Paths.get(getClass.getResource("/").toURI).toString).listFiles)
+      file <- files if file.getName.endsWith(".json")
+    } file.delete()
+  }
 
   test("testGetWordsReturnsEmptyResultWhenNoneModeIsSelected") {
     val serviceUnderTest: WordService = new WordService(createTestDatabase())

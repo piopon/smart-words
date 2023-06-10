@@ -166,6 +166,20 @@ class WordServiceTest extends AnyFunSuite {
     assert(res === "word 'word-1-pl' not found in DB")
   }
 
+  test("testDeleteWordReturnsCorrectResultWhenDeletingAnExistingWord") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val res: String = serviceUnderTest.deleteWord(Some(997), "de", "word-1-de")
+                                      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "removed word 'word-1-de'")
+  }
+
+  test("testDeleteWordReturnsErrorWhenDeletingNotExistingWord") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val res: String = serviceUnderTest.deleteWord(Some(123), "es", "word-10-de")
+                                      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "word 'word-10-de' not found in DB")
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

@@ -126,6 +126,22 @@ class WordServiceTest extends AnyFunSuite {
     assert(res === "added word 'word-10-pl'")
   }
 
+  test("testUpdateWordReturnsCorrectResultWhenUpdatingAnExistingWord") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val newWord: Word = Word("updated-1-pl", Category.verb, List("def-1"), Dictionary.empty())
+    val res: String = serviceUnderTest.updateWord(Some(999), "pl", "word-1-pl", newWord)
+                                      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "updated word 'word-1-pl'")
+  }
+
+  test("testUpdateWordReturnsErrorWhenUpdatingNotExistingWord") {
+    val serviceUnderTest: WordService = new WordService(createTestDatabase())
+    val newWord: Word = Word("updated-1-pl", Category.verb, List("def-1"), Dictionary.empty())
+    val res: String = serviceUnderTest.updateWord(Some(11), "fr", "word-1-fr", newWord)
+                                      .flatMap(_.as[String]).unsafeRunSync()
+    assert(res === "word 'word-1-fr' not found in DB")
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

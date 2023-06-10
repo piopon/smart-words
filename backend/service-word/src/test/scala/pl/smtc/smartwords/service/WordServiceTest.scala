@@ -106,7 +106,7 @@ class WordServiceTest extends AnyFunSuite {
     val serviceUnderTest: WordService = new WordService(createTestDatabase())
     val word: Word = Word("word-1-pl", Category.verb, List("def-1"), Dictionary.empty())
     val res: String = serviceUnderTest.addWord(Some(999), "it", word)
-      .flatMap(_.as[String]).unsafeRunSync()
+                                      .flatMap(_.as[String]).unsafeRunSync()
     assert(res === "added word 'word-1-pl'")
   }
 
@@ -114,7 +114,7 @@ class WordServiceTest extends AnyFunSuite {
     val serviceUnderTest: WordService = new WordService(createTestDatabase())
     val word: Word = Word("word-1-pl", Category.verb, List("def-1"), Dictionary.empty())
     val res: String = serviceUnderTest.addWord(Some(1), "pl", word)
-      .flatMap(_.as[String]).unsafeRunSync()
+                                      .flatMap(_.as[String]).unsafeRunSync()
     assert(res === "added word 'word-1-pl'")
   }
 
@@ -122,7 +122,7 @@ class WordServiceTest extends AnyFunSuite {
     val serviceUnderTest: WordService = new WordService(createTestDatabase())
     val word: Word = Word("word-10-pl", Category.verb, List("def-1"), Dictionary.empty())
     val res: String = serviceUnderTest.addWord(Some(999), "pl", word)
-      .flatMap(_.as[String]).unsafeRunSync()
+                                      .flatMap(_.as[String]).unsafeRunSync()
     assert(res === "added word 'word-10-pl'")
   }
 

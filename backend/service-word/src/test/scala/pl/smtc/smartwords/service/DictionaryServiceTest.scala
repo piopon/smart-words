@@ -16,6 +16,13 @@ class DictionaryServiceTest extends AnyFunSuite with BeforeAndAfterAll {
 
   private val serviceTestFile: String = "dictionary-service-test.json"
 
+  override def afterAll(): Unit = {
+    for {
+      files <- Option(new File(Paths.get(getClass.getResource("/").toURI).toString).listFiles)
+      file <- files if file.getName.endsWith(".json")
+    } file.delete()
+  }
+
   test("testGetDictionaries") {
     val serviceUnderTest: DictionaryService = new DictionaryService(createTestDatabase())
     val res: Json = serviceUnderTest.getDictionaries.flatMap(_.as[Json]).unsafeRunSync()

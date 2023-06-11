@@ -16,7 +16,7 @@ class WordServiceTest extends AnyFunSuite with BeforeAndAfterAll {
 
   private val serviceTestFile: String = "word-service-test.json"
 
-  override def afterAll() {
+  override def afterAll(): Unit = {
     for {
       files <- Option(new File(Paths.get(getClass.getResource("/").toURI).toString).listFiles)
       file <- files if file.getName.endsWith(".json")

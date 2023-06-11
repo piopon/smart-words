@@ -11,7 +11,7 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
 
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
 
-  override def afterAll() {
+  override def afterAll(): Unit = {
     for {
       files <- Option(new File(resourceDir.toString).listFiles)
       file <- files if file.getName.endsWith(".json")

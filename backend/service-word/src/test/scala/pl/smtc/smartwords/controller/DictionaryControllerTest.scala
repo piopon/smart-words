@@ -2,10 +2,13 @@ package pl.smtc.smartwords.controller
 
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
-import org.http4s.{Method, Request, Response, Uri}
+import io.circe._
+import io.circe.literal._
+import org.http4s._
+import org.http4s.circe._
 import org.scalatest.funsuite.AnyFunSuite
-import pl.smtc.smartwords.database.WordDatabase
-import pl.smtc.smartwords.model.{Category, Dictionary, Word}
+import pl.smtc.smartwords.database._
+import pl.smtc.smartwords.model._
 
 class DictionaryControllerTest extends AnyFunSuite {
 
@@ -45,5 +48,4 @@ class DictionaryControllerTest extends AnyFunSuite {
     database.addWord(Word("word-1-de", Category.noun, List(""), dictionaryDe))
     database
   }
-
 }

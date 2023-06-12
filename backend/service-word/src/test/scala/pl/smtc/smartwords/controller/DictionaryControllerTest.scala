@@ -19,6 +19,19 @@ class DictionaryControllerTest extends AnyFunSuite {
     assert(response.isEmpty)
   }
 
+  test("testGetRoutesReturnsOkStatusForGettingDictionaries") {
+    val controllerUnderTest: DictionaryController = new DictionaryController(createTestDatabase())
+    val endpoint: String = s"/"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    val expected: Json = json"""[ { "game" : "quiz", "mode" : 998, "language" : "en" },
+                                  { "game" : "quiz", "mode" : 999, "language" : "pl" },
+                                  { "game" : "quiz", "mode" : 997, "language" : "de" } ]"""
+    assert(response.get.as[Json].unsafeRunSync === expected)
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

@@ -6,13 +6,24 @@ import io.circe._
 import io.circe.literal._
 import org.http4s._
 import org.http4s.circe._
+import org.scalatest.BeforeAndAfterAll
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 
-class DictionaryControllerTest extends AnyFunSuite {
+import java.io.File
+import java.nio.file._
+
+class DictionaryControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   private val serviceTestFile: String = "dictionary-controller-test.json"
+
+  override def afterAll(): Unit = {
+    for {
+      files <- Option(new File(Paths.get(getClass.getResource("/").toURI).toString).listFiles)
+      file <- files if file.getName.endsWith(".json")
+    } file.delete()
+  }
 
   test("testGetRoutesReturnsNoneForNonExistingEndpoint") {
     val controllerUnderTest: DictionaryController = new DictionaryController(createTestDatabase())

@@ -98,6 +98,15 @@ class WordControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.BadRequest)
   }
 
+  test("testGetRoutesReturnsBadRequestWhenAskingForSpecificWordsWithNonIntegerSizeFilter") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/999/pl?size=one"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.BadRequest)
+  }
+
   test("testGetRoutesReturnsCorrectResponseWhenAskingForSpecificWordsWithCategoryAndSizeFilter") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl?cat=latin&size=1"

@@ -2,7 +2,10 @@ package pl.smtc.smartwords.controller
 
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
+import io.circe.Json
+import io.circe.literal.JsonStringContext
 import org.http4s._
+import org.http4s.circe.jsonDecoder
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
@@ -17,6 +20,19 @@ class WordControllerTest extends AnyFunSuite {
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.isEmpty)
+  }
+
+  test("testGetRoutesReturnsCorrectResponseWhenAskingForSpecificWords") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/999/pl"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    val expected: Json = json"""[ { "name" : "word-1-pl", "category" : "verb", "description" : [""] },
+                                  { "name" : "word-2-pl", "category" : "latin", "description" : [""] },
+                                  { "name" : "word-3-pl", "category" : "latin", "description" : [""] } ]"""
+    assert(response.get.as[Json].unsafeRunSync === expected)
   }
 
   private def createTestDatabase(): WordDatabase = {

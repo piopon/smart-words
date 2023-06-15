@@ -14,7 +14,7 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
   override def afterAll(): Unit = {
     for {
       files <- Option(new File(resourceDir.toString).listFiles)
-      file <- files if file.getName.endsWith(".json")
+      file <- files if file.getName.endsWith(".json") && !file.getName.endsWith("words-quiz-1-pl@dictionary.json")
     } file.delete()
   }
 

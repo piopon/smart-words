@@ -31,6 +31,15 @@ class WordControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.BadRequest)
   }
 
+  test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNonExistingLanguage") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/999/es"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.BadRequest)
+  }
+
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithExistingModeAndLanguage") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl"

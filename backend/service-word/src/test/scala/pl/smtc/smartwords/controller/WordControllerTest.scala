@@ -22,7 +22,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.isEmpty)
   }
 
-  test("testGetRoutesReturnsCorrectResponseWhenAskingForSpecificWords") {
+  test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithExistingModeAndLanguage") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
@@ -35,7 +35,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[Json].unsafeRunSync === expected)
   }
 
-  test("testGetRoutesReturnsCorrectResponseWhenAskingForSpecificWordsWithCategoryFilter") {
+  test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithCategoryFilter") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl?cat=latin"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
@@ -58,7 +58,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[Json].unsafeRunSync === expected)
   }
 
-  test("testGetRoutesReturnsBadRequestWhenAskingForSpecificWordsWithNotSupportedCategoryFilter") {
+  test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNotSupportedCategoryFilter") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl?cat=non-supported"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
@@ -67,7 +67,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.BadRequest)
   }
 
-  test("testGetRoutesReturnsCorrectResponseWhenAskingForSpecificWordsWithSizeFilter") {
+  test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithSizeFilter") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl?size=1"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
@@ -78,7 +78,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[Json].unsafeRunSync === expected)
   }
 
-  test("testGetRoutesReturnsCorrectResponseWhenAskingForSpecificWordsWithBigSizeFilter") {
+  test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithBigSizeFilter") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl?size=1000000"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
@@ -91,7 +91,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[Json].unsafeRunSync === expected)
   }
 
-  test("testGetRoutesReturnsBadRequestWhenAskingForSpecificWordsWithSizeFilterEqualsZero") {
+  test("testGetRoutesReturnsBadRequestWhenGettingWordsWithSizeFilterEqualsZero") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl?size=0"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
@@ -100,7 +100,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.BadRequest)
   }
 
-  test("testGetRoutesReturnsBadRequestWhenAskingForSpecificWordsWithNegativeSizeFilter") {
+  test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNegativeSizeFilter") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl?size=-1"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
@@ -109,7 +109,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.BadRequest)
   }
 
-  test("testGetRoutesReturnsBadRequestWhenAskingForSpecificWordsWithNonIntegerSizeFilter") {
+  test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNonIntegerSizeFilter") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl?size=one"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
@@ -118,7 +118,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.BadRequest)
   }
 
-  test("testGetRoutesReturnsCorrectResponseWhenAskingForSpecificWordsWithCategoryAndSizeFilter") {
+  test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithCategoryAndSizeFilter") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl?cat=latin&size=1"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
@@ -129,7 +129,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[Json].unsafeRunSync === expected)
   }
 
-  test("testGetRoutesReturnsCorrectResponseWhenAskingForSpecificWordsWithSizeAndCategoryFilter") {
+  test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithSizeAndCategoryFilter") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/999/pl?size=1&cat=latin"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))

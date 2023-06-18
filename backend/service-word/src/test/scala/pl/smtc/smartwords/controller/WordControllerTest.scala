@@ -29,6 +29,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
+    assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value '111' is not supported.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNonExistingLanguage") {
@@ -38,6 +39,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
+    assert(response.get.as[String].unsafeRunSync === "Invalid 'language' parameter: value 'es' is not supported.")
   }
 
   test("testGetRoutesReturnsEmptyResultWhenGettingWordsWithExistingButIncompatibleModeAndLanguage") {
@@ -94,6 +96,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
+    assert(response.get.as[String].unsafeRunSync === "Invalid 'cat' parameter: value 'non-supported' is not supported.")
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithSizeFilter") {

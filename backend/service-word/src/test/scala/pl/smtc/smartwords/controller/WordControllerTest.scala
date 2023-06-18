@@ -209,6 +209,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
+    assert(response.get.as[String].unsafeRunSync === "Query decoding Boolean failed: invalid 'random' parameter value.")
   }
 
   private def createTestDatabase(): WordDatabase = {

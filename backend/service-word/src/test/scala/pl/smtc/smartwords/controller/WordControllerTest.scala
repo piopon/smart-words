@@ -196,6 +196,15 @@ class WordControllerTest extends AnyFunSuite {
     assert(actual === sequence1 || actual === sequence2)
   }
 
+  test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNonBooleanRandomFilter") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/998/en?random=0"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.BadRequest)
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

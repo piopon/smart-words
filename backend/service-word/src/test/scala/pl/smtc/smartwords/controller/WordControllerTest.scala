@@ -181,6 +181,21 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[Json].unsafeRunSync === expected)
   }
 
+  test("testGetRoutesReturnsCorrectResponseWhenGettingWordsRandomFilterOn") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/998/en?random=true"
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    val sequence1: Json = json"""[ { "name" : "word-1-en", "category" : "adjective", "description" : [""] },
+                                   { "name" : "word-2-en", "category" : "person", "description" : [""] }]"""
+    val sequence2: Json = json"""[ { "name" : "word-2-en", "category" : "person", "description" : [""] },
+                                   { "name" : "word-1-en", "category" : "adjective", "description" : [""] }]"""
+    val actual: Json = response.get.as[Json].unsafeRunSync
+    assert(actual === sequence1 || actual === sequence2)
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

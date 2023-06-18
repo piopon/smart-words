@@ -130,6 +130,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
+    assert(response.get.as[String].unsafeRunSync === "Incorrect 'size' parameter value: must be greater then 0.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNegativeSizeFilter") {
@@ -139,6 +140,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
+    assert(response.get.as[String].unsafeRunSync === "Incorrect 'size' parameter value: must be greater then 0.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNonIntegerSizeFilter") {
@@ -148,6 +150,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
+    assert(response.get.as[String].unsafeRunSync === "Query decoding Int failed: invalid 'size' parameter value.")
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithCategoryAndSizeFilter") {

@@ -284,6 +284,18 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[String].unsafeRunSync === "updated word 'word-1-de'")
   }
 
+  test("testGetRoutesReturnsNotFoundWhenUpdatingNonExistingWord") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/997/de/word-10-de"
+    val requestBody: Json = json"""{ "name" : "word-11-de", "category" : "person", "description" : [""] }"""
+    val request: Request[IO] = Request(Method.PUT, Uri.unsafeFromString(endpoint)).withEntity(requestBody)
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.NotFound)
+    assert(response.get.as[String].unsafeRunSync === "word 'word-10-de' not found in DB")
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

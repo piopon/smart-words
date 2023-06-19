@@ -5,7 +5,7 @@ import cats.effect.unsafe.implicits.global
 import io.circe.Json
 import io.circe.literal.JsonStringContext
 import org.http4s._
-import org.http4s.circe.jsonDecoder
+import org.http4s.circe.{jsonDecoder, jsonEncoder}
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
@@ -210,6 +210,18 @@ class WordControllerTest extends AnyFunSuite {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
     assert(response.get.as[String].unsafeRunSync === "Query decoding Boolean failed: invalid 'random' parameter value.")
+  }
+
+  test("testGetRoutesReturnsCorrectResponseWhenAddingNewWord") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/997/de"
+    val requestBody: Json = json"""{ "name" : "word-10-de", "category" : "person", "description" : [""] }"""
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint)).withEntity(requestBody)
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.Ok)
+    assert(response.get.as[String].unsafeRunSync === "added word 'word-10-de'")
   }
 
   private def createTestDatabase(): WordDatabase = {

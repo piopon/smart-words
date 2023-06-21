@@ -367,6 +367,39 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[String].unsafeRunSync === "removed word 'word-1-de'")
   }
 
+  test("testGetRoutesReturnsNotFoundWhenDeletingNonExistingWord") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/997/de/word-5-de"
+    val request: Request[IO] = Request(Method.DELETE, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.NotFound)
+    assert(response.get.as[String].unsafeRunSync === "word 'word-5-de' not found in DB")
+  }
+
+  test("testGetRoutesReturnsNotFoundWhenDeletingExistingWordButIncompatibleMode") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/998/de/word-1-de"
+    val request: Request[IO] = Request(Method.DELETE, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.NotFound)
+    assert(response.get.as[String].unsafeRunSync === "word 'word-1-de' not found in DB")
+  }
+
+  test("testGetRoutesReturnsNotFoundWhenDeletingExistingWordButIncompatibleLanguage") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/997/pl/word-1-de"
+    val request: Request[IO] = Request(Method.DELETE, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.NotFound)
+    assert(response.get.as[String].unsafeRunSync === "word 'word-1-de' not found in DB")
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

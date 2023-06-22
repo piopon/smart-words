@@ -400,6 +400,28 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[String].unsafeRunSync === "word 'word-1-de' not found in DB")
   }
 
+  test("testGetRoutesReturnsBadRequestWhenDeletingWordWithBadLanguage") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/997/fr/word-1-de"
+    val request: Request[IO] = Request(Method.DELETE, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.BadRequest)
+    assert(response.get.as[String].unsafeRunSync === "Invalid 'language' parameter: value 'fr' is not supported.")
+  }
+
+  test("testGetRoutesReturnsBadRequestWhenDeletingWordWithBadMode") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/123/de/word-1-de"
+    val request: Request[IO] = Request(Method.DELETE, Uri.unsafeFromString(endpoint))
+    val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.nonEmpty)
+    val actualStatus: Status = response.get.status
+    assert(actualStatus === Status.BadRequest)
+    assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value '123' is not supported.")
+  }
+
   private def createTestDatabase(): WordDatabase = {
     val database: WordDatabase = new WordDatabase()
     val dictionaryPl: Dictionary = Dictionary(serviceTestFile, "quiz", Some(999), "pl")

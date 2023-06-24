@@ -7,6 +7,7 @@ import io.circe.literal.JsonStringContext
 import org.http4s._
 import org.http4s.circe.{jsonDecoder, jsonEncoder}
 import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.must.Matchers.{an, be}
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 
@@ -270,6 +271,14 @@ class WordControllerTest extends AnyFunSuite {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
     assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value 'mode' cannot be parsed.")
+  }
+
+  test("testGetRoutesReturnsCorrectResponseWhenAddingNewWord123") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/997/de"
+    val requestBody: Json = json"""{ "name" : "word-10-de", "category" : "person" }"""
+    val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint)).withEntity(requestBody)
+    an [InvalidMessageBodyFailure] should be thrownBy controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenUpdatingExistingWord") {

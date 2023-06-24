@@ -273,7 +273,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value 'mode' cannot be parsed.")
   }
 
-  test("testGetRoutesReturnsCorrectResponseWhenAddingNewWord123") {
+  test("testGetRoutesThrowsExceptionWhenAddingWordWithInvalidJsonBody") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/997/de"
     val requestBody: Json = json"""{ "name" : "word-10-de", "category" : "person" }"""

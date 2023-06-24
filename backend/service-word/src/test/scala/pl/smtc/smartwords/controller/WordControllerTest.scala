@@ -5,9 +5,9 @@ import cats.effect.unsafe.implicits.global
 import io.circe.Json
 import io.circe.literal.JsonStringContext
 import org.http4s._
-import org.http4s.circe.{jsonDecoder, jsonEncoder}
+import org.http4s.circe._
 import org.scalatest.funsuite.AnyFunSuite
-import org.scalatest.matchers.must.Matchers.{an, be}
+import org.scalatest.matchers.must.Matchers._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 

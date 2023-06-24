@@ -365,6 +365,14 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value 'mode' cannot be parsed.")
   }
 
+  test("testGetRoutesThrowsExceptionWhenUpdatingWordWithInvalidJsonBody") {
+    val controllerUnderTest: WordController = new WordController(createTestDatabase())
+    val endpoint: String = s"/997/de/word-1-de"
+    val requestBody: Json = json"""{ "name" : "word-10-de", "description" : [""] }"""
+    val request: Request[IO] = Request(Method.PUT, Uri.unsafeFromString(endpoint)).withEntity(requestBody)
+    an [InvalidMessageBodyFailure] should be thrownBy controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+  }
+
   test("testGetRoutesReturnsCorrectResponseWhenDeletingExistingWord") {
     val controllerUnderTest: WordController = new WordController(createTestDatabase())
     val endpoint: String = s"/997/de/word-1-de"

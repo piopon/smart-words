@@ -7,6 +7,7 @@ import io.circe.literal.JsonStringContext
 import org.http4s._
 import org.http4s.circe._
 import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.must.Matchers._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 
@@ -182,6 +183,16 @@ class ModeControllerTest extends AnyFunSuite {
     val request: Request[IO] = Request(Method.PUT, Uri.unsafeFromString(endpoint)).withEntity(requestBody)
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.isEmpty)
+  }
+
+  test("testGetRoutesThrowsWhenUpdatingExistingModeRequestWithInvalidJsonBody") {
+    val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
+    assert(modeDatabase.loadDatabase())
+    val controllerUnderTest: ModeController = new ModeController(modeDatabase)
+    val endpoint: String = s"/0"
+    val requestBody: Json = json"""{ "id" : 99, "name" : "UNIT test QUIZ mode 1", "deletable" : false }"""
+    val request: Request[IO] = Request(Method.PUT, Uri.unsafeFromString(endpoint)).withEntity(requestBody)
+    an [InvalidMessageBodyFailure] should be thrownBy controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
   }
 
   test("testGetRoutesReturnsOkStatusWhenDeletingExistingModeRequest") {

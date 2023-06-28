@@ -6,12 +6,23 @@ import io.circe.Json
 import io.circe.literal.JsonStringContext
 import org.http4s._
 import org.http4s.circe._
+import org.scalatest.BeforeAndAfterAll
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.must.Matchers._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 
-class ModeControllerTest extends AnyFunSuite {
+import java.io.File
+import java.nio.file.Paths
+
+class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
+
+  override def afterAll(): Unit = {
+    for {
+      files <- Option(new File(Paths.get(getClass.getResource("/").toURI).toString).listFiles)
+      file <- files if file.getName.endsWith(".json") && !file.getName.endsWith("test-mode-database-load.json")
+    } file.delete()
+  }
 
   test("testGetRoutesReturnsNoneForNonExistingEndpoint") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-database-load.json")

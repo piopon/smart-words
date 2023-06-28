@@ -4,11 +4,22 @@ import cats.effect.unsafe.implicits.global
 import io.circe.Json
 import io.circe.literal.JsonStringContext
 import org.http4s.circe.jsonDecoder
+import org.scalatest.BeforeAndAfterAll
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.database.ModeDatabase
 import pl.smtc.smartwords.model._
 
-class ModeServiceTest extends AnyFunSuite {
+import java.io.File
+import java.nio.file.Paths
+
+class ModeServiceTest extends AnyFunSuite with BeforeAndAfterAll {
+
+  override def afterAll(): Unit = {
+    for {
+      files <- Option(new File(Paths.get(getClass.getResource("/").toURI).toString).listFiles)
+      file <- files if file.getName.endsWith(".json") && !file.getName.endsWith("test-mode-database-load.json")
+    } file.delete()
+  }
 
   test("testGetSupportedSettings") {
     val serviceUnderTest: ModeService = new ModeService(createTestDatabase())

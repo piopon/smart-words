@@ -13,13 +13,12 @@ import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.Using
 
-class ModeDatabase {
+class ModeDatabase(databaseFile: String = "modes.json") {
 
   implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
 
   private val quizModes: ListBuffer[Mode] = ListBuffer()
-  private val quizModesFile: String = "modes.json"
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
 
   /**
@@ -28,7 +27,7 @@ class ModeDatabase {
    */
   def loadDatabase(): Boolean = {
     var result: Boolean = false
-    val modesFile: File = new File(resourceDir.resolve(quizModesFile).toString)
+    val modesFile: File = new File(resourceDir.resolve(databaseFile).toString)
     Using(new BufferedInputStream(new FileInputStream(modesFile))) { fileStream =>
       val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
       decode[List[Mode]](lines) match {
@@ -44,14 +43,6 @@ class ModeDatabase {
   }
 
   /**
-   * Method used to save current quiz mode database into JSON file
-   */
-  def saveDatabase(): Unit = {
-    val content: String = quizModes.asJson.toString()
-    Files.write(resourceDir.resolve(quizModesFile), content.getBytes(StandardCharsets.UTF_8))
-  }
-
-  /**
    * Method used to retrieve all quiz modes
    * @return a list of currently available quiz modes
    */
@@ -62,7 +53,7 @@ class ModeDatabase {
    * @return a quiz mode object with predefined ID and an empty value
    */
   def addMode(): Mode = {
-    val freeId: Int = quizModes.map(mode => mode.id).max + 1
+    val freeId: Int = if(quizModes.isEmpty) 0 else quizModes.map(mode => mode.id).max + 1
     val newMode: Mode = Mode(freeId, "", "", List(), deletable = true)
     quizModes += newMode
     saveDatabase()
@@ -106,6 +97,14 @@ class ModeDatabase {
     quizModes.remove(idIndex)
     saveDatabase()
     true
+  }
+
+  /**
+   * Method used to save current quiz mode database into JSON file
+   */
+  private def saveDatabase(): Unit = {
+    val content: String = quizModes.asJson.toString()
+    Files.write(resourceDir.resolve(databaseFile), content.getBytes(StandardCharsets.UTF_8))
   }
 
   /**

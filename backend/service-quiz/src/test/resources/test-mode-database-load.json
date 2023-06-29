@@ -1,0 +1,33 @@
+[
+  {
+    "id": 99,
+    "name": "UNIT test QUIZ mode 1",
+    "description": "this is a JSON for unit test and checking quiz mode logic",
+    "deletable": true,
+    "settings": [
+      {
+        "type": "questions",
+        "label": "UT questions:",
+        "details": "value='1' min='1' max='1'"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "second MODE for UNIT tests",
+    "description": "another unit test mode",
+    "deletable": false,
+    "settings": [
+      {
+        "type": "questions",
+        "label": "specify number of questions:",
+        "details": "value='5' min='1' max='10'"
+      },
+      {
+        "type": "languages",
+        "label": "supported lang:",
+        "details": "en es!"
+      }
+    ]
+  }
+]

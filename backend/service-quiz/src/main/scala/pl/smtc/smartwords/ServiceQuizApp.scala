@@ -7,6 +7,7 @@ import org.http4s.implicits._
 import org.http4s.server._
 import org.http4s.server.middleware._
 import org.http4s.ember.server._
+import pl.smtc.smartwords.client._
 import pl.smtc.smartwords.controller._
 import pl.smtc.smartwords.database._
 
@@ -15,20 +16,26 @@ import scala.concurrent.duration.DurationInt
 object ServiceQuizApp extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = {
+    // initialize databases
+    val quizDatabase: QuizDatabase = new QuizDatabase()
     val modeDatabase: ModeDatabase = new ModeDatabase()
     if (!modeDatabase.loadDatabase()) {
       return IO.canceled.as(ExitCode.Error)
     }
-    val modeController: ModeController = new ModeController(modeDatabase)
+    // initialize other services clients
+    val wordServiceClient: WordService = new WordService()
+    // initialize controllers
     val healthController: HealthController = new HealthController()
-    val quizController: QuizController = new QuizController()
-
+    val modeController: ModeController = new ModeController(modeDatabase)
+    val quizController: QuizController = new QuizController(quizDatabase, wordServiceClient)
+    // setup router
     val config = CORSConfig(anyOrigin = true, allowCredentials = true, 1.day.toSeconds, anyMethod = true)
     val apis = Router(
       "/health" -> CORS(healthController.getRoutes, config),
       "/modes" -> CORS(modeController.getRoutes, config),
       "/quiz" -> CORS(quizController.getRoutes, config)
     ).orNotFound
+    // start server
     for {
       server <- EmberServerBuilder.default[IO]
         .withHost(ipv4"0.0.0.0")

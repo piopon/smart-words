@@ -14,9 +14,8 @@ import pl.smtc.smartwords.dao._
 import java.util.UUID
 import scala.util.Random
 
-class QuizService(quizDB: QuizDatabase) {
+class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
 
-  implicit val WordService: WordService = new WordService()
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 
   private final val defaultQuizSize: Int = 10
@@ -43,7 +42,7 @@ class QuizService(quizDB: QuizDatabase) {
       case None => defaultQuizLang
       case Some(language) => language
     }
-    if (WordService.isAlive) {
+    if (wordService.isAlive) {
       try {
         Ok(quizDB.addQuiz(generateQuiz(size, mode, language)).toString)
       } catch {
@@ -65,7 +64,15 @@ class QuizService(quizDB: QuizDatabase) {
       case None =>
         NotFound("Specified quiz does not exist")
       case Some(quiz) =>
-        Ok(quiz.rounds(questionNo.toInt).asJson)
+        try {
+          val questionInt: Int = questionNo.toInt
+          if (questionInt < 0 || questionInt > quiz.rounds.size - 1) {
+            return BadRequest(s"Question number must have value between 0-${quiz.rounds.size - 1}")
+          }
+          Ok(quiz.rounds(questionInt).asJson)
+        } catch {
+          case _: NumberFormatException => BadRequest("Question number must be of integer type.")
+        }
     }
   }
 
@@ -81,12 +88,24 @@ class QuizService(quizDB: QuizDatabase) {
       case None =>
         NotFound("Specified quiz does not exist")
       case Some(quiz) =>
-        val correctDefinitions: List[String] = quiz.rounds(questionNo.toInt).word.description
-        val selectedDefinition: String = quiz.rounds(questionNo.toInt).options(answerNo.toInt)
-        quiz.rounds(questionNo.toInt).answer = Option(answerNo.toInt)
-        val isCorrect = correctDefinitions.contains(selectedDefinition)
-        quiz.rounds(questionNo.toInt).correct = Option(isCorrect)
-        Ok(isCorrect.toString)
+        try {
+          val answerInt: Int = answerNo.toInt
+          if (answerInt < 0 || answerInt > 3) {
+            return BadRequest(s"Answer number must have value between 0-3")
+          }
+          val questionInt: Int = questionNo.toInt
+          if (questionInt < 0 || questionInt > quiz.rounds.size - 1) {
+            return BadRequest(s"Question number must have value between 0-${quiz.rounds.size - 1}")
+          }
+          val correctDefinitions: List[String] = quiz.rounds(questionInt).word.description
+          val selectedDefinition: String = quiz.rounds(questionInt).options(answerInt)
+          quiz.rounds(questionInt).answer = Option(answerInt)
+          val isCorrect = correctDefinitions.contains(selectedDefinition)
+          quiz.rounds(questionInt).correct = Option(isCorrect)
+          Ok(isCorrect.toString)
+        } catch {
+          case _: NumberFormatException => BadRequest("Question and answer number must be of integer type.")
+        }
     }
   }
 
@@ -120,7 +139,7 @@ class QuizService(quizDB: QuizDatabase) {
     try {
       var word: Word = null
       do {
-        word = WordService.getRandomWord(mode, language)
+        word = wordService.getRandomWord(mode, language)
       } while (forbiddenWords.contains(word.name))
       Round(word, generateOptions(word.description, mode, language, word.category), None, None)
     } catch {
@@ -153,7 +172,7 @@ class QuizService(quizDB: QuizDatabase) {
    */
   private def generateOptions(correctDefinitions: List[String],
                               mode: Int, language: String, category: String): List[String] = {
-    val incorrectDefinitions: List[String] = WordService.getWordsByCategory(mode, language, category)
+    val incorrectDefinitions: List[String] = wordService.getWordsByCategory(mode, language, category)
       .map(w => Random.shuffle(w.description).head)
       .filter(!correctDefinitions.contains(_))
       .distinct

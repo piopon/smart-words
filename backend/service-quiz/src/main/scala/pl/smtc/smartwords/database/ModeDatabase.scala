@@ -29,7 +29,7 @@ class ModeDatabase(databaseFile: String = "modes.json") {
     var result: Boolean = false
     val modesFile: File = new File(resourceDir.resolve(databaseFile).toString)
     Using(new BufferedInputStream(new FileInputStream(modesFile))) { fileStream =>
-      val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
+      val lines = Source.fromInputStream(fileStream).getLines().mkString.stripMargin
       decode[List[Mode]](lines) match {
         case Right(modes) =>
           modes.foreach(mode => quizModes += mode)

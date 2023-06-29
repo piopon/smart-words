@@ -30,7 +30,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value '111' is not supported.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'mode' parameter: value '111' is not supported.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNonExistingLanguage") {
@@ -40,7 +40,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'language' parameter: value 'es' is not supported.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'language' parameter: value 'es' is not supported.")
   }
 
   test("testGetRoutesReturnsEmptyResultWhenGettingWordsWithExistingButIncompatibleModeAndLanguage") {
@@ -51,7 +51,7 @@ class WordControllerTest extends AnyFunSuite {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
     val expected: Json = json"""[]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithExistingModeAndLanguage") {
@@ -64,7 +64,7 @@ class WordControllerTest extends AnyFunSuite {
     val expected: Json = json"""[ { "name" : "word-1-pl", "category" : "verb", "description" : [""] },
                                   { "name" : "word-2-pl", "category" : "latin", "description" : [""] },
                                   { "name" : "word-3-pl", "category" : "latin", "description" : [""] } ]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithCategoryFilter") {
@@ -76,7 +76,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.Ok)
     val expected: Json = json"""[ { "name" : "word-2-pl", "category" : "latin", "description" : [""] },
                                   { "name" : "word-3-pl", "category" : "latin", "description" : [""] } ]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsEmptyResponseWhenGettingWordsWithNotUsedCategoryFilter") {
@@ -87,7 +87,7 @@ class WordControllerTest extends AnyFunSuite {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
     val expected: Json = json"""[]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNotSupportedCategoryFilter") {
@@ -97,7 +97,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'cat' parameter: value 'non-supported' is not supported.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'cat' parameter: value 'non-supported' is not supported.")
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithSizeFilter") {
@@ -108,7 +108,7 @@ class WordControllerTest extends AnyFunSuite {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
     val expected: Json = json"""[ { "name" : "word-1-pl", "category" : "verb", "description" : [""] } ]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithBigSizeFilter") {
@@ -121,7 +121,7 @@ class WordControllerTest extends AnyFunSuite {
     val expected: Json = json"""[ { "name" : "word-1-pl", "category" : "verb", "description" : [""] },
                                   { "name" : "word-2-pl", "category" : "latin", "description" : [""] },
                                   { "name" : "word-3-pl", "category" : "latin", "description" : [""] } ]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsBadRequestWhenGettingWordsWithSizeFilterEqualsZero") {
@@ -131,7 +131,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Incorrect 'size' parameter value: must be greater then 0.")
+    assert(response.get.as[String].unsafeRunSync() === "Incorrect 'size' parameter value: must be greater then 0.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNegativeSizeFilter") {
@@ -141,7 +141,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Incorrect 'size' parameter value: must be greater then 0.")
+    assert(response.get.as[String].unsafeRunSync() === "Incorrect 'size' parameter value: must be greater then 0.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenGettingWordsWithNonIntegerSizeFilter") {
@@ -151,7 +151,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Query decoding Int failed: invalid 'size' parameter value.")
+    assert(response.get.as[String].unsafeRunSync() === "Query decoding Int failed: invalid 'size' parameter value.")
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithCategoryAndSizeFilter") {
@@ -162,7 +162,7 @@ class WordControllerTest extends AnyFunSuite {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
     val expected: Json = json"""[ { "name" : "word-2-pl", "category" : "latin", "description" : [""] } ]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsWithSizeAndCategoryFilter") {
@@ -173,7 +173,7 @@ class WordControllerTest extends AnyFunSuite {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
     val expected: Json = json"""[ { "name" : "word-2-pl", "category" : "latin", "description" : [""] } ]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsRandomFilterOff") {
@@ -185,7 +185,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(actualStatus === Status.Ok)
     val expected: Json = json"""[ { "name" : "word-1-en", "category" : "adjective", "description" : [""] },
                                   { "name" : "word-2-en", "category" : "person", "description" : [""] }]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenGettingWordsRandomFilterOn") {
@@ -199,7 +199,7 @@ class WordControllerTest extends AnyFunSuite {
                                    { "name" : "word-2-en", "category" : "person", "description" : [""] }]"""
     val sequence2: Json = json"""[ { "name" : "word-2-en", "category" : "person", "description" : [""] },
                                    { "name" : "word-1-en", "category" : "adjective", "description" : [""] }]"""
-    val actual: Json = response.get.as[Json].unsafeRunSync
+    val actual: Json = response.get.as[Json].unsafeRunSync()
     assert(actual === sequence1 || actual === sequence2)
   }
 
@@ -210,7 +210,7 @@ class WordControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Query decoding Boolean failed: invalid 'random' parameter value.")
+    assert(response.get.as[String].unsafeRunSync() === "Query decoding Boolean failed: invalid 'random' parameter value.")
   }
 
   test("testGetRoutesReturnsCorrectResponseWhenAddingNewWord") {
@@ -222,7 +222,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    assert(response.get.as[String].unsafeRunSync === "added word 'word-10-de'")
+    assert(response.get.as[String].unsafeRunSync() === "added word 'word-10-de'")
   }
 
   test("testGetRoutesReturnsFoundWhenAddingExistingWord") {
@@ -234,7 +234,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Found)
-    assert(response.get.as[String].unsafeRunSync === "word 'word-1-de' already defined")
+    assert(response.get.as[String].unsafeRunSync() === "word 'word-1-de' already defined")
   }
 
   test("testGetRoutesReturnsBadRequestWhenAddingNewWordWithBadLanguage") {
@@ -246,7 +246,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'language' parameter: value 'it' is not supported.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'language' parameter: value 'it' is not supported.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenAddingNewWordWithInvalidMode") {
@@ -258,7 +258,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value '23' is not supported.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'mode' parameter: value '23' is not supported.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenAddingNewWordWithNonIntegerMode") {
@@ -270,7 +270,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value 'mode' cannot be parsed.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'mode' parameter: value 'mode' cannot be parsed.")
   }
 
   test("testGetRoutesThrowsExceptionWhenAddingWordWithInvalidJsonBody") {
@@ -290,7 +290,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    assert(response.get.as[String].unsafeRunSync === "updated word 'word-1-de'")
+    assert(response.get.as[String].unsafeRunSync() === "updated word 'word-1-de'")
   }
 
   test("testGetRoutesReturnsNotFoundWhenUpdatingNonExistingWord") {
@@ -302,7 +302,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    assert(response.get.as[String].unsafeRunSync === "word 'word-10-de' not found in DB")
+    assert(response.get.as[String].unsafeRunSync() === "word 'word-10-de' not found in DB")
   }
 
   test("testGetRoutesReturnsBadRequestWhenUpdatingExistingWordButWithIncompatibleMode") {
@@ -314,7 +314,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    assert(response.get.as[String].unsafeRunSync === "word 'word-1-de' not found in DB")
+    assert(response.get.as[String].unsafeRunSync() === "word 'word-1-de' not found in DB")
   }
 
   test("testGetRoutesReturnsBadRequestWhenUpdatingExistingWordButWithIncompatibleLanguage") {
@@ -326,7 +326,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    assert(response.get.as[String].unsafeRunSync === "word 'word-1-de' not found in DB")
+    assert(response.get.as[String].unsafeRunSync() === "word 'word-1-de' not found in DB")
   }
 
   test("testGetRoutesReturnsBadRequestWhenUpdatingExistingWordWithBadLanguage") {
@@ -338,7 +338,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'language' parameter: value 'es' is not supported.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'language' parameter: value 'es' is not supported.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenUpdatingExistingWordWithBadMode") {
@@ -350,7 +350,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value '900' is not supported.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'mode' parameter: value '900' is not supported.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenUpdatingExistingWordWithNonIntegerMode") {
@@ -362,7 +362,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value 'mode' cannot be parsed.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'mode' parameter: value 'mode' cannot be parsed.")
   }
 
   test("testGetRoutesThrowsExceptionWhenUpdatingWordWithInvalidJsonBody") {
@@ -381,7 +381,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    assert(response.get.as[String].unsafeRunSync === "removed word 'word-1-de'")
+    assert(response.get.as[String].unsafeRunSync() === "removed word 'word-1-de'")
   }
 
   test("testGetRoutesReturnsNotFoundWhenDeletingNonExistingWord") {
@@ -392,7 +392,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    assert(response.get.as[String].unsafeRunSync === "word 'word-5-de' not found in DB")
+    assert(response.get.as[String].unsafeRunSync() === "word 'word-5-de' not found in DB")
   }
 
   test("testGetRoutesReturnsNotFoundWhenDeletingExistingWordButIncompatibleMode") {
@@ -403,7 +403,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    assert(response.get.as[String].unsafeRunSync === "word 'word-1-de' not found in DB")
+    assert(response.get.as[String].unsafeRunSync() === "word 'word-1-de' not found in DB")
   }
 
   test("testGetRoutesReturnsNotFoundWhenDeletingExistingWordButIncompatibleLanguage") {
@@ -414,7 +414,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    assert(response.get.as[String].unsafeRunSync === "word 'word-1-de' not found in DB")
+    assert(response.get.as[String].unsafeRunSync() === "word 'word-1-de' not found in DB")
   }
 
   test("testGetRoutesReturnsBadRequestWhenDeletingWordWithBadLanguage") {
@@ -425,7 +425,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'language' parameter: value 'fr' is not supported.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'language' parameter: value 'fr' is not supported.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenDeletingWordWithBadMode") {
@@ -436,7 +436,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value '123' is not supported.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'mode' parameter: value '123' is not supported.")
   }
 
   test("testGetRoutesReturnsBadRequestWhenDeletingWordWithNonIntegerMode") {
@@ -447,7 +447,7 @@ class WordControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    assert(response.get.as[String].unsafeRunSync === "Invalid 'mode' parameter: value 'mode' cannot be parsed.")
+    assert(response.get.as[String].unsafeRunSync() === "Invalid 'mode' parameter: value 'mode' cannot be parsed.")
   }
 
   private def createTestDatabase(): WordDatabase = {

@@ -22,7 +22,7 @@ class HealthControllerTest extends AnyFunSuite {
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    assert(response.get.as[String].unsafeRunSync === "Service: WORD - status: OK")
+    assert(response.get.as[String].unsafeRunSync() === "Service: WORD - status: OK")
   }
 
 }

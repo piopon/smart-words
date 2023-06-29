@@ -119,7 +119,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   test("testGetRoutesReturnsOkStatusWhenUpdatingExistingModeRequest") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
-    assert(modeDatabase.loadDatabase())
+    modeDatabase.loadDatabase()
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
     val endpoint: String = s"/0"
     val requestBody: Json =
@@ -139,7 +139,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   test("testGetRoutesReturnsNotFoundWhenUpdatingNotExistingModeRequest") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
-    assert(modeDatabase.loadDatabase())
+    modeDatabase.loadDatabase()
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
     val endpoint: String = s"/100"
     val requestBody: Json =
@@ -160,7 +160,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   test("testGetRoutesReturnsNotFoundWhenUpdatingNotDeletableModeRequest") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
-    assert(modeDatabase.loadDatabase())
+    modeDatabase.loadDatabase()
     val mode: Mode = modeDatabase.addMode()
     mode.deletable = false
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
@@ -183,7 +183,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   test("testGetRoutesReturnsNothingWhenUpdatingModeWithInvalidId") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
-    assert(modeDatabase.loadDatabase())
+    modeDatabase.loadDatabase()
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
     val endpoint: String = s"/abc"
     val requestBody: Json =
@@ -198,7 +198,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   test("testGetRoutesThrowsWhenUpdatingExistingModeRequestWithInvalidJsonBody") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
-    assert(modeDatabase.loadDatabase())
+    modeDatabase.loadDatabase()
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
     val endpoint: String = s"/0"
     val requestBody: Json = json"""{ "id" : 99, "name" : "UNIT test QUIZ mode 1", "deletable" : false }"""
@@ -208,7 +208,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   test("testGetRoutesReturnsOkStatusWhenDeletingExistingModeRequest") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
-    assert(modeDatabase.loadDatabase())
+    modeDatabase.loadDatabase()
     val mode: Mode = modeDatabase.addMode()
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
     val endpoint: String = s"/${mode.id}"
@@ -222,7 +222,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   test("testGetRoutesReturnsNotFoundWhenDeletingNotExistingModeRequest") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
-    assert(modeDatabase.loadDatabase())
+    modeDatabase.loadDatabase()
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
     val endpoint: String = s"/100"
     val request: Request[IO] = Request(Method.DELETE, Uri.unsafeFromString(endpoint))
@@ -235,7 +235,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   test("testGetRoutesReturnsNotFoundWhenDeletingNotDeletableModeRequest") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
-    assert(modeDatabase.loadDatabase())
+    modeDatabase.loadDatabase()
     val mode: Mode = modeDatabase.addMode()
     mode.deletable = false
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
@@ -250,7 +250,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   test("testGetRoutesReturnsNothingWhenDeletingModeWithInvalidId") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-controller-crud.json")
-    assert(modeDatabase.loadDatabase())
+    modeDatabase.loadDatabase()
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
     val endpoint: String = s"/abc"
     val request: Request[IO] = Request(Method.DELETE, Uri.unsafeFromString(endpoint))

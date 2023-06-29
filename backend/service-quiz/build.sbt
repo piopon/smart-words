@@ -21,7 +21,7 @@ libraryDependencies ++= Seq(
   "org.scalatest"   %% "scalatest"           % ScalaTestVersion
 )
 
-scalacOptions += "-deprecation"
+scalacOptions ++= Seq("-deprecation", "-feature")
 
 run := Defaults
   .runTask(

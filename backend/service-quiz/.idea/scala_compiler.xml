@@ -8,6 +8,7 @@
     <profile name="sbt 1" modules="smart-words" />
     <profile name="sbt 2" modules="service-quiz">
       <option name="deprecationWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
     </profile>
   </component>
 </project>

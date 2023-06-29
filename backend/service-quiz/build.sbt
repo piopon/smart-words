@@ -21,6 +21,8 @@ libraryDependencies ++= Seq(
   "org.scalatest"   %% "scalatest"           % ScalaTestVersion
 )
 
+scalacOptions += "-deprecation"
+
 run := Defaults
   .runTask(
     Runtime / fullClasspath,

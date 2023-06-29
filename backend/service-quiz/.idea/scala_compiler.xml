@@ -5,6 +5,9 @@
     <parameters>
       <parameter value="-deprecation" />
     </parameters>
-    <profile name="sbt 1" modules="service-quiz,smart-words" />
+    <profile name="sbt 1" modules="smart-words" />
+    <profile name="sbt 2" modules="service-quiz">
+      <option name="deprecationWarnings" value="true" />
+    </profile>
   </component>
 </project>

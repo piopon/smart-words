@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ScalaCompilerConfiguration">
     <option name="deprecationWarnings" value="true" />
+    <option name="featureWarnings" value="true" />
     <parameters>
       <parameter value="-deprecation" />
     </parameters>
-    <profile name="sbt 1" modules="smart-words" />
-    <profile name="sbt 2" modules="service-quiz">
+    <profile name="sbt" modules="service-quiz">
       <option name="deprecationWarnings" value="true" />
       <option name="featureWarnings" value="true" />
     </profile>

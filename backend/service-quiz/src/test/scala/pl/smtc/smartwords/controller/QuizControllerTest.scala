@@ -35,7 +35,7 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody.matches(uuidRegex))
   }
 
@@ -49,7 +49,7 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody.matches(uuidRegex))
   }
 
@@ -63,7 +63,7 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.ServiceUnavailable)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Cannot start quiz. Service: WORD - not available.")
   }
 
@@ -77,7 +77,7 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Cannot start quiz: Invalid input parameter(s) - getRandomWord error!")
   }
 
@@ -91,7 +91,7 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Cannot start quiz: Invalid input parameter(s) - getWordsByCategory error!")
   }
 
@@ -101,14 +101,14 @@ class QuizControllerTest extends AnyFunSuite {
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
     val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
                                                         .value.unsafeRunSync()
-                                                        .get.as[String].unsafeRunSync
+                                                        .get.as[String].unsafeRunSync()
     val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/1"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    val actualBody: Json = response.get.as[Json].unsafeRunSync
+    val actualBody: Json = response.get.as[Json].unsafeRunSync()
     assert(actualBody.hcursor.downField("word").as[String] match {
       case Right(s) => s.startsWith("word-pl")
       case Left(_) => false
@@ -125,7 +125,7 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Specified quiz does not exist")
   }
 
@@ -135,14 +135,14 @@ class QuizControllerTest extends AnyFunSuite {
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
     val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
                                                         .value.unsafeRunSync()
-                                                        .get.as[String].unsafeRunSync
+                                                        .get.as[String].unsafeRunSync()
     val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/abc"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Question number must be of integer type.")
   }
 
@@ -152,14 +152,14 @@ class QuizControllerTest extends AnyFunSuite {
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
     val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
                                                         .value.unsafeRunSync()
-                                                        .get.as[String].unsafeRunSync
+                                                        .get.as[String].unsafeRunSync()
     val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/10"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Question number must have value between 0-9")
   }
 
@@ -169,14 +169,14 @@ class QuizControllerTest extends AnyFunSuite {
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
     val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
                                                         .value.unsafeRunSync()
-                                                        .get.as[String].unsafeRunSync
+                                                        .get.as[String].unsafeRunSync()
     val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/0/1"
     val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "false" || actualBody === "true")
   }
 
@@ -190,7 +190,7 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Specified quiz does not exist")
   }
 
@@ -200,14 +200,14 @@ class QuizControllerTest extends AnyFunSuite {
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
     val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
                                                         .value.unsafeRunSync()
-                                                        .get.as[String].unsafeRunSync
+                                                        .get.as[String].unsafeRunSync()
     val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/abc/0"
     val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Question and answer number must be of integer type.")
   }
 
@@ -217,14 +217,14 @@ class QuizControllerTest extends AnyFunSuite {
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
     val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
                                                         .value.unsafeRunSync()
-                                                        .get.as[String].unsafeRunSync
+                                                        .get.as[String].unsafeRunSync()
     val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/0/abc"
     val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Question and answer number must be of integer type.")
   }
 
@@ -234,14 +234,14 @@ class QuizControllerTest extends AnyFunSuite {
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
     val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
                                                         .value.unsafeRunSync()
-                                                        .get.as[String].unsafeRunSync
+                                                        .get.as[String].unsafeRunSync()
     val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/10/1"
     val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Question number must have value between 0-9")
   }
 
@@ -251,14 +251,14 @@ class QuizControllerTest extends AnyFunSuite {
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
     val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
                                                         .value.unsafeRunSync()
-                                                        .get.as[String].unsafeRunSync
+                                                        .get.as[String].unsafeRunSync()
     val endpoint: String = s"/${UUID.fromString(quizUuid)}/question/9/5"
     val request: Request[IO] = Request(Method.POST, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.BadRequest)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Answer number must have value between 0-3")
   }
 
@@ -268,14 +268,14 @@ class QuizControllerTest extends AnyFunSuite {
     val controllerUnderTest: QuizController = new QuizController(quizDatabase, wordService)
     val quizUuid: String = controllerUnderTest.getRoutes.run(Request(Method.POST, Uri.unsafeFromString(s"/start")))
                                                         .value.unsafeRunSync()
-                                                        .get.as[String].unsafeRunSync
+                                                        .get.as[String].unsafeRunSync()
     val endpoint: String = s"/${UUID.fromString(quizUuid)}/stop"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))
     val response: Option[Response[IO]] = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "0.0")
   }
 
@@ -289,7 +289,7 @@ class QuizControllerTest extends AnyFunSuite {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    val actualBody: String = response.get.as[String].unsafeRunSync
+    val actualBody: String = response.get.as[String].unsafeRunSync()
     assert(actualBody === "Specified quiz does not exist")
   }
 }

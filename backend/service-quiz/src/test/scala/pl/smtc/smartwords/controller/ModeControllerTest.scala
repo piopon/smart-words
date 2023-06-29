@@ -91,6 +91,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
 
   test("testGetRoutesReturnsOkStatusEvenWhenGetSupportedSettingsRequestAndNoDatabaseInit") {
     val modeDatabase: ModeDatabase = new ModeDatabase("test-mode-database-load.json")
+    assert(modeDatabase.loadDatabase())
     val controllerUnderTest: ModeController = new ModeController(modeDatabase)
     val endpoint: String = s"/settings"
     val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString(endpoint))

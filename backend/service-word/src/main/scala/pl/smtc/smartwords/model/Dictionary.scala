@@ -62,7 +62,7 @@ object Dictionary {
   private def generateDictionaryFileName(mode: Option[Int], language: String): String = {
     val modeStr = mode match {
       case None => ""
-      case Some(modeValue) => modeValue + "-"
+      case Some(modeValue) => s"$modeValue-"
     }
     val generatedDescription: String = DateTimeFormatter.ofPattern("YYYY-MM-dd").format(LocalDate.now())
     "words-quiz-" + modeStr + language + "@" + generatedDescription + ".json"

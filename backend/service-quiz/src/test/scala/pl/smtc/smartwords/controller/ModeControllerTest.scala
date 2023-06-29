@@ -58,7 +58,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
                  ]
                }
              ]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsOkStatusAndEmptyBodyWhenGetModesRequestAndNoDatabaseInit") {
@@ -70,7 +70,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    assert(response.get.as[Json].unsafeRunSync === json"""[]""")
+    assert(response.get.as[Json].unsafeRunSync() === json"""[]""")
   }
 
   test("testGetRoutesReturnsOkResponseWhenGetSupportedSettingsRequest") {
@@ -86,7 +86,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     val expected: Json =
       json"""[ { "type" : "questions", "label" : "", "details" : "" },
                { "type" : "languages", "label" : "", "details" : "" } ]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsOkStatusEvenWhenGetSupportedSettingsRequestAndNoDatabaseInit") {
@@ -101,7 +101,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     val expected: Json =
       json"""[ { "type" : "questions", "label" : "", "details" : "" },
                { "type" : "languages", "label" : "", "details" : "" } ]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsOkStatusWhenAddingNewModesRequest") {
@@ -114,7 +114,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
     val expected: Json =json"""{ "id" : 0, "name" : "", "description" : "", "deletable" : true, "settings" : [] }"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsOkStatusWhenUpdatingExistingModeRequest") {
@@ -134,7 +134,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    assert(response.get.as[String].unsafeRunSync === "Updated quiz mode ID: 0")
+    assert(response.get.as[String].unsafeRunSync() === "Updated quiz mode ID: 0")
   }
 
   test("testGetRoutesReturnsNotFoundWhenUpdatingNotExistingModeRequest") {
@@ -155,7 +155,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
     val expected: String = "Cannot find mode with ID: 100, or mode cannot be updated with initial settings removal"
-    assert(response.get.as[String].unsafeRunSync === expected)
+    assert(response.get.as[String].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsNotFoundWhenUpdatingNotDeletableModeRequest") {
@@ -178,7 +178,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
     val expected: String = s"Cannot find mode with ID: ${mode.id}, or mode cannot be updated with initial settings removal"
-    assert(response.get.as[String].unsafeRunSync === expected)
+    assert(response.get.as[String].unsafeRunSync() === expected)
   }
 
   test("testGetRoutesReturnsNothingWhenUpdatingModeWithInvalidId") {
@@ -217,7 +217,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.Ok)
-    assert(response.get.as[String].unsafeRunSync === s"Deleted quiz mode ID: ${mode.id}")
+    assert(response.get.as[String].unsafeRunSync() === s"Deleted quiz mode ID: ${mode.id}")
   }
 
   test("testGetRoutesReturnsNotFoundWhenDeletingNotExistingModeRequest") {
@@ -230,7 +230,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    assert(response.get.as[String].unsafeRunSync === s"Cannot find mode with ID: 100, or mode is not deletable")
+    assert(response.get.as[String].unsafeRunSync() === s"Cannot find mode with ID: 100, or mode is not deletable")
   }
 
   test("testGetRoutesReturnsNotFoundWhenDeletingNotDeletableModeRequest") {
@@ -245,7 +245,7 @@ class ModeControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     assert(response.nonEmpty)
     val actualStatus: Status = response.get.status
     assert(actualStatus === Status.NotFound)
-    assert(response.get.as[String].unsafeRunSync === s"Cannot find mode with ID: ${mode.id}, or mode is not deletable")
+    assert(response.get.as[String].unsafeRunSync() === s"Cannot find mode with ID: ${mode.id}, or mode is not deletable")
   }
 
   test("testGetRoutesReturnsNothingWhenDeletingModeWithInvalidId") {

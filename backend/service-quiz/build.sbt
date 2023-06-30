@@ -1,6 +1,8 @@
 name := "service-quiz"
-
 version := "0.1"
+organization := "com.github.piopon"
+licenses += ("MIT", url("https://github.com/piopon/smart-words/blob/main/LICENSE"))
+homepage := Some(url("https://github.com/piopon/smart-words"))
 
 scalaVersion := "2.13.6"
 scalacOptions ++= Seq("-deprecation", "-feature")

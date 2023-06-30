@@ -3,6 +3,9 @@ name := "service-quiz"
 version := "0.1"
 
 scalaVersion := "2.13.6"
+scalacOptions ++= Seq("-deprecation", "-feature")
+
+resolvers += Classpaths.sbtPluginReleases
 
 val Http4sVersion = "1.0.0-M21"
 val CirceVersion = "0.14.5"
@@ -21,7 +24,8 @@ libraryDependencies ++= Seq(
   "org.scalatest"   %% "scalatest"           % ScalaTestVersion
 )
 
-scalacOptions ++= Seq("-deprecation", "-feature")
+coverageMinimumBranchTotal := 70
+coverageFailOnMinimum := true
 
 run := Defaults
   .runTask(

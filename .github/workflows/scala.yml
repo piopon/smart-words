@@ -34,3 +34,24 @@ jobs:
         run: sbt coverage test
       - name: generate quiz backend service coverage report
         run: sbt coverageReport
+
+  check-word-service-changes:
+    runs-on: ubuntu-latest
+    name: filter word-service changes
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: checking changed files in backend word service
+        id: changed-word-backend
+        uses: tj-actions/changed-files@v37
+        with:
+          files: backend/service-word/**
+      - name: backend word service changed
+        if: steps.changed-word-backend.outputs.any_changed == 'true'
+        run: echo backend word-service files changed
+      - name: backend word service NOT changed
+        if: steps.changed-word-backend.outputs.any_changed != 'true'
+        run: |
+          echo backend word-service files not changed
+          exit 1

@@ -34,7 +34,7 @@ class WordDatabase {
     }
     dictionaryFiles.foreach(file => {
       Using(new BufferedInputStream(new FileInputStream(file))) { fileStream =>
-        val lines = Source.fromInputStream(fileStream).getLines.mkString.stripMargin
+        val lines = Source.fromInputStream(fileStream).getLines().mkString.stripMargin
         decode[List[Word]](lines) match {
           case Right(words) =>
             words.foreach(word => {

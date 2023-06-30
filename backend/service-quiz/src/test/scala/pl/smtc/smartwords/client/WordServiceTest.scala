@@ -15,7 +15,7 @@ class WordServiceTest(alive: Boolean = true, wordFail: Boolean = false, category
     if (wordFail) {
       throw new WordServiceException("Invalid input parameter(s) - getRandomWord error!")
     }
-    val randomIdString: String = new Random().nextInt.toString
+    val randomIdString: String = Random.nextInt().toString
     val randomWordName: String = "word-" + language + "-" + mode.toString + randomIdString
     Word(randomWordName, "verb", List("definition-main-" + randomIdString, "alternate-definition-" + randomIdString))
   }

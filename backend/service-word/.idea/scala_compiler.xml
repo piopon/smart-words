@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="service-quiz,service-quiz_6096,service-quiz_9211,service-word,service-word_4924,smart-words" />
+    <option name="deprecationWarnings" value="true" />
+    <option name="featureWarnings" value="true" />
+    <parameters>
+      <parameter value="-deprecation" />
+    </parameters>
+    <profile name="sbt" modules="service-word">
+      <option name="deprecationWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+    </profile>
   </component>
 </project>

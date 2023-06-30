@@ -1,12 +1,20 @@
 package pl.smtc.smartwords.database
 
+import org.scalatest.BeforeAndAfterAll
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.model.Mode
 
 import java.io.File
 import java.nio.file.{Path, Paths}
 
-class ModeDatabaseTest extends AnyFunSuite {
+class ModeDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
+
+  override def afterAll(): Unit = {
+    for {
+      files <- Option(new File(Paths.get(getClass.getResource("/").toURI).toString).listFiles)
+      file <- files if file.getName.endsWith(".json") && !file.getName.endsWith("test-mode-database-load.json")
+    } file.delete()
+  }
 
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
   private val databaseTestFile: String = "test-mode-database-crud.json"

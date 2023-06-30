@@ -43,7 +43,7 @@ class DictionaryControllerTest extends AnyFunSuite with BeforeAndAfterAll {
     val expected: Json = json"""[ { "game" : "quiz", "mode" : 998, "language" : "en" },
                                   { "game" : "quiz", "mode" : 999, "language" : "pl" },
                                   { "game" : "quiz", "mode" : 997, "language" : "de" } ]"""
-    assert(response.get.as[Json].unsafeRunSync === expected)
+    assert(response.get.as[Json].unsafeRunSync() === expected)
   }
 
   private def createTestDatabase(): WordDatabase = {

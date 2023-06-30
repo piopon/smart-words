@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  check-quiz-changes:
+  check-quiz-service-changes:
     runs-on: ubuntu-latest
     name: filter quiz-service changes
     steps:
@@ -21,11 +21,13 @@ jobs:
         run: echo backend quiz-service files changed
       - name: backend quiz service NOT changed
         if: steps.changed-quiz-backend.outputs.any_changed != 'true'
-        run: exit 1
+        run: |
+          echo backend quiz-service files not changed
+          exit 1
   test-quiz-service-changes:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    needs: [check-quiz-changes]
+    needs: [check-quiz-service-changes]
     steps:
       - uses: actions/checkout@v3
       - name: run quiz backend service unit tests

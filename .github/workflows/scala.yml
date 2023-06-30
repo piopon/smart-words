@@ -4,6 +4,37 @@ on:
     branches:
       - main
 jobs:
+  #--------------------------------------------- FRONTEND
+  check-frontend-changes:
+    runs-on: ubuntu-latest
+    name: filter frontend changes
+    outputs:
+      changes_present: ${{ steps.changed-frontend.outputs.any_changed }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: checking changed files in frontend
+        id: changed-frontend
+        uses: tj-actions/changed-files@v37
+        with:
+          files: frontend/**
+      - name: frontend changed
+        if: steps.changed-frontend.outputs.any_changed == 'true'
+        run: echo frontend files changed
+      - name: frontend NOT changed
+        if: steps.changed-frontend.outputs.any_changed != 'true'
+        run: echo frontend files not changed
+  test-frontend-changes:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    needs: [check-frontend-changes]
+    if: needs.check-frontend-changes.outputs.changes_present == 'true'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: anishathalye/proof-html@v2.0.4
+        with:
+          directory: frontend/
   #--------------------------------------------- BACKEND: QUIZ SERVICE
   check-quiz-service-changes:
     runs-on: ubuntu-latest

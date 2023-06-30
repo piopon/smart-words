@@ -1,0 +1,24 @@
+name: smart-words
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  check-quiz-changes:
+    runs-on: ubuntu-latest
+    name: filter quiz-service changes
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: checking changed files in backend quiz service
+        id: changed-quiz-backend
+        uses: tj-actions/changed-files@v37
+        with:
+          files: backend/service-quiz/**
+      - name: backend quiz service changed
+        if: steps.changed-quiz-backend.outputs.any_changed == 'true'
+        run: echo backend quiz-service files changed
+      - name: backend quiz service NOT changed
+        if: steps.changed-quiz-backend.outputs.any_changed != 'true'
+        run: exit 1

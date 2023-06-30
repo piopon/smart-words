@@ -6,7 +6,7 @@
     <parameters>
       <parameter value="-deprecation" />
     </parameters>
-    <profile name="sbt" modules="service-quiz">
+    <profile name="sbt 1" modules="service-quiz">
       <option name="deprecationWarnings" value="true" />
       <option name="featureWarnings" value="true" />
     </profile>

@@ -4,6 +4,7 @@ on:
     branches:
       - main
 jobs:
+  #--------------------------------------------- BACKEND: QUIZ SERVICE
   check-quiz-service-changes:
     runs-on: ubuntu-latest
     name: filter quiz-service changes
@@ -31,10 +32,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: run quiz backend service unit tests
+        working-directory: backend/service-quiz
         run: sbt coverage test
       - name: generate quiz backend service coverage report
+        working-directory: backend/service-quiz
         run: sbt coverageReport
-
+  #--------------------------------------------- BACKEND: WORD SERVICE
   check-word-service-changes:
     runs-on: ubuntu-latest
     name: filter word-service changes

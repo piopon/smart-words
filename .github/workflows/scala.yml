@@ -27,11 +27,10 @@ jobs:
         with:
           directory: frontend/
   #--------------------------------------------- BACKEND: QUIZ SERVICE
-  check-backend-quiz-changes:
+  test-backend-quiz-changes:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
-    name: check quiz backend changes
-    outputs:
-      changes_present: ${{ steps.changed-quiz-backend.outputs.any_changed }}
+    name: test quiz backend changes
     steps:
       - uses: actions/checkout@v3
         with:
@@ -41,32 +40,22 @@ jobs:
         uses: tj-actions/changed-files@v37
         with:
           files: backend/service-quiz/**
-      - name: log backend quiz WAS changed
-        if: steps.changed-quiz-backend.outputs.any_changed == 'true'
-        run: echo backend quiz service WAS changed
-      - name: log backend quiz NOT changed
+      - name: backend quiz files NOT changed
         if: steps.changed-quiz-backend.outputs.any_changed != 'true'
         run: echo backend quiz service NOT changed
-  test-backend-quiz-changes:
-    timeout-minutes: 10
-    runs-on: ubuntu-latest
-    name: test quiz backend changes
-    needs: [check-backend-quiz-changes]
-    if: needs.check-backend-quiz-changes.outputs.changes_present == 'true'
-    steps:
-      - uses: actions/checkout@v3
       - name: run quiz backend service unit tests
+        if: steps.changed-quiz-backend.outputs.any_changed == 'true'
         working-directory: backend/service-quiz
         run: sbt coverage test
       - name: generate quiz backend service coverage report
+        if: steps.changed-quiz-backend.outputs.any_changed == 'true'
         working-directory: backend/service-quiz
         run: sbt coverageReport
   #--------------------------------------------- BACKEND: WORD SERVICE
-  check-backend-word-changes:
+  test-backend-word-changes:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
-    name: check word backend changes
-    outputs:
-      changes_present: ${{ steps.changed-word-backend.outputs.any_changed }}
+    name: test word backend changes
     steps:
       - uses: actions/checkout@v3
         with:
@@ -76,23 +65,14 @@ jobs:
         uses: tj-actions/changed-files@v37
         with:
           files: backend/service-word/**
-      - name: log backend word WAS changed
-        if: steps.changed-word-backend.outputs.any_changed == 'true'
-        run: echo backend word service WAS changed
-      - name: log backend word NOT changed
+      - name: backend word files NOT changed
         if: steps.changed-word-backend.outputs.any_changed != 'true'
         run: echo backend word service NOT changed
-  test-backend-word-changes:
-    timeout-minutes: 10
-    runs-on: ubuntu-latest
-    name: test word backend changes
-    needs: [check-backend-word-changes]
-    if: needs.check-backend-word-changes.outputs.changes_present == 'true'
-    steps:
-      - uses: actions/checkout@v3
       - name: run word backend service unit tests
+        if: steps.changed-word-backend.outputs.any_changed == 'true'
         working-directory: backend/service-word
         run: sbt coverage test
       - name: generate word backend service coverage report
+        if: steps.changed-word-backend.outputs.any_changed == 'true'
         working-directory: backend/service-word
         run: sbt coverageReport

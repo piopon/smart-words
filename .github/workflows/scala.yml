@@ -55,6 +55,9 @@ jobs:
         if: steps.changed-quiz-backend.outputs.any_changed == 'true'
         working-directory: backend/service-quiz
         run: sbt coverageReport
+      - name: upload quiz backend service coverage report
+        uses: codecov/codecov-action@v3
+          env: CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   #--------------------------------------------- BACKEND: WORD SERVICE
   test-backend-word-changes:
     timeout-minutes: 5
@@ -84,3 +87,6 @@ jobs:
         if: steps.changed-word-backend.outputs.any_changed == 'true'
         working-directory: backend/service-word
         run: sbt coverageReport
+      - name: upload word backend service coverage report
+        uses: codecov/codecov-action@v3
+          env: CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

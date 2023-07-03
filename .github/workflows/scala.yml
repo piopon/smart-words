@@ -6,7 +6,7 @@ on:
 jobs:
   #--------------------------------------------- FRONTEND
   test-frontend-html-changes:
-    timeout-minutes: 60
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     name: test html frontend changes
     steps:
@@ -28,7 +28,7 @@ jobs:
           directory: frontend/
   #--------------------------------------------- BACKEND: QUIZ SERVICE
   test-backend-quiz-changes:
-    timeout-minutes: 10
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     name: test quiz backend changes
     steps:
@@ -57,7 +57,7 @@ jobs:
         run: sbt coverageReport
   #--------------------------------------------- BACKEND: WORD SERVICE
   test-backend-word-changes:
-    timeout-minutes: 10
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     name: test word backend changes
     steps:

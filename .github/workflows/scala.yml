@@ -43,6 +43,10 @@ jobs:
       - name: backend quiz files NOT changed
         if: steps.changed-quiz-backend.outputs.any_changed != 'true'
         run: echo backend quiz service NOT changed
+      - name: compike quiz backend service
+        if: steps.changed-quiz-backend.outputs.any_changed == 'true'
+        working-directory: backend/service-quiz
+        run: sbt compile
       - name: run quiz backend service unit tests
         if: steps.changed-quiz-backend.outputs.any_changed == 'true'
         working-directory: backend/service-quiz
@@ -68,6 +72,10 @@ jobs:
       - name: backend word files NOT changed
         if: steps.changed-word-backend.outputs.any_changed != 'true'
         run: echo backend word service NOT changed
+      - name: compile word backend service
+        if: steps.changed-word-backend.outputs.any_changed == 'true'
+        working-directory: backend/service-word
+        run: sbt compile
       - name: run word backend service unit tests
         if: steps.changed-word-backend.outputs.any_changed == 'true'
         working-directory: backend/service-word

@@ -5,11 +5,10 @@ on:
       - main
 jobs:
   #--------------------------------------------- FRONTEND
-  check-frontend-html-changes:
+  test-frontend-html-changes:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
-    name: check html frontend changes
-    outputs:
-      changes_present: ${{ steps.changed-frontend.outputs.any_changed }}
+    name: test html frontend changes
     steps:
       - uses: actions/checkout@v3
         with:
@@ -19,21 +18,12 @@ jobs:
         uses: tj-actions/changed-files@v37
         with:
           files: frontend/**
-      - name: log frontend WAS changed
-        if: steps.changed-frontend.outputs.any_changed == 'true'
-        run: echo frontend files changed
-      - name: log frontend NOT changed
+      - name: log frontend files NOT changed
         if: steps.changed-frontend.outputs.any_changed != 'true'
         run: echo frontend files not changed
-  test-frontend-html-changes:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    name: test html frontend changes
-    needs: [check-frontend-html-changes]
-    if: needs.check-frontend-html-changes.outputs.changes_present == 'true'
-    steps:
-      - uses: actions/checkout@v3
-      - uses: anishathalye/proof-html@v2.0.4
+      - name: run html frontent checks
+        if: steps.changed-frontend.outputs.any_changed == 'true'
+        uses: anishathalye/proof-html@v2.0.4
         with:
           directory: frontend/
   #--------------------------------------------- BACKEND: QUIZ SERVICE

@@ -43,7 +43,7 @@ jobs:
       - name: backend quiz files NOT changed
         if: steps.changed-quiz-backend.outputs.any_changed != 'true'
         run: echo backend quiz service NOT changed
-      - name: compike quiz backend service
+      - name: compile quiz backend service
         if: steps.changed-quiz-backend.outputs.any_changed == 'true'
         working-directory: backend/service-quiz
         run: sbt clean compile

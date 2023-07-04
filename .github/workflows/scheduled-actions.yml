@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     name: verify quiz backend
     steps:
-      - uses: actions/checkout@3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: compile quiz backend service

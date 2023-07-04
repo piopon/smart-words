@@ -21,7 +21,7 @@ jobs:
       - name: log frontend files NOT changed
         if: steps.changed-frontend.outputs.any_changed != 'true'
         run: echo frontend files not changed
-      - name: run html frontent checks
+      - name: run html frontend checks
         if: steps.changed-frontend.outputs.any_changed == 'true'
         uses: anishathalye/proof-html@v2.0.4
         with:

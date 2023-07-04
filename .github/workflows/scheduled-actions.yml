@@ -1,4 +1,4 @@
-name: CHECK
+name: backend status
 on: 
   workflow_dispatch:
   schedule:
@@ -22,6 +22,27 @@ jobs:
         working-directory: backend/service-quiz
         run: sbt coverageReport
       - name: upload quiz backend service coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+  verify-backend-word:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    name: verify word backend
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: compile word backend service
+        working-directory: backend/service-word
+        run: sbt clean compile
+      - name: run word backend service unit tests
+        working-directory: backend/service-word
+        run: sbt coverage test
+      - name: generate word backend service coverage report
+        working-directory: backend/service-word
+        run: sbt coverageReport
+      - name: upload word backend service coverage report
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

@@ -34,7 +34,7 @@ header .filler {
 header #site-logo {
   height: 64px;
   width: 64px;
-  margin: 0 0 8 10px;
+  margin: 0px 0px 8px 10px;
   background: url(../images/essentials/logo.png) no-repeat;
 }
 
@@ -47,7 +47,7 @@ header #site-title {
 header #btn-page-back {
   height: 80px;
   width: 80px;
-  margin: 0 20 0 0px;
+  margin: 0px 20px 0px 0px;
   color: transparent !important;
   border: 0px solid black;
   background: url(../images/menu-items/back.png) no-repeat;

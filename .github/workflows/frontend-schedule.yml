@@ -1,0 +1,18 @@
+name: frontend status
+on: 
+  workflow_dispatch:
+  schedule:
+    - cron: "0 20 * * 1"
+jobs:
+  verify-frontend-html:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    name: verify html frontend
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: check html frontend
+        uses: anishathalye/proof-html@v2.0.4
+        with:
+          directory: frontend/

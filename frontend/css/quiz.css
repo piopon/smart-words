@@ -257,7 +257,6 @@ p.mode-section-label {
   justify-content: center;
   align-items: center;
   margin: 0 25px;
-  width: 100% - 25px;
 }
 
 div[id^="question-option-"] {

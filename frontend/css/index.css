@@ -49,8 +49,11 @@
 }
 
 #btn-quiz-start:before {
-  inset: 0% 0% 0% 0%;
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   line-height: 248px;
   content: "let's go !!!";
   background: var(--primary-color);

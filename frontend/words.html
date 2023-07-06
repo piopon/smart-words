@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>smart-words</title>
@@ -6,8 +7,6 @@
     <link rel="stylesheet" href="css/modal.css" />
     <link rel="stylesheet" href="css/words.css" />
     <link rel="icon" type="image/x-icon" href="./images/essentials/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto+Condensed&display=swap" rel="stylesheet" />
     <script src="./js/words-api.js" defer></script>
     <script src="./js/words-state.js" defer></script>
@@ -20,7 +19,7 @@
       <a href="index.html" id="site-logo"></a>
       <h3 id="site-title" class="no-select">Smart Words</h3>
       <div class="filler"></div>
-      <a id="btn-add-word" class="disabled no-select" onclick="addWord()">ADD</a>
+      <a href="#" id="btn-add-word" class="disabled no-select" onclick="addWord()">ADD</a>
       <form action="index.html">
         <button id="btn-page-back" class="no-select">BACK</button>
       </form>
@@ -37,7 +36,7 @@
               <input type="text" id="word-form-name" class="word-form-field" placeholder="word name" />
               <label for="word-form-cat" class="word-form-label">category:</label>
               <select name="categories" id="word-form-cat" class="word-form-field" required>
-                <option value="" default selected hidden>select category</option>
+                <option value="" selected hidden>select category</option>
                 <option value="verb">verb</option>
                 <option value="adjective">adjective</option>
                 <option value="noun">noun</option>
@@ -61,19 +60,19 @@
         <div>
           <label for="dictionary-selector-game" class="dictionary-selector-label">game:</label>
           <select name="games" id="dictionary-selector-game" onchange="gameChanged()" disabled>
-            <option value="" default selected hidden>select game</option>
+            <option value="" selected hidden>select game</option>
           </select>
         </div>
         <div>
           <label for="dictionary-selector-mode" class="dictionary-selector-label">mode:</label>
           <select name="modes" id="dictionary-selector-mode" onchange="modeChanged()" disabled>
-            <option value="" default selected hidden>select mode</option>
+            <option value="" selected hidden>select mode</option>
           </select>
         </div>
         <div>
           <label for="dictionary-selector-language" class="dictionary-selector-label">language:</label>
           <select name="languages" id="dictionary-selector-language" onchange="languageChanged()" disabled>
-            <option value="" default selected hidden>select language</option>
+            <option value="" selected hidden>select language</option>
           </select>
         </div>
       </div>
@@ -94,7 +93,7 @@
           </thead>
           <tbody>
             <tr id="no-words-row" class="row-loading">
-              <td id="no-words-content" rowspan="4">
+              <td id="no-words-content">
                 <p>loading...</p>
               </td>
             </tr>

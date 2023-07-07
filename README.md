@@ -41,4 +41,4 @@ User can extend the current capabilities by creating a new word dictionaries for
 Follow the steps from the [`CONTRIBUTING.md`](CONTRIBUTING.md) file contents.
 
 ---
-Created by PNK with 💚 @ 2022-2023
+<p align="center">Created by PNK with 💚 @ 2022-2023</p>

@@ -43,3 +43,6 @@ To contribute take the following steps:
 - Click the green "Create pull request" button
 
 The rest of the procedure is the same as for editing a file directly on GitHub, the change is reviewed for conflicts against the base branch, the owner gets an email notification, and if happy will merge your change or start a review process.
+
+---
+<p align="center">Created by PNK with 💚 @ 2022-2023.</p>

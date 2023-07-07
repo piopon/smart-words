@@ -9,7 +9,7 @@
 * guessing the definition of the specified word,
 * guessing the word based on a provided definition.
 
-Custom dictionaries and sets of words for different languages can be created, and also the currently exisiting ones can be edited. Also the modes themselves can be freely edited via the UI.
+Custom dictionaries and sets of words for different languages can be created, and also the currently exisiting ones can be edited. Existing modes can be freely edited via the UI by editing input parameters.
 
 with Scala backend and HTML/CSS/JS (VanillaJS 😉) frontend.
 

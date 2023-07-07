@@ -13,5 +13,31 @@ Currently only a quiz type of game is available which supports two types of mode
 
 User can extend the current capabilities by creating a new word dictionaries for different languages, as well as edit the currently exisiting ones. The modes mentioned above can be edited via the UI by adjusting their input parameters, options, and labels.
 
+## contents
+ * [why?](#why)
+ * [running application](#running-application)
+ * [starting a game](#starting-a-game)
+ * [editing dictionaries](#editing-dictionaries)
+ * [editing quiz modes](#editing-quiz-modes)
+ * [want to contribute?](#want-to-contribute)
+
+## why?
+
+
+## running application
+
+
+## starting a game
+
+
+## editing dictionaries
+
+
+## editing quiz modes
+
+
+## want to contribute?
+
+
 ---
 Created by PNK with 💚 @ 2022-2023

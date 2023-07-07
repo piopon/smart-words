@@ -38,6 +38,7 @@ User can extend the current capabilities by creating a new word dictionaries for
 
 ## want to contribute?
 
+Follow the steps from the [`CONTRIBUTING.md`](CONTRIBUTING.md) file contents.
 
 ---
 Created by PNK with 💚 @ 2022-2023

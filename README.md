@@ -5,14 +5,13 @@
 ![license-mit](https://img.shields.io/github/license/piopon/smart-words)
 [![codecov](https://codecov.io/gh/piopon/smart-words/branch/main/graph/badge.svg?token=2R3LUSOGW6)](https://codecov.io/gh/piopon/smart-words)
 
-**Smart Words** is a simple quiz application which currently supports two types of quiz modes:
+**Smart Words** is a simple web application written in Scala (backend) and HTML/CSS/JS (frontend) which focuses on different games with words.
+
+Currently only a quiz type of game is available which supports two types of modes:
 * guessing the definition of the specified word,
 * guessing the word based on a provided definition.
 
-Custom dictionaries and sets of words for different languages can be created, and also the currently exisiting ones can be edited. Existing modes can be freely edited via the UI by editing input parameters.
-
-with Scala backend and HTML/CSS/JS (VanillaJS 😉) frontend.
-
+User can extend the current capabilities by creating a new word dictionaries for different languages, as well as edit the currently exisiting ones. The modes mentioned above can be edited via the UI by adjusting their input parameters, options, and labels.
 
 ---
 Created by PNK with 💚 @ 2022-2023

@@ -33,6 +33,8 @@ Having that said now all the frontend logic is done in HTML, CSS, and JS while t
 * quiz service - responsible for controlling quiz game type with starting, stopping quiz, receiving questions and sending answers, and finally for calculating the final result
 * word service - responsible for adding, deleting, and updating words in appropriate dictionary files.
 
+No database engine is currently used. All data is saved directly in the JSON files. New words are saved in a entirely new files which all are read while starting word service. Quiz service has only in-memory database for now (quizzes are stored in a map).
+
 ## running application
 
 

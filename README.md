@@ -43,6 +43,8 @@ Currently there is no release package or Docker image distribution.
 
 One can manually invoke the [interactive `sbt` tool](https://www.scala-sbt.org/1.x/docs/index.html) (initially reffered to as `Simple Build Tool`, then redefined to `Scala Build Tool`, but really the name doesn’t stand for anything, it’s just `sbt` 😎) to create JAR packages for both backend services and after that run them on the same machine, and then open the `index.html` page from the `frontend` directory.
 
+Alternatively, one can use the IntelliJ editor and run both services in it, and then run `index.html` from the `frontend` folder.
+
 ## starting a game
 
 

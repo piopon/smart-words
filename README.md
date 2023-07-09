@@ -39,6 +39,9 @@ No database engine is currently used. All data is saved directly in the JSON fil
 
 ## running application
 
+Currently there is no release package or Docker image distribution.
+
+One can manually invoke the [interactive `sbt` tool](https://www.scala-sbt.org/1.x/docs/index.html) (initially reffered to as `Simple Build Tool`, then redefined to `Scala Build Tool`, but really the name doesn’t stand for anything, it’s just `sbt` 😎) to create JAR packages for both backend services and after that run them on the same machine, and then open the `index.html` page from the `frontend` directory.
 
 ## starting a game
 

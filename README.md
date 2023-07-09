@@ -27,8 +27,8 @@ This application started as a hobby side-project useful for learning and consoli
 The first and most obvious choice was to create a quiz game where the user has four options to select the correct answer.
 Currently this is the only type of game fully implemented but there is a plan to add more modes like: hangman or wordly-like game.
 
-> **Warning**
-> I don't have an exact plan for when new game modes will be added to the app.
+> **Warning**<br>
+> I don't have an exact plan for when new game modes will be added to the app 😅.
 
 Initially, this application was to be written entirely in HTML/CSS/JS and run entirely on the client side.
 Over time, this concept has evolved and the logic has been applied to the microservices architecture.
@@ -42,9 +42,10 @@ No database engine is currently used. All data is saved directly in the JSON fil
 
 ## running application
 
-> **Note**
-> I realize that the current way of launching the application is cumbersome (at least), so I'm going to improve it.
-> This section of the documentation will be updated as it happens. Stay tuned.
+> **Note**<br>
+> I realize that the current way of launching the application is not very useful and cumbersome (at least 😉). I'm going to improve it sooner than later.
+> This section of the documentation will be updated as it happens.<br>
+> Stay tuned 📢.
 
 Currently there is no release package or Docker image distribution.
 

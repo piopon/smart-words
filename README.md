@@ -29,9 +29,11 @@ Currently this is the only type of game fully implemented but there is a plan to
 
 Initially, this application was to be written entirely in HTML/CSS/JS and run entirely on the client side.
 Over time, this concept has evolved and the logic has been applied to the microservices architecture.
-Having that said now all the frontend logic is done in HTML, CSS, and JS while the backend logic is divided into services:
-* quiz service - responsible for controlling quiz game type with starting, stopping quiz, receiving questions and sending answers, and finally for calculating the final result
-* word service - responsible for adding, deleting, and updating words in appropriate dictionary files.
+Having that said now it all ended that:
+* the frontend logic is done in HTML, CSS, and JavaScript, 
+* the backend logic is divided into services written in Scala:
+  * quiz service - responsible for controlling quiz game type which includes: starting and stopping quizzes, receiving questions and sending answers, and calculating the final result
+  * word service - responsible for handling different words and dicrionarires for specific languages. This includes: reading, adding, deleting, and updating words in appropriate dictionary files, and handle those files as well.
 
 No database engine is currently used. All data is saved directly in the JSON files. New words are saved in a entirely new files which all are read while starting word service. Quiz service has only in-memory database for now (quizzes are stored in a map).
 

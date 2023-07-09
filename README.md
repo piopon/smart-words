@@ -56,12 +56,16 @@ Alternatively, one can use the IntelliJ editor and run both services in it, and 
 ## starting a game
 
 After running the application a big button is visible at the center of the screen:
+![smart-words home screen](/resources/docs/000_home-screen.png)
 
 After pressing it user will be provided with the mode selection where languages and other settings can be adjusted:
+![smart-words home screen](/resources/docs/001_quiz-mode-selection.png)
 
 Pressing "start" on a particular quiz mode will start a new game and a first question will appear:
+![smart-words home screen](/resources/docs/002_quiz-question.png)
 
 After answering questions (or by explicitly quitting) the quiz will finish and a summary will be displayed:
+![smart-words home screen](/resources/docs/003_quiz-summary.png)
 
 Acknowledging this screen will return the user to the quiz mode selection screen.
 

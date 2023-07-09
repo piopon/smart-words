@@ -24,13 +24,13 @@ User can extend the current capabilities by creating a new word dictionaries for
 ## why?
 
 This application started as a hobby side-project useful for learning and consolidating new words in different languages in the form of various fun games.
-The first and most obvious choice was to create a quiz game where the user has four options to select the correct answer. 
+The first and most obvious choice was to create a quiz game where the user has four options to select the correct answer.
 Currently this is the only type of game fully implemented but there is a plan to add more modes like: hangman or wordly-like game.
 
 Initially, this application was to be written entirely in HTML/CSS/JS and run entirely on the client side.
 Over time, this concept has evolved and the logic has been applied to the microservices architecture.
 Having that said now it all ended that:
-* the frontend logic is done in HTML, CSS, and JavaScript, 
+* the frontend logic is done in HTML, CSS, and JavaScript,
 * the backend logic is divided into services written in Scala:
   * quiz service - responsible for controlling quiz game type which includes: starting and stopping quizzes, receiving questions and sending answers, and calculating the final result
   * word service - responsible for handling different words and dicrionarires for specific languages. This includes: reading, adding, deleting, and updating words in appropriate dictionary files, and handle those files as well.

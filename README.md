@@ -55,6 +55,15 @@ Alternatively, one can use the IntelliJ editor and run both services in it, and 
 
 ## starting a game
 
+After running the application a big button is visible at the center of the screen:
+
+After pressing it user will be provided with the mode selection where languages and other settings can be adjusted:
+
+Pressing "start" on a particular quiz mode will start a new game and a first question will appear:
+
+After answering questions (or by explicitly quitting) the quiz will finish and a summary will be displayed:
+
+Acknowledging this screen will return the user to the quiz mode selection screen.
 
 ## editing dictionaries
 

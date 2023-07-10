@@ -63,12 +63,12 @@ After pressing the `start quiz` button user will be provided with the mode selec
 ![smart-words home screen](/resources/docs/001_quiz-mode-selection.png)
 As stated in the first section of this documentation currently two modes are supported: guessing the definition of a specified word, and selecting the word by the provided definition.
 
-Pressing "start" on a particular quiz mode will start a new game and a first question will appear:
+Pressing `start` on a particular quiz mode will start a new game and a first question will appear:
 ![smart-words home screen](/resources/docs/002_quiz-question.png)
+This screen consists of four answer buttons (labeled `A`, `B`, `C`, and `D`) with a question above those buttons (currently depending on the selected mode it can be a word or a definition). On the bottom one can navigate between questions via the `PREVIOUS` and `NEXT` buttons, as well as instantly end the game using the `STOP` button.
 
 After answering questions (or by explicitly quitting) the quiz will finish and a summary will be displayed:
 ![smart-words home screen](/resources/docs/003_quiz-summary.png)
-
 Acknowledging this screen will return the user to the quiz mode selection screen.
 
 ## editing dictionaries

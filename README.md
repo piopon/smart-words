@@ -16,7 +16,7 @@ User can extend the current capabilities by creating a new word dictionaries for
 ## contents
  * [why?](#why)
  * [running application](#running-application)
- * [starting a game](#starting-a-game)
+ * [starting a quiz game](#starting-a-quiz-game)
  * [editing dictionaries](#editing-dictionaries)
  * [editing quiz modes](#editing-quiz-modes)
  * [want to contribute?](#want-to-contribute)
@@ -53,7 +53,7 @@ One can manually invoke the [interactive `sbt` tool](https://www.scala-sbt.org/1
 
 Alternatively, one can use the IntelliJ editor and run both services in it, and then run `index.html` from the `frontend` folder.
 
-## starting a game
+## starting a `quiz` game
 
 After running the application a big button with `start quiz` label is visible at the center of the screen:
 ![smart-words home screen](/resources/docs/000_home-screen.png)

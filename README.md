@@ -55,11 +55,13 @@ Alternatively, one can use the IntelliJ editor and run both services in it, and 
 
 ## starting a game
 
-After running the application a big button is visible at the center of the screen:
+After running the application a big button with `start quiz` label is visible at the center of the screen:
 ![smart-words home screen](/resources/docs/000_home-screen.png)
+One can also see a top menu buttons which are responsible for dictionary edition and quiz mode settings.
 
-After pressing it user will be provided with the mode selection where languages and other settings can be adjusted:
+After pressing the `start quiz` button user will be provided with the mode selection where languages and other settings can be adjusted:
 ![smart-words home screen](/resources/docs/001_quiz-mode-selection.png)
+As stated in the first section of this documentation currently two modes are supported: guessing the definition of a specified word, and selecting the word by the provided definition.
 
 Pressing "start" on a particular quiz mode will start a new game and a first question will appear:
 ![smart-words home screen](/resources/docs/002_quiz-question.png)

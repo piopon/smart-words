@@ -88,6 +88,15 @@ Also a new word can be added by clicking the `+` button in the top-right corner 
 
 ## editing quiz modes
 
+Besides editing words dictionaries, user can also edit quiz modes. To do so a right-most icon should be selected from the main `index.html` screen and a new view will appear:
+![settings edit quiz modes](/resources/docs/007_settings-mode-edit.png)
+From this screen the user can add new mode, select the input settings and modify them with custom values. Currently only two settings are supported:
+* `questions` - which allows to specify the minum, maximum, and initial value of quiz questions
+* `languages` - which allows to select supported languages which correspond to the dictionary JSON files
+
+Both of those settings can be dragged and dropped to the selected mode, but only one instance can be present at once in a single mode. Every change will make the edited mode as "dirty" which will show a disc icon with an exclamation mark on the left side of edited mode.
+
+Also the user can remove manually added modes. The ones defined in the main `modes.json` file in the backend quiz service resources directory cannot be removed from the UI. Only manual JSON file modification can delete them permanently.
 
 ## want to contribute?
 

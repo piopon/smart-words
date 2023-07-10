@@ -71,6 +71,18 @@ Acknowledging this screen will return the user to the quiz mode selection screen
 
 ## editing dictionaries
 
+User can also edit existing dicrionaries (new ones can be currently added only manually to the word service resource - for more information checkout the appropriate [README.md](backend/service-word/src/main/resources/README.md)).
+
+To do so one must select the dictionary icon (second right icon from the upper menu in the main `index.html` site). After that the frontend will receive and display all words for a specified dictionary:
+![dictionary show all words](/resources/docs/004_dictionary-show-words.png)
+
+Selecting combo boxes on the top of the words table will change the dictionary to be displayed. For example in the screenshot above all words for the `quiz` mode `0` and `en` (English) language dictionary is displayed.
+
+After that the user can edit or delete a word by selecting the blue or red button of each word:
+![dictionary edit word](/resources/docs/006_dictionary-edit-word.png)
+
+Also a new word can be added by clicking the `+` button in the top-right corner of the window. This will result a similar dialog to appear:
+![dictionary add word](/resources/docs/005_dictionary-add-word.png)
 
 ## editing quiz modes
 

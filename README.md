@@ -56,19 +56,19 @@ Alternatively, one can use the IntelliJ editor and run both services in it, and 
 ## starting a `quiz` game
 
 After running the application a big button with `start quiz` label is visible at the center of the screen:
-![smart-words home screen](/resources/docs/000_home-screen.png)
+![smart-words: home screen](/resources/docs/000_home-screen.png)
 One can also see a top menu buttons which are responsible for dictionary edition and quiz mode settings.
 
 After pressing the `start quiz` button user will be provided with the mode selection where languages and other settings can be adjusted:
-![smart-words home screen](/resources/docs/001_quiz-mode-selection.png)
+![quiz: select mode view](/resources/docs/001_quiz-mode-selection.png)
 As stated in the first section of this documentation currently two modes are supported: guessing the definition of a specified word, and selecting the word by the provided definition.
 
 Pressing `start` on a particular quiz mode will start a new game and a first question will appear:
-![smart-words home screen](/resources/docs/002_quiz-question.png)
+![quiz: question view](/resources/docs/002_quiz-question.png)
 This screen consists of four answer buttons (labeled `A`, `B`, `C`, and `D`) with a question above those buttons (currently depending on the selected mode it can be a word or a definition). On the bottom one can navigate between questions via the `PREVIOUS` and `NEXT` buttons, as well as instantly end the game using the `STOP` button.
 
 After answering questions (or by explicitly quitting) the quiz will finish and a summary will be displayed:
-![smart-words home screen](/resources/docs/003_quiz-summary.png)
+![quiz: summary view](/resources/docs/003_quiz-summary.png)
 Acknowledging this screen will return the user to the quiz mode selection screen.
 
 ## editing dictionaries
@@ -76,20 +76,20 @@ Acknowledging this screen will return the user to the quiz mode selection screen
 User can also edit existing dicrionaries (new ones can be currently added only manually to the word service resource - for more information checkout the appropriate [README.md](backend/service-word/src/main/resources/README.md)).
 
 To do so one must select the dictionary icon (second right icon from the upper menu in the main `index.html` site). After that the frontend will receive and display all words for a specified dictionary:
-![dictionary show all words](/resources/docs/004_dictionary-show-words.png)
+![dictionary: show all words](/resources/docs/004_dictionary-show-words.png)
 
 Selecting combo boxes on the top of the words table will change the dictionary to be displayed. For example in the screenshot above all words for the `quiz` mode `0` and `en` (English) language dictionary is displayed.
 
 After that the user can edit or delete a word by selecting the blue or red button of each word:
-![dictionary edit word](/resources/docs/006_dictionary-edit-word.png)
+![dictionary: edit word](/resources/docs/006_dictionary-edit-word.png)
 
 Also a new word can be added by clicking the `+` button in the top-right corner of the window. This will result a similar dialog to appear:
-![dictionary add word](/resources/docs/005_dictionary-add-word.png)
+![dictionary: add word](/resources/docs/005_dictionary-add-word.png)
 
 ## editing quiz modes
 
 Besides editing words dictionaries, user can also edit quiz modes. To do so a right-most icon should be selected from the main `index.html` screen and a new view will appear:
-![settings edit quiz modes](/resources/docs/007_settings-mode-edit.png)
+![settings: edit quiz modes](/resources/docs/007_settings-mode-edit.png)
 From this screen the user can add new mode, select the input settings and modify them with custom values. Currently only two settings are supported:
 * `questions` - which allows to specify the minum, maximum, and initial value of quiz questions
 * `languages` - which allows to select supported languages which correspond to the dictionary JSON files

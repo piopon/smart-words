@@ -1,4 +1,5 @@
-# Content
+# smart-words / service-word / resources
+
 This directory contains dictionary JSON files with words
 names, categories, and definitions for all supported types
 of games with language and mode distinction.

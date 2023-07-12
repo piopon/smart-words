@@ -39,7 +39,7 @@ Currently the application is structured as follows:
   * quiz service - responsible for controlling quiz game type which includes: starting and stopping quizzes, receiving questions and sending answers, and calculating the final result
   * word service - responsible for handling different words and dicrionarires for specific languages. This includes: reading, adding, deleting, and updating words in appropriate dictionary files, and handle those files as well.
 
-No database engine is currently used. All data is saved directly in the JSON files. New words are saved in a entirely new files which all are read while starting word service. Quiz service has only in-memory database for now (quizzes are stored in a map).
+No database engine is currently used. All data is saved directly in the JSON files stored in the resources directory for both backend services. New words are saved in a entirely new files which all are read while starting word service. Quiz service has only in-memory database for now (quizzes are stored in a map).
 
 ## running application
 

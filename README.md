@@ -23,7 +23,7 @@ User can extend the current capabilities by creating a new word dictionaries for
 
 ## why?
 
-This application started as a hobby side-project useful for learning and consolidating new words in different languages in the form of various fun games.
+This application started as a hobby side-project for learning web technologies and consolidating new words in different languages in the form of various fun word games.
 The first and most obvious choice was to create a quiz game where the user has four options to select the correct answer.
 Currently this is the only type of game fully implemented but there is a plan to add more modes like: hangman or wordly-like game.
 

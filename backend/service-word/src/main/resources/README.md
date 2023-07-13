@@ -42,3 +42,6 @@ where:
 * `words-hangman-fr@words.json` - this dictionary contains
   words for `hangman` game type and language: `fr`.
   It has description: `words`.
+
+---
+<p align="center">Created by PNK with 💚 @ 2022-2023</p>

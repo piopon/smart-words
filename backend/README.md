@@ -11,3 +11,6 @@ Finally after finishing a quiz it calculates the end result.
 It's responsible for handling CRUD operations on dictionaries: adding new word to a specified dictionary JSON file, reading dictionary JSON files, editing and removing an existing word in a dictionary.
 This service has built-in dictionary files which user can edit, read or delete, but any new file is saved in a separate JSON file to separate the built-in words from user created ones.<br>
 More detailed information about dictionary file naming convention is available [HERE](service-word/src/main/resources/README.md).
+
+---
+<p align="center">Created by PNK with 💚 @ 2022-2023</p>

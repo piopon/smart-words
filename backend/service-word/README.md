@@ -15,5 +15,9 @@ This service has built-in dictionary files which user can edit, read or delete, 
 * `PUT /words/{mode}/{lang}/{name} + JSON` -> `OK 200+JSON` | `ERR 404`<br>Update word
 * `DELETE /words/{mode}/{lang}/{name}` -> `OK 200` | `ERR 404`<br>Delete word
 
+### technology
+
+<img src="../../resources/logo/scala.png" alt="scala logo" width="300"/>
+
 ---
 <p align="center">Created by PNK with 💚 @ 2022-2023</p>

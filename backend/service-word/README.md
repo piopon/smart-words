@@ -7,13 +7,14 @@ This service has built-in dictionary files which user can edit, read or delete, 
 
 ### endpoints
 
-* `GET /words/{mode}/{lang}` -> `OK 200+JSON` | `ERR 500`<br>Receive all language-specific words
-* `GET /words/{mode}/{lang}?size=no` -> `OK 200+JSON` | `ERR 500`<br>Receive specified number of words
-* `GET /words/{mode}/{lang}?cat=adj` -> `OK 200+JSON` | `ERR 500`<br>Receive category-specific words
-* `GET /words/{mode}/{lang}?random=bool` -> `OK 200+JSON` | `ERR 500`<br>Receive words in random order
-* `POST /words/{mode}/{lang} + JSON` -> `OK 200` | `ERR 500`<br>Add a new word
-* `PUT /words/{mode}/{lang}/{name} + JSON` -> `OK 200+JSON` | `ERR 404`<br>Update word
-* `DELETE /words/{mode}/{lang}/{name}` -> `OK 200` | `ERR 404`<br>Delete word
+* `GET /words/{mode}/{lang}` -> `OK 200+JSON` | `ERR 500`<br>Receive all language-specific words for selected mode
+* `GET /words/{mode}/{lang}?size=no` -> `OK 200+JSON` | `ERR 500`<br>Receive specified number of words for selected mode and language
+* `GET /words/{mode}/{lang}?cat=adj` -> `OK 200+JSON` | `ERR 500`<br>Receive category-specific words for selected mode and language
+* `GET /words/{mode}/{lang}?random=bool` -> `OK 200+JSON` | `ERR 500`<br>Receive words in random order for selected mode and language
+* `POST /words/{mode}/{lang} + JSON` -> `OK 200` | `ERR 500`<br>Add a new word to dictionary with specified mode and language
+* `PUT /words/{mode}/{lang}/{name} + JSON` -> `OK 200+JSON` | `ERR 404`<br>Update word in dictionary with specified mode and language
+* `DELETE /words/{mode}/{lang}/{name}` -> `OK 200` | `ERR 404`<br>Delete word from dictionary with specified mode and language
+* `GET /dictionaries` -> `OK 200+JSON` | `ERR 500`<br>Receive all used dictionary information
 
 ### technology
 

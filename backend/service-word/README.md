@@ -19,5 +19,9 @@ This service has built-in dictionary files which user can edit, read or delete, 
 
 <img src="../../resources/logo/scala.png" alt="scala logo" width="300"/>
 
+This service is written entirely in **Scala** language.<br>
+No database framework is used. All files are saved directly into JSON files containing all information about dictionaries.
+For more info about dictionaries checkout [THIS](src/main/resources/README.md) markdown documentation file.
+
 ---
 <p align="center">Created by PNK with 💚 @ 2022-2023</p>

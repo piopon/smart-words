@@ -7,6 +7,8 @@ This service has built-in dictionary files which user can edit, read or delete, 
 
 ### endpoints
 
+* `GET /health` -> `RET: OK 200+JSON` | `ERR 500+JSON`<br>Check service health
+* `GET /dictionaries` -> `OK 200+JSON` | `ERR 500`<br>Receive all used dictionary information
 * `GET /words/{mode}/{lang}` -> `OK 200+JSON` | `ERR 500`<br>Receive all language-specific words for selected mode
 * `GET /words/{mode}/{lang}?size=no` -> `OK 200+JSON` | `ERR 500`<br>Receive specified number of words for selected mode and language
 * `GET /words/{mode}/{lang}?cat=adj` -> `OK 200+JSON` | `ERR 500`<br>Receive category-specific words for selected mode and language
@@ -14,7 +16,6 @@ This service has built-in dictionary files which user can edit, read or delete, 
 * `POST /words/{mode}/{lang} + JSON` -> `OK 200` | `ERR 500`<br>Add a new word to dictionary with specified mode and language
 * `PUT /words/{mode}/{lang}/{name} + JSON` -> `OK 200+JSON` | `ERR 404`<br>Update word in dictionary with specified mode and language
 * `DELETE /words/{mode}/{lang}/{name}` -> `OK 200` | `ERR 404`<br>Delete word from dictionary with specified mode and language
-* `GET /dictionaries` -> `OK 200+JSON` | `ERR 500`<br>Receive all used dictionary information
 
 ### technology
 

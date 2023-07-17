@@ -19,5 +19,12 @@ Finally after finishing a quiz it calculates the end result.
 * `POST /quiz/{uuid}/question/{no}/{answerNo}` -> `RET: OK 200` | `ERR 404`<br>Send question answer
 * `GET /quiz/{uuid}/stop` -> `RET: OK 200` | `ERR 404`<br>End quiz and get result
 
+### technology
+
+<img src="../../resources/logo/scala.png" alt="scala logo" width="300"/>
+
+This service is written entirely in **Scala** language.<br>
+No database framework is used. All quiz information is stored in memory.
+
 ---
 <p align="center">Created by PNK with 💚 @ 2022-2023</p>

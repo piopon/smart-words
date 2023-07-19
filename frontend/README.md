@@ -4,9 +4,9 @@ This folder contains all frontend files needed on the client side. The main entr
 
 Besides the HTML file there are also directories:
 
-* **css**: containing the style of the UI
-* **images**: containing the art and resources for the UI
-* **js**: containing logic of the UI
+* **css**: containing the style of the UI.
+* **images**: containing the art and resources for the UI.<br>For more info on how to create menu icons checkout [THIS](images/menu-items/README.md) markdown file.
+* **js**: containing logic of the UI.
 
 ### technology
 

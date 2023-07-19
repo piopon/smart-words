@@ -20,3 +20,5 @@ To create a new menu item one may use different offline and online image editors
 
 5. adjust colors
 ![pixlr: adjust colors](../../../resources/docs/012_menu-items-color.png)
+
+After the above modification a ready-to-go hover icon can be exported. The original icon should be used as a enabled version of the image. The disabled icon should be completely transparent and it should not contain any colors.

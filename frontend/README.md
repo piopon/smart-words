@@ -8,5 +8,12 @@ Besides the HTML file there are also directories:
 * **images**: containing the art and resources for the UI
 * **js**: containing logic of the UI
 
+### technology
+
+<img src="../resources/logo/web-tech.png" alt="scala logo" width="300"/>
+
+This frontend is written in common web technologies: **HTML**, **CSS**, and **JavaScript**.<br>
+No boostrap nor frameworks are used.
+
 ---
 <p align="center">Created by PNK with 💚 @ 2022-2023</p>

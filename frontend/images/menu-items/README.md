@@ -1,5 +1,9 @@
 # smart-words / frontend / menu items
 
+[ FRONTEND DOCS ](../../README.md) |
+[ BACKEND DOCS ](../../../backend/README.md) |
+[ MAIN DOCS ](../../../README.md)
+
 This folder contains all menu item icons for three different states: enabled, disabled, and hovered.
 
 ### how to create hover image?

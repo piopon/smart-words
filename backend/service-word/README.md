@@ -1,5 +1,9 @@
 # smart-words / backend / service-word
 
+[ BACKEND DOCS ](../README.md) |
+[ FRONTEND DOCS ](../../frontend/README.md) |
+[ MAIN DOCS ](../../README.md)
+
 Service for handling word and dictionary files for different games and/or modes.
 
 It's responsible for handling CRUD operations on dictionaries: adding new word to a specified dictionary JSON file, reading dictionary JSON files, editing and removing an existing word in a dictionary.<br>

@@ -1,4 +1,8 @@
-# smart-words / service-word / resources
+# smart-words / backend / service-word / resources
+
+[ SERVICE DOCS ](../../../README.md) |
+[ BACKEND DOCS ](../../../../README.md) |
+[ MAIN DOCS ](../../../../../README.md)
 
 This directory contains dictionary JSON files with words
 names, categories, and definitions for all supported types

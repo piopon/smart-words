@@ -1,5 +1,8 @@
 # smart-words / backend
 
+[ FRONTEND DOCS ](../frontend/README.md) |
+[ MAIN DOCS ](../README.md)
+
 This folder contains all backend services used in smart-words application:
 
 * **service-quiz**: backend service for handling word quiz type of game ([DOCS](./service-quiz/README.md)).<br>

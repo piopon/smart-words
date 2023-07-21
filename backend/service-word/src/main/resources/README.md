@@ -1,20 +1,25 @@
-# Content
+# smart-words / backend / service-word / resources
+
+[ SERVICE DOCS ](../../../README.md) |
+[ BACKEND DOCS ](../../../../README.md) |
+[ MAIN DOCS ](../../../../../README.md)
+
 This directory contains dictionary JSON files with words
 names, categories, and definitions for all supported types
 of games with language and mode distinction.
 
-> ***IMPORTANT:***<br>
+> **Warning**<br>
 > Current logic is implemented to handle only `game=quiz`
 > with optional `mode` integer identifiers and different
 > `language` values. This document describes the desired
-> state of "Smart Words" ecosystem, and it will be updated
+> state of "Smart Words" web application, and it will be updated
 > accordingly.
 
 To work properly with the whole "Smart Words" ecosystem and
 the words service (this project) the JSON dictionary file
 names have to follow the specified convention:
 
-###`words-[game]-[mode]-[language]@[description].json`
+### `words-[game]-[mode]-[language]@[description].json`
 
 where:
 * `mode` presence in the file name depends on the type
@@ -42,3 +47,5 @@ where:
   words for `hangman` game type and language: `fr`.
   It has description: `words`.
 
+---
+<p align="center">Created by PNK with 💚 @ 2022-2023</p>

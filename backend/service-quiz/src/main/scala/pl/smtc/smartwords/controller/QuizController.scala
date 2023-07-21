@@ -10,9 +10,9 @@ import pl.smtc.smartwords.service._
 
 class QuizController(quizDatabase: QuizDatabase, wordService: IWordService) {
 
-  object OptionalQuizSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
-  object OptionalQuizModeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("mode")
-  object OptionalQuizLanguageParamMatcher extends OptionalQueryParamDecoderMatcher[String]("lang")
+  private object OptionalQuizSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
+  private object OptionalQuizModeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("mode")
+  private object OptionalQuizLanguageParamMatcher extends OptionalQueryParamDecoderMatcher[String]("lang")
 
   /**
    * Routes (request -> response) for quiz endpoints/resources

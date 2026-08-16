@@ -144,6 +144,9 @@ Future optional hardening:
 4. Add nginx frontend image and API proxy config.
 5. Add docker-compose.yml with volumes and healthchecks.
 6. Validate end-to-end flows and persistence across restarts.
+7. Confirm smoke-test evidence and deployment defaults.
+8. Final verification pass for homelab usability and persistence.
+9. Remove this planning document and move final Docker deployment/run instructions into README.md.
 
 ## acceptance criteria for containerized deployment
 

@@ -20,6 +20,10 @@ class ModeDatabase(databaseFile: String = "modes.json") {
 
   private val quizModes: ListBuffer[Mode] = ListBuffer()
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
+  private val dataDirectory: Option[Path] = sys.env.get("QUIZ_DATA_DIR").map(Paths.get(_))
+  private val databaseDir: Path = dataDirectory.getOrElse(resourceDir)
+
+  initializeDataDirectory()
 
   /**
    * Method used to load and populate quiz modes list with data from internal JSON file
@@ -27,7 +31,7 @@ class ModeDatabase(databaseFile: String = "modes.json") {
    */
   def loadDatabase(): Boolean = {
     var result: Boolean = false
-    val modesFile: File = new File(resourceDir.resolve(databaseFile).toString)
+    val modesFile: File = new File(databaseDir.resolve(databaseFile).toString)
     Using(new BufferedInputStream(new FileInputStream(modesFile))) { fileStream =>
       val lines = Source.fromInputStream(fileStream).getLines().mkString.stripMargin
       decode[List[Mode]](lines) match {
@@ -104,7 +108,24 @@ class ModeDatabase(databaseFile: String = "modes.json") {
    */
   private def saveDatabase(): Unit = {
     val content: String = quizModes.asJson.toString()
-    Files.write(resourceDir.resolve(databaseFile), content.getBytes(StandardCharsets.UTF_8))
+    Files.write(databaseDir.resolve(databaseFile), content.getBytes(StandardCharsets.UTF_8))
+  }
+
+  /**
+   * Create custom data directory and seed modes file from bundled defaults on first run.
+   */
+  private def initializeDataDirectory(): Unit = {
+    if (dataDirectory.isEmpty) {
+      return
+    }
+
+    Files.createDirectories(databaseDir)
+    val sourceModesFile = resourceDir.resolve(databaseFile)
+    val targetModesFile = databaseDir.resolve(databaseFile)
+
+    if (!Files.exists(targetModesFile) && Files.exists(sourceModesFile)) {
+      Files.copy(sourceModesFile, targetModesFile, StandardCopyOption.REPLACE_EXISTING)
+    }
   }
 
   /**

@@ -16,14 +16,15 @@ import scala.concurrent.duration.DurationDouble
 
 class WordService extends IWordService {
 
-  private val defaultWordServiceUrl = "http://localhost:1111"
+  private val defaultWordServiceAddress: Uri = uri"http://localhost:1111"
+  private val defaultWordServiceUrl: String = defaultWordServiceAddress.renderString
   private val configuredWordServiceUrl: String = sys.env
     .get("QUIZ_WORD_SERVICE_URL")
     .getOrElse(defaultWordServiceUrl)
 
   val address: Uri = Uri
     .fromString(configuredWordServiceUrl)
-    .getOrElse(uri"http://localhost:1111")
+    .getOrElse(defaultWordServiceAddress)
   val wordsEndpoint: Uri = address.withPath(path"words")
   val healthEndpoint: Uri = address.withPath(path"health")
 

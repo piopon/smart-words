@@ -8,18 +8,21 @@ import pl.smtc.smartwords.dao._
 
 import java.io.{BufferedInputStream, File, FileInputStream}
 import java.nio.charset.StandardCharsets
-import java.nio.file.{Files, Path, Paths}
+import java.nio.file.{Files, Path, Paths, StandardCopyOption}
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.Using
 
-class WordDatabase {
+class WordDatabase(dataDirectory: Option[Path] = sys.env.get("WORD_DATA_DIR").map(Paths.get(_))) {
 
   private val dictionaryExtension = "JSON"
   private val wordsDatabase: ListBuffer[Word] = ListBuffer()
   private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
+  private val databaseDir: Path = dataDirectory.getOrElse(resourceDir)
   implicit val WordDecoder: Decoder[Word] = WordDao.getWordDecoder
   implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
+
+  initializeDataDirectory()
 
   /**
    * Method used to initialize words database by loading and reading all dictionary JSON files
@@ -28,7 +31,7 @@ class WordDatabase {
    */
   def loadDatabase(): Boolean = {
     val dictionaryLoadStatus: ListBuffer[Boolean] = ListBuffer()
-    val dictionaryFiles: List[File] = getDirectoryFiles(resourceDir, Some(dictionaryExtension))
+    val dictionaryFiles: List[File] = getDirectoryFiles(databaseDir, Some(dictionaryExtension))
     if (dictionaryFiles.isEmpty) {
       return true
     }
@@ -161,11 +164,31 @@ class WordDatabase {
     if (dictionaryFile.isEmpty) return
     val dictionaryWords: List[Word] = getWordsByDictionary(dictionaryFile)
     if (dictionaryWords.isEmpty) {
-      Files.delete(resourceDir.resolve(dictionaryFile))
+      Files.deleteIfExists(databaseDir.resolve(dictionaryFile))
     } else {
       val content: String = dictionaryWords.asJson.toString()
-      Files.write(resourceDir.resolve(dictionaryFile), content.getBytes(StandardCharsets.UTF_8))
+      Files.write(databaseDir.resolve(dictionaryFile), content.getBytes(StandardCharsets.UTF_8))
     }
+  }
+
+  /**
+   * Create custom data directory and seed it with bundled dictionary files on first run.
+   */
+  private def initializeDataDirectory(): Unit = {
+    if (dataDirectory.isEmpty) {
+      return
+    }
+
+    Files.createDirectories(databaseDir)
+    val currentDictionaryFiles = getDirectoryFiles(databaseDir, Some(dictionaryExtension))
+    if (currentDictionaryFiles.nonEmpty) {
+      return
+    }
+
+    val bundledDictionaryFiles = getDirectoryFiles(resourceDir, Some(dictionaryExtension))
+    bundledDictionaryFiles.foreach(file => {
+      Files.copy(file.toPath, databaseDir.resolve(file.getName), StandardCopyOption.REPLACE_EXISTING)
+    })
   }
 
   /**

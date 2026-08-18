@@ -28,6 +28,16 @@ libraryDependencies ++= Seq(
 coverageMinimumBranchTotal := 70
 coverageFailOnMinimum := true
 
+Compile / mainClass := Some("pl.smtc.smartwords.ServiceWordApp")
+assembly / mainClass := (Compile / mainClass).value
+assembly / assemblyJarName := s"${name.value}-${version.value}.jar"
+assembly / test := {}
+assembly / assemblyMergeStrategy := {
+  case PathList("META-INF", _ @ _*) => MergeStrategy.discard
+  case "module-info.class" => MergeStrategy.discard
+  case _ => MergeStrategy.first
+}
+
 run := Defaults
   .runTask(
     Runtime / fullClasspath,

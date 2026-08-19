@@ -1,0 +1,33 @@
+name: smart-words
+
+services:
+  service-word:
+    build:
+      context: ./backend/service-word
+      dockerfile: Dockerfile
+    container_name: smart-words-service-word
+    environment:
+      WORD_DATA_DIR: /app/data
+    expose:
+      - "1111"
+    restart: unless-stopped
+
+  service-quiz:
+    build:
+      context: ./backend/service-quiz
+      dockerfile: Dockerfile
+    container_name: smart-words-service-quiz
+    environment:
+      QUIZ_DATA_DIR: /app/data
+    expose:
+      - "2222"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: smart-words-frontend
+    ports:
+      - "8080:80"
+    restart: unless-stopped

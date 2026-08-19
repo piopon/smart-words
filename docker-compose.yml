@@ -8,6 +8,8 @@ services:
     container_name: smart-words-service-word
     environment:
       WORD_DATA_DIR: /app/data
+    volumes:
+      - ./data/service-word:/app/data
     expose:
       - "1111"
     restart: unless-stopped
@@ -19,6 +21,8 @@ services:
     container_name: smart-words-service-quiz
     environment:
       QUIZ_DATA_DIR: /app/data
+    volumes:
+      - ./data/service-quiz:/app/data
     expose:
       - "2222"
     restart: unless-stopped

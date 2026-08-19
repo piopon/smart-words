@@ -13,6 +13,10 @@ FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends curl \
+	&& rm -rf /var/lib/apt/lists/*
+
 COPY --from=build /workspace/target/scala-2.13/service-quiz-0.1.jar /app/service-quiz.jar
 
 ENV QUIZ_DATA_DIR=/app/data

@@ -1,4 +1,4 @@
-const URL = "http://localhost:1111/";
+const URL = "/api/word/";
 const REQUEST_TIMEOUT = 15_000;
 
 /**

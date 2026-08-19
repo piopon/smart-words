@@ -1,4 +1,4 @@
-const URL = "http://localhost:2222/";
+const URL = "/api/quiz/";
 const REQUEST_TIMEOUT = 15_000;
 
 /**

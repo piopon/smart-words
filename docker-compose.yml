@@ -25,6 +25,9 @@ services:
       - ./data/service-quiz:/app/data
     expose:
       - "2222"
+    depends_on:
+      service-word:
+        condition: service_healthy
     restart: unless-stopped
 
   frontend:
@@ -32,6 +35,11 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: smart-words-frontend
+    depends_on:
+      service-word:
+        condition: service_healthy
+      service-quiz:
+        condition: service_healthy
     ports:
       - "8080:80"
     restart: unless-stopped

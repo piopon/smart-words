@@ -26,6 +26,8 @@ services:
       dockerfile: Dockerfile
     container_name: smart-words-service-quiz
     environment:
+      WORD_SERVICE_HOST: service-word
+      WORD_SERVICE_PORT: "1111"
       QUIZ_DATA_DIR: /app/data
     volumes:
       - ./data/service-quiz:/app/data

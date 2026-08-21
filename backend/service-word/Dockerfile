@@ -18,7 +18,9 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /workspace/target/scala-2.13/service-word-0.1.jar /app/service-word.jar
+COPY src/main/resources /app/default-data
 
+ENV WORD_SEED_DIR=/app/default-data
 ENV WORD_DATA_DIR=/app/data
 
 RUN mkdir -p /app/data

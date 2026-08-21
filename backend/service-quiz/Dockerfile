@@ -18,7 +18,9 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /workspace/target/scala-2.13/service-quiz-0.1.jar /app/service-quiz.jar
+COPY src/main/resources /app/default-data
 
+ENV QUIZ_SEED_DIR=/app/default-data
 ENV QUIZ_DATA_DIR=/app/data
 
 RUN mkdir -p /app/data

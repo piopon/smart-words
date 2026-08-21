@@ -25,4 +25,4 @@ RUN mkdir -p /app/data
 
 EXPOSE 2222
 
-ENTRYPOINT ["java", "-jar", "/app/service-quiz.jar"]
+CMD ["java", "-jar", "/app/service-quiz.jar"]

@@ -25,4 +25,4 @@ RUN mkdir -p /app/data
 
 EXPOSE 1111
 
-ENTRYPOINT ["java", "-jar", "/app/service-word.jar"]
+CMD ["java", "-jar", "/app/service-word.jar"]

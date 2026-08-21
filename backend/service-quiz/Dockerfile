@@ -1,4 +1,4 @@
-FROM hseeberger/scala-sbt:17.0.1_1.6.2_2.13.6 AS build
+FROM hseeberger/scala-sbt:eclipse-temurin-17.0.2_1.6.2_2.13.8 AS build
 
 WORKDIR /workspace
 

@@ -17,8 +17,12 @@ class WordDatabase(dataDirectory: Option[Path] = sys.env.get("WORD_DATA_DIR").ma
 
   private val dictionaryExtension = "JSON"
   private val wordsDatabase: ListBuffer[Word] = ListBuffer()
-  private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
-  private val databaseDir: Path = dataDirectory.getOrElse(resourceDir)
+  private val seedDirectory: Option[Path] = sys.env.get("WORD_SEED_DIR").map(Paths.get(_))
+  private val bundledResourceDir: Option[Path] = Option(getClass.getResource("/")).map(url => Paths.get(url.toURI))
+  private val databaseDir: Path = dataDirectory
+    .orElse(seedDirectory)
+    .orElse(bundledResourceDir)
+    .getOrElse(Paths.get("."))
   implicit val WordDecoder: Decoder[Word] = WordDao.getWordDecoder
   implicit val WordEncoder: Encoder[Word] = WordDao.getWordEncoder
 
@@ -185,7 +189,10 @@ class WordDatabase(dataDirectory: Option[Path] = sys.env.get("WORD_DATA_DIR").ma
       return
     }
 
-    val bundledDictionaryFiles = getDirectoryFiles(resourceDir, Some(dictionaryExtension))
+    val bundledDictionaryFiles: List[File] = seedDirectory
+      .orElse(bundledResourceDir)
+      .map(path => getDirectoryFiles(path, Some(dictionaryExtension)))
+      .getOrElse(List.empty)
     bundledDictionaryFiles.foreach(file => {
       Files.copy(file.toPath, databaseDir.resolve(file.getName), StandardCopyOption.REPLACE_EXISTING)
     })

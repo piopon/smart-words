@@ -19,9 +19,13 @@ class ModeDatabase(databaseFile: String = "modes.json") {
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
 
   private val quizModes: ListBuffer[Mode] = ListBuffer()
-  private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
   private val dataDirectory: Option[Path] = sys.env.get("QUIZ_DATA_DIR").map(Paths.get(_))
-  private val databaseDir: Path = dataDirectory.getOrElse(resourceDir)
+  private val seedDirectory: Option[Path] = sys.env.get("QUIZ_SEED_DIR").map(Paths.get(_))
+  private val bundledResourceDir: Option[Path] = Option(getClass.getResource("/")).map(url => Paths.get(url.toURI))
+  private val databaseDir: Path = dataDirectory
+    .orElse(seedDirectory)
+    .orElse(bundledResourceDir)
+    .getOrElse(Paths.get("."))
 
   initializeDataDirectory()
 
@@ -120,12 +124,16 @@ class ModeDatabase(databaseFile: String = "modes.json") {
     }
 
     Files.createDirectories(databaseDir)
-    val sourceModesFile = resourceDir.resolve(databaseFile)
+    val sourceModesFile: Option[Path] = seedDirectory
+      .orElse(bundledResourceDir)
+      .map(path => path.resolve(databaseFile))
     val targetModesFile = databaseDir.resolve(databaseFile)
 
-    if (!Files.exists(targetModesFile) && Files.exists(sourceModesFile)) {
-      Files.copy(sourceModesFile, targetModesFile, StandardCopyOption.REPLACE_EXISTING)
-    }
+    sourceModesFile.foreach(sourceFile => {
+      if (!Files.exists(targetModesFile) && Files.exists(sourceFile)) {
+        Files.copy(sourceFile, targetModesFile, StandardCopyOption.REPLACE_EXISTING)
+      }
+    })
   }
 
   /**

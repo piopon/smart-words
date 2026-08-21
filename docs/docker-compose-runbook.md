@@ -32,6 +32,21 @@ Health endpoints through internal network:
 - service-word: `GET /health` on port 1111
 - service-quiz: `GET /health` on port 2222
 
+## automated smoke test
+
+After stack startup, run:
+
+```powershell
+./scripts/smoke-test.ps1
+```
+
+What this validates:
+
+- frontend root responds with `200`
+- proxied `/api/word/health` and `/api/quiz/health` are healthy
+- modes API can create/read/delete data
+- mode persistence survives `service-quiz` restart
+
 ## persistence
 
 Data is persisted in host directories:

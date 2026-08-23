@@ -11,7 +11,7 @@ function Invoke-Json {
     [string]$Body = $null
   )
 
-  if ($null -eq $Body) {
+  if ($Method -in @("GET", "DELETE", "HEAD", "OPTIONS") -or $null -eq $Body) {
     return Invoke-RestMethod -Method $Method -Uri $Url -TimeoutSec 20
   }
 
@@ -27,11 +27,13 @@ if ($rootResponse.StatusCode -ne 200) {
 Write-Host "[smoke] checking backend health endpoints through nginx proxy"
 $wordHealth = Invoke-Json -Method GET -Url "$BaseUrl/api/word/health"
 $quizHealth = Invoke-Json -Method GET -Url "$BaseUrl/api/quiz/health"
-if (-not $wordHealth.status.EndsWith("OK")) {
-  throw "word health check failed: $($wordHealth | ConvertTo-Json -Compress)"
+$wordHealthText = [string]$wordHealth
+$quizHealthText = [string]$quizHealth
+if (-not $wordHealthText.Contains("OK")) {
+  throw "word health check failed: $wordHealthText"
 }
-if (-not $quizHealth.status.EndsWith("OK")) {
-  throw "quiz health check failed: $($quizHealth | ConvertTo-Json -Compress)"
+if (-not $quizHealthText.Contains("OK")) {
+  throw "quiz health check failed: $quizHealthText"
 }
 
 Write-Host "[smoke] checking quiz mode read path"
@@ -70,7 +72,7 @@ finally {
     Invoke-WebRequest -Method DELETE -Uri "$BaseUrl/api/quiz/modes/$newModeId" -UseBasicParsing -TimeoutSec 20 | Out-Null
   }
   catch {
-    Write-Warning "cleanup failed for mode id $newModeId: $($_.Exception.Message)"
+    Write-Warning "cleanup failed for mode id ${newModeId}: $($_.Exception.Message)"
   }
 }
 

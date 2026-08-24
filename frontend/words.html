@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
     <title>smart-words</title>
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/loader.css" />
@@ -20,9 +21,7 @@
       <h3 id="site-title" class="no-select">Smart Words</h3>
       <div class="filler"></div>
       <a href="#" id="btn-add-word" class="disabled no-select" onclick="addWord()">ADD</a>
-      <form action="index.html">
-        <button id="btn-page-back" class="no-select">BACK</button>
-      </form>
+      <a href="index.html" id="btn-page-back" class="no-select">BACK</a>
     </header>
     <!-- main site content -->
     <div id="main-content">
@@ -103,6 +102,8 @@
     </div>
     <div id="word-change-toast">WORD ADJUSTMENT CONFIRMATION</div>
     <!-- footer with author information and copyrights -->
-    <footer class="no-select">developed with 💗 pnk @ 2022-2023 🖖</footer>
+    <footer class="no-select">
+      developed with <span class="emoji">💗</span> pnk @ 2022-2023 <span class="emoji">🖖</span>
+    </footer>
   </body>
 </html>

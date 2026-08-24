@@ -45,8 +45,11 @@ header #site-title {
 }
 
 header #btn-page-back {
+  display: block;
   height: 80px;
   width: 80px;
+  line-height: 80px;
+  text-decoration: none;
   margin: 0px 20px 0px 0px;
   color: transparent !important;
   border: 0px solid black;
@@ -74,6 +77,10 @@ footer {
   justify-content: center;
   background-color: var(--primary-color);
   font-family: var(--styled-font), cursive;
+}
+
+.emoji {
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
 }
 
 .no-select {

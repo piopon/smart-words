@@ -79,6 +79,10 @@ footer {
   font-family: var(--styled-font), cursive;
 }
 
+.emoji {
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+}
+
 .no-select {
   user-select: none; /* Chrome, Edge, Opera and Firefox */
   -webkit-touch-callout: none; /* iOS Safari */

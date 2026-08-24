@@ -43,16 +43,87 @@ No database engine is currently used. All data is saved directly in the JSON fil
 
 ## running application
 
-> **Note**<br>
-> I realize that the current way of launching the application is not very useful and cumbersome (at least 😉). I'm going to improve it sooner than later.
-> This section of the documentation will be updated as it happens.<br>
-> Stay tuned 📢.
+The recommended way to run smart-words is with Docker Compose.
 
-Currently there is no release package or Docker image distribution.
+### prerequisites
 
-One can manually invoke the [interactive `sbt` tool](https://www.scala-sbt.org/1.x/docs/index.html) (initially reffered to as `Simple Build Tool`, then redefined to `Scala Build Tool`, but really the name doesn’t stand for anything, it’s just `sbt` 😎) to create JAR packages for both backend services and after that run them on the same machine, and then open the `index.html` page from the `frontend` directory.
+- Docker Engine or Docker Desktop with Compose v2
+- host port `8080` available
 
-Alternatively, one can use the IntelliJ editor and run both services in it, and then run `index.html` from the `frontend` folder.
+### start
+
+From repository root:
+
+```powershell
+docker compose up --build -d
+```
+
+Open application in browser:
+
+- `http://localhost:8080`
+
+### verify
+
+```powershell
+docker compose ps
+docker compose logs -f frontend
+docker compose logs -f service-word
+docker compose logs -f service-quiz
+```
+
+### smoke test
+
+Run automated smoke checks:
+
+```powershell
+./scripts/smoke-test.ps1
+```
+
+This validates:
+
+- frontend root responds with `200`
+- proxied backend health endpoints are healthy
+- modes API create/read/delete flow works
+- mode persistence survives `service-quiz` restart
+
+### persistence
+
+Runtime data is stored on host in:
+
+- `./data/service-word` for dictionaries
+- `./data/service-quiz` for modes
+
+Those directories are seeded from bundled defaults on first run when empty.
+
+### stop and cleanup
+
+Stop services:
+
+```powershell
+docker compose down
+```
+
+Stop and remove persisted data too:
+
+```powershell
+docker compose down
+Remove-Item -Recurse -Force .\data\service-word, .\data\service-quiz
+```
+
+### rebuild after changes
+
+```powershell
+docker compose up --build -d
+```
+
+### optional local development (without Docker)
+
+If you want to run services manually, build and run backend services with `sbt` in:
+
+- `backend/service-word`
+- `backend/service-quiz`
+
+and then open frontend through a static server.
 
 ## starting a `quiz` game
 

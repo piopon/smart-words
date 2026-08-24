@@ -40,6 +40,16 @@ jobs:
         uses: tj-actions/changed-files@v37
         with:
           files: backend/service-quiz/**
+      - name: set up jdk
+        if: steps.changed-quiz-backend.outputs.any_changed == 'true'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: sbt
+      - name: set up sbt
+        if: steps.changed-quiz-backend.outputs.any_changed == 'true'
+        uses: sbt/setup-sbt@v1
       - name: backend quiz files NOT changed
         if: steps.changed-quiz-backend.outputs.any_changed != 'true'
         run: echo backend quiz service NOT changed
@@ -74,6 +84,16 @@ jobs:
         uses: tj-actions/changed-files@v37
         with:
           files: backend/service-word/**
+      - name: set up jdk
+        if: steps.changed-word-backend.outputs.any_changed == 'true'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: sbt
+      - name: set up sbt
+        if: steps.changed-word-backend.outputs.any_changed == 'true'
+        uses: sbt/setup-sbt@v1
       - name: backend word files NOT changed
         if: steps.changed-word-backend.outputs.any_changed != 'true'
         run: echo backend word service NOT changed

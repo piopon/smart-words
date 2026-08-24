@@ -19,7 +19,15 @@ class ModeDatabase(databaseFile: String = "modes.json") {
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
 
   private val quizModes: ListBuffer[Mode] = ListBuffer()
-  private val resourceDir: Path = Paths.get(getClass.getResource("/").toURI)
+  private val dataDirectory: Option[Path] = sys.env.get("QUIZ_DATA_DIR").map(Paths.get(_))
+  private val seedDirectory: Option[Path] = sys.env.get("QUIZ_SEED_DIR").map(Paths.get(_))
+  private val bundledResourceDir: Option[Path] = Option(getClass.getResource("/")).map(url => Paths.get(url.toURI))
+  private val databaseDir: Path = dataDirectory
+    .orElse(seedDirectory)
+    .orElse(bundledResourceDir)
+    .getOrElse(Paths.get("."))
+
+  initializeDataDirectory()
 
   /**
    * Method used to load and populate quiz modes list with data from internal JSON file
@@ -27,7 +35,7 @@ class ModeDatabase(databaseFile: String = "modes.json") {
    */
   def loadDatabase(): Boolean = {
     var result: Boolean = false
-    val modesFile: File = new File(resourceDir.resolve(databaseFile).toString)
+    val modesFile: File = new File(databaseDir.resolve(databaseFile).toString)
     Using(new BufferedInputStream(new FileInputStream(modesFile))) { fileStream =>
       val lines = Source.fromInputStream(fileStream).getLines().mkString.stripMargin
       decode[List[Mode]](lines) match {
@@ -104,7 +112,28 @@ class ModeDatabase(databaseFile: String = "modes.json") {
    */
   private def saveDatabase(): Unit = {
     val content: String = quizModes.asJson.toString()
-    Files.write(resourceDir.resolve(databaseFile), content.getBytes(StandardCharsets.UTF_8))
+    Files.write(databaseDir.resolve(databaseFile), content.getBytes(StandardCharsets.UTF_8))
+  }
+
+  /**
+   * Create custom data directory and seed modes file from bundled defaults on first run.
+   */
+  private def initializeDataDirectory(): Unit = {
+    if (dataDirectory.isEmpty) {
+      return
+    }
+
+    Files.createDirectories(databaseDir)
+    val sourceModesFile: Option[Path] = seedDirectory
+      .orElse(bundledResourceDir)
+      .map(path => path.resolve(databaseFile))
+    val targetModesFile = databaseDir.resolve(databaseFile)
+
+    sourceModesFile.foreach(sourceFile => {
+      if (!Files.exists(targetModesFile) && Files.exists(sourceFile)) {
+        Files.copy(sourceFile, targetModesFile, StandardCopyOption.REPLACE_EXISTING)
+      }
+    })
   }
 
   /**

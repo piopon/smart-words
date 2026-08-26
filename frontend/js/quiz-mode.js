@@ -168,6 +168,12 @@ function getLanguageHtml(language, selected, modeId) {
   return `<img id="${languageId}" class="${languageClass}" src="${languageFile}" onclick="${languageClick}"/>`;
 }
 
+/**
+ * Method used to normalize language token (without default marker suffix)
+ *
+ * @param {String} token language token from settings details
+ * @returns normalized language short name
+ */
 function normalizeLanguageToken(token) {
   if (!token) return token;
   return token.replace(DEFAULT_LANGUAGE_MARK, "").trim();

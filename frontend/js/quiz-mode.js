@@ -140,7 +140,7 @@ function getLanguagesHtml(modeId, label, details) {
     .map((item) => {
       let isSelected = hasDefaultLanguage ? item.indexOf(DEFAULT_LANGUAGE_MARK) > 0 : details.startsWith(item);
       if (isSelected) {
-        modeLanguageMap.set(modeId, item);
+        modeLanguageMap.set(modeId, normalizeLanguageToken(item));
       }
       return getLanguageHtml(item, isSelected, modeId);
     })
@@ -162,10 +162,21 @@ function getLanguagesHtml(modeId, label, details) {
 function getLanguageHtml(language, selected, modeId) {
   let languageId = `language-family-${modeId}`;
   let languageClass = `language-flag ${selected ? "language-selected" : ""}`;
-  let languageName = selected ? language.substring(0, 2) : language;
+  let languageName = normalizeLanguageToken(language);
   let languageFile = `images/language-flags/${languageName}-24.png`;
   let languageClick = `changeLanguage('${languageName}', ${modeId})`;
   return `<img id="${languageId}" class="${languageClass}" src="${languageFile}" onclick="${languageClick}"/>`;
+}
+
+/**
+ * Method used to normalize language token (without default marker suffix)
+ *
+ * @param {String} token language token from settings details
+ * @returns normalized language short name
+ */
+function normalizeLanguageToken(token) {
+  if (!token) return token;
+  return token.replace(DEFAULT_LANGUAGE_MARK, "").trim();
 }
 
 /**

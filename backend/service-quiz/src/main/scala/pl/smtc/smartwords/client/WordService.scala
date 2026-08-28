@@ -12,11 +12,12 @@ import org.http4s.ember.client._
 import org.http4s.implicits._
 import pl.smtc.smartwords.model._
 
+import java.nio.file.{Files, Paths}
 import scala.concurrent.duration.DurationDouble
 
 class WordService extends IWordService {
 
-  private val defaultWordServiceHost = "localhost"
+  private val defaultWordServiceHost = if (isRunningInContainer) "service-word" else "localhost"
   private val configuredWordServiceHost: String = sys.env
     .get("WORD_SERVICE_HOST")
     .getOrElse(defaultWordServiceHost)
@@ -37,6 +38,9 @@ class WordService extends IWordService {
   val healthEndpoint: Uri = address.withPath(path"health")
 
   implicit val WordsDecoder: EntityDecoder[IO, List[Word]] = jsonOf[IO, List[Word]]
+
+  // Docker creates /.dockerenv, which allows safe local-vs-container default host selection.
+  private def isRunningInContainer: Boolean = Files.exists(Paths.get("/.dockerenv"))
 
   /**
    * Method used to check if word service is alive and working correctly

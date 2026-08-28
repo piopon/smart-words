@@ -21,6 +21,7 @@ class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
   private final val defaultQuizSize: Int = 10
   private final val defaultQuizMode: Int = 0
   private final val defaultQuizLang: String = "pl"
+  private final val defaultLanguageMarker: String = "!"
 
   /**
    * Method used to start a new quiz
@@ -40,7 +41,7 @@ class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
     }
     val language: String = maybeLanguage match {
       case None => defaultQuizLang
-      case Some(language) => language
+      case Some(language) => normalizeLanguage(language)
     }
     if (wordService.isAlive) {
       try {
@@ -191,5 +192,13 @@ class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
    */
   private def generateQuiz(size: Int, mode: Int, language: String): Quiz = {
     Quiz(generateRounds(size, mode, language), 0)
+  }
+
+  /**
+   * Normalize language token to avoid issues with UI default markers (e.g. "pl!").
+   */
+  private def normalizeLanguage(language: String): String = {
+    val normalized = language.replace(defaultLanguageMarker, "").trim
+    if (normalized.isEmpty) defaultQuizLang else normalized
   }
 }

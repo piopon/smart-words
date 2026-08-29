@@ -13,6 +13,7 @@ val Http4sVersion = "1.0.0-M21"
 val CirceVersion = "0.14.5"
 val Log4JVersion = "2.0.5"
 val ScalaTestVersion = "3.2.15"
+val TypesafeConfigVersion = "1.4.3"
 libraryDependencies ++= Seq(
   "org.slf4j"       %  "slf4j-api"           % Log4JVersion,
   "org.slf4j"       %  "slf4j-nop"           % Log4JVersion,
@@ -22,6 +23,7 @@ libraryDependencies ++= Seq(
   "io.circe"        %% "circe-generic"       % CirceVersion,
   "io.circe"        %% "circe-literal"       % CirceVersion,
   "io.circe"        %% "circe-parser"        % CirceVersion,
+  "com.typesafe"    %  "config"              % TypesafeConfigVersion,
   "org.scalatest"   %% "scalatest"           % ScalaTestVersion
 )
 

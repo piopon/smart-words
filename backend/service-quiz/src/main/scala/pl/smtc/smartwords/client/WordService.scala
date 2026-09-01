@@ -10,12 +10,13 @@ import org.http4s.client.dsl.io._
 import org.http4s.dsl.io._
 import org.http4s.ember.client._
 import org.http4s.implicits._
+import pl.smtc.smartwords.config.QuizWordServiceConfig
 import pl.smtc.smartwords.model._
 
 import java.nio.file.{Files, Paths}
 import scala.concurrent.duration.DurationDouble
 
-class WordService extends IWordService {
+class WordService(wordServiceConfig: Option[QuizWordServiceConfig] = None) extends IWordService {
 
   private val defaultWordServiceHost = if (isRunningInContainer) "service-word" else "localhost"
   private val configuredWordServiceHost: String = sys.env
@@ -30,8 +31,14 @@ class WordService extends IWordService {
   private val configuredWordServiceUrl: String = sys.env
     .get("QUIZ_WORD_SERVICE_URL")
     .getOrElse(s"http://$configuredWordServiceHost:$configuredWordServicePort")
+  private val resolvedWordServiceUrl: String = wordServiceConfig
+    .map(_.baseUrl)
+    .getOrElse(configuredWordServiceUrl)
+  private val resolvedRequestTimeoutSeconds: Double = wordServiceConfig
+    .map(_.requestTimeoutSeconds)
+    .getOrElse(1.0)
   val address: Uri = Uri
-    .fromString(configuredWordServiceUrl)
+    .fromString(resolvedWordServiceUrl)
     .getOrElse(uri"http://localhost:1111")
 
   val wordsEndpoint: Uri = address.withPath(path"words")
@@ -116,6 +123,6 @@ class WordService extends IWordService {
    * @return health status as a String
    */
   private def setGetHealthRequest(endpoint: Uri): Option[String] = {
-    EmberClientBuilder.default[IO].build.use(client => client.expect[String](GET(endpoint))).unsafeRunTimed(1.0.seconds)
+    EmberClientBuilder.default[IO].build.use(client => client.expect[String](GET(endpoint))).unsafeRunTimed(resolvedRequestTimeoutSeconds.seconds)
   }
 }

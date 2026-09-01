@@ -27,7 +27,7 @@ object ServiceQuizApp extends IOApp {
       return IO.canceled.as(ExitCode.Error)
     }
     // initialize other services clients
-    val wordServiceClient: WordService = new WordService()
+    val wordServiceClient: WordService = new WordService(Some(appConfig.wordService))
     // initialize controllers
     val healthController: HealthController = new HealthController()
     val modeController: ModeController = new ModeController(modeDatabase)

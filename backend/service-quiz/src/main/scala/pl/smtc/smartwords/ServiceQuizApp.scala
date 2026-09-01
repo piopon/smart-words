@@ -22,7 +22,7 @@ object ServiceQuizApp extends IOApp {
     val serverPort: Port = Port.fromInt(appConfig.service.port).getOrElse(port"2222")
     // initialize databases
     val quizDatabase: QuizDatabase = new QuizDatabase()
-    val modeDatabase: ModeDatabase = new ModeDatabase()
+    val modeDatabase: ModeDatabase = new ModeDatabase(appConfig.data.modeFile)
     if (!modeDatabase.loadDatabase()) {
       return IO.canceled.as(ExitCode.Error)
     }

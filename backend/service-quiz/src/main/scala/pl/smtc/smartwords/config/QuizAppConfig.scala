@@ -16,7 +16,11 @@ final case class QuizCorsConfig(
   anyMethod: Boolean
 )
 
-final case class QuizDataConfig(modeFile: String)
+final case class QuizDataConfig(
+  modeFile: String,
+  dataDir: Option[String],
+  seedDir: Option[String]
+)
 
 final case class QuizWordServiceConfig(
   host: String,
@@ -37,6 +41,15 @@ final case class QuizAppConfig(
 
 object QuizAppConfig {
 
+  private def optionalString(config: com.typesafe.config.Config, configPath: String): Option[String] = {
+    if (!config.hasPath(configPath)) {
+      None
+    } else {
+      val value = config.getString(configPath).trim
+      if (value.isEmpty) None else Some(value)
+    }
+  }
+
   def load(): QuizAppConfig = {
     val config = ConfigFactory.load()
 
@@ -54,7 +67,9 @@ object QuizAppConfig {
         anyMethod = config.getBoolean("cors.any-method")
       ),
       data = QuizDataConfig(
-        modeFile = config.getString("data.mode-file")
+        modeFile = config.getString("data.mode-file"),
+        dataDir = optionalString(config, "data.dir"),
+        seedDir = optionalString(config, "data.seed-dir")
       ),
       wordService = QuizWordServiceConfig(
         host = config.getString("word-service.host"),

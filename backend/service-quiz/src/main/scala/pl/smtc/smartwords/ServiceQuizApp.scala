@@ -12,6 +12,7 @@ import pl.smtc.smartwords.config._
 import pl.smtc.smartwords.controller._
 import pl.smtc.smartwords.database._
 
+import java.nio.file.Paths
 import scala.concurrent.duration.DurationInt
 
 object ServiceQuizApp extends IOApp {
@@ -20,9 +21,15 @@ object ServiceQuizApp extends IOApp {
     val appConfig: QuizAppConfig = QuizAppConfig.load()
     val serverHost: Host = Host.fromString(appConfig.service.host).getOrElse(ipv4"0.0.0.0")
     val serverPort: Port = Port.fromInt(appConfig.service.port).getOrElse(port"2222")
+    val quizDataDir = appConfig.data.dataDir.map(Paths.get(_))
+    val quizSeedDir = appConfig.data.seedDir.map(Paths.get(_))
     // initialize databases
     val quizDatabase: QuizDatabase = new QuizDatabase()
-    val modeDatabase: ModeDatabase = new ModeDatabase(appConfig.data.modeFile)
+    val modeDatabase: ModeDatabase = new ModeDatabase(
+      databaseFile = appConfig.data.modeFile,
+      dataDirectory = quizDataDir,
+      seedDirectory = quizSeedDir
+    )
     if (!modeDatabase.loadDatabase()) {
       return IO.canceled.as(ExitCode.Error)
     }

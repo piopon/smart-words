@@ -11,6 +11,7 @@ import pl.smtc.smartwords.config._
 import pl.smtc.smartwords.controller._
 import pl.smtc.smartwords.database._
 
+import java.nio.file.Paths
 import scala.concurrent.duration.DurationInt
 
 object ServiceWordApp extends IOApp {
@@ -19,7 +20,13 @@ object ServiceWordApp extends IOApp {
     val appConfig: WordAppConfig = WordAppConfig.load()
     val serverHost: Host = Host.fromString(appConfig.service.host).getOrElse(ipv4"0.0.0.0")
     val serverPort: Port = Port.fromInt(appConfig.service.port).getOrElse(port"1111")
-    val wordDB: WordDatabase = new WordDatabase(dictionaryFileExtension = appConfig.data.dictionaryExtension)
+    val wordDataDir = appConfig.data.dataDir.map(Paths.get(_))
+    val wordSeedDir = appConfig.data.seedDir.map(Paths.get(_))
+    val wordDB: WordDatabase = new WordDatabase(
+      dataDirectory = wordDataDir,
+      dictionaryFileExtension = appConfig.data.dictionaryExtension,
+      seedDirectory = wordSeedDir
+    )
     val dictionaryController: DictionaryController = new DictionaryController(wordDB)
     val healthController: HealthController = new HealthController()
     val wordController: WordController = new WordController(wordDB)

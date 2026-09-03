@@ -14,11 +14,11 @@ import scala.io.Source
 import scala.util.Using
 
 class WordDatabase(dataDirectory: Option[Path] = sys.env.get("WORD_DATA_DIR").map(Paths.get(_)),
-                   dictionaryFileExtension: String = "JSON") {
+                   dictionaryFileExtension: String = "JSON",
+                   seedDirectory: Option[Path] = sys.env.get("WORD_SEED_DIR").map(Paths.get(_))) {
 
   private val dictionaryExtension = dictionaryFileExtension
   private val wordsDatabase: ListBuffer[Word] = ListBuffer()
-  private val seedDirectory: Option[Path] = sys.env.get("WORD_SEED_DIR").map(Paths.get(_))
   private val bundledResourceDir: Option[Path] = Option(getClass.getResource("/")).map(url => Paths.get(url.toURI))
   private val databaseDir: Path = dataDirectory
     .orElse(seedDirectory)

@@ -14,11 +14,11 @@ import pl.smtc.smartwords.dao._
 import java.util.UUID
 import scala.util.Random
 
-class QuizService(quizDB: QuizDatabase, wordService: IWordService, configuredDefaultQuizSize: Int = 10) {
+class QuizService(quizDB: QuizDatabase, wordService: IWordService, quizSize: Int = 10) {
 
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 
-  private final val defaultQuizSize: Int = configuredDefaultQuizSize
+  private final val defaultQuizSize: Int = quizSize
   private final val defaultQuizMode: Int = 0
   private final val defaultQuizLang: String = "pl"
   private final val defaultLanguageMarker: String = "!"

@@ -1,6 +1,7 @@
 package pl.smtc.smartwords.config
 
 import com.typesafe.config.ConfigFactory
+import com.typesafe.config.Config
 
 final case class WordServiceConfig(
   name: String,
@@ -16,7 +17,11 @@ final case class WordCorsConfig(
   anyMethod: Boolean
 )
 
-final case class WordDataConfig(dictionaryExtension: String)
+final case class WordDataConfig(
+  dictionaryExtension: String,
+  dataDir: Option[String],
+  seedDir: Option[String]
+)
 
 final case class WordAppConfig(
   service: WordServiceConfig,
@@ -25,6 +30,15 @@ final case class WordAppConfig(
 )
 
 object WordAppConfig {
+
+  private def optionalString(config: Config, configPath: String): Option[String] = {
+    if (!config.hasPath(configPath)) {
+      None
+    } else {
+      val value = config.getString(configPath).trim
+      if (value.isEmpty) None else Some(value)
+    }
+  }
 
   def load(): WordAppConfig = {
     val config = ConfigFactory.load()
@@ -43,7 +57,9 @@ object WordAppConfig {
         anyMethod = config.getBoolean("cors.any-method")
       ),
       data = WordDataConfig(
-        dictionaryExtension = config.getString("data.dictionary-extension")
+        dictionaryExtension = config.getString("data.dictionary-extension"),
+        dataDir = optionalString(config, "data.dir"),
+        seedDir = optionalString(config, "data.seed-dir")
       )
     )
   }

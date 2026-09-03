@@ -32,7 +32,7 @@ class WordService(wordServiceConfig: Option[QuizWordServiceConfig] = None) exten
     .get("QUIZ_WORD_SERVICE_URL")
     .getOrElse(s"http://$configuredWordServiceHost:$configuredWordServicePort")
   private val resolvedWordServiceUrl: String = wordServiceConfig
-    .map(_.baseUrl)
+    .map(config => if (config.baseUrl.trim.nonEmpty) config.baseUrl else s"http://${config.host}:${config.port}")
     .getOrElse(configuredWordServiceUrl)
   private val resolvedRequestTimeoutSeconds: Double = wordServiceConfig
     .map(_.requestTimeoutSeconds)

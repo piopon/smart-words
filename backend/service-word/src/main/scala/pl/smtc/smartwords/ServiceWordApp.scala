@@ -19,7 +19,7 @@ object ServiceWordApp extends IOApp {
     val appConfig: WordAppConfig = WordAppConfig.load()
     val serverHost: Host = Host.fromString(appConfig.service.host).getOrElse(ipv4"0.0.0.0")
     val serverPort: Port = Port.fromInt(appConfig.service.port).getOrElse(port"1111")
-    val wordDB: WordDatabase = new WordDatabase()
+    val wordDB: WordDatabase = new WordDatabase(dictionaryFileExtension = appConfig.data.dictionaryExtension)
     val dictionaryController: DictionaryController = new DictionaryController(wordDB)
     val healthController: HealthController = new HealthController()
     val wordController: WordController = new WordController(wordDB)

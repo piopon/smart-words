@@ -29,5 +29,23 @@ This service is written entirely in **Scala** language.<br>
 No database framework is used. All files are saved directly into JSON files containing all information about dictionaries.
 For more info about dictionaries checkout [THIS](src/main/resources/README.md) markdown documentation file.
 
+### configuration
+
+Runtime settings are read from `src/main/resources/application.conf` with optional environment variable overrides.
+
+Most important keys:
+
+* `service.name` (`WORD_SERVICE_NAME`)
+* `service.host` (`WORD_SERVER_HOST`)
+* `service.port` (`WORD_SERVER_PORT`)
+* `service.idle-timeout-minutes` (`WORD_SERVER_IDLE_TIMEOUT_MINUTES`)
+* `cors.any-origin` (`WORD_CORS_ANY_ORIGIN`)
+* `cors.allow-credentials` (`WORD_CORS_ALLOW_CREDENTIALS`)
+* `cors.max-age-seconds` (`WORD_CORS_MAX_AGE_SECONDS`)
+* `cors.any-method` (`WORD_CORS_ANY_METHOD`)
+* `data.dictionary-extension` (`WORD_DICTIONARY_EXTENSION`)
+* `data.dir` (`WORD_DATA_DIR`)
+* `data.seed-dir` (`WORD_SEED_DIR`)
+
 ---
 <p align="center">Created by PNK with 💚 @ 2022-2023</p>

@@ -11,6 +11,7 @@ services:
       WORD_SERVER_HOST: 0.0.0.0
       WORD_SERVER_PORT: "1111"
       WORD_DATA_DIR: /app/data
+      WORD_SEED_DIR: /app/data
     volumes:
       - ./data/service-word:/app/data
     expose:
@@ -39,6 +40,7 @@ services:
       QUIZ_DEFAULT_SIZE: "10"
       QUIZ_WORD_SERVICE_TIMEOUT_SECONDS: "1.0"
       QUIZ_DATA_DIR: /app/data
+      QUIZ_SEED_DIR: /app/data
     volumes:
       - ./data/service-quiz:/app/data
     expose:

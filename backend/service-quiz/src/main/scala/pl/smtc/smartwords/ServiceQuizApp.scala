@@ -17,8 +17,9 @@ import scala.concurrent.duration.DurationInt
 
 object ServiceQuizApp extends IOApp {
 
+  private lazy val appConfig: QuizAppConfig = QuizAppConfig.load()
+
   override def run(args: List[String]): IO[ExitCode] = {
-    val appConfig: QuizAppConfig = QuizAppConfig.load()
     val serverHost: Host = Host.fromString(appConfig.service.host).getOrElse(ipv4"0.0.0.0")
     val serverPort: Port = Port.fromInt(appConfig.service.port).getOrElse(port"2222")
     val quizDataDir = appConfig.data.dataDir.map(Paths.get(_))

@@ -16,8 +16,9 @@ import scala.concurrent.duration.DurationInt
 
 object ServiceWordApp extends IOApp {
 
+  private lazy val appConfig: WordAppConfig = WordAppConfig.load()
+
   override def run(args: List[String]): IO[ExitCode] = {
-    val appConfig: WordAppConfig = WordAppConfig.load()
     val serverHost: Host = Host.fromString(appConfig.service.host).getOrElse(ipv4"0.0.0.0")
     val serverPort: Port = Port.fromInt(appConfig.service.port).getOrElse(port"1111")
     val wordDataDir = appConfig.data.dataDir.map(Paths.get(_))

@@ -25,4 +25,4 @@ See details in:
 * [service-word configuration](./service-word/README.md#configuration)
 
 ---
-<p align="center">Created by PNK with 💚 @ 2022-2023</p>
+<p align="center">Created by PNK with 💚 @ 2022-2026</p>

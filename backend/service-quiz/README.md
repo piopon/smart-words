@@ -54,4 +54,4 @@ Most important keys:
 * `quiz.default-size` (`QUIZ_DEFAULT_SIZE`)
 
 ---
-<p align="center">Created by PNK with 💚 @ 2022-2023</p>
+<p align="center">Created by PNK with 💚 @ 2022-2026</p>

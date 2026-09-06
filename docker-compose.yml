@@ -38,6 +38,8 @@ services:
       WORD_SERVICE_HOST: service-word
       WORD_SERVICE_PORT: "1111"
       QUIZ_DEFAULT_SIZE: "10"
+      QUIZ_DEFAULT_MODE: "0"
+      QUIZ_DEFAULT_LANGUAGE: pl
       QUIZ_WORD_SERVICE_TIMEOUT_SECONDS: "1.0"
       QUIZ_DATA_DIR: /app/data
       QUIZ_SEED_DIR: /app/data

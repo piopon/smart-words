@@ -52,6 +52,8 @@ Most important keys:
 * `word-service.base-url` (`QUIZ_WORD_SERVICE_URL`)
 * `word-service.request-timeout-seconds` (`QUIZ_WORD_SERVICE_TIMEOUT_SECONDS`)
 * `quiz.default-size` (`QUIZ_DEFAULT_SIZE`)
+* `quiz.default-mode` (`QUIZ_DEFAULT_MODE`)
+* `quiz.default-language` (`QUIZ_DEFAULT_LANGUAGE`)
 
 ---
 <p align="center">Created by PNK with 💚 @ 2022-2026</p>

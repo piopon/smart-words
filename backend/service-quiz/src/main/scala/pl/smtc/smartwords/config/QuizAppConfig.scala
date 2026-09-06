@@ -29,7 +29,11 @@ final case class QuizWordServiceConfig(
   requestTimeoutSeconds: Double
 )
 
-final case class QuizRuntimeConfig(defaultSize: Int)
+final case class QuizRuntimeConfig(
+  defaultSize: Int,
+  defaultMode: Int,
+  defaultLanguage: String
+)
 
 final case class QuizAppConfig(
   service: QuizServiceConfig,
@@ -78,7 +82,9 @@ object QuizAppConfig {
         requestTimeoutSeconds = config.getDouble("word-service.request-timeout-seconds")
       ),
       quiz = QuizRuntimeConfig(
-        defaultSize = config.getInt("quiz.default-size")
+        defaultSize = config.getInt("quiz.default-size"),
+        defaultMode = config.getInt("quiz.default-mode"),
+        defaultLanguage = config.getString("quiz.default-language")
       )
     )
   }

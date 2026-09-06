@@ -39,7 +39,13 @@ object ServiceQuizApp extends IOApp {
     // initialize controllers
     val healthController: HealthController = new HealthController()
     val modeController: ModeController = new ModeController(modeDatabase)
-    val quizController: QuizController = new QuizController(quizDatabase, wordServiceClient, appConfig.quiz.defaultSize)
+    val quizController: QuizController = new QuizController(
+      quizDatabase,
+      wordServiceClient,
+      appConfig.quiz.defaultSize,
+      appConfig.quiz.defaultMode,
+      appConfig.quiz.defaultLanguage
+    )
     // setup router
     val config = CORSConfig(
       anyOrigin = appConfig.cors.anyOrigin,

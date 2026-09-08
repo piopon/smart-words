@@ -23,6 +23,7 @@ final case class QuizDataConfig(
 )
 
 final case class QuizWordServiceConfig(
+  name: String,
   host: String,
   port: Int,
   baseUrl: String,
@@ -76,6 +77,7 @@ object QuizAppConfig {
         seedDir = optionalString(config, "data.seed-dir")
       ),
       wordService = QuizWordServiceConfig(
+        name = config.getString("word-service.name"),
         host = config.getString("word-service.host"),
         port = config.getInt("word-service.port"),
         baseUrl = config.getString("word-service.base-url"),

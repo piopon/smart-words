@@ -36,6 +36,7 @@ services:
       QUIZ_SERVICE_NAME: QUIZ
       QUIZ_SERVER_HOST: 0.0.0.0
       QUIZ_SERVER_PORT: "2222"
+      WORD_SERVICE_NAME: WORD
       QUIZ_MODE_FILE: modes.json
       WORD_SERVICE_HOST: service-word
       WORD_SERVICE_PORT: "1111"

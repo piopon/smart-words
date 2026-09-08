@@ -44,7 +44,8 @@ object ServiceQuizApp extends IOApp {
       wordServiceClient,
       appConfig.quiz.defaultSize,
       appConfig.quiz.defaultMode,
-      appConfig.quiz.defaultLanguage
+      appConfig.quiz.defaultLanguage,
+      appConfig.wordService.name
     )
     // setup router
     val config = CORSConfig(

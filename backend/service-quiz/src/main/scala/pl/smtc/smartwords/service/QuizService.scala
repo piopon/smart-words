@@ -18,7 +18,8 @@ class QuizService(quizDB: QuizDatabase,
                   wordService: IWordService,
                   quizSize: Int = 10,
                   quizMode: Int = 0,
-                  quizLanguage: String = "pl") {
+                  quizLanguage: String = "pl",
+                  wordServiceName: String = "WORD") {
 
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 
@@ -54,7 +55,7 @@ class QuizService(quizDB: QuizDatabase,
         case e: QuizServiceException => BadRequest("Cannot start quiz: " + e.getMessage)
       }
     } else {
-      ServiceUnavailable("Cannot start quiz. Service: WORD - not available.")
+      ServiceUnavailable(s"Cannot start quiz. Service: $wordServiceName - not available.")
     }
   }
 

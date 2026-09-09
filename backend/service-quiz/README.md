@@ -47,6 +47,7 @@ Most important keys:
 * `data.mode-file` (`QUIZ_MODE_FILE`)
 * `data.dir` (`QUIZ_DATA_DIR`)
 * `data.seed-dir` (`QUIZ_SEED_DIR`)
+* `word-service.name` (`WORD_SERVICE_NAME`)
 * `word-service.host` (`WORD_SERVICE_HOST`)
 * `word-service.port` (`WORD_SERVICE_PORT`)
 * `word-service.base-url` (`QUIZ_WORD_SERVICE_URL`)

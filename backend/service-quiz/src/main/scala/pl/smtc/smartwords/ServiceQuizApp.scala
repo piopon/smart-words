@@ -37,7 +37,7 @@ object ServiceQuizApp extends IOApp {
     // initialize other services clients
     val wordServiceClient: WordService = new WordService(Some(appConfig.wordService))
     // initialize controllers
-    val healthController: HealthController = new HealthController()
+    val healthController: HealthController = new HealthController(appConfig.service.name)
     val modeController: ModeController = new ModeController(modeDatabase)
     val quizController: QuizController = new QuizController(
       quizDatabase,

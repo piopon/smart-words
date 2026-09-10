@@ -29,7 +29,7 @@ object ServiceWordApp extends IOApp {
       seedDirectory = wordSeedDir
     )
     val dictionaryController: DictionaryController = new DictionaryController(wordDB)
-    val healthController: HealthController = new HealthController()
+    val healthController: HealthController = new HealthController(appConfig.service.name)
     val wordController: WordController = new WordController(wordDB)
 
     if (!wordDB.loadDatabase()) {

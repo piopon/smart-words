@@ -27,10 +27,16 @@ class WordService(wordServiceConfig: Option[QuizWordServiceConfig] = None) exten
   private val configuredWordServicePort: String = sys.env
     .get("WORD_SERVICE_PORT")
     .getOrElse(defaultWordServicePort)
+  private val resolvedWordServiceHost: String = wordServiceConfig
+    .map(_.host)
+    .getOrElse(configuredWordServiceHost)
+  private val resolvedWordServicePort: String = wordServiceConfig
+    .map(_.port.toString)
+    .getOrElse(configuredWordServicePort)
 
   private val configuredWordServiceUrl: String = sys.env
     .get("QUIZ_WORD_SERVICE_URL")
-    .getOrElse(s"http://$configuredWordServiceHost:$configuredWordServicePort")
+    .getOrElse(s"http://$resolvedWordServiceHost:$resolvedWordServicePort")
   private val resolvedWordServiceUrl: String = wordServiceConfig
     .map(config => if (config.baseUrl.trim.nonEmpty) config.baseUrl else s"http://${config.host}:${config.port}")
     .getOrElse(configuredWordServiceUrl)
@@ -39,7 +45,7 @@ class WordService(wordServiceConfig: Option[QuizWordServiceConfig] = None) exten
     .getOrElse(1.0)
   val address: Uri = Uri
     .fromString(resolvedWordServiceUrl)
-    .getOrElse(uri"http://localhost:1111")
+    .getOrElse(Uri.unsafeFromString(s"http://$resolvedWordServiceHost:$resolvedWordServicePort"))
 
   val wordsEndpoint: Uri = address.withPath(path"words")
   val healthEndpoint: Uri = address.withPath(path"health")

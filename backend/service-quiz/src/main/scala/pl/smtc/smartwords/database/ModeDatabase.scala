@@ -13,14 +13,14 @@ import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.Using
 
-class ModeDatabase(databaseFile: String = "modes.json") {
+class ModeDatabase(databaseFile: String = "modes.json",
+                   dataDirectory: Option[Path] = sys.env.get("QUIZ_DATA_DIR").map(Paths.get(_)),
+                   seedDirectory: Option[Path] = sys.env.get("QUIZ_SEED_DIR").map(Paths.get(_))) {
 
   implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
 
   private val quizModes: ListBuffer[Mode] = ListBuffer()
-  private val dataDirectory: Option[Path] = sys.env.get("QUIZ_DATA_DIR").map(Paths.get(_))
-  private val seedDirectory: Option[Path] = sys.env.get("QUIZ_SEED_DIR").map(Paths.get(_))
   private val bundledResourceDir: Option[Path] = Option(getClass.getResource("/")).map(url => Paths.get(url.toURI))
   private val databaseDir: Path = dataDirectory
     .orElse(seedDirectory)

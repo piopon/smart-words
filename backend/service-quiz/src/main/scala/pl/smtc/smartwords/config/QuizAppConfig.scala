@@ -1,0 +1,93 @@
+package pl.smtc.smartwords.config
+
+import com.typesafe.config.ConfigFactory
+
+final case class QuizServiceConfig(
+  name: String,
+  host: String,
+  port: Int,
+  idleTimeoutMinutes: Int
+)
+
+final case class QuizCorsConfig(
+  anyOrigin: Boolean,
+  allowCredentials: Boolean,
+  maxAgeSeconds: Long,
+  anyMethod: Boolean
+)
+
+final case class QuizDataConfig(
+  modeFile: String,
+  dataDir: Option[String],
+  seedDir: Option[String]
+)
+
+final case class QuizWordServiceConfig(
+  name: String,
+  host: String,
+  port: Int,
+  baseUrl: String,
+  requestTimeoutSeconds: Double
+)
+
+final case class QuizRuntimeConfig(
+  defaultSize: Int,
+  defaultMode: Int,
+  defaultLanguage: String
+)
+
+final case class QuizAppConfig(
+  service: QuizServiceConfig,
+  cors: QuizCorsConfig,
+  data: QuizDataConfig,
+  wordService: QuizWordServiceConfig,
+  quiz: QuizRuntimeConfig
+)
+
+object QuizAppConfig {
+
+  private def optionalString(config: com.typesafe.config.Config, configPath: String): Option[String] = {
+    if (!config.hasPath(configPath)) {
+      None
+    } else {
+      val value = config.getString(configPath).trim
+      if (value.isEmpty) None else Some(value)
+    }
+  }
+
+  def load(): QuizAppConfig = {
+    val config = ConfigFactory.load()
+
+    QuizAppConfig(
+      service = QuizServiceConfig(
+        name = config.getString("service.name"),
+        host = config.getString("service.host"),
+        port = config.getInt("service.port"),
+        idleTimeoutMinutes = config.getInt("service.idle-timeout-minutes")
+      ),
+      cors = QuizCorsConfig(
+        anyOrigin = config.getBoolean("cors.any-origin"),
+        allowCredentials = config.getBoolean("cors.allow-credentials"),
+        maxAgeSeconds = config.getLong("cors.max-age-seconds"),
+        anyMethod = config.getBoolean("cors.any-method")
+      ),
+      data = QuizDataConfig(
+        modeFile = config.getString("data.mode-file"),
+        dataDir = optionalString(config, "data.dir"),
+        seedDir = optionalString(config, "data.seed-dir")
+      ),
+      wordService = QuizWordServiceConfig(
+        name = config.getString("word-service.name"),
+        host = config.getString("word-service.host"),
+        port = config.getInt("word-service.port"),
+        baseUrl = config.getString("word-service.base-url"),
+        requestTimeoutSeconds = config.getDouble("word-service.request-timeout-seconds")
+      ),
+      quiz = QuizRuntimeConfig(
+        defaultSize = config.getInt("quiz.default-size"),
+        defaultMode = config.getInt("quiz.default-mode"),
+        defaultLanguage = config.getString("quiz.default-language")
+      )
+    )
+  }
+}

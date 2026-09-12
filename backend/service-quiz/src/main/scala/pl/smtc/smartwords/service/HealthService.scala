@@ -4,7 +4,7 @@ import cats.effect._
 import org.http4s._
 import org.http4s.dsl.io._
 
-class HealthService {
+class HealthService(serviceName: String = "QUIZ") {
 
   private val statusOk = "OK"
 
@@ -15,9 +15,9 @@ class HealthService {
   def checkHealth(): IO[Response[IO]] = {
     val status: String = checkStatus()
     if (status.startsWith(statusOk)) {
-      Ok(s"Service: QUIZ - status: $status")
+      Ok(s"Service: $serviceName - status: $status")
     } else {
-      InternalServerError(s"Service: QUIZ - status: $status")
+      InternalServerError(s"Service: $serviceName - status: $status")
     }
   }
 

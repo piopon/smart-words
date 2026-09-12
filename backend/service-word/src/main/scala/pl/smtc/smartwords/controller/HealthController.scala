@@ -5,7 +5,7 @@ import org.http4s._
 import org.http4s.dsl._
 import pl.smtc.smartwords.service._
 
-class HealthController {
+class HealthController(serviceName: String = "WORD") {
 
   /**
    * Routes (request -> response) for health endpoints/resources
@@ -14,7 +14,7 @@ class HealthController {
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {
-    val service: HealthService = new HealthService()
+    val service: HealthService = new HealthService(serviceName)
     val dsl = Http4sDsl[IO]; import dsl._
     HttpRoutes.of[IO] {
       case GET -> Root => service.checkHealth()

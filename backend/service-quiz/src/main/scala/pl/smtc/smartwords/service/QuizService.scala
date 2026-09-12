@@ -14,13 +14,18 @@ import pl.smtc.smartwords.dao._
 import java.util.UUID
 import scala.util.Random
 
-class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
+class QuizService(quizDB: QuizDatabase,
+                  wordService: IWordService,
+                  quizSize: Int = 10,
+                  quizMode: Int = 0,
+                  quizLanguage: String = "pl",
+                  wordServiceName: String = "WORD") {
 
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
 
-  private final val defaultQuizSize: Int = 10
-  private final val defaultQuizMode: Int = 0
-  private final val defaultQuizLang: String = "pl"
+  private final val defaultQuizSize: Int = quizSize
+  private final val defaultQuizMode: Int = quizMode
+  private final val defaultQuizLang: String = quizLanguage
   private final val defaultLanguageMarker: String = "!"
 
   /**
@@ -50,7 +55,7 @@ class QuizService(quizDB: QuizDatabase, wordService: IWordService) {
         case e: QuizServiceException => BadRequest("Cannot start quiz: " + e.getMessage)
       }
     } else {
-      ServiceUnavailable("Cannot start quiz. Service: WORD - not available.")
+      ServiceUnavailable(s"Cannot start quiz. Service: $wordServiceName - not available.")
     }
   }
 

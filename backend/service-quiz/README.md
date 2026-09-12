@@ -30,5 +30,31 @@ Finally after finishing a quiz it calculates the end result.
 This service is written entirely in **Scala** language.<br>
 No database framework is used. All quiz information is stored in memory.
 
+### configuration
+
+Runtime settings are read from `src/main/resources/application.conf` with optional environment variable overrides.
+
+Most important keys:
+
+* `service.name` (`QUIZ_SERVICE_NAME`)
+* `service.host` (`QUIZ_SERVER_HOST`)
+* `service.port` (`QUIZ_SERVER_PORT`)
+* `service.idle-timeout-minutes` (`QUIZ_SERVER_IDLE_TIMEOUT_MINUTES`)
+* `cors.any-origin` (`QUIZ_CORS_ANY_ORIGIN`)
+* `cors.allow-credentials` (`QUIZ_CORS_ALLOW_CREDENTIALS`)
+* `cors.max-age-seconds` (`QUIZ_CORS_MAX_AGE_SECONDS`)
+* `cors.any-method` (`QUIZ_CORS_ANY_METHOD`)
+* `data.mode-file` (`QUIZ_MODE_FILE`)
+* `data.dir` (`QUIZ_DATA_DIR`)
+* `data.seed-dir` (`QUIZ_SEED_DIR`)
+* `word-service.name` (`QUIZ_WORD_SERVICE_NAME`, fallback: `WORD_SERVICE_NAME`)
+* `word-service.host` (`WORD_SERVICE_HOST`)
+* `word-service.port` (`WORD_SERVICE_PORT`)
+* `word-service.base-url` (`QUIZ_WORD_SERVICE_URL`)
+* `word-service.request-timeout-seconds` (`QUIZ_WORD_SERVICE_TIMEOUT_SECONDS`)
+* `quiz.default-size` (`QUIZ_DEFAULT_SIZE`)
+* `quiz.default-mode` (`QUIZ_DEFAULT_MODE`)
+* `quiz.default-language` (`QUIZ_DEFAULT_LANGUAGE`)
+
 ---
-<p align="center">Created by PNK with 💚 @ 2022-2023</p>
+<p align="center">Created by PNK with 💚 @ 2022-2026</p>

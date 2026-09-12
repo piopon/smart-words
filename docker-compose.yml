@@ -7,7 +7,12 @@ services:
       dockerfile: Dockerfile
     container_name: smart-words-service-word
     environment:
+      WORD_SERVICE_NAME: WORD
+      WORD_SERVER_HOST: 0.0.0.0
+      WORD_SERVER_PORT: "1111"
+      WORD_DICTIONARY_EXTENSION: JSON
       WORD_DATA_DIR: /app/data
+      WORD_SEED_DIR: /app/data
     volumes:
       - ./data/service-word:/app/data
     expose:
@@ -28,9 +33,20 @@ services:
       dockerfile: Dockerfile
     container_name: smart-words-service-quiz
     environment:
+      QUIZ_SERVICE_NAME: QUIZ
+      QUIZ_SERVER_HOST: 0.0.0.0
+      QUIZ_SERVER_PORT: "2222"
+      WORD_SERVICE_NAME: WORD
+      QUIZ_WORD_SERVICE_NAME: WORD
+      QUIZ_MODE_FILE: modes.json
       WORD_SERVICE_HOST: service-word
       WORD_SERVICE_PORT: "1111"
+      QUIZ_DEFAULT_SIZE: "10"
+      QUIZ_DEFAULT_MODE: "0"
+      QUIZ_DEFAULT_LANGUAGE: pl
+      QUIZ_WORD_SERVICE_TIMEOUT_SECONDS: "1.0"
       QUIZ_DATA_DIR: /app/data
+      QUIZ_SEED_DIR: /app/data
     volumes:
       - ./data/service-quiz:/app/data
     expose:

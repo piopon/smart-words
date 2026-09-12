@@ -8,7 +8,12 @@ import pl.smtc.smartwords.client._
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.service._
 
-class QuizController(quizDatabase: QuizDatabase, wordService: IWordService) {
+class QuizController(quizDatabase: QuizDatabase,
+                     wordService: IWordService,
+                     quizSize: Int = 10,
+                     quizMode: Int = 0,
+                     quizLanguage: String = "pl",
+                     wordServiceName: String = "WORD") {
 
   private object OptionalQuizSizeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("size")
   private object OptionalQuizModeParamMatcher extends OptionalQueryParamDecoderMatcher[Int]("mode")
@@ -24,7 +29,7 @@ class QuizController(quizDatabase: QuizDatabase, wordService: IWordService) {
    * </ul>
    */
   def getRoutes: HttpRoutes[IO] = {
-    val service: QuizService = new QuizService(quizDatabase, wordService)
+    val service: QuizService = new QuizService(quizDatabase, wordService, quizSize, quizMode, quizLanguage, wordServiceName)
     val dsl = Http4sDsl[IO]; import dsl._
     HttpRoutes.of[IO] {
       case POST -> Root / "start" :? OptionalQuizSizeParamMatcher(maybeSize)

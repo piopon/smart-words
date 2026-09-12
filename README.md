@@ -62,6 +62,17 @@ Open application in browser:
 
 - `http://localhost:8080`
 
+### runtime configuration
+
+Backend services read runtime settings from configuration files and support environment variable overrides.
+
+When running with Docker Compose, those variables can be adjusted in [docker-compose.yml](docker-compose.yml).
+
+Full key lists:
+
+- quiz service: [backend/service-quiz/README.md](backend/service-quiz/README.md#configuration)
+- word service: [backend/service-word/README.md](backend/service-word/README.md#configuration)
+
 ### verify
 
 ```powershell

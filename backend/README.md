@@ -15,5 +15,14 @@ It's responsible for handling CRUD operations on dictionaries: adding new word t
 This service has built-in dictionary files which user can edit, read or delete, but any new file is saved in a separate JSON file to separate the built-in words from user created ones.<br>
 More detailed information about dictionary file naming convention is available [HERE](service-word/src/main/resources/README.md).
 
+## configuration
+
+Both backend services now read runtime settings from `application.conf` files and support environment variable overrides.
+
+See details in:
+
+* [service-quiz configuration](./service-quiz/README.md#configuration)
+* [service-word configuration](./service-word/README.md#configuration)
+
 ---
-<p align="center">Created by PNK with 💚 @ 2022-2023</p>
+<p align="center">Created by PNK with 💚 @ 2022-2026</p>

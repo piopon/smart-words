@@ -40,9 +40,7 @@ object WordAppConfig {
     }
   }
 
-  def load(): WordAppConfig = {
-    val config = ConfigFactory.load()
-
+  def load(config: Config): WordAppConfig = {
     WordAppConfig(
       service = WordServiceConfig(
         name = config.getString("service.name"),
@@ -63,4 +61,6 @@ object WordAppConfig {
       )
     )
   }
+
+  def load(): WordAppConfig = load(ConfigFactory.load())
 }

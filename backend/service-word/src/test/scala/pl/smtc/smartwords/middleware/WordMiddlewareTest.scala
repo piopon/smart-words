@@ -26,6 +26,12 @@ class WordMiddlewareTest extends AnyFunSuite {
     assert(result.get === 1)
   }
 
+  test("testValidateParameterModeReturnsOkWhenAvailableModesAreNotProvided") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    val result: Option[Int] = middleware.validateParameterMode("7", None)
+    assert(result.contains(7))
+  }
+
   test("testValidateParameterModeThrowsWhenInputIsNok") {
     val middleware: WordMiddleware = new WordMiddleware()
     assertThrows[WordMiddlewareException](middleware.validateParameterMode("5", Some(List(1, 2))))

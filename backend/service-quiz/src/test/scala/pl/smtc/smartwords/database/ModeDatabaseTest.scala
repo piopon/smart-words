@@ -5,6 +5,7 @@ import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.model.Mode
 
 import java.io.File
+import java.nio.file.Files
 import java.nio.file.{Path, Paths}
 
 class ModeDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
@@ -83,5 +84,28 @@ class ModeDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
     assert(checkedMode.description === "test_description")
     assert(checkedMode.deletable === false)
     assert(new File(resourceDir.resolve(databaseTestFile).toString).exists())
+  }
+
+  test("testInitializeDataDirectoryCopiesSeedModesFile") {
+    val customDataDir: Path = Files.createTempDirectory("mode-db-data-")
+    val seedDir: Path = resourceDir
+    val seedFileName = "test-mode-database-load.json"
+
+    try {
+      val copiedModesFile = customDataDir.resolve(seedFileName)
+      assert(!Files.exists(copiedModesFile))
+
+      val databaseUnderTest = new ModeDatabase(seedFileName, Some(customDataDir), Some(seedDir))
+      assert(Files.exists(copiedModesFile))
+
+      assert(databaseUnderTest.loadDatabase())
+      assert(databaseUnderTest.getModes.size === 2)
+    } finally {
+      val copiedModesFile = customDataDir.resolve(seedFileName)
+      if (Files.exists(copiedModesFile)) {
+        Files.delete(copiedModesFile)
+      }
+      Files.deleteIfExists(customDataDir)
+    }
   }
 }

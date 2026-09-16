@@ -33,4 +33,48 @@ class QuizAppConfigTest extends AnyFunSuite {
     assert(config.quiz.defaultMode === 3)
     assert(config.quiz.defaultLanguage === "en")
   }
+
+  test("testLoadReadsOptionalDataPathsWhenProvided") {
+    val testConfig = ConfigFactory.parseString(
+      """
+        service {
+          name = "QUIZ-TEST"
+          host = "127.0.0.2"
+          port = 3222
+          idle-timeout-minutes = 12
+        }
+
+        cors {
+          any-origin = false
+          allow-credentials = true
+          max-age-seconds = 60
+          any-method = false
+        }
+
+        data {
+          mode-file = "modes-test.json"
+          dir = "./quiz-data"
+          seed-dir = "./seed-data"
+        }
+
+        word-service {
+          name = "WORD-TEST"
+          host = "word-service-test"
+          port = 4111
+          base-url = "http://word-service-test:4111"
+          request-timeout-seconds = 2.0
+        }
+
+        quiz {
+          default-size = 7
+          default-mode = 3
+          default-language = "en"
+        }
+      """
+    ).resolve()
+
+    val config = QuizAppConfig.load(testConfig)
+    assert(config.data.dataDir.contains("./quiz-data"))
+    assert(config.data.seedDir.contains("./seed-data"))
+  }
 }

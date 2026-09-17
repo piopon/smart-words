@@ -2,7 +2,7 @@ package pl.smtc.smartwords.database
 
 import org.scalatest.BeforeAndAfterAll
 import org.scalatest.funsuite.AnyFunSuite
-import pl.smtc.smartwords.model.Mode
+import pl.smtc.smartwords.model.{Kind, Mode, Setting}
 
 import java.io.File
 import java.nio.charset.StandardCharsets
@@ -126,5 +126,31 @@ class ModeDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
       Files.deleteIfExists(emptySeedDir)
       Files.deleteIfExists(customDataDir)
     }
+  }
+
+  test("testUpdateModeRejectsSettingsKindChangeWhenModeIsNotDeletable") {
+    val databaseUnderTest: ModeDatabase = new ModeDatabase(databaseTestFile)
+    val initialMode = Mode(
+      id = 0,
+      name = "initial",
+      description = "initial description",
+      settings = List(Setting(Kind.questions, "questions", "1-10")),
+      deletable = false
+    )
+    val updatedMode = Mode(
+      id = 1,
+      name = "updated",
+      description = "updated description",
+      settings = List(Setting(Kind.languages, "languages", "pl,en")),
+      deletable = false
+    )
+
+    databaseUnderTest.addMode()
+    assert(databaseUnderTest.updateMode(0, initialMode))
+    assert(!databaseUnderTest.updateMode(0, updatedMode))
+
+    val persistedMode = databaseUnderTest.getModes.head
+    assert(persistedMode.name === "initial")
+    assert(persistedMode.settings.map(_.kind) === List(Kind.questions))
   }
 }

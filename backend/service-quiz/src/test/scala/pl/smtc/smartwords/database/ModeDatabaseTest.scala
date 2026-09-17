@@ -153,4 +153,19 @@ class ModeDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
     assert(persistedMode.name === "initial")
     assert(persistedMode.settings.map(_.kind) === List(Kind.questions))
   }
+
+  test("testUpdateModeReturnsFalseWhenModeIdDoesNotExist") {
+    val databaseUnderTest: ModeDatabase = new ModeDatabase(databaseTestFile)
+    val updatedMode = Mode(
+      id = 1,
+      name = "updated",
+      description = "updated description",
+      settings = List(Setting(Kind.questions, "questions", "1-10")),
+      deletable = true
+    )
+
+    databaseUnderTest.addMode()
+    assert(!databaseUnderTest.updateMode(999, updatedMode))
+    assert(databaseUnderTest.getModes.size === 1)
+  }
 }

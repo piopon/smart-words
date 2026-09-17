@@ -53,6 +53,23 @@ class QuizServiceTest extends AnyFunSuite {
     assert(res === "Cannot start quiz: Invalid input parameter(s) - getWordsByCategory error!")
   }
 
+  test("testStartQuizUsesDefaultLanguageWhenProvidedLanguageMarkerOnly") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(1), Some(72), Some(" ! "))
+      .flatMap(_.as[String])
+      .unsafeRunSync())
+    val firstQuestion: Json = serviceUnderTest.getQuizQuestionNo(uuid, "0")
+      .flatMap(_.as[Json])
+      .unsafeRunSync()
+
+    assert(firstQuestion.hcursor.downField("word").as[String] match {
+      case Right(word) => word.startsWith("word-pl-72")
+      case Left(_) => false
+    })
+  }
+
   test("testGetQuizQuestionNo") {
     val quizDatabase: QuizDatabase = new QuizDatabase
     val wordService: WordServiceTest = new WordServiceTest

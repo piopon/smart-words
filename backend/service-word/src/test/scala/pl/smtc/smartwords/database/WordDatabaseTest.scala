@@ -159,6 +159,15 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
     databaseTestFile.delete()
   }
 
+  test("testAddWordWithEmptyDictionaryFileDoesNotCreateFile") {
+    val databaseUnderTest: WordDatabase = new WordDatabase()
+    val dictionaryWithoutFile: Dictionary = Dictionary("", "quiz", Some(99), "pl")
+    val word: Word = Word("word-empty-file", Category.verb, List("description"), dictionaryWithoutFile)
+
+    assert(databaseUnderTest.addWord(word))
+    assert(databaseUnderTest.getWords.exists(_.name == "word-empty-file"))
+  }
+
   test("testUpdateWordReturnsTrueWhenValidIndexIsUsed") {
     val databaseTestFile: File = new File(resourceDir.resolve("test-db.json").toString)
     val databaseUnderTest: WordDatabase = new WordDatabase()

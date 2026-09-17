@@ -211,4 +211,24 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
     // cleanup after checking test result
     databaseTestFile.delete()
   }
+
+  test("testInitializeDataDirectoryCopiesSeedDictionaryFiles") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-data-")
+    val seedDir: Path = resourceDir
+
+    try {
+      val databaseUnderTest = new WordDatabase(Some(customDataDir), "JSON", Some(seedDir))
+      val copiedJsonFiles = new File(customDataDir.toString).listFiles.filter(_.getName.toLowerCase.endsWith(".json"))
+      assert(copiedJsonFiles.nonEmpty)
+
+      assert(databaseUnderTest.loadDatabase())
+      assert(databaseUnderTest.getWords.nonEmpty)
+    } finally {
+      val copiedFiles = new File(customDataDir.toString).listFiles
+      if (copiedFiles != null) {
+        copiedFiles.foreach(_.delete())
+      }
+      Files.deleteIfExists(customDataDir)
+    }
+  }
 }

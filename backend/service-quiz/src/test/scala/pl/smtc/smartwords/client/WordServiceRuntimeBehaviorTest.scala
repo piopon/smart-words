@@ -84,6 +84,15 @@ class WordServiceRuntimeBehaviorTest extends AnyFunSuite {
     }
   }
 
+  test("testGetWordsByCategoryThrowsWhenEndpointReturnsErrorStatus") {
+    withServerWithStatus(200, "OK", 500, "[]") { port =>
+      val serviceUnderTest = new WordService(Some(createConfig(port)))
+      assertThrows[WordServiceException] {
+        serviceUnderTest.getWordsByCategory(0, "pl", "verb")
+      }
+    }
+  }
+
   private def createConfig(port: Int): QuizWordServiceConfig = {
     QuizWordServiceConfig(
       name = "WORD",

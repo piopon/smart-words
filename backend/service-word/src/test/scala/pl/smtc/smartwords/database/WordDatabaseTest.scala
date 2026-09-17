@@ -6,6 +6,7 @@ import pl.smtc.smartwords.model._
 
 import java.io.File
 import java.nio.file._
+import java.nio.charset.StandardCharsets
 
 class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
 
@@ -241,6 +242,22 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
       assert(databaseUnderTest.loadDatabase())
       assert(databaseUnderTest.getWords.isEmpty)
     } finally {
+      Files.deleteIfExists(emptySeedDir)
+      Files.deleteIfExists(customDataDir)
+    }
+  }
+
+  test("testLoadDatabaseReturnsFalseWhenDictionaryJsonIsInvalid") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-invalid-data-")
+    val emptySeedDir: Path = Files.createTempDirectory("word-db-invalid-seed-")
+    val invalidDictionaryFile = customDataDir.resolve("invalid-dict.json")
+
+    try {
+      Files.write(invalidDictionaryFile, "{ invalid json ]".getBytes(StandardCharsets.UTF_8))
+      val databaseUnderTest = new WordDatabase(Some(customDataDir), "JSON", Some(emptySeedDir))
+      assert(!databaseUnderTest.loadDatabase())
+    } finally {
+      Files.deleteIfExists(invalidDictionaryFile)
       Files.deleteIfExists(emptySeedDir)
       Files.deleteIfExists(customDataDir)
     }

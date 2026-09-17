@@ -5,6 +5,7 @@ import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.model.Mode
 
 import java.io.File
+import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.{Path, Paths}
 
@@ -105,6 +106,24 @@ class ModeDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
       if (Files.exists(copiedModesFile)) {
         Files.delete(copiedModesFile)
       }
+      Files.deleteIfExists(customDataDir)
+    }
+  }
+
+  test("testLoadDatabaseReturnsFalseWhenModesJsonIsInvalid") {
+    val customDataDir: Path = Files.createTempDirectory("mode-db-invalid-data-")
+    val emptySeedDir: Path = Files.createTempDirectory("mode-db-invalid-seed-")
+    val modesFileName = "modes-invalid.json"
+    val invalidModesFile = customDataDir.resolve(modesFileName)
+
+    try {
+      Files.write(invalidModesFile, "{ invalid json ]".getBytes(StandardCharsets.UTF_8))
+      val databaseUnderTest = new ModeDatabase(modesFileName, Some(customDataDir), Some(emptySeedDir))
+      assert(!databaseUnderTest.loadDatabase())
+      assert(databaseUnderTest.getModes.isEmpty)
+    } finally {
+      Files.deleteIfExists(invalidModesFile)
+      Files.deleteIfExists(emptySeedDir)
       Files.deleteIfExists(customDataDir)
     }
   }

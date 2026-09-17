@@ -231,4 +231,18 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
       Files.deleteIfExists(customDataDir)
     }
   }
+
+  test("testLoadDatabaseReturnsTrueWhenNoDictionaryFilesArePresent") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-empty-data-")
+    val emptySeedDir: Path = Files.createTempDirectory("word-db-empty-seed-")
+
+    try {
+      val databaseUnderTest = new WordDatabase(Some(customDataDir), "JSON", Some(emptySeedDir))
+      assert(databaseUnderTest.loadDatabase())
+      assert(databaseUnderTest.getWords.isEmpty)
+    } finally {
+      Files.deleteIfExists(emptySeedDir)
+      Files.deleteIfExists(customDataDir)
+    }
+  }
 }

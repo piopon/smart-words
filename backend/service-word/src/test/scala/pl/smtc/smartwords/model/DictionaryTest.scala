@@ -53,4 +53,12 @@ class DictionaryTest extends AnyFunSuite {
     assert(result.mode.isEmpty)
     assert(result.language === "pl")
   }
+
+  test("testFromFileWithInvalidModeTokenKeepsModeEmpty") {
+    val result: Dictionary = Dictionary.fromFile("words-quiz-invalid-en@2023-05-26.json")
+    assert(result.file === "words-quiz-invalid-en@2023-05-26.json")
+    assert(result.game === "quiz")
+    assert(result.mode.isEmpty)
+    assert(result.language === "en")
+  }
 }

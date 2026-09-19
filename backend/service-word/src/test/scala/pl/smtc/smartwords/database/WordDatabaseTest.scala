@@ -305,4 +305,19 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
       Files.deleteIfExists(customDataDir)
     }
   }
+
+  test("testGetWordReturnsNoneWhenIndexIsOutOfBounds") {
+    val databaseUnderTest: WordDatabase = new WordDatabase()
+    val dictionary: Dictionary = Dictionary("", "quiz", Some(99), "pl")
+    assert(databaseUnderTest.addWord(Word("word-idx", Category.verb, List("description"), dictionary)))
+
+    val method = classOf[WordDatabase].getDeclaredMethod("getWord", classOf[Integer])
+    method.setAccessible(true)
+
+    val negativeIndexResult = method.invoke(databaseUnderTest, Integer.valueOf(-1)).asInstanceOf[Option[Word]]
+    val tooLargeIndexResult = method.invoke(databaseUnderTest, Integer.valueOf(999)).asInstanceOf[Option[Word]]
+
+    assert(negativeIndexResult.isEmpty)
+    assert(tooLargeIndexResult.isEmpty)
+  }
 }

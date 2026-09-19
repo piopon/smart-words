@@ -271,4 +271,22 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
       Files.deleteIfExists(customDataDir)
     }
   }
+
+  test("testGetDirectoryFilesReturnsAllFilesWhenExtensionFilterIsNotProvided") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-list-all-")
+    val txtFile = customDataDir.resolve("sample.txt")
+
+    try {
+      Files.write(txtFile, "sample".getBytes(StandardCharsets.UTF_8))
+      val databaseUnderTest: WordDatabase = new WordDatabase(Some(customDataDir), "JSON", Some(customDataDir))
+      val method = classOf[WordDatabase].getDeclaredMethod("getDirectoryFiles", classOf[Path], classOf[Option[String]])
+      method.setAccessible(true)
+
+      val files = method.invoke(databaseUnderTest, customDataDir, None).asInstanceOf[List[File]]
+      assert(files.exists(_.getName == "sample.txt"))
+    } finally {
+      Files.deleteIfExists(txtFile)
+      Files.deleteIfExists(customDataDir)
+    }
+  }
 }

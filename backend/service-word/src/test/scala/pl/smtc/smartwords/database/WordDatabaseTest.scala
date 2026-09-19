@@ -289,4 +289,20 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
       Files.deleteIfExists(customDataDir)
     }
   }
+
+  test("testGetDirectoryFilesReturnsEmptyListWhenDirectoryDoesNotExist") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-missing-dir-")
+    val missingDir = customDataDir.resolve("missing-subdir")
+
+    try {
+      val databaseUnderTest: WordDatabase = new WordDatabase(Some(customDataDir), "JSON", Some(customDataDir))
+      val method = classOf[WordDatabase].getDeclaredMethod("getDirectoryFiles", classOf[Path], classOf[Option[String]])
+      method.setAccessible(true)
+
+      val files = method.invoke(databaseUnderTest, missingDir, Some("JSON")).asInstanceOf[List[File]]
+      assert(files.isEmpty)
+    } finally {
+      Files.deleteIfExists(customDataDir)
+    }
+  }
 }

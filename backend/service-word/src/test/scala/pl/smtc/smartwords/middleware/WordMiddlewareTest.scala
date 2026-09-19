@@ -96,6 +96,24 @@ class WordMiddlewareTest extends AnyFunSuite {
     assert(result.isEmpty)
   }
 
+  test("testWordMiddlewareExceptionConstructors") {
+    val cause = new IllegalArgumentException("root-cause")
+
+    val messageAndCauseException = new WordMiddlewareException("custom message", cause)
+    assert(messageAndCauseException.getMessage === "custom message")
+    assert(messageAndCauseException.getCause eq cause)
+
+    val causeOnlyException = new WordMiddlewareException(cause)
+    assert(causeOnlyException.getMessage.contains("root-cause"))
+    assert(causeOnlyException.getCause eq cause)
+
+    val nullCauseException = new WordMiddlewareException(null: Throwable)
+    assert(nullCauseException.getMessage == null)
+
+    val emptyException = new WordMiddlewareException()
+    assert(emptyException.getMessage == null)
+  }
+
   private def testIntValidation(value: Int): ValidatedNel[ParseFailure, Int] =
     if (value >= 0) value.valid else ParseFailure("Input is smaller than zero", "Value must be >= 0").invalidNel
 

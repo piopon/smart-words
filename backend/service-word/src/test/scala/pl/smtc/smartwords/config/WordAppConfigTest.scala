@@ -53,4 +53,12 @@ class WordAppConfigTest extends AnyFunSuite {
     assert(config.data.dataDir.contains("./data"))
     assert(config.data.seedDir.contains("./seed"))
   }
+
+  test("testLoadUsesDefaultConfigFactorySource") {
+    val config = WordAppConfig.load()
+
+    assert(config.service.name.nonEmpty)
+    assert(config.service.host.nonEmpty)
+    assert(config.data.dictionaryExtension.nonEmpty)
+  }
 }

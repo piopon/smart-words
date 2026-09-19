@@ -45,4 +45,12 @@ class DictionaryTest extends AnyFunSuite {
     assert(result.mode.isEmpty)
     assert(result.language === "en")
   }
+
+  test("testFromFileUsesDefaultsWhenPrefixIsNotWords") {
+    val result: Dictionary = Dictionary.fromFile("dictionary-quiz-7-de@2023-05-26.json")
+    assert(result.file === "dictionary-quiz-7-de@2023-05-26.json")
+    assert(result.game === "quiz")
+    assert(result.mode.isEmpty)
+    assert(result.language === "pl")
+  }
 }

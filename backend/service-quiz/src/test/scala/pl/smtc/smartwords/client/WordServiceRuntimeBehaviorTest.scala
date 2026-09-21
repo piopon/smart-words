@@ -23,6 +23,36 @@ class WordServiceRuntimeBehaviorTest extends AnyFunSuite {
     }
   }
 
+  test("testIsAliveReturnsFalseWhenHealthRequestTimesOut") {
+    val server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0)
+    server.createContext("/", (exchange: HttpExchange) => {
+      val path = exchange.getRequestURI.getPath
+      if (path == "/health") {
+        Thread.sleep(250)
+        writeResponse(exchange, 200, "OK")
+      } else if (path.startsWith("/words/")) {
+        writeResponse(exchange, 200, "[]")
+      } else {
+        writeResponse(exchange, 404, "[]")
+      }
+    })
+    server.start()
+
+    try {
+      val timeoutConfig = QuizWordServiceConfig(
+        name = "WORD",
+        host = "127.0.0.1",
+        port = server.getAddress.getPort,
+        baseUrl = "",
+        requestTimeoutSeconds = 0.05
+      )
+      val serviceUnderTest = new WordService(Some(timeoutConfig))
+      assert(!serviceUnderTest.isAlive)
+    } finally {
+      server.stop(0)
+    }
+  }
+
   test("testIsAliveReturnsFalseWhenWordServiceIsUnreachable") {
     val unreachableConfig = QuizWordServiceConfig(
       name = "WORD",

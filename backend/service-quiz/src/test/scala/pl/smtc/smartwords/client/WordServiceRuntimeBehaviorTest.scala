@@ -65,6 +65,18 @@ class WordServiceRuntimeBehaviorTest extends AnyFunSuite {
     assert(!serviceUnderTest.isAlive)
   }
 
+  test("testIsAliveReturnsFalseWhenHealthTimeoutConfigIsInvalid") {
+    val invalidTimeoutConfig = QuizWordServiceConfig(
+      name = "WORD",
+      host = "127.0.0.1",
+      port = 1,
+      baseUrl = "",
+      requestTimeoutSeconds = -1.0
+    )
+    val serviceUnderTest = new WordService(Some(invalidTimeoutConfig))
+    assert(!serviceUnderTest.isAlive)
+  }
+
   test("testGetRandomWordReturnsSingleWordWhenEndpointReturnsData") {
     val singleWordJson = """[{"name":"alpha","category":"verb","description":["d1","d2"]}]"""
     withServer("OK", singleWordJson) { port =>

@@ -119,6 +119,55 @@ class QuizServiceTest extends AnyFunSuite {
     assert(wordService.randomCalls >= 3)
   }
 
+  test("testStartQuizRetriesWhenReplacementWordIsForbidden") {
+    class RetryOnForbiddenWordService extends IWordService {
+      var randomCalls: Int = 0
+
+      override def isAlive: Boolean = true
+
+      override def getRandomWord(mode: Int, language: String): Word = {
+        randomCalls += 1
+        randomCalls match {
+          case 1 => Word("same-word", "verb", List("same-def"))
+          case 2 => Word("same-word", "verb", List("same-def"))
+          case 3 => Word("same-word", "verb", List("same-def"))
+          case _ => Word("unique-word", "verb", List("unique-def"))
+        }
+      }
+
+      override def getWordsByCategory(mode: Int, language: String, category: String): List[Word] = {
+        List(
+          Word("opt-a", category, List("d-a")),
+          Word("opt-b", category, List("d-b")),
+          Word("opt-c", category, List("d-c")),
+          Word("opt-d", category, List("d-d"))
+        )
+      }
+    }
+
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService = new RetryOnForbiddenWordService
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(2), Some(72), Some("es"))
+      .flatMap(_.as[String])
+      .unsafeRunSync())
+    val question0: Json = serviceUnderTest.getQuizQuestionNo(uuid, "0")
+      .flatMap(_.as[Json])
+      .unsafeRunSync()
+    val question1: Json = serviceUnderTest.getQuizQuestionNo(uuid, "1")
+      .flatMap(_.as[Json])
+      .unsafeRunSync()
+
+    val word0 = question0.hcursor.downField("word").as[String].toOption.getOrElse("")
+    val word1 = question1.hcursor.downField("word").as[String].toOption.getOrElse("")
+
+    assert(word0.nonEmpty)
+    assert(word1.nonEmpty)
+    assert(word0 != word1)
+    assert(wordService.randomCalls >= 4)
+  }
+
   test("testGetQuizQuestionNo") {
     val quizDatabase: QuizDatabase = new QuizDatabase
     val wordService: WordServiceTest = new WordServiceTest

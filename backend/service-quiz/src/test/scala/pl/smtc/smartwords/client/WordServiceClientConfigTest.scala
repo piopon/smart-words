@@ -58,4 +58,12 @@ class WordServiceClientConfigTest extends AnyFunSuite {
     val serviceUnderTest = new WordService(Some(config), () => true)
     assert(serviceUnderTest.address.toString === "http://configured-host:19191")
   }
+
+  test("testUsesResolvedDefaultsWhenConfigIsNotProvided") {
+    val serviceUnderTest = new WordService(None, () => false)
+
+    assert(serviceUnderTest.address.toString.startsWith("http://"))
+    assert(serviceUnderTest.healthEndpoint.toString.endsWith("/health"))
+    assert(serviceUnderTest.wordsEndpoint.toString.endsWith("/words"))
+  }
 }

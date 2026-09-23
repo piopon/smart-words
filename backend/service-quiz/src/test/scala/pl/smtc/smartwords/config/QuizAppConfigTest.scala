@@ -77,4 +77,12 @@ class QuizAppConfigTest extends AnyFunSuite {
     assert(config.data.dataDir.contains("./quiz-data"))
     assert(config.data.seedDir.contains("./seed-data"))
   }
+
+  test("testLoadUsesDefaultConfigFactorySource") {
+    val config = QuizAppConfig.load()
+
+    assert(config.service.name.nonEmpty)
+    assert(config.wordService.name.nonEmpty)
+    assert(config.quiz.defaultLanguage.nonEmpty)
+  }
 }

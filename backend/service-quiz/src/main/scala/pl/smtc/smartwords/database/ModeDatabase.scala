@@ -15,13 +15,14 @@ import scala.util.Using
 
 class ModeDatabase(databaseFile: String = "modes.json",
                    dataDirectory: Option[Path] = sys.env.get("QUIZ_DATA_DIR").map(Paths.get(_)),
-                   seedDirectory: Option[Path] = sys.env.get("QUIZ_SEED_DIR").map(Paths.get(_))) {
+                   seedDirectory: Option[Path] = sys.env.get("QUIZ_SEED_DIR").map(Paths.get(_)),
+                   bundledResourceDirOverride: Option[Path] = Option(getClass.getResource("/")).map(url => Paths.get(url.toURI))) {
 
   implicit val ModeDecoder: Decoder[Mode] = ModeDao.getModeDecoder
   implicit val ModeEncoder: Encoder[Mode] = ModeDao.getModeEncoder
 
   private val quizModes: ListBuffer[Mode] = ListBuffer()
-  private val bundledResourceDir: Option[Path] = Option(getClass.getResource("/")).map(url => Paths.get(url.toURI))
+  private val bundledResourceDir: Option[Path] = bundledResourceDirOverride
   private val databaseDir: Path = dataDirectory
     .orElse(seedDirectory)
     .orElse(bundledResourceDir)

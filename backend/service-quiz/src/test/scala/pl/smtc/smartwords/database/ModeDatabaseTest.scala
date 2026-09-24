@@ -168,4 +168,26 @@ class ModeDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
     assert(!databaseUnderTest.updateMode(999, updatedMode))
     assert(databaseUnderTest.getModes.size === 1)
   }
+
+  test("testConstructorFallbacksUseBundledResourceAndDefaultCurrentDirectory") {
+    val customDataDir: Path = Files.createTempDirectory("mode-db-bundled-fallback-")
+    val seedFileName = "test-mode-database-load.json"
+    val copiedModesFile = customDataDir.resolve(seedFileName)
+
+    try {
+      assert(!Files.exists(copiedModesFile))
+      val bundledFallbackDb = new ModeDatabase(seedFileName, Some(customDataDir), None, Some(resourceDir))
+      assert(Files.exists(copiedModesFile))
+      assert(bundledFallbackDb.loadDatabase())
+
+      val currentDirectoryFallbackDb = new ModeDatabase("unused-modes.json", None, None, None)
+      val databaseDirField = classOf[ModeDatabase].getDeclaredField("databaseDir")
+      databaseDirField.setAccessible(true)
+      val resolvedDatabaseDir = databaseDirField.get(currentDirectoryFallbackDb).asInstanceOf[Path]
+      assert(resolvedDatabaseDir == Paths.get("."))
+    } finally {
+      Files.deleteIfExists(copiedModesFile)
+      Files.deleteIfExists(customDataDir)
+    }
+  }
 }

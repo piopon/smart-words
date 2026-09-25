@@ -320,4 +320,34 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
     assert(negativeIndexResult.isEmpty)
     assert(tooLargeIndexResult.isEmpty)
   }
+
+  test("testConstructorFallbacksUseBundledResourceAndDefaultCurrentDirectory") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-bundled-fallback-")
+
+    try {
+      val bundledFallbackDb = new WordDatabase(Some(customDataDir), "JSON", None, Some(resourceDir))
+      val copiedJsonFiles = new File(customDataDir.toString).listFiles.filter(_.getName.toLowerCase.endsWith(".json"))
+      assert(copiedJsonFiles.nonEmpty)
+      assert(bundledFallbackDb.loadDatabase())
+
+      copiedJsonFiles.foreach(_.delete())
+
+      val noBundledFallbackDb = new WordDatabase(Some(customDataDir), "JSON", None, None)
+      val filesAfterNoBundledFallback = new File(customDataDir.toString).listFiles
+      assert(filesAfterNoBundledFallback == null || filesAfterNoBundledFallback.isEmpty)
+      assert(noBundledFallbackDb.loadDatabase())
+
+      val currentDirectoryFallbackDb = new WordDatabase(None, "JSON", None, None)
+      val databaseDirField = classOf[WordDatabase].getDeclaredField("databaseDir")
+      databaseDirField.setAccessible(true)
+      val resolvedDatabaseDir = databaseDirField.get(currentDirectoryFallbackDb).asInstanceOf[Path]
+      assert(resolvedDatabaseDir == Paths.get("."))
+    } finally {
+      val copiedFiles = new File(customDataDir.toString).listFiles
+      if (copiedFiles != null) {
+        copiedFiles.foreach(_.delete())
+      }
+      Files.deleteIfExists(customDataDir)
+    }
+  }
 }

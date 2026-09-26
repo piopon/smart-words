@@ -6,6 +6,7 @@ import pl.smtc.smartwords.model._
 
 import java.io.File
 import java.nio.file._
+import java.nio.charset.StandardCharsets
 
 class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
 
@@ -158,6 +159,15 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
     databaseTestFile.delete()
   }
 
+  test("testAddWordWithEmptyDictionaryFileDoesNotCreateFile") {
+    val databaseUnderTest: WordDatabase = new WordDatabase()
+    val dictionaryWithoutFile: Dictionary = Dictionary("", "quiz", Some(99), "pl")
+    val word: Word = Word("word-empty-file", Category.verb, List("description"), dictionaryWithoutFile)
+
+    assert(databaseUnderTest.addWord(word))
+    assert(databaseUnderTest.getWords.exists(_.name == "word-empty-file"))
+  }
+
   test("testUpdateWordReturnsTrueWhenValidIndexIsUsed") {
     val databaseTestFile: File = new File(resourceDir.resolve("test-db.json").toString)
     val databaseUnderTest: WordDatabase = new WordDatabase()
@@ -210,5 +220,134 @@ class WordDatabaseTest extends AnyFunSuite with BeforeAndAfterAll {
     assert(databaseUnderTest.getWords.size === 1)
     // cleanup after checking test result
     databaseTestFile.delete()
+  }
+
+  test("testInitializeDataDirectoryCopiesSeedDictionaryFiles") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-data-")
+    val seedDir: Path = resourceDir
+
+    try {
+      val databaseUnderTest = new WordDatabase(Some(customDataDir), "JSON", Some(seedDir))
+      val copiedJsonFiles = new File(customDataDir.toString).listFiles.filter(_.getName.toLowerCase.endsWith(".json"))
+      assert(copiedJsonFiles.nonEmpty)
+
+      assert(databaseUnderTest.loadDatabase())
+      assert(databaseUnderTest.getWords.nonEmpty)
+    } finally {
+      val copiedFiles = new File(customDataDir.toString).listFiles
+      if (copiedFiles != null) {
+        copiedFiles.foreach(_.delete())
+      }
+      Files.deleteIfExists(customDataDir)
+    }
+  }
+
+  test("testLoadDatabaseReturnsTrueWhenNoDictionaryFilesArePresent") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-empty-data-")
+    val emptySeedDir: Path = Files.createTempDirectory("word-db-empty-seed-")
+
+    try {
+      val databaseUnderTest = new WordDatabase(Some(customDataDir), "JSON", Some(emptySeedDir))
+      assert(databaseUnderTest.loadDatabase())
+      assert(databaseUnderTest.getWords.isEmpty)
+    } finally {
+      Files.deleteIfExists(emptySeedDir)
+      Files.deleteIfExists(customDataDir)
+    }
+  }
+
+  test("testLoadDatabaseReturnsFalseWhenDictionaryJsonIsInvalid") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-invalid-data-")
+    val emptySeedDir: Path = Files.createTempDirectory("word-db-invalid-seed-")
+    val invalidDictionaryFile = customDataDir.resolve("invalid-dict.json")
+
+    try {
+      Files.write(invalidDictionaryFile, "{ invalid json ]".getBytes(StandardCharsets.UTF_8))
+      val databaseUnderTest = new WordDatabase(Some(customDataDir), "JSON", Some(emptySeedDir))
+      assert(!databaseUnderTest.loadDatabase())
+    } finally {
+      Files.deleteIfExists(invalidDictionaryFile)
+      Files.deleteIfExists(emptySeedDir)
+      Files.deleteIfExists(customDataDir)
+    }
+  }
+
+  test("testGetDirectoryFilesReturnsAllFilesWhenExtensionFilterIsNotProvided") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-list-all-")
+    val txtFile = customDataDir.resolve("sample.txt")
+
+    try {
+      Files.write(txtFile, "sample".getBytes(StandardCharsets.UTF_8))
+      val databaseUnderTest: WordDatabase = new WordDatabase(Some(customDataDir), "JSON", Some(customDataDir))
+      val method = classOf[WordDatabase].getDeclaredMethod("getDirectoryFiles", classOf[Path], classOf[Option[String]])
+      method.setAccessible(true)
+
+      val files = method.invoke(databaseUnderTest, customDataDir, None).asInstanceOf[List[File]]
+      assert(files.exists(_.getName == "sample.txt"))
+    } finally {
+      Files.deleteIfExists(txtFile)
+      Files.deleteIfExists(customDataDir)
+    }
+  }
+
+  test("testGetDirectoryFilesReturnsEmptyListWhenDirectoryDoesNotExist") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-missing-dir-")
+    val missingDir = customDataDir.resolve("missing-subdir")
+
+    try {
+      val databaseUnderTest: WordDatabase = new WordDatabase(Some(customDataDir), "JSON", Some(customDataDir))
+      val method = classOf[WordDatabase].getDeclaredMethod("getDirectoryFiles", classOf[Path], classOf[Option[String]])
+      method.setAccessible(true)
+
+      val files = method.invoke(databaseUnderTest, missingDir, Some("JSON")).asInstanceOf[List[File]]
+      assert(files.isEmpty)
+    } finally {
+      Files.deleteIfExists(customDataDir)
+    }
+  }
+
+  test("testGetWordReturnsNoneWhenIndexIsOutOfBounds") {
+    val databaseUnderTest: WordDatabase = new WordDatabase()
+    val dictionary: Dictionary = Dictionary("", "quiz", Some(99), "pl")
+    assert(databaseUnderTest.addWord(Word("word-idx", Category.verb, List("description"), dictionary)))
+
+    val method = classOf[WordDatabase].getDeclaredMethod("getWord", classOf[Integer])
+    method.setAccessible(true)
+
+    val negativeIndexResult = method.invoke(databaseUnderTest, Integer.valueOf(-1)).asInstanceOf[Option[Word]]
+    val tooLargeIndexResult = method.invoke(databaseUnderTest, Integer.valueOf(999)).asInstanceOf[Option[Word]]
+
+    assert(negativeIndexResult.isEmpty)
+    assert(tooLargeIndexResult.isEmpty)
+  }
+
+  test("testConstructorFallbacksUseBundledResourceAndDefaultCurrentDirectory") {
+    val customDataDir: Path = Files.createTempDirectory("word-db-bundled-fallback-")
+
+    try {
+      val bundledFallbackDb = new WordDatabase(Some(customDataDir), "JSON", None, Some(resourceDir))
+      val copiedJsonFiles = new File(customDataDir.toString).listFiles.filter(_.getName.toLowerCase.endsWith(".json"))
+      assert(copiedJsonFiles.nonEmpty)
+      assert(bundledFallbackDb.loadDatabase())
+
+      copiedJsonFiles.foreach(_.delete())
+
+      val noBundledFallbackDb = new WordDatabase(Some(customDataDir), "JSON", None, None)
+      val filesAfterNoBundledFallback = new File(customDataDir.toString).listFiles
+      assert(filesAfterNoBundledFallback == null || filesAfterNoBundledFallback.isEmpty)
+      assert(noBundledFallbackDb.loadDatabase())
+
+      val currentDirectoryFallbackDb = new WordDatabase(None, "JSON", None, None)
+      val databaseDirField = classOf[WordDatabase].getDeclaredField("databaseDir")
+      databaseDirField.setAccessible(true)
+      val resolvedDatabaseDir = databaseDirField.get(currentDirectoryFallbackDb).asInstanceOf[Path]
+      assert(resolvedDatabaseDir == Paths.get("."))
+    } finally {
+      val copiedFiles = new File(customDataDir.toString).listFiles
+      if (copiedFiles != null) {
+        copiedFiles.foreach(_.delete())
+      }
+      Files.deleteIfExists(customDataDir)
+    }
   }
 }

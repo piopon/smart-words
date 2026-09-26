@@ -1,5 +1,6 @@
 package pl.smtc.smartwords.config
 
+import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 
 final case class QuizServiceConfig(
@@ -46,7 +47,7 @@ final case class QuizAppConfig(
 
 object QuizAppConfig {
 
-  private def optionalString(config: com.typesafe.config.Config, configPath: String): Option[String] = {
+  private def optionalString(config: Config, configPath: String): Option[String] = {
     if (!config.hasPath(configPath)) {
       None
     } else {
@@ -55,9 +56,7 @@ object QuizAppConfig {
     }
   }
 
-  def load(): QuizAppConfig = {
-    val config = ConfigFactory.load()
-
+  def load(config: Config): QuizAppConfig = {
     QuizAppConfig(
       service = QuizServiceConfig(
         name = config.getString("service.name"),
@@ -90,4 +89,6 @@ object QuizAppConfig {
       )
     )
   }
+
+  def load(): QuizAppConfig = load(ConfigFactory.load())
 }

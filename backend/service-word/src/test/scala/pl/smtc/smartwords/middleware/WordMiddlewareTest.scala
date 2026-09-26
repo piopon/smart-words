@@ -26,6 +26,12 @@ class WordMiddlewareTest extends AnyFunSuite {
     assert(result.get === 1)
   }
 
+  test("testValidateParameterModeReturnsOkWhenAvailableModesAreNotProvided") {
+    val middleware: WordMiddleware = new WordMiddleware()
+    val result: Option[Int] = middleware.validateParameterMode("7", None)
+    assert(result.contains(7))
+  }
+
   test("testValidateParameterModeThrowsWhenInputIsNok") {
     val middleware: WordMiddleware = new WordMiddleware()
     assertThrows[WordMiddlewareException](middleware.validateParameterMode("5", Some(List(1, 2))))
@@ -88,6 +94,24 @@ class WordMiddlewareTest extends AnyFunSuite {
     val middleware: WordMiddleware = new WordMiddleware()
     val result: Option[Boolean] = middleware.validateParameterRandom(None)
     assert(result.isEmpty)
+  }
+
+  test("testWordMiddlewareExceptionConstructors") {
+    val cause = new IllegalArgumentException("root-cause")
+
+    val messageAndCauseException = new WordMiddlewareException("custom message", cause)
+    assert(messageAndCauseException.getMessage === "custom message")
+    assert(messageAndCauseException.getCause eq cause)
+
+    val causeOnlyException = new WordMiddlewareException(cause)
+    assert(causeOnlyException.getMessage.contains("root-cause"))
+    assert(causeOnlyException.getCause eq cause)
+
+    val nullCauseException = new WordMiddlewareException(null: Throwable)
+    assert(nullCauseException.getMessage == null)
+
+    val emptyException = new WordMiddlewareException()
+    assert(emptyException.getMessage == null)
   }
 
   private def testIntValidation(value: Int): ValidatedNel[ParseFailure, Int] =

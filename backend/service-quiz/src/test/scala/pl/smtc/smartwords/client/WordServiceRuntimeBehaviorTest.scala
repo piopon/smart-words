@@ -23,6 +23,72 @@ class WordServiceRuntimeBehaviorTest extends AnyFunSuite {
     }
   }
 
+  test("testIsAliveReturnsFalseWhenHealthRequestTimesOut") {
+    val server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0)
+    server.createContext("/", (exchange: HttpExchange) => {
+      val path = exchange.getRequestURI.getPath
+      if (path == "/health") {
+        Thread.sleep(250)
+        writeResponse(exchange, 200, "OK")
+      } else if (path.startsWith("/words/")) {
+        writeResponse(exchange, 200, "[]")
+      } else {
+        writeResponse(exchange, 404, "[]")
+      }
+    })
+    server.start()
+
+    try {
+      val timeoutConfig = QuizWordServiceConfig(
+        name = "WORD",
+        host = "127.0.0.1",
+        port = server.getAddress.getPort,
+        baseUrl = "",
+        requestTimeoutSeconds = 0.05
+      )
+      val serviceUnderTest = new WordService(Some(timeoutConfig))
+      assert(!serviceUnderTest.isAlive)
+    } finally {
+      server.stop(0)
+    }
+  }
+
+  test("testIsAliveReturnsFalseWhenWordServiceIsUnreachable") {
+    val unreachableConfig = QuizWordServiceConfig(
+      name = "WORD",
+      host = "127.0.0.1",
+      port = 1,
+      baseUrl = "",
+      requestTimeoutSeconds = 0.1
+    )
+    val serviceUnderTest = new WordService(Some(unreachableConfig))
+    assert(!serviceUnderTest.isAlive)
+  }
+
+  test("testIsAliveReturnsFalseWhenHealthTimeoutConfigIsInvalid") {
+    val invalidTimeoutConfig = QuizWordServiceConfig(
+      name = "WORD",
+      host = "127.0.0.1",
+      port = 1,
+      baseUrl = "",
+      requestTimeoutSeconds = -1.0
+    )
+    val serviceUnderTest = new WordService(Some(invalidTimeoutConfig))
+    assert(!serviceUnderTest.isAlive)
+  }
+
+  test("testIsAliveReturnsFalseWhenHealthTimeoutConfigIsNaN") {
+    val invalidTimeoutConfig = QuizWordServiceConfig(
+      name = "WORD",
+      host = "127.0.0.1",
+      port = 1,
+      baseUrl = "",
+      requestTimeoutSeconds = Double.NaN
+    )
+    val serviceUnderTest = new WordService(Some(invalidTimeoutConfig))
+    assert(!serviceUnderTest.isAlive)
+  }
+
   test("testGetRandomWordReturnsSingleWordWhenEndpointReturnsData") {
     val singleWordJson = """[{"name":"alpha","category":"verb","description":["d1","d2"]}]"""
     withServer("OK", singleWordJson) { port =>
@@ -36,6 +102,15 @@ class WordServiceRuntimeBehaviorTest extends AnyFunSuite {
 
   test("testGetRandomWordThrowsWhenEndpointReturnsEmptyList") {
     withServer("OK", "[]") { port =>
+      val serviceUnderTest = new WordService(Some(createConfig(port)))
+      assertThrows[WordServiceException] {
+        serviceUnderTest.getRandomWord(0, "pl")
+      }
+    }
+  }
+
+  test("testGetRandomWordThrowsWhenEndpointReturnsErrorStatus") {
+    withServerWithStatus(200, "OK", 500, "[]") { port =>
       val serviceUnderTest = new WordService(Some(createConfig(port)))
       assertThrows[WordServiceException] {
         serviceUnderTest.getRandomWord(0, "pl")
@@ -63,6 +138,15 @@ class WordServiceRuntimeBehaviorTest extends AnyFunSuite {
     }
   }
 
+  test("testGetWordsByCategoryThrowsWhenEndpointReturnsErrorStatus") {
+    withServerWithStatus(200, "OK", 500, "[]") { port =>
+      val serviceUnderTest = new WordService(Some(createConfig(port)))
+      assertThrows[WordServiceException] {
+        serviceUnderTest.getWordsByCategory(0, "pl", "verb")
+      }
+    }
+  }
+
   private def createConfig(port: Int): QuizWordServiceConfig = {
     QuizWordServiceConfig(
       name = "WORD",
@@ -74,11 +158,25 @@ class WordServiceRuntimeBehaviorTest extends AnyFunSuite {
   }
 
   private def withServer(healthBody: String, wordsBody: String)(testBody: Int => Unit): Unit = {
+    withServerWithStatus(200, healthBody, 200, wordsBody)(testBody)
+  }
+
+  private def withServerWithStatus(
+      healthStatus: Int,
+      healthBody: String,
+      wordsStatus: Int,
+      wordsBody: String
+  )(testBody: Int => Unit): Unit = {
     val server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0)
     server.createContext("/", (exchange: HttpExchange) => {
       val path = exchange.getRequestURI.getPath
-      val responseBody = if (path == "/health") healthBody else if (path.startsWith("/words/")) wordsBody else "[]"
-      writeResponse(exchange, responseBody)
+      if (path == "/health") {
+        writeResponse(exchange, healthStatus, healthBody)
+      } else if (path.startsWith("/words/")) {
+        writeResponse(exchange, wordsStatus, wordsBody)
+      } else {
+        writeResponse(exchange, 404, "[]")
+      }
     })
     server.start()
     val port = server.getAddress.getPort
@@ -91,8 +189,12 @@ class WordServiceRuntimeBehaviorTest extends AnyFunSuite {
   }
 
   private def writeResponse(exchange: HttpExchange, body: String): Unit = {
+    writeResponse(exchange, 200, body)
+  }
+
+  private def writeResponse(exchange: HttpExchange, statusCode: Int, body: String): Unit = {
     val bytes = body.getBytes(StandardCharsets.UTF_8)
-    exchange.sendResponseHeaders(200, bytes.length)
+    exchange.sendResponseHeaders(statusCode, bytes.length)
     val outputStream = exchange.getResponseBody
     try {
       outputStream.write(bytes)

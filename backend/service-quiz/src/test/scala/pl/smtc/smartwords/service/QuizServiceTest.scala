@@ -6,6 +6,7 @@ import org.http4s.circe.jsonDecoder
 import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.client._
 import pl.smtc.smartwords.database._
+import pl.smtc.smartwords.model.Word
 
 import java.util.UUID
 
@@ -51,6 +52,120 @@ class QuizServiceTest extends AnyFunSuite {
                                       .flatMap(_.as[String])
                                       .unsafeRunSync()
     assert(res === "Cannot start quiz: Invalid input parameter(s) - getWordsByCategory error!")
+  }
+
+  test("testStartQuizUsesDefaultLanguageWhenProvidedLanguageMarkerOnly") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(1), Some(72), Some(" ! "))
+      .flatMap(_.as[String])
+      .unsafeRunSync())
+    val firstQuestion: Json = serviceUnderTest.getQuizQuestionNo(uuid, "0")
+      .flatMap(_.as[Json])
+      .unsafeRunSync()
+
+    assert(firstQuestion.hcursor.downField("word").as[String] match {
+      case Right(word) => word.startsWith("word-pl-72")
+      case Left(_) => false
+    })
+  }
+
+  test("testStartQuizReplacesDuplicateRandomWords") {
+    class DuplicateWordService extends IWordService {
+      var randomCalls: Int = 0
+
+      override def isAlive: Boolean = true
+
+      override def getRandomWord(mode: Int, language: String): Word = {
+        randomCalls += 1
+        if (randomCalls <= 2) {
+          Word("duplicate-word", "verb", List("correct-dup"))
+        } else {
+          Word("replacement-word", "verb", List("correct-replacement"))
+        }
+      }
+
+      override def getWordsByCategory(mode: Int, language: String, category: String): List[Word] = {
+        List(
+          Word("opt-1", category, List("opt-a")),
+          Word("opt-2", category, List("opt-b")),
+          Word("opt-3", category, List("opt-c")),
+          Word("opt-4", category, List("opt-d"))
+        )
+      }
+    }
+
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService = new DuplicateWordService
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(2), Some(72), Some("es"))
+      .flatMap(_.as[String])
+      .unsafeRunSync())
+    val question0: Json = serviceUnderTest.getQuizQuestionNo(uuid, "0")
+      .flatMap(_.as[Json])
+      .unsafeRunSync()
+    val question1: Json = serviceUnderTest.getQuizQuestionNo(uuid, "1")
+      .flatMap(_.as[Json])
+      .unsafeRunSync()
+
+    val word0 = question0.hcursor.downField("word").as[String].toOption.getOrElse("")
+    val word1 = question1.hcursor.downField("word").as[String].toOption.getOrElse("")
+
+    assert(word0.nonEmpty)
+    assert(word1.nonEmpty)
+    assert(word0 != word1)
+    assert(wordService.randomCalls >= 3)
+  }
+
+  test("testStartQuizRetriesWhenReplacementWordIsForbidden") {
+    class RetryOnForbiddenWordService extends IWordService {
+      var randomCalls: Int = 0
+
+      override def isAlive: Boolean = true
+
+      override def getRandomWord(mode: Int, language: String): Word = {
+        randomCalls += 1
+        randomCalls match {
+          case 1 => Word("same-word", "verb", List("same-def"))
+          case 2 => Word("same-word", "verb", List("same-def"))
+          case 3 => Word("same-word", "verb", List("same-def"))
+          case _ => Word("unique-word", "verb", List("unique-def"))
+        }
+      }
+
+      override def getWordsByCategory(mode: Int, language: String, category: String): List[Word] = {
+        List(
+          Word("opt-a", category, List("d-a")),
+          Word("opt-b", category, List("d-b")),
+          Word("opt-c", category, List("d-c")),
+          Word("opt-d", category, List("d-d"))
+        )
+      }
+    }
+
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService = new RetryOnForbiddenWordService
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(2), Some(72), Some("es"))
+      .flatMap(_.as[String])
+      .unsafeRunSync())
+    val question0: Json = serviceUnderTest.getQuizQuestionNo(uuid, "0")
+      .flatMap(_.as[Json])
+      .unsafeRunSync()
+    val question1: Json = serviceUnderTest.getQuizQuestionNo(uuid, "1")
+      .flatMap(_.as[Json])
+      .unsafeRunSync()
+
+    val word0 = question0.hcursor.downField("word").as[String].toOption.getOrElse("")
+    val word1 = question1.hcursor.downField("word").as[String].toOption.getOrElse("")
+
+    assert(word0.nonEmpty)
+    assert(word1.nonEmpty)
+    assert(word0 != word1)
+    assert(wordService.randomCalls >= 4)
   }
 
   test("testGetQuizQuestionNo") {

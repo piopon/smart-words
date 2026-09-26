@@ -45,4 +45,25 @@ class WordServiceClientConfigTest extends AnyFunSuite {
     val serviceUnderTest = new WordService(Some(config))
     assert(serviceUnderTest.address.toString === "http://fallback-host:17171")
   }
+
+  test("testInitializesWithContainerDefaultBranchWhenDetectorReturnsTrue") {
+    val config = QuizWordServiceConfig(
+      name = "WORD",
+      host = "configured-host",
+      port = 19191,
+      baseUrl = "",
+      requestTimeoutSeconds = 1.0
+    )
+
+    val serviceUnderTest = new WordService(Some(config), () => true)
+    assert(serviceUnderTest.address.toString === "http://configured-host:19191")
+  }
+
+  test("testUsesResolvedDefaultsWhenConfigIsNotProvided") {
+    val serviceUnderTest = new WordService(None, () => false)
+
+    assert(serviceUnderTest.address.toString.startsWith("http://"))
+    assert(serviceUnderTest.healthEndpoint.toString.endsWith("/health"))
+    assert(serviceUnderTest.wordsEndpoint.toString.endsWith("/words"))
+  }
 }

@@ -30,6 +30,7 @@ libraryDependencies ++= Seq(
 
 coverageMinimumBranchTotal := 70
 coverageFailOnMinimum := true
+coverageExcludedPackages := "pl\\.smtc\\.smartwords\\.ServiceQuizApp.*"
 
 Compile / mainClass := Some("pl.smtc.smartwords.ServiceQuizApp")
 assembly / mainClass := (Compile / mainClass).value

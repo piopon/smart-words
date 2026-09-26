@@ -16,9 +16,10 @@ import pl.smtc.smartwords.model._
 import java.nio.file.{Files, Paths}
 import scala.concurrent.duration.DurationDouble
 
-class WordService(wordServiceConfig: Option[QuizWordServiceConfig] = None) extends IWordService {
+class WordService(wordServiceConfig: Option[QuizWordServiceConfig] = None,
+                  runningInContainerCheck: () => Boolean = () => Files.exists(Paths.get("/.dockerenv"))) extends IWordService {
 
-  private val defaultWordServiceHost = if (isRunningInContainer) "service-word" else "localhost"
+  private val defaultWordServiceHost = if (runningInContainerCheck()) "service-word" else "localhost"
   private val configuredWordServiceHost: String = sys.env
     .get("WORD_SERVICE_HOST")
     .getOrElse(defaultWordServiceHost)
@@ -51,9 +52,6 @@ class WordService(wordServiceConfig: Option[QuizWordServiceConfig] = None) exten
   val healthEndpoint: Uri = address.withPath(path"health")
 
   implicit val WordsDecoder: EntityDecoder[IO, List[Word]] = jsonOf[IO, List[Word]]
-
-  // Docker creates /.dockerenv, which allows safe local-vs-container default host selection.
-  private def isRunningInContainer: Boolean = Files.exists(Paths.get("/.dockerenv"))
 
   /**
    * Method used to check if word service is alive and working correctly

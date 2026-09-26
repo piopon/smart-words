@@ -4,7 +4,7 @@ import cats.effect._
 import org.http4s._
 import org.http4s.dsl.io._
 
-class HealthService(serviceName: String = "QUIZ") {
+class HealthService(serviceName: String = "QUIZ", statusSupplier: () => String = () => "OK") {
 
   private val statusOk = "OK"
 
@@ -13,20 +13,11 @@ class HealthService(serviceName: String = "QUIZ") {
    * @return response of status 200 if health ok, otherwise status 500 will be returned
    */
   def checkHealth(): IO[Response[IO]] = {
-    val status: String = checkStatus()
+    val status: String = statusSupplier()
     if (status.startsWith(statusOk)) {
       Ok(s"Service: $serviceName - status: $status")
     } else {
       InternalServerError(s"Service: $serviceName - status: $status")
     }
-  }
-
-  /**
-   * Method used to check service status (currently always returns status OK)
-   * @return String containing service status ("OK" if service is working correctly)
-   */
-  private def checkStatus(): String = {
-    // add custom defined checks here
-    statusOk
   }
 }

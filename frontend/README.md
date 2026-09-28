@@ -19,4 +19,4 @@ This frontend is written in common web technologies: **HTML**, **CSS**, and **Ja
 No boostrap nor frameworks are used.
 
 ---
-<p align="center">Created by PNK with 💚 @ 2022-2023</p>
+<p align="center">Created by PNK with 💚 @ 2022-2026</p>

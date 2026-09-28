@@ -186,4 +186,4 @@ Also the user can remove manually added modes. The ones defined in the main `mod
 Follow the steps from the [`CONTRIBUTING.md`](CONTRIBUTING.md) file contents.
 
 ---
-<p align="center">Created by PNK with 💚 @ 2022-2023</p>
+<p align="center">Created by PNK with 💚 @ 2022-2026</p>

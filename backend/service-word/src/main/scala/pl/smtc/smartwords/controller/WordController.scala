@@ -20,6 +20,17 @@ class WordController(database: WordDatabase) {
   object OptionalCategoryParamMatcher extends OptionalQueryParamDecoderMatcher[String]("cat")
   object OptionalSizeParamMatcher extends OptionalValidatingQueryParamDecoderMatcher[Int]("size")
 
+  private def wrapValidation(action: => IO[Response[IO]]): IO[Response[IO]] = {
+    try {
+      action.handleErrorWith {
+        case e: WordMiddlewareException => BadRequest(e.getMessage)
+        case e => IO.raiseError(e)
+      }
+    } catch {
+      case e: WordMiddlewareException => BadRequest(e.getMessage)
+    }
+  }
+
   /**
    * Routes (request -> response) for words endpoints/resources
    * <ul>

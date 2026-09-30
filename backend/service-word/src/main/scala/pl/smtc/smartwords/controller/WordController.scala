@@ -31,6 +31,16 @@ class WordController(database: WordDatabase) {
     }
   }
 
+  private def validateModeAndLanguage(
+    middleware: WordMiddleware,
+    mode: String,
+    language: String
+  ): (Option[Int], String) = {
+    val validatedMode: Option[Int] = middleware.validateParameterMode(mode, database.getAvailableModes)
+    val validatedLanguage: String = middleware.validateParameterLanguage(language, database.getAvailableLanguages)
+    (validatedMode, validatedLanguage)
+  }
+
   /**
    * Routes (request -> response) for words endpoints/resources
    * <ul>
@@ -53,8 +63,7 @@ class WordController(database: WordDatabase) {
                                          +& OptionalSizeParamMatcher(maybeSize)
                                          +& OptionalRandomizeParamMatcher(maybeRandom) =>
         wrapValidation {
-          val validatedMode: Option[Int] = middleware.validateParameterMode(mode, database.getAvailableModes)
-          val validatedLanguage: String = middleware.validateParameterLanguage(language, database.getAvailableLanguages)
+          val (validatedMode, validatedLanguage) = validateModeAndLanguage(middleware, mode, language)
           val validatedRandom: Option[Boolean] = middleware.validateParameterRandom(maybeRandom)
           val validatedSize: Option[Int] = middleware.validateParameterSize(maybeSize)
           val validatedCategory: Option[Category.Value] = middleware.validateParameterCategory(maybeCategory)
@@ -62,8 +71,7 @@ class WordController(database: WordDatabase) {
         }
       case request@POST -> Root / mode / language =>
         wrapValidation {
-          val validatedMode: Option[Int] = middleware.validateParameterMode(mode, database.getAvailableModes)
-          val validatedLanguage: String = middleware.validateParameterLanguage(language, database.getAvailableLanguages)
+          val (validatedMode, validatedLanguage) = validateModeAndLanguage(middleware, mode, language)
           for {
             newWord <- request.as[Word]
             response <- service.addWord(validatedMode, validatedLanguage, newWord)
@@ -71,8 +79,7 @@ class WordController(database: WordDatabase) {
         }
       case request@PUT -> Root / mode / language / name =>
         wrapValidation {
-          val validatedMode: Option[Int] = middleware.validateParameterMode(mode, database.getAvailableModes)
-          val validatedLanguage: String = middleware.validateParameterLanguage(language, database.getAvailableLanguages)
+          val (validatedMode, validatedLanguage) = validateModeAndLanguage(middleware, mode, language)
           for {
             newWord <- request.as[Word]
             response <- service.updateWord(validatedMode, validatedLanguage, name, newWord)
@@ -80,8 +87,7 @@ class WordController(database: WordDatabase) {
         }
       case DELETE -> Root / mode / language / name =>
         wrapValidation {
-          val validatedMode: Option[Int] = middleware.validateParameterMode(mode, database.getAvailableModes)
-          val validatedLanguage: String = middleware.validateParameterLanguage(language, database.getAvailableLanguages)
+          val (validatedMode, validatedLanguage) = validateModeAndLanguage(middleware, mode, language)
           service.deleteWord(validatedMode, validatedLanguage, name)
         }
     }

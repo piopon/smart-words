@@ -37,6 +37,8 @@ class WordController(database: WordDatabase) {
     mode: String,
     language: String
   ): (Option[Int], String) = {
+    // Keep route mode as String so non-integer values can still be validated
+    // and returned as user-friendly 400 responses.
     val validatedMode: Option[Int] = middleware.validateParameterMode(mode, database.getAvailableModes)
     val validatedLanguage: String = middleware.validateParameterLanguage(language, database.getAvailableLanguages)
     (validatedMode, validatedLanguage)

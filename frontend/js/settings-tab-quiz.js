@@ -843,6 +843,25 @@ function handlePointerDragEnd(e) {
 }
 
 /**
+ * Method used to find visible drop target for the current pointer coordinates.
+ *
+ * @param {Integer} x horizontal pointer coordinate
+ * @param {Integer} y vertical pointer coordinate
+ * @returns drop target element if found and visible, undefined otherwise
+ */
+function findVisibleDropTargetAt(x, y) {
+  const element = document.elementFromPoint(x, y);
+  if (element === null) {
+    return undefined;
+  }
+  const dropTarget = element.closest('.drop-target');
+  if (dropTarget === null || !dropTarget.classList.contains('show')) {
+    return undefined;
+  }
+  return dropTarget;
+}
+
+/**
  * Method used to handle the drag enter event of a setting box
  *
  * @param {Object} e drag enter event data

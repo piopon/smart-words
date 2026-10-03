@@ -8,7 +8,7 @@ var dirtyQuizModes = new Set();
 var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
-var pointerDragState = { active: false, pointerId: undefined };
+var pointerDragState = { active: false, pointerId: undefined, hoveredDropTarget: undefined };
 var pointerDragGlobalListenersInitialized = false;
 
 /**
@@ -773,6 +773,7 @@ function initializePointerDragEvents(modeSettingBoxes) {
     box.addEventListener('pointerdown', handlePointerDragStart);
   });
   if (!pointerDragGlobalListenersInitialized) {
+    document.addEventListener('pointermove', handlePointerDragMove, { passive: false });
     document.addEventListener('pointerup', handlePointerDragEnd);
     document.addEventListener('pointercancel', handlePointerDragEnd);
     pointerDragGlobalListenersInitialized = true;
@@ -820,6 +821,28 @@ function handlePointerDragStart(e) {
   updateDropTargetsState(true, this);
   if (this.setPointerCapture) {
     this.setPointerCapture(e.pointerId);
+  }
+  e.preventDefault();
+}
+
+/**
+ * Method used to detect currently hovered drop target during touch/pen drag.
+ *
+ * @param {Object} e pointermove event data
+ */
+function handlePointerDragMove(e) {
+  if (!pointerDragState.active || pointerDragState.pointerId !== e.pointerId) {
+    return;
+  }
+  let dropTarget = findVisibleDropTargetAt(e.clientX, e.clientY);
+  if (pointerDragState.hoveredDropTarget !== dropTarget) {
+    if (pointerDragState.hoveredDropTarget !== undefined) {
+      pointerDragState.hoveredDropTarget.classList.remove('over');
+    }
+    if (dropTarget !== undefined) {
+      dropTarget.classList.add('over');
+    }
+    pointerDragState.hoveredDropTarget = dropTarget;
   }
   e.preventDefault();
 }

@@ -856,9 +856,20 @@ function handlePointerDragEnd(e) {
   if (!pointerDragState.active || pointerDragState.pointerId !== e.pointerId) {
     return;
   }
+  const hoveredDropTarget = pointerDragState.hoveredDropTarget;
+  if (hoveredDropTarget !== undefined) {
+    hoveredDropTarget.classList.remove('over');
+  }
   if (currentlyDraggedElement !== undefined) {
     currentlyDraggedElement.style.opacity = '1';
+  }
+  if (hoveredDropTarget !== undefined && e.type !== 'pointercancel') {
+    applyDropForTarget(hoveredDropTarget);
+  } else if (currentlyDraggedElement !== undefined) {
     updateDropTargetsState(false, currentlyDraggedElement);
+  }
+  if (currentlyDraggedElement !== undefined && currentlyDraggedElement.releasePointerCapture) {
+    currentlyDraggedElement.releasePointerCapture(e.pointerId);
   }
   clearPointerDragState();
 }

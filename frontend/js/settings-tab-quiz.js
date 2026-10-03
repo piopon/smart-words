@@ -817,7 +817,18 @@ function handleBoxDragOver(e) {
  */
 function handleBoxDrop(e) {
   e.stopPropagation();
-  let dropPosition = parseInt(this.id.substring(this.id.indexOf("-") + 1));
+  applyDropForTarget(this);
+  return false;
+}
+
+/**
+ * Method used to apply setting drop logic for a selected drop target.
+ * This shared path is used by all input models (desktop drag and touch/pointer).
+ *
+ * @param {Object} dropTarget drop target element where setting is released
+ */
+function applyDropForTarget(dropTarget) {
+  let dropPosition = parseInt(dropTarget.id.substring(dropTarget.id.indexOf("-") + 1));
   if (!isNaN(dropPosition)) {
     // update model before possible mode change to correctly update quiz modes placeholder in UI
     updateCurrentlyEditedMode();
@@ -849,11 +860,10 @@ function handleBoxDrop(e) {
   } else {
     // we are dropping setting box to delete drop target
     deleteSettingBox(currentlyDraggedElement);
-    this.classList.remove('over');
+    dropTarget.classList.remove('over');
   }
   updateQuizModesPlaceholder(currentlyEditedMode);
   updateSupportedSettingsBoxes();
-  return false;
 }
 
 /**

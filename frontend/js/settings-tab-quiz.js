@@ -8,6 +8,7 @@ var dirtyQuizModes = new Set();
 var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
+var pointerDragState = { active: false, pointerId: undefined };
 var pointerDragGlobalListenersInitialized = false;
 
 /**
@@ -800,6 +801,45 @@ function handleBoxDragEnd(e) {
   this.style.opacity = '1';
   currentlyDraggedElement = undefined;
   updateDropTargetsState(false, this);
+}
+
+/**
+ * Method used to initialize drag state for touch/pen pointer interactions.
+ *
+ * @param {Object} e pointerdown event data
+ */
+function handlePointerDragStart(e) {
+  // Mouse is handled by native desktop drag and drop path.
+  if (e.pointerType === 'mouse' || this.draggable !== true) {
+    return;
+  }
+  currentlyDraggedElement = this;
+  pointerDragState.active = true;
+  pointerDragState.pointerId = e.pointerId;
+  this.style.opacity = '0.5';
+  updateDropTargetsState(true, this);
+  if (this.setPointerCapture) {
+    this.setPointerCapture(e.pointerId);
+  }
+  e.preventDefault();
+}
+
+/**
+ * Method used to clear drag state for touch/pen pointer interactions.
+ *
+ * @param {Object} e pointerup/pointercancel event data
+ */
+function handlePointerDragEnd(e) {
+  if (!pointerDragState.active || pointerDragState.pointerId !== e.pointerId) {
+    return;
+  }
+  if (currentlyDraggedElement !== undefined) {
+    currentlyDraggedElement.style.opacity = '1';
+    updateDropTargetsState(false, currentlyDraggedElement);
+  }
+  currentlyDraggedElement = undefined;
+  pointerDragState.active = false;
+  pointerDragState.pointerId = undefined;
 }
 
 /**

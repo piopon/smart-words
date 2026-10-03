@@ -8,6 +8,7 @@ var dirtyQuizModes = new Set();
 var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
+var pointerDragGlobalListenersInitialized = false;
 
 /**
  * Method used to read all defined quiz modes from backend service and display them in the UI tab
@@ -754,6 +755,27 @@ function initializeDragAndDropEvents() {
     box.addEventListener('dragstart', handleBoxDragStart);
     box.addEventListener('dragend', handleBoxDragEnd);
   });
+  initializePointerDragEvents(modeSettingBoxes);
+}
+
+/**
+ * Method used to initialize pointer drag event listeners for touch/pen input.
+ * Desktop mouse path remains handled by HTML drag and drop API.
+ *
+ * @param {Array} modeSettingBoxes setting boxes to which pointer listeners should be attached
+ */
+function initializePointerDragEvents(modeSettingBoxes) {
+  if (!window.PointerEvent) {
+    return;
+  }
+  modeSettingBoxes.forEach(box => {
+    box.addEventListener('pointerdown', handlePointerDragStart);
+  });
+  if (!pointerDragGlobalListenersInitialized) {
+    document.addEventListener('pointerup', handlePointerDragEnd);
+    document.addEventListener('pointercancel', handlePointerDragEnd);
+    pointerDragGlobalListenersInitialized = true;
+  }
 }
 
 /**

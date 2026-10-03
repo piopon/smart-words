@@ -860,9 +860,17 @@ function handlePointerDragEnd(e) {
     currentlyDraggedElement.style.opacity = '1';
     updateDropTargetsState(false, currentlyDraggedElement);
   }
+  clearPointerDragState();
+}
+
+/**
+ * Method used to clear state of touch/pen pointer drag interactions.
+ */
+function clearPointerDragState() {
   currentlyDraggedElement = undefined;
   pointerDragState.active = false;
   pointerDragState.pointerId = undefined;
+  pointerDragState.hoveredDropTarget = undefined;
 }
 
 /**

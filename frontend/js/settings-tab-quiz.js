@@ -11,6 +11,7 @@ var currentlyDraggedElement = undefined;
 var pointerDragState = { active: false, pointerId: undefined, hoveredDropTarget: undefined };
 var pointerDragGlobalListenersInitialized = false;
 var touchDragState = { active: false, touchId: undefined, hoveredDropTarget: undefined };
+var touchDragGlobalListenersInitialized = false;
 
 /**
  * Method used to read all defined quiz modes from backend service and display them in the UI tab
@@ -758,6 +759,7 @@ function initializeDragAndDropEvents() {
     box.addEventListener('dragend', handleBoxDragEnd);
   });
   initializePointerDragEvents(modeSettingBoxes);
+  initializeTouchDragEvents(modeSettingBoxes);
 }
 
 /**
@@ -778,6 +780,27 @@ function initializePointerDragEvents(modeSettingBoxes) {
     document.addEventListener('pointerup', handlePointerDragEnd);
     document.addEventListener('pointercancel', handlePointerDragEnd);
     pointerDragGlobalListenersInitialized = true;
+  }
+}
+
+/**
+ * Method used to initialize touch drag fallback listeners.
+ * This path is used only when PointerEvent API is unavailable.
+ *
+ * @param {Array} modeSettingBoxes setting boxes to which touch listeners should be attached
+ */
+function initializeTouchDragEvents(modeSettingBoxes) {
+  if (window.PointerEvent || typeof TouchEvent === 'undefined') {
+    return;
+  }
+  modeSettingBoxes.forEach(box => {
+    box.addEventListener('touchstart', handleTouchDragStart, { passive: false });
+  });
+  if (!touchDragGlobalListenersInitialized) {
+    document.addEventListener('touchmove', handleTouchDragMove, { passive: false });
+    document.addEventListener('touchend', handleTouchDragEnd, { passive: false });
+    document.addEventListener('touchcancel', handleTouchDragEnd, { passive: false });
+    touchDragGlobalListenersInitialized = true;
   }
 }
 

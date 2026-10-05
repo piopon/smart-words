@@ -10,6 +10,7 @@ var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
 var pointerDragState = { active: false, pointerId: undefined, hoveredDropTarget: undefined };
 var pointerDragGlobalListenersInitialized = false;
+var touchDragState = { active: false, touchId: undefined, hoveredDropTarget: undefined };
 
 /**
  * Method used to read all defined quiz modes from backend service and display them in the UI tab
@@ -882,6 +883,105 @@ function clearPointerDragState() {
   pointerDragState.active = false;
   pointerDragState.pointerId = undefined;
   pointerDragState.hoveredDropTarget = undefined;
+}
+
+/**
+ * Method used to initialize drag state for touch interactions.
+ *
+ * @param {Object} e touchstart event data
+ */
+function handleTouchDragStart(e) {
+  if (this.draggable !== true || e.changedTouches.length === 0) {
+    return;
+  }
+  const touch = e.changedTouches[0];
+  currentlyDraggedElement = this;
+  touchDragState.active = true;
+  touchDragState.touchId = touch.identifier;
+  this.style.opacity = '0.5';
+  updateDropTargetsState(true, this);
+  e.preventDefault();
+}
+
+/**
+ * Method used to detect currently hovered drop target during touch drag.
+ *
+ * @param {Object} e touchmove event data
+ */
+function handleTouchDragMove(e) {
+  if (!touchDragState.active) {
+    return;
+  }
+  const touch = findTrackedTouch(e.touches, touchDragState.touchId);
+  if (touch === undefined) {
+    return;
+  }
+  let dropTarget = findVisibleDropTargetAt(touch.clientX, touch.clientY);
+  if (touchDragState.hoveredDropTarget !== dropTarget) {
+    if (touchDragState.hoveredDropTarget !== undefined) {
+      touchDragState.hoveredDropTarget.classList.remove('over');
+    }
+    if (dropTarget !== undefined) {
+      dropTarget.classList.add('over');
+    }
+    touchDragState.hoveredDropTarget = dropTarget;
+  }
+  e.preventDefault();
+}
+
+/**
+ * Method used to clear drag state for touch interactions.
+ *
+ * @param {Object} e touchend/touchcancel event data
+ */
+function handleTouchDragEnd(e) {
+  if (!touchDragState.active) {
+    return;
+  }
+  const touch = findTrackedTouch(e.changedTouches, touchDragState.touchId);
+  if (touch === undefined) {
+    return;
+  }
+  const hoveredDropTarget = touchDragState.hoveredDropTarget;
+  if (hoveredDropTarget !== undefined) {
+    hoveredDropTarget.classList.remove('over');
+  }
+  if (currentlyDraggedElement !== undefined) {
+    currentlyDraggedElement.style.opacity = '1';
+  }
+  if (hoveredDropTarget !== undefined && e.type !== 'touchcancel') {
+    applyDropForTarget(hoveredDropTarget);
+  } else if (currentlyDraggedElement !== undefined) {
+    updateDropTargetsState(false, currentlyDraggedElement);
+  }
+  clearTouchDragState();
+  e.preventDefault();
+}
+
+/**
+ * Method used to clear state of touch drag interactions.
+ */
+function clearTouchDragState() {
+  currentlyDraggedElement = undefined;
+  touchDragState.active = false;
+  touchDragState.touchId = undefined;
+  touchDragState.hoveredDropTarget = undefined;
+}
+
+/**
+ * Method used to find touch by identifier in touch list.
+ *
+ * @param {Array} touchList list of touches
+ * @param {Integer} touchId tracked touch identifier
+ * @returns touch if found, undefined otherwise
+ */
+function findTrackedTouch(touchList, touchId) {
+  for (let i = 0; i < touchList.length; i++) {
+    if (touchList[i].identifier === touchId) {
+      return touchList[i];
+    }
+  }
+  return undefined;
 }
 
 /**

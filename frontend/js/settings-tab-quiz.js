@@ -12,6 +12,7 @@ var pointerDragState = { active: false, pointerId: undefined, hoveredDropTarget:
 var pointerDragGlobalListenersInitialized = false;
 var touchDragState = { active: false, touchId: undefined, hoveredDropTarget: undefined };
 var touchDragGlobalListenersInitialized = false;
+var pageDragLockState = { locked: false, bodyOverflow: '', bodyTouchAction: '', htmlOverflow: '', htmlTouchAction: '' };
 
 /**
  * Method used to read all defined quiz modes from backend service and display them in the UI tab
@@ -985,10 +986,43 @@ function handleTouchDragEnd(e) {
  * Method used to clear state of touch drag interactions.
  */
 function clearTouchDragState() {
+  unlockPageAfterCustomDrag();
   currentlyDraggedElement = undefined;
   touchDragState.active = false;
   touchDragState.touchId = undefined;
   touchDragState.hoveredDropTarget = undefined;
+}
+
+/**
+ * Method used to lock page scrolling and browser touch gestures during custom drag.
+ */
+function lockPageDuringCustomDrag() {
+  if (pageDragLockState.locked) {
+    return;
+  }
+  pageDragLockState.bodyOverflow = document.body.style.overflow;
+  pageDragLockState.bodyTouchAction = document.body.style.touchAction;
+  pageDragLockState.htmlOverflow = document.documentElement.style.overflow;
+  pageDragLockState.htmlTouchAction = document.documentElement.style.touchAction;
+  document.body.style.overflow = 'hidden';
+  document.body.style.touchAction = 'none';
+  document.documentElement.style.overflow = 'hidden';
+  document.documentElement.style.touchAction = 'none';
+  pageDragLockState.locked = true;
+}
+
+/**
+ * Method used to restore page scrolling and browser touch gestures after custom drag.
+ */
+function unlockPageAfterCustomDrag() {
+  if (!pageDragLockState.locked) {
+    return;
+  }
+  document.body.style.overflow = pageDragLockState.bodyOverflow;
+  document.body.style.touchAction = pageDragLockState.bodyTouchAction;
+  document.documentElement.style.overflow = pageDragLockState.htmlOverflow;
+  document.documentElement.style.touchAction = pageDragLockState.htmlTouchAction;
+  pageDragLockState.locked = false;
 }
 
 /**

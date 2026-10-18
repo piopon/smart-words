@@ -844,6 +844,7 @@ function handlePointerDragStart(e) {
   pointerDragState.pointerId = e.pointerId;
   this.style.opacity = '0.5';
   updateDropTargetsState(true, this);
+  lockPageDuringCustomDrag();
   if (this.setPointerCapture) {
     this.setPointerCapture(e.pointerId);
   }
@@ -903,6 +904,7 @@ function handlePointerDragEnd(e) {
  * Method used to clear state of touch/pen pointer drag interactions.
  */
 function clearPointerDragState() {
+  unlockPageAfterCustomDrag();
   currentlyDraggedElement = undefined;
   pointerDragState.active = false;
   pointerDragState.pointerId = undefined;
@@ -924,6 +926,7 @@ function handleTouchDragStart(e) {
   touchDragState.touchId = touch.identifier;
   this.style.opacity = '0.5';
   updateDropTargetsState(true, this);
+  lockPageDuringCustomDrag();
   e.preventDefault();
 }
 

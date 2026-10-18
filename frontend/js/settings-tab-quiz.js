@@ -756,26 +756,40 @@ function deleteSettingBox(settingBox) {
 function initializeDragAndDropEvents() {
   let modeSettingBoxes = document.querySelectorAll('.setting-box');
   modeSettingBoxes.forEach(box => {
-    box.addEventListener('dragstart', handleBoxDragStart);
-    box.addEventListener('dragend', handleBoxDragEnd);
+    registerSettingBoxDragListeners(box);
   });
-  initializePointerDragEvents(modeSettingBoxes);
-  initializeTouchDragEvents(modeSettingBoxes);
+  initializePointerDragEvents();
+  initializeTouchDragEvents();
+}
+
+/**
+ * Method used to attach drag listeners for a setting box only once.
+ *
+ * @param {Object} box setting box element
+ */
+function registerSettingBoxDragListeners(box) {
+  if (box.dataset.dragListenersBound === 'true') {
+    return;
+  }
+  box.addEventListener('dragstart', handleBoxDragStart);
+  box.addEventListener('dragend', handleBoxDragEnd);
+  if (window.PointerEvent) {
+    box.addEventListener('pointerdown', handlePointerDragStart);
+  } else if (typeof TouchEvent !== 'undefined') {
+    box.addEventListener('touchstart', handleTouchDragStart, { passive: false });
+  }
+  box.dataset.dragListenersBound = 'true';
 }
 
 /**
  * Method used to initialize pointer drag event listeners for touch/pen input.
  * Desktop mouse path remains handled by HTML drag and drop API.
  *
- * @param {Array} modeSettingBoxes setting boxes to which pointer listeners should be attached
  */
-function initializePointerDragEvents(modeSettingBoxes) {
+function initializePointerDragEvents() {
   if (!window.PointerEvent) {
     return;
   }
-  modeSettingBoxes.forEach(box => {
-    box.addEventListener('pointerdown', handlePointerDragStart);
-  });
   if (!pointerDragGlobalListenersInitialized) {
     document.addEventListener('pointermove', handlePointerDragMove, { passive: false });
     document.addEventListener('pointerup', handlePointerDragEnd);
@@ -788,15 +802,11 @@ function initializePointerDragEvents(modeSettingBoxes) {
  * Method used to initialize touch drag fallback listeners.
  * This path is used only when PointerEvent API is unavailable.
  *
- * @param {Array} modeSettingBoxes setting boxes to which touch listeners should be attached
  */
-function initializeTouchDragEvents(modeSettingBoxes) {
+function initializeTouchDragEvents() {
   if (window.PointerEvent || typeof TouchEvent === 'undefined') {
     return;
   }
-  modeSettingBoxes.forEach(box => {
-    box.addEventListener('touchstart', handleTouchDragStart, { passive: false });
-  });
   if (!touchDragGlobalListenersInitialized) {
     document.addEventListener('touchmove', handleTouchDragMove, { passive: false });
     document.addEventListener('touchend', handleTouchDragEnd, { passive: false });

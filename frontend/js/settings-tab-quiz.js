@@ -8,6 +8,11 @@ var dirtyQuizModes = new Set();
 var currentlyEditedMode = undefined;
 var currentlyExpandedState = new Map();
 var currentlyDraggedElement = undefined;
+var pointerDragState = { active: false, pointerId: undefined, hoveredDropTarget: undefined };
+var pointerDragGlobalListenersInitialized = false;
+var touchDragState = { active: false, touchId: undefined, hoveredDropTarget: undefined };
+var touchDragGlobalListenersInitialized = false;
+var pageDragLockState = { locked: false, bodyOverflow: '', bodyTouchAction: '', htmlOverflow: '', htmlTouchAction: '' };
 
 /**
  * Method used to read all defined quiz modes from backend service and display them in the UI tab
@@ -751,9 +756,63 @@ function deleteSettingBox(settingBox) {
 function initializeDragAndDropEvents() {
   let modeSettingBoxes = document.querySelectorAll('.setting-box');
   modeSettingBoxes.forEach(box => {
-    box.addEventListener('dragstart', handleBoxDragStart);
-    box.addEventListener('dragend', handleBoxDragEnd);
+    registerSettingBoxDragListeners(box);
   });
+  initializePointerDragEvents();
+  initializeTouchDragEvents();
+}
+
+/**
+ * Method used to attach drag listeners for a setting box only once.
+ *
+ * @param {Object} box setting box element
+ */
+function registerSettingBoxDragListeners(box) {
+  if (box.dataset.dragListenersBound === 'true') {
+    return;
+  }
+  box.addEventListener('dragstart', handleBoxDragStart);
+  box.addEventListener('dragend', handleBoxDragEnd);
+  if (window.PointerEvent) {
+    box.addEventListener('pointerdown', handlePointerDragStart);
+  } else if (typeof TouchEvent !== 'undefined') {
+    box.addEventListener('touchstart', handleTouchDragStart, { passive: false });
+  }
+  box.dataset.dragListenersBound = 'true';
+}
+
+/**
+ * Method used to initialize pointer drag event listeners for touch/pen input.
+ * Desktop mouse path remains handled by HTML drag and drop API.
+ *
+ */
+function initializePointerDragEvents() {
+  if (!window.PointerEvent) {
+    return;
+  }
+  if (!pointerDragGlobalListenersInitialized) {
+    document.addEventListener('pointermove', handlePointerDragMove, { passive: false });
+    document.addEventListener('pointerup', handlePointerDragEnd);
+    document.addEventListener('pointercancel', handlePointerDragEnd);
+    pointerDragGlobalListenersInitialized = true;
+  }
+}
+
+/**
+ * Method used to initialize touch drag fallback listeners.
+ * This path is used only when PointerEvent API is unavailable.
+ *
+ */
+function initializeTouchDragEvents() {
+  if (window.PointerEvent || typeof TouchEvent === 'undefined') {
+    return;
+  }
+  if (!touchDragGlobalListenersInitialized) {
+    document.addEventListener('touchmove', handleTouchDragMove, { passive: false });
+    document.addEventListener('touchend', handleTouchDragEnd, { passive: false });
+    document.addEventListener('touchcancel', handleTouchDragEnd, { passive: false });
+    touchDragGlobalListenersInitialized = true;
+  }
 }
 
 /**
@@ -778,6 +837,240 @@ function handleBoxDragEnd(e) {
   this.style.opacity = '1';
   currentlyDraggedElement = undefined;
   updateDropTargetsState(false, this);
+}
+
+/**
+ * Method used to initialize drag state for touch/pen pointer interactions.
+ *
+ * @param {Object} e pointerdown event data
+ */
+function handlePointerDragStart(e) {
+  // Mouse is handled by native desktop drag and drop path.
+  if (e.pointerType === 'mouse' || this.draggable !== true) {
+    return;
+  }
+  currentlyDraggedElement = this;
+  pointerDragState.active = true;
+  pointerDragState.pointerId = e.pointerId;
+  this.style.opacity = '0.5';
+  updateDropTargetsState(true, this);
+  lockPageDuringCustomDrag();
+  if (this.setPointerCapture) {
+    this.setPointerCapture(e.pointerId);
+  }
+  e.preventDefault();
+}
+
+/**
+ * Method used to detect currently hovered drop target during touch/pen drag.
+ *
+ * @param {Object} e pointermove event data
+ */
+function handlePointerDragMove(e) {
+  if (!pointerDragState.active || pointerDragState.pointerId !== e.pointerId) {
+    return;
+  }
+  let dropTarget = findVisibleDropTargetAt(e.clientX, e.clientY);
+  if (pointerDragState.hoveredDropTarget !== dropTarget) {
+    if (pointerDragState.hoveredDropTarget !== undefined) {
+      pointerDragState.hoveredDropTarget.classList.remove('over');
+    }
+    if (dropTarget !== undefined) {
+      dropTarget.classList.add('over');
+    }
+    pointerDragState.hoveredDropTarget = dropTarget;
+  }
+  e.preventDefault();
+}
+
+/**
+ * Method used to clear drag state for touch/pen pointer interactions.
+ *
+ * @param {Object} e pointerup/pointercancel event data
+ */
+function handlePointerDragEnd(e) {
+  if (!pointerDragState.active || pointerDragState.pointerId !== e.pointerId) {
+    return;
+  }
+  const hoveredDropTarget = pointerDragState.hoveredDropTarget;
+  if (hoveredDropTarget !== undefined) {
+    hoveredDropTarget.classList.remove('over');
+  }
+  if (currentlyDraggedElement !== undefined) {
+    currentlyDraggedElement.style.opacity = '1';
+  }
+  if (hoveredDropTarget !== undefined && e.type !== 'pointercancel') {
+    applyDropForTarget(hoveredDropTarget);
+  } else if (currentlyDraggedElement !== undefined) {
+    updateDropTargetsState(false, currentlyDraggedElement);
+  }
+  if (currentlyDraggedElement !== undefined && currentlyDraggedElement.releasePointerCapture) {
+    currentlyDraggedElement.releasePointerCapture(e.pointerId);
+  }
+  clearPointerDragState();
+}
+
+/**
+ * Method used to clear state of touch/pen pointer drag interactions.
+ */
+function clearPointerDragState() {
+  unlockPageAfterCustomDrag();
+  currentlyDraggedElement = undefined;
+  pointerDragState.active = false;
+  pointerDragState.pointerId = undefined;
+  pointerDragState.hoveredDropTarget = undefined;
+}
+
+/**
+ * Method used to initialize drag state for touch interactions.
+ *
+ * @param {Object} e touchstart event data
+ */
+function handleTouchDragStart(e) {
+  if (this.draggable !== true || e.changedTouches.length === 0) {
+    return;
+  }
+  const touch = e.changedTouches[0];
+  currentlyDraggedElement = this;
+  touchDragState.active = true;
+  touchDragState.touchId = touch.identifier;
+  this.style.opacity = '0.5';
+  updateDropTargetsState(true, this);
+  lockPageDuringCustomDrag();
+  e.preventDefault();
+}
+
+/**
+ * Method used to detect currently hovered drop target during touch drag.
+ *
+ * @param {Object} e touchmove event data
+ */
+function handleTouchDragMove(e) {
+  if (!touchDragState.active) {
+    return;
+  }
+  const touch = findTrackedTouch(e.touches, touchDragState.touchId);
+  if (touch === undefined) {
+    return;
+  }
+  let dropTarget = findVisibleDropTargetAt(touch.clientX, touch.clientY);
+  if (touchDragState.hoveredDropTarget !== dropTarget) {
+    if (touchDragState.hoveredDropTarget !== undefined) {
+      touchDragState.hoveredDropTarget.classList.remove('over');
+    }
+    if (dropTarget !== undefined) {
+      dropTarget.classList.add('over');
+    }
+    touchDragState.hoveredDropTarget = dropTarget;
+  }
+  e.preventDefault();
+}
+
+/**
+ * Method used to clear drag state for touch interactions.
+ *
+ * @param {Object} e touchend/touchcancel event data
+ */
+function handleTouchDragEnd(e) {
+  if (!touchDragState.active) {
+    return;
+  }
+  const touch = findTrackedTouch(e.changedTouches, touchDragState.touchId);
+  if (touch === undefined) {
+    return;
+  }
+  const hoveredDropTarget = touchDragState.hoveredDropTarget;
+  if (hoveredDropTarget !== undefined) {
+    hoveredDropTarget.classList.remove('over');
+  }
+  if (currentlyDraggedElement !== undefined) {
+    currentlyDraggedElement.style.opacity = '1';
+  }
+  if (hoveredDropTarget !== undefined && e.type !== 'touchcancel') {
+    applyDropForTarget(hoveredDropTarget);
+  } else if (currentlyDraggedElement !== undefined) {
+    updateDropTargetsState(false, currentlyDraggedElement);
+  }
+  clearTouchDragState();
+  e.preventDefault();
+}
+
+/**
+ * Method used to clear state of touch drag interactions.
+ */
+function clearTouchDragState() {
+  unlockPageAfterCustomDrag();
+  currentlyDraggedElement = undefined;
+  touchDragState.active = false;
+  touchDragState.touchId = undefined;
+  touchDragState.hoveredDropTarget = undefined;
+}
+
+/**
+ * Method used to lock page scrolling and browser touch gestures during custom drag.
+ */
+function lockPageDuringCustomDrag() {
+  if (pageDragLockState.locked) {
+    return;
+  }
+  pageDragLockState.bodyOverflow = document.body.style.overflow;
+  pageDragLockState.bodyTouchAction = document.body.style.touchAction;
+  pageDragLockState.htmlOverflow = document.documentElement.style.overflow;
+  pageDragLockState.htmlTouchAction = document.documentElement.style.touchAction;
+  document.body.style.overflow = 'hidden';
+  document.body.style.touchAction = 'none';
+  document.documentElement.style.overflow = 'hidden';
+  document.documentElement.style.touchAction = 'none';
+  pageDragLockState.locked = true;
+}
+
+/**
+ * Method used to restore page scrolling and browser touch gestures after custom drag.
+ */
+function unlockPageAfterCustomDrag() {
+  if (!pageDragLockState.locked) {
+    return;
+  }
+  document.body.style.overflow = pageDragLockState.bodyOverflow;
+  document.body.style.touchAction = pageDragLockState.bodyTouchAction;
+  document.documentElement.style.overflow = pageDragLockState.htmlOverflow;
+  document.documentElement.style.touchAction = pageDragLockState.htmlTouchAction;
+  pageDragLockState.locked = false;
+}
+
+/**
+ * Method used to find touch by identifier in touch list.
+ *
+ * @param {Array} touchList list of touches
+ * @param {Integer} touchId tracked touch identifier
+ * @returns touch if found, undefined otherwise
+ */
+function findTrackedTouch(touchList, touchId) {
+  for (let i = 0; i < touchList.length; i++) {
+    if (touchList[i].identifier === touchId) {
+      return touchList[i];
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Method used to find visible drop target for the current pointer coordinates.
+ *
+ * @param {Integer} x horizontal pointer coordinate
+ * @param {Integer} y vertical pointer coordinate
+ * @returns drop target element if found and visible, undefined otherwise
+ */
+function findVisibleDropTargetAt(x, y) {
+  const element = document.elementFromPoint(x, y);
+  if (element === null) {
+    return undefined;
+  }
+  const dropTarget = element.closest('.drop-target');
+  if (dropTarget === null || !dropTarget.classList.contains('show')) {
+    return undefined;
+  }
+  return dropTarget;
 }
 
 /**
@@ -817,7 +1110,18 @@ function handleBoxDragOver(e) {
  */
 function handleBoxDrop(e) {
   e.stopPropagation();
-  let dropPosition = parseInt(this.id.substring(this.id.indexOf("-") + 1));
+  applyDropForTarget(this);
+  return false;
+}
+
+/**
+ * Method used to apply setting drop logic for a selected drop target.
+ * This shared path is used by all input models (desktop drag and touch/pointer).
+ *
+ * @param {Object} dropTarget drop target element where setting is released
+ */
+function applyDropForTarget(dropTarget) {
+  let dropPosition = parseInt(dropTarget.id.substring(dropTarget.id.indexOf("-") + 1));
   if (!isNaN(dropPosition)) {
     // update model before possible mode change to correctly update quiz modes placeholder in UI
     updateCurrentlyEditedMode();
@@ -849,11 +1153,10 @@ function handleBoxDrop(e) {
   } else {
     // we are dropping setting box to delete drop target
     deleteSettingBox(currentlyDraggedElement);
-    this.classList.remove('over');
+    dropTarget.classList.remove('over');
   }
   updateQuizModesPlaceholder(currentlyEditedMode);
   updateSupportedSettingsBoxes();
-  return false;
 }
 
 /**

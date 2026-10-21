@@ -196,7 +196,7 @@ class QuizService(quizDB: QuizDatabase,
    * @return generated quiz object
    */
   private def generateQuiz(size: Int, mode: Int, language: String): Quiz = {
-    Quiz(generateRounds(size, mode, language), 0)
+    Quiz(generateRounds(size, mode, language), 0, mode)
   }
 
   /**

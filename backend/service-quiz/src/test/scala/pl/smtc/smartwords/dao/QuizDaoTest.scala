@@ -18,6 +18,19 @@ class QuizDaoTest extends AnyFunSuite {
     assert(encodedValue === expectedValue)
   }
 
+  test("testGetSummaryEncoder") {
+    val encoderUnderTest: Encoder[QuizSummary] = QuizDao.getSummaryEncoder
+    val sourceSummary: QuizSummary = QuizSummary(0.75f, 6, 8, 9)
+    val encodedValue: Json = encoderUnderTest.apply(sourceSummary)
+    val expectedValue: Json = Json.obj(
+      ("scorePercent", Json.fromFloatOrNull(0.75f)),
+      ("correctAnswers", Json.fromInt(6)),
+      ("totalQuestions", Json.fromInt(8)),
+      ("mode", Json.fromInt(9))
+    )
+    assert(encodedValue === expectedValue)
+  }
+
   /**
    * Method used to create quiz round JSON object with hardcoded options, answer, correct flag, and customizable word
    * @param word word name which is used in the quiz round

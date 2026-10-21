@@ -125,10 +125,9 @@ class QuizService(quizDB: QuizDatabase,
       case None =>
         NotFound("Specified quiz does not exist")
       case Some(quiz) =>
-        val okCount: Int = quiz.rounds.count(round => round.correct.exists(isCorrect => isCorrect))
-        val percent: Float = okCount.toFloat / quiz.rounds.length
+        val summary = getQuizSummary(quiz)
         quizDB.removeQuiz(quizId)
-        Ok(percent.toString)
+        Ok(summary.scorePercent.toString)
     }
   }
 

@@ -200,6 +200,16 @@ class QuizService(quizDB: QuizDatabase,
   }
 
   /**
+   * Method used to calculate quiz summary values.
+   */
+  private def getQuizSummary(quiz: Quiz): QuizSummary = {
+    val correctAnswers: Int = quiz.rounds.count(round => round.correct.exists(isCorrect => isCorrect))
+    val totalQuestions: Int = quiz.rounds.length
+    val scorePercent: Float = correctAnswers.toFloat / totalQuestions
+    QuizSummary(scorePercent, correctAnswers, totalQuestions, quiz.mode)
+  }
+
+  /**
    * Normalize language token to avoid issues with UI default markers (e.g. "pl!").
    */
   private def normalizeLanguage(language: String): String = {

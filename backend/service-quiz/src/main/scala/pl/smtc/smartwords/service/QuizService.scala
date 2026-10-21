@@ -22,6 +22,7 @@ class QuizService(quizDB: QuizDatabase,
                   wordServiceName: String = "WORD") {
 
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
+  implicit val SummaryEncoder: Encoder[QuizSummary] = QuizDao.getSummaryEncoder
 
   private final val defaultQuizSize: Int = quizSize
   private final val defaultQuizMode: Int = quizMode
@@ -128,6 +129,22 @@ class QuizService(quizDB: QuizDatabase,
         val summary = getQuizSummary(quiz)
         quizDB.removeQuiz(quizId)
         Ok(summary.scorePercent.toString)
+    }
+  }
+
+  /**
+   * Method used to stop desired quiz and return detailed summary payload.
+   * @param quizId the UUID of a started quiz (received after sending start quiz request)
+   * @return response with detailed summary or not found status if quiz UUID not present
+   */
+  def stopQuizWithDetails(quizId: UUID): IO[Response[IO]] = {
+    quizDB.getQuiz(quizId) match {
+      case None =>
+        NotFound("Specified quiz does not exist")
+      case Some(quiz) =>
+        val summary = getQuizSummary(quiz)
+        quizDB.removeQuiz(quizId)
+        Ok(summary.asJson)
     }
   }
 

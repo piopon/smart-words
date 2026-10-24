@@ -23,8 +23,14 @@ object ServiceLeaderboardApp extends IOApp {
     val leaderboardDatabase = new LeaderboardDatabase()
     val leaderboardController = new LeaderboardController(leaderboardDatabase)
 
+    val config = CORSConfig(
+      anyOrigin = appConfig.cors.anyOrigin,
+      allowCredentials = appConfig.cors.allowCredentials,
+      maxAge = appConfig.cors.maxAgeSeconds,
+      anyMethod = appConfig.cors.anyMethod
+    )
     val apis = Router(
-      "/leaderboard" -> leaderboardController.getRoutes
+      "/leaderboard" -> CORS(leaderboardController.getRoutes, config)
     ).orNotFound
 
     for {

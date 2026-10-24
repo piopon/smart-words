@@ -51,4 +51,31 @@ class LeaderboardService(database: LeaderboardDatabase) {
     )
     Created(database.addEntry(entry).asJson)
   }
+
+  /**
+   * Get top leaderboard entries for selected game and mode.
+   */
+  def getTopEntries(game: String, mode: String, maybeLimit: Option[Int]): IO[Response[IO]] = {
+    val normalizedGame = game.trim.toLowerCase
+    if (normalizedGame.isEmpty) {
+      return BadRequest("Path parameter 'game' must not be empty.")
+    }
+
+    val resolvedMode: Int = try {
+      mode.toInt
+    } catch {
+      case _: NumberFormatException => return BadRequest("Path parameter 'mode' must be an integer.")
+    }
+
+    if (resolvedMode < 0) {
+      return BadRequest("Path parameter 'mode' must be greater than or equal to 0.")
+    }
+
+    val resolvedLimit = maybeLimit.getOrElse(defaultLimit)
+    if (resolvedLimit <= 0 || resolvedLimit > maxLimit) {
+      return BadRequest(s"Query parameter 'limit' must be between 1 and $maxLimit.")
+    }
+
+    Ok(database.getTopEntries(normalizedGame, resolvedMode, resolvedLimit).asJson)
+  }
 }

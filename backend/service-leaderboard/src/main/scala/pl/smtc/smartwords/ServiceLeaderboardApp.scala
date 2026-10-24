@@ -7,6 +7,8 @@ import org.http4s.implicits._
 import org.http4s.server._
 import org.http4s.server.middleware._
 import org.http4s.ember.server._
+import pl.smtc.smartwords.controller._
+import pl.smtc.smartwords.database._
 
 import scala.concurrent.duration.DurationInt
 
@@ -17,11 +19,18 @@ object ServiceLeaderboardApp extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     val serverHost: Host = Host.fromString(appConfig.service.host).getOrElse(ipv4"0.0.0.0")
     val serverPort: Port = Port.fromInt(appConfig.service.port).getOrElse(port"3333")
+    val leaderboardDatabase = new LeaderboardDatabase()
+    val leaderboardController = new LeaderboardController(leaderboardDatabase)
+
+    val apis = Router(
+      "/leaderboard" -> leaderboardController.getRoutes
+    ).orNotFound
+
     for {
       server <- EmberServerBuilder.default[IO]
         .withHost(serverHost)
         .withPort(serverPort)
-        .withHttpApp(Router().orNotFound)
+        .withHttpApp(apis)
         .withIdleTimeout(appConfig.service.idleTimeoutMinutes.minutes)
         .withErrorHandler { case err => IO(err.printStackTrace()).as(Response(status = Status.InternalServerError)) }
         .build

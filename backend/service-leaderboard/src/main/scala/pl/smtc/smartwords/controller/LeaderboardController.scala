@@ -28,6 +28,9 @@ class LeaderboardController(database: LeaderboardDatabase) {
           payload <- request.as[LeaderboardSubmit]
           response <- service.submitEntry(payload)
         } yield response
+
+      case GET -> Root / "entries" / game / mode :? OptionalLimitParamMatcher(maybeLimit) =>
+        service.getTopEntries(game, mode, maybeLimit)
     }
   }
 }

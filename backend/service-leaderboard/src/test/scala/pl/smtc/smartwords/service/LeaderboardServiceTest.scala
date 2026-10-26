@@ -31,4 +31,19 @@ class LeaderboardServiceTest extends AnyFunSuite {
     assert(usernames(1) === "bob")
     assert(usernames(2) === "alice")
   }
+
+  test("testGetTopEntriesReturnsTop10ByDefault") {
+    val database = new LeaderboardDatabase()
+    val service = new LeaderboardService(database)
+
+    for (i <- 0 until 15) {
+      val payload = LeaderboardSubmit("quiz", 1, s"user-$i", (100 - i).toFloat / 100.0f, 10, 10 - (i / 2))
+      service.submitEntry(payload).unsafeRunSync()
+    }
+
+    val response = service.getTopEntries("quiz", "1", None).unsafeRunSync()
+    val body = response.as[Json].unsafeRunSync()
+    val items = body.asArray.getOrElse(Vector.empty)
+    assert(items.length === 10)
+  }
 }

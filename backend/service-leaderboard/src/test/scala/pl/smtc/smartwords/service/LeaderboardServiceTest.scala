@@ -46,4 +46,14 @@ class LeaderboardServiceTest extends AnyFunSuite {
     val items = body.asArray.getOrElse(Vector.empty)
     assert(items.length === 10)
   }
+
+  test("testSubmitEntryReturnsBadRequestForInvalidUsername") {
+    val database = new LeaderboardDatabase()
+    val service = new LeaderboardService(database)
+
+    val response = service.submitEntry(LeaderboardSubmit("quiz", 0, "", 0.5f, 10, 5)).unsafeRunSync()
+    val body = response.as[String].unsafeRunSync()
+
+    assert(body === "Field 'username' must contain 1-24 characters.")
+  }
 }

@@ -21,6 +21,7 @@ object ServiceLeaderboardApp extends IOApp {
     val serverHost: Host = Host.fromString(appConfig.service.host).getOrElse(ipv4"0.0.0.0")
     val serverPort: Port = Port.fromInt(appConfig.service.port).getOrElse(port"3333")
     val leaderboardDatabase = new LeaderboardDatabase()
+    val healthController = new HealthController(appConfig.service.name)
     val leaderboardController = new LeaderboardController(leaderboardDatabase)
 
     val config = CORSConfig(
@@ -30,6 +31,7 @@ object ServiceLeaderboardApp extends IOApp {
       anyMethod = appConfig.cors.anyMethod
     )
     val apis = Router(
+      "/health" -> CORS(healthController.getRoutes, config),
       "/leaderboard" -> CORS(leaderboardController.getRoutes, config)
     ).orNotFound
 

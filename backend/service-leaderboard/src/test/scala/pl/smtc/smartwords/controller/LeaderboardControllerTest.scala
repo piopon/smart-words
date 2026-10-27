@@ -14,6 +14,14 @@ import pl.smtc.smartwords.model._
 
 class LeaderboardControllerTest extends AnyFunSuite {
 
+  test("testGetRoutesReturnsNoneForNonExistingEndpoint") {
+    val database = new LeaderboardDatabase()
+    val controllerUnderTest = new LeaderboardController(database)
+    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString("/non-existing"))
+    val response = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+    assert(response.isEmpty)
+  }
+
   test("testPostEntryThenGetTopEntries") {
     val database = new LeaderboardDatabase()
     val controllerUnderTest = new LeaderboardController(database)

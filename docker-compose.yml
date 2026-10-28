@@ -64,6 +64,15 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
 
+  service-leaderboard:
+    build:
+      context: ./backend/service-leaderboard
+      dockerfile: Dockerfile
+    container_name: smart-words-service-leaderboard
+    expose:
+      - "3333"
+    restart: unless-stopped
+
   frontend:
     build:
       context: ./frontend

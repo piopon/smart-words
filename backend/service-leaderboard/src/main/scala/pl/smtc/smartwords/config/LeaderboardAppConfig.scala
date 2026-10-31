@@ -30,6 +30,15 @@ final case class LeaderboardAppConfig(
 
 object LeaderboardAppConfig {
 
+  private def optionalString(config: Config, configPath: String): Option[String] = {
+    if (!config.hasPath(configPath)) {
+      None
+    } else {
+      val value = config.getString(configPath).trim
+      if (value.isEmpty) None else Some(value)
+    }
+  }
+
   def load(config: Config): LeaderboardAppConfig = {
     LeaderboardAppConfig(
       service = LeaderboardServiceConfig(

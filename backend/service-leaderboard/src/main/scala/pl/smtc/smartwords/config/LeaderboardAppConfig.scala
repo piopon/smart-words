@@ -17,9 +17,15 @@ final case class LeaderboardCorsConfig(
   anyMethod: Boolean
 )
 
+final case class LeaderboardDataConfig(
+  file: String,
+  dataDir: Option[String]
+)
+
 final case class LeaderboardAppConfig(
   service: LeaderboardServiceConfig,
-  cors: LeaderboardCorsConfig
+  cors: LeaderboardCorsConfig,
+  data: LeaderboardDataConfig
 )
 
 object LeaderboardAppConfig {

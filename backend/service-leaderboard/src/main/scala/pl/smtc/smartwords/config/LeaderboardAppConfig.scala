@@ -52,6 +52,10 @@ object LeaderboardAppConfig {
         allowCredentials = config.getBoolean("cors.allow-credentials"),
         maxAgeSeconds = config.getLong("cors.max-age-seconds"),
         anyMethod = config.getBoolean("cors.any-method")
+      ),
+      data = LeaderboardDataConfig(
+        file = config.getString("data.file"),
+        dataDir = optionalString(config, "data.dir")
       )
     )
   }

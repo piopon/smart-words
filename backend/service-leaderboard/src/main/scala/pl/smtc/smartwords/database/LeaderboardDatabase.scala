@@ -2,7 +2,7 @@ package pl.smtc.smartwords.database
 
 import pl.smtc.smartwords.model._
 
-import java.nio.file.Paths
+import java.nio.file.{Files, Paths}
 import scala.collection.mutable.ListBuffer
 
 class LeaderboardDatabase(dataDirectory: Option[Path] = sys.env.get("LEADERBOARD_DATA_DIR").map(Paths.get(_)),
@@ -11,6 +11,8 @@ class LeaderboardDatabase(dataDirectory: Option[Path] = sys.env.get("LEADERBOARD
   private val entries = ListBuffer[LeaderboardEntry]()
   private val databaseDir: Path = dataDirectory.getOrElse(Paths.get("."))
   private val databaseFile: Path = databaseDir.resolve(leaderboardFileName)
+
+  initializeDataDirectory()
 
   /**
    * Add one leaderboard attempt to full history.
@@ -37,5 +39,12 @@ class LeaderboardDatabase(dataDirectory: Option[Path] = sys.env.get("LEADERBOARD
       })
       .take(limit)
       .toList
+  }
+
+  /**
+   * Create custom data directory if configured.
+   */
+  private def initializeDataDirectory(): Unit = {
+    Files.createDirectories(databaseDir)
   }
 }

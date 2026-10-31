@@ -11,6 +11,7 @@ import pl.smtc.smartwords.config._
 import pl.smtc.smartwords.controller._
 import pl.smtc.smartwords.database._
 
+import java.nio.file.Paths
 import scala.concurrent.duration.DurationInt
 
 object ServiceLeaderboardApp extends IOApp {
@@ -20,7 +21,8 @@ object ServiceLeaderboardApp extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     val serverHost: Host = Host.fromString(appConfig.service.host).getOrElse(ipv4"0.0.0.0")
     val serverPort: Port = Port.fromInt(appConfig.service.port).getOrElse(port"3333")
-    val leaderboardDatabase = new LeaderboardDatabase()
+    val leaderboardDataDir = appConfig.data.dataDir.map(Paths.get(_))
+    val leaderboardDatabase = new LeaderboardDatabase(leaderboardDataDir, appConfig.data.file)
     val healthController = new HealthController(appConfig.service.name)
     val leaderboardController = new LeaderboardController(leaderboardDatabase)
 

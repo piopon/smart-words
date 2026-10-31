@@ -2,11 +2,15 @@ package pl.smtc.smartwords.database
 
 import pl.smtc.smartwords.model._
 
+import java.nio.file.Paths
 import scala.collection.mutable.ListBuffer
 
-class LeaderboardDatabase {
+class LeaderboardDatabase(dataDirectory: Option[Path] = sys.env.get("LEADERBOARD_DATA_DIR").map(Paths.get(_)),
+                          leaderboardFileName: String = sys.env.getOrElse("LEADERBOARD_DATA_FILE", "leaderboard.json")) {
 
   private val entries = ListBuffer[LeaderboardEntry]()
+  private val databaseDir: Path = dataDirectory.getOrElse(Paths.get("."))
+  private val databaseFile: Path = databaseDir.resolve(leaderboardFileName)
 
   /**
    * Add one leaderboard attempt to full history.

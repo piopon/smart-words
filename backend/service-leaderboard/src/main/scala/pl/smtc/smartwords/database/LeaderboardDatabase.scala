@@ -72,6 +72,14 @@ class LeaderboardDatabase(dataDirectory: Option[Path] = sys.env.get("LEADERBOARD
   }
 
   /**
+   * Method used to save current leaderboard history into a JSON file.
+   */
+  def saveDatabase(): Unit = synchronized {
+    val content = entries.toList.asJson.toString()
+    Files.write(databaseFile, content.getBytes(StandardCharsets.UTF_8))
+  }
+
+  /**
    * Create custom data directory if configured.
    */
   private def initializeDataDirectory(): Unit = {

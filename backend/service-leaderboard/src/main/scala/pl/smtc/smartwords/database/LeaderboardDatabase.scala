@@ -49,6 +49,7 @@ class LeaderboardDatabase(dataDirectory: Option[Path] = sys.env.get("LEADERBOARD
    */
   def addEntry(entry: LeaderboardEntry): LeaderboardEntry = synchronized {
     entries += entry
+    saveDatabase()
     entry
   }
 

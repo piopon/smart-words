@@ -26,6 +26,10 @@ object ServiceLeaderboardApp extends IOApp {
     val healthController = new HealthController(appConfig.service.name)
     val leaderboardController = new LeaderboardController(leaderboardDatabase)
 
+    if (!leaderboardDatabase.loadDatabase()) {
+      return IO.canceled.as(ExitCode.Error)
+    }
+
     val config = CORSConfig(
       anyOrigin = appConfig.cors.anyOrigin,
       allowCredentials = appConfig.cors.allowCredentials,

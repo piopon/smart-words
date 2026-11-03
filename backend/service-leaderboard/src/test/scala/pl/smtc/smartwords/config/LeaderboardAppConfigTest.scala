@@ -43,4 +43,33 @@ class LeaderboardAppConfigTest extends AnyFunSuite {
     assert(config.data.file === "lb.json")
     assert(config.data.dataDir.isEmpty)
   }
+
+  test("testLoadReadsDataDirectoryWhenProvided") {
+    val testConfig = ConfigFactory.parseString(
+      """
+        service {
+          name = "LEADERBOARD"
+          host = "0.0.0.0"
+          port = 3333
+          idle-timeout-minutes = 30
+        }
+
+        cors {
+          any-origin = true
+          allow-credentials = true
+          max-age-seconds = 86400
+          any-method = true
+        }
+
+        data {
+          file = "leaderboard.json"
+          dir = "./data"
+        }
+      """
+    ).resolve()
+
+    val config = LeaderboardAppConfig.load(testConfig)
+    assert(config.data.file === "leaderboard.json")
+    assert(config.data.dataDir.contains("./data"))
+  }
 }

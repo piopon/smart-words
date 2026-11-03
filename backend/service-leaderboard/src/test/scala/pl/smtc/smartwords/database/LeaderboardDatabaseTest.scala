@@ -8,6 +8,16 @@ import java.nio.file.{Files, Path}
 
 class LeaderboardDatabaseTest extends AnyFunSuite {
 
+  test("testLoadDatabaseReturnsTrueWhenFileDoesNotExist") {
+    val customDir: Path = Files.createTempDirectory("leaderboard-db-empty-")
+    try {
+      val database = new LeaderboardDatabase(Some(customDir), "leaderboard.json")
+      assert(database.loadDatabase())
+    } finally {
+      Files.deleteIfExists(customDir)
+    }
+  }
+
   test("testAddEntryPersistsDataAndCanBeReloaded") {
     val customDir: Path = Files.createTempDirectory("leaderboard-db-save-")
     val fileName = "leaderboard.json"

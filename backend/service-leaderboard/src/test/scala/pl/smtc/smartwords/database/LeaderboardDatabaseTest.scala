@@ -40,4 +40,18 @@ class LeaderboardDatabaseTest extends AnyFunSuite {
       Files.deleteIfExists(customDir)
     }
   }
+
+  test("testLoadDatabaseReturnsFalseWhenJsonIsInvalid") {
+    val customDir: Path = Files.createTempDirectory("leaderboard-db-invalid-")
+    val fileName = "leaderboard.json"
+    val filePath = customDir.resolve(fileName)
+    try {
+      Files.write(filePath, "{invalid json]".getBytes(StandardCharsets.UTF_8))
+      val database = new LeaderboardDatabase(Some(customDir), fileName)
+      assert(!database.loadDatabase())
+    } finally {
+      Files.deleteIfExists(filePath)
+      Files.deleteIfExists(customDir)
+    }
+  }
 }

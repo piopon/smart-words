@@ -12,14 +12,22 @@ import org.scalatest.funsuite.AnyFunSuite
 import pl.smtc.smartwords.database._
 import pl.smtc.smartwords.model._
 
+import java.nio.file.Files
+
 class LeaderboardControllerTest extends AnyFunSuite {
 
   test("testGetRoutesReturnsNoneForNonExistingEndpoint") {
-    val database = new LeaderboardDatabase()
-    val controllerUnderTest = new LeaderboardController(database)
-    val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString("/non-existing"))
-    val response = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
-    assert(response.isEmpty)
+    val tempDir = Files.createTempDirectory("leaderboard-controller-test-1-")
+    try {
+      val database = new LeaderboardDatabase(Some(tempDir), "leaderboard.json")
+      val controllerUnderTest = new LeaderboardController(database)
+      val request: Request[IO] = Request(Method.GET, Uri.unsafeFromString("/non-existing"))
+      val response = controllerUnderTest.getRoutes.run(request).value.unsafeRunSync()
+      assert(response.isEmpty)
+    } finally {
+      Files.deleteIfExists(tempDir.resolve("leaderboard.json"))
+      Files.deleteIfExists(tempDir)
+    }
   }
 
   test("testPostEntryThenGetTopEntries") {

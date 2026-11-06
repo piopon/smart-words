@@ -41,18 +41,24 @@ class LeaderboardServiceTest extends AnyFunSuite {
   }
 
   test("testGetTopEntriesReturnsTop10ByDefault") {
-    val database = new LeaderboardDatabase()
-    val service = new LeaderboardService(database)
+    val tempDir = Files.createTempDirectory("leaderboard-service-test-2-")
+    try {
+      val database = new LeaderboardDatabase(Some(tempDir), "leaderboard.json")
+      val service = new LeaderboardService(database)
 
-    for (i <- 0 until 15) {
-      val payload = LeaderboardSubmit("quiz", 1, s"user-$i", (100 - i).toFloat / 100.0f, 10, 10 - (i / 2))
-      service.submitEntry(payload).unsafeRunSync()
+      for (i <- 0 until 15) {
+        val payload = LeaderboardSubmit("quiz", 1, s"user-$i", (100 - i).toFloat / 100.0f, 10, 10 - (i / 2))
+        service.submitEntry(payload).unsafeRunSync()
+      }
+
+      val response = service.getTopEntries("quiz", "1", None).unsafeRunSync()
+      val body = response.as[Json].unsafeRunSync()
+      val items = body.asArray.getOrElse(Vector.empty)
+      assert(items.length === 10)
+    } finally {
+      Files.deleteIfExists(tempDir.resolve("leaderboard.json"))
+      Files.deleteIfExists(tempDir)
     }
-
-    val response = service.getTopEntries("quiz", "1", None).unsafeRunSync()
-    val body = response.as[Json].unsafeRunSync()
-    val items = body.asArray.getOrElse(Vector.empty)
-    assert(items.length === 10)
   }
 
   test("testSubmitEntryReturnsBadRequestForInvalidUsername") {

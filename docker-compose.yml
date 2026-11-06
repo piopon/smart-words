@@ -73,6 +73,10 @@ services:
       LEADERBOARD_SERVICE_NAME: LEADERBOARD
       LEADERBOARD_SERVER_HOST: 0.0.0.0
       LEADERBOARD_SERVER_PORT: "3333"
+      LEADERBOARD_DATA_DIR: /app/data
+      LEADERBOARD_DATA_FILE: leaderboard.json
+    volumes:
+      - ./data/service-leaderboard:/app/data
     expose:
       - "3333"
     healthcheck:

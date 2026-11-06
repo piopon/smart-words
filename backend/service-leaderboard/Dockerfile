@@ -19,6 +19,11 @@ RUN apt-get update \
 
 COPY --from=build /workspace/target/scala-2.13/service-leaderboard-0.1.jar /app/service-leaderboard.jar
 
+ENV LEADERBOARD_DATA_DIR=/app/data
+ENV LEADERBOARD_DATA_FILE=leaderboard.json
+
+RUN mkdir -p /app/data
+
 EXPOSE 3333
 
 CMD ["java", "-jar", "/app/service-leaderboard.jar"]

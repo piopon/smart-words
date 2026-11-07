@@ -334,6 +334,20 @@ function getSummaryHtml(summaryValue) {
 }
 
 /**
+ * Method used to receive leaderboard submit section HTML.
+ */
+function getLeaderboardSubmitHtml() {
+  return `<div id="leaderboard-submit-wrapper">
+            <label for="leaderboard-username">name:</label>
+            <input id="leaderboard-username" type="text" maxlength="24" placeholder="enter your name" />
+            <button id="leaderboard-submit" class="question-control-btn static-border" onclick="submitSummaryToLeaderboard()">
+              SAVE SCORE
+            </button>
+            <p id="leaderboard-submit-info"></p>
+          </div>`;
+}
+
+/**
  * Method used to receive summary title based on current score
  *
  * @param {Float} summaryValue correct answers percentage to determine the end title

@@ -95,6 +95,14 @@ const getQuizStop = (quizID, callback) => {
   getRequest.send();
 };
 
+/**
+ * Method used to send a request to the quiz service to stop a quiz with specified ID
+ * and receive detailed summary data.
+ *
+ * @param {String} quizID the UUID of the quiz
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
 const getQuizStopDetails = (quizID, callback) => {
   const getRequest = new XMLHttpRequest();
   getRequest.addEventListener("readystatechange", () => {
@@ -110,6 +118,13 @@ const getQuizStopDetails = (quizID, callback) => {
   getRequest.send();
 };
 
+/**
+ * Method used to submit a new leaderboard entry.
+ *
+ * @param {Object} entry leaderboard payload object
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
 const postLeaderboardEntry = (entry, callback) => {
   const postRequest = new XMLHttpRequest();
   postRequest.addEventListener("readystatechange", () => {
@@ -126,6 +141,15 @@ const postLeaderboardEntry = (entry, callback) => {
   postRequest.send(JSON.stringify(entry));
 };
 
+/**
+ * Method used to load leaderboard entries for a selected game and mode.
+ *
+ * @param {String} game game type (e.g. quiz)
+ * @param {Integer} mode mode identifier
+ * @param {Integer} limit max entries to load
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
 const getLeaderboardEntries = (game, mode, limit, callback) => {
   const getRequest = new XMLHttpRequest();
   getRequest.addEventListener("readystatechange", () => {

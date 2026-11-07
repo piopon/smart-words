@@ -1,4 +1,5 @@
 const URL = "/api/quiz/";
+const LEADERBOARD_URL = "/api/leaderboard/";
 const REQUEST_TIMEOUT = 15_000;
 
 /**
@@ -105,6 +106,21 @@ const getQuizStopDetails = (quizID, callback) => {
     }
   });
   getRequest.open("GET", URL + "quiz/" + quizID + "/stop/details");
+  getRequest.timeout = REQUEST_TIMEOUT;
+  getRequest.send();
+};
+
+const getLeaderboardEntries = (game, mode, limit, callback) => {
+  const getRequest = new XMLHttpRequest();
+  getRequest.addEventListener("readystatechange", () => {
+    if (getRequest.DONE !== getRequest.readyState) return;
+    if (getRequest.status === 200) {
+      callback(undefined, JSON.parse(getRequest.responseText));
+    } else {
+      callback(createErrorObject("cannot load leaderboard entries", getRequest.status), undefined);
+    }
+  });
+  getRequest.open("GET", LEADERBOARD_URL + "leaderboard/entries/" + game + "/" + mode + "?limit=" + limit);
   getRequest.timeout = REQUEST_TIMEOUT;
   getRequest.send();
 };

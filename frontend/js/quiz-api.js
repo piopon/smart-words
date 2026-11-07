@@ -110,6 +110,22 @@ const getQuizStopDetails = (quizID, callback) => {
   getRequest.send();
 };
 
+const postLeaderboardEntry = (entry, callback) => {
+  const postRequest = new XMLHttpRequest();
+  postRequest.addEventListener("readystatechange", () => {
+    if (postRequest.DONE !== postRequest.readyState) return;
+    if (postRequest.status === 201) {
+      callback(undefined, JSON.parse(postRequest.responseText));
+    } else {
+      callback(createErrorObject(postRequest.responseText || "cannot submit leaderboard entry", postRequest.status), undefined);
+    }
+  });
+  postRequest.open("POST", LEADERBOARD_URL + "leaderboard/entries");
+  postRequest.timeout = REQUEST_TIMEOUT;
+  postRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  postRequest.send(JSON.stringify(entry));
+};
+
 const getLeaderboardEntries = (game, mode, limit, callback) => {
   const getRequest = new XMLHttpRequest();
   getRequest.addEventListener("readystatechange", () => {

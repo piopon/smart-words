@@ -94,6 +94,21 @@ const getQuizStop = (quizID, callback) => {
   getRequest.send();
 };
 
+const getQuizStopDetails = (quizID, callback) => {
+  const getRequest = new XMLHttpRequest();
+  getRequest.addEventListener("readystatechange", () => {
+    if (getRequest.DONE !== getRequest.readyState) return;
+    if (getRequest.status === 200) {
+      callback(undefined, JSON.parse(getRequest.responseText));
+    } else {
+      callback(createErrorObject("cannot stop quiz and read summary details", getRequest.status), undefined);
+    }
+  });
+  getRequest.open("GET", URL + "quiz/" + quizID + "/stop/details");
+  getRequest.timeout = REQUEST_TIMEOUT;
+  getRequest.send();
+};
+
 /**
  * Method used to send a request to the quiz service to create a new empty quiz mode
  *

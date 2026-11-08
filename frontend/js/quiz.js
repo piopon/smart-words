@@ -348,6 +348,43 @@ function getLeaderboardSubmitHtml() {
 }
 
 /**
+ * Method used to receive leaderboard section HTML.
+ */
+function getLeaderboardHtml(topEntries) {
+  let rowsHtml = "";
+  if (!topEntries || topEntries.length === 0) {
+    rowsHtml = `<tr><td colspan="4">no scores yet</td></tr>`;
+  } else {
+    rowsHtml = topEntries.map((entry, index) => {
+      const score = +(entry.scorePercent * 100).toFixed(2);
+      return `<tr>
+                <td>${index + 1}</td>
+                <td>${entry.username}</td>
+                <td>${score}%</td>
+                <td>${entry.totalQuestions}</td>
+              </tr>`;
+    }).join("");
+  }
+
+  return `<div id="leaderboard-wrapper">
+            <p id="leaderboard-title">top 10 leaderboard</p>
+            <table id="leaderboard-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>name</th>
+                  <th>score</th>
+                  <th>questions</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rowsHtml}
+              </tbody>
+            </table>
+          </div>`;
+}
+
+/**
  * Method used to receive summary title based on current score
  *
  * @param {Float} summaryValue correct answers percentage to determine the end title

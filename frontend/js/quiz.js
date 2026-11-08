@@ -309,7 +309,8 @@ function displayQuizSummary(summaryValue) {
   document.getElementById("quiz-question-container").className = "container-visible";
   document.getElementById("quiz-modes-container").className = "container-hidden";
   document.getElementById("quiz-title-container-label").innerHTML = "results:";
-  document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(summaryValue);
+  document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(summaryValue, [], false,
+      "loading leaderboard...");
 }
 
 /**
@@ -318,15 +319,21 @@ function displayQuizSummary(summaryValue) {
  * @param {Float} summaryValue correct answers percentage to be displayed in HTML
  * @returns HTML code for quiz summary
  */
-function getSummaryHtml(summaryValue) {
-  let displayImage = getSummaryImage(summaryValue);
-  let displayTitle = getSummaryTitle(summaryValue);
-  let displayValue = summaryValue * 100;
+function getSummaryHtml(summaryData, topEntries, canSubmit, message) {
+  let displayImage = getSummaryImage(summaryData);
+  let displayTitle = getSummaryTitle(summaryData);
+  let displayValue = summaryData * 100;
   displayValue = +displayValue.toFixed(2);
+  let submitSection = canSubmit ? getLeaderboardSubmitHtml() : "";
+  let leaderboardSection = getLeaderboardHtml(topEntries);
   return `<div id="quiz-summary">
             <img id="quiz-summary-img" src="${displayImage}">
             <p id="quiz-summary-title"><u>${displayTitle}: </u></p>
             <p><strong>${displayValue}%</strong> of correct answers.</p>
+            <p id="quiz-summary-extra">${summaryData} correct answers.</p>
+            <p id="leaderboard-message">${message}</p>
+            ${submitSection}
+            ${leaderboardSection}
             <button id="end-summary" class="question-control-btn dynamic-border" onclick="cleanQuiz()">
               OK
             </button>

@@ -272,7 +272,7 @@ function stopQuiz() {
   var endButtonId = getButtonIdFromEndReason(endQuizReason);
   hideQuizEndModalDialog();
   questionViewUpdateUI(STATE_QUIZ_LOAD, endButtonId);
-  getQuizStop(quizUuid, (err, data) => {
+  getQuizStopDetails(quizUuid, (err, data) => {
     if (err) {
       questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
       console.log("ERROR " + err.status + ": " + err.message);
@@ -320,9 +320,9 @@ function displayQuizSummary(summaryValue) {
  * @returns HTML code for quiz summary
  */
 function getSummaryHtml(summaryData, topEntries, canSubmit, message) {
-  let displayImage = getSummaryImage(summaryData);
-  let displayTitle = getSummaryTitle(summaryData);
-  let displayValue = summaryData * 100;
+  let displayImage = getSummaryImage(summaryData.scorePercent);
+  let displayTitle = getSummaryTitle(summaryData.scorePercent);
+  let displayValue = summaryData.scorePercent * 100;
   displayValue = +displayValue.toFixed(2);
   let submitSection = canSubmit ? getLeaderboardSubmitHtml() : "";
   let leaderboardSection = getLeaderboardHtml(topEntries);
@@ -330,7 +330,7 @@ function getSummaryHtml(summaryData, topEntries, canSubmit, message) {
             <img id="quiz-summary-img" src="${displayImage}">
             <p id="quiz-summary-title"><u>${displayTitle}: </u></p>
             <p><strong>${displayValue}%</strong> of correct answers.</p>
-            <p id="quiz-summary-extra">${summaryData} correct answers.</p>
+            <p id="quiz-summary-extra">${summaryData.correctAnswers}/${summaryData.totalQuestions} correct answers.</p>
             <p id="leaderboard-message">${message}</p>
             ${submitSection}
             ${leaderboardSection}

@@ -8,6 +8,9 @@ var selectedMode = undefined;
 var endQuizReason = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
+var currentSummary = undefined;
+var leaderboardEntries = [];
+var leaderboardSubmitted = false;
 
 /**
  * Method used to receive number of question, start quiz and receive UUID
@@ -314,6 +317,9 @@ function getButtonIdFromEndReason(endQuizReason) {
  */
 function displayQuizSummary(summaryValue) {
   questionViewUpdateUI(STATE_QUIZ_OFF);
+  currentSummary = summaryValue;
+  leaderboardEntries = [];
+  leaderboardSubmitted = false;
   document.getElementById("quiz-question-container").className = "container-visible";
   document.getElementById("quiz-modes-container").className = "container-hidden";
   document.getElementById("quiz-title-container-label").innerHTML = "results:";
@@ -456,6 +462,9 @@ function getSummaryImage(summaryValue) {
  * Method used to clean quiz summary and display initial quiz modes selector
  */
 function cleanQuiz() {
+  currentSummary = undefined;
+  leaderboardEntries = [];
+  leaderboardSubmitted = false;
   displayQuizModes();
   document.getElementById("quiz-question-container").className = "container-hidden";
   document.getElementById("quiz-modes-container").className = "container-visible";

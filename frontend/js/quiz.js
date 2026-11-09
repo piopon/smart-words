@@ -282,11 +282,11 @@ function stopQuiz() {
           return;
         }
         questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
-        displayQuizSummary(fallbackData);
+        displayQuizSummary(normalizeSummaryDetails(fallbackData));
       });
     } else {
       questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
-      displayQuizSummary(data);
+      displayQuizSummary(normalizeSummaryDetails(data));
     }
   });
 }
@@ -397,6 +397,23 @@ function getLeaderboardHtml(topEntries) {
               </tbody>
             </table>
           </div>`;
+}
+
+/**
+ * Method used to normalize summary object in compatibility mode.
+ */
+function normalizeSummaryDetails(summaryValue) {
+  if (typeof summaryValue === "object" && summaryValue !== null) {
+    return summaryValue;
+  }
+  const normalizedPercent = parseFloat(summaryValue);
+  const parsedQuestions = parseInt(totalQuestionsNo);
+  return {
+    scorePercent: isNaN(normalizedPercent) ? 0 : normalizedPercent,
+    correctAnswers: isNaN(normalizedPercent) || isNaN(parsedQuestions) ? 0 : Math.round(normalizedPercent * parsedQuestions),
+    totalQuestions: isNaN(parsedQuestions) ? 0 : parsedQuestions,
+    mode: selectedMode ? selectedMode.id : 0
+  };
 }
 
 /**

@@ -11,6 +11,8 @@ var currentQuestionNo = undefined;
 var currentSummary = undefined;
 var leaderboardEntries = [];
 var leaderboardSubmitted = false;
+const LEADERBOARD_GAME = "quiz";
+const LEADERBOARD_LIMIT = 10;
 
 /**
  * Method used to receive number of question, start quiz and receive UUID
@@ -325,6 +327,7 @@ function displayQuizSummary(summaryValue) {
   document.getElementById("quiz-title-container-label").innerHTML = "results:";
   document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(summaryValue, [], false,
       "loading leaderboard...");
+  loadSummaryLeaderboard();
 }
 
 /**
@@ -355,6 +358,26 @@ function getSummaryHtml(summaryData, topEntries, canSubmit, message) {
               OK
             </button>
           </div>`;
+}
+
+function loadSummaryLeaderboard() {
+  getLeaderboardEntries(LEADERBOARD_GAME, currentSummary.mode, LEADERBOARD_LIMIT, (err, data) => {
+    if (err) {
+      document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(
+        currentSummary,
+        [],
+        false,
+        "leaderboard is currently unavailable"
+      );
+      return;
+    }
+    document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(
+      currentSummary,
+      data,
+      true,
+      "score saved to leaderboard"
+    );
+  });
 }
 
 /**

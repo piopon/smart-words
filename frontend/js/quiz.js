@@ -313,7 +313,7 @@ function getButtonIdFromEndReason(endQuizReason) {
 /**
  * Method used to display quiz summary view (hide question and show percentage correctness)
  *
- * @param {Float} summaryValue correct answers percentage
+ * @param {Object} summaryValue object with quiz summary details
  */
 function displayQuizSummary(summaryValue) {
   questionViewUpdateUI(STATE_QUIZ_OFF);
@@ -330,7 +330,10 @@ function displayQuizSummary(summaryValue) {
 /**
  * Method used to receive summary HTML code (percentage result and OK button)
  *
- * @param {Float} summaryValue correct answers percentage to be displayed in HTML
+ * @param {Object} summaryData complete summary details object
+ * @param {Array} topEntries top leaderboard entries for selected mode
+ * @param {Boolean} canSubmit indicates if score can be submitted to leaderboard
+ * @param {String} message leaderboard information message
  * @returns HTML code for quiz summary
  */
 function getSummaryHtml(summaryData, topEntries, canSubmit, message) {

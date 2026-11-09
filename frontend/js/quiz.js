@@ -274,8 +274,16 @@ function stopQuiz() {
   questionViewUpdateUI(STATE_QUIZ_LOAD, endButtonId);
   getQuizStopDetails(quizUuid, (err, data) => {
     if (err) {
-      questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
-      console.log("ERROR " + err.status + ": " + err.message);
+      // Keep compatibility with old quiz backend response shape.
+      getQuizStop(quizUuid, (fallbackErr, fallbackData) => {
+        if (fallbackErr) {
+          questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
+          console.log("ERROR " + fallbackErr.status + ": " + fallbackErr.message);
+          return;
+        }
+        questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
+        displayQuizSummary(fallbackData);
+      });
     } else {
       questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
       displayQuizSummary(data);

@@ -414,6 +414,40 @@ div[id^="question-info-"].service-error {
   font-size: 14px;
 }
 
+#leaderboard-wrapper {
+  width: 100%;
+  max-width: 640px;
+  margin: 5px 0px 20px 0px;
+}
+
+#leaderboard-title {
+  margin: 0px 0px 8px 0px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: lowercase;
+  text-align: center;
+}
+
+#leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 1px solid black;
+}
+
+#leaderboard-table th,
+#leaderboard-table td {
+  border: 1px solid black;
+  padding: 6px 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+#leaderboard-table th {
+  background-color: rgb(235, 235, 235);
+  text-transform: lowercase;
+}
+
 @keyframes status-opacity {
   from {
     opacity: 0;

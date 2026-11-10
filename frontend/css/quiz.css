@@ -383,6 +383,37 @@ div[id^="question-info-"].service-error {
   font-size: 18px;
 }
 
+#leaderboard-submit-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+#leaderboard-submit-wrapper label {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+#leaderboard-username {
+  height: 30px;
+  width: 220px;
+  border: 1px solid black;
+  padding: 0 8px;
+  font-size: 15px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#leaderboard-submit-info {
+  margin: 0;
+  min-height: 20px;
+  width: 100%;
+  color: darkred;
+  font-size: 14px;
+}
+
 @keyframes status-opacity {
   from {
     opacity: 0;

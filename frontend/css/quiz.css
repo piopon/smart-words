@@ -374,6 +374,15 @@ div[id^="question-info-"].service-error {
   width: 200px;
 }
 
+#quiz-summary-title {
+  margin: 5px 0px;
+}
+
+#quiz-summary-extra {
+  margin: 5px 0px 10px 0px;
+  font-size: 18px;
+}
+
 @keyframes status-opacity {
   from {
     opacity: 0;

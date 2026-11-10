@@ -364,7 +364,8 @@ div[id^="question-info-"].service-error {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 400px;
+  width: 100%;
+  min-height: 400px;
   font-size: 20px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }

@@ -380,6 +380,20 @@ function loadSummaryLeaderboard() {
   });
 }
 
+function isTopLeaderboardResult(summaryData, topEntries) {
+  if (!topEntries || topEntries.length < LEADERBOARD_LIMIT) {
+    return true;
+  }
+  const lastEntry = topEntries[topEntries.length - 1];
+  if (summaryData.scorePercent > lastEntry.scorePercent) {
+    return true;
+  }
+  if (summaryData.scorePercent === lastEntry.scorePercent && summaryData.totalQuestions > lastEntry.totalQuestions) {
+    return true;
+  }
+  return false;
+}
+
 /**
  * Method used to receive leaderboard submit section HTML.
  */

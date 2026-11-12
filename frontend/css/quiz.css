@@ -384,6 +384,12 @@ div[id^="question-info-"].service-error {
   font-size: 18px;
 }
 
+#leaderboard-message {
+  margin: 6px 0px 10px 0px;
+  font-size: 16px;
+  text-transform: lowercase;
+}
+
 #leaderboard-submit-wrapper {
   display: flex;
   align-items: center;

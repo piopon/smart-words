@@ -403,6 +403,41 @@ function isTopLeaderboardResult(summaryData, topEntries) {
   return false;
 }
 
+function submitSummaryToLeaderboard() {
+  if (leaderboardSubmitted) {
+    return;
+  }
+  const usernameInput = document.getElementById("leaderboard-username");
+  if (!usernameInput) {
+    return;
+  }
+  const username = usernameInput.value.trim();
+  const submitButton = document.getElementById("leaderboard-submit");
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.innerHTML = "saving...";
+  }
+
+  const payload = {
+    game: LEADERBOARD_GAME,
+    mode: currentSummary.mode,
+    username: username,
+    scorePercent: currentSummary.scorePercent,
+    totalQuestions: currentSummary.totalQuestions,
+    correctAnswers: currentSummary.correctAnswers
+  };
+  postLeaderboardEntry(payload, (err, _data) => {
+    if (err) {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = "SAVE SCORE";
+      }
+      return;
+    }
+    loadSummaryLeaderboard();
+  });
+}
+
 /**
  * Method used to receive leaderboard submit section HTML.
  */

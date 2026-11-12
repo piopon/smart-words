@@ -371,11 +371,20 @@ function loadSummaryLeaderboard() {
       );
       return;
     }
+    leaderboardEntries = data;
+    let canSubmit = isTopLeaderboardResult(currentSummary, leaderboardEntries);
+    let message = canSubmit
+      ? "you reached top 10 - enter your name"
+      : "you did not reach top 10 in this mode";
+    if (leaderboardSubmitted) {
+      message = "score saved to leaderboard";
+      canSubmit = false;
+    }
     document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(
       currentSummary,
-      data,
-      true,
-      "score saved to leaderboard"
+      leaderboardEntries,
+      canSubmit,
+      message
     );
   });
 }

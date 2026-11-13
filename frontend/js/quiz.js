@@ -360,6 +360,9 @@ function getSummaryHtml(summaryData, topEntries, canSubmit, message) {
           </div>`;
 }
 
+/**
+ * Method used to load current mode leaderboard for displayed quiz summary.
+ */
 function loadSummaryLeaderboard() {
   getLeaderboardEntries(LEADERBOARD_GAME, currentSummary.mode, LEADERBOARD_LIMIT, (err, data) => {
     if (err) {
@@ -389,6 +392,9 @@ function loadSummaryLeaderboard() {
   });
 }
 
+/**
+ * Method used to check if summary result can be submitted to top 10 leaderboard.
+ */
 function isTopLeaderboardResult(summaryData, topEntries) {
   if (!topEntries || topEntries.length < LEADERBOARD_LIMIT) {
     return true;
@@ -403,6 +409,9 @@ function isTopLeaderboardResult(summaryData, topEntries) {
   return false;
 }
 
+/**
+ * Method used to submit current summary score to leaderboard.
+ */
 function submitSummaryToLeaderboard() {
   if (leaderboardSubmitted) {
     return;

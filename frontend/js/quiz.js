@@ -439,6 +439,7 @@ function submitSummaryToLeaderboard() {
       }
       return;
     }
+    leaderboardSubmitted = true;
     loadSummaryLeaderboard();
   });
 }

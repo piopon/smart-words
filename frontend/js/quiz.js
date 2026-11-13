@@ -422,6 +422,12 @@ function submitSummaryToLeaderboard() {
   }
   const username = usernameInput.value.trim();
   const infoLabel = document.getElementById("leaderboard-submit-info");
+  if (!username || username.length > 24) {
+    if (infoLabel) {
+      infoLabel.innerHTML = "name must contain 1-24 characters";
+    }
+    return;
+  }
 
   const submitButton = document.getElementById("leaderboard-submit");
   if (submitButton) {

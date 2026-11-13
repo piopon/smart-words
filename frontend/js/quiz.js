@@ -412,6 +412,8 @@ function submitSummaryToLeaderboard() {
     return;
   }
   const username = usernameInput.value.trim();
+  const infoLabel = document.getElementById("leaderboard-submit-info");
+
   const submitButton = document.getElementById("leaderboard-submit");
   if (submitButton) {
     submitButton.disabled = true;
@@ -428,6 +430,9 @@ function submitSummaryToLeaderboard() {
   };
   postLeaderboardEntry(payload, (err, _data) => {
     if (err) {
+      if (infoLabel) {
+        infoLabel.innerHTML = "cannot save score right now";
+      }
       if (submitButton) {
         submitButton.disabled = false;
         submitButton.innerHTML = "SAVE SCORE";

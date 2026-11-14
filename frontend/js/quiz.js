@@ -394,6 +394,10 @@ function loadSummaryLeaderboard() {
 
 /**
  * Method used to check if summary result can be submitted to top 10 leaderboard.
+ *
+ * @param {Object} summaryData normalized quiz summary details
+ * @param {Array} topEntries currently loaded leaderboard entries
+ * @returns true if score qualifies for top 10 submit form, false otherwise
  */
 function isTopLeaderboardResult(summaryData, topEntries) {
   if (!topEntries || topEntries.length < LEADERBOARD_LIMIT) {
@@ -461,6 +465,8 @@ function submitSummaryToLeaderboard() {
 
 /**
  * Method used to receive leaderboard submit section HTML.
+ *
+ * @returns HTML code for leaderboard submit controls
  */
 function getLeaderboardSubmitHtml() {
   return `<div id="leaderboard-submit-wrapper">
@@ -475,6 +481,9 @@ function getLeaderboardSubmitHtml() {
 
 /**
  * Method used to receive leaderboard section HTML.
+ *
+ * @param {Array} topEntries currently loaded leaderboard entries
+ * @returns HTML code for leaderboard table section
  */
 function getLeaderboardHtml(topEntries) {
   let rowsHtml = "";
@@ -512,6 +521,9 @@ function getLeaderboardHtml(topEntries) {
 
 /**
  * Method used to normalize summary object in compatibility mode.
+ *
+ * @param {Object|Float|String} summaryValue value returned by quiz stop endpoint
+ * @returns normalized summary details object
  */
 function normalizeSummaryDetails(summaryValue) {
   if (typeof summaryValue === "object" && summaryValue !== null) {

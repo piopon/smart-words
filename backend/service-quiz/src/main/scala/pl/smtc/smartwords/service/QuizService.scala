@@ -217,6 +217,8 @@ class QuizService(quizDB: QuizDatabase,
 
   /**
    * Method used to calculate quiz summary values.
+   * @param quiz quiz instance containing answered rounds
+   * @return quiz summary with percent, correct answers count, total questions, and mode
    */
   private def getQuizSummary(quiz: Quiz): QuizSummary = {
     val correctAnswers: Int = quiz.rounds.count(round => round.correct.exists(isCorrect => isCorrect))
@@ -227,6 +229,8 @@ class QuizService(quizDB: QuizDatabase,
 
   /**
    * Normalize language token to avoid issues with UI default markers (e.g. "pl!").
+   * @param language language input from request
+   * @return normalized language token accepted by word service
    */
   private def normalizeLanguage(language: String): String = {
     val normalized = language.replace(defaultLanguageMarker, "").trim

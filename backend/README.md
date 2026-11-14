@@ -10,6 +10,9 @@ It's responsible for creating and starting a quiz based on the user input parame
 Upon creation it provides a specified question number with four possible answers, receives and processes responsens and sends a response with correct or incorrect answer status. 
 Finally after finishing a quiz it calculates the end result.
 
+* **service-leaderboard**: backend service for storing quiz score history and serving best results per mode ([DOCS](./service-leaderboard/README.md)).<br>
+It's responsible for accepting quiz summary submissions (`username`, `mode`, score details) and returning ranked top entries.
+
 * **service-word**: backend service for handling dictionary files of different games and/or modes ([DOCS](./service-word/README.md)).<br>
 It's responsible for handling CRUD operations on dictionaries: adding new word to a specified dictionary JSON file, reading dictionary JSON files, editing and removing an existing word in a dictionary.
 This service has built-in dictionary files which user can edit, read or delete, but any new file is saved in a separate JSON file to separate the built-in words from user created ones.<br>
@@ -22,6 +25,7 @@ Both backend services now read runtime settings from `application.conf` files an
 See details in:
 
 * [service-quiz configuration](./service-quiz/README.md#configuration)
+* [service-leaderboard configuration](./service-leaderboard/README.md#configuration)
 * [service-word configuration](./service-word/README.md#configuration)
 
 ---

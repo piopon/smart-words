@@ -46,6 +46,9 @@ class LeaderboardDatabase(dataDirectory: Option[Path] = sys.env.get("LEADERBOARD
 
   /**
    * Add one leaderboard attempt to full history.
+    *
+    * @param entry new leaderboard entry to persist
+    * @return saved leaderboard entry
    */
   def addEntry(entry: LeaderboardEntry): LeaderboardEntry = synchronized {
     entries += entry
@@ -55,6 +58,11 @@ class LeaderboardDatabase(dataDirectory: Option[Path] = sys.env.get("LEADERBOARD
 
   /**
    * Return sorted top entries for selected game and mode.
+    *
+    * @param game game identifier
+    * @param mode mode identifier
+    * @param limit max amount of entries to return
+    * @return top entries sorted by score, question count, and timestamp
    */
   def getTopEntries(game: String, mode: Int, limit: Int): List[LeaderboardEntry] = synchronized {
     entries

@@ -18,6 +18,12 @@ object ServiceLeaderboardApp extends IOApp {
 
   private lazy val appConfig: LeaderboardAppConfig = LeaderboardAppConfig.load()
 
+  /**
+   * Start leaderboard service HTTP server.
+   *
+   * @param args command line arguments
+   * @return process exit code
+   */
   override def run(args: List[String]): IO[ExitCode] = {
     val serverHost: Host = Host.fromString(appConfig.service.host).getOrElse(ipv4"0.0.0.0")
     val serverPort: Port = Port.fromInt(appConfig.service.port).getOrElse(port"3333")

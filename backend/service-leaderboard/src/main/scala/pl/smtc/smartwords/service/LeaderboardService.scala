@@ -16,6 +16,9 @@ class LeaderboardService(database: LeaderboardDatabase) {
 
   /**
    * Submit new leaderboard attempt.
+    *
+    * @param submit leaderboard submit payload
+    * @return created entry response or validation error response
    */
   def submitEntry(submit: LeaderboardSubmit): IO[Response[IO]] = {
     val game = submit.game.trim.toLowerCase
@@ -54,6 +57,11 @@ class LeaderboardService(database: LeaderboardDatabase) {
 
   /**
    * Get top leaderboard entries for selected game and mode.
+    *
+    * @param game game identifier from request path
+    * @param mode mode identifier from request path
+    * @param maybeLimit optional query limit value
+    * @return top entries response or validation error response
    */
   def getTopEntries(game: String, mode: String, maybeLimit: Option[Int]): IO[Response[IO]] = {
     val normalizedGame = game.trim.toLowerCase

@@ -16,6 +16,8 @@ class LeaderboardController(database: LeaderboardDatabase) {
 
   /**
    * Routes (request -> response) for leaderboard endpoints/resources.
+    *
+    * @return all leaderboard HTTP routes
    */
   def getRoutes: HttpRoutes[IO] = {
     val service = new LeaderboardService(database)

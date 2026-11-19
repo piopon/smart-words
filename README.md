@@ -40,7 +40,7 @@ Currently the application is structured as follows:
   * leaderboard service - responsible for storing quiz score history and returning top results per quiz mode
   * word service - responsible for handling different words and dicrionarires for specific languages. This includes: reading, adding, deleting, and updating words in appropriate dictionary files, and handle those files as well.
 
-No database engine is currently used. All data is saved directly in the JSON files stored in the resources directory for both backend services. New words are saved in a entirely new files which all are read while starting word service. Quiz service has only in-memory database for now (quizzes are stored in a map).
+No database engine is currently used. Data is persisted in JSON files handled by backend services. Word and quiz-mode files are loaded from service resources and persisted into mounted runtime data directories. Leaderboard history is also persisted into a mounted runtime JSON file. Quiz session state itself is in-memory (quizzes are stored in a map).
 
 ## running application
 

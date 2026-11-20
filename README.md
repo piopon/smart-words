@@ -37,9 +37,10 @@ Currently the application is structured as follows:
 * the frontend logic ([DOCS](frontend/README.md)) is done in HTML, CSS, and JavaScript. No framework or bootstrap is currently used since I wanted to focus on learning the fundamentals before understanding different wrappers.
 * the backend logic ([DOCS](backend/README.md)) is divided into services written in Scala:
   * quiz service - responsible for controlling quiz game type which includes: starting and stopping quizzes, receiving questions and sending answers, and calculating the final result
+  * leaderboard service - responsible for storing quiz score history and returning top results per quiz mode
   * word service - responsible for handling different words and dicrionarires for specific languages. This includes: reading, adding, deleting, and updating words in appropriate dictionary files, and handle those files as well.
 
-No database engine is currently used. All data is saved directly in the JSON files stored in the resources directory for both backend services. New words are saved in a entirely new files which all are read while starting word service. Quiz service has only in-memory database for now (quizzes are stored in a map).
+No database engine is currently used. Data is persisted in JSON files handled by backend services. Word and quiz-mode files are loaded from service resources and persisted into mounted runtime data directories. Leaderboard history is also persisted into a mounted runtime JSON file. Quiz session state itself is in-memory (quizzes are stored in a map).
 
 ## running application
 
@@ -71,6 +72,7 @@ When running with Docker Compose, those variables can be adjusted in [docker-com
 Full key lists:
 
 - quiz service: [backend/service-quiz/README.md](backend/service-quiz/README.md#configuration)
+- leaderboard service: [backend/service-leaderboard/README.md](backend/service-leaderboard/README.md#configuration)
 - word service: [backend/service-word/README.md](backend/service-word/README.md#configuration)
 
 ### verify
@@ -80,6 +82,7 @@ docker compose ps
 docker compose logs -f frontend
 docker compose logs -f service-word
 docker compose logs -f service-quiz
+docker compose logs -f service-leaderboard
 ```
 
 ### smoke test
@@ -96,6 +99,7 @@ This validates:
 - proxied backend health endpoints are healthy
 - modes API create/read/delete flow works
 - mode persistence survives `service-quiz` restart
+- leaderboard API submit/read flow works with expected ranking order
 
 ### persistence
 
@@ -103,6 +107,7 @@ Runtime data is stored on host in:
 
 - `./data/service-word` for dictionaries
 - `./data/service-quiz` for modes
+- `./data/service-leaderboard` for leaderboard history
 
 Those directories are seeded from bundled defaults on first run when empty.
 
@@ -118,7 +123,7 @@ Stop and remove persisted data too:
 
 ```powershell
 docker compose down
-Remove-Item -Recurse -Force .\data\service-word, .\data\service-quiz
+Remove-Item -Recurse -Force .\data\service-word, .\data\service-quiz, .\data\service-leaderboard
 ```
 
 ### rebuild after changes

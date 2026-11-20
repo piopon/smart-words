@@ -238,6 +238,22 @@ class QuizServiceTest extends AnyFunSuite {
     assert(res.toDouble === 0.0)
   }
 
+  test("testStopQuizWithDetails") {
+    val quizDatabase: QuizDatabase = new QuizDatabase
+    val wordService: WordServiceTest = new WordServiceTest
+    val serviceUnderTest: QuizService = new QuizService(quizDatabase, wordService)
+    val uuid: UUID = UUID.fromString(serviceUnderTest.startQuiz(Some(5), Some(72), Some("es"))
+      .flatMap(_.as[String])
+      .unsafeRunSync())
+    val res: Json = serviceUnderTest.stopQuizWithDetails(uuid)
+      .flatMap(_.as[Json])
+      .unsafeRunSync()
+    assert(res.hcursor.downField("scorePercent").as[Double].contains(0.0))
+    assert(res.hcursor.downField("correctAnswers").as[Int].contains(0))
+    assert(res.hcursor.downField("totalQuestions").as[Int].contains(5))
+    assert(res.hcursor.downField("mode").as[Int].contains(72))
+  }
+
   test("testStopQuizFailsWhenUnsupportedUuidIsProvided") {
     val quizDatabase: QuizDatabase = new QuizDatabase
     val wordService: WordServiceTest = new WordServiceTest

@@ -364,7 +364,8 @@ div[id^="question-info-"].service-error {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 400px;
+  width: 100%;
+  min-height: 400px;
   font-size: 20px;
   font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
 }
@@ -372,6 +373,86 @@ div[id^="question-info-"].service-error {
 #quiz-summary-img {
   height: 200px;
   width: 200px;
+}
+
+#quiz-summary-title {
+  margin: 5px 0px;
+}
+
+#quiz-summary-extra {
+  margin: 5px 0px 10px 0px;
+  font-size: 18px;
+}
+
+#leaderboard-message {
+  margin: 6px 0px 10px 0px;
+  font-size: 16px;
+  text-transform: lowercase;
+}
+
+#leaderboard-submit-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+#leaderboard-submit-wrapper label {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+#leaderboard-username {
+  height: 30px;
+  width: 220px;
+  border: 1px solid black;
+  padding: 0 8px;
+  font-size: 15px;
+  font-family: var(--clear-font-primary), var(--clear-font-backup), Verdana, sans-serif;
+}
+
+#leaderboard-submit-info {
+  margin: 0;
+  min-height: 20px;
+  width: 100%;
+  color: darkred;
+  font-size: 14px;
+}
+
+#leaderboard-wrapper {
+  width: 100%;
+  max-width: 640px;
+  margin: 5px 0px 20px 0px;
+}
+
+#leaderboard-title {
+  margin: 0px 0px 8px 0px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: lowercase;
+  text-align: center;
+}
+
+#leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 1px solid black;
+}
+
+#leaderboard-table th,
+#leaderboard-table td {
+  border: 1px solid black;
+  padding: 6px 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+#leaderboard-table th {
+  background-color: rgb(235, 235, 235);
+  text-transform: lowercase;
 }
 
 @keyframes status-opacity {

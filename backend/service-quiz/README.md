@@ -21,6 +21,7 @@ Finally after finishing a quiz it calculates the end result.
 * `POST /quiz/{mode}/start?size=10〈=pl` -> `RET: OK 200+UUID` | `ERR 500`<br>Start a new quiz
 * `GET /quiz/{uuid}/question/{no}` -> `RET: OK 200 + Round JSON` | `ERR 404`<br>Receive a specific question for a specified quiz
 * `POST /quiz/{uuid}/question/{no}/{answerNo}` -> `RET: OK 200` | `ERR 404`<br>Send question answer for a specific question in a specified quiz
+* `GET /quiz/{uuid}/stop/details` -> `RET: OK 200 + Summary JSON` | `ERR 404`<br>End quiz and get detailed summary (score, correct answers, total questions, mode)
 * `GET /quiz/{uuid}/stop` -> `RET: OK 200` | `ERR 404`<br>End quiz and get result
 
 ### technology

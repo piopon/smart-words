@@ -8,6 +8,11 @@ var selectedMode = undefined;
 var endQuizReason = undefined;
 var totalQuestionsNo = undefined;
 var currentQuestionNo = undefined;
+var currentSummary = undefined;
+var leaderboardEntries = [];
+var leaderboardSubmitted = false;
+const LEADERBOARD_GAME = "quiz";
+const LEADERBOARD_LIMIT = 10;
 
 /**
  * Method used to receive number of question, start quiz and receive UUID
@@ -272,13 +277,21 @@ function stopQuiz() {
   var endButtonId = getButtonIdFromEndReason(endQuizReason);
   hideQuizEndModalDialog();
   questionViewUpdateUI(STATE_QUIZ_LOAD, endButtonId);
-  getQuizStop(quizUuid, (err, data) => {
+  getQuizStopDetails(quizUuid, (err, data) => {
     if (err) {
-      questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
-      console.log("ERROR " + err.status + ": " + err.message);
+      // Keep compatibility with old quiz backend response shape.
+      getQuizStop(quizUuid, (fallbackErr, fallbackData) => {
+        if (fallbackErr) {
+          questionViewUpdateUI(STATE_QUIZ_ERROR, endButtonId);
+          console.log("ERROR " + fallbackErr.status + ": " + fallbackErr.message);
+          return;
+        }
+        questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
+        displayQuizSummary(normalizeSummaryDetails(fallbackData));
+      });
     } else {
       questionViewUpdateUI(STATE_QUIZ_OK, endButtonId);
-      displayQuizSummary(data);
+      displayQuizSummary(normalizeSummaryDetails(data));
     }
   });
 }
@@ -302,35 +315,228 @@ function getButtonIdFromEndReason(endQuizReason) {
 /**
  * Method used to display quiz summary view (hide question and show percentage correctness)
  *
- * @param {Float} summaryValue correct answers percentage
+ * @param {Object} summaryValue object with quiz summary details
  */
 function displayQuizSummary(summaryValue) {
   questionViewUpdateUI(STATE_QUIZ_OFF);
+  currentSummary = summaryValue;
+  leaderboardEntries = [];
+  leaderboardSubmitted = false;
   document.getElementById("quiz-question-container").className = "container-visible";
   document.getElementById("quiz-modes-container").className = "container-hidden";
   document.getElementById("quiz-title-container-label").innerHTML = "results:";
-  document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(summaryValue);
+  document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(summaryValue, [], false,
+      "loading leaderboard...");
+  loadSummaryLeaderboard();
 }
 
 /**
  * Method used to receive summary HTML code (percentage result and OK button)
  *
- * @param {Float} summaryValue correct answers percentage to be displayed in HTML
+ * @param {Object} summaryData complete summary details object
+ * @param {Array} topEntries top leaderboard entries for selected mode
+ * @param {Boolean} canSubmit indicates if score can be submitted to leaderboard
+ * @param {String} message leaderboard information message
  * @returns HTML code for quiz summary
  */
-function getSummaryHtml(summaryValue) {
-  let displayImage = getSummaryImage(summaryValue);
-  let displayTitle = getSummaryTitle(summaryValue);
-  let displayValue = summaryValue * 100;
+function getSummaryHtml(summaryData, topEntries, canSubmit, message) {
+  let displayImage = getSummaryImage(summaryData.scorePercent);
+  let displayTitle = getSummaryTitle(summaryData.scorePercent);
+  let displayValue = summaryData.scorePercent * 100;
   displayValue = +displayValue.toFixed(2);
+  let submitSection = canSubmit ? getLeaderboardSubmitHtml() : "";
+  let leaderboardSection = getLeaderboardHtml(topEntries);
   return `<div id="quiz-summary">
             <img id="quiz-summary-img" src="${displayImage}">
             <p id="quiz-summary-title"><u>${displayTitle}: </u></p>
             <p><strong>${displayValue}%</strong> of correct answers.</p>
+            <p id="quiz-summary-extra">${summaryData.correctAnswers}/${summaryData.totalQuestions} correct answers.</p>
+            <p id="leaderboard-message">${message}</p>
+            ${submitSection}
+            ${leaderboardSection}
             <button id="end-summary" class="question-control-btn dynamic-border" onclick="cleanQuiz()">
               OK
             </button>
           </div>`;
+}
+
+/**
+ * Method used to load current mode leaderboard for displayed quiz summary.
+ */
+function loadSummaryLeaderboard() {
+  getLeaderboardEntries(LEADERBOARD_GAME, currentSummary.mode, LEADERBOARD_LIMIT, (err, data) => {
+    if (err) {
+      document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(
+        currentSummary,
+        [],
+        false,
+        "leaderboard is currently unavailable"
+      );
+      return;
+    }
+    leaderboardEntries = data;
+    let canSubmit = isTopLeaderboardResult(currentSummary, leaderboardEntries);
+    let message = canSubmit
+      ? "you reached top 10 - enter your name"
+      : "you did not reach top 10 in this mode";
+    if (leaderboardSubmitted) {
+      message = "score saved to leaderboard";
+      canSubmit = false;
+    }
+    document.getElementById("quiz-question-container").innerHTML = getSummaryHtml(
+      currentSummary,
+      leaderboardEntries,
+      canSubmit,
+      message
+    );
+  });
+}
+
+/**
+ * Method used to check if summary result can be submitted to top 10 leaderboard.
+ *
+ * @param {Object} summaryData normalized quiz summary details
+ * @param {Array} topEntries currently loaded leaderboard entries
+ * @returns true if score qualifies for top 10 submit form, false otherwise
+ */
+function isTopLeaderboardResult(summaryData, topEntries) {
+  if (!topEntries || topEntries.length < LEADERBOARD_LIMIT) {
+    return true;
+  }
+  const lastEntry = topEntries[topEntries.length - 1];
+  if (summaryData.scorePercent > lastEntry.scorePercent) {
+    return true;
+  }
+  if (summaryData.scorePercent === lastEntry.scorePercent && summaryData.totalQuestions > lastEntry.totalQuestions) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Method used to submit current summary score to leaderboard.
+ */
+function submitSummaryToLeaderboard() {
+  if (leaderboardSubmitted) {
+    return;
+  }
+  const usernameInput = document.getElementById("leaderboard-username");
+  if (!usernameInput) {
+    return;
+  }
+  const username = usernameInput.value.trim();
+  const infoLabel = document.getElementById("leaderboard-submit-info");
+  if (!username || username.length > 24) {
+    if (infoLabel) {
+      infoLabel.innerHTML = "name must contain 1-24 characters";
+    }
+    return;
+  }
+
+  const submitButton = document.getElementById("leaderboard-submit");
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.innerHTML = "saving...";
+  }
+
+  const payload = {
+    game: LEADERBOARD_GAME,
+    mode: currentSummary.mode,
+    username: username,
+    scorePercent: currentSummary.scorePercent,
+    totalQuestions: currentSummary.totalQuestions,
+    correctAnswers: currentSummary.correctAnswers
+  };
+  postLeaderboardEntry(payload, (err, _data) => {
+    if (err) {
+      if (infoLabel) {
+        infoLabel.innerHTML = "cannot save score right now";
+      }
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = "SAVE SCORE";
+      }
+      return;
+    }
+    leaderboardSubmitted = true;
+    loadSummaryLeaderboard();
+  });
+}
+
+/**
+ * Method used to receive leaderboard submit section HTML.
+ *
+ * @returns HTML code for leaderboard submit controls
+ */
+function getLeaderboardSubmitHtml() {
+  return `<div id="leaderboard-submit-wrapper">
+            <label for="leaderboard-username">name:</label>
+            <input id="leaderboard-username" type="text" maxlength="24" placeholder="enter your name" />
+            <button id="leaderboard-submit" class="question-control-btn static-border" onclick="submitSummaryToLeaderboard()">
+              SAVE SCORE
+            </button>
+            <p id="leaderboard-submit-info"></p>
+          </div>`;
+}
+
+/**
+ * Method used to receive leaderboard section HTML.
+ *
+ * @param {Array} topEntries currently loaded leaderboard entries
+ * @returns HTML code for leaderboard table section
+ */
+function getLeaderboardHtml(topEntries) {
+  let rowsHtml = "";
+  if (!topEntries || topEntries.length === 0) {
+    rowsHtml = `<tr><td colspan="4">no scores yet</td></tr>`;
+  } else {
+    rowsHtml = topEntries.map((entry, index) => {
+      const score = +(entry.scorePercent * 100).toFixed(2);
+      return `<tr>
+                <td>${index + 1}</td>
+                <td>${entry.username}</td>
+                <td>${score}%</td>
+                <td>${entry.totalQuestions}</td>
+              </tr>`;
+    }).join("");
+  }
+
+  return `<div id="leaderboard-wrapper">
+            <p id="leaderboard-title">top 10 leaderboard</p>
+            <table id="leaderboard-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>name</th>
+                  <th>score</th>
+                  <th>questions</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rowsHtml}
+              </tbody>
+            </table>
+          </div>`;
+}
+
+/**
+ * Method used to normalize summary object in compatibility mode.
+ *
+ * @param {Object|Float|String} summaryValue value returned by quiz stop endpoint
+ * @returns normalized summary details object
+ */
+function normalizeSummaryDetails(summaryValue) {
+  if (typeof summaryValue === "object" && summaryValue !== null) {
+    return summaryValue;
+  }
+  const normalizedPercent = parseFloat(summaryValue);
+  const parsedQuestions = parseInt(totalQuestionsNo);
+  return {
+    scorePercent: isNaN(normalizedPercent) ? 0 : normalizedPercent,
+    correctAnswers: isNaN(normalizedPercent) || isNaN(parsedQuestions) ? 0 : Math.round(normalizedPercent * parsedQuestions),
+    totalQuestions: isNaN(parsedQuestions) ? 0 : parsedQuestions,
+    mode: selectedMode ? selectedMode.id : 0
+  };
 }
 
 /**
@@ -373,6 +579,9 @@ function getSummaryImage(summaryValue) {
  * Method used to clean quiz summary and display initial quiz modes selector
  */
 function cleanQuiz() {
+  currentSummary = undefined;
+  leaderboardEntries = [];
+  leaderboardSubmitted = false;
   displayQuizModes();
   document.getElementById("quiz-question-container").className = "container-hidden";
   document.getElementById("quiz-modes-container").className = "container-visible";

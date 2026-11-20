@@ -1,4 +1,5 @@
 const URL = "/api/quiz/";
+const LEADERBOARD_URL = "/api/leaderboard/";
 const REQUEST_TIMEOUT = 15_000;
 
 /**
@@ -90,6 +91,76 @@ const getQuizStop = (quizID, callback) => {
     }
   });
   getRequest.open("GET", URL + "quiz/" + quizID + "/stop");
+  getRequest.timeout = REQUEST_TIMEOUT;
+  getRequest.send();
+};
+
+/**
+ * Method used to send a request to the quiz service to stop a quiz with specified ID
+ * and receive detailed summary data.
+ *
+ * @param {String} quizID the UUID of the quiz
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
+const getQuizStopDetails = (quizID, callback) => {
+  const getRequest = new XMLHttpRequest();
+  getRequest.addEventListener("readystatechange", () => {
+    if (getRequest.DONE !== getRequest.readyState) return;
+    if (getRequest.status === 200) {
+      callback(undefined, JSON.parse(getRequest.responseText));
+    } else {
+      callback(createErrorObject("cannot stop quiz and read summary details", getRequest.status), undefined);
+    }
+  });
+  getRequest.open("GET", URL + "quiz/" + quizID + "/stop/details");
+  getRequest.timeout = REQUEST_TIMEOUT;
+  getRequest.send();
+};
+
+/**
+ * Method used to submit a new leaderboard entry.
+ *
+ * @param {Object} entry leaderboard payload object
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
+const postLeaderboardEntry = (entry, callback) => {
+  const postRequest = new XMLHttpRequest();
+  postRequest.addEventListener("readystatechange", () => {
+    if (postRequest.DONE !== postRequest.readyState) return;
+    if (postRequest.status === 201) {
+      callback(undefined, JSON.parse(postRequest.responseText));
+    } else {
+      callback(createErrorObject(postRequest.responseText || "cannot submit leaderboard entry", postRequest.status), undefined);
+    }
+  });
+  postRequest.open("POST", LEADERBOARD_URL + "leaderboard/entries");
+  postRequest.timeout = REQUEST_TIMEOUT;
+  postRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  postRequest.send(JSON.stringify(entry));
+};
+
+/**
+ * Method used to load leaderboard entries for a selected game and mode.
+ *
+ * @param {String} game game type (e.g. quiz)
+ * @param {Integer} mode mode identifier
+ * @param {Integer} limit max entries to load
+ * @param {Function} callback function to be invoked when request is completed.
+ *                            It should contain 2 parameters: error object and data object.
+ */
+const getLeaderboardEntries = (game, mode, limit, callback) => {
+  const getRequest = new XMLHttpRequest();
+  getRequest.addEventListener("readystatechange", () => {
+    if (getRequest.DONE !== getRequest.readyState) return;
+    if (getRequest.status === 200) {
+      callback(undefined, JSON.parse(getRequest.responseText));
+    } else {
+      callback(createErrorObject("cannot load leaderboard entries", getRequest.status), undefined);
+    }
+  });
+  getRequest.open("GET", LEADERBOARD_URL + "leaderboard/entries/" + game + "/" + mode + "?limit=" + limit);
   getRequest.timeout = REQUEST_TIMEOUT;
   getRequest.send();
 };

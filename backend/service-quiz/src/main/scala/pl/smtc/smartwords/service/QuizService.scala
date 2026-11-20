@@ -22,6 +22,7 @@ class QuizService(quizDB: QuizDatabase,
                   wordServiceName: String = "WORD") {
 
   implicit val RoundEncoder: Encoder[Round] = QuizDao.getRoundEncoder
+  implicit val SummaryEncoder: Encoder[QuizSummary] = QuizDao.getSummaryEncoder
 
   private final val defaultQuizSize: Int = quizSize
   private final val defaultQuizMode: Int = quizMode
@@ -125,10 +126,25 @@ class QuizService(quizDB: QuizDatabase,
       case None =>
         NotFound("Specified quiz does not exist")
       case Some(quiz) =>
-        val okCount: Int = quiz.rounds.count(round => round.correct.exists(isCorrect => isCorrect))
-        val percent: Float = okCount.toFloat / quiz.rounds.length
+        val summary = getQuizSummary(quiz)
         quizDB.removeQuiz(quizId)
-        Ok(percent.toString)
+        Ok(summary.scorePercent.toString)
+    }
+  }
+
+  /**
+   * Method used to stop desired quiz and return detailed summary payload.
+   * @param quizId the UUID of a started quiz (received after sending start quiz request)
+   * @return response with detailed summary or not found status if quiz UUID not present
+   */
+  def stopQuizWithDetails(quizId: UUID): IO[Response[IO]] = {
+    quizDB.getQuiz(quizId) match {
+      case None =>
+        NotFound("Specified quiz does not exist")
+      case Some(quiz) =>
+        val summary = getQuizSummary(quiz)
+        quizDB.removeQuiz(quizId)
+        Ok(summary.asJson)
     }
   }
 
@@ -196,11 +212,25 @@ class QuizService(quizDB: QuizDatabase,
    * @return generated quiz object
    */
   private def generateQuiz(size: Int, mode: Int, language: String): Quiz = {
-    Quiz(generateRounds(size, mode, language), 0)
+    Quiz(generateRounds(size, mode, language), 0, mode)
+  }
+
+  /**
+   * Method used to calculate quiz summary values.
+   * @param quiz quiz instance containing answered rounds
+   * @return quiz summary with percent, correct answers count, total questions, and mode
+   */
+  private def getQuizSummary(quiz: Quiz): QuizSummary = {
+    val correctAnswers: Int = quiz.rounds.count(round => round.correct.exists(isCorrect => isCorrect))
+    val totalQuestions: Int = quiz.rounds.length
+    val scorePercent: Float = correctAnswers.toFloat / totalQuestions
+    QuizSummary(scorePercent, correctAnswers, totalQuestions, quiz.mode)
   }
 
   /**
    * Normalize language token to avoid issues with UI default markers (e.g. "pl!").
+   * @param language language input from request
+   * @return normalized language token accepted by word service
    */
   private def normalizeLanguage(language: String): String = {
     val normalized = language.replace(defaultLanguageMarker, "").trim

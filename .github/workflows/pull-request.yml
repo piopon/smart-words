@@ -114,3 +114,47 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+  #--------------------------------------------- BACKEND: LEADERBOARD SERVICE
+  test-backend-leaderboard-changes:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    name: test leaderboard backend
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: checking changed files in backend leaderboard service
+        id: changed-leaderboard-backend
+        uses: tj-actions/changed-files@v37
+        with:
+          files: backend/service-leaderboard/**
+      - name: set up jdk
+        if: steps.changed-leaderboard-backend.outputs.any_changed == 'true'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: sbt
+      - name: set up sbt
+        if: steps.changed-leaderboard-backend.outputs.any_changed == 'true'
+        uses: sbt/setup-sbt@v1
+      - name: backend leaderboard files NOT changed
+        if: steps.changed-leaderboard-backend.outputs.any_changed != 'true'
+        run: echo backend leaderboard service NOT changed
+      - name: compile leaderboard backend service
+        if: steps.changed-leaderboard-backend.outputs.any_changed == 'true'
+        working-directory: backend/service-leaderboard
+        run: sbt clean compile
+      - name: run leaderboard backend service unit tests
+        if: steps.changed-leaderboard-backend.outputs.any_changed == 'true'
+        working-directory: backend/service-leaderboard
+        run: sbt coverage test
+      - name: generate leaderboard backend service coverage report
+        if: steps.changed-leaderboard-backend.outputs.any_changed == 'true'
+        working-directory: backend/service-leaderboard
+        run: sbt coverageReport
+      - name: upload leaderboard backend service coverage report
+        if: steps.changed-leaderboard-backend.outputs.any_changed == 'true'
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

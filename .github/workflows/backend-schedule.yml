@@ -1,6 +1,22 @@
 name: backend status
 on: 
   workflow_dispatch:
+    inputs:
+      run_quiz:
+        description: Run quiz backend verification
+        required: true
+        type: boolean
+        default: true
+      run_word:
+        description: Run word backend verification
+        required: true
+        type: boolean
+        default: true
+      run_leaderboard:
+        description: Run leaderboard backend verification
+        required: true
+        type: boolean
+        default: true
   schedule:
     - cron: "0 20 * * 1"
 jobs:

@@ -21,6 +21,7 @@ on:
     - cron: "0 20 * * 1"
 jobs:
   verify-backend-quiz:
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.run_quiz == 'true' }}
     uses: ./.github/workflows/backend-quiz.yml
     secrets: inherit
   verify-backend-word:

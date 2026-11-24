@@ -29,5 +29,6 @@ jobs:
     uses: ./.github/workflows/backend-word.yml
     secrets: inherit
   verify-backend-leaderboard:
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.run_leaderboard == 'true' }}
     uses: ./.github/workflows/backend-leaderboard.yml
     secrets: inherit

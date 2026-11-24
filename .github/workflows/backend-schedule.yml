@@ -25,6 +25,7 @@ jobs:
     uses: ./.github/workflows/backend-quiz.yml
     secrets: inherit
   verify-backend-word:
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.run_word == 'true' }}
     uses: ./.github/workflows/backend-word.yml
     secrets: inherit
   verify-backend-leaderboard:

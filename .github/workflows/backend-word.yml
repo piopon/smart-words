@@ -1,0 +1,11 @@
+name: backend word status
+on:
+  workflow_call:
+
+jobs:
+  verify-backend-word:
+    uses: ./.github/workflows/backend-service.yml
+    with:
+      service_name: word
+      service_directory: backend/service-word
+    secrets: inherit

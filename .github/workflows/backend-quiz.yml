@@ -1,0 +1,11 @@
+name: backend quiz status
+on:
+  workflow_call:
+
+jobs:
+  verify-backend-quiz:
+    uses: ./.github/workflows/backend-service.yml
+    with:
+      service_name: quiz
+      service_directory: backend/service-quiz
+    secrets: inherit

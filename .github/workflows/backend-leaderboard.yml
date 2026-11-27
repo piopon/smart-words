@@ -1,0 +1,11 @@
+name: backend leaderboard status
+on:
+  workflow_call:
+
+jobs:
+  verify-backend-leaderboard:
+    uses: ./.github/workflows/backend-service.yml
+    with:
+      service_name: leaderboard
+      service_directory: backend/service-leaderboard
+    secrets: inherit

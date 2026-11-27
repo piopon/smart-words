@@ -1,0 +1,44 @@
+name: backend service common
+on:
+  workflow_call:
+    inputs:
+      service_name:
+        required: true
+        type: string
+      service_directory:
+        required: true
+        type: string
+    secrets:
+      CODECOV_TOKEN:
+        required: true
+
+jobs:
+  verify-backend-service:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    name: verify ${{ inputs.service_name }} backend
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: set up jdk
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: sbt
+      - name: set up sbt
+        uses: sbt/setup-sbt@v1
+      - name: compile ${{ inputs.service_name }} backend service
+        working-directory: ${{ inputs.service_directory }}
+        run: sbt clean compile
+      - name: run ${{ inputs.service_name }} backend service unit tests
+        working-directory: ${{ inputs.service_directory }}
+        run: sbt coverage test
+      - name: generate ${{ inputs.service_name }} backend service coverage report
+        working-directory: ${{ inputs.service_directory }}
+        run: sbt coverageReport
+      - name: upload ${{ inputs.service_name }} backend service coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
